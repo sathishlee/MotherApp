@@ -21,6 +21,10 @@ import android.widget.ListView;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
+import com.unicef.thaimai.motherapp.R;
+import com.unicef.thaimai.motherapp.adapter.VideoAdapter;
+import com.unicef.thaimai.motherapp.model.VideoModel;
+
 import org.json.JSONException;
 
 import java.io.BufferedReader;
@@ -65,8 +69,6 @@ public class HeathTipsActivity extends AppCompatActivity{
         mVideosList.add(video1);
         mVideosList.add(video2);
         mVideosList.add(video3);
-
-
 
         mVideoAdapter = new VideoAdapter(this, mVideosList);
         video_list.setAdapter(mVideoAdapter);

@@ -9,7 +9,8 @@ import android.view.MenuItem;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
-import suthishan.navigationwithbottom.R;
+import com.unicef.thaimai.motherapp.R;
+
 
 /**
  * Created by Suthishan on 20/1/2018.

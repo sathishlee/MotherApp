@@ -27,6 +27,9 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.unicef.thaimai.motherapp.R;
+import com.unicef.thaimai.motherapp.app.AppController;
+import com.unicef.thaimai.motherapp.helper.apiconstants;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,9 +39,6 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-import suthishan.navigationwithbottom.R;
-import suthishan.navigationwithbottom.app.AppController;
-import suthishan.navigationwithbottom.helper.apiconstants;
 
 public class Register extends AppCompatActivity {
 

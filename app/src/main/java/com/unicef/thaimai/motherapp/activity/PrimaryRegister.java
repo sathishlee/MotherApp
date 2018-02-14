@@ -6,7 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import suthishan.navigationwithbottom.R;
+import com.unicef.thaimai.motherapp.R;
+
 
 public class PrimaryRegister extends AppCompatActivity {
 

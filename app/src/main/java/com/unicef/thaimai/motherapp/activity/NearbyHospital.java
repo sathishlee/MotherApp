@@ -7,7 +7,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
-import suthishan.navigationwithbottom.R;
+import com.unicef.thaimai.motherapp.R;
 
 
 public class NearbyHospital extends AppCompatActivity {
