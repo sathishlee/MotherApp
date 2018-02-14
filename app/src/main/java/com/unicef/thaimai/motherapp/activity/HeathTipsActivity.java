@@ -30,9 +30,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import suthishan.navigationwithbottom.R;
-import suthishan.navigationwithbottom.adapter.VideoAdapter;
-import suthishan.navigationwithbottom.model.VideoModel;
 
 
 public class HeathTipsActivity extends AppCompatActivity{
