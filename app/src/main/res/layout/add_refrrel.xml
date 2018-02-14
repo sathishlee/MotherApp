@@ -3,8 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:local="http://schemas.android.com/apk/res-auto"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="suthishan.navigationwithbottom.activity.Referral">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:layout_width="match_parent"

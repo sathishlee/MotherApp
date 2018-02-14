@@ -13,9 +13,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import suthishan.navigationwithbottom.activity.Login;
-import suthishan.navigationwithbottom.R;
-import suthishan.navigationwithbottom.activity.profile;
+import com.unicef.thaimai.motherapp.R;
+import com.unicef.thaimai.motherapp.activity.Login;
 
 
 public class home extends Fragment {
@@ -63,15 +62,7 @@ public class home extends Fragment {
         profile = (CardView) view.findViewById(R.id.android_card_view_example);
 
 
-        profile.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Intent intent = new Intent(getActivity(), profile.class);
-                getActivity().finish();
-                startActivity(intent);
-            }
 
-        });
 
 
 

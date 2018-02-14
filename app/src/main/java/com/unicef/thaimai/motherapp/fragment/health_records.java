@@ -8,8 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import suthishan.navigationwithbottom.R;
-import suthishan.navigationwithbottom.adapter.ViewPagerAdapter;
+import com.unicef.thaimai.motherapp.R;
+import com.unicef.thaimai.motherapp.adapter.ViewPagerAdapter;
 
 
 public class health_records extends Fragment  {
