@@ -6,8 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.unicef.thaimai.motherapp.R;
-
+import suthishan.navigationwithbottom.R;
 
 public class AddReferral extends AppCompatActivity {
 

@@ -4,8 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 
-import com.unicef.thaimai.motherapp.R;
-
+import suthishan.navigationwithbottom.R;
 
 /**
  * Created by Suthishan on 20/1/2018.

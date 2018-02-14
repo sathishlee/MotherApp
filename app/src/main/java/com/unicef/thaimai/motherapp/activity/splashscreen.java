@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.unicef.thaimai.motherapp.R;
+import suthishan.navigationwithbottom.R;
 
 
 public class splashscreen extends Activity {

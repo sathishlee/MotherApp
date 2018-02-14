@@ -13,9 +13,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.unicef.thaimai.motherapp.R;
-import com.unicef.thaimai.motherapp.activity.Login;
-import com.unicef.thaimai.motherapp.activity.profile;
+import suthishan.navigationwithbottom.activity.Login;
+import suthishan.navigationwithbottom.R;
+import suthishan.navigationwithbottom.activity.profile;
 
 
 public class home extends Fragment {

@@ -1,7 +1,6 @@
 package com.unicef.thaimai.motherapp.app;
 import android.app.Application;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -34,7 +33,6 @@ public class AppController extends Application {
 	}
 
 	public <T> void addToRequestQueue(Request<T> req, String tag) {
-		Log.e( "Pickme check",tag+" "+req);
 		req.setTag(TextUtils.isEmpty(tag) ? TAG : tag);
 		getRequestQueue().add(req);
 	}

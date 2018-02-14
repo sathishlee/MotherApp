@@ -14,9 +14,9 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.unicef.thaimai.motherapp.R;
-import  com.unicef.thaimai.motherapp.adapter.MyAdapter;
-import  com.unicef.thaimai.motherapp.model.NotificationModel;
+import suthishan.navigationwithbottom.R;
+import suthishan.navigationwithbottom.adapter.MyAdapter;
+import suthishan.navigationwithbottom.model.NotificationModel;
 
 
 public class NotificationFragment extends Fragment {
@@ -37,6 +37,9 @@ public class NotificationFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+
     }
 
     @Override

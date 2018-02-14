@@ -21,12 +21,6 @@ import android.widget.ListView;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
-import com.unicef.thaimai.motherapp.R;
-import com.unicef.thaimai.motherapp.activity.MainActivity;
-import com.unicef.thaimai.motherapp.activity.ViewFullImage;
-import com.unicef.thaimai.motherapp.adapter.VideoAdapter;
-import com.unicef.thaimai.motherapp.model.VideoModel;
-
 import org.json.JSONException;
 
 import java.io.BufferedReader;
@@ -36,7 +30,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import suthishan.navigationwithbottom.R;
+import suthishan.navigationwithbottom.adapter.VideoAdapter;
+import suthishan.navigationwithbottom.model.VideoModel;
 
 
 public class HeathTipsActivity extends AppCompatActivity{
@@ -46,7 +42,7 @@ public class HeathTipsActivity extends AppCompatActivity{
     private List<VideoModel> mVideosList = new ArrayList<>();
     VideoAdapter mVideoAdapter;
 
-//    CardView card_view;
+    CardView card_view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,17 +58,7 @@ public class HeathTipsActivity extends AppCompatActivity{
 
         video_list = (ListView) findViewById(R.id.video_list);
 
-//        card_view = (CardView) findViewById(R.id.card_view);
 
-//        card_view.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v){
-//                Intent intent = new Intent(HeathTipsActivity.this, ViewFullImage.class);
-//                finish();
-//                startActivity(intent);
-//            }
-//
-//        });
 
         VideoModel video1 = new VideoModel("http://demo.satvatinfosol.com/thaimai/Pregnancy_Tamil_Week_21.mp4");
         VideoModel video2 = new VideoModel("http://demo.satvatinfosol.com/thaimai/Pregnancy_Tamil_Week_21.mp4");

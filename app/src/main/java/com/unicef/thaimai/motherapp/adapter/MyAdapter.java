@@ -6,17 +6,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.unicef.thaimai.motherapp.R;
-import com.unicef.thaimai.motherapp.model.NotificationModel;
-
 import java.util.List;
+
+import suthishan.navigationwithbottom.R;
+import suthishan.navigationwithbottom.model.NotificationModel;
 
 /**
  * Created by Suthishan on 20/1/2018.
  */
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>  {
-    List<NotificationModel> moviesList;
+    private List<NotificationModel> moviesList;
     public MyAdapter(List<NotificationModel> moviesList) {
         this.moviesList = moviesList;
     }
@@ -47,6 +47,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>  {
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
+
         public TextView title, year, genre;
 
         public ViewHolder(View view) {

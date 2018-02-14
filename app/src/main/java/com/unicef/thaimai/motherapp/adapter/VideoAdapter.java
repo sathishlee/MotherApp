@@ -1,43 +1,45 @@
 package com.unicef.thaimai.motherapp.adapter;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
+import android.content.Intent;
 import android.media.MediaPlayer;
-import android.media.ThumbnailUtils;
 import android.net.Uri;
 
-import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.VideoView;
 
-import com.unicef.thaimai.motherapp.R;
-import com.unicef.thaimai.motherapp.model.VideoModel;
-
 import java.util.List;
 
-
+import suthishan.navigationwithbottom.R;
+import suthishan.navigationwithbottom.activity.ViewFullImage;
+import suthishan.navigationwithbottom.activity.profile;
+import suthishan.navigationwithbottom.model.VideoModel;
 
 
 public class VideoAdapter extends ArrayAdapter<VideoModel> {
 
     private Context mContext;
     private List<VideoModel> mVideos;
+    CardView card_view;
 
     public VideoAdapter(@NonNull Context context, @NonNull List<VideoModel> objects) {
         super(context, R.layout.list_video, objects);
 
         mContext = context;
         mVideos = objects;
+
+
     }
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         final ViewHolder holder;
+
 
 
         if (convertView == null) {
@@ -48,6 +50,17 @@ public class VideoAdapter extends ArrayAdapter<VideoModel> {
             holder.videoView = (VideoView) convertView
                     .findViewById(R.id.myVideo);
 
+            card_view = (CardView) convertView.findViewById(R.id.card_view);
+
+
+            card_view.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v){
+                    mContext.startActivity(new Intent(mContext, ViewFullImage.class));
+                }
+
+            });
+
             convertView.setTag(holder);
         } else {
 
@@ -55,19 +68,21 @@ public class VideoAdapter extends ArrayAdapter<VideoModel> {
 
         }
 
-        /***get clicked view and play video url at this position**/
+
         try {
             VideoModel video = mVideos.get(position);
-            //play video using android api, when video view is clicked.
-            String url = video.getVideoUrl(); // your URL here
+
+
+            String url = video.getVideoUrl();
             Uri videoUri = Uri.parse(url);
             holder.videoView.setVideoURI(videoUri);
-
             holder.videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                 @Override
                 public void onPrepared(MediaPlayer mp) {
+
                     mp.setLooping(true);
-                    holder.videoView.start();
+
+                    //holder.videoView.start();
                 }
             });
 
@@ -83,6 +98,8 @@ public class VideoAdapter extends ArrayAdapter<VideoModel> {
 
     public static class ViewHolder {
         VideoView videoView;
+
+
 
     }
 }

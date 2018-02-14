@@ -26,16 +26,15 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.unicef.thaimai.motherapp.R;
-import com.unicef.thaimai.motherapp.constant.AppConstant;
-import com.unicef.thaimai.motherapp.fragment.NotificationFragment;
-import com.unicef.thaimai.motherapp.fragment.baby;
-import com.unicef.thaimai.motherapp.fragment.health_records;
-import com.unicef.thaimai.motherapp.fragment.home;
-import com.unicef.thaimai.motherapp.fragment.vhn;
-import com.unicef.thaimai.motherapp.fragment.visits;
-
 import java.util.Locale;
+
+import suthishan.navigationwithbottom.R;
+import suthishan.navigationwithbottom.constant.AppConstant;
+import suthishan.navigationwithbottom.fragment.NotificationFragment;
+import suthishan.navigationwithbottom.fragment.baby;
+import suthishan.navigationwithbottom.fragment.health_records;
+import suthishan.navigationwithbottom.fragment.home;
+import suthishan.navigationwithbottom.fragment.visits;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener   {
@@ -235,7 +234,6 @@ if (AppConstant.isMainActivityOpen) {
             // Handle the camera action
         } else if (id == R.id.navigation_notifications) {
 
-
             android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.content,
                     health_records.newInstance()).commit();
@@ -246,19 +244,16 @@ if (AppConstant.isMainActivityOpen) {
             fragmentManager.beginTransaction().replace(R.id.content,
                     visits.newInstance()).commit();
 
-
         } else if (id == R.id.baby) {
             android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.content,
                     baby.newInstance()).commit();
 
-
         }
 
         else if (id == R.id.nearbyhospital) {
-            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.content,
-                    vhn.newInstance()).commit();
+            Intent i = new Intent(getApplicationContext(), NearbyHospital.class);
+            startActivity(i);
         }
         else if (id == R.id.referral) {
             Intent v = new Intent(getApplicationContext(), Referral.class);
@@ -268,7 +263,7 @@ if (AppConstant.isMainActivityOpen) {
             Intent i = new Intent(getApplicationContext(), AddRecords.class);
             startActivity(i);
         }else if (id == R.id.health_tips) {
-            Intent i = new Intent(getApplicationContext(),HeathTipsActivity.class);
+            Intent i = new Intent(getApplicationContext(), HeathTipsActivity.class);
             startActivity(i);
         }
 
@@ -316,8 +311,6 @@ if (AppConstant.isMainActivityOpen) {
                 selectedFragment =  health_records.newInstance();
                 break;
 
-
-
             case R.id.visit:
                 selectedFragment = visits.newInstance();
                 break;
@@ -326,13 +319,11 @@ if (AppConstant.isMainActivityOpen) {
                 selectedFragment =  baby.newInstance();
                 break;
 
-
-
         }
+
         android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.content, selectedFragment);
         transaction.commit();
-
 
     }
 

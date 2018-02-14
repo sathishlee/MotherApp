@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.unicef.thaimai.motherapp.R;
+import suthishan.navigationwithbottom.R;
 
 /**
  * A simple {@link Fragment} subclass.

@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.unicef.thaimai.motherapp.R;
+import suthishan.navigationwithbottom.R;
 
 
 public class profile extends AppCompatActivity {
