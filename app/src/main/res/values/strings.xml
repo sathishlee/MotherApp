@@ -1,5 +1,4 @@
 <resources>
-    <!--<string name="app_name">MotherApp</string>-->
     <string name="app_name">THAIMAI</string>
 
     <string name="register">Register</string>
@@ -82,6 +81,7 @@
 
     //Array
     <string-array name="lang_select">
+        <item>--Select--</item>
         <item>English</item>
         <item>Hindi</item>
     </string-array>
@@ -144,6 +144,7 @@
     </string-array>
 
     <string-array name="array_facillity_type">
+        <item>--Select--</item>
         <item>HSC</item>
         <item>UHP</item>
         <item>PNH</item>
@@ -157,25 +158,92 @@
     </string-array>
 
     <string-array name="array_ultrosonogram">
+        <item>--Select--</item>
         <item>Yes</item>
         <item>No</item>
     </string-array>
 
+    <string-array name="yes_no">
+        <item>--Select--</item>
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+    
+    <string-array name="illness">
+
+        <item>--Select--</item>
+        <item>Hypertension</item>
+        <item>Diabetes</item>
+        <item>Congenital Heart Disease</item>
+        <item>TB</item>
+        <item>Others</item>
+
+    </string-array>
+
+    <string-array name="illness_family">
+
+        <item>--Select--</item>
+        <item>Htn</item>
+        <item>DM</item>
+        <item>CHD</item>
+        <item>TB</item>
+        <item>Others</item>
+
+    </string-array>
+    
+    <string-array name="does_use">
+        <item>--Select--</item>
+        <item>Tobacco</item>
+        <item>Alcohol</item>
+        <item>Others</item>
+    </string-array>
+    
+    <string-array name="pregnancy">
+        <item>--Select--</item>
+        <item>Hypertension</item>
+        <item>Diabetes</item>
+        <item>Congenital Heart Disease</item>
+        <item>TB</item>
+        <item>Others</item>
+    </string-array>
+    
+    <string-array name="pregnancy_status">
+        <item>--Select--</item>
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+
+
+    </string-array>
+
+    <string-array name="mother_occupation_list">
+        <item>--Select--</item>
+        <item>Home Maker</item>
+        <item>Private Sector</item>
+        <item>Govt Sector</item>
+    </string-array>
+
+    <string-array name="husbands_occupation_list">
+        <item>--Select--</item>
+        <item>Private Sector</item>
+        <item>Govt Sector</item>
+    </string-array>
+
     <string-array name="array_refrel_why">
+        <item>--Select--</item>
         <item>Doctor Not Available</item>
         <item>Facillity Not Aailabe</item>
         <item>Want Of Blood</item>
         <item>No</item>
     </string-array>
 
-    <string-array name="array_weight">
-        <item>52kg</item>
-        <item>53kg</item>
-        <item>54kg</item>
-        <item>55kg</item>
-        <item>56kg</item>
-        <item>57kg</item>
-    </string-array>
 
 
     <string name="google_maps_key"> </string>
