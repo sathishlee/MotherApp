@@ -5,16 +5,38 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center">
+
+        <TextView
+            android:id="@+id/visitNo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Visit No 3"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/videoCategory"
+            android:text="How your baby Growing day by day"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
 
         <VideoView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/video_View"
-            />
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/video_View"/>
 
     </LinearLayout>
 
 
 </LinearLayout>
+    

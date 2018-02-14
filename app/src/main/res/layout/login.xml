@@ -60,7 +60,7 @@
         <android.support.design.widget.TextInputLayout
                 android:id="@+id/input_layout_otp"
                 android:layout_width="match_parent"
-            android:visibility="gone"
+                android:visibility="gone"
                 android:layout_height="wrap_content">
 
                 <EditText

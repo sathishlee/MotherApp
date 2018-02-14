@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:background="?android:attr/selectableItemBackground"
@@ -18,69 +17,68 @@
         android:layout_height="wrap_content"
         card_view:cardCornerRadius="4dp">
 
-        <LinearLayout
-            android:id="@+id/video"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:baselineAligned="false"
-            android:padding="5dp"
-            android:weightSum="2">
-
             <LinearLayout
-                android:layout_width="match_parent"
+                android:id="@+id/video"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <VideoView
-                    android:id="@+id/myVideo"
-                    android:layout_width="160dp"
-                    android:layout_height="100dp"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="start"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/visitNo"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Visit No 3"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/videoCategory"
-                    android:text="How your baby Growing day by day"
-                    android:layout_marginTop="5dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                android:orientation="horizontal"
+                android:baselineAligned="false"
+                android:padding="5dp"
+                android:weightSum="2">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="end"
-                    android:orientation="horizontal">
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="2dp"
-                        android:gravity="end"
-                        app:srcCompat="@drawable/download"/>
+                    <VideoView
+                        android:id="@+id/myVideo"
+                        android:layout_width="160dp"
+                        android:layout_height="100dp"/>
 
                 </LinearLayout>
 
-            </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/visitNo"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Visit No 3"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/videoCategory"
+                        android:text="How your baby Growing day by day"
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textSize="16sp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="end"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="2dp"
+                            android:gravity="end"
+                            android:src="@drawable/download"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
 
         </LinearLayout>
 
