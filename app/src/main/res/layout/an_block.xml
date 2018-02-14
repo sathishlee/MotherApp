@@ -65,7 +65,8 @@
                 android:text="02/12/2017"
                 android:layout_gravity="start"
                 android:textColor="@color/secondary"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                />
 
             <TextView
                 android:layout_width="match_parent"
@@ -170,6 +171,11 @@
             android:layout_gravity="end"/>
 
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:drawableStart="@drawable/exclamation_circle"
+            android:layout_gravity="end"/><TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
