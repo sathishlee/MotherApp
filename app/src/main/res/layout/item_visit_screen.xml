@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<TextView
+    android:id="@+id/date"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Date of Visit: "
+    android:layout_alignParentLeft="true"/>
+    <TextView
+    android:id="@+id/visit_type"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Vist Type: "
+    android:layout_alignParentLeft="true"
+        android:layout_below="@+id/date"/>
+
+    <TextView
+    android:id="@+id/facility"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Facility:  "
+    android:layout_alignParentLeft="true"
+    android:layout_below="@+id/visit_type"/>
+    <TextView
+    android:id="@+id/complaints"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Any Complaints:    "
+    android:layout_alignParentLeft="true"
+    android:layout_below="@+id/facility"/>
+
+    <LinearLayout
+        android:id="@+id/ll_clinical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/complaints">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Clinical"
+            android:textStyle="bold"/>
+
+        <!--Funbal height-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:padding="5dp">
+            <TextView
+                android:id="@+id/bp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BP "
+                android:layout_alignParentLeft="true"
+                android:layout_weight=".6"
+                />
+
+            <TextView
+                android:id="@+id/pluse_rate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pulse rate "
+                android:layout_alignParentLeft="true"
+                android:layout_weight="0.6"
+                /><TextView
+                android:id="@+id/weight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Weight"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/facility"
+            android:layout_weight="0.6"/>
+        </LinearLayout><LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:padding="5dp">
+            <TextView
+                android:id="@+id/funbal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Funbal height :"
+                android:layout_alignParentLeft="true"
+                android:layout_weight=".6"
+                />
+
+            <TextView
+                android:id="@+id/fhs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FHS "
+                android:layout_alignParentLeft="true"
+                android:layout_weight="0.6"
+                /><TextView
+                android:id="@+id/pedal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pedal edema present"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/facility"
+            android:layout_weight="0.6"/>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:showIn="@layout/activity_maps"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="8dp"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:text="@string/name_of_the_hospital"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="2dp"
+            android:background="#c7cfcecf"
+            android:orientation="vertical" />
+
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginTop="2dp"
+            android:layout_weight="1.0"
+            android:columnCount="3"
+            android:orientation="horizontal"
+            android:rowCount="4"
+            tools:context=".GridXMLActivity">
+
+            <TextView
+                android:layout_column="0"
+                android:layout_gravity="fill_horizontal"
+                android:layout_row="0"
+                android:padding="10dp"
+                android:text="@string/date_of_visit"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+
+                android:layout_column="1"
+                android:layout_gravity="fill_horizontal"
+                android:layout_row="0"
+                android:padding="10dp"
+                android:text="@string/date_details_timing"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_column="0"
+                android:layout_gravity="fill_horizontal"
+                android:layout_row="1"
+                android:padding="10dp"
+                android:text="@string/doctor_name"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_column="1"
+                android:layout_gravity="fill_horizontal"
+                android:layout_row="1"
+                android:padding="10dp"
+                android:text="@string/name_of_the_doctor"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+
+
+            <TextView
+                android:layout_column="0"
+                android:layout_gravity="fill_horizontal"
+                android:layout_row="2"
+                android:padding="10dp"
+                android:text="@string/visit_week"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/travelcost1"
+                android:layout_column="1"
+                android:layout_gravity="fill_horizontal"
+                android:layout_row="2"
+                android:padding="10dp"
+                android:text="@string/week_details"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:layout_column="0"
+                android:layout_gravity="fill_horizontal"
+                android:layout_row="3"
+                android:padding="10dp"
+                android:text="@string/hospital_name"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/toll1"
+                android:layout_column="1"
+                android:layout_gravity="fill_horizontal"
+                android:layout_row="3"
+                android:padding="10dp"
+                android:text="@string/name_of_the_hospital_1"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+
+        </GridLayout>
+
+
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>

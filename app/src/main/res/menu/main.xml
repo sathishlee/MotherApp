@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/action_notification"
+        android:icon="@drawable/vector_drawable_notifications_bell_button"
+        app:showAsAction="ifRoom"
+        android:title="@string/notification"/>
+
+    <item android:id="@+id/language"
+        app:showAsAction="never"
+        android:title="Language"/>
+
+    <item android:id="@+id/action_help"
+        android:icon="@drawable/vector_drawable_information"
+        app:showAsAction="never"
+        android:title="@string/help"/>
+
+
+
+</menu>

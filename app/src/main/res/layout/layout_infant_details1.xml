@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:id="@+id/mlayout1">
+<TextView
+    android:id="@+id/txt_title"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="New Born Details"
+    android:visibility="gone"
+    />
+    <TextView
+        android:id="@+id/txt_bay_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Baby ID No"
+        android:layout_below="@+id/txt_title"
+        android:textColor="@color/text_primary"
+        android:textSize="@dimen/text_secondary"
+        android:padding="10dp"
+        android:background="@color/list_item_color"
+        />
+    <TextView
+        android:id="@+id/txt_bay_id_twins"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Baby ID No if twins"
+        android:layout_below="@+id/txt_bay_id"
+        android:textColor="@color/text_primary"
+        android:textSize="@dimen/text_secondary"
+        android:padding="10dp"
+        />
+<TextView
+        android:id="@+id/txt_preterm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Full term/Preterm"
+        android:layout_below="@+id/txt_bay_id_twins"
+    android:textColor="@color/text_primary"
+    android:textSize="@dimen/text_secondary"
+    android:padding="10dp"
+    android:background="@color/list_item_color"/>
+
+    <TextView
+        android:id="@+id/txt_vlbw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="VLBW/LBW/ normal"
+        android:layout_below="@+id/txt_preterm"
+        android:padding="10dp"/>
+
+    <TextView
+        android:id="@+id/txt_sncu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SNCU graduate -Y/N"
+        android:layout_below="@+id/txt_vlbw"
+        android:textColor="@color/text_primary"
+        android:textSize="@dimen/text_secondary"
+        android:padding="10dp"
+        android:background="@color/list_item_color"/>
+    <TextView
+        android:id="@+id/txt_dose"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="0- dose Hep -B given"
+        android:layout_below="@+id/txt_sncu"
+        android:textColor="@color/text_primary"
+        android:textSize="@dimen/text_secondary"
+        android:padding="10dp"
+        />
+    <TextView
+        android:id="@+id/txt_opv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="0- dose OPV given"
+        android:layout_below="@+id/txt_dose"
+        android:textColor="@color/text_primary"
+        android:textSize="@dimen/text_secondary"
+        android:padding="10dp"
+        android:background="@color/list_item_color"/>
+
+    <TextView
+        android:id="@+id/txt_bcg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="0- dose BCG given"
+        android:layout_below="@+id/txt_opv"
+        android:textColor="@color/text_primary"
+        android:textSize="@dimen/text_secondary"
+        android:padding="10dp"/>
+
+</RelativeLayout>

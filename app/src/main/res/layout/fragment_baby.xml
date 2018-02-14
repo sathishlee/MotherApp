@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_marginBottom="60dp">
+    <TextView
+        android:id="@+id/txt_title"
+        android:textSize="21sp"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Infant details"
+       android:layout_gravity="center" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="15dp"
+            >
+
+            <Button
+                android:id="@+id/expandableButton1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:onClick="expandableButton1"
+                android:paddingLeft="10dp"
+                android:text="New Born Details"
+                android:textColor="#ffffff" />
+            <include layout="@layout/layout_infant_details1"
+                android:visibility="gone"/>
+            <!--<com.github.aakira.expandablelayout.ExpandableRelativeLayout
+                android:id="@+id/expandableLayout1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                android:padding="16dp"
+                app:ael_duration="400"
+                app:ael_expanded="false"
+                app:ael_interpolator="accelerate"
+                app:ael_orientation="vertical"
+                android:visibility="gone">
+
+
+            </com.github.aakira.expandablelayout.ExpandableRelativeLayout>-->
+
+
+
+            <Button
+                android:id="@+id/expandableButton2"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:drawableEnd="@android:drawable/arrow_down_float"
+                android:onClick="expandableButton1"
+                android:paddingLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text="New Born Screening done"
+                android:textColor="#ffffff" />
+            <include layout="@layout/layout_infant_details2"
+                android:visibility="gone"/>
+           <!-- <com.github.aakira.expandablelayout.ExpandableRelativeLayout
+                android:id="@+id/expandableLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                android:padding="16dp"
+                app:ael_duration="400"
+                app:ael_expanded="false"
+                app:ael_interpolator="accelerate"
+                app:ael_orientation="vertical"
+                android:visibility="gone">
+
+
+            </com.github.aakira.expandablelayout.ExpandableRelativeLayout>-->
+
+            <Button
+                android:id="@+id/expandableButton3"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:drawableEnd="@android:drawable/arrow_down_float"
+                android:onClick="expandableButton2"
+                android:paddingEnd="10dp"
+                android:layout_marginTop="10dp"
+                android:text="Follow up"
+                android:textColor="#ffffff" />
+
+            <include layout="@layout/layout_infant_details3"
+                android:visibility="gone"/>
+
+           <!-- <com.github.aakira.expandablelayout.ExpandableRelativeLayout
+                android:id="@+id/expandableLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                android:padding="16dp"
+                app:ael_duration="400"
+                app:ael_expanded="false"
+                app:ael_interpolator="accelerate"
+                app:ael_orientation="vertical"
+                android:visibility="gone">
+
+            </com.github.aakira.expandablelayout.ExpandableRelativeLayout>-->
+
+            <Button
+                android:id="@+id/expandableButton4"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:drawableEnd="@android:drawable/arrow_down_float"
+                android:onClick="expandableButton3"
+                android:paddingEnd="10dp"
+                android:layout_marginTop="10dp"
+                android:text="Immunization"
+                android:textColor="#ffffff" />
+            <include layout="@layout/layout_infant_details4"
+                android:visibility="gone"/>
+           <!-- <com.github.aakira.expandablelayout.ExpandableRelativeLayout
+                android:id="@+id/expandableLayout4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                android:padding="16dp"
+                app:ael_duration="400"
+                app:ael_expanded="false"
+                app:ael_interpolator="accelerate"
+                app:ael_orientation="vertical"
+                android:visibility="gone">
+
+
+
+            </com.github.aakira.expandablelayout.ExpandableRelativeLayout>-->
+
+        </LinearLayout>
+
+
+
+
+
+    </ScrollView>
+
+</LinearLayout>

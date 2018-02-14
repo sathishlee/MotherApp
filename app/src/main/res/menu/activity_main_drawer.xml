@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/navigation_home"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="@string/title_home" />
+        <item
+            android:id="@+id/navigation_notifications"
+            android:icon="@drawable/medical_report"
+            android:title="@string/health_record" />
+        <item
+            android:id="@+id/visit"
+            android:icon="@drawable/ic_visit_24dp"
+            android:title="@string/visits"/>
+        <item
+            android:id="@+id/baby"
+            android:title="@string/baby"
+            android:icon="@drawable/vector_drawable_baby_with_diaper"/>
+        <item
+            android:id="@+id/nearbyhospital"
+            android:icon="@drawable/ic_hospital"
+            android:title="@string/vhn" />
+        <item
+            android:id="@+id/referral"
+            android:icon="@drawable/warning_card_hand"
+            android:title="@string/referral"/>
+        <item
+            android:id="@+id/add_record"
+            android:icon="@drawable/vector_drawable_health_care"
+            android:title="@string/add_records"/>
+
+        <item
+            android:id="@+id/health_tips"
+            android:icon="@drawable/vector_drawable_health_care"
+            android:title="@string/health_tips"/>
+
+    </group>
+
+</menu>

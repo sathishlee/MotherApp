@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android" android:viewportWidth="512"
+    android:viewportHeight="512" android:width="16dp" android:height="16dp">
+    <group>
+        <path android:fillColor="#FF000000"
+            android:pathData="M 181,227 a 15,15 0 0 1 30,0 a 15,15 0 0 1 -30,0 z" />
+    </group>
+    <group>
+        <path android:fillColor="#FF000000"
+            android:pathData="M 241,227 a 15,15 0 0 1 30,0 a 15,15 0 0 1 -30,0 z" />
+    </group>
+    <group>
+        <path android:fillColor="#FF000000"
+            android:pathData="M 301,227 a 15,15 0 0 1 30,0 a 15,15 0 0 1 -30,0 z" />
+    </group>
+    <group>
+        <path android:fillColor="#FF000000" android:pathData="M376,0H136C94.645,0,61,33.645,61,75v302c0,41.355,33.645,75,75,75h15v15c0,24.813,20.187,45,45,45h120
+			c24.813,0,45-20.187,45-45v-15h15c41.355,0,75-33.645,75-75V75C451,33.645,417.355,0,376,0z M331,467c0,8.271-6.729,15-15,15H196
+			c-8.271,0-15-6.729-15-15V302h150V467z M421,377c0,24.813-20.187,45-45,45h-15V302h15c8.284,0,15-6.716,15-15s-6.716-15-15-15
+			c-2.272,0-237.855,0-240,0c-8.284,0-15,6.716-15,15s6.716,15,15,15h15v120h-15c-24.813,0-45-20.187-45-45V75
+			c0-24.813,20.187-45,45-45h240c24.813,0,45,20.187,45,45V377z" />
+    </group>
+    <group>
+        <path android:fillColor="#FF000000" android:pathData="M376,60H136c-8.284,0-15,6.716-15,15v92c0,8.284,6.716,15,15,15h240c8.284,0,15-6.716,15-15V75
+			C391,66.716,384.284,60,376,60z M361,152H151V90h210V152z" />
+    </group>
+    <group>
+        <path android:fillColor="#FF000000" android:pathData="M296.136,386.637l-26.763-52.681c-2.558-5.035-7.726-8.206-13.373-8.206s-10.815,3.171-13.373,8.206l-26.762,52.679
+			C212.682,392.897,211,399.94,211,407c0,24.813,20.187,45,45,45s45-20.187,45-45C301,399.94,299.318,392.897,296.136,386.637z
+			 M256,422c-8.271,0-15-6.729-15-15c0-2.393,0.542-4.672,1.61-6.775L256,373.868l13.391,26.358c1.068,2.102,1.609,4.38,1.609,6.773
+			C271,415.271,264.271,422,256,422z" />
+    </group>
+    <group />
+    <group />
+    <group />
+    <group />
+    <group />
+    <group />
+    <group />
+    <group />
+    <group />
+    <group />
+    <group />
+    <group />
+    <group />
+    <group />
+    <group />
+</vector>

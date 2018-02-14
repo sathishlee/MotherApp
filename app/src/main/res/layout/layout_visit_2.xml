@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <FrameLayout
+        android:layout_width="29.0dip"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="10.0dip"
+        android:layout_marginRight="10.0dip"
+        android:layout_marginTop="-5.0dip">
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center"
+            android:layout_marginLeft="-200.0dip"
+            android:layout_marginRight="-200.0dip"
+            android:background="@drawable/drw_vertical_dashed"
+            android:layerType="software" />
+
+        <TextView
+
+            android:layout_width="18.0dip"
+            android:layout_height="18.0dip"
+            android:layout_gravity="center"
+            android:background="@drawable/drw_circle_primary_color"
+            android:gravity="center"
+            android:text="1"
+            android:textColor="@color/bright_blue"
+            android:textSize="12.0sp" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="23.0dip"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/pad_normal">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="16.0dip"
+                android:layout_height="10.0dip"
+                android:layout_gravity="center"
+                android:background="@drawable/drw_hori_dashed"
+                android:layerType="software" />
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/bright_blue"
+                android:gravity="start"
+                android:maxLines="1"
+                android:paddingBottom="3.0dip"
+                android:paddingLeft="10.0dip"
+                android:paddingRight="10.0dip"
+                android:paddingTop="3.0dip"
+                android:text="@string/scheduled_visits"
+                android:textAllCaps="true"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_secondary"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8.0dip"
+            android:layout_marginLeft="16.0dip"
+            android:layout_marginRight="16.0dip"
+            android:layout_marginTop="8.0dip"
+            android:orientation="vertical"
+            android:padding="16.0dip"
+            app:cardBackgroundColor="@android:color/white">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:minHeight="100.0dip"
+                    android:orientation="vertical"
+                    android:paddingBottom="4.0dip">
+
+                    <TextView
+
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="4.0dip"
+                        android:paddingLeft="8.0dip"
+                        android:paddingRight="8.0dip"
+                        android:paddingTop="4.0dip"
+                        android:text="Visit No (Date)"
+                        android:textColor="@color/dark_blue"
+                        android:textSize="16.0sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="4.0dip"
+                        android:drawableStart="@drawable/ic_doctor_24dp"
+                        android:gravity="start|center"
+                        android:paddingBottom="2.0dip"
+                        android:paddingLeft="8.0dip"
+                        android:paddingRight="8.0dip"
+                        android:paddingTop="2.0dip"
+                        android:text="@string/doctor_name"
+                        android:textColor="@color/text_primary" />
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="4.0dip"
+                        android:drawableStart="@drawable/ic_weekly_calendar_24dp"
+                        android:gravity="start|center"
+                        android:paddingBottom="2.0dip"
+                        android:paddingLeft="8.0dip"
+                        android:paddingRight="8.0dip"
+                        android:paddingTop="2.0dip"
+                        android:text="Week Visit"
+                        android:textColor="@color/text_primary" />
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="4.0dip"
+                        android:drawableStart="@drawable/ic_hospital_24dp"
+                        android:gravity="start|center"
+                        android:paddingBottom="2.0dip"
+                        android:paddingLeft="8.0dip"
+                        android:paddingRight="8.0dip"
+                        android:paddingTop="2.0dip"
+                        android:text="Hospital Name"
+                        android:textColor="@color/text_primary" />
+                </LinearLayout>
+
+              <!--  <fragment
+                    android:id="@+id/ScheduledMapView"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="end"
+                    android:layout_weight="0.05"
+                    android:scaleType="fitXY"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"/>
+-->
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+</FrameLayout>

@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:padding="4.0dip"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:gravity="start|center"
+            android:layout_gravity="center"
+            android:padding="4dip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4.0dip"
+            android:layout_marginRight="4.0dip"
+            android:textColor="@color/text_secondary"
+            android:text="@string/health_details"
+            />
+        />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ANC"
+        android:textColor="@color/colorAccent"
+        android:layout_gravity="right"
+        android:textSize="@dimen/text_secondary"/>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2.0dip"
+        android:layout_marginTop="2.0dip"
+        android:orientation="horizontal">
+
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_margin="4.0dip"
+            android:layout_weight="1.0"
+            android:orientation="horizontal"
+            android:padding="16.0dip"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardElevation="2.0dip">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Height"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="4.0dip"
+                android:drawableStart="@drawable/ic_height_16dp"
+                android:paddingBottom="4.0dip"
+                android:paddingLeft="8.0dip"
+                android:paddingRight="8.0dip"
+                android:paddingTop="20.0dip"
+                android:text="144 Cms"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:textStyle="bold" />
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_margin="4.0dip"
+            android:layout_weight="1.0"
+            android:orientation="horizontal"
+            android:padding="16.0dip"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardElevation="2.0dip">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Blood Group"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="4.0dip"
+                android:drawableStart="@drawable/ic_blood_drop_16dp"
+                android:paddingBottom="4.0dip"
+                android:paddingLeft="8.0dip"
+                android:paddingRight="8.0dip"
+                android:paddingTop="20.0dip"
+                android:text="O+ve"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:textStyle="bold" />
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2.0dip"
+        android:layout_marginTop="2.0dip"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_margin="4.0dip"
+            android:layout_weight="1.0"
+            android:orientation="horizontal"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardElevation="2.0dip">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Weight"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="4.0dip"
+                android:drawableStart="@drawable/ic_weighing_scale_16dp"
+                android:paddingBottom="4.0dip"
+                android:paddingLeft="8.0dip"
+                android:paddingRight="8.0dip"
+                android:paddingTop="20.0dip"
+                android:text="52 Kgs"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:textStyle="bold" />
+
+        </android.support.v7.widget.CardView>
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_margin="4.0dip"
+            android:layout_weight="1.0"
+            android:orientation="horizontal"
+            android:padding="16.0dip"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardElevation="2.0dip">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Diabetic Level"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="4.0dip"
+                android:drawableStart="@drawable/ic_sugar_level_16dp"
+                android:paddingBottom="4.0dip"
+                android:paddingLeft="8.0dip"
+                android:paddingRight="8.0dip"
+                android:paddingTop="20.0dip"
+                android:text="NO SUGAR"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:textStyle="bold" />
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2.0dip"
+        android:layout_marginTop="2.0dip"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_margin="4.0dip"
+            android:layout_weight="1.0"
+            android:orientation="horizontal"
+            android:padding="16.0dip"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardElevation="2.0dip">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Cardiac status"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="4.0dip"
+                android:drawableStart="@drawable/ic_heartbeat_16dp"
+                android:paddingBottom="4.0dip"
+                android:paddingLeft="8.0dip"
+                android:paddingRight="8.0dip"
+                android:paddingTop="20.0dip"
+                android:text="140/80"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:textStyle="bold" />
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_margin="4.0dip"
+            android:layout_weight="1.0"
+            android:orientation="horizontal"
+            android:padding="16.0dip"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardElevation="2.0dip">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="BP"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="4.0dip"
+                android:drawableStart="@drawable/ic_blood_pressure_16dp"
+                android:paddingBottom="4.0dip"
+                android:paddingLeft="8.0dip"
+                android:paddingRight="8.0dip"
+                android:paddingTop="20.0dip"
+                android:text="162/102"
+                android:textColor="@color/text_primary"
+
+                android:textSize="@dimen/text_secondary"
+                android:textStyle="bold" />
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2.0dip"
+        android:layout_marginTop="2.0dip"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_margin="4.0dip"
+            android:layout_weight="1.0"
+            android:orientation="horizontal"
+            android:padding="16.0dip"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardElevation="2.0dip">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Hb (gm%)"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="4.0dip"
+                android:drawableStart="@drawable/ic_heartbeat_16dp"
+                android:paddingBottom="4.0dip"
+                android:paddingLeft="8.0dip"
+                android:paddingRight="8.0dip"
+                android:paddingTop="20.0dip"
+                android:text="8.8"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:textStyle="bold" />
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_margin="4.0dip"
+            android:layout_weight="1.0"
+            android:orientation="horizontal"
+            android:padding="16.0dip"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardElevation="2.0dip">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Ultrosonogram"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="4.0dip"
+                android:drawableStart="@drawable/ic_blood_pressure_16dp"
+                android:paddingBottom="4.0dip"
+                android:paddingLeft="8.0dip"
+                android:paddingRight="8.0dip"
+                android:paddingTop="20.0dip"
+                android:text="No"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:textStyle="bold" />
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+
+</LinearLayout>

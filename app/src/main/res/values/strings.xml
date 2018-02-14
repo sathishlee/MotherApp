@@ -1,0 +1,187 @@
+<resources>
+    <!--<string name="app_name">MotherApp</string>-->
+    <string name="app_name">THAIMAI</string>
+
+    <string name="register">Register</string>
+    <string name="login">Login</string>
+    <string name="name">Name*</string>
+    <string name="picmeid">PICME ID*</string>
+    <string name="submit">Submit</string>
+
+
+    <string name="picme">PICME ID</string>
+    <string name="dob">Date of Birth*</string>
+    <string name="logo">Logo</string>
+    <string name="age1">Age</string>
+    <string name="address">Address</string>
+    <string name="mobile">Mobile Number*</string>
+    <string name="alternative_number">Alternative Number*</string>
+    <string name="alternative_number1">Alternative Number 1*</string>
+    <string name="alternative_number2">Alternative Number 2*</string>
+    <string name="bloodgroup">Blood Group*</string>
+    <string name="choose_lang">Choose Language</string>
+    <string name="tamil">Tamil</string>
+    <string name="english">English</string>
+    <string name="enter_otp">Enter OTP</string>
+
+    //Error Message
+    <string name="err_msg_name">Enter Your full name</string>
+    <string name="err_msg_picme">Enter Your Valid Picme ID</string>
+    <string name="err_msg_dob">Enter Your DOB</string>
+    <string name="err_msg_mobile">Enter Valid Mobile Number</string>
+    <string name="err_msg_alterMobile">Enter Valid Alternative Mobile Number</string>
+
+
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+    <string name="id">User ID</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="welcome">LOGIN BELOW</string>
+    <string name="register_below">REGISTER BELOW</string>
+    <string name="logout">Logout</string>
+
+    <string name="week_details">Week Details</string>
+    <string name="user_details">User Details</string>
+
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="baby">Baby</string>
+    <string name="visits">Visits</string>
+    <string name="vhn">Nearest Hospitals</string>
+    <string name="health_record">Health Records</string>
+
+    <string name="home_info_title">Your Info</string>
+    <string name="home_icon_calendar_desc">Present Status</string>
+    <string name="user_profile_picture">User Profile Picture</string>
+    //EMERGENCY CONTACT
+    <string name="emergency_contact_name">Emergency Contacts</string>
+    <string name="emergency_name">Emergency Name</string>
+    <string name="emergency_relation">Relation Number</string>
+    <string name="emergency_vhn">VHN Number</string>
+    <string name="emergency_phc">PHC Number</string>
+
+    <string name="blood_group_sign_up">Whats your blood group?</string>
+
+    <string name="scan_reports">Scan Reports</string>
+    <string name="report_details">Report Details</string>
+    <string name="visit_reports">Visit Reports</string>
+    <string name="upload_reports">Upload Reports</string>
+    <string name="view_reports">View Reports</string>
+    <string name="upload_scan_reports">Upload Scanned Reports</string>
+    <string name="view_scan_reports">View Scanned Reports</string>
+    <string name="upload_visit_reports">Upload Visit Reports</string>
+    <string name="view_visit_reports">View Visit Reports</string>
+
+    <string name="notification">Notification</string>
+    <string name="help">Help</string>
+
+    //FONTs Declare
+
+    //Array
+    <string-array name="lang_select">
+        <item>English</item>
+        <item>Hindi</item>
+    </string-array>
+    <string name="title_activity_maps">Map</string>
+    <string name="date_of_visit">Date of Visit</string>
+    <string name="date_details_timing">Date Details Timing</string>
+    <string name="doctor_name">Doctor Name</string>
+    <string name="name_of_the_doctor">Name of the Doctor</string>
+    <string name="visit_week">Visit Week</string>
+    <string name="week_details_map">Week Details</string>
+    <string name="hospital_name">HospitalName</string>
+    <string name="name_of_the_hospital">Name of the Hospital</string>
+    <string name="name_of_the_hospital_title">Name of the Hospital</string>
+    <string name="next_visit_details">Next Visit Details</string>
+    <string name="name_of_the_person">Name of the Person</string>
+    <string name="call">Call</string>
+    <string name="vhn_name">VHN Name</string>
+    <string name="distance_of_the_hos_from_picme_user">Distance of the Hospital from Picme User</string>
+    <string name="completed">COMPLETED</string>
+    <string name="enter_aadhar_number">Enter Aadhar Number</string>
+    <string name="dob_1">Dob</string>
+    <string name="name_of_the_hospital_1">Name of the Hospital</string>
+    <string name="email_id_test">xyz@gmail.com</string>
+
+
+    //nav menu
+    <string name="my_acc">My Account</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="log_out">Logout</string>
+    <string name="dashboard">Dashboard</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="title_activity_main2">Main2Activity</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="age">Age</string>
+    <string name="blood_group">Blood Group</string>
+    <string name="vhn_details">VHN Details</string>
+    <string name="health_details">Health Details</string>
+    <string name="visit_details">Visit Details</string>
+    <string name="scheduled">SCHEDULED</string>
+    <string name="completed_visits">COMPLETED VISITS</string>
+    <string name="scheduled_visits">SCHEDULED VISITS</string>
+    <string name="referral">Referral</string>
+    <string name="referral_details">Referral Details</string>
+    <string name="add_records">Add Records</string>
+    <string name="health_tips">Health Tips</string>
+    <string name="diagnosis">Diagnosis</string>
+    <string name="inlabour">In Labour</string>
+    <string name="admitted">Admitted</string>
+    <string name="refered">Referred</string>
+    <string name="facillity">Facillity Type</string>
+
+
+    <string-array name="array_name">
+        <item>Array Item One</item>
+        <item>Array Item Two</item>
+        <item>Array Item Three</item>
+    </string-array>
+
+    <string-array name="array_facillity_type">
+        <item>HSC</item>
+        <item>UHP</item>
+        <item>PNH</item>
+        <item>HOME-TD</item>
+        <item>HOME-UTD</item>
+        <item>OTHERS</item>
+        <item>PHC</item>
+        <item>GH</item>
+        <item>T-HOSP</item>
+        <item>PANEL HOSPITAL</item>
+    </string-array>
+
+    <string-array name="array_ultrosonogram">
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+
+    <string-array name="array_refrel_why">
+        <item>Doctor Not Available</item>
+        <item>Facillity Not Aailabe</item>
+        <item>Want Of Blood</item>
+        <item>No</item>
+    </string-array>
+
+    <string-array name="array_weight">
+        <item>52kg</item>
+        <item>53kg</item>
+        <item>54kg</item>
+        <item>55kg</item>
+        <item>56kg</item>
+        <item>57kg</item>
+    </string-array>
+
+
+    <string name="google_maps_key"> </string>
+
+    <string name="str_add_report">Add Report</string>
+
+    <string name="hosp_name">Hospital Name</string>
+
+</resources>

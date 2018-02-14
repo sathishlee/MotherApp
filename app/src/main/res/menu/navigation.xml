@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/title_home" />
+
+
+    <item
+        android:id="@+id/navigation_notifications"
+        android:icon="@drawable/ic_notifications_black_24dp"
+        android:title="@string/health_record" />
+
+
+    <item
+        android:id="@+id/visit"
+        android:icon="@drawable/ic_visit_24dp"
+        android:title="@string/visits"/>
+
+    <item
+        android:id="@+id/baby"
+        android:title="@string/baby"
+        android:icon="@drawable/vector_drawable_baby_with_diaper"/>
+
+    <!--<item
+        android:id="@+id/navigation_dashboard"
+        android:icon="@drawable/ic_vhn_24dp"
+        android:title="@string/vhn" />-->
+
+</menu>

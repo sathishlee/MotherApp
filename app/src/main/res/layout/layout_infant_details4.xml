@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/mlayout4"
+    android:padding="16dp">
+<TextView
+    android:id="@+id/txt_title"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Immunization"
+    android:layout_centerHorizontal="true"
+    android:visibility="gone"
+    />
+    <TextView
+        android:id="@+id/txt_bay_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="1st Dose"
+        android:layout_below="@+id/txt_title"
+        android:textColor="@color/text_primary"
+        android:textSize="@dimen/text_secondary"
+        android:padding="10dp"
+        android:background="@color/list_item_color"/>
+    <TextView
+        android:id="@+id/txt_bay_id_twins"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2nd Dose"
+        android:layout_below="@+id/txt_bay_id"
+        android:textColor="@color/text_primary"
+        android:textSize="@dimen/text_secondary"
+        android:padding="10dp"/>
+    <TextView
+        android:id="@+id/txt_preterm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="3rd Dose"
+        android:layout_below="@+id/txt_bay_id_twins"
+        android:textColor="@color/text_primary"
+        android:textSize="@dimen/text_secondary"
+        android:padding="10dp"
+        android:background="@color/list_item_color"/>
+
+    <TextView
+        android:id="@+id/txt_vlbw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="9th month"
+        android:layout_below="@+id/txt_preterm"
+        android:textColor="@color/text_primary"
+        android:textSize="@dimen/text_secondary"
+        android:padding="10dp"/>
+
+</RelativeLayout>
