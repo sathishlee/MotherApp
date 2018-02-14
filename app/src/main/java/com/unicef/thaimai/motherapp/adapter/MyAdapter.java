@@ -6,10 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.unicef.thaimai.motherapp.R;
+import com.unicef.thaimai.motherapp.model.NotificationModel;
+
 import java.util.List;
 
-import suthishan.navigationwithbottom.R;
-import suthishan.navigationwithbottom.model.NotificationModel;
 
 /**
  * Created by Suthishan on 20/1/2018.
