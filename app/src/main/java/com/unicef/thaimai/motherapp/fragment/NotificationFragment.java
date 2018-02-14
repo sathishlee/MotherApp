@@ -11,12 +11,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.unicef.thaimai.motherapp.R;
+import com.unicef.thaimai.motherapp.adapter.MyAdapter;
+import com.unicef.thaimai.motherapp.model.NotificationModel;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import suthishan.navigationwithbottom.R;
-import suthishan.navigationwithbottom.adapter.MyAdapter;
-import suthishan.navigationwithbottom.model.NotificationModel;
+
 
 
 public class NotificationFragment extends Fragment {
