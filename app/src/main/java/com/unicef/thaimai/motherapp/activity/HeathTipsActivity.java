@@ -70,6 +70,8 @@ public class HeathTipsActivity extends AppCompatActivity{
         mVideosList.add(video2);
         mVideosList.add(video3);
 
+
+
         mVideoAdapter = new VideoAdapter(this, mVideosList);
         video_list.setAdapter(mVideoAdapter);
 

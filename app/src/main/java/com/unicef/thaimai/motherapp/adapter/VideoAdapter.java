@@ -13,12 +13,13 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.VideoView;
 
+import com.unicef.thaimai.motherapp.R;
+import com.unicef.thaimai.motherapp.activity.ViewFullImage;
+import com.unicef.thaimai.motherapp.model.VideoModel;
+
 import java.util.List;
 
-import suthishan.navigationwithbottom.R;
-import suthishan.navigationwithbottom.activity.ViewFullImage;
-import suthishan.navigationwithbottom.activity.profile;
-import suthishan.navigationwithbottom.model.VideoModel;
+
 
 
 public class VideoAdapter extends ArrayAdapter<VideoModel> {
