@@ -6,7 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import suthishan.navigationwithbottom.R;
+import com.unicef.thaimai.motherapp.R;
+
 
 public class AddReferral extends AppCompatActivity {
 
@@ -22,8 +23,6 @@ public class AddReferral extends AppCompatActivity {
         actionBar.setHomeButtonEnabled(true);
 
         actionBar.setDisplayHomeAsUpEnabled(true);
-
-
 
 
     }

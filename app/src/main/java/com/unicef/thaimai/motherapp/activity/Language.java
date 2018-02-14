@@ -13,9 +13,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.unicef.thaimai.motherapp.R;
+
 import java.util.Locale;
 
-import suthishan.navigationwithbottom.R;
+
 
 /**
  * Created by Suthishan on 20/1/2018.

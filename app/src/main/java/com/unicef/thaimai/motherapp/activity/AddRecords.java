@@ -6,7 +6,8 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
-import suthishan.navigationwithbottom.R;
+import com.unicef.thaimai.motherapp.R;
+
 
 /**
  * Created by Suthishan on 20/1/2018.
