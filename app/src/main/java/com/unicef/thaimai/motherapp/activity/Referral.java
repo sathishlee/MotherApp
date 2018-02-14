@@ -8,7 +8,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
-import suthishan.navigationwithbottom.R;
+import com.unicef.thaimai.motherapp.R;
+
 
 public class Referral extends AppCompatActivity {
 

@@ -26,15 +26,15 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Locale;
+import com.unicef.thaimai.motherapp.R;
+import com.unicef.thaimai.motherapp.constant.AppConstant;
+import com.unicef.thaimai.motherapp.fragment.NotificationFragment;
+import com.unicef.thaimai.motherapp.fragment.baby;
+import com.unicef.thaimai.motherapp.fragment.health_records;
+import com.unicef.thaimai.motherapp.fragment.home;
+import com.unicef.thaimai.motherapp.fragment.visits;
 
-import suthishan.navigationwithbottom.R;
-import suthishan.navigationwithbottom.constant.AppConstant;
-import suthishan.navigationwithbottom.fragment.NotificationFragment;
-import suthishan.navigationwithbottom.fragment.baby;
-import suthishan.navigationwithbottom.fragment.health_records;
-import suthishan.navigationwithbottom.fragment.home;
-import suthishan.navigationwithbottom.fragment.visits;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener   {
