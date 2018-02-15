@@ -30,7 +30,7 @@ public class PrimaryRegister extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        Intent intent = new Intent(PrimaryRegister.this, Referral.class);
+        Intent intent = new Intent(PrimaryRegister.this, MainActivity.class);
         finish();
         startActivity(intent);
         return super.onOptionsItemSelected(item);
