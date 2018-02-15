@@ -1,109 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
-<TextView
-    android:id="@+id/date"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Date of Visit: "
-    android:layout_alignParentLeft="true"/>
-    <TextView
-    android:id="@+id/visit_type"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Vist Type: "
-    android:layout_alignParentLeft="true"
-        android:layout_below="@+id/date"/>
-
-    <TextView
-    android:id="@+id/facility"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Facility:  "
-    android:layout_alignParentLeft="true"
-    android:layout_below="@+id/visit_type"/>
-    <TextView
-    android:id="@+id/complaints"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Any Complaints:    "
-    android:layout_alignParentLeft="true"
-    android:layout_below="@+id/facility"/>
 
     <LinearLayout
-        android:id="@+id/ll_clinical"
+        android:id="@+id/ll_visit_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_below="@+id/complaints">
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_marginTop="10dp">
+
         <TextView
-            android:layout_width="match_parent"
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Clinical"
-            android:textStyle="bold"/>
+            android:layout_weight="1"
+            android:paddingLeft="20dp"
+            android:text="Date of Visit: "
+            android:textSize="@dimen/text_lable" />
 
-        <!--Funbal height-->
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/date_value"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2"
-            android:padding="5dp">
-            <TextView
-                android:id="@+id/bp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="BP "
-                android:layout_alignParentLeft="true"
-                android:layout_weight=".6"
-                />
-
-            <TextView
-                android:id="@+id/pluse_rate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Pulse rate "
-                android:layout_alignParentLeft="true"
-                android:layout_weight="0.6"
-                /><TextView
-                android:id="@+id/weight"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Weight"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@+id/facility"
-            android:layout_weight="0.6"/>
-        </LinearLayout><LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2"
-            android:padding="5dp">
-            <TextView
-                android:id="@+id/funbal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Funbal height :"
-                android:layout_alignParentLeft="true"
-                android:layout_weight=".6"
-                />
-
-            <TextView
-                android:id="@+id/fhs"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="FHS "
-                android:layout_alignParentLeft="true"
-                android:layout_weight="0.6"
-                /><TextView
-                android:id="@+id/pedal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Pedal edema present"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@+id/facility"
-            android:layout_weight="0.6"/>
-        </LinearLayout>
+            android:layout_alignParentLeft="true"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:paddingRight="20dp"
+            android:text="15-02-2018 "
+            android:textSize="@dimen/text_lable" />
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_visit_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_visit_date"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <TextView
+            android:id="@+id/visit_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/ll_visit_date"
+            android:layout_weight="1"
+            android:paddingLeft="20dp"
+            android:text="Vist Type: "
+            android:textSize="@dimen/text_lable" />
+
+        <TextView
+            android:id="@+id/visit_type_vale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ll_visit_date"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:paddingRight="20dp"
+            android:text="Scheduled"
+            android:textSize="@dimen/text_lable" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_facility"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_visit_type"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <TextView
+            android:id="@+id/facility"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/visit_type"
+            android:layout_weight="1"
+            android:paddingLeft="20dp"
+            android:text="Facility:  "
+            android:textSize="@dimen/text_lable" />
+
+        <TextView
+            android:id="@+id/facility_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/visit_type"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:paddingRight="20dp"
+            android:text="PHC"
+            android:textSize="@dimen/text_lable"
+
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_complaints"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_facility"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <TextView
+            android:id="@+id/complaints"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/facility"
+            android:layout_weight="1"
+            android:paddingLeft="20dp"
+            android:text="Any Complaints:    "
+            android:textSize="@dimen/text_lable" />
+
+        <TextView
+            android:id="@+id/complaints_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/facility"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:paddingRight="20dp"
+            android:text="Burning"
+            android:textSize="@dimen/text_lable"
+
+            />
+    </LinearLayout>
+
+    <!--<view
+        android:id="@+id/view_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/ll_complaints"
+        android:background="#ffffff"
+             />-->
+
+    <TextView
+        android:id="@+id/but_clinical_report"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_complaints"
+        android:drawableRight="@drawable/ic_angle_arrow_pointing_to_right"
+        android:gravity="center_vertical"
+        android:padding="10dp"
+        android:text="Clinical Report"
+        android:textSize="@dimen/text_content_list"
+        android:layout_marginTop="5dp"
+        />
+
+    <!--<view-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="1dp"-->
+        <!--android:layout_below="@+id/but_clinical_report"-->
+        <!--android:background="#ffffff" />-->
+
+    <TextView
+        android:id="@+id/but_lab_report"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/but_clinical_report"
+        android:drawableRight="@drawable/ic_angle_arrow_pointing_to_right"
+        android:gravity="center_vertical"
+        android:padding="10dp"
+        android:text="Lab Report"
+        android:textSize="@dimen/text_content_list" />
+
+<!--    <view
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/but_lab_report"
+        android:background="#ffffff" />-->
+
+    <TextView
+        android:id="@+id/but_ucg_report"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/but_lab_report"
+        android:drawableRight="@drawable/ic_angle_arrow_pointing_to_right"
+        android:gravity="center_vertical"
+        android:padding="10dp"
+        android:text="UCG Report"
+        android:textSize="@dimen/text_content_list" />
+
+    <!--<view
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/but_ucg_report"
+        android:background="#ffffff" />-->
+
+
 </RelativeLayout>

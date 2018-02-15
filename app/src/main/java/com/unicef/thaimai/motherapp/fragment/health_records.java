@@ -39,10 +39,10 @@ public class health_records extends Fragment  {
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager());
         adapter.addFragment(new OneFragment(), "Present Status\nVISIT 5");
-        adapter.addFragment(new TwoFragment(), "VISIT 4");
-        adapter.addFragment(new ThreeFragment(), "VISIT 3");
+        adapter.addFragment(new OneFragment(), "VISIT 4");
+        adapter.addFragment(new OneFragment(), "VISIT 3");
         adapter.addFragment(new OneFragment(), "VISIT 2");
-        adapter.addFragment(new TwoFragment(), "VISIT 1");
+        adapter.addFragment(new OneFragment(), "VISIT 1");
         viewPager.setAdapter(adapter);
     }
 

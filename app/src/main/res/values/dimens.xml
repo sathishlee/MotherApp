@@ -13,4 +13,10 @@
     <dimen name="nav_header_height">180dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
 
+
+    <dimen name="text_title">24.0sp</dimen>
+    <dimen name="text_lable">16.0sp</dimen>
+    <dimen name="text_content_list">18.0sp</dimen>
+
+
 </resources>

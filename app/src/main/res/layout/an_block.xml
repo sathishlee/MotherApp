@@ -163,7 +163,6 @@
             android:layout_gravity="end"/>
     </LinearLayout>
 
-
     </LinearLayout>
 
 </android.support.v7.widget.CardView>

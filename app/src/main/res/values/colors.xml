@@ -34,9 +34,14 @@
 
     <color name="editTextBG">#DADADA</color>
 
-    <color name="white">#FFFFFF</color>
+    <color name="white">#ffffff</color>
 
     <color name="transparent">#00000000</color>
 
     <color name="textColor">#6e6e6e</color>
+
+
+    <color name="text_title">#0502ff</color>
+    <color name="text_lable">#0a0909</color>
+
 </resources>

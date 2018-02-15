@@ -168,7 +168,7 @@
         <item>Yes</item>
         <item>No</item>
     </string-array>
-    
+
     <string-array name="illness">
 
         <item>--Select--</item>
@@ -190,14 +190,14 @@
         <item>Others</item>
 
     </string-array>
-    
+
     <string-array name="does_use">
         <item>--Select--</item>
         <item>Tobacco</item>
         <item>Alcohol</item>
         <item>Others</item>
     </string-array>
-    
+
     <string-array name="pregnancy">
         <item>--Select--</item>
         <item>Hypertension</item>
@@ -206,7 +206,7 @@
         <item>TB</item>
         <item>Others</item>
     </string-array>
-    
+
     <string-array name="pregnancy_status">
         <item>--Select--</item>
         <item>0</item>
@@ -245,11 +245,13 @@
     </string-array>
 
 
-
     <string name="google_maps_key"> </string>
 
     <string name="str_add_report">Add Report</string>
 
     <string name="hosp_name">Hospital Name</string>
+    <string name="title_activity_clinical_report">ClinicalReportActivity</string>
+    <string name="title_activity_lab_report">LabReportActivity</string>
+    <string name="title_activity_ucgreport">UCGReportActivity</string>
 
 </resources>

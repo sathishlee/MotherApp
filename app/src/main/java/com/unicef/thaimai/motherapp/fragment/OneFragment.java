@@ -1,14 +1,19 @@
 package com.unicef.thaimai.motherapp.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.unicef.thaimai.motherapp.R;
+import com.unicef.thaimai.motherapp.activity.ClinicalReportActivity;
+import com.unicef.thaimai.motherapp.activity.LabReportActivity;
+import com.unicef.thaimai.motherapp.activity.UCGReportActivity;
 
 
 /**
@@ -19,7 +24,8 @@ import com.unicef.thaimai.motherapp.R;
  * Use the {@link OneFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class OneFragment extends Fragment {
+public class OneFragment extends Fragment implements View.OnClickListener {
+    TextView but_clinical,but_lab,but_ucg;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -66,7 +72,15 @@ public class OneFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_first, container, false);
+//        return inflater.inflate(R.layout.fragment_first, container, false);
+        View view= inflater.inflate(R.layout.item_visit_screen, container, false);
+        but_clinical = view.findViewById(R.id.but_clinical_report);
+        but_lab = view.findViewById(R.id.but_lab_report);
+        but_ucg = view.findViewById(R.id.but_ucg_report);
+        but_clinical.setOnClickListener(this);
+        but_lab.setOnClickListener(this);
+        but_ucg.setOnClickListener(this);
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -91,6 +105,23 @@ public class OneFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.but_clinical_report:
+                startActivity(new Intent(getActivity(), ClinicalReportActivity.class));
+                break;
+
+                case R.id.but_lab_report:
+                startActivity(new Intent(getActivity(), LabReportActivity.class));
+                break;
+
+                case R.id.but_ucg_report:
+                startActivity(new Intent(getActivity(), UCGReportActivity.class));
+                break;
+        }
     }
 
     /**

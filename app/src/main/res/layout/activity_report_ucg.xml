@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="50dp"
+
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:padding="5dp"
+        android:text="UCG Report"
+        android:textSize="@dimen/text_title"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2">
+        <TextView
+            android:id="@+id/bp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:padding="5dp"
+            android:text="Fetus"
+            android:textSize="@dimen/text_lable"
+            android:layout_weight="1"/>
+        <TextView
+            android:id="@+id/bp_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:padding="5dp"
+            android:text="Alive"
+            android:textSize="@dimen/text_lable"
+            android:layout_weight="1"
+            android:gravity="right"/>
+    </LinearLayout>
+     
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2">
+        <TextView
+            android:id="@+id/pluse_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:padding="5dp"
+            android:text="Gestation Sac"
+            android:textSize="@dimen/text_lable"
+            android:layout_weight="1"/>
+        <TextView
+            android:id="@+id/pluse_rate_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:padding="5dp"
+            android:text="Single"
+            android:textSize="@dimen/text_lable"
+            android:layout_weight="1"
+            android:gravity="right"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2">
+        <TextView
+            android:id="@+id/weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/facility"
+            android:padding="5dp"
+            android:text="Liquor"
+            android:textSize="@dimen/text_lable"
+            android:layout_weight="1" />
+        <TextView
+            android:id="@+id/weight_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/facility"
+            android:padding="5dp"
+            android:text="Not"
+            android:textSize="@dimen/text_lable"
+            android:layout_weight="1"
+            android:gravity="right"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2">
+        <TextView
+            android:id="@+id/funbal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:padding="5dp"
+            android:text="Placenta"
+            android:textSize="@dimen/text_lable"
+            android:layout_weight="1"/>
+        <TextView
+            android:id="@+id/funbal_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:padding="5dp"
+            android:text="Normal"
+            android:textSize="@dimen/text_lable"
+            android:layout_weight="1"
+            android:gravity="right"/>
+    </LinearLayout>
+
+
+
+</LinearLayout>
