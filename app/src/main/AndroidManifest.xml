@@ -84,6 +84,8 @@
             android:name=".activity.UCGReportActivity"
             android:label="@string/title_activity_ucgreport"
             android:theme="@style/AppTheme"/>
+        <activity android:name=".activity.PrimaryRegister"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>
