@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
 <RelativeLayout android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -220,8 +218,8 @@
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
         android:weightSum="2"
-        android:layout_marginBottom="50dp"
-        >
+        android:layout_marginBottom="50dp">
+
         <Button
             android:id="@+id/btn_upload"
             android:layout_width="wrap_content"
@@ -232,7 +230,8 @@
             android:layout_weight="1"
             android:padding="5dp"
             android:layout_margin="5dp"
-            android:drawableLeft="@drawable/ic_file_upload"/>
+            android:drawableEnd="@drawable/ic_file_upload"/>
+
         <Button
             android:id="@+id/btn_view"
             android:layout_width="wrap_content"
@@ -243,7 +242,8 @@
             android:layout_weight="1"
             android:padding="5dp"
             android:layout_margin="5dp"
-            android:drawableLeft="@drawable/ic_file_view"/>
+            android:drawableEnd="@drawable/ic_file_view"/>
+
     </LinearLayout>
 
 
