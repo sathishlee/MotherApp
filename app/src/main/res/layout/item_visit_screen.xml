@@ -122,7 +122,7 @@
         android:gravity="center_vertical"
         android:padding="10dp"
         android:background="@color/cloudy_blue"
-        android:elevation="5dp"
+        android:elevation="1dp"
         android:text="Clinical Report"
         android:textSize="@dimen/text_lable"
         android:layout_margin="5dp"/>
@@ -136,7 +136,7 @@
         android:gravity="center_vertical"
         android:padding="10dp"
         android:background="@color/cloudy_blue"
-        android:elevation="5dp"
+        android:elevation="1dp"
         android:text="Lab Report"
         android:layout_margin="5dp"
         android:textSize="@dimen/text_lable" />
@@ -150,7 +150,7 @@
         android:gravity="center_vertical"
         android:padding="10dp"
         android:background="@color/cloudy_blue"
-        android:elevation="5dp"
+        android:elevation="1dp"
         android:text="UCG Report"
         android:layout_margin="5dp"
         android:textSize="@dimen/text_lable" />

@@ -33,8 +33,15 @@
 
         <item
             android:id="@+id/health_tips"
-            android:icon="@drawable/vector_drawable_health_care"
+            android:icon="@drawable/first_aid"
             android:title="@string/health_tips"/>
+
+        <item
+            android:id="@+id/primary_register"
+            android:icon="@drawable/notes"
+            android:title="Primary Register"/>
+
+
 
     </group>
 

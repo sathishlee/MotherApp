@@ -18,7 +18,7 @@ public class LabReportActivity extends AppCompatActivity {
         setContentView(R.layout.activity_report_lab);
         ActionBar actionBar = getSupportActionBar();
 
-        actionBar.setTitle("Lab Report");
+        actionBar.setTitle("Back");
 
         actionBar.setHomeButtonEnabled(true);
 

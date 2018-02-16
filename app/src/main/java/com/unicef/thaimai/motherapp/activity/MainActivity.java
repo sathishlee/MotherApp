@@ -266,6 +266,10 @@ if (AppConstant.isMainActivityOpen) {
             Intent i = new Intent(getApplicationContext(), HeathTipsActivity.class);
             startActivity(i);
         }
+        else if (id == R.id.primary_register){
+            Intent i = new Intent(getApplicationContext(), PrimaryRegister.class);
+            startActivity(i);
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

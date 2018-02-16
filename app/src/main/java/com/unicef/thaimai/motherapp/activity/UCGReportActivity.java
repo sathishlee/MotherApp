@@ -18,7 +18,7 @@ public class UCGReportActivity extends AppCompatActivity {
         setContentView(R.layout.activity_report_ucg);
         ActionBar actionBar = getSupportActionBar();
 
-        actionBar.setTitle("UGC Report");
+        actionBar.setTitle("Back");
 
         actionBar.setHomeButtonEnabled(true);
 

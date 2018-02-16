@@ -66,6 +66,7 @@ public class home extends Fragment {
 
 
 
+
         id = getActivity().getIntent().getStringExtra(TAG_ID);
         name = getActivity().getIntent().getStringExtra(TAG_USERNAME);
         picmeId = getActivity().getIntent().getStringExtra(PICME_ID);

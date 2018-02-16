@@ -16,7 +16,7 @@ public class ClinicalReportActivity extends AppCompatActivity {
         setContentView(R.layout.activity_report_clinical);
         ActionBar actionBar = getSupportActionBar();
 
-        actionBar.setTitle("Clinical Report");
+        actionBar.setTitle("Back");
 
         actionBar.setHomeButtonEnabled(true);
 
