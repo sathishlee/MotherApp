@@ -48,9 +48,15 @@ public class NetworkService {
                 baseUrl(Apiconstants.BASE_URL)
 
                 .addConverterFactory(GsonConverterFactory.create())
-                .client(httpClient.build())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
+
+//        Retrofit retrofit = new Retrofit.Builder().
+//                baseUrl(Apiconstants.BASE_URL)
+//
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .client(httpClient.build())
+//                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+//                .build();
         networkAPI = retrofit.create(NetworkAPI.class);
     }
 

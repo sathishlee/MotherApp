@@ -37,7 +37,7 @@ public class LoginPresenter implements LoginInteractor {
     public void checkPickmeId(String pickmeid) {
 //        view.showProgress();
 
-        Call<LoginResponseModel> loginResponseModelCall = service.getApi().checkPicme();
+        Call<LoginResponseModel> loginResponseModelCall = service.getApi().checkPicme(pickmeid);
         loginResponseModelCall.enqueue(new Callback<LoginResponseModel>() {
             @Override
             public void onResponse(Call<LoginResponseModel> call, Response<LoginResponseModel> response) {
