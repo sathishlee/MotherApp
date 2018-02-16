@@ -12,6 +12,7 @@ public interface LoginViews {
     void showProgress();
     void hideProgress();
     void showPickmeResult(LoginResponseModel loginResponseModel);
+    void showErrorMessage(String string);
     void showVerifyOtpResult(LoginResponseModel loginResponseModel);
 
 }

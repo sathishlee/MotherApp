@@ -1,5 +1,6 @@
 package com.unicef.thaimai.motherapp.activity;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -19,11 +20,15 @@ import android.widget.Toast;
 //import com.android.volley.Response;
 //import com.android.volley.VolleyError;
 //import com.android.volley.toolbox.StringRequest;
+import com.unicef.thaimai.motherapp.Presenter.LoginPresenter;
 import com.unicef.thaimai.motherapp.R;
+import com.unicef.thaimai.motherapp.application.RxApplication;
+import com.unicef.thaimai.motherapp.model.responsemodel.LoginResponseModel;
+import com.unicef.thaimai.motherapp.view.LoginViews;
 //import com.unicef.thaimai.motherapp.volleyservice.VolleySingleton;
 
 
-public class Login extends AppCompatActivity {
+public class Login extends AppCompatActivity implements LoginViews {
 
     ProgressDialog pDialog;
     Button btn_login;
@@ -32,6 +37,7 @@ public class Login extends AppCompatActivity {
     EditText otp;
     Intent intent;
     TextInputLayout input_layout_picme_id, input_layout_otp;
+    Activity mActivity;
     int success;
     ConnectivityManager conMgr;
 
@@ -49,11 +55,18 @@ public class Login extends AppCompatActivity {
     public static final String my_shared_preferences = "my_shared_preferences";
     public static final String session_status = "session_status";
 
+    LoginPresenter loginPresenter;
+
     boolean isPickmeAvailable=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+mActivity=this;
+
+        loginPresenter = new LoginPresenter(mActivity,this, RxApplication.getNetworkService());
+
+
 
         conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         {
@@ -96,26 +109,31 @@ public class Login extends AppCompatActivity {
                 String picmeId = txt_picmeId.getText().toString();
                 String Otp = otp.getText().toString();
 
-                if (picmeId.equalsIgnoreCase("")){
-                    input_layout_picme_id.setError("Pickme ID is Empty");
-                }
-                if (picmeId.length()==12){
-                    input_layout_picme_id.setError("Enter Correct Picme ID");
-                }
-                else{
-                    if (isPickmeAvailable){
-                        if (Otp.equalsIgnoreCase("")){
-                            input_layout_otp.setError("Enter Otp");
-                            isPickmeAvailable=false;
-                        }else{
-                            checkLogin(picmeId,Otp);
-                        }
-                    }else{
+                Toast.makeText(getApplicationContext(),picmeId,Toast.LENGTH_SHORT).show();
 
-                        checkLogin(picmeId,"");
 
-                    }
-                }
+//                if (picmeId.equalsIgnoreCase("")){
+//                    input_layout_picme_id.setError("Pickme ID is Empty");
+//                }
+//                if (picmeId.length()==12){
+//                    input_layout_picme_id.setError("Enter Correct Picme ID");
+//                }
+//                else{
+//                    if (isPickmeAvailable){
+//                        if (Otp.equalsIgnoreCase("")){
+//                            input_layout_otp.setError("Enter Otp");
+//                            isPickmeAvailable=false;
+//                        }else{
+////                            checkLogin(picmeId,Otp);
+//                            loginPresenter.verifyOtp(picmeId,Otp);
+//                        }
+//                    }else{
+//
+////                        checkLogin(picmeId,"");
+                        loginPresenter.checkPickmeId(picmeId);
+//
+//                    }
+//                }
 
 
 
@@ -256,5 +274,37 @@ public class Login extends AppCompatActivity {
     }
 
 
+    @Override
+    public void showProgress() {
 
+        pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
+        pDialog.setMessage("Please Wait ...");
+        showProgress();
+
+
+    }
+
+    @Override
+    public void hideProgress() {
+
+            pDialog.dismiss();
+    }
+
+    @Override
+    public void showPickmeResult(LoginResponseModel loginResponseModel) {
+
+        Toast.makeText(getApplicationContext(),loginResponseModel.error,Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void showErrorMessage(String string) {
+
+    }
+
+    @Override
+    public void showVerifyOtpResult(LoginResponseModel loginResponseModel) {
+
+    }
 }

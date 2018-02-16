@@ -253,5 +253,6 @@
     <string name="title_activity_clinical_report">ClinicalReportActivity</string>
     <string name="title_activity_lab_report">LabReportActivity</string>
     <string name="title_activity_ucgreport">UCGReportActivity</string>
+    <string name="no_internet_connection">No Internet Connections</string>
 
 </resources>

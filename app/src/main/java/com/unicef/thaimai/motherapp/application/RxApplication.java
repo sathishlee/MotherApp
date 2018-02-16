@@ -2,7 +2,7 @@ package com.unicef.thaimai.motherapp.application;
 
 import android.app.Application;
 
-import com.unicef.thaimai.motherapp.networkService.NetworkService;
+import com.unicef.thaimai.motherapp.NetworkService.NetworkService;
 
 /**
  * Created by sathish on 2/15/2018.
