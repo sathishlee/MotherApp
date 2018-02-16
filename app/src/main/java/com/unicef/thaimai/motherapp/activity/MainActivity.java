@@ -27,7 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.unicef.thaimai.motherapp.R;
-import com.unicef.thaimai.motherapp.constant.AppConstant;
+import com.unicef.thaimai.motherapp.constant.AppConstants;
 import com.unicef.thaimai.motherapp.fragment.NotificationFragment;
 import com.unicef.thaimai.motherapp.fragment.baby;
 import com.unicef.thaimai.motherapp.fragment.health_records;
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-if (AppConstant.isMainActivityOpen) {
+if (AppConstants.isMainActivityOpen) {
     showAlertDialog();
 
 }
@@ -135,7 +135,7 @@ if (AppConstant.isMainActivityOpen) {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 //                Toast.makeText(getApplicationContext(),"Take care",Toast.LENGTH_LONG).show();
-                AppConstant.isMainActivityOpen=false;
+                AppConstants.isMainActivityOpen=false;
                 dialog.dismiss();
             }
         });
@@ -143,7 +143,7 @@ if (AppConstant.isMainActivityOpen) {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Toast.makeText(getApplicationContext(),"Alert has set to VHN,  They will contact soon..",Toast.LENGTH_LONG).show();
-                AppConstant.isMainActivityOpen=false;
+                AppConstants.isMainActivityOpen=false;
                 dialog.dismiss();
             }
         });

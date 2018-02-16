@@ -14,7 +14,6 @@ import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -23,21 +22,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
+//import com.android.volley.Request;
+//import com.android.volley.Response;
+//import com.android.volley.VolleyError;
+//import com.android.volley.toolbox.StringRequest;
 import com.unicef.thaimai.motherapp.R;
-import com.unicef.thaimai.motherapp.app.AppController;
-import com.unicef.thaimai.motherapp.helper.apiconstants;
-
-import org.json.JSONException;
-import org.json.JSONObject;
+//import com.unicef.thaimai.motherapp.app.AppController;
+import com.unicef.thaimai.motherapp.constant.Apiconstants;
 
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
 
 
 public class Register extends AppCompatActivity {
@@ -62,7 +56,7 @@ public class Register extends AppCompatActivity {
     int success;
     ConnectivityManager conMgr;
 
-    private static final String url = apiconstants.BASE_URL + "Registration/addRegistration";
+    private static final String url = Apiconstants.BASE_URL + "Registration/addRegistration";
 
     private static final String TAG = Register.class.getSimpleName();
 
@@ -204,7 +198,7 @@ public class Register extends AppCompatActivity {
 
 
     private void checkRegister(final String regName, final String picmeid, final String regDob, final String regMobile,
-                              final String regAlterMobile, final String regAlterMobile1) {
+                              final String regAlterMobile, final String regAlterMobile1) {/*
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
         pDialog.setMessage("Register ...");
@@ -277,7 +271,7 @@ public class Register extends AppCompatActivity {
         };
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(strReq, tag_json_obj);
-    }
+   */ }
     private void showDialog() {
         if (!pDialog.isShowing())
             pDialog.show();

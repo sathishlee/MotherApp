@@ -1,9 +1,9 @@
-package com.unicef.thaimai.motherapp.helper;
+package com.unicef.thaimai.motherapp.constant;
 
 
 
 
-public class apiconstants {
+public class Apiconstants {
 
     public static final String BASE_URL = "http://192.168.100.19/thaimaiapp/api/";
 

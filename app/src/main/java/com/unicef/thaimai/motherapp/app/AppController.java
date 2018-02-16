@@ -1,3 +1,4 @@
+/*
 package com.unicef.thaimai.motherapp.app;
 import android.app.Application;
 import android.text.TextUtils;
@@ -49,3 +50,4 @@ public class AppController extends Application {
 	}
 
 }
+*/

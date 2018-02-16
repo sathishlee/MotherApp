@@ -4,7 +4,7 @@ package com.unicef.thaimai.motherapp.model.responsemodel;
  * Created by Suthishan on 20/1/2018.
  */
 
-public class loginresponse {
+public class LoginResponseModel {
 
     Boolean success;
     String message;
@@ -25,7 +25,7 @@ public class loginresponse {
         this.message = message;
     }
 
-    public loginresponse(Boolean success, String message) {
+    public LoginResponseModel(Boolean success, String message) {
         this.success = success;
         this.message = message;
     }

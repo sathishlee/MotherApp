@@ -1,14 +1,24 @@
 package com.unicef.thaimai.motherapp.Presenter;
 
 
-import com.unicef.thaimai.motherapp.apiinterface.LoginInterface;
+import android.app.Activity;
 
-/**
- * Created by Suthishan on 20/1/2018.
- */
+import com.unicef.thaimai.motherapp.networkService.NetworkService;
+import com.unicef.thaimai.motherapp.interactor.LoginInteractor;
+import com.unicef.thaimai.motherapp.view.LoginViews;
 
-public class LoginPresenter implements LoginInterface {
 
+public class LoginPresenter implements LoginInteractor {
+
+    private LoginViews view;
+    private Activity activity;
+    private NetworkService service;
+
+    public LoginPresenter(LoginViews view, Activity activity, NetworkService service) {
+        this.view = view;
+        this.activity = activity;
+        this.service = service;
+    }
 
     @Override
     public void checkPickmeId(String pickmeid) {

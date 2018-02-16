@@ -8,30 +8,19 @@ import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
+//import com.android.volley.AuthFailureError;
+//import com.android.volley.Request;
+//import com.android.volley.Response;
+//import com.android.volley.VolleyError;
+//import com.android.volley.toolbox.StringRequest;
 import com.unicef.thaimai.motherapp.R;
-import com.unicef.thaimai.motherapp.helper.Constants;
-import com.unicef.thaimai.motherapp.helper.apiconstants;
-import com.unicef.thaimai.motherapp.volleyservice.VolleySingleton;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
-
+//import com.unicef.thaimai.motherapp.volleyservice.VolleySingleton;
 
 
 public class Login extends AppCompatActivity {
@@ -46,7 +35,7 @@ public class Login extends AppCompatActivity {
     int success;
     ConnectivityManager conMgr;
 
-//    private static final String url = apiconstants.URL + "login.php";
+//    private static final String url = Apiconstants.URL + "login.php";
 
     private static final String TAG = Login.class.getSimpleName();
 
@@ -150,7 +139,7 @@ public class Login extends AppCompatActivity {
 
     }
 
-    private void checkLogin(String picmeId, String otp) {
+    private void checkLogin(String picmeId, String otp) {/*
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
         pDialog.setMessage("Please Wait ...");
@@ -158,10 +147,10 @@ public class Login extends AppCompatActivity {
         String url=null;
             if (!isPickmeAvailable){
 
-                url = apiconstants.BASE_URL+picmeId;
+                url = Apiconstants.BASE_URL+picmeId;
 
             }else{
-                url = apiconstants.BASE_URL+picmeId+"/"+otp;
+                url = Apiconstants.BASE_URL+picmeId+"/"+otp;
 
             }
                     Log.e("url",url);
@@ -224,7 +213,7 @@ public class Login extends AppCompatActivity {
             }
         }) {
 
-            /*@Override
+            *//*@Override
             protected Map<String, String> getParams() {
                 // Posting parameters to login url
                 Map<String, String> params = new HashMap<String, String>();
@@ -232,7 +221,7 @@ public class Login extends AppCompatActivity {
                 params.put("picmeId", picmeId);
 
                 return params;
-            }*/
+            }*//*
             @Override
                 public Map<String,String> getHeaders() throws AuthFailureError{
                 String credentials ="admin"+":"+"1234";
@@ -253,7 +242,7 @@ public class Login extends AppCompatActivity {
 
         // Adding request to request queue
         VolleySingleton.getInstance(this).addToRequestQueue(strReq);
-    }
+    */}
 
 
     private void showDialog() {
