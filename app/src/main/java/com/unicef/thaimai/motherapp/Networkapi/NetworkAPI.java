@@ -6,6 +6,7 @@ import com.unicef.thaimai.motherapp.model.responsemodel.LoginResponseModel;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 /**
@@ -14,7 +15,7 @@ import retrofit2.http.Path;
 
 public interface NetworkAPI {
 
-    @GET(Apiconstants.LOG_IN_CHECK_PICME)
+    @POST(Apiconstants.LOG_IN_CHECK_PICME)
     Call<LoginResponseModel> checkPicme(@Path("picme_no") String picme_no);
 
 

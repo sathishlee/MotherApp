@@ -6,8 +6,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 /**
  * Created by Suthishan on 19-02-2018.
- * <p>
- * Helper class for database operations on checklist database
  */
 public class DBhelp extends SQLiteOpenHelper {
 

@@ -4,8 +4,6 @@ import android.provider.BaseColumns;
 
 /**
  * Created by Suthishan on 19-02-2018.
- * <p>
- * Constants for database column names
  */
 public abstract class TableEntry implements BaseColumns {
     public static final String TABLE_NAME = "users";
