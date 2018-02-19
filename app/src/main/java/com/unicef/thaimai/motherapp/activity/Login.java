@@ -15,17 +15,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-//import com.android.volley.AuthFailureError;
-//import com.android.volley.Request;
-//import com.android.volley.Response;
-//import com.android.volley.VolleyError;
-//import com.android.volley.toolbox.StringRequest;
 import com.unicef.thaimai.motherapp.Presenter.LoginPresenter;
 import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.application.RxApplication;
 import com.unicef.thaimai.motherapp.model.responsemodel.LoginResponseModel;
 import com.unicef.thaimai.motherapp.view.LoginViews;
-//import com.unicef.thaimai.motherapp.volleyservice.VolleySingleton;
 
 
 public class Login extends AppCompatActivity implements LoginViews {
@@ -64,7 +58,6 @@ public class Login extends AppCompatActivity implements LoginViews {
         setContentView(R.layout.login);
 mActivity=this;
 
-        loginPresenter = new LoginPresenter(mActivity,this, RxApplication.getNetworkService());
 
 
 
@@ -96,6 +89,11 @@ mActivity=this;
                 startActivity(intent);
             }
         });
+
+
+
+        loginPresenter = new LoginPresenter(mActivity,this, RxApplication.getNetworkService());
+//        loginPresenter = new LoginPresenter(mActivity,this);
 
 
         btn_login = (Button) findViewById(R.id.btn_login);
@@ -130,6 +128,7 @@ mActivity=this;
 //                    }else{
 //
 ////                        checkLogin(picmeId,"");
+
                         loginPresenter.checkPickmeId(picmeId);
 //
 //                    }
@@ -294,7 +293,7 @@ mActivity=this;
     @Override
     public void showPickmeResult(LoginResponseModel loginResponseModel) {
 
-        Toast.makeText(getApplicationContext(),loginResponseModel.error,Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(),loginResponseModel.toString(),Toast.LENGTH_SHORT).show();
 
     }
 
