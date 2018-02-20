@@ -111,7 +111,7 @@
             android:gravity="center"
             android:visibility="gone"
             android:layout_margin="10dp"
-            android:text="Forgot Picme?"/>
+            android:text="Worng Picme?"/>
 
     </LinearLayout>
 
