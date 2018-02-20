@@ -1,3 +1,4 @@
+/*
 package com.unicef.thaimai.motherapp.NetworkService;
 
 
@@ -19,9 +20,11 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+*/
 /**
  * Created by sathish on 2/15/2018.
- */
+ *//*
+
 
 public class NetworkService {
 
@@ -96,3 +99,4 @@ public class NetworkService {
     }
 
 }
+*/

@@ -9,17 +9,32 @@ import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.unicef.thaimai.motherapp.Presenter.LoginPresenter;
 import com.unicef.thaimai.motherapp.R;
-import com.unicef.thaimai.motherapp.application.RxApplication;
+import com.unicef.thaimai.motherapp.constant.Apiconstants;
+import com.unicef.thaimai.motherapp.helper.Constants;
 import com.unicef.thaimai.motherapp.model.responsemodel.LoginResponseModel;
 import com.unicef.thaimai.motherapp.view.LoginViews;
+import com.unicef.thaimai.motherapp.volleyservice.VolleySingleton;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class Login extends AppCompatActivity implements LoginViews {
@@ -32,7 +47,6 @@ public class Login extends AppCompatActivity implements LoginViews {
     Intent intent;
     TextInputLayout input_layout_picme_id, input_layout_otp;
     Activity mActivity;
-    int success;
     ConnectivityManager conMgr;
 
 //    private static final String url = Apiconstants.URL + "login.php";
@@ -56,7 +70,7 @@ public class Login extends AppCompatActivity implements LoginViews {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-mActivity=this;
+        mActivity=this;
 
 
 
@@ -92,7 +106,7 @@ mActivity=this;
 
 
 
-        loginPresenter = new LoginPresenter(mActivity,this, RxApplication.getNetworkService());
+        loginPresenter = new LoginPresenter(mActivity,this);
 //        loginPresenter = new LoginPresenter(mActivity,this);
 
 
@@ -107,70 +121,49 @@ mActivity=this;
                 String picmeId = txt_picmeId.getText().toString();
                 String Otp = otp.getText().toString();
 
-                Toast.makeText(getApplicationContext(),picmeId,Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(),picmeId,Toast.LENGTH_SHORT).show();
 
 
-//                if (picmeId.equalsIgnoreCase("")){
-//                    input_layout_picme_id.setError("Pickme ID is Empty");
-//                }
+                if (picmeId.equalsIgnoreCase("")){
+                    input_layout_picme_id.setError("Pickme ID is Empty");
+                }
 //                if (picmeId.length()==12){
 //                    input_layout_picme_id.setError("Enter Correct Picme ID");
 //                }
-//                else{
-//                    if (isPickmeAvailable){
-//                        if (Otp.equalsIgnoreCase("")){
-//                            input_layout_otp.setError("Enter Otp");
-//                            isPickmeAvailable=false;
-//                        }else{
-////                            checkLogin(picmeId,Otp);
+                else{
+                    if (isPickmeAvailable){
+                        if (Otp.equalsIgnoreCase("")){
+                            input_layout_otp.setError("Enter Otp");
+                            isPickmeAvailable=false;
+                        }else{
+//                            checkLogin(picmeId,Otp);
+                            verifyOtp(picmeId,Otp);
 //                            loginPresenter.verifyOtp(picmeId,Otp);
-//                        }
-//                    }else{
-//
-////                        checkLogin(picmeId,"");
+                        }
+                    }else{
 
-                        loginPresenter.checkPickmeId(picmeId);
-//
-//                    }
-//                }
+                        checkLogin(picmeId,"");
 
+//                        loginPresenter.checkPickmeId(picmeId);
 
-
-                /*if (Otp.trim().length() > 0 && picmeId.trim().length() > 0) {
-                  if (conMgr.getActiveNetworkInfo() != null
-                          && conMgr.getActiveNetworkInfo().isAvailable()
-                           && conMgr.getActiveNetworkInfo().isConnected()) {
-                        checkLogin(picmeId, Otp);
                     }
+                }
 
-                    else {
-                        Toast.makeText(getApplicationContext() ,"No Internet Connection", Toast.LENGTH_LONG).show();
-                   }
-                } else {
-                    // Prompt user to enter credentials
-                    Toast.makeText(getApplicationContext() ,"Please Fill all Details", Toast.LENGTH_LONG).show();
-               }*/
             }
         });
 
 
     }
 
-    private void checkLogin(String picmeId, String otp) {/*
+    private void verifyOtp(String picmeId, String otp) {
+
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
         pDialog.setMessage("Please Wait ...");
         showDialog();
         String url=null;
-            if (!isPickmeAvailable){
 
-                url = Apiconstants.BASE_URL+picmeId;
-
-            }else{
-                url = Apiconstants.BASE_URL+picmeId+"/"+otp;
-
-            }
-                    Log.e("url",url);
+        url = Apiconstants.BASE_URL+Apiconstants.LOG_IN_CHECK_PIKME+picmeId+"/"+otp;
 
         StringRequest strReq = new StringRequest(Request.Method.POST,url , new Response.Listener<String>() {
 
@@ -182,33 +175,20 @@ mActivity=this;
                 try {
                     JSONObject jObj = new JSONObject(response);
 //                    success = jObj.getInt(Constants.TAG_SUCCESS);
-
+                    int status = jObj.getInt("status");
                     // Check for error in json
-                    if (success == 1) {
+                    if (status == 1) {
 
-                        input_layout_otp.setVisibility(View.VISIBLE);
-                        isPickmeAvailable = true;
-                        String picmeId = jObj.getString(Constants.PICME_ID);
-                        String Otp = jObj.getString(Constants.OTP);
+                        Toast.makeText(getApplicationContext(),
+                                jObj.getString("message"), Toast.LENGTH_LONG).show();
 
-                        Log.e("User Found!", jObj.toString());
-
-                        SharedPreferences.Editor editor = sharedpreferences.edit();
-                        editor.putBoolean(session_status, true);
-                        editor.putString(Constants.TAG_USERNAME, name);
-                        editor.putString(Constants.PICME_ID, picmeId);
-                        editor.commit();
-
-                        Intent intent = new Intent(Login.this, MainActivity.class);
-                        intent.putExtra(Constants.TAG_USERNAME, name);
-                        intent.putExtra(Constants.PICME_ID, picmeId);
-                        finish();
+                        Intent intent = new Intent(Login.this, Register.class);
                         startActivity(intent);
 
                     }
                     else {
-//                        Toast.makeText(getApplicationContext(),
-//                                jObj.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(),
+                                jObj.getString("message"), Toast.LENGTH_LONG).show();
 
                     }
                 } catch (JSONException e) {
@@ -230,17 +210,103 @@ mActivity=this;
             }
         }) {
 
-            *//*@Override
-            protected Map<String, String> getParams() {
-                // Posting parameters to login url
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("name", name);
-                params.put("picmeId", picmeId);
-
-                return params;
-            }*//*
             @Override
-                public Map<String,String> getHeaders() throws AuthFailureError{
+            public Map<String,String> getHeaders() throws AuthFailureError {
+                String credentials ="admin"+":"+"1234";
+                String base64EncodedCredentials = Base64.encodeToString(credentials.getBytes(),Base64.DEFAULT);
+                HashMap<String,String> header = new HashMap<>();
+                header.put("Content-Type","application/x-www-from-urlencoded; charset=utf-8");
+                header.put("Authorization","Basic "+base64EncodedCredentials);
+                return header;
+            }
+            public String getBodyContentType(){
+                return "application/x-www-from-urlencoded; charset=utf-8";
+            }
+            public int getMethod(){
+                return Method.GET;
+            }
+        };
+
+
+        // Adding request to request queue
+        VolleySingleton.getInstance(this).addToRequestQueue(strReq);
+
+    }
+
+    private void checkLogin(final String picmeId, String otp) {
+        pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
+        pDialog.setMessage("Please Wait ...");
+        showDialog();
+        String url=null;
+            if (!isPickmeAvailable){
+
+                url = Apiconstants.BASE_URL+Apiconstants.LOG_IN_CHECK_PIKME+picmeId;
+
+            }else{
+                url = Apiconstants.BASE_URL+Apiconstants.LOG_IN_CHECK_PIKME+picmeId+"/"+otp;
+
+            }
+                    Log.e("url",url);
+
+        StringRequest strReq = new StringRequest(Request.Method.POST,url , new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                Log.e(TAG, "Login Response: " + response.toString());
+                hideDialog();
+
+                try {
+                    JSONObject jObj = new JSONObject(response);
+//                    success = jObj.getInt(Constants.TAG_SUCCESS);
+                    int status = jObj.getInt("status");
+                    // Check for error in json
+                    if (status == 1) {
+
+                        input_layout_otp.setVisibility(View.VISIBLE);
+                        isPickmeAvailable = true;
+                        String picmeId = jObj.getString(Constants.PICME_ID);
+                        String Otp = jObj.getString(Constants.OTP);
+
+                        Log.e("User Found!", jObj.toString());
+                        Toast.makeText(getApplicationContext(),
+                                jObj.getString("message"), Toast.LENGTH_LONG).show();
+
+                    }
+                    else {
+                        Toast.makeText(getApplicationContext(),
+                                jObj.getString("message"), Toast.LENGTH_LONG).show();
+
+                    }
+                } catch (JSONException e) {
+                    // JSON error
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e(TAG, "Login Error: " + error.getMessage());
+                Toast.makeText(getApplicationContext(),
+                        error.getMessage(), Toast.LENGTH_LONG).show();
+
+                hideDialog();
+
+            }
+        }) {
+
+//            @Override
+//            protected Map<String, String> getParams() {
+//                // Posting parameters to login url
+//                Map<String, String> params = new HashMap<String, String>();
+//
+//
+//                return params;
+//            }
+            @Override
+                public Map<String,String> getHeaders() throws AuthFailureError {
                 String credentials ="admin"+":"+"1234";
                 String base64EncodedCredentials = Base64.encodeToString(credentials.getBytes(),Base64.DEFAULT);
                 HashMap<String,String> header = new HashMap<>();
@@ -259,7 +325,7 @@ mActivity=this;
 
         // Adding request to request queue
         VolleySingleton.getInstance(this).addToRequestQueue(strReq);
-    */}
+    }
 
 
     private void showDialog() {

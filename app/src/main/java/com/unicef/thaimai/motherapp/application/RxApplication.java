@@ -1,12 +1,15 @@
+/*
 package com.unicef.thaimai.motherapp.application;
 
 import android.app.Application;
 
 import com.unicef.thaimai.motherapp.NetworkService.NetworkService;
 
+*/
 /**
  * Created by sathish on 2/15/2018.
- */
+ *//*
+
 
 public class RxApplication extends Application {
 
@@ -23,4 +26,4 @@ public class RxApplication extends Application {
     public static NetworkService getNetworkService() {
         return networkService;
     }
-}
+}*/
