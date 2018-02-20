@@ -41,7 +41,7 @@ public class Login extends AppCompatActivity implements LoginViews {
 
     ProgressDialog pDialog;
     Button btn_login;
-    TextView forgot_picme;
+    TextView forgot_picme, worng_picme;
     EditText txt_picmeId;
     EditText otp;
     Intent intent;
@@ -95,6 +95,7 @@ public class Login extends AppCompatActivity implements LoginViews {
 
 
         forgot_picme = (TextView) findViewById(R.id.forgot_picme);
+        worng_picme = (TextView) findViewById(R.id.worng_picme);
         forgot_picme.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -267,6 +268,18 @@ public class Login extends AppCompatActivity implements LoginViews {
                         isPickmeAvailable = true;
                         String picmeId = jObj.getString(Constants.PICME_ID);
                         String Otp = jObj.getString(Constants.OTP);
+
+                        txt_picmeId.setEnabled(false);
+
+
+                        worng_picme.setVisibility(View.VISIBLE);
+                        worng_picme.setOnClickListener(new View.OnClickListener(){
+                            @Override
+                            public void onClick(View v){
+                                txt_picmeId.setEnabled(true);
+                            }
+                        });
+
 
                         Log.e("User Found!", jObj.toString());
                         Toast.makeText(getApplicationContext(),

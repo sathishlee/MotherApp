@@ -103,6 +103,16 @@
             android:layout_margin="10dp"
             android:text="Forgot Picme?"/>
 
+
+        <TextView
+            android:id="@+id/worng_picme"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:visibility="gone"
+            android:layout_margin="10dp"
+            android:text="Forgot Picme?"/>
+
     </LinearLayout>
 
 
