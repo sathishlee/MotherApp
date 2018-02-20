@@ -277,6 +277,7 @@ public class Login extends AppCompatActivity implements LoginViews {
                             @Override
                             public void onClick(View v){
                                 txt_picmeId.setEnabled(true);
+                                input_layout_otp.setVisibility(View.GONE);
                             }
                         });
 
