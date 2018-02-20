@@ -5,8 +5,10 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
@@ -22,6 +24,8 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.stfalcon.smsverifycatcher.OnSmsCatchListener;
+import com.stfalcon.smsverifycatcher.SmsVerifyCatcher;
 import com.unicef.thaimai.motherapp.Presenter.LoginPresenter;
 import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.constant.Apiconstants;
@@ -35,6 +39,8 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class Login extends AppCompatActivity implements LoginViews {
@@ -64,6 +70,7 @@ public class Login extends AppCompatActivity implements LoginViews {
     public static final String session_status = "session_status";
 
     LoginPresenter loginPresenter;
+    private SmsVerifyCatcher smsVerifyCatcher;
 
     boolean isPickmeAvailable=false;
     @Override
@@ -92,6 +99,18 @@ public class Login extends AppCompatActivity implements LoginViews {
 
         txt_picmeId = (EditText) findViewById(R.id.picme_id);
         otp = (EditText) findViewById(R.id.otp);
+
+        smsVerifyCatcher = new SmsVerifyCatcher(this, new OnSmsCatchListener<String>() {
+            @Override
+            public void onSmsCatch(String message) {
+                String code = parseCode(message);//Parse verification code
+                otp.setText(code);//set code in edit text
+                //then you can send verification code to server
+            }
+        });
+
+        //set phone number filter if needed
+        smsVerifyCatcher.setPhoneNumberFilter("TX-SATVAT");
 
 
         forgot_picme = (TextView) findViewById(R.id.forgot_picme);
@@ -228,7 +247,6 @@ public class Login extends AppCompatActivity implements LoginViews {
             }
         };
 
-
         // Adding request to request queue
         VolleySingleton.getInstance(this).addToRequestQueue(strReq);
 
@@ -269,18 +287,25 @@ public class Login extends AppCompatActivity implements LoginViews {
                         String picmeId = jObj.getString(Constants.PICME_ID);
                         String Otp = jObj.getString(Constants.OTP);
 
-                        txt_picmeId.setEnabled(false);
 
+                        input_layout_picme_id.setEnabled(false);
+                        input_layout_picme_id.setFocusable(false);
+
+                        input_layout_picme_id.setBackgroundColor(Color.TRANSPARENT);
+                        forgot_picme.setVisibility(View.GONE);
 
                         worng_picme.setVisibility(View.VISIBLE);
                         worng_picme.setOnClickListener(new View.OnClickListener(){
                             @Override
                             public void onClick(View v){
-                                txt_picmeId.setEnabled(true);
+                                input_layout_picme_id.setFocusable(true);
+                                input_layout_picme_id.setEnabled(true);
+
+
                                 input_layout_otp.setVisibility(View.GONE);
+                                forgot_picme.setVisibility(View.VISIBLE);
                             }
                         });
-
 
                         Log.e("User Found!", jObj.toString());
                         Toast.makeText(getApplicationContext(),
@@ -385,5 +410,36 @@ public class Login extends AppCompatActivity implements LoginViews {
     @Override
     public void showVerifyOtpResult(LoginResponseModel loginResponseModel) {
 
+    }
+
+    private String parseCode(String message) {
+        Pattern p = Pattern.compile("\\b\\d{4}\\b");
+        Matcher m = p.matcher(message);
+        String code = "";
+        while (m.find()) {
+            code = m.group(0);
+        }
+        return code;
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        smsVerifyCatcher.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        smsVerifyCatcher.onStop();
+    }
+
+    /**
+     * need for Android 6 real time permissions
+     */
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        smsVerifyCatcher.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 }
