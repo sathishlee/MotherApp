@@ -150,12 +150,10 @@
     <string name="eyes">Eyes</string>
     <string name="eyes_color">Eyes Color</string>
     <string name="skin">Skin</string>
-    <string name="exclusive_breast_feeding">Exclusive Breast Feeding</string>
-    <string name="exclusive_breast_feeding_no_reasons">Exclusive Breast Feeding No Reasons</string>
+    <string name="exclusive_breast_feeding">Breast Feeding</string>
+    <string name="exclusive_breast_feeding_no_reasons">Reasons</string>
     <string name="outcome">Out Come</string>
     <string name="diagnosis_in">Diagnosis</string>
-
-
 
 
     <string-array name="array_hbnc_visit">
@@ -205,13 +203,13 @@
     <string-array name="array_breast_feeding">
         <item>--Select--</item>
         <item>Yes</item>
-        <item>Mother not able to get Milk</item>
-        <item>Breast problem</item>
+        <item>No</item>
     </string-array>
-<string-array name="array_breast_feeding_no_reasons">
+    <string-array name="array_breast_feeding_no_reasons">
         <item>--Select--</item>
         <item>Mother dead</item>
-        <item>No</item>
+        <item>Mother not able to get Milk</item>
+        <item>Breast problem</item>
     </string-array>
 
     <string-array name="array_out_come">
@@ -222,6 +220,82 @@
     </string-array>
 
     <!--Infant tracking details end-->
+
+
+    <!--Immunization  activity-->
+    <string name="immunization">Immunization</string>
+    <string name="provided_date">Provided Date</string>
+    <string name="vaccine_received">Vaccine Received :</string>
+    <string name="opv">OPV</string>
+    <string name="pentavalent">Pentavalent</string>
+    <string name="rota">Rota</string>
+    <string name="ipv">IPV</string>
+
+    <string name="mr">MR</string>
+    <string name="je">JE</string>
+
+
+    <string-array name="array_immunization">
+        <item>--Select--</item>
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+    <!--Immunization activity end-->
+
+
+    <!--Post Natal Mother Visit-->
+
+    <string name="post_natal_mother_visit">Post Natal Mother Visit</string>
+    <string name="post_natal">Post Natal</string>
+    <string name="any_complient">Any Complaints</string>
+    <string name="pulse_rate">Pulse rate</string>
+    <string name="epistomy">Epistomy / Tear suture</string>
+    <string name="pv_discharge">PV discharge</string>
+    <string name="breast_examinatione">Breast Examination</string>
+    <string name="nipple_examination">Nipple Examination</string>
+
+
+
+
+
+
+    <string-array name="array_pvdischarge">
+        <item>--Select--</item>
+        <item>Normal</item>
+        <item>heavy bleeding</item>
+        <item>Foul smelling</item>
+    </string-array>
+
+    <string-array name="array_post_natal_breast_feeding_no_reasons">
+        <item>--Select--</item>
+        <item>Baby dead</item>
+        <item>No milk produced</item>
+        <item>Milk amount not enough</item>
+        <item>Breast problem</item>
+    </string-array>
+    <string-array name="array_breast_examinatione">
+        <item>--Select--</item>
+        <item>Normal</item>
+        <item>Engorgement</item>
+        <item>Skin redness</item>
+        <item>Pain full</item>
+    </string-array>
+
+    <string-array name="array_nipple_examination">
+        <item>--Select--</item>
+        <item>Normal</item>
+        <item>Inverted</item>
+        <item>Cracked</item>
+    </string-array>
+
+
+    <!--Post Natal Mother Visit end-->
+
+
+
+
+
+
 
 
     <string-array name="array_name">
