@@ -29,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/hbnc"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -58,7 +58,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/due_date"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -82,7 +82,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/care_provided_date"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -108,7 +108,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/place"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -138,7 +138,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/weight"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -164,7 +164,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/temp"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -191,7 +191,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/umbilical_stump"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -221,7 +221,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/cry"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -251,7 +251,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/eyes"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -280,7 +280,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/eyes_color"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -307,7 +307,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/skin"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -334,7 +334,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/exclusive_breast_feeding"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -361,7 +361,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/exclusive_breast_feeding_no_reasons"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 />
@@ -389,7 +389,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/outcome"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 />
@@ -418,7 +418,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/diagnosis_in"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -427,7 +427,7 @@
                 android:layout_height="wrap_content"
                 android:text=""
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:layout_weight="1"/>
 
         </LinearLayout>
@@ -484,7 +484,7 @@
                 android:layout_height="wrap_content"
                 android:text="Blood presure"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:padding="10dp"
@@ -525,7 +525,7 @@
                 android:layout_height="wrap_content"
                 android:text="Pulse Rate"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -551,7 +551,7 @@
                 android:layout_height="wrap_content"
                 android:text="Weight"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -576,7 +576,7 @@
                 android:layout_height="wrap_content"
                 android:text="Abdomen Girth"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -606,7 +606,7 @@
                 android:layout_height="wrap_content"
                 android:text="FHS"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -631,7 +631,7 @@
                 android:layout_height="wrap_content"
                 android:text="Pedal Edema Present"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -677,7 +677,7 @@
                 android:layout_height="wrap_content"
                 android:text="Hemoglobin"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -703,7 +703,7 @@
                 android:layout_height="wrap_content"
                 android:text="RBS"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -729,7 +729,7 @@
                 android:layout_height="wrap_content"
                 android:text="FBS"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -754,7 +754,7 @@
                 android:layout_height="wrap_content"
                 android:text="PPBS"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -780,7 +780,7 @@
                 android:layout_height="wrap_content"
                 android:text="GTT"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -805,7 +805,7 @@
                 android:layout_height="wrap_content"
                 android:text="Urine Sugar"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
             <Spinner
@@ -833,7 +833,7 @@
                 android:layout_height="wrap_content"
                 android:text="Albumin"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
             <Spinner
@@ -872,7 +872,7 @@
                 android:layout_height="wrap_content"
                 android:text="Fetus"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -897,7 +897,7 @@
                 android:layout_height="wrap_content"
                 android:text="Gestation Sac"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -922,7 +922,7 @@
                 android:layout_height="wrap_content"
                 android:text="Single/ Multiple  Liquor"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -947,7 +947,7 @@
                 android:layout_height="wrap_content"
                 android:text="Adequate/Not"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -972,7 +972,7 @@
                 android:layout_height="wrap_content"
                 android:text="Placenta"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -998,7 +998,7 @@
                 android:layout_height="wrap_content"
                 android:text="Diabetic Level"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -1024,7 +1024,7 @@
                 android:layout_height="wrap_content"
                 android:text="Cardiac status"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 />
@@ -1050,7 +1050,7 @@
                 android:layout_height="wrap_content"
                 android:text="Ultrasonogram"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
             <Spinner

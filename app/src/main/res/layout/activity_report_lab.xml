@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:padding="50dp"
-
     tools:context="com.unicef.thaimai.motherapp.activity.LabReportActivity">
 
     <TextView
@@ -40,7 +39,7 @@
             android:text="162%"
             android:textSize="@dimen/text_lable"
             android:layout_weight="1"
-            android:gravity="right"/>
+            android:gravity="end"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -65,7 +64,7 @@
             android:text="82 "
             android:textSize="@dimen/text_lable"
             android:layout_weight="1"
-            android:gravity="right"/>
+            android:gravity="end"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -92,7 +91,7 @@
             android:text="92"
             android:textSize="@dimen/text_lable"
             android:layout_weight="1"
-            android:gravity="right"/>
+            android:gravity="end"/>
 
 
     </LinearLayout>
@@ -120,7 +119,7 @@
             android:text="65cm"
             android:textSize="@dimen/text_lable"
             android:layout_weight="1"
-            android:gravity="right"/>
+            android:gravity="end"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -146,7 +145,7 @@
             android:text="223"
             android:textSize="@dimen/text_lable"
             android:layout_weight="1"
-            android:gravity="right"    />
+            android:gravity="end"    />
     </LinearLayout>
 
 

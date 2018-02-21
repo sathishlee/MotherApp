@@ -1,8 +1,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="suthishan.navigationwithbottom.activity.Referral">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -25,7 +24,7 @@
 
 
         <include
-            layout="@layout/referral_list"/>
+            layout="@layout/referral_card"/>
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"
