@@ -255,10 +255,6 @@
     <string name="nipple_examination">Nipple Examination</string>
 
 
-
-
-
-
     <string-array name="array_pvdischarge">
         <item>--Select--</item>
         <item>Normal</item>
@@ -290,12 +286,6 @@
 
 
     <!--Post Natal Mother Visit end-->
-
-
-
-
-
-
 
 
     <string-array name="array_name">
@@ -420,6 +410,33 @@
         <item>Want Of Blood</item>
         <item>No</item>
     </string-array>
+ <string-array name="array_delivery_details">
+        <item>--Select--</item>
+        <item>Normal Vaginal Delivery</item>
+        <item>Vaginal Assisted</item>
+        <item>Elective LSCS</item>
+        <item>Emergency LSCS</item>
+    </string-array>
+
+    <string-array name="array_mother">
+        <item>--Select--</item>
+        <item>Alive</item>
+        <item>Dead</item>
+    </string-array>
+
+    <string-array name="array_birth_details">
+        <item>--Select--</item>
+        <item>Term</item>
+        <item>Preterm</item>
+    </string-array>
+    <string-array name="array_new_born">
+        <item>--Select--</item>
+        <item>Alive single</item>
+        <item>Alive Multiple</item>
+        <item>IUD Macerated</item>
+        <item>IUD Fresh</item>
+        <item>Neonatal Death </item>
+    </string-array>
 
     <string-array name="refered_by">
         <item>--Select--</item>
@@ -510,5 +527,8 @@
     <string name="title_activity_lab_report">LabReportActivity</string>
     <string name="title_activity_ucgreport">UCGReportActivity</string>
     <string name="no_internet_connection">No Internet Connections</string>
+
+
+
 
 </resources>
