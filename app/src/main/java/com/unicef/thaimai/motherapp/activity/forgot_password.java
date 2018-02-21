@@ -27,5 +27,4 @@ public class forgot_password extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
 
     }
-
 }

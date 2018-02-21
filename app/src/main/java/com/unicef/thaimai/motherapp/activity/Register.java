@@ -27,7 +27,7 @@ import android.widget.Toast;
 //import com.android.volley.VolleyError;
 //import com.android.volley.toolbox.StringRequest;
 import com.unicef.thaimai.motherapp.R;
-//import com.unicef.thaimai.motherapp.app.AppController;
+//import com.unicef.thaimai.motherapp.app.RealmController;
 import com.unicef.thaimai.motherapp.constant.Apiconstants;
 
 import java.util.Calendar;
@@ -270,7 +270,7 @@ public class Register extends AppCompatActivity {
             }
         };
         // Adding request to request queue
-        AppController.getInstance().addToRequestQueue(strReq, tag_json_obj);
+        RealmController.getInstance().addToRequestQueue(strReq, tag_json_obj);
    */ }
     private void showDialog() {
         if (!pDialog.isShowing())

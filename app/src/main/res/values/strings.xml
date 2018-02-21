@@ -137,6 +137,93 @@
     <string name="facillity">Facillity Type</string>
 
 
+    <!--Infant tracking details-->
+    <string name="infant_tracking_details">Infant Tracking Details</string>
+    <string name="hbnc">HBNC</string>
+    <string name="due_date">Due Date</string>
+    <string name="care_provided_date">Care Provided Date</string>
+    <string name="place">Place</string>
+    <string name="weight">Weight</string>
+    <string name="temp">Temp</string>
+    <string name="umbilical_stump">Umbilical Stump</string>
+    <string name="cry">Cry</string>
+    <string name="eyes">Eyes</string>
+    <string name="eyes_color">Eyes Color</string>
+    <string name="skin">Skin</string>
+    <string name="exclusive_breast_feeding">Exclusive Breast Feeding</string>
+    <string name="exclusive_breast_feeding_no_reasons">Exclusive Breast Feeding No Reasons</string>
+    <string name="outcome">Out Come</string>
+    <string name="diagnosis_in">Diagnosis</string>
+
+
+
+
+    <string-array name="array_hbnc_visit">
+        <item>--Select--</item>
+        <item>Vist 1</item>
+        <item>Vist 2</item>
+        <item>Vist 3</item>
+        <item>Vist 4</item>
+        <item>Vist 5</item>
+        <item>Vist 6</item>
+        <item>Vist 7</item>
+    </string-array>
+
+    <string-array name="array_umbilical_stump">
+        <item>--Select--</item>
+        <item>Healthy</item>
+        <item>Unhealthy</item>
+    </string-array>
+    <string-array name="array_cry">
+        <item>--Select--</item>
+        <item>Normal</item>
+        <item>feeble</item>
+        <item>Irritable</item>
+    </string-array>
+
+    <string-array name="array_eye">
+        <item>--Select--</item>
+        <item>Normal</item>
+        <item>swollen</item>
+        <item>Pus present</item>
+    </string-array>
+
+    <string-array name="array_eye_color">
+        <item>--Select--</item>
+        <item>Normal</item>
+        <item>Redness</item>
+        <item>Yellowish</item>
+    </string-array>
+
+    <string-array name="array_skin">
+        <item>--Select--</item>
+        <item>Normal</item>
+        <item>Redness</item>
+        <item>Pustules</item>
+        <item>Yellowish</item>
+    </string-array>
+    <string-array name="array_breast_feeding">
+        <item>--Select--</item>
+        <item>Yes</item>
+        <item>Mother not able to get Milk</item>
+        <item>Breast problem</item>
+    </string-array>
+<string-array name="array_breast_feeding_no_reasons">
+        <item>--Select--</item>
+        <item>Mother dead</item>
+        <item>No</item>
+    </string-array>
+
+    <string-array name="array_out_come">
+        <item>--Select--</item>
+        <item>No intervention</item>
+        <item>Treated conservatively</item>
+        <item>Require referral</item>
+    </string-array>
+
+    <!--Infant tracking details end-->
+
+
     <string-array name="array_name">
         <item>--Select--</item>
         <item>Array Item One</item>

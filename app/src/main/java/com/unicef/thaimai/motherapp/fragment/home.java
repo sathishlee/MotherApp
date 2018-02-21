@@ -7,14 +7,22 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.activity.Login;
+import com.unicef.thaimai.motherapp.constant.AppConstants;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import static android.content.Context.MODE_PRIVATE;
 
 
 public class home extends Fragment {
@@ -23,8 +31,7 @@ public class home extends Fragment {
     TextView txt_username, picme_id, dob;
     String id, name, picmeId, regDob;
 
-    SharedPreferences sharedpreferences;
-    SharedPreferences.Editor editor;
+
     // Context
     Context _context;
     CardView profile, next_visit;
@@ -36,6 +43,9 @@ public class home extends Fragment {
     private static final String AGE = "Age";
 
 
+    PreferenceData preferenceData;
+    SharedPreferences.Editor editor;
+
 
     public static home newInstance()
     {
@@ -46,49 +56,37 @@ public class home extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        sharedpreferences = this.getActivity().getSharedPreferences(Login.my_shared_preferences, Context.MODE_PRIVATE);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
          View view = inflater.inflate(R.layout.fragment_home, container, false);
+        preferenceData = new PreferenceData(getActivity());
+        editor = getActivity().getSharedPreferences(AppConstants.PREF_NAME, MODE_PRIVATE).edit();
 
 
         txt_username = (TextView) view.findViewById(R.id.txt_username);
         picme_id = (TextView) view.findViewById(R.id.picme_id);
         dob = (TextView) view.findViewById(R.id.regDob);
-
-
         profile = (CardView) view.findViewById(R.id.android_card_view_example);
 
+        getSharedValues();
 
-
-
-
-
-
-        id = getActivity().getIntent().getStringExtra(TAG_ID);
-        name = getActivity().getIntent().getStringExtra(TAG_USERNAME);
-        picmeId = getActivity().getIntent().getStringExtra(PICME_ID);
-        regDob = getActivity().getIntent().getStringExtra(AGE);
-
-
-//        txt_username.setText("USERNAME : " + "Mrs.Tamil Selvi");
-//        picme_id.setText("PICME ID : " + 101);
-//        dob.setText("Dob :" + );
-
-        SharedPreferences.Editor editor = sharedpreferences.edit();
-        editor.putBoolean(Login.session_status, false);
-        editor.putString(TAG_ID, id);
-        editor.putString(TAG_USERNAME, name);
-        editor.putString(PICME_ID, picmeId);
-        editor.putString(AGE, null);
-        editor.clear();
-        editor.commit();
-
-
-
+//        id = getActivity().getIntent().getStringExtra(TAG_ID);
+//        name = getActivity().getIntent().getStringExtra(TAG_USERNAME);
+//        picmeId = getActivity().getIntent().getStringExtra(PICME_ID);
+//        regDob = getActivity().getIntent().getStringExtra(AGE);
         return view;
+
+    }
+
+    private void getSharedValues() {
+            String str_json_user_info = preferenceData.getUserInfo();
+        Log.e("str_json_user_info---->",str_json_user_info);
+        String str_json_UserMedical = preferenceData.getUserMedical();
+        Log.e("UserMedical---->",str_json_UserMedical);
+        String str_json_EmergencyContacts= preferenceData.getEmergencyContacts();
+        Log.e("EmergencyContacts---->",str_json_EmergencyContacts);
 
     }
 
