@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
@@ -22,6 +23,8 @@ import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
+import com.unicef.thaimai.motherapp.Preference.PreferenceData;
+import com.unicef.thaimai.motherapp.Presenter.GetUserInfoPresenter;
 import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.constant.Apiconstants;
 import com.unicef.thaimai.motherapp.constant.AppConstants;
@@ -33,6 +36,9 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+import com.unicef.thaimai.motherapp.constant.AppConstants;
+import com.unicef.thaimai.motherapp.model.responsemodel.LoginResponseModel;
+import com.unicef.thaimai.motherapp.view.LoginViews;
 
 
 public class splashscreen extends Activity  {
@@ -42,6 +48,15 @@ public class splashscreen extends Activity  {
     Boolean session_status= false;
     Activity mActivity;
     JSONObject user_info;
+public class Splashscreen extends Activity implements LoginViews {
+    ProgressDialog pDialog;
+    PreferenceData preferenceData;
+    SharedPreferences.Editor editor;
+    Boolean session_status= false;
+
+    GetUserInfoPresenter getUserInfoPresenter;
+
+    Activity mActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +76,11 @@ public class splashscreen extends Activity  {
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
         pDialog.setMessage("Please Wait ...");
+        preferenceData = new PreferenceData(Splashscreen.this);
+        editor = getSharedPreferences(AppConstants.PREF_NAME, MODE_PRIVATE).edit();
+        mActivity=this;
+        getUserInfoPresenter = new GetUserInfoPresenter(mActivity,this) ;
+
         Thread background = new Thread() {
             public void run() {
 
@@ -77,6 +97,22 @@ public class splashscreen extends Activity  {
                         startActivity(i);
                     }
 //                    finish();
+                    sleep(4000);
+
+
+
+                    session_status= preferenceData.getLogin();
+                    if(session_status)
+                    {
+//                        getUserInfoPresenter.getUserInfo("100000000013");
+                        startActivity(new Intent(new Intent(Splashscreen.this,MainActivity.class)));
+                        finish();
+
+                    }else{
+                        Intent i = new Intent(Splashscreen.this, Login.class);
+                        startActivity(i);
+                    }
+                    finish();
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -194,4 +230,32 @@ public class splashscreen extends Activity  {
         super.onDestroy();
     }
 
+    @Override
+    public void showProgress() {
+        pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
+        pDialog.setMessage("Please Wait ...");
+        pDialog.show();
+    }
+
+    @Override
+    public void hideProgress() {
+        pDialog.dismiss();
+    }
+
+    @Override
+    public void showPickmeResult(LoginResponseModel loginResponseModel) {
+
+    }
+
+    @Override
+    public void showErrorMessage(String string) {
+
+    }
+
+    @Override
+    public void showVerifyOtpResult(LoginResponseModel loginResponseModel) {
+
+    }
+}
 }
