@@ -14,7 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.VideoView;
 
 import com.unicef.thaimai.motherapp.R;
-import com.unicef.thaimai.motherapp.activity.ViewFullImage;
+import com.unicef.thaimai.motherapp.activity.ViewFullVideo;
 import com.unicef.thaimai.motherapp.model.VideoModel;
 
 import java.util.List;
@@ -57,7 +57,7 @@ public class VideoAdapter extends ArrayAdapter<VideoModel> {
             card_view.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v){
-                    mContext.startActivity(new Intent(mContext, ViewFullImage.class));
+                    mContext.startActivity(new Intent(mContext, ViewFullVideo.class));
                 }
 
             });

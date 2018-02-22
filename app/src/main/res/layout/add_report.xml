@@ -8,6 +8,7 @@
         android:layout_height="wrap_content"
         android:padding="20dp"
         android:orientation="vertical">
+
     <TextView
         android:id="@+id/txt_title"
         android:textSize="21sp"
@@ -15,7 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add Visit Details"
-       android:layout_gravity="center"
+        android:layout_gravity="center"
         android:padding="10dp"/>
 
         <LinearLayout
@@ -30,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:text="Date of Visit"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -38,6 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
+                android:textSize="@dimen/text_secondary"
                 android:hint="Select Date"
                 android:layout_weight="1"/>
 
@@ -55,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:text="Type of Visit"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -85,14 +87,13 @@
                 android:layout_height="wrap_content"
                 android:text="Facility"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
             <Spinner
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="O+ve"
                 android:textColor="@color/text_primary"
                 android:textSize="@dimen/text_secondary"
                 android:layout_weight="1"
@@ -115,19 +116,18 @@
                 android:layout_height="wrap_content"
                 android:text="Any Complaints"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
             <Spinner
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="O+ve"
                 android:textColor="@color/text_primary"
                 android:textSize="@dimen/text_secondary"
                 android:layout_weight="1"
                 android:drawSelectorOnTop="true"
-                android:entries="@array/array_facillity_type"
+                android:entries="@array/complaints"
                 style="@style/Base.Widget.AppCompat.Spinner.Underlined"
                 />
 
@@ -154,7 +154,7 @@
                 android:layout_height="wrap_content"
                 android:text="Blood presure"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:padding="10dp"
@@ -169,6 +169,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:textSize="@dimen/text_secondary"
                     android:hint="Systolic"/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -178,7 +179,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="diastolic"/>
+                    android:textSize="@dimen/text_secondary"
+                    android:hint="Diastolic"/>
 
             </LinearLayout>
         </LinearLayout>
@@ -195,7 +197,7 @@
                 android:layout_height="wrap_content"
                 android:text="Pulse Rate"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -203,6 +205,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
+                android:textSize="@dimen/text_secondary"
                 android:hint="Enter Pluse Rate"
                 android:layout_weight="1"/>
 
@@ -221,7 +224,7 @@
             android:layout_height="wrap_content"
             android:text="Weight"
             android:textColor="@color/text_primary"
-            android:textSize="@dimen/text_secondary"
+            android:textSize="@dimen/text_field"
             android:textStyle="bold"
             android:layout_weight="1"/>
 
@@ -229,6 +232,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
+            android:textSize="@dimen/text_secondary"
             android:hint="Enter Weight"
             android:layout_weight="1"/>
 
@@ -244,16 +248,15 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Abdomen Girth"
+                android:text="Fundal Height"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
             <Spinner
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="O+ve"
                 android:textColor="@color/text_primary"
                 android:textSize="@dimen/text_secondary"
                 android:layout_weight="1"
@@ -276,7 +279,7 @@
                 android:layout_height="wrap_content"
                 android:text="FHS"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -284,6 +287,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
+                android:textSize="@dimen/text_secondary"
                 android:hint="Enter FHS"
                 android:layout_weight="1"/>
 
@@ -301,7 +305,7 @@
                 android:layout_height="wrap_content"
                 android:text="Pedal Edema Present"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -321,6 +325,32 @@
                     android:text="No" />
 
             </RadioGroup>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Temp"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_field"
+                android:textStyle="bold"
+                android:layout_weight="1"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:textSize="@dimen/text_secondary"
+                android:hint="Enter Temp"
+                android:layout_weight="1"/>
 
         </LinearLayout>
 
@@ -347,7 +377,7 @@
                 android:layout_height="wrap_content"
                 android:text="Hemoglobin"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -355,6 +385,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Enter Hemoglobin"
+                android:textSize="@dimen/text_secondary"
                 android:inputType="text"
                 android:layout_weight="1"/>
 
@@ -373,7 +404,7 @@
                 android:layout_height="wrap_content"
                 android:text="RBS"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -399,7 +430,7 @@
                 android:layout_height="wrap_content"
                 android:text="FBS"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -424,7 +455,7 @@
                 android:layout_height="wrap_content"
                 android:text="PPBS"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -450,7 +481,7 @@
                 android:layout_height="wrap_content"
                 android:text="GTT"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -475,7 +506,7 @@
                 android:layout_height="wrap_content"
                 android:text="Urine Sugar"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
             <Spinner
@@ -503,7 +534,7 @@
                 android:layout_height="wrap_content"
                 android:text="Albumin"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
             <Spinner
@@ -542,7 +573,7 @@
                 android:layout_height="wrap_content"
                 android:text="Fetus"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -567,7 +598,7 @@
                 android:layout_height="wrap_content"
                 android:text="Gestation Sac"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -592,7 +623,7 @@
                 android:layout_height="wrap_content"
                 android:text="Single/ Multiple  Liquor"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -617,7 +648,7 @@
                 android:layout_height="wrap_content"
                 android:text="Adequate/Not"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -642,7 +673,7 @@
                 android:layout_height="wrap_content"
                 android:text="Placenta"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_field"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -655,86 +686,86 @@
 
         </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/ll_diabetic_level"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="10dp"
-        android:weightSum="2">
+    <!--<LinearLayout-->
+        <!--android:id="@+id/ll_diabetic_level"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:padding="10dp"-->
+        <!--android:weightSum="2">-->
 
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Diabetic Level"
-            android:textColor="@color/text_primary"
-            android:textSize="@dimen/text_secondary"
-            android:textStyle="bold"
-            android:layout_weight="1"/>
+        <!--<TextView-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Diabetic Level"-->
+            <!--android:textColor="@color/text_primary"-->
+            <!--android:textSize="@dimen/text_field"-->
+            <!--android:textStyle="bold"-->
+            <!--android:layout_weight="1"/>-->
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:hint="Enter Diabetic Level"
-            android:layout_weight="1"/>
+        <!--<EditText-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:inputType="text"-->
+            <!--android:hint="Enter Diabetic Level"-->
+            <!--android:layout_weight="1"/>-->
 
-    </LinearLayout>
+    <!--</LinearLayout>-->
 
-    <LinearLayout
-        android:id="@+id/ll_cardiac"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="10dp"
-        android:weightSum="2">
+    <!--<LinearLayout-->
+        <!--android:id="@+id/ll_cardiac"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:padding="10dp"-->
+        <!--android:weightSum="2">-->
 
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Cardiac status"
-            android:textColor="@color/text_primary"
-            android:textSize="@dimen/text_secondary"
-            android:textStyle="bold"
-            android:layout_weight="1"
-            />
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter Cardiac Status"
-            android:inputType="text"
-            android:layout_weight="1"/>
-    </LinearLayout>
+        <!--<TextView-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Cardiac status"-->
+            <!--android:textColor="@color/text_primary"-->
+            <!--android:textSize="@dimen/text_field"-->
+            <!--android:textStyle="bold"-->
+            <!--android:layout_weight="1"-->
+            <!--/>-->
+        <!--<EditText-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:hint="Enter Cardiac Status"-->
+            <!--android:inputType="text"-->
+            <!--android:layout_weight="1"/>-->
+    <!--</LinearLayout>-->
 
 
-    <LinearLayout
-        android:id="@+id/ll_ultrosonogram"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="10dp"
-        android:weightSum="2">
+    <!--<LinearLayout-->
+        <!--android:id="@+id/ll_ultrosonogram"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:padding="10dp"-->
+        <!--android:weightSum="2">-->
 
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Ultrasonogram"
-            android:textColor="@color/text_primary"
-            android:textSize="@dimen/text_secondary"
-            android:textStyle="bold"
-            android:layout_weight="1"/>
-        <Spinner
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="O+ve"
-            android:textColor="@color/text_primary"
-            android:textSize="@dimen/text_secondary"
-            android:layout_weight="1"
-            android:drawSelectorOnTop="true"
-            android:entries="@array/array_ultrosonogram"
-            style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
+        <!--<TextView-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Ultrasonogram"-->
+            <!--android:textColor="@color/text_primary"-->
+            <!--android:textSize="@dimen/text_field"-->
+            <!--android:textStyle="bold"-->
+            <!--android:layout_weight="1"/>-->
+        <!--<Spinner-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="O+ve"-->
+            <!--android:textColor="@color/text_primary"-->
+            <!--android:textSize="@dimen/text_secondary"-->
+            <!--android:layout_weight="1"-->
+            <!--android:drawSelectorOnTop="true"-->
+            <!--android:entries="@array/array_ultrosonogram"-->
+            <!--style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>-->
 
-    </LinearLayout>
+    <!--</LinearLayout>-->
 
         <Button
             android:layout_width="match_parent"

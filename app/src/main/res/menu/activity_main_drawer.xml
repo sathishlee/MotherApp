@@ -10,10 +10,10 @@
             android:id="@+id/navigation_notifications"
             android:icon="@drawable/medical_report"
             android:title="@string/health_record" />
-        <item
-            android:id="@+id/visit"
-            android:icon="@drawable/ic_visit_24dp"
-            android:title="@string/visits"/>
+        <!--<item-->
+            <!--android:id="@+id/visit"-->
+            <!--android:icon="@drawable/ic_visit_24dp"-->
+            <!--android:title="@string/visits"/>-->
         <item
             android:id="@+id/baby"
             android:title="@string/baby"

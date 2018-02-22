@@ -51,7 +51,8 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".activity.ForgotPicme"
-            android:theme="@style/AppTheme"></activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".activity.Register"
             android:screenOrientation="portrait"
@@ -68,7 +69,7 @@
             android:name=".activity.NearbyHospital"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".activity.Referral"
+            android:name=".activity.ReferralList"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".activity.AddRecords"
@@ -82,6 +83,8 @@
         <activity
             android:name=".activity.HeathTipsActivity"
             android:theme="@style/AppTheme" />
+        <activity android:name=".activity.ViewFullVideo"
+                   android:theme="@style/AppTheme"/>
         <activity
             android:name=".activity.ClinicalReportActivity"
             android:label="@string/title_activity_clinical_report"
@@ -102,6 +105,9 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".activity.InfantTrackingDetailsActivity"
+            android:theme="@style/AppTheme">
+
+        </activity>
             android:theme="@style/AppTheme" />
         <activity
             android:name=".activity.ImmunizationActivity"
@@ -110,6 +116,18 @@
             android:name=".activity.PostnatalMotherVisitActivity"
             android:theme="@style/AppTheme"></activity>
         <activity android:name=".activity.DeliveryDetailsActivity"></activity>
+            android:theme="@style/AppTheme">
+
+        </activity>
+        <activity android:name=".activity.PostnatalMotherVisitActivity"
+                  android:theme="@style/AppTheme">
+
+        </activity>
+        <activity android:name=".activity.ReferralActivity"
+            android:theme="@style/AppTheme">
+
+        </activity>
+
     </application>
 
 </manifest>

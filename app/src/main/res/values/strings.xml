@@ -295,6 +295,15 @@
         <item>Array Item Three</item>
     </string-array>
 
+    <string-array name="referred_by">
+        <item>--Select--</item>
+        <item>ASHA</item>
+        <item>AWW</item>
+        <item>VHN</item>
+        <item>SN</item>
+        <item>MO</item>
+    </string-array>
+
     <string-array name="array_facillity_type">
         <item>--Select--</item>
         <item>HSC</item>
@@ -429,6 +438,13 @@
         <item>Neonatal Death </item>
     </string-array>
 
+    <string-array name="refered_by">
+        <item>--Select--</item>
+        <item>SN</item>
+        <item>MO</item>
+        <item>Specialist</item>
+    </string-array>
+
     <string-array name="complaints">
         <item>--Select--</item>
         <item>Fever</item>
@@ -442,6 +458,26 @@
         <item>Burning Mictutrion</item>
         <item>Fits</item>
         <item>Others (Specify)</item>
+
+    </string-array>
+
+    <string-array name="blood_group_list">
+        <item>--Select--</item>
+        <item>A+ve</item>
+        <item>A-ve</item>
+        <item>B+ve</item>
+        <item>B-ve</item>
+        <item>O+ve</item>
+        <item>O-ve</item>
+        <item>AB+ve</item>
+        <item>AB-ve</item>
+
+    </string-array>
+    
+    <string-array name="reactive_non">
+        <item>--Select--</item>
+        <item>Reactive</item>
+        <item>Non Reactive</item>
 
     </string-array>
 

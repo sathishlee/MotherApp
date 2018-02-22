@@ -313,6 +313,24 @@
                 android:entries="@array/yes_no"
                 style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
 
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:visibility="gone"
+            android:weightSum="2">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Specify"
+                android:textSize="@dimen/text_secondary"
+                android:layout_weight="1"/>
+
         </LinearLayout>
 
         <LinearLayout
@@ -330,15 +348,86 @@
                 android:textSize="@dimen/text_secondary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
-            <Spinner
-                android:layout_width="fill_parent"
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:weightSum="2">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
                 android:layout_weight="1"
-                android:drawSelectorOnTop="true"
-                android:entries="@array/does_use"
-                style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
+                android:layout_gravity="start"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tobacco"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_secondary"
+                    android:textStyle="bold"
+                    android:layout_weight="1"/>
+                <Spinner
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_secondary"
+                    android:layout_weight="1"
+                    android:drawSelectorOnTop="true"
+                    android:entries="@array/yes_no"
+                    style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="start"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Alcohol"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_secondary"
+                    android:textStyle="bold"
+                    android:layout_weight="1"/>
+                <Spinner
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_secondary"
+                    android:layout_weight="1"
+                    android:drawSelectorOnTop="true"
+                    android:entries="@array/yes_no"
+                    style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:visibility="gone"
+            android:weightSum="2">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Others*"
+                android:textSize="@dimen/text_secondary"
+                android:layout_weight="1"/>
 
         </LinearLayout>
 
@@ -366,6 +455,68 @@
                 android:drawSelectorOnTop="true"
                 android:entries="@array/yes_no"
                 style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:visibility="gone"
+            android:weightSum="2">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Specify"
+                android:textSize="@dimen/text_secondary"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Allergic to Any Drugs  "
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:textStyle="bold"
+                android:layout_weight="1"/>
+            <Spinner
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:layout_weight="1"
+                android:drawSelectorOnTop="true"
+                android:entries="@array/yes_no"
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:visibility="gone"
+            android:weightSum="2">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Specify"
+                android:textSize="@dimen/text_secondary"
+                android:layout_weight="1"/>
 
         </LinearLayout>
 
@@ -445,7 +596,7 @@
                 android:textSize="@dimen/text_secondary"
                 android:layout_weight="1"
                 android:drawSelectorOnTop="true"
-                android:entries="@array/yes_no"
+                android:entries="@array/pregnancy"
                 style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
 
         </LinearLayout>
@@ -663,7 +814,109 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="IFA Start date :"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:textStyle="bold"
+                android:layout_weight="1"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter date"
+                android:textSize="@dimen/text_secondary"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Height :"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:textStyle="bold"
+                android:layout_weight="1"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Height"
+                android:textSize="@dimen/text_secondary"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="For Husband"
+                android:gravity="center"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:textStyle="bold"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Blood Group :"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:textStyle="bold"
+                android:layout_weight="1"/>
+
+            <Spinner
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:layout_weight="1"
+                android:drawSelectorOnTop="true"
+                android:entries="@array/blood_group_list"
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:padding="10dp"
             android:weightSum="2">
 
@@ -676,30 +929,22 @@
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
-            <RadioGroup
-                android:layout_width="wrap_content"
+            <Spinner
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="2">
-
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Reactive " />
-
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Non Reactive " />
-
-            </RadioGroup>
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:layout_weight="1"
+                android:drawSelectorOnTop="true"
+                android:entries="@array/reactive_non"
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:padding="10dp"
             android:weightSum="2">
 
@@ -712,30 +957,22 @@
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
-            <RadioGroup
-                android:layout_width="wrap_content"
+            <Spinner
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="2">
-
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Reactive " />
-
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Non Reactive " />
-
-            </RadioGroup>
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:layout_weight="1"
+                android:drawSelectorOnTop="true"
+                android:entries="@array/reactive_non"
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:padding="10dp"
             android:weightSum="2">
 
@@ -748,25 +985,20 @@
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
-            <RadioGroup
-                android:layout_width="wrap_content"
+            <Spinner
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="2">
-
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Positive" />
-
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Negative " />
-
-            </RadioGroup>
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:layout_weight="1"
+                android:drawSelectorOnTop="true"
+                android:entries="@array/reactive_non"
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
 
         </LinearLayout>
+
+
+
 
 
         <Button

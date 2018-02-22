@@ -3,6 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="match_parent"
     android:layout_marginBottom="50dp">
+
 <LinearLayout
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
@@ -24,18 +25,6 @@
             android:layout_marginRight="4.0dip"
             android:textColor="@color/text_secondary"
             android:text="My Profile"/>
-
-        <TextView
-            android:id="@+id/picme_id"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal|end"
-            android:layout_gravity="end"
-            android:drawableEnd="@drawable/ic_id_card"
-            android:text="123456789101"
-            android:textColor="@color/secondary"
-            android:padding="2dp"
-            android:textSize="14sp"/>
 
     </LinearLayout>
 

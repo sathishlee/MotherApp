@@ -18,7 +18,7 @@ public class AddReferral extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
 
-        actionBar.setTitle("Add Referral");
+        actionBar.setTitle("Update Referral");
 
         actionBar.setHomeButtonEnabled(true);
 
@@ -30,7 +30,7 @@ public class AddReferral extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        Intent intent = new Intent(AddReferral.this, Referral.class);
+        Intent intent = new Intent(AddReferral.this, ReferralList.class);
         finish();
         startActivity(intent);
         return super.onOptionsItemSelected(item);
