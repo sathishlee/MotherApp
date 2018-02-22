@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import com.github.aakira.expandablelayout.ExpandableWeightLayout;
@@ -17,6 +18,7 @@ import com.unicef.thaimai.motherapp.R;
 public class baby extends Fragment implements View.OnClickListener {
     private Button mExpandButton1,mExpandButton2,mExpandButton3,mExpandButton4;
     private RelativeLayout mlayout1,mlayout2,mlayout3,mlayout4;
+    ScrollView delivery_details;
     Boolean showview1=false;
     Boolean showview2=false;
     Boolean showview3=false;
@@ -40,7 +42,7 @@ public class baby extends Fragment implements View.OnClickListener {
         mExpandButton2 =view.findViewById(R.id.expandableButton2);
         mExpandButton3 =view.findViewById(R.id.expandableButton3);
         mExpandButton4 =view.findViewById(R.id.expandableButton4);
-        mlayout1 =view.findViewById(R.id.mlayout1);
+        mlayout1 =view.findViewById(R.id.delivery_details);
         mlayout2 =view.findViewById(R.id.mlayout2);
         mlayout3 =view.findViewById(R.id.mlayout3);
         mlayout4 =view.findViewById(R.id.mlayout4);
@@ -59,9 +61,9 @@ public class baby extends Fragment implements View.OnClickListener {
 
                 if (!showview1){
                     showview1=true;
-                mlayout1.setVisibility(View.VISIBLE);}
+                    delivery_details.setVisibility(View.VISIBLE);}
                 else{
-            mlayout1.setVisibility(View.GONE);
+                    delivery_details.setVisibility(View.GONE);
                     showview1=false;
                 }
                 break;
