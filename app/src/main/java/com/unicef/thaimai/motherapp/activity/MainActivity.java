@@ -32,7 +32,6 @@ import com.unicef.thaimai.motherapp.fragment.NotificationFragment;
 import com.unicef.thaimai.motherapp.fragment.baby;
 import com.unicef.thaimai.motherapp.fragment.health_records;
 import com.unicef.thaimai.motherapp.fragment.home;
-import com.unicef.thaimai.motherapp.fragment.visits;
 
 import java.util.Locale;
 
@@ -238,11 +237,11 @@ if (AppConstants.isMainActivityOpen) {
             fragmentManager.beginTransaction().replace(R.id.content,
                     health_records.newInstance()).commit();
 
-        } else if (id == R.id.visit) {
-
-            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.content,
-                    visits.newInstance()).commit();
+//        } else if (id == R.id.visit) {
+//
+//            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+//            fragmentManager.beginTransaction().replace(R.id.content,
+//                    visits.newInstance()).commit();
 
         } else if (id == R.id.baby) {
             android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
@@ -256,7 +255,7 @@ if (AppConstants.isMainActivityOpen) {
             startActivity(i);
         }
         else if (id == R.id.referral) {
-            Intent v = new Intent(getApplicationContext(), Referral.class);
+            Intent v = new Intent(getApplicationContext(), ReferralList.class);
             startActivity(v);
         }
         else if (id == R.id.add_record) {
@@ -315,9 +314,9 @@ if (AppConstants.isMainActivityOpen) {
                 selectedFragment =  health_records.newInstance();
                 break;
 
-            case R.id.visit:
-                selectedFragment = visits.newInstance();
-                break;
+//            case R.id.visit:
+//                selectedFragment = visits.newInstance();
+//                break;
 
             case R.id.baby:
                 selectedFragment =  baby.newInstance();

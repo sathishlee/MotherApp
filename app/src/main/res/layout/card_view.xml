@@ -12,7 +12,7 @@
 
        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:baselineAligned="false"
             android:weightSum="2"
@@ -56,46 +56,71 @@
                    android:textColor="@color/secondary"
                    android:textSize="14sp" />
 
-               <TextView
-                   android:id="@+id/picme_id"
-                   android:layout_width="fill_parent"
-                   android:layout_height="wrap_content"
-                   android:gravity="start"
-                   android:layout_gravity="end"
-                   android:drawableStart="@drawable/ic_id_card"
-                   android:text="123456789101"
-                   android:textColor="@color/secondary"
-                   android:padding="2dp"
-                   android:textSize="14sp"/>
-
-
 
 
                <LinearLayout
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
-                   android:layout_gravity="start"
-                   android:orientation="horizontal">
+                   android:orientation="horizontal"
+                   android:baselineAligned="false"
+                   android:padding="1dp"
+                   android:weightSum="2">
 
-                   <TextView
-                       android:layout_width="wrap_content"
+                   <LinearLayout
+                       android:layout_width="match_parent"
                        android:layout_height="wrap_content"
-                       android:drawableStart="@drawable/ic_show_location"
-                       android:gravity="start"
-                       android:padding="1dp"
-                       android:text=" Address : "
-                       android:textSize="14sp" />
+                       android:layout_gravity="start"
+                       android:layout_weight="1"
+                       android:orientation="vertical">
 
-                   <TextView
-                       android:id="@+id/regAddress"
-                       android:layout_width="wrap_content"
+                       <TextView
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:drawableStart="@drawable/ic_id_card"
+                           android:gravity="start"
+                           android:padding="1dp"
+                           android:text="Picme Id"
+                           android:textSize="14sp" />
+
+                       <TextView
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:textAlignment="textStart"
+                           android:padding="1dp"
+                           android:text="123456789101"
+                           android:textColor="@color/secondary"
+                           android:textSize="14sp" />
+                   </LinearLayout>
+
+                   <LinearLayout
+                       android:layout_width="match_parent"
                        android:layout_height="wrap_content"
-                       android:gravity="start"
-                       android:padding="2dp"
-                       android:text="No.105, Bharathi Nagar,"
-                       android:textColor="@color/secondary"
-                       android:textSize="14sp" />
+                       android:layout_gravity="start"
+                       android:layout_weight="1"
+                       android:orientation="vertical">
+
+                       <TextView
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:gravity="start"
+                           android:drawableStart="@drawable/age_user"
+                           android:padding="1dp"
+                           android:text="Age"
+                           android:textSize="14sp" />
+
+                       <TextView
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:textAlignment="textStart"
+                           android:padding="1dp"
+                           android:text="28"
+                           android:textColor="@color/secondary"
+                           android:textSize="14sp" />
+
+                   </LinearLayout>
+
                </LinearLayout>
+
 
                <!--<LinearLayout-->
                    <!--android:layout_width="match_parent"-->
@@ -162,66 +187,8 @@
                    <!--</LinearLayout>-->
 
                <!--</LinearLayout>-->
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:orientation="horizontal"
-                   android:baselineAligned="false"
-                   android:padding="1dp"
-                   android:weightSum="2">
 
-                   <LinearLayout
-                       android:layout_width="match_parent"
-                       android:layout_height="wrap_content"
-                       android:layout_gravity="start"
-                       android:layout_weight="1"
-                       android:orientation="vertical">
 
-                       <TextView
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:gravity="start"
-                           android:padding="1dp"
-                           android:text="Village"
-                           android:textSize="14sp" />
-
-                       <TextView
-                           android:layout_width="match_parent"
-                           android:layout_height="wrap_content"
-                           android:textAlignment="textStart"
-                           android:padding="1dp"
-                           android:text="Saligramam"
-                           android:textColor="@color/secondary"
-                           android:textSize="14sp" />
-                   </LinearLayout>
-
-                   <LinearLayout
-                       android:layout_width="match_parent"
-                       android:layout_height="wrap_content"
-                       android:layout_gravity="start"
-                       android:layout_weight="1"
-                       android:orientation="vertical">
-
-                       <TextView
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:gravity="start"
-                           android:padding="1dp"
-                           android:text="Block"
-                           android:textSize="14sp" />
-
-                       <TextView
-                           android:layout_width="match_parent"
-                           android:layout_height="wrap_content"
-                           android:textAlignment="textStart"
-                           android:padding="1dp"
-                           android:text="A"
-                           android:textColor="@color/secondary"
-                           android:textSize="14sp" />
-
-                   </LinearLayout>
-
-               </LinearLayout>
 
                <LinearLayout
                    android:layout_width="match_parent"
@@ -229,6 +196,7 @@
                    android:orientation="horizontal"
                    android:baselineAligned="false"
                    android:padding="1dp"
+                   android:visibility="gone"
                    android:weightSum="2">
 
                    <LinearLayout

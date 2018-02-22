@@ -23,8 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="15dp"
-            >
+            android:padding="15dp">
 
             <Button
                 android:id="@+id/expandableButton1"
@@ -32,10 +31,11 @@
                 android:layout_height="wrap_content"
                 android:background="@color/colorPrimary"
                 android:onClick="expandableButton1"
-                android:paddingLeft="10dp"
-                android:text="New Born Details"
+                android:paddingEnd="10dp"
+                android:text="Delivery Details"
+                android:drawableEnd="@android:drawable/arrow_down_float"
                 android:textColor="#ffffff" />
-            <include layout="@layout/layout_infant_details1"
+            <include layout="@layout/activity_delivery_details"
                 android:visibility="gone"/>
             <!--<com.github.aakira.expandablelayout.ExpandableRelativeLayout
                 android:id="@+id/expandableLayout1"
@@ -61,11 +61,11 @@
                 android:background="@color/colorPrimary"
                 android:drawableEnd="@android:drawable/arrow_down_float"
                 android:onClick="expandableButton1"
-                android:paddingLeft="10dp"
+                android:paddingEnd="10dp"
                 android:layout_marginTop="10dp"
-                android:text="New Born Screening done"
+                android:text="Infant Tracking"
                 android:textColor="#ffffff" />
-            <include layout="@layout/layout_infant_details2"
+            <include layout="@layout/activity_infant_tracking_details"
                 android:visibility="gone"/>
            <!-- <com.github.aakira.expandablelayout.ExpandableRelativeLayout
                 android:id="@+id/expandableLayout2"
@@ -91,10 +91,10 @@
                 android:onClick="expandableButton2"
                 android:paddingEnd="10dp"
                 android:layout_marginTop="10dp"
-                android:text="Follow up"
+                android:text="Immunization"
                 android:textColor="#ffffff" />
 
-            <include layout="@layout/layout_infant_details3"
+            <include layout="@layout/activity_immunization"
                 android:visibility="gone"/>
 
            <!-- <com.github.aakira.expandablelayout.ExpandableRelativeLayout
@@ -117,13 +117,15 @@
                 android:layout_height="wrap_content"
                 android:background="@color/colorPrimary"
                 android:drawableEnd="@android:drawable/arrow_down_float"
-                android:onClick="expandableButton3"
+                android:onClick="expandableButton2"
                 android:paddingEnd="10dp"
                 android:layout_marginTop="10dp"
-                android:text="Immunization"
+                android:text="PN Mother Visit"
                 android:textColor="#ffffff" />
-            <include layout="@layout/layout_infant_details4"
+
+            <include layout="@layout/activity_postnatal_mother_visit"
                 android:visibility="gone"/>
+
            <!-- <com.github.aakira.expandablelayout.ExpandableRelativeLayout
                 android:id="@+id/expandableLayout4"
                 android:layout_width="match_parent"

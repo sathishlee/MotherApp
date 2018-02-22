@@ -10,7 +10,7 @@
         <ImageView
             android:id="@+id/header_cover_image"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="100dp"
             android:scaleType="centerCrop"/>
 
         <ImageButton
@@ -21,9 +21,9 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="-60dp"
             android:elevation="5dp"
-            android:padding="20dp"
+            android:padding="15dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/girl" />
+            android:src="@drawable/profile_girl" />
 
         <RelativeLayout
             android:id="@+id/profile_layout"
@@ -31,8 +31,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/header_cover_image"
             android:background="@color/colorPrimary"
-            android:elevation="4dp"
-            android:paddingBottom="24dp">
+            android:elevation="2dp"
+            android:padding="5dp">
 
 
             <TextView
@@ -43,7 +43,7 @@
                 android:layout_marginTop="76dp"
                 android:text="@string/username"
                 android:textColor="#fff"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -53,9 +53,10 @@
                 android:layout_below="@+id/user_profile_name"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="12dp"
-                android:text="@string/week_details"
+                android:text="PICME ID"
                 android:textColor="#fff"
-                android:textSize="14sp" />
+                android:textSize="16sp" />
+
         </RelativeLayout>
 
 
@@ -66,15 +67,73 @@
             android:layout_marginTop="5dp"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="fill_parent"
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="#fff"
-                android:clickable="true"
-                android:elevation="4dp"
+                android:layout_gravity="start"
+                android:visibility="visible"
                 android:padding="20dp"
-                android:text="@string/user_details" />
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="#fff"
+                    android:clickable="true"
+                    android:elevation="4dp"
+                    android:drawableStart="@drawable/ic_show_location"
+                    android:gravity="start"
+                    android:text=" Address : "
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:layout_margin="5dp"
+                    android:background="#fff"
+                    android:clickable="true"
+                    android:text="No.105, Bharathi Nagar,"
+                    android:textColor="@color/secondary"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:visibility="visible"
+                android:padding="20dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="#fff"
+                    android:clickable="true"
+                    android:elevation="4dp"
+                    android:drawableStart="@drawable/ic_show_location"
+                    android:gravity="start"
+                    android:text=" Address : "
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:layout_margin="5dp"
+                    android:background="#fff"
+                    android:clickable="true"
+                    android:text="No.105, Bharathi Nagar,"
+                    android:textColor="@color/secondary"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
 
             <TextView
                 android:layout_width="fill_parent"

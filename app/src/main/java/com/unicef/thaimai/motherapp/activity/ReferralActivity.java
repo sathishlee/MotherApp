@@ -1,59 +1,53 @@
 package com.unicef.thaimai.motherapp.activity;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.widget.MediaController;
-import android.widget.VideoView;
+import android.view.View;
+import android.widget.Button;
 
 import com.unicef.thaimai.motherapp.R;
-
 
 /**
  * Created by Suthishan on 20/1/2018.
  */
 
-public class ViewFullImage extends AppCompatActivity {
-
+public class ReferralActivity extends AppCompatActivity{
+    Button btn_update_referral;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_video_view);
+        setContentView(R.layout.referral_details);
 
         ActionBar actionBar = getSupportActionBar();
 
-        actionBar.setTitle("Video");
+        actionBar.setTitle("Referral Status");
 
         actionBar.setHomeButtonEnabled(true);
 
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        Uri uri = Uri.parse("http://demo.satvatinfosol.com/thaimai/Pregnancy_Tamil_Week_21.mp4");
+        Button btn_update_referral = (Button) findViewById(R.id.btn_update_referral);
 
-        VideoView simpleVideoView = (VideoView) findViewById(R.id.video_View);
-
-        simpleVideoView.setVideoURI(uri);
-        simpleVideoView.start();
-
-        MediaController mediaController = new MediaController(this);
-
-        simpleVideoView.setMediaController(mediaController);
-        simpleVideoView.pause();
+        btn_update_referral.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ReferralActivity.this, AddReferral.class);
+                startActivity(i);
+            }
+        });
 
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        Intent intent = new Intent(ViewFullImage.this, HeathTipsActivity.class);
+        Intent intent = new Intent(ReferralActivity.this, ReferralList.class);
         finish();
         startActivity(intent);
         return super.onOptionsItemSelected(item);
     }
 
 }
-
-
