@@ -80,13 +80,55 @@
                     <!--android:layout_weight="1"-->
                     <!--/>-->
             <!--</LinearLayout>-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="Weight : "
+                    android:layout_gravity="start"
+                    android:textColor="@color/secondary"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="56kg"
+                    android:layout_gravity="start"
+                    android:textColor="@color/secondary"
+                    android:textStyle="bold" />
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="Blood Group : "
+                    android:layout_gravity="end"
+                    android:textColor="@color/secondary"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="156cms"
+                    android:layout_gravity="start"
+                    android:textColor="@color/secondary"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_gravity="center_horizontal"
-                android:weightSum="2">
+                android:weightSum="2"
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -131,7 +173,8 @@
                 android:orientation="horizontal"
                 android:baselineAligned="false"
                 android:padding="5dp"
-                android:weightSum="2">
+                android:weightSum="2"
+                android:visibility="gone">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -225,12 +268,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
-            android:text="@string/upload_reports"
+            android:text="@string/primary_reports"
             android:textColor="#ffffff"
             android:layout_weight="1"
             android:padding="5dp"
             android:layout_margin="5dp"
-            android:drawableEnd="@drawable/ic_file_upload"/>
+            android:drawableEnd="@drawable/ic_file_view"/>
 
         <Button
             android:id="@+id/btn_view"

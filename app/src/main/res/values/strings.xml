@@ -68,6 +68,7 @@
     <string name="report_details">Report Details</string>
     <string name="visit_reports">Visit Reports</string>
     <string name="upload_reports">Upload Reports</string>
+    <string name="primary_reports">Primary Reports</string>
     <string name="view_reports">View Reports</string>
     <string name="upload_scan_reports">Upload Scanned Reports</string>
     <string name="view_scan_reports">View Scanned Reports</string>

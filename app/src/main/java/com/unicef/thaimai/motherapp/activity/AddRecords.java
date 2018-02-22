@@ -31,7 +31,6 @@ public class AddRecords extends AppCompatActivity{
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         Intent intent = new Intent(AddRecords.this, MainActivity.class);
         finish();
         startActivity(intent);

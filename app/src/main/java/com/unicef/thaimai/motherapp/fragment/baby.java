@@ -1,28 +1,34 @@
 package com.unicef.thaimai.motherapp.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import com.github.aakira.expandablelayout.ExpandableWeightLayout;
 import com.unicef.thaimai.motherapp.R;
+import com.unicef.thaimai.motherapp.activity.DeliveryDetailsActivity;
 
 
-public class baby extends Fragment implements View.OnClickListener {
-    private Button mExpandButton1,mExpandButton2,mExpandButton3,mExpandButton4;
+public class baby extends Fragment  {
+    TextView txt_edit;
+
+   /* private Button mExpandButton1,mExpandButton2,mExpandButton3,mExpandButton4;
     private RelativeLayout mlayout2,mlayout3,mlayout4;
     ScrollView delivery_details, infant_tracking, immunization_details, postnatal_mother;
     Boolean showview1=false;
     Boolean showview2=false;
     Boolean showview3=false;
-    Boolean showview4=false;
+    Boolean showview4=false;*/
 //    private ExpandableWeightLayout mExpandLayout1,mExpandLayout2,mExpandLayout3,mExpandLayout4;
 
     public static baby newInstance()
@@ -37,26 +43,35 @@ public class baby extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = null;
-        view = inflater.inflate(R.layout.fragment_baby, container, false);
-        mExpandButton1 =view.findViewById(R.id.expandableButton1);
+        view = inflater.inflate(R.layout.fragment_baby_delivery_details, container, false);
+        txt_edit=view.findViewById(R.id.txt_edit);
+
+
+        txt_edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), DeliveryDetailsActivity.class));
+            }
+        });
+        /*mExpandButton1 =view.findViewById(R.id.expandableButton1);
         mExpandButton2 =view.findViewById(R.id.expandableButton2);
         mExpandButton3 =view.findViewById(R.id.expandableButton3);
-        mExpandButton4 = view.findViewById(R.id.expandableButton4);
+        mExpandButton4 =view.findViewById(R.id.expandableButton4);
 
         delivery_details =view.findViewById(R.id.delivery_details);
         infant_tracking =view.findViewById(R.id.infant_tracking);
         immunization_details =view.findViewById(R.id.immunization_details);
-        postnatal_mother = view.findViewById(R.id.postnatal_mother);
+        postnatal_mother = view.findViewById(R.id.postnatal_mother);*/
 
 
-        mExpandButton1.setOnClickListener(this);
+        /*mExpandButton1.setOnClickListener(this);
         mExpandButton2.setOnClickListener(this);
         mExpandButton3.setOnClickListener(this);
-        mExpandButton4.setOnClickListener(this);
+        mExpandButton4.setOnClickListener(this);*/
         return view;
     }
 
-    @Override
+    /*@Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.expandableButton1:
@@ -99,5 +114,5 @@ public class baby extends Fragment implements View.OnClickListener {
                 break;
 
         }
-    }
+    }*/
 }

@@ -108,23 +108,24 @@
             android:theme="@style/AppTheme">
 
         </activity>
-            android:theme="@style/AppTheme" />
         <activity
             android:name=".activity.ImmunizationActivity"
             android:theme="@style/AppTheme"></activity>
         <activity
             android:name=".activity.PostnatalMotherVisitActivity"
             android:theme="@style/AppTheme"></activity>
-        <activity android:name=".activity.DeliveryDetailsActivity"></activity>
+        <activity android:name=".activity.DeliveryDetailsActivity"
             android:theme="@style/AppTheme">
-
         </activity>
+
         <activity android:name=".activity.PostnatalMotherVisitActivity"
-                  android:theme="@style/AppTheme">
+                  android:theme="@style/AppTheme"
+            tools:ignore="DuplicateActivity,WrongManifestParent">
 
         </activity>
         <activity android:name=".activity.ReferralActivity"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme"
+            tools:ignore="WrongManifestParent">
 
         </activity>
 
