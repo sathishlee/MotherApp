@@ -4,7 +4,7 @@
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8.0dip"
+        android:layout_margin="6.0dip"
         app:cardBackgroundColor="@android:color/white"
         app:cardElevation="2.0dip"
         xmlns:android="http://schemas.android.com/apk/res/android"

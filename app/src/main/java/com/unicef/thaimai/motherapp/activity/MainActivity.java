@@ -224,14 +224,23 @@ if (AppConstants.isMainActivityOpen) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.navigation_home) {
-            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.content,
-                    home.newInstance()).commit();
+//        if (id == R.id.navigation_home) {
+//            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+//            fragmentManager.beginTransaction().replace(R.id.content,
+//                    home.newInstance()).commit();
+//
+//
+//            // Handle the camera action
+//        }
+        if (id == R.id.primary_register){
+            Intent i = new Intent(getApplicationContext(), PrimaryRegister.class);
+            startActivity(i);
+        }
 
 
-            // Handle the camera action
-        } else if (id == R.id.navigation_notifications) {
+
+
+        else if (id == R.id.navigation_notifications) {
 
             android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.content,
@@ -265,10 +274,7 @@ if (AppConstants.isMainActivityOpen) {
             Intent i = new Intent(getApplicationContext(), HeathTipsActivity.class);
             startActivity(i);
         }
-        else if (id == R.id.primary_register){
-            Intent i = new Intent(getApplicationContext(), PrimaryRegister.class);
-            startActivity(i);
-        }
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

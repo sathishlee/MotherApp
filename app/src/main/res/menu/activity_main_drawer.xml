@@ -3,43 +3,65 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/navigation_home"
-            android:icon="@drawable/ic_home_black_24dp"
-            android:title="@string/title_home" />
+            android:id="@+id/primary_register"
+            android:icon="@drawable/primary_register"
+            android:title="Primary Register"/>
+
         <item
-            android:id="@+id/navigation_notifications"
-            android:icon="@drawable/medical_report"
-            android:title="@string/health_record" />
+            android:id="@+id/visit_record"
+            android:icon="@drawable/visit_recording"
+            android:title="Visit Recording"/>
+
+
         <!--<item-->
-            <!--android:id="@+id/visit"-->
-            <!--android:icon="@drawable/ic_visit_24dp"-->
-            <!--android:title="@string/visits"/>-->
-        <item
-            android:id="@+id/baby"
-            android:title="@string/baby"
-            android:icon="@drawable/vector_drawable_baby_with_diaper"/>
+            <!--android:id="@+id/navigation_home"-->
+            <!--android:icon="@drawable/ic_home_black_24dp"-->
+            <!--android:title="@string/title_home" />-->
+        <!--<item-->
+            <!--android:id="@+id/navigation_notifications"-->
+            <!--android:icon="@drawable/medical_report"-->
+            <!--android:title="@string/health_record" />-->
+        <!--&lt;!&ndash;<item&ndash;&gt;-->
+            <!--&lt;!&ndash;android:id="@+id/visit"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:icon="@drawable/ic_visit_24dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:title="@string/visits"/>&ndash;&gt;-->
+        <!--<item-->
+            <!--android:id="@+id/baby"-->
+            <!--android:title="@string/baby"-->
+            <!--android:icon="@drawable/vector_drawable_baby_with_diaper"/>-->
         <item
             android:id="@+id/nearbyhospital"
-            android:icon="@drawable/ic_hospital"
+            android:icon="@drawable/hospital"
             android:title="@string/vhn" />
+
+        <item
+            android:id="@+id/infant_tracking"
+            android:icon="@drawable/silhouette"
+            android:title="Infant Tracking"/>
+
+        <item
+            android:id="@+id/pn_mother_visit"
+            android:icon="@drawable/mother_and_baby"
+            android:title="PN Mother Visit"/>
+
+        <item
+            android:id="@+id/immunization"
+            android:icon="@drawable/syringe"
+            android:title="Immunization"/>
+
         <item
             android:id="@+id/referral"
             android:icon="@drawable/warning_card_hand"
             android:title="@string/referral"/>
         <item
             android:id="@+id/add_record"
-            android:icon="@drawable/vector_drawable_health_care"
+            android:icon="@drawable/health_care"
             android:title="@string/add_records"/>
 
         <item
             android:id="@+id/health_tips"
             android:icon="@drawable/first_aid"
             android:title="@string/health_tips"/>
-
-        <item
-            android:id="@+id/primary_register"
-            android:icon="@drawable/notes"
-            android:title="Primary Register"/>
 
 
 
