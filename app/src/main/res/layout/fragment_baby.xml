@@ -65,7 +65,7 @@
                 android:layout_marginTop="10dp"
                 android:text="Infant Tracking"
                 android:textColor="#ffffff" />
-            <include layout="@layout/activity_infant_tracking_details"
+            <include layout="@layout/activity_infant_tracking_details_edit"
                 android:visibility="gone"/>
            <!-- <com.github.aakira.expandablelayout.ExpandableRelativeLayout
                 android:id="@+id/expandableLayout2"

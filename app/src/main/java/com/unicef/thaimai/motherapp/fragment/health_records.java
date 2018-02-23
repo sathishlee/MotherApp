@@ -28,6 +28,7 @@ public class health_records extends Fragment  {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = null;
         view=inflater.inflate(R.layout.fragment_health_records, container, false);
+        getActivity().setTitle("Health Records");
         viewPager = view. findViewById(R.id.hre_viewpager);
         setupViewPager(viewPager);
 

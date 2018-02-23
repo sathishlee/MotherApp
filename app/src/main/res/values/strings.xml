@@ -411,7 +411,7 @@
         <item>Want Of Blood</item>
         <item>No</item>
     </string-array>
- <string-array name="array_delivery_details">
+    <string-array name="array_delivery_details">
         <item>--Select--</item>
         <item>Normal Vaginal Delivery</item>
         <item>Vaginal Assisted</item>
@@ -474,7 +474,7 @@
         <item>AB-ve</item>
 
     </string-array>
-    
+
     <string-array name="reactive_non">
         <item>--Select--</item>
         <item>Reactive</item>
@@ -529,7 +529,13 @@
     <string name="title_activity_ucgreport">UCGReportActivity</string>
     <string name="no_internet_connection">No Internet Connections</string>
 
-
-
-
+    <string-array name="array_visit">
+        <item>Vist 1</item>
+        <item>Vist 2</item>
+        <item>Vist 3</item>
+        <item>Vist 4</item>
+        <item>Vist 5</item>
+        <item>Vist 6</item>
+        <item>Vist 7</item>
+    </string-array>
 </resources>

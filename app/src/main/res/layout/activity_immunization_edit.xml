@@ -100,13 +100,17 @@
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
-            <TextView
+            <Spinner
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Yes"
+                android:text="O+ve"
+                android:textColor="@color/text_primary"
                 android:textSize="@dimen/text_secondary"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:drawSelectorOnTop="true"
+                android:entries="@array/array_immunization"
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+                />
 
         </LinearLayout>
 
@@ -126,13 +130,17 @@
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
-            <TextView
+            <Spinner
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Yes"
+                android:text="O+ve"
+                android:textColor="@color/text_primary"
                 android:textSize="@dimen/text_secondary"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:drawSelectorOnTop="true"
+                android:entries="@array/array_immunization"
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+                />
 
         </LinearLayout>
         <LinearLayout
@@ -151,13 +159,17 @@
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
-            <TextView
+            <Spinner
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Yes"
+                android:text="O+ve"
+                android:textColor="@color/text_primary"
                 android:textSize="@dimen/text_secondary"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:drawSelectorOnTop="true"
+                android:entries="@array/array_immunization"
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+                />
 
         </LinearLayout><LinearLayout
             android:layout_width="match_parent"
@@ -175,13 +187,16 @@
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Yes"
-            android:textSize="@dimen/text_secondary"
-            android:textStyle="bold"
-            android:layout_weight="1"/>
+            <Spinner
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:layout_weight="1"
+                android:drawSelectorOnTop="true"
+                android:entries="@array/array_immunization"
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+                />
 
         </LinearLayout>
         <Button
@@ -192,8 +207,7 @@
             android:text="@string/submit"
             android:textColor="#ffffff"
             android:id="@+id/btn_submit"
-            android:padding="10dp"
-            android:visibility="gone"/>
+            android:padding="10dp"/>
     </LinearLayout>
 
 </ScrollView>

@@ -1,9 +1,9 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/infant_tracking"
-    tools:context="com.unicef.thaimai.motherapp.activity.AddRecords">
+    android:id="@+id/ll_postnatal_mother_edit"
+    >
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,9 +15,9 @@
             android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/infant_tracking_details"
-            android:layout_gravity="center"
             android:visibility="gone"
+            android:text="@string/post_natal_mother_visit"
+            android:layout_gravity="center"
             android:padding="10dp"/>
         <LinearLayout
             android:layout_width="match_parent"
@@ -29,20 +29,23 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/hbnc"
-                android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
-                android:textStyle="bold"
-                android:layout_weight="1"/> <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="Visit 1"
+                android:text="@string/post_natal"
                 android:textColor="@color/text_primary"
                 android:textSize="@dimen/text_secondary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
-
+            <Spinner
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="O+ve"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:layout_weight="1"
+                android:drawSelectorOnTop="true"
+                android:entries="@array/array_hbnc_visit"
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+                />
 
         </LinearLayout>
         <LinearLayout
@@ -88,7 +91,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="21-02-2018"
+                android:text="Select Date"
                 android:layout_weight="1"/>
 
         </LinearLayout>
@@ -111,10 +114,111 @@
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
+            <Spinner
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="O+ve"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:layout_weight="1"
+                android:drawSelectorOnTop="true"
+                android:entries="@array/array_facillity_type"
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+                />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:weightSum="2">
+
             <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/any_complient"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:textStyle="bold"
+                android:layout_weight="1"/>
+
+            <Spinner
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:layout_weight="1"
+                android:drawSelectorOnTop="true"
+                android:entries="@array/complaints"
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ll_bp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Blood presure"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:padding="10dp"
+                />
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="HSC"
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                android:weightSum="2">
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Systolic"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="/"/>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="diastolic"/>
+
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/pulse_rate"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:textStyle="bold"
+                android:layout_weight="1"/>
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
                 android:layout_weight="1"/>
 
         </LinearLayout>
@@ -138,8 +242,7 @@
             <EditText
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="130"
-                android:editable="false"
+                android:text=""
                 android:textColor="@color/text_primary"
                 android:textSize="@dimen/text_secondary"
                 android:layout_weight="1"/>
@@ -165,7 +268,7 @@
             <EditText
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="75"
+                android:text=""
                 android:textColor="@color/text_primary"
                 android:textSize="@dimen/text_secondary"
                 android:layout_weight="1"/>
@@ -183,22 +286,23 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/umbilical_stump"
+                android:text="@string/epistomy"
                 android:textColor="@color/text_primary"
                 android:textSize="@dimen/text_secondary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
-            <TextView
+            <Spinner
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Healthy"
+                android:text="O+ve"
+                android:textColor="@color/text_primary"
                 android:textSize="@dimen/text_secondary"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
-
-
-
+                android:layout_weight="1"
+                android:drawSelectorOnTop="true"
+                android:entries="@array/array_umbilical_stump"
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+                />
 
         </LinearLayout>
 
@@ -212,100 +316,34 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/cry"
+                android:text="@string/pv_discharge"
                 android:textColor="@color/text_primary"
                 android:textSize="@dimen/text_secondary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
-            <TextView
+            <Spinner
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Normal"
-                android:textSize="@dimen/text_secondary"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp"
-            android:weightSum="2">
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/eyes"
                 android:textColor="@color/text_primary"
                 android:textSize="@dimen/text_secondary"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:drawSelectorOnTop="true"
+                android:entries="@array/array_pvdischarge"
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+                />
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="Normal"
-                android:textSize="@dimen/text_secondary"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
         </LinearLayout>
+
+
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10dp"
-            android:weightSum="2">
+            android:padding ="10dp"
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/eyes_color"
-                android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="Normal"
-                android:textSize="@dimen/text_secondary"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp"
-            android:weightSum="2">
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/skin"
-                android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="Normal"
-                android:textSize="@dimen/text_secondary"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp"
             android:weightSum="2">
 
             <TextView
@@ -315,15 +353,19 @@
                 android:textColor="@color/text_primary"
                 android:textSize="@dimen/text_secondary"
                 android:textStyle="bold"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+               />
 
-            <TextView
+            <Spinner
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="No"
+                android:textColor="@color/text_primary"
                 android:textSize="@dimen/text_secondary"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:drawSelectorOnTop="true"
+                android:entries="@array/array_breast_feeding"
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+                />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -340,15 +382,73 @@
                 android:textSize="@dimen/text_secondary"
                 android:textStyle="bold"
                 android:layout_weight="1"
+
                 />
+
+            <Spinner
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:layout_weight="1"
+                android:drawSelectorOnTop="true"
+                android:entries="@array/array_post_natal_breast_feeding_no_reasons"
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+                />
+        </LinearLayout><LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:weightSum="2">
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Mother not able to get Mil"
+                android:text="@string/breast_examinatione"
+                android:textColor="@color/text_primary"
                 android:textSize="@dimen/text_secondary"
                 android:textStyle="bold"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                />
+
+            <Spinner
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:layout_weight="1"
+                android:drawSelectorOnTop="true"
+                android:entries="@array/array_breast_examinatione"
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+                />
+        </LinearLayout><LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/nipple_examination"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                />
+
+            <Spinner
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:layout_weight="1"
+                android:drawSelectorOnTop="true"
+                android:entries="@array/array_nipple_examination"
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+                />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -366,14 +466,17 @@
                 android:textStyle="bold"
                 android:layout_weight="1"
                 />
-            <TextView
+
+            <Spinner
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="No intervention"
+                android:textColor="@color/text_primary"
                 android:textSize="@dimen/text_secondary"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
-
+                android:layout_weight="1"
+                android:drawSelectorOnTop="true"
+                android:entries="@array/array_out_come"
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -410,8 +513,7 @@
             android:text="@string/submit"
             android:textColor="#ffffff"
             android:id="@+id/btn_submit"
-            android:padding="10dp"
-            android:visibility="gone"/>
+            android:padding="10dp"/>
 
     </LinearLayout>
 

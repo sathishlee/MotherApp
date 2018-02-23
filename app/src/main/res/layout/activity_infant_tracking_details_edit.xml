@@ -33,16 +33,18 @@
                 android:textColor="@color/text_primary"
                 android:textSize="@dimen/text_secondary"
                 android:textStyle="bold"
-                android:layout_weight="1"/> <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="Visit 1"
-                android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
-                android:textStyle="bold"
                 android:layout_weight="1"/>
 
-
+            <Spinner
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:layout_weight="1"
+                android:drawSelectorOnTop="true"
+                android:entries="@array/array_hbnc_visit"
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+                />
 
         </LinearLayout>
         <LinearLayout
@@ -88,7 +90,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="21-02-2018"
+                android:text="Select Date"
                 android:layout_weight="1"/>
 
         </LinearLayout>
@@ -111,11 +113,16 @@
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
-            <TextView
-                android:layout_width="match_parent"
+            <Spinner
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="HSC"
-                android:layout_weight="1"/>
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:layout_weight="1"
+                android:drawSelectorOnTop="true"
+                android:entries="@array/array_facillity_type"
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+                />
 
         </LinearLayout>
 
@@ -138,8 +145,7 @@
             <EditText
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="130"
-                android:editable="false"
+                android:text=""
                 android:textColor="@color/text_primary"
                 android:textSize="@dimen/text_secondary"
                 android:layout_weight="1"/>
@@ -165,7 +171,7 @@
             <EditText
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="75"
+                android:text=""
                 android:textColor="@color/text_primary"
                 android:textSize="@dimen/text_secondary"
                 android:layout_weight="1"/>
@@ -189,16 +195,16 @@
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
-            <TextView
+            <Spinner
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Healthy"
+                android:textColor="@color/text_primary"
                 android:textSize="@dimen/text_secondary"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
-
-
-
+                android:layout_weight="1"
+                android:drawSelectorOnTop="true"
+                android:entries="@array/array_umbilical_stump"
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+                />
 
         </LinearLayout>
 
@@ -218,13 +224,16 @@
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
-            <TextView
+            <Spinner
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Normal"
+                android:textColor="@color/text_primary"
                 android:textSize="@dimen/text_secondary"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:drawSelectorOnTop="true"
+                android:entries="@array/array_cry"
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+                />
 
         </LinearLayout>
 
@@ -244,13 +253,17 @@
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
-            <TextView
+            <Spinner
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Normal"
+                android:textColor="@color/text_primary"
                 android:textSize="@dimen/text_secondary"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:drawSelectorOnTop="true"
+                android:entries="@array/array_eye"
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+                />
+
         </LinearLayout>
 
         <LinearLayout
@@ -269,13 +282,16 @@
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
-            <TextView
+            <Spinner
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Normal"
+                android:textColor="@color/text_primary"
                 android:textSize="@dimen/text_secondary"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:drawSelectorOnTop="true"
+                android:entries="@array/array_eye_color"
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+                />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -293,13 +309,16 @@
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
-            <TextView
+            <Spinner
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Normal"
+                android:textColor="@color/text_primary"
                 android:textSize="@dimen/text_secondary"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:drawSelectorOnTop="true"
+                android:entries="@array/array_skin"
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+                />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -317,13 +336,16 @@
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
-            <TextView
+            <Spinner
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="No"
+                android:textColor="@color/text_primary"
                 android:textSize="@dimen/text_secondary"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:drawSelectorOnTop="true"
+                android:entries="@array/array_breast_feeding"
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+                />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -342,13 +364,16 @@
                 android:layout_weight="1"
                 />
 
-            <TextView
+            <Spinner
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Mother not able to get Mil"
+                android:textColor="@color/text_primary"
                 android:textSize="@dimen/text_secondary"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:drawSelectorOnTop="true"
+                android:entries="@array/array_breast_feeding_no_reasons"
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+                />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -366,14 +391,17 @@
                 android:textStyle="bold"
                 android:layout_weight="1"
                 />
-            <TextView
+
+            <Spinner
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="No intervention"
+                android:textColor="@color/text_primary"
                 android:textSize="@dimen/text_secondary"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
-
+                android:layout_weight="1"
+                android:drawSelectorOnTop="true"
+                android:entries="@array/array_out_come"
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -411,7 +439,7 @@
             android:textColor="#ffffff"
             android:id="@+id/btn_submit"
             android:padding="10dp"
-            android:visibility="gone"/>
+            />
 
     </LinearLayout>
 

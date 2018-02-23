@@ -256,7 +256,6 @@ if (AppConstants.isMainActivityOpen) {
             android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.content,
                     baby.newInstance()).commit();
-
         }
 
         else if (id == R.id.nearbyhospital) {
