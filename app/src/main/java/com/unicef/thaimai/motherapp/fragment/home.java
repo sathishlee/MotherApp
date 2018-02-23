@@ -18,7 +18,7 @@ import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.activity.Login;
 import com.unicef.thaimai.motherapp.constant.AppConstants;
-
+import com.unicef.thaimai.motherapp.activity.profile;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -69,6 +69,17 @@ public class home extends Fragment {
         picme_id = (TextView) view.findViewById(R.id.picme_id);
         dob = (TextView) view.findViewById(R.id.regDob);
         profile = (CardView) view.findViewById(R.id.android_card_view_example);
+
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getActivity(), profile.class);
+                getActivity().finish();
+                startActivity(intent);
+
+            }
+        });
 
         getSharedValues();
 
