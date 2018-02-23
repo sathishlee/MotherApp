@@ -32,6 +32,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 //import com.stfalcon.smsverifycatcher.OnSmsCatchListener;
 //import com.stfalcon.smsverifycatcher.SmsVerifyCatcher;
+import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.LoginPresenter;
 import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.constant.Apiconstants;
@@ -133,7 +134,6 @@ public class Login extends AppCompatActivity implements LoginViews {
 
 
 
-        loginPresenter = new LoginPresenter(mActivity,this);
 //        loginPresenter = new LoginPresenter(mActivity,this);
 
 
@@ -181,11 +181,8 @@ public class Login extends AppCompatActivity implements LoginViews {
 
                     }
                 }
-
             }
         });
-
-
     }
 
     private void verifyOtp(String url) {
@@ -196,6 +193,7 @@ public class Login extends AppCompatActivity implements LoginViews {
         showDialog();
 
 
+        Log.e("verifyOtp   url",url);
 
         StringRequest strReq = new StringRequest(Request.Method.POST,url , new Response.Listener<String>() {
 
@@ -313,6 +311,10 @@ public class Login extends AppCompatActivity implements LoginViews {
 //                        String picmeId = jObj.getString(Constants.PICME_ID);
 //                        String Otp = jObj.getString(Constants.OTP);
 
+                        txt_picmeId.setEnabled(false);
+//                        String picmeId = jObj.getString(Constants.PICME_ID);
+//                        String Otp = jObj.getString(Constants.OTP);
+
 
                         input_layout_picme_id.setEnabled(false);
                         input_layout_picme_id.setFocusable(false);
@@ -412,21 +414,16 @@ public class Login extends AppCompatActivity implements LoginViews {
         pDialog.setCancelable(false);
         pDialog.setMessage("Please Wait ...");
         showProgress();
-
-
     }
 
     @Override
     public void hideProgress() {
-
             pDialog.dismiss();
     }
 
     @Override
     public void showPickmeResult(LoginResponseModel loginResponseModel) {
-
         Toast.makeText(getApplicationContext(),loginResponseModel.toString(),Toast.LENGTH_SHORT).show();
-
     }
 
     @Override

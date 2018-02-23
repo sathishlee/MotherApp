@@ -31,7 +31,7 @@ public class home extends Fragment {
     TextView txt_username, picme_id, dob;
     String id, name, picmeId, regDob;
 
-
+    SharedPreferences sharedpreferences;
     // Context
     Context _context;
     CardView profile, next_visit;
@@ -87,6 +87,11 @@ public class home extends Fragment {
 //        name = getActivity().getIntent().getStringExtra(TAG_USERNAME);
 //        picmeId = getActivity().getIntent().getStringExtra(PICME_ID);
 //        regDob = getActivity().getIntent().getStringExtra(AGE);
+        id = getActivity().getIntent().getStringExtra(TAG_ID);
+        name = getActivity().getIntent().getStringExtra(TAG_USERNAME);
+        picmeId = getActivity().getIntent().getStringExtra(PICME_ID);
+        regDob = getActivity().getIntent().getStringExtra(AGE);
+
         return view;
 
     }
