@@ -153,6 +153,11 @@
 
         </activity>
 
+        <activity android:name=".activity.ImmunizationVisit"
+            android:theme="@style/AppTheme">
+
+        </activity>
+
 
     </application>
 

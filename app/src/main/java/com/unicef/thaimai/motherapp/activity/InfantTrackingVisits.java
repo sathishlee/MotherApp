@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.unicef.thaimai.motherapp.R;
 
@@ -13,6 +15,8 @@ import com.unicef.thaimai.motherapp.R;
  */
 
 public class InfantTrackingVisits extends AppCompatActivity {
+
+    TextView txt_edit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +31,15 @@ public class InfantTrackingVisits extends AppCompatActivity {
 
         actionBar.setDisplayHomeAsUpEnabled(true);
 
+        TextView txt_edit = (TextView) findViewById(R.id.txt_edit);
+
+        txt_edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(InfantTrackingVisits.this, InfantTrackingEditActivity.class);
+                startActivity(i);
+            }
+        });
 
     }
 

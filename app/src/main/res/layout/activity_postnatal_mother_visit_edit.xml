@@ -8,18 +8,30 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:orientation="vertical">
-        <TextView
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:gravity="start|center"
-            android:padding="2dp"
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="4.0dip"
-            android:layout_marginRight="4.0dip"
-            android:textColor="@color/text_secondary"
-            android:text="@string/post_natal_mother_visit"/>
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:elevation="3dp"
+            android:background="#5ac7bcbc"
+            android:weightSum="2">
+
+            <TextView
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:gravity="start"
+                android:padding="2dp"
+                android:layout_weight="1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4.0dip"
+                android:layout_marginRight="4.0dip"
+                android:textColor="@color/text_secondary"
+                android:text="PN Mother Visit"/>
+
+        </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -8,41 +8,42 @@ import android.support.v7.widget.CardView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.unicef.thaimai.motherapp.R;
 
-public class ImmunizationActivity extends AppCompatActivity {
+public class ImmunizationVisit extends AppCompatActivity {
 
 
-    CardView immunization__visit;
+    TextView txt_edit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_immunization);
+        setContentView(R.layout.activity_immunization);
         ActionBar actionBar = getSupportActionBar();
 
-        actionBar.setTitle("Immunization");
+        actionBar.setTitle("Immunization Visit");
 
         actionBar.setHomeButtonEnabled(true);
 
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        CardView immunization__visit = (CardView) findViewById(R.id.immunization__visit);
 
-        immunization__visit.setOnClickListener(new View.OnClickListener() {
+        TextView txt_edit = (TextView) findViewById(R.id.txt_edit);
+
+        txt_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(ImmunizationActivity.this, ImmunizationVisit.class);
+                Intent i = new Intent(ImmunizationVisit.this, ImmunizationEditActivity.class);
                 startActivity(i);
             }
         });
 
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent intent = new Intent(ImmunizationActivity.this, MainActivity.class);
+        Intent intent = new Intent(ImmunizationVisit.this, ImmunizationActivity.class);
         finish();
         startActivity(intent);
         return super.onOptionsItemSelected(item);

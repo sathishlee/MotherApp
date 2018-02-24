@@ -8,12 +8,17 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="10dp"
         android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:elevation="3dp"
+            android:background="#5ac7bcbc"
+            android:weightSum="2">
 
             <TextView
                 android:textSize="14sp"
@@ -26,6 +31,7 @@
                 android:layout_marginRight="4.0dip"
                 android:textColor="@color/text_secondary"
                 android:text="Delivery Details"/>
+
 
         </LinearLayout>
 

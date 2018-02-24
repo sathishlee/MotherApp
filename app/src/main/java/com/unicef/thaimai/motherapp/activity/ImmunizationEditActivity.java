@@ -25,7 +25,7 @@ public class ImmunizationEditActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent intent = new Intent(ImmunizationEditActivity.this, MainActivity.class);
+        Intent intent = new Intent(ImmunizationEditActivity.this, ImmunizationVisit.class);
         finish();
         startActivity(intent);
         return super.onOptionsItemSelected(item);

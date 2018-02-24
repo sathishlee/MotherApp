@@ -23,14 +23,14 @@ Button btn_submit;
         actionBar.setHomeButtonEnabled(true);
 
         actionBar.setDisplayHomeAsUpEnabled(true);
-        btn_submit = (Button) findViewById(R.id.btn_submit);
-
-        btn_submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+//        btn_submit = (Button) findViewById(R.id.btn_submit);
+//
+//        btn_submit.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                finish();
+//            }
+//        });
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
