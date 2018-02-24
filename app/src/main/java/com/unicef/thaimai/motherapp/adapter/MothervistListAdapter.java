@@ -9,9 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.unicef.thaimai.motherapp.R;
-import com.unicef.thaimai.motherapp.activity.PostnatalMotherVisitActivity;
-import com.unicef.thaimai.motherapp.activity.PostnatalMotherVisitListActivity;
-import com.unicef.thaimai.motherapp.model.NotificationModel;
+import com.unicef.thaimai.motherapp.activity.PNMotherVisitActivity;
 
 import java.util.List;
 
@@ -42,7 +40,7 @@ holder.txt_visit.setText(visitList.get(position).toString());
 holder.itemView.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
-        mactivity.startActivity(new Intent(mactivity.getApplicationContext(), PostnatalMotherVisitActivity.class));
+        mactivity.startActivity(new Intent(mactivity.getApplicationContext(), PNMotherVisitActivity.class));
     }
 });
     }

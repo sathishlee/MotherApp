@@ -1,37 +1,40 @@
 package com.unicef.thaimai.motherapp.activity;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 
 import com.unicef.thaimai.motherapp.R;
 
-public class DeliveryDetailsActivity extends AppCompatActivity {
+/**
+ * Created by Suthishan on 20/1/2018.
+ */
+
+public class InfantTrackingVisits extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_delivery_details);
-
+        setContentView(R.layout.activity_infant_tracking_details);
 
         ActionBar actionBar = getSupportActionBar();
 
-        actionBar.setTitle("Edit Delivery Details");
+        actionBar.setTitle("Infant Visit");
 
         actionBar.setHomeButtonEnabled(true);
 
         actionBar.setDisplayHomeAsUpEnabled(true);
+
+
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent intent = new Intent(DeliveryDetailsActivity.this, MainActivity.class);
+        Intent intent = new Intent(InfantTrackingVisits.this, InfantTrackingActivity.class);
         finish();
         startActivity(intent);
         return super.onOptionsItemSelected(item);
     }
-
 }

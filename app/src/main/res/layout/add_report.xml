@@ -412,6 +412,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Enter RBS"
+                android:textSize="@dimen/text_secondary"
                 android:inputType="text"
                 android:layout_weight="1"/>
 
@@ -438,6 +439,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Enter FBS"
+                android:textSize="@dimen/text_secondary"
                 android:inputType="text"
                 android:layout_weight="1"/>
 
@@ -463,6 +465,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Enter PPBS"
+                android:textSize="@dimen/text_secondary"
                 android:inputType="text"
                 android:layout_weight="1"/>
 
@@ -489,6 +492,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Enter GTT"
+                android:textSize="@dimen/text_secondary"
                 android:inputType="text"
                 android:layout_weight="1"/>
 
@@ -582,6 +586,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 android:hint="Enter Fetus"
+                android:textSize="@dimen/text_secondary"
                 android:layout_weight="1"/>
 
         </LinearLayout>
@@ -606,6 +611,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
+                android:textSize="@dimen/text_secondary"
                 android:hint="Enter Gestation Sac"
                 android:layout_weight="1"/>
 
@@ -631,6 +637,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
+                android:textSize="@dimen/text_secondary"
                 android:hint="Enter Value"
                 android:layout_weight="1"/>
 
@@ -656,6 +663,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
+                android:textSize="@dimen/text_secondary"
                 android:hint="Enter Value"
                 android:layout_weight="1"/>
 
@@ -681,6 +689,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
+                android:textSize="@dimen/text_secondary"
                 android:hint="Enter Value"
                 android:layout_weight="1"/>
 

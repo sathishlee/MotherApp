@@ -4,15 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
 
 import com.unicef.thaimai.motherapp.R;
 
-public class PostnatalMotherVisit_editActivity extends AppCompatActivity {
+public class PNMotherVisit_editActivity extends AppCompatActivity {
 Button btn_submit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,12 +18,13 @@ Button btn_submit;
         setContentView(R.layout.activity_postnatal_mother_visit_edit);
         ActionBar actionBar = getSupportActionBar();
 
-        actionBar.setTitle("Add Records");
+        actionBar.setTitle("PN Visit Edit");
 
         actionBar.setHomeButtonEnabled(true);
 
         actionBar.setDisplayHomeAsUpEnabled(true);
         btn_submit = (Button) findViewById(R.id.btn_submit);
+
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -35,7 +34,7 @@ Button btn_submit;
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent intent = new Intent(PostnatalMotherVisit_editActivity.this, MainActivity.class);
+        Intent intent = new Intent(PNMotherVisit_editActivity.this, PNMotherVisitActivity.class);
         finish();
         startActivity(intent);
         return super.onOptionsItemSelected(item);

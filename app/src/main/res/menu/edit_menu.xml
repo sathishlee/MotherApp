@@ -2,6 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/menu_edit"
-        app:showAsAction="ifRoom"
-        android:title="Edit"/>
+        android:icon="@drawable/edit_button"
+        app:showAsAction="ifRoom"/>
 </menu>

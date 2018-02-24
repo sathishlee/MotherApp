@@ -37,6 +37,12 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
 
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
         </activity>
 
         <activity
@@ -86,15 +92,12 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".activity.ClinicalReportActivity"
-            android:label="@string/title_activity_clinical_report"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".activity.LabReportActivity"
-            android:label="@string/title_activity_lab_report"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".activity.UCGReportActivity"
-            android:label="@string/title_activity_ucgreport"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".activity.PrimaryRegister"
@@ -103,51 +106,54 @@
             android:name=".activity.splashscreen"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".activity.InfantTrackingDetailsActivity"
+            android:name=".activity.InfantTrackingActivity"
             android:theme="@style/AppTheme">
 
         </activity>
         <activity
-            android:name=".activity.InfantTrackingDetailsEditActivity"
+            android:name=".activity.InfantTrackingEditActivity"
             android:theme="@style/AppTheme">
-
 
         </activity>
         <activity
             android:name=".activity.ImmunizationActivity"
             android:theme="@style/AppTheme"
             android:label="@string/immunization">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
         </activity>
         <activity
             android:name=".activity.ImmunizationEditActivity"
-            android:theme="@style/AppTheme"
-            android:label="@string/immunization"/>
+            android:theme="@style/AppTheme"/>
         <activity
             android:name=".activity.DeliveryDetailsActivity"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme">
+
+        </activity>
         <activity
-            android:name=".activity.PostnatalMotherVisitActivity"
-            android:theme="@style/AppTheme"
-            android:label="@string/post_natal_mother_visit"
-           ></activity>
+            android:name=".activity.PNMotherVisitActivity"
+            android:theme="@style/AppTheme">
+
+        </activity>
         <activity
             android:name=".activity.ReferralActivity"
             android:theme="@style/AppTheme"
-            tools:ignore="WrongManifestParent"></activity>
-        <activity android:name=".activity.PostnatalMotherVisitListActivity"
-            android:theme="@style/AppTheme"
-            android:label="@string/post_natal_mother_visit">
-
+            tools:ignore="WrongManifestParent">
 
         </activity>
-        <activity android:name=".activity.PostnatalMotherVisit_editActivity"
-            android:theme="@style/AppTheme"
-            android:label="@string/post_natal_mother_visit"/>
+        <activity android:name=".activity.PNMotherVisitListActivity"
+            android:theme="@style/AppTheme">
+
+        </activity>
+        <activity android:name=".activity.PNMotherVisit_editActivity"
+            android:theme="@style/AppTheme">
+
+        </activity>
+        <activity android:name=".activity.InfantTrackingVisits"
+            android:theme="@style/AppTheme">
+
+        </activity>
+
+
     </application>
 
 </manifest>

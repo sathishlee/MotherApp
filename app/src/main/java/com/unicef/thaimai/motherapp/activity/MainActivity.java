@@ -230,46 +230,53 @@ if (AppConstants.isMainActivityOpen) {
 //                    home.newInstance()).commit();
 //
 //
-//            // Handle the camera action
 //        }
         if (id == R.id.primary_register){
             Intent i = new Intent(getApplicationContext(), PrimaryRegister.class);
             startActivity(i);
         }
 
+        else if (id == R.id.visit_record){
+            Intent i = new Intent(getApplicationContext(), AddRecords.class);
+            startActivity(i);
+        }
 
-
-
-        else if (id == R.id.navigation_notifications) {
-
-            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.content,
-                    health_records.newInstance()).commit();
-
-//        } else if (id == R.id.visit) {
+//        else if (id == R.id.navigation_notifications) {
 //
 //            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
 //            fragmentManager.beginTransaction().replace(R.id.content,
-//                    visits.newInstance()).commit();
-
-        } else if (id == R.id.baby) {
-            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.content,
-                    baby.newInstance()).commit();
-        }
+//                    health_records.newInstance()).commit();
+//        }
+//        else if (id == R.id.baby) {
+//            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+//            fragmentManager.beginTransaction().replace(R.id.content,
+//                    baby.newInstance()).commit();
+//        }
 
         else if (id == R.id.nearbyhospital) {
             Intent i = new Intent(getApplicationContext(), NearbyHospital.class);
+            startActivity(i);
+        }
+
+        else if (id == R.id.infant_tracking_menu){
+            Intent i = new Intent(getApplicationContext(), InfantTrackingActivity.class);
+            startActivity(i);
+        }
+
+        else if (id == R.id.pn_mother_visit){
+            Intent i = new Intent(getApplicationContext(), PNMotherVisitActivity.class);
+            startActivity(i);
+        }
+
+        else if (id == R.id.immunization_menu){
+            Intent i = new Intent(getApplicationContext(),ImmunizationActivity.class);
             startActivity(i);
         }
         else if (id == R.id.referral) {
             Intent v = new Intent(getApplicationContext(), ReferralList.class);
             startActivity(v);
         }
-        else if (id == R.id.add_record) {
-            Intent i = new Intent(getApplicationContext(), AddRecords.class);
-            startActivity(i);
-        }else if (id == R.id.health_tips) {
+       else if (id == R.id.health_tips) {
             Intent i = new Intent(getApplicationContext(), HeathTipsActivity.class);
             startActivity(i);
         }

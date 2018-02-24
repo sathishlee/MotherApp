@@ -8,7 +8,7 @@ import android.widget.Button;
 
 import com.unicef.thaimai.motherapp.R;
 
-public class InfantTrackingDetailsEditActivity extends AppCompatActivity {
+public class InfantTrackingEditActivity extends AppCompatActivity {
     Button btn_submit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
