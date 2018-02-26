@@ -29,9 +29,7 @@ android {
         mavenCentral()
     }
 
-    packagingOptions {
-        exclude 'META-INF/rxjava.properties'
-    }
+    dexOptions { javaMaxHeapSize "4g" }
 }
 
 dependencies {

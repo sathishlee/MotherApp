@@ -77,54 +77,61 @@
 
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10dp"
+            android:baselineAligned="true"
             android:weightSum="2">
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:layout_weight="1"
+            android:layout_gravity="start">
+
             <TextView
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/due_date"
                 android:textColor="@color/text_primary"
                 android:textSize="@dimen/text_secondary"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
+                android:textStyle="bold"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="21-02-2018"
-                android:layout_weight="1"/>
+                android:text="21-02-2018"/>
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:padding="10dp"
-            android:weightSum="2">
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/care_provided_date"
-                android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:layout_gravity="start">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="21-02-2018"
-                android:layout_weight="1"/>
+                android:text="@string/care_provided_date"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="21-02-2018"/>
+
+            </LinearLayout>
 
         </LinearLayout>
-
 
 
         <LinearLayout
@@ -207,10 +214,9 @@
                 android:orientation="horizontal"
                 android:layout_weight="1"
                 android:weightSum="2">
-                <EditText
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:hint="160"
                     android:textSize="@dimen/text_field"
                     android:editable="false"/>
@@ -218,10 +224,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="/"/>
-                <EditText
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:textSize="@dimen/text_field"
                     android:hint="120"
                     android:editable="false"/>
@@ -244,7 +249,7 @@
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
-            <EditText
+            <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="90"
@@ -271,7 +276,7 @@
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
-            <EditText
+            <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="130"
@@ -298,7 +303,7 @@
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
-            <EditText
+            <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="60"
