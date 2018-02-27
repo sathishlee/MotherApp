@@ -264,7 +264,7 @@
         android:layout_marginBottom="50dp">
 
         <Button
-            android:id="@+id/btn_upload"
+            android:id="@+id/btn_primary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"

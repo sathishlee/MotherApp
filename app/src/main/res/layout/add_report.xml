@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.unicef.thaimai.motherapp.activity.AddRecords">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -630,6 +631,24 @@
 
         </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="#1e8ffe"
+            android:text="Upload"
+            android:textColor="#ffffff"
+            android:id="@+id/btn_upload"
+            android:padding="10dp"/>
+
+        </LinearLayout>
+
     <!--<LinearLayout-->
         <!--android:id="@+id/ll_diabetic_level"-->
         <!--android:layout_width="match_parent"-->
@@ -710,6 +729,9 @@
             <!--style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>-->
 
     <!--</LinearLayout>-->
+
+
+
 
         <Button
             android:layout_width="match_parent"
