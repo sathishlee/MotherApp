@@ -91,7 +91,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
-                    android:text="Weight : "
+                    android:text="Height : "
                     android:layout_gravity="start"
                     android:textColor="@color/secondary"
                     android:textStyle="bold" />
@@ -99,7 +99,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
-                    android:text="56kg"
+                    android:text="152cms"
                     android:layout_gravity="start"
                     android:textColor="@color/secondary"
                     android:textStyle="bold" />
@@ -265,7 +265,7 @@
         android:layout_marginBottom="50dp">
 
         <Button
-            android:id="@+id/btn_upload"
+            android:id="@+id/btn_primary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"

@@ -5,9 +5,6 @@ package com.unicef.thaimai.motherapp.helper;
  */
 
 public class Constants {
-
-
-
     public final static String TAG_USERNAME = "name";
     public final static String TAG_ID = "id";
     public static final String PICME_ID = "picmeId";

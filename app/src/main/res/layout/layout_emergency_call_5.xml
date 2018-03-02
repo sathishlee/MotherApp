@@ -27,7 +27,7 @@
                 android:paddingLeft="8.0dip"
                 android:paddingRight="8.0dip"
                 android:paddingTop="4.0dip"
-                android:text="Sai Hospital"
+                android:text="Govt Hospital"
                 android:textColor="@color/text_primary"
                 android:textSize="16.0sp"
                 android:textStyle="bold" />

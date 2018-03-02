@@ -51,11 +51,10 @@
                 android:gravity="start|center"
                 android:layout_margin="3dp"
                 android:textSize="@dimen/text_secondary"
-                android:text="Sai Hospital"
+                android:text="Govt Hospital"
                 android:textColor="@color/text_primary" />
 
         </LinearLayout>
-
 
     </LinearLayout>
 

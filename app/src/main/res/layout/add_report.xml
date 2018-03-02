@@ -3,45 +3,55 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.unicef.thaimai.motherapp.activity.AddRecords">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="20dp"
         android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/txt_title"
-        android:textSize="21sp"
-        android:textStyle="bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add Visit Details"
-        android:layout_gravity="center"
-        android:padding="10dp"/>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="10dp"
+            android:elevation="3dp"
+            android:background="#5ac7bcbc"
             android:weightSum="2">
 
             <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="Date of Visit"
-                android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_field"
+                android:textSize="14sp"
                 android:textStyle="bold"
-                android:layout_weight="1"/>
-
-            <EditText
-                android:layout_width="match_parent"
+                android:gravity="start|center"
+                android:padding="2dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="text"
-                android:textSize="@dimen/text_secondary"
-                android:hint="Select Date"
-                android:layout_weight="1"/>
+                android:layout_marginLeft="4.0dip"
+                android:layout_marginRight="4.0dip"
+                android:textColor="@color/text_secondary"
+                android:text="Add Visit Details"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:textSize="@dimen/text_secondary"
+                    android:hint="Select Date"/>
+
+            </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
 
@@ -189,26 +199,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10dp"
-            android:weightSum="2">
+            android:padding="10dp">
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="Pulse Rate"
-                android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_field"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
-
-            <EditText
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:textSize="@dimen/text_secondary"
-                android:hint="Enter Pluse Rate"
-                android:layout_weight="1"/>
+                android:layout_height="wrap_content">
 
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:textSize="@dimen/text_secondary"
+                    android:hint="Enter Pluse Rate"/>
+
+            </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 
     <LinearLayout
@@ -216,25 +220,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="10dp"
-        android:weightSum="2">
+        android:padding="10dp">
 
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Weight"
-            android:textColor="@color/text_primary"
-            android:textSize="@dimen/text_field"
-            android:textStyle="bold"
-            android:layout_weight="1"/>
 
-        <EditText
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:textSize="@dimen/text_secondary"
-            android:hint="Enter Weight"
-            android:layout_weight="1"/>
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:textSize="@dimen/text_secondary"
+                android:hint="Enter Weight"/>
+
+        </android.support.design.widget.TextInputLayout>
 
     </LinearLayout>
 
@@ -271,25 +271,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10dp"
-            android:weightSum="2">
+            android:padding="10dp">
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="FHS"
-                android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_field"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 android:textSize="@dimen/text_secondary"
-                android:hint="Enter FHS"
-                android:layout_weight="1"/>
+                android:hint="Enter FHS"/>
+
+            </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
 
@@ -332,25 +327,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10dp"
-            android:weightSum="2">
+            android:padding="10dp">
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="Temp"
-                android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_field"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 android:textSize="@dimen/text_secondary"
-                android:hint="Enter Temp"
-                android:layout_weight="1"/>
+                android:hint="Enter Temp"/>
+
+            </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
 
@@ -369,25 +359,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10dp"
-            android:weightSum="2">
+            android:padding="10dp">
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="Hemoglobin"
-                android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_field"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Enter Hemoglobin"
                 android:textSize="@dimen/text_secondary"
-                android:inputType="text"
-                android:layout_weight="1"/>
+                android:inputType="text"/>
+            </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
 
@@ -396,25 +380,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10dp"
-            android:weightSum="2">
+            android:padding="10dp">
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="RBS"
-                android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_field"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Enter RBS"
                 android:textSize="@dimen/text_secondary"
-                android:inputType="text"
-                android:layout_weight="1"/>
+                android:inputType="text"/>
+
+            </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
 
@@ -423,25 +402,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10dp"
-            android:weightSum="2">
+            android:padding="10dp">
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="FBS"
-                android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_field"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Enter FBS"
                 android:textSize="@dimen/text_secondary"
-                android:inputType="text"
-                android:layout_weight="1"/>
+                android:inputType="text"/>
+
+            </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
 
@@ -449,25 +423,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10dp"
-            android:weightSum="2">
+            android:padding="10dp">
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="PPBS"
-                android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_field"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Enter PPBS"
                 android:textSize="@dimen/text_secondary"
-                android:inputType="text"
-                android:layout_weight="1"/>
+                android:inputType="text"/>
+
+            </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
 
@@ -476,25 +445,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10dp"
-            android:weightSum="2">
+            android:padding="10dp">
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="GTT"
-                android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_field"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Enter GTT"
                 android:textSize="@dimen/text_secondary"
-                android:inputType="text"
-                android:layout_weight="1"/>
+                android:inputType="text"/>
+
+            </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
 
@@ -569,25 +533,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10dp"
-            android:weightSum="2">
+            android:padding="10dp">
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="Fetus"
-                android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_field"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 android:hint="Enter Fetus"
-                android:textSize="@dimen/text_secondary"
-                android:layout_weight="1"/>
+                android:textSize="@dimen/text_secondary"/>
+
+            </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
 
@@ -595,25 +554,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10dp"
-            android:weightSum="2">
+            android:padding="10dp">
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="Gestation Sac"
-                android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_field"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 android:textSize="@dimen/text_secondary"
-                android:hint="Enter Gestation Sac"
-                android:layout_weight="1"/>
+                android:hint="Enter Gestation Sac"/>
+
+            </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
 
@@ -621,25 +575,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10dp"
-            android:weightSum="2">
+            android:padding="10dp">
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="Single/ Multiple  Liquor"
-                android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_field"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 android:textSize="@dimen/text_secondary"
-                android:hint="Enter Value"
-                android:layout_weight="1"/>
+                android:hint="Enter Value"/>
+            </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
 
@@ -647,25 +595,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10dp"
-            android:weightSum="2">
+            android:padding="10dp">
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="Adequate/Not"
-                android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_field"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
-
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 android:textSize="@dimen/text_secondary"
-                android:hint="Enter Value"
-                android:layout_weight="1"/>
+                android:hint="Enter Value"/>
+            </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
 
@@ -673,25 +614,38 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10dp"
-            android:weightSum="2">
+            android:padding="10dp">
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="Placenta"
-                android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_field"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 android:textSize="@dimen/text_secondary"
-                android:hint="Enter Value"
-                android:layout_weight="1"/>
+                android:hint="Enter Value"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="#1e8ffe"
+            android:text="Upload"
+            android:textColor="#ffffff"
+            android:id="@+id/btn_upload"
+            android:padding="10dp"/>
 
         </LinearLayout>
 
@@ -775,6 +729,9 @@
             <!--style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>-->
 
     <!--</LinearLayout>-->
+
+
+
 
         <Button
             android:layout_width="match_parent"
