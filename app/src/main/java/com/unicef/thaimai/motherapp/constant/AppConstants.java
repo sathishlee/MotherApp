@@ -13,5 +13,12 @@ public class AppConstants {
     public static final String USER_MEDICAL = "user_medical";
     public static final String USER_EMERGENCY_CONTACTS = "emergency_contacts";
 
+    public static final int LOCATION_INTERVAL = 10000;
+    public static final int FASTEST_LOCATION_INTERVAL = 5000;
+    public static final String EXTRA_LATITUDE = "extra_latitude";
+    public static final String EXTRA_LONGITUDE = "extra_longitude";
+
+    public static final int REQUEST_LOCATION=001;
+
 
 }
