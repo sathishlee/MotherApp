@@ -83,6 +83,7 @@
                            android:textSize="14sp" />
 
                        <TextView
+                           android:id="@+id/txt_picme_id"
                            android:layout_width="match_parent"
                            android:layout_height="wrap_content"
                            android:textAlignment="textStart"
@@ -109,6 +110,7 @@
                            android:textSize="14sp" />
 
                        <TextView
+                           android:id="@+id/txt_age"
                            android:layout_width="match_parent"
                            android:layout_height="wrap_content"
                            android:textAlignment="textStart"

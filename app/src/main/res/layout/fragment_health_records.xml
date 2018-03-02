@@ -15,7 +15,8 @@
         app:cardBackgroundColor="@android:color/white"
         app:cardElevation="3dp"
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:visibility="gone">
 
     <RelativeLayout
         android:layout_width="match_parent"

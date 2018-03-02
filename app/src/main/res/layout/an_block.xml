@@ -32,6 +32,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/txt_g_age"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="12Wks"
@@ -48,6 +49,7 @@
                 android:textColor="@color/secondary"
                 android:textStyle="bold" />
             <TextView
+                android:id="@+id/txt_weight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -74,14 +76,14 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/txt_lmp_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:text="02/12/2017"
                 android:layout_gravity="start"
                 android:textColor="@color/secondary"
-                android:textStyle="bold"
-                />
+                android:textStyle="bold"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -93,6 +95,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/txt_edd_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -121,6 +124,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/txt_risk"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"

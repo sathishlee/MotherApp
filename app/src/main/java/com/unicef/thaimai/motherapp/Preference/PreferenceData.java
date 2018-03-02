@@ -50,11 +50,13 @@ public class PreferenceData {
         Log.e("USER_EMERGENCY_CONTACTS",sharedPreferences.getString(AppConstants.USER_EMERGENCY_CONTACTS,""));
     }
 
-    public String getUserInfo(){
+    /*public String getUserInfo(){
         return sharedPreferences.getString(AppConstants.USER_INFO,"");
     }public String getUserMedical(){
         return sharedPreferences.getString(AppConstants.USER_MEDICAL,"");
     }public String getEmergencyContacts(){
         return sharedPreferences.getString(AppConstants.USER_EMERGENCY_CONTACTS,"");
-    }
+    }*/
+
+
 }

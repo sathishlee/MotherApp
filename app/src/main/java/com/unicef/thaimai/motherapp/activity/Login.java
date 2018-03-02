@@ -310,18 +310,13 @@ public class Login extends AppCompatActivity implements LoginViews {
                         txt_picmeId.setEnabled(false);
 //                        String picmeId = jObj.getString(Constants.PICME_ID);
 //                        String Otp = jObj.getString(Constants.OTP);
-
                         txt_picmeId.setEnabled(false);
 //                        String picmeId = jObj.getString(Constants.PICME_ID);
 //                        String Otp = jObj.getString(Constants.OTP);
-
-
                         input_layout_picme_id.setEnabled(false);
                         input_layout_picme_id.setFocusable(false);
-
                         input_layout_picme_id.setBackgroundColor(Color.TRANSPARENT);
                         forgot_picme.setVisibility(View.GONE);
-
                         worng_picme.setVisibility(View.VISIBLE);
                         worng_picme.setOnClickListener(new View.OnClickListener(){
                             @Override
@@ -329,8 +324,6 @@ public class Login extends AppCompatActivity implements LoginViews {
                                 input_layout_picme_id.setFocusable(true);
                                 input_layout_picme_id.setEnabled(true);
                                 worng_picme.setVisibility(View.GONE);
-
-
                                 input_layout_otp.setVisibility(View.GONE);
                                 forgot_picme.setVisibility(View.VISIBLE);
                             }
@@ -339,7 +332,6 @@ public class Login extends AppCompatActivity implements LoginViews {
                         Log.e("User Found!", jObj.toString());
                         Toast.makeText(getApplicationContext(),
                                 jObj.getString("message"), Toast.LENGTH_LONG).show();
-
                     }
                     else {
                         Toast.makeText(getApplicationContext(),
