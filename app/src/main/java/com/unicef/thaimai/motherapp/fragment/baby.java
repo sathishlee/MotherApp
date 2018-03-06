@@ -20,7 +20,7 @@ import com.unicef.thaimai.motherapp.activity.DeliveryDetailsActivity;
 
 
 public class baby extends Fragment  {
-    TextView txt_edit;
+
 
    /* private Button mExpandButton1,mExpandButton2,mExpandButton3,mExpandButton4;
     private RelativeLayout mlayout2,mlayout3,mlayout4;
@@ -44,15 +44,7 @@ public class baby extends Fragment  {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = null;
         view = inflater.inflate(R.layout.fragment_baby_delivery_details, container, false);
-        txt_edit=view.findViewById(R.id.txt_edit);
 
-
-        txt_edit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getActivity(), DeliveryDetailsActivity.class));
-            }
-        });
         /*mExpandButton1 =view.findViewById(R.id.expandableButton1);
         mExpandButton2 =view.findViewById(R.id.expandableButton2);
         mExpandButton3 =view.findViewById(R.id.expandableButton3);

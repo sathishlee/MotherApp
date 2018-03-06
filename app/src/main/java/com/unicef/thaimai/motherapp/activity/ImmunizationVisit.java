@@ -16,6 +16,7 @@ public class ImmunizationVisit extends AppCompatActivity {
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,13 +30,6 @@ public class ImmunizationVisit extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
 
 
-        txt_edit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(ImmunizationVisit.this, ImmunizationEditActivity.class);
-                startActivity(i);
-            }
-        });
 
     }
     @Override

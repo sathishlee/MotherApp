@@ -51,7 +51,7 @@ public class home extends Fragment {
 
     Button btn_logout;
     TextView txt_username, picme_id, dob;
-    TextView g_week,weight, lmpdate,edddate,risk;
+//    TextView g_week,weight, lmpdate,edddate,risk;
     String id, name, picmeId, regDob;
 
     SharedPreferences sharedpreferences;
@@ -99,12 +99,12 @@ public class home extends Fragment {
         txt_username = (TextView) view.findViewById(R.id.txt_username);
         picme_id = (TextView) view.findViewById(R.id.txt_picme_id);
         dob = (TextView) view.findViewById(R.id.txt_age);
-        g_week = (TextView) view.findViewById(R.id.txt_g_age);
+       /* g_week = (TextView) view.findViewById(R.id.txt_g_age);
         weight = (TextView) view.findViewById(R.id.txt_weight);
         lmpdate = (TextView) view.findViewById(R.id.txt_lmp_date);
         edddate = (TextView) view.findViewById(R.id.txt_edd_date);
         risk = (TextView) view.findViewById(R.id.txt_risk);
-
+*/
         profile = (CardView) view.findViewById(R.id.android_card_view_example);
 
         profile.setOnClickListener(new View.OnClickListener() {
@@ -152,22 +152,22 @@ public class home extends Fragment {
                     pDialog.dismiss();
                     try {
                         JSONObject jObj = new JSONObject(response);
-                        JSONObject userinfo = jObj.getJSONObject("userinfo");
-                        txt_username.setText(userinfo.getString("motherName"));
-                        picme_id.setText(userinfo.getString("picmeNO"));
-                        dob.setText(userinfo.getString("Age"));
+//                        JSONObject userinfo = jObj.getJSONObject("userinfo");
+//                        txt_username.setText(userinfo.getString("motherName"));
+//                        picme_id.setText(userinfo.getString("picmeNO"));
+//                        dob.setText(userinfo.getString("Age"));
 //                        Log.e("motherName---->",userinfo.getString("motherName"));
 //                        Log.e("Age---->",userinfo.getString("Age"));
 //                        Log.e("picmeNO---->",userinfo.getString("picmeNO"));
 
-                        JSONObject usermedical = jObj.getJSONObject("usermedical");
+//                        JSONObject usermedical = jObj.getJSONObject("usermedical");
 //                        g_week.setText("");
-                        weight.setText(usermedical.getString("weight"));
-                        lmpdate.setText(usermedical.getString("LMP"));
-                        edddate.setText(usermedical.getString("EDD"));
-                        JSONArray EmergencyContacts = jObj.getJSONArray("EmergencyContacts");
+//                        weight.setText(usermedical.getString("weight"));
+//                        lmpdate.setText(usermedical.getString("LMP"));
+//                        edddate.setText(usermedical.getString("EDD"));
+//                        JSONArray EmergencyContacts = jObj.getJSONArray("EmergencyContacts");
 
-                        int status = jObj.getInt("status");
+//                        int status = jObj.getInt("status");
                         // Check for error in json
 //                        if (status == 1) {
 //                            preferenceData.storeUserInfo(userinfo.toString());

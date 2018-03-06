@@ -102,11 +102,10 @@ public class Login extends AppCompatActivity implements LoginViews {
         }
 
         input_layout_picme_id = (TextInputLayout) findViewById(R.id.input_layout_picme_id);
-        input_layout_otp = (TextInputLayout) findViewById(R.id.input_layout_otp);
+
         input_layout_otp.setVisibility(View.GONE);
 
         txt_picmeId = (EditText) findViewById(R.id.picme_id);
-        txt_otp = (EditText) findViewById(R.id.otp);
 
 //        smsVerifyCatcher = new SmsVerifyCatcher(this, new OnSmsCatchListener<String>() {
 //            @Override
@@ -122,7 +121,7 @@ public class Login extends AppCompatActivity implements LoginViews {
 
 
         forgot_picme = (TextView) findViewById(R.id.forgot_picme);
-        worng_picme = (TextView) findViewById(R.id.worng_picme);
+
         forgot_picme.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -137,7 +136,7 @@ public class Login extends AppCompatActivity implements LoginViews {
 //        loginPresenter = new LoginPresenter(mActivity,this);
 
 
-        btn_login = (Button) findViewById(R.id.btn_login);
+        btn_login = (Button) findViewById(R.id.btn_submit);
 
         btn_login.setOnClickListener(new View.OnClickListener() {
 
