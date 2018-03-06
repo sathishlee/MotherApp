@@ -9,17 +9,50 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="20dp"
+        android:padding="10dp"
         xmlns:android="http://schemas.android.com/apk/res/android">
 
-        <TextView
-            android:id="@+id/txt_referral_details"
-            android:textSize="21sp"
-            android:textStyle="bold"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Referral"
-            android:layout_gravity="center" />
+            android:baselineAligned="false"
+            android:weightSum="2"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Add Referral"
+                    android:textAlignment="textStart"
+                    android:textColor="#2F80ED"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:paddingTop="4.0dip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <View
+                android:layout_gravity="center"
+                android:background="@drawable/header_line"
+                android:layout_width="match_parent"
+                android:layout_height="5.0dp"
+                android:layout_weight="1.0"
+                android:layerType="software" />
+
+        </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -32,29 +65,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:weightSum="2"
                 android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="start"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:textSize="@dimen/text_field"
-                        android:textStyle="bold"
-                        android:gravity="start|center"
-                        android:layout_gravity="center"
-                        android:padding="4.0dip"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="4.0dip"
-                        android:layout_marginRight="4.0dip"
-                        android:textColor="@color/text_secondary"
-                        android:text="Date of Referral"
-                        android:layout_weight="1"/>
 
                     <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
@@ -63,13 +74,13 @@
 
                         <EditText
                             android:layout_width="match_parent"
-                            android:hint="Enter date"
+                            android:hint="Date of Referral"
                             android:textSize="@dimen/text_secondary"
+                            android:inputType="text"
+                            android:textColor="@color/secondary"
                             android:layout_height="wrap_content"/>
 
                     </android.support.design.widget.TextInputLayout>
-
-                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -77,35 +88,26 @@
                     android:gravity="start"
                     android:layout_weight="1"
                     android:orientation="vertical">
+
                     <TextView
-                        android:textSize="@dimen/text_field"
-                        android:textStyle="bold"
-                        android:gravity="start|center"
-                        android:layout_gravity="center"
-                        android:padding="4.0dip"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="4.0dip"
-                        android:layout_marginRight="4.0dip"
-                        android:textColor="@color/text_secondary"
                         android:text="Time"
+                        android:textColor="@color/secondary"
+                        android:textSize="@dimen/text_field"
+                        android:textStyle="bold"
                         android:layout_weight="1"/>
 
                     <TextView
-                        android:textSize="@dimen/text_field"
-                        android:textStyle="bold"
-                        android:gravity="start|center"
-                        android:layout_gravity="center"
-                        android:padding="4.0dip"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="4.0dip"
-                        android:layout_marginRight="4.0dip"
-                        android:textColor="@color/text_secondary"
-                        android:text="09.30pm"
+                        android:text="9.30pm"
+                        android:textColor="@color/text_primary"
+                        android:textSize="12.0sp"
                         android:layout_weight="1"/>
 
                 </LinearLayout>
+
             </LinearLayout>
 
         </LinearLayout>
@@ -119,27 +121,23 @@
             android:padding="5dp">
 
             <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Referred by"
+                android:textColor="@color/secondary"
                 android:textSize="@dimen/text_field"
                 android:textStyle="bold"
-                android:gravity="start|center"
-                android:layout_gravity="center"
-                android:padding="4.0dip"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="4.0dip"
-                android:layout_marginRight="4.0dip"
-                android:textColor="@color/text_secondary"
-                android:text="Referred by"
                 android:layout_weight="1"/>
 
             <Spinner
-                android:layout_width="match_parent"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="5"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:layout_weight="1"
                 android:drawSelectorOnTop="true"
-                android:spinnerMode="dropdown"
-                style="@style/Base.Widget.AppCompat.Spinner.Underlined"
-                android:entries="@array/referred_by"/>
+                android:entries="@array/referred_by"
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
 
         </LinearLayout>
 
@@ -152,27 +150,23 @@
             android:padding="5dp">
 
                 <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Facility Referring"
+                    android:textColor="@color/secondary"
                     android:textSize="@dimen/text_field"
                     android:textStyle="bold"
-                    android:gravity="start|center"
-                    android:layout_gravity="center"
-                    android:padding="4.0dip"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="4.0dip"
-                    android:layout_marginRight="4.0dip"
-                    android:textColor="@color/text_secondary"
-                    android:text="Facility Referring"
                     android:layout_weight="1"/>
 
                 <Spinner
-                    android:layout_width="match_parent"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="5"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_secondary"
+                    android:layout_weight="1"
                     android:drawSelectorOnTop="true"
-                    android:spinnerMode="dropdown"
-                    style="@style/Base.Widget.AppCompat.Spinner.Underlined"
-                    android:entries="@array/array_facillity_type"/>
+                    android:entries="@array/array_facillity_type"
+                    style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
 
         </LinearLayout>
 
@@ -183,28 +177,26 @@
             android:orientation="vertical"
             android:padding="5dp">
 
+
             <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Facility Referred to"
+                android:textColor="@color/secondary"
                 android:textSize="@dimen/text_field"
                 android:textStyle="bold"
-                android:gravity="start|center"
-                android:layout_gravity="center"
-                android:padding="4.0dip"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="4.0dip"
-                android:layout_marginRight="4.0dip"
-                android:textColor="@color/text_secondary"
-                android:text="Facility Referred to"
                 android:layout_weight="1"/>
 
             <Spinner
-                android:layout_width="match_parent"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="5"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:layout_weight="1"
                 android:drawSelectorOnTop="true"
-                android:spinnerMode="dropdown"
-                style="@style/Base.Widget.AppCompat.Spinner.Underlined"
-                android:entries="@array/array_facillity_type"/>
+                android:entries="@array/array_facillity_type"
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
+
 
         </LinearLayout>
 
@@ -215,18 +207,7 @@
             android:orientation="vertical"
             android:weightSum="2"
             android:padding="5dp">
-            <TextView
-                android:textSize="@dimen/text_field"
-                android:textStyle="bold"
-                android:gravity="start|center"
-                android:layout_gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="4.0dip"
-                android:layout_marginRight="4.0dip"
-                android:textColor="@color/text_secondary"
-                android:text="@string/diagnosis"
-                android:layout_weight="1"/>
+
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -235,7 +216,10 @@
                     android:id="@+id/sp_diagnosis"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="Diagnosis"
+                    android:textSize="12.0sp"
                     android:layout_weight="1" />
+
             </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
@@ -246,7 +230,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:weightSum="2"
-            android:padding="10dp">
+            android:padding="5dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -255,37 +239,35 @@
                 android:weightSum="2"
                 android:orientation="horizontal">
 
-
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="start"
                     android:layout_weight="1"
                     android:orientation="vertical">
+
                     <TextView
-                        android:textSize="@dimen/text_field"
-                        android:textStyle="bold"
-                        android:gravity="start|center"
-                        android:layout_gravity="center"
-                        android:padding="4.0dip"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="4.0dip"
-                        android:layout_marginRight="4.0dip"
-                        android:textColor="@color/text_secondary"
                         android:text="Reason for referral"
+                        android:textColor="@color/secondary"
+                        android:textSize="@dimen/text_field"
+                        android:textStyle="bold"
                         android:layout_weight="1"/>
+
                     <Spinner
                         android:id="@+id/sp_refered_why"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:drawSelectorOnTop="true"
+                        android:textColor="@color/text_primary"
+                        android:textSize="@dimen/text_secondary"
                         android:entries="@array/array_refrel_why"
-                        style="@style/Base.Widget.AppCompat.Spinner.Underlined"
-                        android:padding="10dp"/>
+                        style="@style/Base.Widget.AppCompat.Spinner.Underlined" />
+
                 </LinearLayout>
+
             </LinearLayout>
 
         </LinearLayout>
@@ -306,44 +288,22 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:weightSum="2"
                     android:orientation="horizontal">
 
-                    <LinearLayout
+                    <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="start"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:layout_weight="1">
 
-                        <TextView
-                            android:textSize="@dimen/text_field"
-                            android:textStyle="bold"
-                            android:gravity="start|center"
-                            android:layout_gravity="center"
-                            android:padding="4.0dip"
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="4.0dip"
-                            android:layout_marginRight="4.0dip"
-                            android:textColor="@color/text_secondary"
-                            android:text="Date of Referral"
-                            android:layout_weight="1"/>
-
-                        <android.support.design.widget.TextInputLayout
+                        <EditText
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1">
+                            android:hint="Date of Referral"
+                            android:textSize="@dimen/text_secondary"
+                            android:inputType="text"
+                            android:textColor="@color/secondary"
+                            android:layout_height="wrap_content"/>
 
-                            <EditText
-                                android:layout_width="match_parent"
-                                android:hint="Enter date"
-                                android:textSize="@dimen/text_secondary"
-                                android:layout_height="wrap_content"/>
-
-                        </android.support.design.widget.TextInputLayout>
-
-                    </LinearLayout>
+                    </android.support.design.widget.TextInputLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -351,35 +311,26 @@
                         android:gravity="start"
                         android:layout_weight="1"
                         android:orientation="vertical">
+
                         <TextView
-                            android:textSize="@dimen/text_field"
-                            android:textStyle="bold"
-                            android:gravity="start|center"
-                            android:layout_gravity="center"
-                            android:padding="4.0dip"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="4.0dip"
-                            android:layout_marginRight="4.0dip"
-                            android:textColor="@color/text_secondary"
                             android:text="Time"
+                            android:textColor="@color/secondary"
+                            android:textSize="@dimen/text_field"
+                            android:textStyle="bold"
                             android:layout_weight="1"/>
 
                         <TextView
-                            android:textSize="@dimen/text_field"
-                            android:textStyle="bold"
-                            android:gravity="start|center"
-                            android:layout_gravity="center"
-                            android:padding="4.0dip"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="4.0dip"
-                            android:layout_marginRight="4.0dip"
-                            android:textColor="@color/text_secondary"
-                            android:text="09.30pm"
+                            android:text="9.30pm"
+                            android:textColor="@color/text_primary"
+                            android:textSize="12.0sp"
                             android:layout_weight="1"/>
 
                     </LinearLayout>
+
                 </LinearLayout>
 
             </LinearLayout>
@@ -392,17 +343,12 @@
                 android:padding="5dp">
 
                 <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Received by"
+                    android:textColor="@color/secondary"
                     android:textSize="@dimen/text_field"
                     android:textStyle="bold"
-                    android:gravity="start|center"
-                    android:layout_gravity="center"
-                    android:padding="4.0dip"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="4.0dip"
-                    android:layout_marginRight="4.0dip"
-                    android:textColor="@color/text_secondary"
-                    android:text="Received by"
                     android:layout_weight="1"/>
 
                 <Spinner
@@ -423,18 +369,14 @@
                 android:orientation="vertical"
                 android:padding="5dp">
 
+
                 <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Receiving Facility"
+                    android:textColor="@color/secondary"
                     android:textSize="@dimen/text_field"
                     android:textStyle="bold"
-                    android:gravity="start|center"
-                    android:layout_gravity="center"
-                    android:padding="4.0dip"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="4.0dip"
-                    android:layout_marginRight="4.0dip"
-                    android:textColor="@color/text_secondary"
-                    android:text="Receiving Facility"
                     android:layout_weight="1"/>
 
                 <Spinner
@@ -442,6 +384,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="5"
                     android:drawSelectorOnTop="true"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_secondary"
                     android:spinnerMode="dropdown"
                     style="@style/Base.Widget.AppCompat.Spinner.Underlined"
                     android:entries="@array/array_facillity_type"/>
@@ -464,17 +408,13 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="4.0dip"
-                        android:layout_marginRight="4.0dip"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:padding="4.0dip"
-                        android:text="@string/inlabour"
-                        android:textColor="@color/text_secondary"
+                        android:text="In Labour"
+                        android:textColor="@color/secondary"
                         android:textSize="@dimen/text_field"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:layout_weight="1"/>
 
                     <RadioGroup
                         android:layout_width="wrap_content"
@@ -485,13 +425,13 @@
                         <RadioButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="@dimen/text_field"
+                            android:textSize="12.0sp"
                             android:text="@string/yes" />
 
                         <RadioButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="@dimen/text_field"
+                            android:textSize="12.0sp"
                             android:text="No" />
 
                     </RadioGroup>
@@ -506,17 +446,14 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/textView"
-                        android:layout_width="wrap_content"
+                        android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="start"
-                        android:padding="4.0dip"
-                        android:text="@string/admitted"
-                        android:textAlignment="textStart"
-                        android:textColor="@color/text_secondary"
+                        android:text="Admitted"
+                        android:textColor="@color/secondary"
                         android:textSize="@dimen/text_field"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:layout_weight="1"/>
+
 
                     <RadioGroup
                         android:layout_width="wrap_content"
@@ -527,13 +464,13 @@
                         <RadioButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="@dimen/text_field"
+                            android:textSize="12.0sp"
                             android:text="@string/yes" />
 
                         <RadioButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="@dimen/text_field"
+                            android:textSize="12.0sp"
                             android:text="No" />
 
                     </RadioGroup>
@@ -545,24 +482,15 @@
         </LinearLayout>
 
 
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:gravity="bottom"
-            android:padding="20dp">
-
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:background="#1e8ffe"
+                android:layout_margin="15dp"
+                android:background="@drawable/button_backgroumd"
                 android:text="@string/submit"
                 android:textColor="#ffffff"
-                android:id="@+id/btn_submit"/>
-
-        </LinearLayout>
+                android:id="@+id/btn_submit"
+                android:padding="10dp"/>
 
     </LinearLayout>
 
