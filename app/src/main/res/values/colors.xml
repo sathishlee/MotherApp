@@ -22,7 +22,7 @@
 
     <color name="bright_blue">#ff1b88a0</color>
 
-    <color name="secondary">#2E3091</color>
+    <color name="secondary">#808080</color>
 
     <color name="cloudy_blue">#ffd8e4e6</color>
 
@@ -44,6 +44,8 @@
     <color name="text_title">#0502ff</color>
     <color name="text_lable">#0a0909</color>
 
+
+    <color name="header">#2F80ED</color>
 
     <color name="primary">#00BCD4</color>
     <color name="primary_dark">#0097A7</color>

@@ -5,235 +5,234 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/cardview"
-        android:orientation="vertical"
-        android:padding="5.0dip"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="4.0dip"
-        app:cardBackgroundColor="@android:color/white"
-        app:cardElevation="3dp"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!--<android.support.v7.widget.CardView-->
+        <!--android:id="@+id/cardview"-->
+        <!--android:orientation="vertical"-->
+        <!--android:padding="5.0dip"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_margin="4.0dip"-->
+        <!--app:cardBackgroundColor="@android:color/white"-->
+        <!--app:cardElevation="3dp"-->
+        <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--xmlns:app="http://schemas.android.com/apk/res-auto">-->
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/list_item_color">
+    <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:background="@color/list_item_color">-->
 
-        <TextView
-            android:id="@+id/txt_user_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Mrs. Tamil Selvi, 28"
-            android:padding="5dp"
-            android:layout_centerHorizontal="true"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:elevation="2dp"
-            android:textColor="#000000"
-            android:drawablePadding="5dp"/>
+        <!--<TextView-->
+            <!--android:id="@+id/txt_user_name"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Mrs. Tamil Selvi, 28"-->
+            <!--android:padding="5dp"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:textSize="16sp"-->
+            <!--android:textStyle="bold"-->
+            <!--android:elevation="2dp"-->
+            <!--android:textColor="#000000"-->
+            <!--android:drawablePadding="5dp"/>-->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_below="@+id/txt_user_name">
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="vertical"-->
+            <!--android:layout_below="@+id/txt_user_name">-->
+
+            <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
+                <!--&lt;!&ndash;android:id="@+id/ll_vhn"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:orientation="horizontal"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:weightSum="2"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_below="@+id/txt_user_name">&ndash;&gt;-->
+
+
+                <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:id="@+id/txt_vhn_name"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:elevation="2dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:text="Julle"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:padding="5dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:textSize="18sp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:textStyle="normal"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:textColor="#000000"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:drawablePadding="5dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:drawableStart="@drawable/ic_nurse"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_weight="1"&ndash;&gt;-->
+                    <!--&lt;!&ndash;/>&ndash;&gt;-->
+                <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:id="@+id/txt_phc_name"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:elevation="2dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:text="Sai Hospital"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:padding="5dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_alignParentRight="true"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:textSize="18sp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:textStyle="normal"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:textColor="#000000"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:drawablePadding="5dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:drawableStart="@drawable/ic_hospital"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_weight="1"&ndash;&gt;-->
+                    <!--&lt;!&ndash;/>&ndash;&gt;-->
+            <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+            <!--<LinearLayout-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:orientation="horizontal">-->
+                <!--<TextView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginStart="5dp"-->
+                    <!--android:text="Height : "-->
+                    <!--android:layout_gravity="start"-->
+                    <!--android:textColor="@color/secondary"-->
+                    <!--android:textStyle="bold" />-->
+                <!--<TextView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginStart="5dp"-->
+                    <!--android:text="152cms"-->
+                    <!--android:layout_gravity="start"-->
+                    <!--android:textColor="@color/secondary"-->
+                    <!--android:textStyle="bold" />-->
+
+                <!--<TextView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginStart="5dp"-->
+                    <!--android:text="Blood Group : "-->
+                    <!--android:layout_gravity="end"-->
+                    <!--android:textColor="@color/secondary"-->
+                    <!--android:textStyle="bold" />-->
+
+                <!--<TextView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginStart="5dp"-->
+                    <!--android:text="156cms"-->
+                    <!--android:layout_gravity="start"-->
+                    <!--android:textColor="@color/secondary"-->
+                    <!--android:textStyle="bold" />-->
+
+            <!--</LinearLayout>-->
+            <!--<LinearLayout-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="horizontal"-->
+                <!--android:layout_gravity="center_horizontal"-->
+                <!--android:weightSum="2"-->
+                <!--android:visibility="gone">-->
+
+                <!--<TextView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="LMP Date : "-->
+                    <!--android:layout_gravity="start"-->
+                    <!--android:textColor="@color/secondary"-->
+                    <!--android:textStyle="bold" />-->
+
+                <!--<TextView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginStart="5dp"-->
+                    <!--android:text="02/12/2017"-->
+                    <!--android:layout_gravity="start"-->
+                    <!--android:textColor="@color/secondary"-->
+                    <!--android:textStyle="bold" />-->
+
+                <!--<TextView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginStart="10dp"-->
+                    <!--android:text="EDD Date : "-->
+                    <!--android:layout_gravity="end"-->
+                    <!--android:textColor="@color/secondary"-->
+                    <!--android:textStyle="bold" />-->
+
+                <!--<TextView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginStart="5dp"-->
+                    <!--android:text="02/10/2018"-->
+                    <!--android:layout_gravity="start"-->
+                    <!--android:textColor="@color/secondary"-->
+                    <!--android:textStyle="bold" />-->
+
+            <!--</LinearLayout>-->
 
             <!--<LinearLayout-->
-                <!--android:id="@+id/ll_vhn"-->
                 <!--android:layout_width="match_parent"-->
                 <!--android:layout_height="wrap_content"-->
                 <!--android:orientation="horizontal"-->
+                <!--android:baselineAligned="false"-->
+                <!--android:padding="5dp"-->
                 <!--android:weightSum="2"-->
-                <!--android:layout_below="@+id/txt_user_name">-->
+                <!--android:visibility="gone">-->
 
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_gravity="start"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:orientation="vertical">-->
 
-                <!--<TextView-->
-                    <!--android:id="@+id/txt_vhn_name"-->
-                    <!--android:layout_width="wrap_content"-->
+                    <!--<TextView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="Occupation"-->
+                        <!--android:layout_gravity="start"-->
+                        <!--android:textColor="@color/secondary"-->
+                        <!--android:textStyle="bold" />-->
+
+                    <!--<TextView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="House Wife"-->
+                        <!--android:layout_gravity="start"-->
+                        <!--android:textColor="@color/secondary"-->
+                        <!--android:textStyle="bold" />-->
+
+                <!--</LinearLayout>-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
                     <!--android:layout_height="wrap_content"-->
-                    <!--android:elevation="2dp"-->
-                    <!--android:text="Julle"-->
-                    <!--android:padding="5dp"-->
-                    <!--android:textSize="18sp"-->
-                    <!--android:textStyle="normal"-->
-                    <!--android:textColor="#000000"-->
-                    <!--android:drawablePadding="5dp"-->
-                    <!--android:drawableStart="@drawable/ic_nurse"-->
+                    <!--android:layout_gravity="start"-->
                     <!--android:layout_weight="1"-->
-                    <!--/>-->
-                <!--<TextView-->
-                    <!--android:id="@+id/txt_phc_name"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:elevation="2dp"-->
-                    <!--android:text="Sai Hospital"-->
-                    <!--android:padding="5dp"-->
-                    <!--android:layout_alignParentRight="true"-->
-                    <!--android:textSize="18sp"-->
-                    <!--android:textStyle="normal"-->
-                    <!--android:textColor="#000000"-->
-                    <!--android:drawablePadding="5dp"-->
-                    <!--android:drawableStart="@drawable/ic_hospital"-->
-                    <!--android:layout_weight="1"-->
-                    <!--/>-->
+                    <!--android:orientation="vertical">-->
+
+                    <!--<TextView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="Husbands Occupation :"-->
+                        <!--android:layout_gravity="end"-->
+                        <!--android:textColor="@color/secondary"-->
+                        <!--android:textStyle="bold" />-->
+
+                    <!--<TextView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="Self Employed"-->
+                        <!--android:layout_gravity="start"-->
+                        <!--android:textColor="@color/secondary"-->
+                        <!--android:textStyle="bold" />-->
+
+                <!--</LinearLayout>-->
+
             <!--</LinearLayout>-->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:text="Height : "
-                    android:layout_gravity="start"
-                    android:textColor="@color/secondary"
-                    android:textStyle="bold" />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:text="152cms"
-                    android:layout_gravity="start"
-                    android:textColor="@color/secondary"
-                    android:textStyle="bold" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:text="Blood Group : "
-                    android:layout_gravity="end"
-                    android:textColor="@color/secondary"
-                    android:textStyle="bold" />
+        <!--</LinearLayout>-->
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:text="156cms"
-                    android:layout_gravity="start"
-                    android:textColor="@color/secondary"
-                    android:textStyle="bold" />
+    <!--</RelativeLayout>-->
 
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="center_horizontal"
-                android:weightSum="2"
-                android:visibility="gone">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="LMP Date : "
-                    android:layout_gravity="start"
-                    android:textColor="@color/secondary"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:text="02/12/2017"
-                    android:layout_gravity="start"
-                    android:textColor="@color/secondary"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="EDD Date : "
-                    android:layout_gravity="end"
-                    android:textColor="@color/secondary"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:text="02/10/2018"
-                    android:layout_gravity="start"
-                    android:textColor="@color/secondary"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:baselineAligned="false"
-                android:padding="5dp"
-                android:weightSum="2"
-                android:visibility="gone">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Occupation"
-                        android:layout_gravity="start"
-                        android:textColor="@color/secondary"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="House Wife"
-                        android:layout_gravity="start"
-                        android:textColor="@color/secondary"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Husbands Occupation :"
-                        android:layout_gravity="end"
-                        android:textColor="@color/secondary"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Self Employed"
-                        android:layout_gravity="start"
-                        android:textColor="@color/secondary"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </RelativeLayout>
-
-</android.support.v7.widget.CardView>
-
+<!--</android.support.v7.widget.CardView>-->
 
     <android.support.design.widget.TabLayout
     android:id="@+id/hre_tabs"
@@ -242,7 +241,6 @@
     android:background="@color/colorPrimary"
     app:tabMode="scrollable"
     app:tabGravity="center"
-    android:layout_below="@+id/cardview"
     app:tabTextColor="#ffffff"/>
 
         <android.support.v4.view.ViewPager

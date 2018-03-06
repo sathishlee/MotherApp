@@ -41,7 +41,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="5dp"
-            android:text="@string/name_of_the_hospital"
+            android:text="PHC"
+            android:textColor="@color/secondary"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -67,7 +68,7 @@
                 android:layout_column="0"
                 android:layout_gravity="fill_horizontal"
                 android:layout_row="0"
-                android:padding="10dp"
+                android:padding="5dp"
                 android:text="@string/date_of_visit"
                 android:textSize="15sp"
                 android:textStyle="bold" />
