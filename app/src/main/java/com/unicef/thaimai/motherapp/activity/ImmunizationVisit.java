@@ -15,7 +15,6 @@ import com.unicef.thaimai.motherapp.R;
 public class ImmunizationVisit extends AppCompatActivity {
 
 
-    TextView txt_edit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +28,6 @@ public class ImmunizationVisit extends AppCompatActivity {
 
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-
-        TextView txt_edit = (TextView) findViewById(R.id.txt_edit);
 
         txt_edit.setOnClickListener(new View.OnClickListener() {
             @Override
