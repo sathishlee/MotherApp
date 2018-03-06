@@ -74,12 +74,12 @@ public class OneFragment extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
 //        return inflater.inflate(R.layout.fragment_first, container, false);
         View view= inflater.inflate(R.layout.item_visit_screen, container, false);
-        but_clinical = view.findViewById(R.id.but_clinical_report);
+       /* but_clinical = view.findViewById(R.id.but_clinical_report);
         but_lab = view.findViewById(R.id.but_lab_report);
         but_ucg = view.findViewById(R.id.but_ucg_report);
         but_clinical.setOnClickListener(this);
         but_lab.setOnClickListener(this);
-        but_ucg.setOnClickListener(this);
+        but_ucg.setOnClickListener(this);*/
         return view;
     }
 
@@ -110,7 +110,7 @@ public class OneFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.but_clinical_report:
+           /* case R.id.but_clinical_report:
                 startActivity(new Intent(getActivity(), ClinicalReportActivity.class));
                 break;
 
@@ -120,7 +120,7 @@ public class OneFragment extends Fragment implements View.OnClickListener {
 
                 case R.id.but_ucg_report:
                 startActivity(new Intent(getActivity(), UCGReportActivity.class));
-                break;
+                break;*/
         }
     }
 
