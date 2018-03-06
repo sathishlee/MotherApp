@@ -258,12 +258,7 @@ if (AppConstants.isMainActivityOpen) {
             startActivity(i);
         }
 
-        else if (id == R.id.infant_tracking_menu){
-            Intent i = new Intent(getApplicationContext(), InfantTrackingActivity.class);
-            startActivity(i);
-        }
-
-        else if (id == R.id.pn_mother_visit){
+        else if (id == R.id.pn_HBNC_visit){
             Intent i = new Intent(getApplicationContext(), PNMotherVisitActivity.class);
             startActivity(i);
         }
