@@ -116,7 +116,6 @@
             <Spinner
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="O+ve"
                 android:textColor="@color/text_primary"
                 android:textSize="@dimen/text_secondary"
                 android:layout_weight="1"

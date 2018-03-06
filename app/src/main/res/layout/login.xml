@@ -52,6 +52,7 @@
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:inputType="number"
+            android:textSize="14.0sp"
             android:digits="0123456789"
             android:hint="@string/picmeid"/>
 
@@ -69,28 +70,11 @@
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
                 android:inputType="number"
+                android:textSize="14.0sp"
                 android:digits="0123456789"
                 android:hint="Date of Birth*"/>
 
         </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_layout_otp"
-                android:layout_width="match_parent"
-                android:visibility="gone"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:id="@+id/otp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:inputType="number"
-                    android:digits="0123456789"
-                    android:hint="Enter OTP" />
-
-            </android.support.design.widget.TextInputLayout>
 
     </LinearLayout>
 
@@ -101,14 +85,16 @@
             android:orientation="vertical">
 
             <Button
-                style="@style/Button"
-                android:id="@+id/btn_login"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:background="@drawable/button_backgroumd"
+                android:text="Login"
+                android:textColor="#ffffff"
+                android:id="@+id/btn_submit"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="24dp"
-                android:padding="10dp"
-                android:text="Login"/>
+                android:padding="10dp"/>
 
         </LinearLayout>
 
@@ -120,16 +106,6 @@
             android:layout_margin="10dp"
             android:visibility="visible"
             android:text="Forgot Picme?"/>
-
-
-        <TextView
-            android:id="@+id/worng_picme"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:visibility="gone"
-            android:layout_margin="10dp"
-            android:text="Wrong Picme?"/>
 
     </LinearLayout>
 

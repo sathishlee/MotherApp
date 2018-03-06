@@ -395,7 +395,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Mother not able to get Mil"
+                android:text="Mother not able to get Milk"
                 android:textSize="@dimen/text_secondary"
                 android:textColor="@color/text_primary"
                 android:layout_weight="1"/>

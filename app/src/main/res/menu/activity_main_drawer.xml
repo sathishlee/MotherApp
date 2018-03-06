@@ -11,7 +11,7 @@
         <item
             android:id="@+id/visit_record"
             android:icon="@drawable/health_care"
-            android:title="Visit Recording" />
+            android:title="Visit Entry" />
 
 
         <!--<item-->
@@ -35,15 +35,15 @@
             android:icon="@drawable/hospital"
             android:title="@string/vhn" />
 
-        <item
-            android:id="@+id/infant_tracking_menu"
-            android:icon="@drawable/silhouette"
-            android:title="Infant Tracking" />
+        <!--<item-->
+            <!--android:id="@+id/infant_tracking_menu"-->
+            <!--android:icon="@drawable/silhouette"-->
+            <!--android:title="Infant Tracking" />-->
 
         <item
-            android:id="@+id/pn_mother_visit"
+            android:id="@+id/pn_HBNC_visit"
             android:icon="@drawable/mother_and_baby"
-            android:title="PN Mother Visit" />
+            android:title="PN / HBNC Visit" />
 
         <item
             android:id="@+id/immunization_menu"
