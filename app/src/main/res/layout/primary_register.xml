@@ -11,27 +11,59 @@
         android:padding="10dp"
         android:orientation="vertical">
 
-        <TextView
-            android:textSize="21sp"
-            android:textStyle="bold"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Primary Registration "
-            android:layout_gravity="center"
-            android:padding="5dp"/>
+            android:baselineAligned="false"
+            android:weightSum="2"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Primary Registration "
+                    android:textAlignment="textStart"
+                    android:textColor="#2F80ED"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:paddingTop="4.0dip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <View
+                android:layout_gravity="center"
+                android:background="@drawable/header_line"
+                android:layout_width="match_parent"
+                android:layout_height="5.0dp"
+                android:layout_weight="1.0"
+                android:layerType="software" />
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10dp"
+            android:padding="5dp"
             android:weightSum="2">
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="Name"
-                android:textColor="@color/text_primary"
+                android:textColor="@color/secondary"
                 android:textSize="@dimen/text_secondary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
@@ -50,14 +82,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10dp"
+            android:padding="5dp"
             android:weightSum="2">
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="Age"
-                android:textColor="@color/text_primary"
+                android:textColor="@color/secondary"
                 android:textSize="@dimen/text_secondary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
@@ -76,26 +108,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10dp"
-            android:weightSum="2">
+            android:padding="5dp">
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="LMP Date"
-                android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
-
-
-
-            <EditText
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="LMP Date"
-                android:textSize="@dimen/text_secondary"
-                android:layout_weight="1"/>
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="LMP Date"
+                    android:textColor="@color/secondary"
+                    android:textSize="@dimen/text_secondary"/>
+
+            </android.support.design.widget.TextInputLayout>
 
 
         </LinearLayout>
@@ -104,38 +130,35 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10dp"
-            android:weightSum="2">
+            android:padding="5dp">
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="EDD Date"
-                android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
-                android:textStyle="bold"
-                android:layout_weight="1"
-                />
-            <EditText
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="EDD Date"
-                android:textSize="@dimen/text_secondary"
-                android:layout_weight="1"/>
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="EDD Date"
+                    android:textColor="@color/secondary"
+                    android:textSize="@dimen/text_secondary"/>
+
+            </android.support.design.widget.TextInputLayout>
+
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp"
+            android:orientation="vertical"
+            android:padding="5dp"
             android:weightSum="2">
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="Occupation"
-                android:textColor="@color/text_primary"
+                android:textColor="@color/secondary"
                 android:textSize="@dimen/text_secondary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
@@ -155,20 +178,19 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-
+            android:orientation="vertical"
+            android:padding="5dp"
             android:weightSum="2">
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="Husband's Occupation"
-                android:textColor="@color/text_primary"
+                android:textColor="@color/secondary"
                 android:textSize="@dimen/text_secondary"
                 android:textStyle="bold"
                 android:layout_weight="1"
-                android:padding="10dp"
-                />
+                android:padding="10dp"/>
 
             <Spinner
                 android:layout_width="fill_parent"
@@ -185,40 +207,38 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp"
+            android:orientation="vertical"
+            android:padding="5dp"
             android:weightSum="2">
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="Age at Marriage"
-                android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
-                android:textStyle="bold"
-                android:layout_weight="1"
-                />
-            <EditText
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Age at Marriage"
-                android:textSize="@dimen/text_secondary"
-                android:layout_weight="1"/>
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Age at Marriage"
+                    android:textColor="@color/secondary"
+                    android:textSize="@dimen/text_secondary"
+                    android:layout_weight="1"/>
+
+            </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp"
+            android:orientation="vertical"
+            android:padding="5dp"
             android:weightSum="2">
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="Consanguineous marriage"
-                android:textColor="@color/text_primary"
+                android:textColor="@color/secondary"
                 android:textSize="@dimen/text_secondary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
@@ -237,15 +257,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp"
+            android:orientation="vertical"
+            android:padding="5dp"
             android:weightSum="2">
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="Histroy of any illness"
-                android:textColor="@color/text_primary"
+                android:textColor="@color/secondary"
                 android:textSize="@dimen/text_secondary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
@@ -264,15 +284,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp"
+            android:orientation="vertical"
+            android:padding="5dp"
             android:weightSum="2">
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="Histroy of any Illness Family"
-                android:textColor="@color/text_primary"
+                android:textColor="@color/secondary"
                 android:textSize="@dimen/text_secondary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
@@ -291,18 +311,19 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp"
+            android:orientation="vertical"
+            android:padding="5dp"
             android:weightSum="2">
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="Any Surgery done before"
-                android:textColor="@color/text_primary"
+                android:textColor="@color/secondary"
                 android:textSize="@dimen/text_secondary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
+
             <Spinner
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -312,7 +333,6 @@
                 android:drawSelectorOnTop="true"
                 android:entries="@array/yes_no"
                 style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
-
 
         </LinearLayout>
 
@@ -328,34 +348,75 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Specify"
+                android:textColor="@color/secondary"
                 android:textSize="@dimen/text_secondary"
                 android:layout_weight="1"/>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp"
-            android:weightSum="2">
-
-            <TextView
-                android:layout_width="fill_parent"
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="5.0dip"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardElevation="2.0dip">
+    <!--welcome-->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Does use"
-                android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
+                android:orientation="vertical"
+                android:padding="5dp">
 
-        </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="false"
+                    android:weightSum="2"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Does use"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/header"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:paddingTop="4.0dip"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <View
+                                android:layout_gravity="center"
+                                android:background="@drawable/header_line"
+                                android:layout_width="match_parent"
+                                android:layout_height="5.0dp"
+                                android:layout_weight="1.0"
+                                android:layerType="software" />
+
+                        </LinearLayout>
+                </LinearLayout>
+        </android.support.v7.widget.CardView>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10dp"
+            android:padding="5dp"
             android:weightSum="2">
 
             <LinearLayout
@@ -369,7 +430,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="Tobacco"
-                    android:textColor="@color/text_primary"
+                    android:textColor="@color/secondary"
                     android:textSize="@dimen/text_secondary"
                     android:textStyle="bold"
                     android:layout_weight="1"/>
@@ -396,7 +457,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="Alcohol"
-                    android:textColor="@color/text_primary"
+                    android:textColor="@color/secondary"
                     android:textSize="@dimen/text_secondary"
                     android:textStyle="bold"
                     android:layout_weight="1"/>
@@ -418,31 +479,38 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10dp"
+            android:padding="5dp"
             android:visibility="gone"
             android:weightSum="2">
 
-            <EditText
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Others*"
-                android:textSize="@dimen/text_secondary"
-                android:layout_weight="1"/>
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Others*"
+                    android:textColor="@color/secondary"
+                    android:textSize="@dimen/text_secondary"
+                    android:layout_weight="1"/>
+
+            </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp"
+            android:orientation="vertical"
+            android:padding="5dp"
             android:weightSum="2">
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="On any Medication"
-                android:textColor="@color/text_primary"
+                android:textColor="@color/secondary"
                 android:textSize="@dimen/text_secondary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
@@ -462,16 +530,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10dp"
+            android:padding="5dp"
             android:visibility="gone"
             android:weightSum="2">
 
-            <EditText
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Specify"
-                android:textSize="@dimen/text_secondary"
-                android:layout_weight="1"/>
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Specify"
+                    android:textColor="@color/secondary"
+                    android:textSize="@dimen/text_secondary"
+                    android:layout_weight="1"/>
+
+            </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
 
@@ -479,15 +554,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp"
+            android:orientation="vertical"
+            android:padding="5dp"
             android:weightSum="2">
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="Allergic to Any Drugs  "
-                android:textColor="@color/text_primary"
+                android:textColor="@color/secondary"
                 android:textSize="@dimen/text_secondary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
@@ -510,28 +585,34 @@
             android:padding="10dp"
             android:visibility="gone"
             android:weightSum="2">
-
-            <EditText
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Specify"
-                android:textSize="@dimen/text_secondary"
-                android:layout_weight="1"/>
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Specify"
+                    android:textColor="@color/secondary"
+                    android:textSize="@dimen/text_secondary"
+                    android:layout_weight="1"/>
+
+            </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp"
+            android:orientation="vertical"
+            android:padding="5dp"
             android:weightSum="2">
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="History of Previous Pregnancy"
-                android:textColor="@color/text_primary"
+                android:textColor="@color/secondary"
                 android:textSize="@dimen/text_secondary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
@@ -550,18 +631,19 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp"
+            android:orientation="vertical"
+            android:padding="5dp"
             android:weightSum="2">
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="LSCS done"
-                android:textColor="@color/text_primary"
+                android:textColor="@color/secondary"
                 android:textSize="@dimen/text_secondary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
+
             <Spinner
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -577,18 +659,19 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp"
+            android:orientation="vertical"
+            android:padding="5dp"
             android:weightSum="2">
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="Any Complications during Pregnancy"
-                android:textColor="@color/text_primary"
+                android:textColor="@color/secondary"
                 android:textSize="@dimen/text_secondary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
+
             <Spinner
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -602,18 +685,70 @@
         </LinearLayout>
 
 
-        <TextView
+        <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:padding="5dp"
-            android:text="Present Pregnancy"/>
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="5.0dip"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardElevation="2.0dip">
+    <!--welcome-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:baselineAligned="false"
+                        android:weightSum="2"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Present Pregnancy"
+                                android:textAlignment="textStart"
+                                android:textColor="@color/header"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:paddingTop="4.0dip"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <View
+                            android:layout_gravity="center"
+                            android:background="@drawable/header_line"
+                            android:layout_width="match_parent"
+                            android:layout_height="5.0dp"
+                            android:layout_weight="1.0"
+                            android:layerType="software" />
+
+                    </LinearLayout>
+        </LinearLayout>
+        </android.support.v7.widget.CardView>
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10dp"
+            android:padding="5dp"
             android:weightSum="2">
 
             <LinearLayout
@@ -627,7 +762,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="G"
-                    android:textColor="@color/text_primary"
+                    android:textColor="@color/secondary"
                     android:textSize="@dimen/text_secondary"
                     android:textStyle="bold"
                     android:layout_weight="1"/>
@@ -654,7 +789,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="P"
-                    android:textColor="@color/text_primary"
+                    android:textColor="@color/secondary"
                     android:textSize="@dimen/text_secondary"
                     android:textStyle="bold"
                     android:layout_weight="1"/>
@@ -677,7 +812,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10dp"
+            android:padding="5dp"
             android:weightSum="2">
 
             <LinearLayout
@@ -691,7 +826,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="A"
-                    android:textColor="@color/text_primary"
+                    android:textColor="@color/secondary"
                     android:textSize="@dimen/text_secondary"
                     android:textStyle="bold"
                     android:layout_weight="1"/>
@@ -718,7 +853,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="L"
-                    android:textColor="@color/text_primary"
+                    android:textColor="@color/secondary"
                     android:textSize="@dimen/text_secondary"
                     android:textStyle="bold"
                     android:layout_weight="1"/>
@@ -740,24 +875,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10dp"
-            android:weightSum="2">
+            android:padding="5dp">
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="Registration Week"
-                android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
-
-            <EditText
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Enter Week Details"
-                android:textSize="@dimen/text_secondary"
-                android:layout_weight="1"/>
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Registration Week"
+                    android:textColor="@color/secondary"
+                    android:textSize="@dimen/text_secondary"
+                    android:layout_weight="1"/>
+
+            </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
 
@@ -765,24 +897,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10dp"
-            android:weightSum="2">
+            android:padding="5dp">
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="AN TT 1st:"
-                android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
-
-            <EditText
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Enter date"
-                android:textSize="@dimen/text_secondary"
-                android:layout_weight="1"/>
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="AN TT 1st:"
+                    android:textColor="@color/secondary"
+                    android:textSize="@dimen/text_secondary"
+                    android:layout_weight="1"/>
+
+            </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
 
@@ -790,24 +919,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10dp"
-            android:weightSum="2">
+            android:padding="5dp">
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="An TT 2nd :"
-                android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
-
-            <EditText
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Enter date"
-                android:textSize="@dimen/text_secondary"
-                android:layout_weight="1"/>
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="An TT 2nd :"
+                    android:textColor="@color/secondary"
+                    android:textSize="@dimen/text_secondary"/>
+
+            </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
 
@@ -815,24 +940,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10dp"
-            android:weightSum="2">
+            android:padding="5dp">
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="IFA Start date :"
-                android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
-
-            <EditText
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Enter date"
-                android:textSize="@dimen/text_secondary"
-                android:layout_weight="1"/>
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="IFA Start date :"
+                    android:textColor="@color/secondary"
+                    android:textSize="@dimen/text_secondary"/>
+
+            </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
 
@@ -840,73 +961,43 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10dp"
-            android:weightSum="2">
+            android:padding="5dp">
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="Height :"
-                android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
-
-            <EditText
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Enter Height"
-                android:textSize="@dimen/text_secondary"
-                android:layout_weight="1"/>
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter Height"
+                    android:textColor="@color/secondary"
+                    android:textSize="@dimen/text_secondary"/>
+
+            </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
-
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp"
-            android:weightSum="2">
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="For Husband"
-                android:gravity="center"
-                android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
-
-        </LinearLayout>
-
-
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp"
-            android:weightSum="2">
+            android:orientation="vertical"
+            android:padding="5dp">
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="Blood Group :"
-                android:textColor="@color/text_primary"
+                android:textColor="@color/secondary"
                 android:textSize="@dimen/text_secondary"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
+                android:textStyle="bold"/>
 
             <Spinner
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_primary"
                 android:textSize="@dimen/text_secondary"
-                android:layout_weight="1"
                 android:drawSelectorOnTop="true"
                 android:entries="@array/blood_group_list"
                 style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
@@ -916,25 +1007,22 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp"
-            android:weightSum="2">
+            android:orientation="vertical"
+            android:padding="5dp">
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="HIV"
-                android:textColor="@color/text_primary"
+                android:textColor="@color/secondary"
                 android:textSize="@dimen/text_secondary"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
+                android:textStyle="bold"/>
 
             <Spinner
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_primary"
                 android:textSize="@dimen/text_secondary"
-                android:layout_weight="1"
                 android:drawSelectorOnTop="true"
                 android:entries="@array/reactive_non"
                 style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
@@ -944,25 +1032,22 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp"
-            android:weightSum="2">
+            android:orientation="vertical"
+            android:padding="5dp">
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="VDRL"
-                android:textColor="@color/text_primary"
+                android:textColor="@color/secondary"
                 android:textSize="@dimen/text_secondary"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
+                android:textStyle="bold"/>
 
             <Spinner
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_primary"
                 android:textSize="@dimen/text_secondary"
-                android:layout_weight="1"
                 android:drawSelectorOnTop="true"
                 android:entries="@array/reactive_non"
                 style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
@@ -972,40 +1057,191 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp"
-            android:weightSum="2">
+            android:orientation="vertical"
+            android:padding="5dp">
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="Hepatitis"
-                android:textColor="@color/text_primary"
+                android:textColor="@color/secondary"
                 android:textSize="@dimen/text_secondary"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
+                android:textStyle="bold"/>
 
             <Spinner
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_primary"
                 android:textSize="@dimen/text_secondary"
-                android:layout_weight="1"
                 android:drawSelectorOnTop="true"
                 android:entries="@array/reactive_non"
                 style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
 
         </LinearLayout>
 
+        <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="5.0dip"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardElevation="2.0dip">
+            <!--welcome-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="5dp">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="false"
+                    android:weightSum="2"
+                    android:orientation="horizontal">
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="For Husband"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/header"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:paddingTop="4.0dip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <View
+                        android:layout_gravity="center"
+                        android:background="@drawable/header_line"
+                        android:layout_width="match_parent"
+                        android:layout_height="5.0dp"
+                        android:layout_weight="1.0"
+                        android:layerType="software" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Blood Group :"
+                android:textColor="@color/secondary"
+                android:textSize="@dimen/text_secondary"
+                android:textStyle="bold"/>
+
+            <Spinner
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:drawSelectorOnTop="true"
+                android:entries="@array/blood_group_list"
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="HIV"
+                android:textColor="@color/secondary"
+                android:textSize="@dimen/text_secondary"
+                android:textStyle="bold"/>
+
+            <Spinner
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:drawSelectorOnTop="true"
+                android:entries="@array/reactive_non"
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="VDRL"
+                android:textColor="@color/secondary"
+                android:textSize="@dimen/text_secondary"
+                android:textStyle="bold"/>
+
+            <Spinner
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:drawSelectorOnTop="true"
+                android:entries="@array/reactive_non"
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Hepatitis"
+                android:textColor="@color/secondary"
+                android:textSize="@dimen/text_secondary"
+                android:textStyle="bold"/>
+
+            <Spinner
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:drawSelectorOnTop="true"
+                android:entries="@array/reactive_non"
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
+
+        </LinearLayout>
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:background="#1e8ffe"
+            android:layout_margin="15dp"
+            android:background="@drawable/button_backgroumd"
             android:text="@string/submit"
             android:textColor="#ffffff"
             android:id="@+id/btn_submit"

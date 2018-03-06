@@ -185,6 +185,8 @@
         <item>Normal</item>
         <item>swollen</item>
         <item>Pus present</item>
+        <item>Redness</item>
+        <item>Yellowish</item>
     </string-array>
 
     <string-array name="array_eye_color">
@@ -276,6 +278,8 @@
         <item>Engorgement</item>
         <item>Skin redness</item>
         <item>Pain full</item>
+        <item>Nipple Inverted</item>
+        <item>Nipple Cracked</item>
     </string-array>
 
     <string-array name="array_nipple_examination">
@@ -458,6 +462,7 @@
         <item>Pedal edema</item>
         <item>Burning Mictutrion</item>
         <item>Fits</item>
+        <item>No Complaints</item>
         <item>Others (Specify)</item>
 
     </string-array>

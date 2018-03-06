@@ -7,9 +7,8 @@
 
     <include layout="@layout/layout_vhn_profile_2" />
 
-
-
     <include layout="@layout/layout_vhn_profile_2" />
 
     <include layout="@layout/layout_vhn_profile_2" />
+
 </LinearLayout>
