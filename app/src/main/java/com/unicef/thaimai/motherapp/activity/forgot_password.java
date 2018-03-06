@@ -16,7 +16,7 @@ public class forgot_password extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.forgot_password);
+        setContentView(R.layout.forgot_picme);
 
         ActionBar actionBar = getSupportActionBar();
 
