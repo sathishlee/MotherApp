@@ -19,4 +19,16 @@ public class Apiconstants {
     public static final String USER_INFO = "home/userinfo/";
 
 
+
+
+    private static final String REGISTER_REQUEST_URL = "http://192.168.100.19/maps/sample.php";
+
+    private static final String REGISTER_REQUEST_URL_UPLOAD = "http://192.168.100.19/maps/";
+
+    private static final String POST_UPLOAD_LOCATION = "sample.php";
+
+    private static final String POST_NEAR_HOSPITAL = "near_by.php?lt=13.0054576&lg=80.2552421";
+
+
+
 }

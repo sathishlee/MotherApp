@@ -189,8 +189,7 @@
                         android:layout_height="wrap_content"
                         android:text="HSC"
                         android:textAlignment="textStart"
-                        android:textColor="#333333"
-                        android:textStyle="bold" />
+                        android:textColor="@color/text_primary"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -214,8 +213,7 @@
                         android:layout_marginStart="5dp"
                         android:text="Normal Viginal"
                         android:layout_gravity="start"
-                        android:textColor="#333333"
-                        android:textStyle="bold" />
+                        android:textColor="@color/text_primary"/>
 
                 </LinearLayout>
 
@@ -311,8 +309,7 @@
                         android:layout_height="wrap_content"
                         android:text="Alive"
                         android:textAlignment="textStart"
-                        android:textColor="#333333"
-                        android:textStyle="bold" />
+                        android:textColor="@color/text_primary" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -336,8 +333,7 @@
                         android:layout_marginStart="5dp"
                         android:text="Alive Single"
                         android:layout_gravity="start"
-                        android:textColor="#333333"
-                        android:textStyle="bold" />
+                        android:textColor="@color/text_primary"/>
 
                 </LinearLayout>
 
@@ -525,8 +521,7 @@
                         android:layout_height="wrap_content"
                         android:text="100001"
                         android:textAlignment="textStart"
-                        android:textColor="#333333"
-                        android:textStyle="bold" />
+                        android:textColor="@color/text_primary"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -550,8 +545,7 @@
                         android:layout_marginStart="5dp"
                         android:text="Term"
                         android:layout_gravity="start"
-                        android:textColor="#333333"
-                        android:textStyle="bold" />
+                        android:textColor="@color/text_primary"/>
 
                 </LinearLayout>
 
@@ -585,8 +579,7 @@
                         android:layout_height="wrap_content"
                         android:text="Yes"
                         android:textAlignment="textStart"
-                        android:textColor="#333333"
-                        android:textStyle="bold" />
+                        android:textColor="@color/text_primary"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -610,8 +603,7 @@
                         android:layout_marginStart="5dp"
                         android:text="No"
                         android:layout_gravity="start"
-                        android:textColor="#333333"
-                        android:textStyle="bold" />
+                        android:textColor="@color/text_primary"/>
 
                 </LinearLayout>
 
@@ -707,8 +699,7 @@
                         android:layout_height="wrap_content"
                         android:text="29-08-2018"
                         android:textAlignment="textStart"
-                        android:textColor="#333333"
-                        android:textStyle="bold" />
+                        android:textColor="@color/text_primary"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -732,8 +723,7 @@
                         android:layout_marginStart="5dp"
                         android:text="Normal"
                         android:layout_gravity="start"
-                        android:textColor="#333333"
-                        android:textStyle="bold" />
+                        android:textColor="@color/text_primary"/>
 
                 </LinearLayout>
 

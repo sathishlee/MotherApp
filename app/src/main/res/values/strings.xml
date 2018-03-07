@@ -158,6 +158,7 @@
 
 
     <string-array name="array_hbnc_visit">
+
         <item>--Select--</item>
         <item>Vist 1</item>
         <item>Vist 2</item>
@@ -166,6 +167,7 @@
         <item>Vist 5</item>
         <item>Vist 6</item>
         <item>Vist 7</item>
+
     </string-array>
 
     <string-array name="array_umbilical_stump">
@@ -203,11 +205,13 @@
         <item>Pustules</item>
         <item>Yellowish</item>
     </string-array>
+
     <string-array name="array_breast_feeding">
         <item>--Select--</item>
         <item>Yes</item>
         <item>No</item>
     </string-array>
+
     <string-array name="array_breast_feeding_no_reasons">
         <item>--Select--</item>
         <item>Mother dead</item>
@@ -547,4 +551,11 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="permission_denied_explanation">Permission Denied</string>
+    <string name="settings">Settings</string>
+    <string name="permission_rationale">Permission Rational</string>
+    <string name="title_alert_no_intenet">No Internet</string>
+    <string name="msg_alert_no_internet">Check Internet Connection</string>
+    <string name="btn_label_refresh">Refresh</string>
+    <string name="no_google_playservice_available">No Google Play Service</string>
 </resources>

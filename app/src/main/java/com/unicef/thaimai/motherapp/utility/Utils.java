@@ -1,4 +1,4 @@
-package com.unicef.thaimai.motherapp.Utility;
+package com.unicef.thaimai.motherapp.utility;
 
 /**
  * Created by Suthishan on 19-02-2018.

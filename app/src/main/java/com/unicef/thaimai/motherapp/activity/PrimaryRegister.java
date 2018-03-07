@@ -60,6 +60,8 @@ public class PrimaryRegister extends AppCompatActivity {
 
     private void onClickListner() {
 
+
+
     }
 
 

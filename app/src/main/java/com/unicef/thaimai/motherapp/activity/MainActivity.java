@@ -45,6 +45,9 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
 if (AppConstants.isMainActivityOpen) {
     showAlertDialog();
 
@@ -72,6 +75,7 @@ if (AppConstants.isMainActivityOpen) {
         navigationView.setNavigationItemSelectedListener(this);
 
         setupNavigationView();
+
 
 //        tam = (TextView)findViewById(R.id.tam);
 //        eng = (TextView) findViewById(R.id.eng);

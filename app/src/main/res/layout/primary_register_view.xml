@@ -10,7 +10,7 @@
         android:id="@+id/edit_details"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_gravity="bottom"
+        android:layout_gravity="bottom|end"
         android:background="@color/colorPrimary"
         app:backgroundTint="@color/colorPrimary"
         android:layout_margin="10dp"
@@ -24,7 +24,7 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
-        <include layout="@layout/layout_baby_delivery_details" />
+        <include layout="@layout/primary_details" />
 
     </FrameLayout>
 
