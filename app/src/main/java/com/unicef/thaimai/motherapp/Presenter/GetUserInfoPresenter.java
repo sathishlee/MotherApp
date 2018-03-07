@@ -37,8 +37,12 @@ public class GetUserInfoPresenter implements UserInfoInteractor{
 
     }
 
-
     @Override
+    public void getUserInfo(String pickmeid) {
+
+    }
+
+/*    @Override
     public void getUserInfo(String pickmeid) {
 
       view.showProgress();
@@ -111,5 +115,5 @@ view.showErrorMessage("success");
         // Adding request to request queue
         VolleySingleton.getInstance(activity).addToRequestQueue(strReq);
 
-    }
+    }*/
 }

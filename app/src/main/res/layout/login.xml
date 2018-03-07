@@ -46,7 +46,7 @@
             android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/picme_id"
+            android:id="@+id/edt_picme_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -54,25 +54,26 @@
             android:inputType="number"
             android:textSize="14.0sp"
             android:digits="0123456789"
-            android:hint="@string/picmeid"/>
+            android:hint="@string/picmeid"
+            android:text="1000000000001"/>
 
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/input_dob"
+            android:id="@+id/input_layout_dob"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/dob"
+                android:id="@+id/edt_dob"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
-                android:inputType="number"
+                android:inputType="date"
                 android:textSize="14.0sp"
-                android:digits="0123456789"
-                android:hint="Date of Birth*"/>
+                android:hint="Date of Birth*"
+                android:text="02-02-1989"/>
 
         </android.support.design.widget.TextInputLayout>
 
@@ -99,7 +100,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/forgot_picme"
+            android:id="@+id/txt_forgot_picme"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"

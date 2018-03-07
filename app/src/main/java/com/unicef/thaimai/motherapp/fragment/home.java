@@ -92,7 +92,7 @@ public class home extends Fragment {
         pDialog.setMessage("Please Wait ...");
 
 
-        getUserInfo("100000000013");
+        //        getUserInfo("100000000013");
 
 
 
@@ -134,7 +134,7 @@ public class home extends Fragment {
     }
 
 
-        private void getUserInfo(String picmeId) {
+        /*private void getUserInfo(String picmeId) {
 
 
 
@@ -239,7 +239,7 @@ public class home extends Fragment {
 
 
 
-    }
+    }*/
 
    /* private void getSharedValues() {
             String str_json_user_info = preferenceData.getUserInfo();
