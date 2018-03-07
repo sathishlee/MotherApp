@@ -79,6 +79,9 @@ public class PrimaryRegister extends AppCompatActivity implements View.OnClickLi
         primaryRegisterPresenter = new PrimaryRegisterPresenter(PrimaryRegister.this, this);
         primaryRegisterPresenter.getAllMotherPrimaryRegistration("1000000000001");
 
+
+
+
         txtMotherName = (TextView) findViewById(R.id.txt_name);
         txtMotherAge = (TextView) findViewById(R.id.txt_mother_age);
         edtLmpDate = (EditText) findViewById(R.id.edt_lmp_date);
