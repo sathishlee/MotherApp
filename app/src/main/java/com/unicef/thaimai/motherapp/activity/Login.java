@@ -11,8 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-//import com.stfalcon.smsverifycatcher.OnSmsCatchListener;
-//import com.stfalcon.smsverifycatcher.SmsVerifyCatcher;
+import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.LoginPresenter;
 import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.constant.AppConstants;
@@ -37,7 +36,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
     ProgressDialog pDialog;
 
     LoginPresenter loginPresenter;
-
+    PreferenceData preferenceData;
     /* ProgressDialog pDialog;
     TextView forgot_picme, worng_picme;
     EditText txt_picmeId;
@@ -79,6 +78,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
          pDialog.setMessage("Please Wait ...");
 
          loginPresenter =new LoginPresenter(Login.this,this);
+         preferenceData = new PreferenceData(this);
 
          btn_login = (Button) findViewById(R.id.btn_submit);
         edtPicme = (EditText) findViewById(R.id.edt_picme_id);
@@ -141,7 +141,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
 
     @Override
     public void hideProgress() {
-        pDialog.dismiss();
+        pDialog.hide();
     }
 
     @Override
@@ -154,12 +154,12 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
             String message = jObj.getString("message");
             if (status==1){
                 Log.d("message---->",message);
+                preferenceData.storeUserInfo(jObj.getString("picmeId"),jObj.getString("mName"),jObj.getString("motherAge"),jObj.getString("motherStatus"));
                 if (message.equalsIgnoreCase("Successfully Logined")){
                     startActivity(new Intent(getApplicationContext(),MainActivity.class));
                     finish();
                 }
                 else{
-                    startActivity(new Intent(getApplicationContext(),PrimaryRegister.class));
                     AppConstants.BACK_BUTTON_GONE=false;
                     finish();
 

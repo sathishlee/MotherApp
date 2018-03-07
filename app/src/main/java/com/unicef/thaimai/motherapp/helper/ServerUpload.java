@@ -1,8 +1,10 @@
+
 package com.unicef.thaimai.motherapp.helper;
 
-/**
- * Created by Suthishan on 20/1/2018.
- */
+
+/* Created by Suthishan on 20/1/2018.*/
+
+
 
 import android.app.DownloadManager;
 import android.util.Log;
@@ -15,7 +17,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.unicef.thaimai.motherapp.Interface.Nbh;
 import com.unicef.thaimai.motherapp.activity.MainActivity;
-import com.unicef.thaimai.motherapp.activity.NearbyHospital;
+//import com.unicef.thaimai.motherapp.activity.NearbyHospital;
 import com.unicef.thaimai.motherapp.volleyservice.VolleySingleton;
 
 import org.json.JSONArray;
@@ -94,7 +96,7 @@ public class ServerUpload  {
     }
 
 
-    public void getNearByHospitals(final String latitude, final String longitude, NearbyHospital nearByHospital, final Nbh nbh)
+   /* public void getNearByHospitals(final String latitude, final String longitude, NearbyHospital nearByHospital, final Nbh nbh)
     {                Log.e("URL", REGISTER_REQUEST_URL_UPLOAD + POST_NEAR_HOSPITAL);
         this.nbh = nbh;
         StringRequest getNearHospitals =new StringRequest(Request.Method.GET, REGISTER_REQUEST_URL_UPLOAD + POST_NEAR_HOSPITAL, new Response.Listener<String>() {
@@ -120,7 +122,7 @@ public class ServerUpload  {
         VolleySingleton.getInstance(nearByHospital).addToRequestQueue(getNearHospitals);
 
 
-    }
+    }*/
 
 
 }

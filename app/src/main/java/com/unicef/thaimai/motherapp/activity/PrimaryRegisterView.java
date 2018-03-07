@@ -145,8 +145,15 @@ pDialog.hide();
                 txt_an_tt_2nd.setText(jObj.getString("mANTT2"));
 
               txt_ifa_start_date.setText(jObj.getString("mIFAStateDate"));
-//                spMotherOcc.setPrompt("mMotherOccupation");
-//                spHusbandOcc.setPrompt("mHusbandOccupation");
+                txt_height.setText(jObj.getString("mHeight"));
+                txt_blood_group.setText(jObj.getString("mBloodGroup"));
+                txt_hiv.setText(jObj.getString("mHIV"));
+                txt_vdrl.setText(jObj.getString("mVDRL"));
+                txt_Hepatitis.setText(jObj.getString("mHepatitis"));
+                txt_hus_blood_group.setText(jObj.getString("hBloodGroup"));
+                txt_hus_hiv.setText(jObj.getString("hVDRL"));
+                txt_hus_vdrl.setText(jObj.getString("hHIV"));
+                txt_hus_Hepatitis.setText(jObj.getString("hHepatitis"));
             }else{
                 Log.d("message---->",message);
 

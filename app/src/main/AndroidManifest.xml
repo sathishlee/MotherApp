@@ -37,11 +37,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
 
@@ -53,7 +49,11 @@
             android:name=".activity.Login"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
             </activity>
         <activity
             android:name=".activity.ForgotPicme"
@@ -71,9 +71,9 @@
             android:name=".activity.MapsActivity"
             android:label="@string/title_activity_maps"
             android:theme="@style/CustomActivityAnimation" />
-        <activity
+        <!--<activity
             android:name=".activity.NearbyHospital"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme" />-->
         <activity
             android:name=".activity.ReferralList"
             android:theme="@style/AppTheme" />
@@ -103,6 +103,9 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".activity.PrimaryRegister"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.PrimaryRegisterView"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".activity.splashscreen"
@@ -161,7 +164,7 @@
         </activity>
 
 
-        <service android:name=".utility.LocationServices" />
+        <!--<service android:name=".Utility.LocationServices" />-->
 
     </application>
 
