@@ -63,5 +63,7 @@
             android:padding="7.0dip"
             android:background="@drawable/phone_background"
             app:srcCompat="@drawable/phone_call" />
+
     </LinearLayout>
+
 </android.support.v7.widget.CardView>

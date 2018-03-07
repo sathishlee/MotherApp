@@ -259,7 +259,7 @@ if (AppConstants.isMainActivityOpen) {
         }
 
         else if (id == R.id.pn_HBNC_visit){
-            Intent i = new Intent(getApplicationContext(), PNMotherVisitActivity.class);
+            Intent i = new Intent(getApplicationContext(), PnHbncVisit.class);
             startActivity(i);
         }
 
