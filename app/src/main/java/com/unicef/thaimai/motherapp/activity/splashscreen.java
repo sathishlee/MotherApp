@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
-import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
@@ -23,7 +22,6 @@ import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
-import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.GetUserInfoPresenter;
 import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.constant.Apiconstants;
@@ -36,7 +34,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
-import com.unicef.thaimai.motherapp.constant.AppConstants;
+
 import com.unicef.thaimai.motherapp.model.responsemodel.LoginResponseModel;
 import com.unicef.thaimai.motherapp.view.LoginViews;
 
@@ -121,12 +119,12 @@ public class Splashscreen extends Activity implements LoginViews {
         };
         background.start();
 //        if(session_status) {
-            getUserInfo("100000000013");
+//            getUserInfo("100000000013");
 //        }
 
     }
 
-    private void getUserInfo(String picmeId) {
+    /*private void getUserInfo(String picmeId) {
 
 
 
@@ -223,7 +221,7 @@ public class Splashscreen extends Activity implements LoginViews {
         VolleySingleton.getInstance(this).addToRequestQueue(strReq);
 
 
-    }
+    }*/
 
     @Override
     protected void onDestroy() {
@@ -244,7 +242,7 @@ public class Splashscreen extends Activity implements LoginViews {
     }
 
     @Override
-    public void showPickmeResult(LoginResponseModel loginResponseModel) {
+    public void showPickmeResult(String loginResponseModel) {
 
     }
 

@@ -1,63 +1,49 @@
 package com.unicef.thaimai.motherapp.activity;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.net.ConnectivityManager;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.NetworkError;
-import com.android.volley.NoConnectionError;
-import com.android.volley.ParseError;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.ServerError;
-import com.android.volley.TimeoutError;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 //import com.stfalcon.smsverifycatcher.OnSmsCatchListener;
 //import com.stfalcon.smsverifycatcher.SmsVerifyCatcher;
-import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.LoginPresenter;
 import com.unicef.thaimai.motherapp.R;
-import com.unicef.thaimai.motherapp.constant.Apiconstants;
+import com.unicef.thaimai.motherapp.constant.AppConstants;
 import com.unicef.thaimai.motherapp.model.responsemodel.LoginResponseModel;
 import com.unicef.thaimai.motherapp.view.LoginViews;
-import com.unicef.thaimai.motherapp.volleyservice.VolleySingleton;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
+public class Login extends AppCompatActivity implements View.OnClickListener, LoginViews
+//        implements LoginViews
+{
+    Button btn_login;
+    EditText  edtPicme,edtDob;
+    TextInputLayout iplPicmeId, iplDob;
 
-public class Login extends AppCompatActivity implements LoginViews {
+    TextView txtForgetPicme;
+    String strPicme,strDob;
+
 
     ProgressDialog pDialog;
-    Button btn_login;
+
+    LoginPresenter loginPresenter;
+
+    /* ProgressDialog pDialog;
     TextView forgot_picme, worng_picme;
     EditText txt_picmeId;
     EditText txt_otp;
     Intent intent;
-    TextInputLayout input_layout_picme_id, input_layout_otp;
+    TextInputLayout iplPicmeId, iplDob;
     Activity mActivity;
     ConnectivityManager conMgr;
     String url=null;
@@ -75,22 +61,149 @@ public class Login extends AppCompatActivity implements LoginViews {
     public static final String my_shared_preferences = "my_shared_preferences";
     public static final String session_status = "session_status";
 
-    LoginPresenter loginPresenter;
     PreferenceData preferenceData;
 //    private SmsVerifyCatcher smsVerifyCatcher;
 
-    boolean isPickmeAvailable=false;
+    boolean isPickmeAvailable=false;*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-        mActivity=this;
-         preferenceData = new PreferenceData(mActivity);
+        initUI();
+        onClickListner();
+
+
+
+    }
+
+     private void initUI() {
+         pDialog = new ProgressDialog(this);
+         pDialog.setCancelable(false);
+         pDialog.setMessage("Please Wait ...");
+
+         loginPresenter =new LoginPresenter(Login.this,this);
+
+         btn_login = (Button) findViewById(R.id.btn_submit);
+        edtPicme = (EditText) findViewById(R.id.edt_picme_id);
+        edtDob = (EditText) findViewById(R.id.edt_dob);
+        txtForgetPicme = (TextView) findViewById(R.id.txt_forgot_picme);
+                 iplPicmeId = (TextInputLayout) findViewById(R.id.input_layout_picme_id);
+         iplDob = (TextInputLayout) findViewById(R.id.input_layout_dob);
+     }
+    private void onClickListner() {
+        btn_login.setOnClickListener(this);
+        txtForgetPicme.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btn_submit: getValue(); break;
+            case R.id.txt_forgot_picme: goforgetPicmepage(); break;
+        }
+
+    }
+
+    private void goforgetPicmepage() {
+        startActivity(new Intent(getApplicationContext(),ForgotPicme.class));
+    }
+
+    private void getValue() {
+        strPicme = edtPicme.getText().toString();
+        strDob = edtDob.getText().toString();
+
+
+        if (strPicme.equalsIgnoreCase("")){
+            iplPicmeId.setError("Pickme ID is Empty");
+        }
+        if (strDob.equalsIgnoreCase("")){
+            iplDob.setError("Dob is Empty");
+        }
+        if (strPicme.length()<13){
+            iplPicmeId.setError("Enter Correct Picme ID");
+        }
+        if (strPicme.length()>13){
+            iplPicmeId.setError("Enter Correct Picme ID");
+        }
+        else{
+//            url = Apiconstants.BASE_URL+Apiconstants.LOG_IN_CHECK_PIKME+picmeId;
+//                        checkLogin(picmeId,"");
+//            checkLogin(url);
+
+                        loginPresenter.checkPickmeId(strPicme,strDob);
+
+        }
+        Log.e("picme id---->",edtPicme.getText().toString());
+        Log.e("dob---->",edtDob.getText().toString());
+    }
+//     LoginViews methods starts
+    @Override
+    public void showProgress() {
+              pDialog.show();
+    }
+
+    @Override
+    public void hideProgress() {
+        pDialog.dismiss();
+    }
+
+    @Override
+    public void showPickmeResult(String response) {
+            Log.d("Response success",response);
+        JSONObject jObj = null;
+        try {
+            jObj = new JSONObject(response);
+            int status = jObj.getInt("status");
+            String message = jObj.getString("message");
+            if (status==1){
+                Log.d("message---->",message);
+                if (message.equalsIgnoreCase("Successfully Logined")){
+                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                    finish();
+                }
+                else{
+                    startActivity(new Intent(getApplicationContext(),PrimaryRegister.class));
+                    AppConstants.BACK_BUTTON_GONE=false;
+                    finish();
+
+                }
+            }else{
+                Log.d("message---->",message);
+
+                startActivity(new Intent(getApplicationContext(),PrimaryRegister.class));
+
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void showErrorMessage(String errormsg) {
+        Log.d("Response field",errormsg);
+
+    }
+
+    @Override
+    public void showVerifyOtpResult(LoginResponseModel loginResponseModel) {
+
+    }
+
+    // LoginViews  methods end
 
 
 
 
-        conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+
+//        mActivity=this;
+//         preferenceData = new PreferenceData(mActivity);
+
+
+
+
+     /*   conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         {
             if (conMgr.getActiveNetworkInfo() != null
                     && conMgr.getActiveNetworkInfo().isAvailable()
@@ -99,13 +212,13 @@ public class Login extends AppCompatActivity implements LoginViews {
                 Toast.makeText(getApplicationContext(), "No Internet Connection",
                         Toast.LENGTH_LONG).show();
             }
-        }
+        }*/
 
-        input_layout_picme_id = (TextInputLayout) findViewById(R.id.input_layout_picme_id);
+//        iplPicmeId = (TextInputLayout) findViewById(R.id.iplPicmeId);
 
-        input_layout_otp.setVisibility(View.GONE);
+//        iplDob.setVisibility(View.GONE);
 
-        txt_picmeId = (EditText) findViewById(R.id.picme_id);
+//        txt_picmeId = (EditText) findViewById(R.id.picme_id);
 
 //        smsVerifyCatcher = new SmsVerifyCatcher(this, new OnSmsCatchListener<String>() {
 //            @Override
@@ -120,7 +233,7 @@ public class Login extends AppCompatActivity implements LoginViews {
 //        smsVerifyCatcher.setPhoneNumberFilter("TX-SATVAT");
 
 
-        forgot_picme = (TextView) findViewById(R.id.forgot_picme);
+    /*    forgot_picme = (TextView) findViewById(R.id.forgot_picme);
 
         forgot_picme.setOnClickListener(new View.OnClickListener(){
 
@@ -129,14 +242,14 @@ public class Login extends AppCompatActivity implements LoginViews {
                 Intent intent = new Intent(Login.this, ForgotPicme.class);
                 startActivity(intent);
             }
-        });
+        });*/
 
 
 
 //        loginPresenter = new LoginPresenter(mActivity,this);
 
 
-        btn_login = (Button) findViewById(R.id.btn_submit);
+        /*btn_login = (Button) findViewById(R.id.btn_submit);
 
         btn_login.setOnClickListener(new View.OnClickListener() {
 
@@ -150,17 +263,17 @@ public class Login extends AppCompatActivity implements LoginViews {
 
 
                 if (picmeId.equalsIgnoreCase("")){
-                    input_layout_picme_id.setError("Pickme ID is Empty");
+                    iplPicmeId.setError("Pickme ID is Empty");
                 }
                 if (picmeId.length()<12){
-                    input_layout_picme_id.setError("Enter Correct Picme ID");
+                    iplPicmeId.setError("Enter Correct Picme ID");
                 }    if (picmeId.length()>12){
-                    input_layout_picme_id.setError("Enter Correct Picme ID");
+                    iplPicmeId.setError("Enter Correct Picme ID");
                 }
                 else{
                     if (isPickmeAvailable){
                         if (otp.equalsIgnoreCase("")){
-                            input_layout_otp.setError("Enter Otp");
+                            iplDob.setError("Enter Otp");
                             isPickmeAvailable=false;
                         }else{
 //                            checkLogin(picmeId,Otp);
@@ -182,9 +295,9 @@ public class Login extends AppCompatActivity implements LoginViews {
                 }
             }
         });
-    }
+    }*/
 
-    private void verifyOtp(String url) {
+    /*private void verifyOtp(String url) {
 
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
@@ -273,22 +386,22 @@ public class Login extends AppCompatActivity implements LoginViews {
         // Adding request to request queue
         VolleySingleton.getInstance(this).addToRequestQueue(strReq);
 
-    }
+    }*/
 
-    private void checkLogin(final String url) {
+   /* private void checkLogin(final String url) {
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
         pDialog.setMessage("Please Wait ...");
         showDialog();
 
-        /*    if (!isPickmeAvailable){
+        *//*    if (!isPickmeAvailable){
 
                 url = Apiconstants.BASE_URL+Apiconstants.LOG_IN_CHECK_PIKME+picmeId;
 
             }else{
                 url = Apiconstants.BASE_URL+Apiconstants.LOG_IN_CHECK_PIKME+picmeId+"/"+txt_otp;
 
-            }*/
+            }*//*
                     Log.e("url",url);
 
         StringRequest strReq = new StringRequest(Request.Method.POST,url , new Response.Listener<String>() {
@@ -304,7 +417,7 @@ public class Login extends AppCompatActivity implements LoginViews {
                     int status = jObj.getInt("status");
                     // Check for error in json
                     if (status == 1) {
-                        input_layout_otp.setVisibility(View.VISIBLE);
+                        iplDob.setVisibility(View.VISIBLE);
                         isPickmeAvailable = true;
                         txt_picmeId.setEnabled(false);
 //                        String picmeId = jObj.getString(Constants.PICME_ID);
@@ -312,18 +425,18 @@ public class Login extends AppCompatActivity implements LoginViews {
                         txt_picmeId.setEnabled(false);
 //                        String picmeId = jObj.getString(Constants.PICME_ID);
 //                        String Otp = jObj.getString(Constants.OTP);
-                        input_layout_picme_id.setEnabled(false);
-                        input_layout_picme_id.setFocusable(false);
-                        input_layout_picme_id.setBackgroundColor(Color.TRANSPARENT);
+                        iplPicmeId.setEnabled(false);
+                        iplPicmeId.setFocusable(false);
+                        iplPicmeId.setBackgroundColor(Color.TRANSPARENT);
                         forgot_picme.setVisibility(View.GONE);
                         worng_picme.setVisibility(View.VISIBLE);
                         worng_picme.setOnClickListener(new View.OnClickListener(){
                             @Override
                             public void onClick(View v){
-                                input_layout_picme_id.setFocusable(true);
-                                input_layout_picme_id.setEnabled(true);
+                                iplPicmeId.setFocusable(true);
+                                iplPicmeId.setEnabled(true);
                                 worng_picme.setVisibility(View.GONE);
-                                input_layout_otp.setVisibility(View.GONE);
+                                iplDob.setVisibility(View.GONE);
                                 forgot_picme.setVisibility(View.VISIBLE);
                             }
                         });
@@ -384,10 +497,10 @@ public class Login extends AppCompatActivity implements LoginViews {
 
         // Adding request to request queue
         VolleySingleton.getInstance(this).addToRequestQueue(strReq);
-    }
+    }*/
 
 
-    private void showDialog() {
+ /*    private void showDialog() {
         if (!pDialog.isShowing())
             pDialog.show();
     }
@@ -398,7 +511,7 @@ public class Login extends AppCompatActivity implements LoginViews {
     }
 
 
-    @Override
+   @Override
     public void showProgress() {
 
         pDialog = new ProgressDialog(this);
@@ -425,9 +538,9 @@ public class Login extends AppCompatActivity implements LoginViews {
     @Override
     public void showVerifyOtpResult(LoginResponseModel loginResponseModel) {
 
-    }
+    }*/
 
-    private String parseCode(String message) {
+   /* private String parseCode(String message) {
         Pattern p = Pattern.compile("\\b\\d{4}\\b");
         Matcher m = p.matcher(message);
         String code = "";
@@ -435,26 +548,26 @@ public class Login extends AppCompatActivity implements LoginViews {
             code = m.group(0);
         }
         return code;
-    }
+    }*/
 
-    @Override
+  /*  @Override
     protected void onStart() {
         super.onStart();
 //        smsVerifyCatcher.onStart();
-    }
+    }*/
 
-    @Override
+   /* @Override
     protected void onStop() {
         super.onStop();
 //        smsVerifyCatcher.onStop();
-    }
+    }*/
 
     /**
      * need for Android 6 real time permissions
      */
-    @Override
+  /*  @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 //        smsVerifyCatcher.onRequestPermissionsResult(requestCode, permissions, grantResults);
-    }
+    }*/
 }

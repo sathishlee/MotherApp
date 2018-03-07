@@ -94,7 +94,7 @@ public class Register extends AppCompatActivity {
 
         //EditText Declaration
         user_name = (EditText)findViewById(R.id.name);
-        picme_id = (EditText) findViewById(R.id.picme_id);
+        picme_id = (EditText) findViewById(R.id.edt_picme_id);
         user_dob = (EditText) findViewById(R.id.dob);
         mobile = (EditText) findViewById(R.id.mobile_number);
         alternative_number = (EditText) findViewById(R.id.alternative_number);

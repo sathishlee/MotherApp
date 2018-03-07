@@ -1,7 +1,5 @@
 package com.unicef.thaimai.motherapp.view;
 
-import android.content.Context;
-
 import com.unicef.thaimai.motherapp.model.responsemodel.LoginResponseModel;
 
 /**
@@ -11,7 +9,7 @@ import com.unicef.thaimai.motherapp.model.responsemodel.LoginResponseModel;
 public interface LoginViews {
     void showProgress();
     void hideProgress();
-    void showPickmeResult(LoginResponseModel loginResponseModel);
+    void showPickmeResult(String loginResponseModel);
     void showErrorMessage(String string);
     void showVerifyOtpResult(LoginResponseModel loginResponseModel);
 
