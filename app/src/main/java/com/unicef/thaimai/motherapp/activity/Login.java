@@ -71,9 +71,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
         setContentView(R.layout.login);
         initUI();
         onClickListner();
-
-
-
     }
 
      private void initUI() {
