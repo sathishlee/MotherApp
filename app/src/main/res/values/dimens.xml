@@ -18,7 +18,7 @@
 
 
     <dimen name="text_title">24.0sp</dimen>
-    <dimen name="text_lable">16.0sp</dimen>
+    <dimen name="text_lable">14.0sp</dimen>
     <dimen name="text_content_list">18.0sp</dimen>
 
 

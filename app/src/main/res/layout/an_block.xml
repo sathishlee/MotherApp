@@ -119,8 +119,7 @@
                 android:layout_height="wrap_content"
                 android:text="12Wks"
                 android:textAlignment="textStart"
-                android:textColor="#333333"
-                android:textStyle="bold" />
+                android:textColor="@color/text_primary"/>
             </LinearLayout>
 
         <LinearLayout
@@ -144,8 +143,7 @@
                 android:layout_marginStart="5dp"
                 android:text="56kg"
                 android:layout_gravity="start"
-                android:textColor="#333333"
-                android:textStyle="bold" />
+                android:textColor="@color/text_primary"/>
 
         </LinearLayout>
     </LinearLayout>
@@ -178,8 +176,7 @@
                     android:layout_height="wrap_content"
                     android:text="02/12/2017"
                     android:textAlignment="textStart"
-                    android:textColor="#333333"
-                    android:textStyle="bold" />
+                    android:textColor="@color/text_primary"/>
             </LinearLayout>
 
             <LinearLayout
@@ -203,8 +200,7 @@
                     android:layout_marginStart="5dp"
                     android:text="02/10/2018"
                     android:layout_gravity="start"
-                    android:textColor="#333333"
-                    android:textStyle="bold" />
+                    android:textColor="@color/text_primary"/>
 
             </LinearLayout>
         </LinearLayout>

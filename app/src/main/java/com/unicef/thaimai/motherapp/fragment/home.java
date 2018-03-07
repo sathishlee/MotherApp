@@ -91,6 +91,8 @@ public class home extends Fragment {
         pDialog.setCancelable(false);
         pDialog.setMessage("Please Wait ...");
 
+        getActivity().setTitle("Dashboard");
+
 
         //        getUserInfo("100000000013");
 

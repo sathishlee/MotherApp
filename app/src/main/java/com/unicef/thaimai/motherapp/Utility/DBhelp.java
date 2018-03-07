@@ -1,4 +1,4 @@
-package com.unicef.thaimai.motherapp.Utility;
+package com.unicef.thaimai.motherapp.utility;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
