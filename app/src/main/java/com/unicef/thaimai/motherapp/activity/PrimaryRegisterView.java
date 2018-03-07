@@ -24,8 +24,9 @@ public class PrimaryRegisterView extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.primary_register);
+        setContentView(R.layout.primary_details);
         initUI();
 
     }
@@ -70,8 +71,8 @@ public class PrimaryRegisterView extends AppCompatActivity {
         txt_hus_vdrl = (TextView) findViewById(R.id.txt_hus_vdrl);
         txt_hus_Hepatitis = (TextView) findViewById(R.id.txt_hus_Hepatitis);
 
-
     }
+
 
 
 }
