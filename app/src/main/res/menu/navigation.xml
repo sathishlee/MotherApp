@@ -20,7 +20,7 @@
 
     <item
         android:id="@+id/baby"
-        android:title="@string/baby"
+        android:title="Delivery Details"
         android:icon="@drawable/vector_drawable_baby_with_diaper"/>
 
     <!--<item

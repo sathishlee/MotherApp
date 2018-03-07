@@ -45,6 +45,7 @@ public class baby extends Fragment  {
         View view = null;
         view = inflater.inflate(R.layout.fragment_baby_delivery_details, container, false);
 
+        getActivity().setTitle("Delivery Details");
         /*mExpandButton1 =view.findViewById(R.id.expandableButton1);
         mExpandButton2 =view.findViewById(R.id.expandableButton2);
         mExpandButton3 =view.findViewById(R.id.expandableButton3);
