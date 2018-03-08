@@ -9,4 +9,7 @@ public interface PrimaryRegisterViews {
     void hideProgress();
     void getAllMotherPrimaryRegisterSuccess(String response);
     void getAllMotherPrimaryRegisterFailiur(String response);
+
+    void postDataSuccess(String response);
+    void postDataFailiure(String response);
 }

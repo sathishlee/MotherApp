@@ -10,6 +10,7 @@ public class Apiconstants {
 //    public static final String LOG_IN_CHECK_PICME = "login/";                  //100000000013
     public static final String LOG_IN_CHECK_PIKME = "login/check/";
     public static final String POST_PRIMARY_INFO = "Mother/mPrimaryInfo";
+    public static final String POST_PRIMARY_INFO_UPDATE = "mother/mPrimaryInfoUpdate";
     public static final String POST_DASH_BOARD = "mother/mDashboard/";/*    http://192.168.100.19/thaimaiapp/api/Mother/mPrimaryInfo
      /*    http://192.168.100.19/thaimaiapp/api/Mother/mPrimaryInfo
 */

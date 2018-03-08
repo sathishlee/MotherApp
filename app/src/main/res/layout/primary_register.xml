@@ -311,7 +311,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="5dp"
-            android:weightSum="2">
+            android:weightSum="3">
 
             <TextView
                 android:layout_width="fill_parent"
@@ -331,7 +331,20 @@
                 android:drawSelectorOnTop="true"
                 android:entries="@array/illness"
                 style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
+                <EditText
+                    android:id="@+id/edt_other_history_illness"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Other"
+                    android:textColor="@color/secondary"
+                    android:textSize="@dimen/text_secondary"
+                    android:layout_weight="1"/>
+
+            </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -339,7 +352,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="5dp"
-            android:weightSum="2">
+            android:weightSum="3">
 
             <TextView
                 android:layout_width="fill_parent"
@@ -359,7 +372,14 @@
                 android:drawSelectorOnTop="true"
                 android:entries="@array/illness_family"
                 style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
-
+            <EditText
+                android:id="@+id/edt_history_illness_fmly"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Age at Marriage"
+                android:textColor="@color/secondary"
+                android:textSize="@dimen/text_secondary"
+                android:layout_weight="1"/>
         </LinearLayout>
 
         <LinearLayout
@@ -367,7 +387,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="5dp"
-            android:weightSum="2">
+            android:weightSum="3">
 
             <TextView
                 android:layout_width="fill_parent"
@@ -388,7 +408,14 @@
                 android:drawSelectorOnTop="true"
                 android:entries="@array/yes_no"
                 style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
-
+            <EditText
+                android:id="@+id/edt_any_surgery_before"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="other"
+                android:textColor="@color/secondary"
+                android:textSize="@dimen/text_secondary"
+                android:layout_weight="1"/>
         </LinearLayout>
 
         <LinearLayout
@@ -771,6 +798,20 @@
                 android:drawSelectorOnTop="true"
                 android:entries="@array/pregnancy"
                 style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/edt_comDuring_prgncy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Specify"
+                    android:textColor="@color/secondary"
+                    android:textSize="@dimen/text_secondary"
+                    android:layout_weight="1"/>
+
+            </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
 

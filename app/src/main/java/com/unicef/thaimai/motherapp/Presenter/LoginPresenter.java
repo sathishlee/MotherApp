@@ -31,7 +31,9 @@ public class LoginPresenter implements LoginInteractor {
 
     @Override
     public void checkPickmeId(final String strPicmeId, final String strDob) {
+        view.showProgress();
         String url = Apiconstants.BASE_URL + Apiconstants.LOG_IN_CHECK_PIKME;
+
         Log.d("Log in check Url--->",url);
         Log.d("Url--->",strPicmeId);
         Log.d("Dob--->",strDob);
@@ -39,7 +41,7 @@ public class LoginPresenter implements LoginInteractor {
         StringRequest strReq = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-//            view.hideProgress();
+            view.hideProgress();
                 Log.d("success",response);
 
                 view.showPickmeResult(response.toString());
@@ -47,7 +49,7 @@ public class LoginPresenter implements LoginInteractor {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-//                view.hideProgress();
+                view.hideProgress();
                 Log.d(" error",error.toString());
 
                 view.showErrorMessage(error.toString());

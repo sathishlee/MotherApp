@@ -1,3 +1,4 @@
+/*
 package com.unicef.thaimai.motherapp.activity;
 
 
@@ -33,6 +34,7 @@ import com.google.android.gms.common.GoogleApiAvailability;
 import com.unicef.thaimai.motherapp.BuildConfig;
 import com.unicef.thaimai.motherapp.Interface.Nbh;
 import com.unicef.thaimai.motherapp.R;
+//import com.unicef.thaimai.motherapp.Utility.LocationServices;
 import com.unicef.thaimai.motherapp.Utility.LocationServices;
 import com.unicef.thaimai.motherapp.adapter.NearByHospitalAdapter;
 import com.unicef.thaimai.motherapp.helper.ServerUpload;
@@ -140,11 +142,13 @@ public class NearbyHospital extends AppCompatActivity implements Nbh {
             for(int i = 0; i < jsonarray.length(); i++) {
 
                 JSONObject jsonobject = jsonarray.getJSONObject(i);
-                       /* nearByHospitalModel.setF_district_name(jsonobject.getString("f_district_name"));
+
+ nearByHospitalModel.setF_district_name(jsonobject.getString("f_district_name"));
                         nearByHospitalModel.setF_health_facility(jsonobject.getString("f_health_facility"));
                         nearByHospitalModel.setF_nin_num(jsonobject.getString("f_nin_num"));
                         nearByHospitalModel.setF_facility_name(jsonobject.getString("f_facility_name"));
-                        nearByHospitalModel.setDistance(jsonobject.getString("distance"));*/
+                        nearByHospitalModel.setDistance(jsonobject.getString("distance"));
+
 
 
 
@@ -176,9 +180,11 @@ public class NearbyHospital extends AppCompatActivity implements Nbh {
     }
 
 
-    /**
+    */
+/**
      * Step 1: Check Google Play services
-     */
+     *//*
+
     private void startStep1() {
 
         //Check whether this user has installed Google play service which is being used by Location updates.
@@ -193,9 +199,11 @@ public class NearbyHospital extends AppCompatActivity implements Nbh {
     }
 
 
-    /**
+    */
+/**
      * Step 2: Check & Prompt Internet connection
-     */
+     *//*
+
     private Boolean startStep2(DialogInterface dialog) {
         ConnectivityManager connectivityManager
                 = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -221,9 +229,11 @@ public class NearbyHospital extends AppCompatActivity implements Nbh {
         return true;
     }
 
-    /**
+    */
+/**
      * Show A Dialog with button to refresh the internet state.
-     */
+     *//*
+
     private void promptInternetConnect() {
         AlertDialog.Builder builder = new AlertDialog.Builder(NearbyHospital.this);
         builder.setTitle(R.string.title_alert_no_intenet);
@@ -257,9 +267,11 @@ public class NearbyHospital extends AppCompatActivity implements Nbh {
         dialog.show();
     }
 
-    /**
+    */
+/**
      * Step 3: Start the Location Monitor Service
-     */
+     *//*
+
     private void startStep3() {
 
         //And it will be keep running until you close the entire application from task manager.
@@ -278,9 +290,11 @@ public class NearbyHospital extends AppCompatActivity implements Nbh {
         }
     }
 
-    /**
+    */
+/**
      * Return the availability of GooglePlayServices
-     */
+     *//*
+
     public boolean isGooglePlayServicesAvailable() {
         GoogleApiAvailability googleApiAvailability = GoogleApiAvailability.getInstance();
         int status = googleApiAvailability.isGooglePlayServicesAvailable(this);
@@ -294,9 +308,11 @@ public class NearbyHospital extends AppCompatActivity implements Nbh {
     }
 
 
-    /**
+    */
+/**
      * Return the current state of the permissions needed.
-     */
+     *//*
+
     private boolean checkPermissions() {
         int permissionState1 = ActivityCompat.checkSelfPermission(this,
                 android.Manifest.permission.ACCESS_FINE_LOCATION);
@@ -308,9 +324,11 @@ public class NearbyHospital extends AppCompatActivity implements Nbh {
 
     }
 
-    /**
+    */
+/**
      * Start permissions requests.
-     */
+     *//*
+
     private void requestPermissions() {
 
         boolean shouldProvideRationale =
@@ -348,13 +366,15 @@ public class NearbyHospital extends AppCompatActivity implements Nbh {
     }
 
 
-    /**
+    */
+/**
      * Shows a {@link Snackbar}.
      *
      * @param mainTextStringId The id for the string resource for the Snackbar text.
      * @param actionStringId   The text of the action item.
      * @param listener         The listener associated with the Snackbar action.
-     */
+     *//*
+
     private void showSnackbar(final int mainTextStringId, final int actionStringId,
                               View.OnClickListener listener) {
         Snackbar.make(
@@ -364,9 +384,11 @@ public class NearbyHospital extends AppCompatActivity implements Nbh {
                 .setAction(getString(actionStringId), listener).show();
     }
 
-    /**
+    */
+/**
      * Callback received when a permissions request has been completed.
-     */
+     *//*
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
@@ -426,4 +448,4 @@ public class NearbyHospital extends AppCompatActivity implements Nbh {
 
         super.onDestroy();
     }
-}
+}*/

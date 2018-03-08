@@ -236,7 +236,7 @@ if (AppConstants.isMainActivityOpen) {
 //
 //        }
         if (id == R.id.primary_register){
-            Intent i = new Intent(getApplicationContext(), PrimaryRegisterView.class);
+            Intent i = new Intent(getApplicationContext(), PrimaryRegister.class);
             startActivity(i);
         }
 
@@ -258,8 +258,8 @@ if (AppConstants.isMainActivityOpen) {
 //        }
 
         else if (id == R.id.nearbyhospital) {
-            Intent i = new Intent(getApplicationContext(), NearbyHospital.class);
-            startActivity(i);
+//            Intent i = new Intent(getApplicationContext(), NearbyHospital.class);
+//            startActivity(i);
         }
 
         else if (id == R.id.pn_HBNC_visit){

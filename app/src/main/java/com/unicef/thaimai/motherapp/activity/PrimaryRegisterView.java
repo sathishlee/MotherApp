@@ -169,4 +169,14 @@ pDialog.hide();
         Log.d(PrimaryRegister.class.getSimpleName(), "failiur" + response);
 
     }
+
+    @Override
+    public void postDataSuccess(String response) {
+
+    }
+
+    @Override
+    public void postDataFailiure(String response) {
+
+    }
 }
