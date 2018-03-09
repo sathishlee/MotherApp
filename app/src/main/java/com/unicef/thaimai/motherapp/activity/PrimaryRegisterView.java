@@ -95,7 +95,7 @@ public class PrimaryRegisterView extends AppCompatActivity implements PrimaryReg
 
     @Override
     public void hideProgress() {
-pDialog.hide();
+        pDialog.hide();
     }
 
     @Override
@@ -144,7 +144,7 @@ pDialog.hide();
                 txt_an_tt_1st.setText(jObj.getString("mANTT1"));
                 txt_an_tt_2nd.setText(jObj.getString("mANTT2"));
 
-              txt_ifa_start_date.setText(jObj.getString("mIFAStateDate"));
+                txt_ifa_start_date.setText(jObj.getString("mIFAStateDate"));
                 txt_height.setText(jObj.getString("mHeight"));
                 txt_blood_group.setText(jObj.getString("mBloodGroup"));
                 txt_hiv.setText(jObj.getString("mHIV"));
@@ -166,7 +166,7 @@ pDialog.hide();
 
     @Override
     public void getAllMotherPrimaryRegisterFailiur(String response) {
-        Log.d(PrimaryRegister.class.getSimpleName(), "failiur" + response);
+        Log.d(PrimaryRegister.class.getSimpleName(), "failure" + response);
 
     }
 

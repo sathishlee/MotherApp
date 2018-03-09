@@ -23,12 +23,14 @@ import com.unicef.thaimai.motherapp.adapter.ViewPagerAdapter;
 import com.unicef.thaimai.motherapp.constant.AppConstants;
 import com.unicef.thaimai.motherapp.model.responsemodel.HealthRecordResponseModel;
 import com.unicef.thaimai.motherapp.view.GetVisitHelthRecordsViews;
+import com.unicef.thaimai.motherapp.adapter.ViewPagerAdapterMain;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+public class health_records extends Fragment implements TabLayout.OnTabSelectedListener {
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -47,6 +49,11 @@ public class health_records extends Fragment implements GetVisitHelthRecordsView
     HealthRecordResponseModel mhealthRecordResponseModel;
     ArrayList<HealthRecordResponseModel> mhealthRecordList;
     ViewPagerAdapter adapter;
+    Button btn_primary;
+    private TabLayout tabLayout, tabLayoutmain;
+    private ViewPager viewPager, pager;
+
+    ViewPagerAdapter viewPagerAdapter;
     public static health_records newInstance()
     {
         health_records fragment = new health_records();
@@ -71,6 +78,10 @@ public class health_records extends Fragment implements GetVisitHelthRecordsView
     private void initUI(View view) {
         getActivity().setTitle("Health Records");
 
+        pager = view.findViewById(R.id.pager);
+        PagerView(pager);
+
+
         preferenceData = new PreferenceData(getActivity());
         editor = getActivity().getSharedPreferences(AppConstants.PREF_NAME, MODE_PRIVATE).edit();
 
@@ -85,6 +96,7 @@ public class health_records extends Fragment implements GetVisitHelthRecordsView
         viewPager = view. findViewById(R.id.hre_viewpager);
         setupViewPager(viewPager);
         tabLayout = view .findViewById(R.id.hre_tabs);
+        tabLayoutmain = view.findViewById(R.id.tabLayoutmain);
         tabLayout.setupWithViewPager(viewPager);
         btn_primary_report = (Button) view .findViewById(R.id.btn_primary_report);
         btn_view_report = (Button) view .findViewById(R.id.btn_view_report);
@@ -139,4 +151,32 @@ public class health_records extends Fragment implements GetVisitHelthRecordsView
         Log.d(health_records.class.getSimpleName(),"--->errorMsg"+errorMsg);
 
     }
+    private void PagerView(ViewPager PagerView){
+
+        ViewPagerAdapterMain adapter1 = new ViewPagerAdapterMain(getActivity().getSupportFragmentManager());
+
+        adapter1.addFragmentMain(new PicmeVisit(), "Picme Visits");
+        adapter1.addFragmentMain(new OtherVisit(), "Other Visits");
+
+        viewPager.setAdapter(viewPagerAdapter);
+
+    }
+
+    @Override
+    public void onTabSelected(TabLayout.Tab tab) {
+
+        viewPager.setCurrentItem(tab.getPosition());
+
+    }
+
+    @Override
+    public void onTabUnselected(TabLayout.Tab tab) {
+
+    }
+
+    @Override
+    public void onTabReselected(TabLayout.Tab tab) {
+
+    }
+
 }
