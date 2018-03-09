@@ -262,7 +262,7 @@
         android:layout_marginBottom="50dp">
 
         <Button
-            android:id="@+id/btn_primary"
+            android:id="@+id/btn_primary_report"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
@@ -274,7 +274,7 @@
             android:drawableEnd="@drawable/ic_file_view"/>
 
         <Button
-            android:id="@+id/btn_view"
+            android:id="@+id/btn_view_report"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"

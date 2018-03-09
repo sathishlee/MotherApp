@@ -3,6 +3,9 @@ package com.unicef.thaimai.motherapp.adapter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.util.Log;
+
+import com.unicef.thaimai.motherapp.model.responsemodel.HealthRecordResponseModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +17,7 @@ import java.util.List;
 public class ViewPagerAdapter   extends FragmentPagerAdapter {
     private final List<Fragment> mFragmentList = new ArrayList<>();
     private final List<String> mFragmentTitleList = new ArrayList<>();
-
+   public  ArrayList<HealthRecordResponseModel> mhealthRecordList;
     public ViewPagerAdapter(FragmentManager manager) {
         super(manager);
     }
@@ -29,9 +32,11 @@ public class ViewPagerAdapter   extends FragmentPagerAdapter {
         return mFragmentList.size();
     }
 
-    public void addFragment(Fragment fragment, String title) {
+    public void addFragment(Fragment fragment, String title, ArrayList<HealthRecordResponseModel> mhealthRecordList) {
         mFragmentList.add(fragment);
         mFragmentTitleList.add(title);
+        this.mhealthRecordList =mhealthRecordList;
+        Log.e(ViewPagerAdapter.class.getSimpleName(),mhealthRecordList.toString());
     }
 
     @Override

@@ -129,7 +129,6 @@ public class LocationServices extends Service implements
 
     }
 
-
     private void sendMessageToUI(String lat, String lng) {
 
         Log.d(TAG, "Sending info...");
@@ -138,8 +137,6 @@ public class LocationServices extends Service implements
         intent.putExtra(EXTRA_LATITUDE, lat);
         intent.putExtra(EXTRA_LONGITUDE, lng);
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
-
-
     }
 
     @Override

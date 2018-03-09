@@ -613,10 +613,9 @@ ArrayList ysList,occList;
                 for (int i=0;i<listOcc.size();i++) {
                     if (mMotherOccupation.equalsIgnoreCase(occ[i]))
                         x =i;
-//                        spMotherOcc.setSelection(i);
                 }
             } else {
-//                spMotherOcc.setSelection(0);    //Home Maker, Private Sector, Govt Sector
+
             }
             return x;
         }
