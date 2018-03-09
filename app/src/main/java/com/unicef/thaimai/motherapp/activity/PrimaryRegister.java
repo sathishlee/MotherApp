@@ -28,15 +28,16 @@
 
     import java.util.ArrayList;
     import java.util.Arrays;
-    import java.util.HashMap;
     import java.util.List;
 
 
     public class PrimaryRegister extends AppCompatActivity implements View.OnClickListener, PrimaryRegisterViews, AdapterView.OnItemSelectedListener {
+
         TextView txtMotherName, txtMotherAge;
         EditText edtLmpDate, edtEddDate, edtAgeAtMarriage, edtRegWeek, edtANTT1st, edtANTT2nd, edtFIAStartDate, edtHeight,
                 edtOthers, edtMedicationSpecify, edtAllergictoDrugsSpecify, edt_primary_mobile_number, edt_alternative_mobile_number,
-        edt_history_illness,edt_history_illness_fmly,edt_any_surgery_before,edt_comDuring_prgncy;
+                edt_history_illness,edt_history_illness_fmly,edt_any_surgery_before,edt_comDuring_prgncy;
+
         Spinner spMotherOcc, spHusbandOcc, spConsangulneousMarriage, spHistoryIllness, spHistoryIllnessFmly, spAnySurgeryBefore,
                 spDoseTobacco, spDoseAlcohol, spDoseOnAnyMedication, spDoseAllergictoDrugs,
                 spPrePregnancy, spLSCSDone, spComDuringPrgncy,
@@ -50,7 +51,8 @@
                 strHelpatitis, strHusbBloodGroup, strHusbHIV, strHusbVDRL, strHusbHelpatitis,
                 strLmpDate, strEddDate, strAgeAtMarriage, strRegWeek, strANTT1st, strANTT2nd, strFIAStartDate, strHeight,
                 strOthers, strMedicationSpecify, strAllergictoDrugsSpecify, strPrimaryMobileNumber, strAlternativeMobileNumber;
-ArrayList ysList,occList;
+
+        ArrayList ysList,occList;
         Button butSubmit;
         ProgressDialog pDialog;
 
@@ -232,28 +234,28 @@ ArrayList ysList,occList;
 
             }
             else if (strLmpDate.equalsIgnoreCase("")){
-                showAlert("Id is Empty");
+                showAlert("LMP is Empty");
 
             }else if (strEddDate.equalsIgnoreCase("")){
-                showAlert("Id is Empty");
+                showAlert("EDD is Empty");
 
             }else if (strPrimaryMobileNumber.equalsIgnoreCase("")){
-                showAlert("Id is Empty");
+                showAlert("Primary Mobile Number is Empty");
 
             }else if (strAlternativeMobileNumber.equalsIgnoreCase("")){
-                showAlert("Id is Empty");
+                showAlert("Alternative Mobile Number is Empty");
 
             }else if (strMotherOcc.equalsIgnoreCase("--Select--")){
-                showAlert("Id is Empty");
+                showAlert("Mother Occupation is Empty");
 
             }else if (strHusbandOcc.equalsIgnoreCase("--Select--")){
-                showAlert("Id is Empty");
+                showAlert("Husband Occupation is Empty");
 
             }else if (strAgeAtMarriage.equalsIgnoreCase("")){
-                showAlert("Id is Empty");
+                showAlert("Age at Marriage is Empty");
 
             }else if (strConsangulneousMarriage.equalsIgnoreCase("--Select--")){
-                showAlert("Id is Empty");
+                showAlert("Consangulneous Marriage is Empty");
 
             }else if (strHistoryIllness.equalsIgnoreCase("--Select--")){
                 showAlert("Id is Empty");

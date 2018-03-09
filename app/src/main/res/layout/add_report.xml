@@ -812,7 +812,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 android:textSize="@dimen/text_secondary"
-                android:hint="Enter Value"/>
+                android:hint="Enter Liquor"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -833,32 +833,13 @@
                     android:layout_height="wrap_content"
                     android:inputType="text"
                     android:textSize="@dimen/text_secondary"
-                    android:hint="Enter Value"/>
+                    android:hint="Enter Placenta"/>
 
             </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="5dp">
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:textSize="@dimen/text_secondary"
-                    android:hint="Enter Value"/>
-
-            </android.support.design.widget.TextInputLayout>
-
-        </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

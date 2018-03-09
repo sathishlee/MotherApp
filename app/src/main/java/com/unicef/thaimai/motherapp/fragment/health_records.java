@@ -40,16 +40,16 @@ public class health_records extends Fragment implements TabLayout.OnTabSelectedL
         view=inflater.inflate(R.layout.fragment_health_records, container, false);
         getActivity().setTitle("Health Records");
 
-        pager = view.findViewById(R.id.pager);
-        PagerView(pager);
+//        pager = view.findViewById(R.id.pager);
+//        PagerView(pager);
 
         viewPager = view. findViewById(R.id.hre_viewpager);
         setupViewPager(viewPager);
 
         tabLayout = view .findViewById(R.id.hre_tabs);
 
-        tabLayoutmain = view.findViewById(R.id.tabLayoutmain);
-        tabLayout.setupWithViewPager(viewPager);
+//        tabLayoutmain = view.findViewById(R.id.tabLayoutmain);
+//        tabLayout.setupWithViewPager(viewPager);
 
 
         btn_primary = (Button) view .findViewById(R.id.btn_primary);
@@ -86,9 +86,9 @@ public class health_records extends Fragment implements TabLayout.OnTabSelectedL
         ViewPagerAdapterMain adapter1 = new ViewPagerAdapterMain(getActivity().getSupportFragmentManager());
 
         adapter1.addFragmentMain(new PicmeVisit(), "Picme Visits");
-        adapter1.addFragmentMain(new OtherVisit(), "Other Visits");
+        adapter1.addFragmentMain(new PicmeVisit(), "Other Visits");
 
-        viewPager.setAdapter(adapter1);
+        PagerView.setAdapter(adapter1);
 
     }
 

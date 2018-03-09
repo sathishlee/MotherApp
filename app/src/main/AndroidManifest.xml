@@ -157,10 +157,12 @@
 
         <activity android:name=".activity.ImmunizationVisit"
             android:theme="@style/AppTheme">
-
         </activity>
 
+        <activity android:name=".activity.PnHbncVisit"
+                    android:theme="@style/AppTheme">
 
+        </activity>
     </application>
 
 </manifest>
