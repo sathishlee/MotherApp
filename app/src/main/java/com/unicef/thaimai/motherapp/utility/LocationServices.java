@@ -1,27 +1,8 @@
-/*
-<<<<<<< Updated upstream
 package com.unicef.thaimai.motherapp.utility;
 
-*/
 /**
  * Created by Suthishan on 20/1/2018.
- *//*
-
-=======
-*/
-/*
-package com.unicef.thaimai.motherapp.Utility;
-
- *//*
-
-*/
-/*Created by Suthishan on 20/1/2018.
- *//*
-*/
-/*
-
-
->>>>>>> Stashed changes
+ */
 
 import android.Manifest;
 import android.app.ProgressDialog;
@@ -100,23 +81,9 @@ public class LocationServices extends Service implements
         return null;
     }
 
-<<<<<<< Updated upstream
-    */
-/*
+    /*
      * LOCATION CALLBACKS
-     *//*
-
-=======
-     *//*
-
-*/
-/* LOCATION CALLBACKS*//*
-*/
-/*
-
-
-
->>>>>>> Stashed changes
+     */
     @Override
     public void onConnected(Bundle dataBundle) {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -138,25 +105,10 @@ public class LocationServices extends Service implements
         Log.d(TAG, "Connected to Google API");
     }
 
-<<<<<<< Updated upstream
-    */
-/*
+    /*
      * Called by Location Services if the connection to the
      * location client drops because of an error.
-     *//*
-
-=======
-      *//*
-
-*/
-/*Called by Location Services if the connection to the
-      location client drops because of an error.*//*
-*/
-/*
-
-
-
->>>>>>> Stashed changes
+     */
     @Override
     public void onConnectionSuspended(int i) {
         Log.d(TAG, "Connection suspended");
@@ -195,11 +147,4 @@ public class LocationServices extends Service implements
         Log.d(TAG, "Failed to connect to Google API");
 
     }
-<<<<<<< Updated upstream
 }
-=======
-}
-*//*
-
->>>>>>> Stashed changes
-*/
