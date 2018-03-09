@@ -251,9 +251,5 @@ public class Splashscreen extends Activity implements LoginViews {
 
     }
 
-    @Override
-    public void showVerifyOtpResult(LoginResponseModel loginResponseModel) {
-
     }
-}
 }

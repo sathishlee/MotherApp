@@ -258,8 +258,8 @@ if (AppConstants.isMainActivityOpen) {
 //        }
 
         else if (id == R.id.nearbyhospital) {
-            Intent i = new Intent(getApplicationContext(), NearbyHospital.class);
-            startActivity(i);
+//            Intent i = new Intent(getApplicationContext(), NearbyHospital.class);
+//            startActivity(i);
         }
 
         else if (id == R.id.pn_HBNC_visit){

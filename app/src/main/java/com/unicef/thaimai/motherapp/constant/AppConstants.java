@@ -23,5 +23,10 @@ public class AppConstants {
 
     public  static boolean BACK_BUTTON_GONE=false;
 
+    public static final String PICME_ID = "picme_id";
+    public static final String MOTHER_NAME = "name";
+    public static final String MOTHER_AGE = "age";
+    public static final String MOTHER_STATUS = "status";
+
 
 }

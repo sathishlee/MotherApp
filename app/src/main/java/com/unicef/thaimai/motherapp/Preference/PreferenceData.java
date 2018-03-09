@@ -29,34 +29,27 @@ public class PreferenceData {
         return  sharedPreferences.getBoolean(AppConstants.IS_LOGIN, Boolean.parseBoolean(""));
     }
 
-    public void storeUserInfo(String userinfo){
-        Gson gson = new Gson();
-        String json = gson.toJson(userinfo);
-        sharedPreferences.edit().putString(AppConstants.USER_INFO, json).commit();
-        Log.e("USER_INFO",sharedPreferences.getString(AppConstants.USER_INFO,""));
+    public void storeUserInfo(String picmeid,String name, String age, String status){
+        sharedPreferences.edit().putString(AppConstants.PICME_ID, picmeid).commit();
+        sharedPreferences.edit().putString(AppConstants.MOTHER_NAME, name).commit();
+        sharedPreferences.edit().putString(AppConstants.MOTHER_AGE, age).commit();
+        sharedPreferences.edit().putString(AppConstants.MOTHER_STATUS,status ).commit();
+        Log.e("PICME_ID",sharedPreferences.getString(AppConstants.PICME_ID,""));
+        Log.e("MOTHER_NAME",sharedPreferences.getString(AppConstants.MOTHER_NAME,""));
+        Log.e("MOTHER_AGE",sharedPreferences.getString(AppConstants.MOTHER_AGE,""));
+        Log.e("MOTHER_STATUS",sharedPreferences.getString(AppConstants.MOTHER_STATUS,""));
     }
 
-    public void storeusermedical(String usermedical) {
-        Gson gson = new Gson();
-        String json = gson.toJson(usermedical);
-        sharedPreferences.edit().putString(AppConstants.USER_MEDICAL, json).commit();
-        Log.e("USER_MDICAL",sharedPreferences.getString(AppConstants.USER_MEDICAL,""));
-    }
 
-    public void storeEmergencyContacts(String emergencyContacts) {
-        Gson gson = new Gson();
-        String json = gson.toJson(emergencyContacts);
-        sharedPreferences.edit().putString(AppConstants.USER_EMERGENCY_CONTACTS, json).commit();
-        Log.e("USER_EMERGENCY_CONTACTS",sharedPreferences.getString(AppConstants.USER_EMERGENCY_CONTACTS,""));
-    }
 
-    /*public String getUserInfo(){
-        return sharedPreferences.getString(AppConstants.USER_INFO,"");
-    }public String getUserMedical(){
-        return sharedPreferences.getString(AppConstants.USER_MEDICAL,"");
-    }public String getEmergencyContacts(){
-        return sharedPreferences.getString(AppConstants.USER_EMERGENCY_CONTACTS,"");
-    }*/
+
+    public String getPicmeId(){
+        return sharedPreferences.getString(AppConstants.PICME_ID,"");
+    }public String getMotherName(){
+        return sharedPreferences.getString(AppConstants.MOTHER_NAME,"");
+    }public String getMotherAge(){
+        return sharedPreferences.getString(AppConstants.MOTHER_AGE,"");
+    }
 
 
 }

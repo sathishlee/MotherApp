@@ -1,10 +1,9 @@
 package com.unicef.thaimai.motherapp.Presenter;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
+import android.content.Context;
 import android.util.Base64;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -29,41 +28,39 @@ import java.util.Map;
 
 public class GetUserInfoPresenter implements UserInfoInteractor{
     private LoginViews view;
-    private Activity activity;
+    private Context activity;
 
-    public GetUserInfoPresenter(Activity mActivity, LoginViews view) {
+    public GetUserInfoPresenter(Context mActivity, LoginViews view) {
         this.view = view;
         this.activity = mActivity;
 
     }
 
+
+
     @Override
-    public void getUserInfo(String pickmeid) {
-
-    }
-
-/*    @Override
-    public void getUserInfo(String pickmeid) {
+    public void getUserInfo(final String pickmeid) {
 
       view.showProgress();
 
 
         Log.e("url", Apiconstants.BASE_URL+Apiconstants.USER_INFO);
 
-        StringRequest strReq = new StringRequest(Request.Method.POST,Apiconstants.BASE_URL+Apiconstants.USER_INFO+pickmeid , new Response.Listener<String>() {
+        StringRequest strReq = new StringRequest(Request.Method.POST,Apiconstants.BASE_URL+Apiconstants.POST_DASH_BOARD , new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
                 Log.e("user info", " Response: " + response.toString());
                 view.hideProgress();
+                view.showPickmeResult(response);
 
-                try {
+                /*try {
                     JSONObject jObj = new JSONObject(response);
 //                    success = jObj.getInt(Constants.TAG_SUCCESS);
                     int status = jObj.getInt("status");
                     // Check for error in json
                     if (status == 1) {
-view.showErrorMessage("success");
+                        view.showErrorMessage("success");
                         Log.e("User Found!", jObj.toString());
                         Toast.makeText(activity.getApplicationContext(),
                                 jObj.getString("message"), Toast.LENGTH_LONG).show();
@@ -77,7 +74,7 @@ view.showErrorMessage("success");
                 } catch (JSONException e) {
                     // JSON error
                     e.printStackTrace();
-                }
+                }*/
 
             }
         }, new Response.ErrorListener() {
@@ -99,15 +96,26 @@ view.showErrorMessage("success");
                 String credentials ="admin"+":"+"1234";
                 String base64EncodedCredentials = Base64.encodeToString(credentials.getBytes(),Base64.DEFAULT);
                 HashMap<String,String> header = new HashMap<>();
-                header.put("Content-Type","application/x-www-from-urlencoded; charset=utf-8");
+//                header.put("Content-Type","application/x-www-from-urlencoded; charset=utf-8");
                 header.put("Authorization","Basic "+base64EncodedCredentials);
                 return header;
             }
-            public String getBodyContentType(){
-                return "application/x-www-from-urlencoded; charset=utf-8";
+
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting parameters to login url
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("picmeId",pickmeid);
+
+                Log.d("params--->",params.toString());
+
+                return params;
             }
+//            public String getBodyContentType(){
+//                return "application/x-www-from-urlencoded; charset=utf-8";
+//            }
             public int getMethod(){
-                return Method.GET;
+                return Method.POST;
             }
         };
 
@@ -115,5 +123,5 @@ view.showErrorMessage("success");
         // Adding request to request queue
         VolleySingleton.getInstance(activity).addToRequestQueue(strReq);
 
-    }*/
+    }
 }

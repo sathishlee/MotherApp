@@ -162,6 +162,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText
+                    android:id="@+id/edt_primary_mobile_number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Enter Primary Mobile Number"
@@ -183,6 +184,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText
+                    android:id="@+id/edt_alternative_mobile_number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Enter Alternative Mobile Number"
@@ -308,7 +310,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="5dp"
-            android:weightSum="2">
+            android:weightSum="3">
 
             <TextView
                 android:layout_width="fill_parent"
@@ -328,7 +330,20 @@
                 android:drawSelectorOnTop="true"
                 android:entries="@array/illness"
                 style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
+                <EditText
+                    android:id="@+id/edt_other_history_illness"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Other"
+                    android:textColor="@color/secondary"
+                    android:textSize="@dimen/text_secondary"
+                    android:layout_weight="1"/>
+
+            </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -336,7 +351,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="5dp"
-            android:weightSum="2">
+            android:weightSum="3">
 
             <TextView
                 android:layout_width="fill_parent"
@@ -356,7 +371,14 @@
                 android:drawSelectorOnTop="true"
                 android:entries="@array/illness_family"
                 style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
-
+            <EditText
+                android:id="@+id/edt_history_illness_fmly"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Age at Marriage"
+                android:textColor="@color/secondary"
+                android:textSize="@dimen/text_secondary"
+                android:layout_weight="1"/>
         </LinearLayout>
 
         <LinearLayout
@@ -364,7 +386,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="5dp"
-            android:weightSum="2">
+            android:weightSum="3">
 
             <TextView
                 android:layout_width="fill_parent"
@@ -385,7 +407,14 @@
                 android:drawSelectorOnTop="true"
                 android:entries="@array/yes_no"
                 style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
-
+            <EditText
+                android:id="@+id/edt_any_surgery_before"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="other"
+                android:textColor="@color/secondary"
+                android:textSize="@dimen/text_secondary"
+                android:layout_weight="1"/>
         </LinearLayout>
 
         <LinearLayout
@@ -512,6 +541,7 @@
                     android:textStyle="bold"
                     android:layout_weight="1"/>
                 <Spinner
+                    android:id="@+id/sp_dose_tobacco"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/text_primary"
@@ -539,6 +569,7 @@
                     android:textStyle="bold"
                     android:layout_weight="1"/>
                 <Spinner
+                    android:id="@+id/sp_dose_alcohol"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/text_primary"
@@ -568,6 +599,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText
+                    android:id="@+id/edt_others"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Others*"
@@ -595,6 +627,7 @@
                 android:textStyle="bold"
                 android:layout_weight="1"/>
             <Spinner
+                android:id="@+id/sp_dose_on_any_medication"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_primary"
@@ -619,6 +652,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText
+                    android:id="@+id/edt_edication_specify"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Specify"
@@ -647,6 +681,7 @@
                 android:textStyle="bold"
                 android:layout_weight="1"/>
             <Spinner
+                android:id="@+id/sp_dose_allergicto_drugs"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_primary"
@@ -670,6 +705,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText
+                    android:id="@+id/edt_allergicto_drugs_specify"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Specify"
@@ -697,6 +733,7 @@
                 android:textStyle="bold"
                 android:layout_weight="1"/>
             <Spinner
+                android:id="@+id/sp_pre_pregnancy"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_primary"
@@ -725,6 +762,7 @@
                 android:layout_weight="1"/>
 
             <Spinner
+                android:id="@+id/sp_lscs_done"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_primary"
@@ -753,6 +791,7 @@
                 android:layout_weight="1"/>
 
             <Spinner
+                android:id="@+id/sp_comDuring_prgncy"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_primary"
@@ -761,6 +800,20 @@
                 android:drawSelectorOnTop="true"
                 android:entries="@array/pregnancy"
                 style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/edt_comDuring_prgncy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Specify"
+                    android:textColor="@color/secondary"
+                    android:textSize="@dimen/text_secondary"
+                    android:layout_weight="1"/>
+
+            </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
 
@@ -847,6 +900,7 @@
                     android:textStyle="bold"
                     android:layout_weight="1"/>
                 <Spinner
+                    android:id="@+id/sp_pre_prgncy_g"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/text_primary"
@@ -874,6 +928,7 @@
                     android:textStyle="bold"
                     android:layout_weight="1"/>
                 <Spinner
+                    android:id="@+id/sp_pre_prgncy_p"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/text_primary"
@@ -911,6 +966,7 @@
                     android:textStyle="bold"
                     android:layout_weight="1"/>
                 <Spinner
+                    android:id="@+id/sp_pre_prgncy_a"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/text_primary"
@@ -938,6 +994,7 @@
                     android:textStyle="bold"
                     android:layout_weight="1"/>
                 <Spinner
+                    android:id="@+id/sp_pre_prgncy_l"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/text_primary"
@@ -963,6 +1020,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText
+                    android:id="@+id/edt_reg_week"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Registration Week"
@@ -985,6 +1043,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText
+                    android:id="@+id/edt_antt1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="AN TT 1st:"
@@ -1007,6 +1066,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText
+                    android:id="@+id/edt_antt2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="An TT 2nd :"
@@ -1028,6 +1088,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText
+                    android:id="@+id/edt_fias_tart_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="IFA Start date :"
@@ -1049,6 +1110,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText
+                    android:id="@+id/edt_height"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Enter Height"
@@ -1075,6 +1137,7 @@
                 android:textStyle="bold"/>
 
             <Spinner
+                android:id="@+id/sp_blood_group"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_primary"
@@ -1100,6 +1163,7 @@
                 android:textStyle="bold"/>
 
             <Spinner
+                android:id="@+id/sp_hiv"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_primary"
@@ -1125,6 +1189,7 @@
                 android:textStyle="bold"/>
 
             <Spinner
+                android:id="@+id/sp_vdrl"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_primary"
@@ -1150,6 +1215,7 @@
                 android:textStyle="bold"/>
 
             <Spinner
+                android:id="@+id/sp_helpatitis"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_primary"
@@ -1233,6 +1299,7 @@
                 android:textStyle="bold"/>
 
             <Spinner
+                android:id="@+id/sp_husb_blood_group"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_primary"
@@ -1258,6 +1325,7 @@
                 android:textStyle="bold"/>
 
             <Spinner
+                android:id="@+id/sp_husb_hiv"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_primary"
@@ -1283,6 +1351,7 @@
                 android:textStyle="bold"/>
 
             <Spinner
+                android:id="@+id/sp_husb_vdrl"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_primary"
@@ -1308,6 +1377,7 @@
                 android:textStyle="bold"/>
 
             <Spinner
+                android:id="@+id/sp_husb_helpatitis"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_primary"
@@ -1328,7 +1398,6 @@
             android:textColor="#ffffff"
             android:id="@+id/btn_submit"
             android:padding="10dp"/>
-
     </LinearLayout>
 
 </ScrollView>

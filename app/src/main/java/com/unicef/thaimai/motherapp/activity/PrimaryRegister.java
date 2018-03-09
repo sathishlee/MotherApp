@@ -1,78 +1,624 @@
-package com.unicef.thaimai.motherapp.activity;
+    package com.unicef.thaimai.motherapp.activity;
 
-import android.support.v7.app.ActionBar;
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.MenuItem;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.TextView;
+    import android.annotation.SuppressLint;
+    import android.app.ProgressDialog;
+    import android.support.v7.app.ActionBar;
+    import android.content.Intent;
+    import android.support.v7.app.AppCompatActivity;
+    import android.os.Bundle;
+    import android.util.Log;
+    import android.view.MenuItem;
+    import android.view.View;
+    import android.widget.AdapterView;
+    import android.widget.Button;
+    import android.widget.EditText;
+    import android.widget.Spinner;
+    import android.widget.TextView;
+    import android.widget.Toast;
 
-import com.unicef.thaimai.motherapp.R;
-import com.unicef.thaimai.motherapp.constant.AppConstants;
+    import com.unicef.thaimai.motherapp.Preference.PreferenceData;
+    import com.unicef.thaimai.motherapp.Presenter.PrimaryRegisterPresenter;
+    import com.unicef.thaimai.motherapp.R;
+    import com.unicef.thaimai.motherapp.constant.AppConstants;
+    import com.unicef.thaimai.motherapp.model.requestmodel.PrimaryDataRequestModel;
+    import com.unicef.thaimai.motherapp.view.PrimaryRegisterViews;
+
+    import org.json.JSONException;
+    import org.json.JSONObject;
+
+    import java.util.ArrayList;
+    import java.util.Arrays;
+    import java.util.HashMap;
+    import java.util.List;
 
 
-public class PrimaryRegister extends AppCompatActivity {
-    TextView txtMotherName, txtMotherAge;
-    EditText edtLmpDate, edtEddDate, edtAgeAtMarriage, edtRegWeek, edtANTT1st, edtANTT2nd, edtFIAStartDate, edtHeight;
-    Spinner spMotherOcc, spHusbandOcc, spConsangulneousMarriage, spHistoryIllness,spHistoryIllnessFmly, spAnySurgeryBefore,
-            spDoseTobacco, spDoseAlcohol, spDoseOnAnyMedication, spDoseAllergictoDrugs,
-            spPrePregnancy, spLSCSDone, spComDuringPrgncy,
-            spPrePrgncyG, spPrePrgncyP, spPrePrgncyA, spPrePrgncyL, spBloodGroup, spHIV, spVDRL, spHelpatitis, spHusbBloodGroup, spHusbHIV, spHusbVDRL, spHusbHelpatitis;
-    Button butSubmit;
+    public class PrimaryRegister extends AppCompatActivity implements View.OnClickListener, PrimaryRegisterViews, AdapterView.OnItemSelectedListener {
+        TextView txtMotherName, txtMotherAge;
+        EditText edtLmpDate, edtEddDate, edtAgeAtMarriage, edtRegWeek, edtANTT1st, edtANTT2nd, edtFIAStartDate, edtHeight,
+                edtOthers, edtMedicationSpecify, edtAllergictoDrugsSpecify, edt_primary_mobile_number, edt_alternative_mobile_number,
+        edt_history_illness,edt_history_illness_fmly,edt_any_surgery_before,edt_comDuring_prgncy;
+        Spinner spMotherOcc, spHusbandOcc, spConsangulneousMarriage, spHistoryIllness, spHistoryIllnessFmly, spAnySurgeryBefore,
+                spDoseTobacco, spDoseAlcohol, spDoseOnAnyMedication, spDoseAllergictoDrugs,
+                spPrePregnancy, spLSCSDone, spComDuringPrgncy,
+                spPrePrgncyG, spPrePrgncyP, spPrePrgncyA, spPrePrgncyL, spBloodGroup, spHIV, spVDRL,
+                spHelpatitis, spHusbBloodGroup, spHusbHIV, spHusbVDRL, spHusbHelpatitis;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.primary_register);
-        showActionBar();
-        initUI();
-        onClickListner();
-    }
+        public String strId, strMasterId, strPicmeId, strMotherName, strMotherAge, strMotherOcc, strHusbandOcc, strConsangulneousMarriage, strHistoryIllness, strHistoryIllnessFmly, strAnySurgeryBefore,
+                strDoseTobacco, strDoseAlcohol, strDoseOnAnyMedication, strDoseAllergictoDrugs,
+                strPrePregnancy, strLSCSDone, strComDuringPrgncy,
+                strPrePrgncyG, strPrePrgncyP, strPrePrgncyA, strPrePrgncyL, strBloodGroup, strHIV, strVDRL,
+                strHelpatitis, strHusbBloodGroup, strHusbHIV, strHusbVDRL, strHusbHelpatitis,
+                strLmpDate, strEddDate, strAgeAtMarriage, strRegWeek, strANTT1st, strANTT2nd, strFIAStartDate, strHeight,
+                strOthers, strMedicationSpecify, strAllergictoDrugsSpecify, strPrimaryMobileNumber, strAlternativeMobileNumber;
+ArrayList ysList,occList;
+        Button butSubmit;
+        ProgressDialog pDialog;
 
-    private void showActionBar() {
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Primary Register");
-        if (AppConstants.BACK_BUTTON_GONE) {
-            actionBar.setHomeButtonEnabled(true);
-            actionBar.setDisplayHomeAsUpEnabled(true);
+        PrimaryRegisterPresenter primaryRegisterPresenter;
+        PrimaryDataRequestModel primaryDataRequestModel;
+        PreferenceData preferenceData;
+
+        String[] Occ = {"--Select--","Home Maker", "Private Sector", "Govt Sector"};
+        String[] yn ={"--Select--","Yes","No"};
+        String[] hdcdt ={"--Select--","Hypertention", "Diabetes", "Congenital Heart Disease", "Tb", "Others"};
+        String[] num = {"--Select--","1","2","3","4","5","6","7","8","9","10"};
+        String[] bg = {"--Select--","A+ve","A-ve","B+ve","B-ve","O+ve","O-ve","AB+ve","AB-ve"};
+        String [] rnr ={"--Select--","Reactive", "Non Reactive"};
+
+        @SuppressLint("ResourceType")
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.primary_register);
+            showActionBar();
+
+            initUI();
+            onClickListner();
+            OnItemSelectedListener();
+
+        }
+
+
+        private void showActionBar() {
+            ActionBar actionBar = getSupportActionBar();
+            actionBar.setTitle("Primary Register");
+            if (AppConstants.BACK_BUTTON_GONE) {
+                actionBar.setHomeButtonEnabled(true);
+                actionBar.setDisplayHomeAsUpEnabled(true);
+            }
+        }
+
+        private void initUI() {
+            pDialog = new ProgressDialog(this);
+            pDialog.setCancelable(false);
+            pDialog.setMessage("Please Wait ...");
+            preferenceData = new PreferenceData(this);
+            strPicmeId = preferenceData.getPicmeId();
+            strMotherName = preferenceData.getMotherName();
+            strMotherAge = preferenceData.getMotherAge();
+            primaryRegisterPresenter = new PrimaryRegisterPresenter(PrimaryRegister.this, this);
+            primaryRegisterPresenter.getAllMotherPrimaryRegistration(strPicmeId);
+
+            txtMotherName = (TextView) findViewById(R.id.txt_name);
+            txtMotherAge = (TextView) findViewById(R.id.txt_mother_age);
+            edtLmpDate = (EditText) findViewById(R.id.edt_lmp_date);
+            edtEddDate = (EditText) findViewById(R.id.edt_edd_date);
+            spMotherOcc = (Spinner) findViewById(R.id.sp_mthr_occ);
+            spHusbandOcc = (Spinner) findViewById(R.id.sp_hsbd_occ);
+            edtAgeAtMarriage = (EditText) findViewById(R.id.edt_age_at_marriage);
+            edt_primary_mobile_number = (EditText) findViewById(R.id.edt_primary_mobile_number);
+            edt_alternative_mobile_number = (EditText) findViewById(R.id.edt_alternative_mobile_number);
+            spConsangulneousMarriage = (Spinner) findViewById(R.id.sp_consangulneous_marriage);
+            spHistoryIllness = (Spinner) findViewById(R.id.sp_history_illness);
+            spHistoryIllnessFmly = (Spinner) findViewById(R.id.sp_historyIllness_fmly);
+            spAnySurgeryBefore = (Spinner) findViewById(R.id.sp_any_surgery_before);
+            spDoseTobacco = (Spinner) findViewById(R.id.sp_dose_tobacco);
+            spDoseAlcohol = (Spinner) findViewById(R.id.sp_dose_alcohol);
+            edtOthers = (EditText) findViewById(R.id.edt_others);
+            edtMedicationSpecify = (EditText) findViewById(R.id.edt_edication_specify);
+            edtAllergictoDrugsSpecify = (EditText) findViewById(R.id.edt_allergicto_drugs_specify);
+            spDoseOnAnyMedication = (Spinner) findViewById(R.id.sp_dose_on_any_medication);
+            spDoseAllergictoDrugs = (Spinner) findViewById(R.id.sp_dose_allergicto_drugs);
+            spPrePregnancy = (Spinner) findViewById(R.id.sp_pre_pregnancy);
+            spLSCSDone = (Spinner) findViewById(R.id.sp_lscs_done);
+            spComDuringPrgncy = (Spinner) findViewById(R.id.sp_comDuring_prgncy);
+            spPrePrgncyG = (Spinner) findViewById(R.id.sp_pre_prgncy_g);
+            spPrePrgncyP = (Spinner) findViewById(R.id.sp_pre_prgncy_p);
+            spPrePrgncyA = (Spinner) findViewById(R.id.sp_pre_prgncy_a);
+            spPrePrgncyL = (Spinner) findViewById(R.id.sp_pre_prgncy_l);
+            edtRegWeek = (EditText) findViewById(R.id.edt_reg_week);
+            edtANTT1st = (EditText) findViewById(R.id.edt_antt1);
+            edtANTT2nd = (EditText) findViewById(R.id.edt_antt2);
+            edtFIAStartDate = (EditText) findViewById(R.id.edt_fias_tart_date);
+            edtHeight = (EditText) findViewById(R.id.edt_height);
+            spBloodGroup = (Spinner) findViewById(R.id.sp_blood_group);
+            spHIV = (Spinner) findViewById(R.id.sp_hiv);
+            spVDRL = (Spinner) findViewById(R.id.sp_vdrl);
+            spHelpatitis = (Spinner) findViewById(R.id.sp_helpatitis);
+            spHusbBloodGroup = (Spinner) findViewById(R.id.sp_husb_blood_group);
+            spHusbHIV = (Spinner) findViewById(R.id.sp_husb_hiv);
+            spHusbVDRL = (Spinner) findViewById(R.id.sp_husb_vdrl);
+            spHusbHelpatitis = (Spinner) findViewById(R.id.sp_husb_helpatitis);
+            butSubmit = (Button) findViewById(R.id.btn_submit);
+
+        }
+
+        private void onClickListner() {
+            butSubmit.setOnClickListener(this);
+        }
+
+
+        private void OnItemSelectedListener() {
+            spMotherOcc.setOnItemSelectedListener(this);
+            spHusbandOcc.setOnItemSelectedListener(this);
+            spConsangulneousMarriage.setOnItemSelectedListener(this);
+            spHistoryIllness.setOnItemSelectedListener(this);
+            spHistoryIllnessFmly.setOnItemSelectedListener(this);
+            spAnySurgeryBefore.setOnItemSelectedListener(this);
+            spDoseTobacco.setOnItemSelectedListener(this);
+            spDoseAlcohol.setOnItemSelectedListener(this);
+            spDoseOnAnyMedication.setOnItemSelectedListener(this);
+            spDoseAllergictoDrugs.setOnItemSelectedListener(this);
+            spPrePregnancy.setOnItemSelectedListener(this);
+            spLSCSDone.setOnItemSelectedListener(this);
+            spComDuringPrgncy.setOnItemSelectedListener(this);
+            spPrePrgncyG.setOnItemSelectedListener(this);
+            spPrePrgncyP.setOnItemSelectedListener(this);
+            spPrePrgncyA.setOnItemSelectedListener(this);
+            spPrePrgncyL.setOnItemSelectedListener(this);
+            spBloodGroup.setOnItemSelectedListener(this);
+            spHIV.setOnItemSelectedListener(this);
+            spVDRL.setOnItemSelectedListener(this);
+            spHelpatitis.setOnItemSelectedListener(this);
+            spHusbBloodGroup.setOnItemSelectedListener(this);
+            spHusbHIV.setOnItemSelectedListener(this);
+            spHusbVDRL.setOnItemSelectedListener(this);
+            spHusbHelpatitis.setOnItemSelectedListener(this);
+        }
+
+        private void getallEditTextvalues() {
+            strLmpDate = edtLmpDate.getText().toString();
+            strEddDate = edtEddDate.getText().toString();
+            strAgeAtMarriage = edtAgeAtMarriage.getText().toString();
+            strRegWeek = edtRegWeek.getText().toString();
+            strANTT1st = edtANTT1st.getText().toString();
+            strANTT2nd = edtANTT2nd.getText().toString();
+            strFIAStartDate = edtFIAStartDate.getText().toString();
+            strHeight = edtHeight.getText().toString();
+            strOthers = edtOthers.getText().toString();
+            strMedicationSpecify = edtMedicationSpecify.getText().toString();
+            strAllergictoDrugsSpecify = edtAllergictoDrugsSpecify.getText().toString();
+            strPrimaryMobileNumber = edt_primary_mobile_number.getText().toString();
+            strAlternativeMobileNumber = edt_alternative_mobile_number.getText().toString();
+        }
+
+
+        @Override
+        public boolean onOptionsItemSelected(MenuItem item) {
+
+            Intent intent = new Intent(PrimaryRegister.this, MainActivity.class);
+            finish();
+            startActivity(intent);
+            return super.onOptionsItemSelected(item);
+        }
+
+
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.btn_submit:
+                    sendtoServer();
+                    break;
+            }
+        }
+
+        private void sendtoServer() {
+            getallEditTextvalues();
+
+
+            if (strMasterId.equalsIgnoreCase("")){
+                showAlert("MasterId is Empty");
+            }else if (strId.equalsIgnoreCase("")){
+                showAlert("Id is Empty");
+
+            }else if (preferenceData.getPicmeId().equalsIgnoreCase("")){
+                showAlert("Id is Empty");
+
+            }else if (preferenceData.getMotherName().equalsIgnoreCase("")){
+                showAlert("Id is Empty");
+
+            }else if (preferenceData.getMotherAge().equalsIgnoreCase("")){
+                showAlert("Id is Empty");
+
+            }
+            else if (strLmpDate.equalsIgnoreCase("")){
+                showAlert("Id is Empty");
+
+            }else if (strEddDate.equalsIgnoreCase("")){
+                showAlert("Id is Empty");
+
+            }else if (strPrimaryMobileNumber.equalsIgnoreCase("")){
+                showAlert("Id is Empty");
+
+            }else if (strAlternativeMobileNumber.equalsIgnoreCase("")){
+                showAlert("Id is Empty");
+
+            }else if (strMotherOcc.equalsIgnoreCase("--Select--")){
+                showAlert("Id is Empty");
+
+            }else if (strHusbandOcc.equalsIgnoreCase("--Select--")){
+                showAlert("Id is Empty");
+
+            }else if (strAgeAtMarriage.equalsIgnoreCase("")){
+                showAlert("Id is Empty");
+
+            }else if (strConsangulneousMarriage.equalsIgnoreCase("--Select--")){
+                showAlert("Id is Empty");
+
+            }else if (strHistoryIllness.equalsIgnoreCase("--Select--")){
+                showAlert("Id is Empty");
+
+            }else if (strHistoryIllnessFmly.equalsIgnoreCase("--Select--")){
+                showAlert("Id is Empty");
+
+            }else if (strAnySurgeryBefore.equalsIgnoreCase("--Select--")){
+                showAlert("Id is Empty");
+
+            }else if (strDoseTobacco.equalsIgnoreCase("--Select--")){
+                showAlert("Id is Empty");
+
+            }else if (strDoseAlcohol.equalsIgnoreCase("--Select--")){
+                showAlert("Id is Empty");
+
+            }else if (strDoseOnAnyMedication.equalsIgnoreCase("--Select--")){
+                showAlert("Id is Empty");
+
+            }else if (strDoseAllergictoDrugs.equalsIgnoreCase("--Select--")){
+                showAlert("Id is Empty");
+
+            }else if (strPrePregnancy.equalsIgnoreCase("--Select--")){
+                showAlert("Id is Empty");
+
+            }else if (strLSCSDone.equalsIgnoreCase("--Select--")){
+                showAlert("Id is Empty");
+
+            }else if (strComDuringPrgncy.equalsIgnoreCase("--Select--")){
+                showAlert("Id is Empty");
+
+            }else if (strPrePrgncyG.equalsIgnoreCase("--Select--")){
+                showAlert("Id is Empty");
+
+            }else if (strPrePrgncyP.equalsIgnoreCase("--Select--")){
+                showAlert("Id is Empty");
+
+            }else if (strPrePrgncyA.equalsIgnoreCase("--Select--")){
+                showAlert("Id is Empty");
+
+            }else if (strPrePrgncyL.equalsIgnoreCase("--Select--")){
+                showAlert("Id is Empty");
+
+            }else if (strRegWeek.equalsIgnoreCase("")){
+                showAlert("Id is Empty");
+
+            }else if (strANTT1st.equalsIgnoreCase("")){
+                showAlert("Id is Empty");
+
+            }else if (strANTT2nd.equalsIgnoreCase("")){
+                showAlert("Id is Empty");
+
+            }
+            else if (strFIAStartDate.equalsIgnoreCase("")){
+                showAlert("Id is Empty");
+
+            }else if (strHeight.equalsIgnoreCase("")){
+                showAlert("Id is Empty");
+
+            }else if (strBloodGroup.equalsIgnoreCase("--Select--")){
+                showAlert("Id is Empty");
+
+            }else if (strHIV.equalsIgnoreCase("--Select--")){
+                showAlert("Id is Empty");
+
+            }else if (strVDRL.equalsIgnoreCase("--Select--")){
+                showAlert("Id is Empty");
+
+            }else if (strHelpatitis.equalsIgnoreCase("--Select--")){
+                showAlert("Id is Empty");
+
+            }else if (strHusbBloodGroup.equalsIgnoreCase("--Select--")){
+                showAlert("Id is Empty");
+
+            }else if (strHusbHIV.equalsIgnoreCase("--Select--")){
+                showAlert("Id is Empty");
+
+            }else if (strHusbVDRL.equalsIgnoreCase("--Select--")){
+                showAlert("Id is Empty");
+
+            }else if (strHusbHelpatitis.equalsIgnoreCase("--Select--")){
+                showAlert("Id is Empty");
+
+            }
+            else {
+                primaryDataRequestModel = new PrimaryDataRequestModel();
+                primaryDataRequestModel.setMasterId(strMasterId);
+                primaryDataRequestModel.setMid(strId);
+                primaryDataRequestModel.setMPicmeId(preferenceData.getPicmeId());
+                primaryDataRequestModel.setMName(preferenceData.getMotherName());
+                primaryDataRequestModel.setMAge(preferenceData.getMotherAge());
+                primaryDataRequestModel.setMLMP(strLmpDate);
+                primaryDataRequestModel.setMEDD(strEddDate);
+                primaryDataRequestModel.setMMotherMobile(strPrimaryMobileNumber);
+                primaryDataRequestModel.setMHusbandMobile(strAlternativeMobileNumber);
+                primaryDataRequestModel.setMMotherOccupation(strMotherOcc);
+                primaryDataRequestModel.setMHusbandOccupation(strHusbandOcc);
+                primaryDataRequestModel.setMAgeatMarriage(strAgeAtMarriage);
+                primaryDataRequestModel.setMConsanguineousMarraige(strConsangulneousMarriage);
+                primaryDataRequestModel.setMHistoryIllness(strHistoryIllness);
+                primaryDataRequestModel.setMHistoryIllnessFamily(strHistoryIllnessFmly);
+                primaryDataRequestModel.setMAnySurgeryBefore(strAnySurgeryBefore);
+                primaryDataRequestModel.setMUseTobacco(strDoseTobacco);
+                primaryDataRequestModel.setMUseAlcohol(strDoseAlcohol);
+                primaryDataRequestModel.setMAnyMeditation(strDoseOnAnyMedication);
+                primaryDataRequestModel.setMAllergicToanyDrug(strDoseAllergictoDrugs);
+                primaryDataRequestModel.setMHistroyPreviousPreganancy(strPrePregnancy);
+                primaryDataRequestModel.setMLscsDone(strLSCSDone);
+                primaryDataRequestModel.setMAnyComplecationDuringPreganancy(strComDuringPrgncy);
+                primaryDataRequestModel.setMPresentPreganancyG(strPrePrgncyG);
+                primaryDataRequestModel.setMPresentPreganancyP(strPrePrgncyP);
+                primaryDataRequestModel.setMPresentPreganancyA(strPrePrgncyA);
+                primaryDataRequestModel.setMPresentPreganancyL(strPrePrgncyL);
+                primaryDataRequestModel.setMRegistrationWeek(strRegWeek);
+                primaryDataRequestModel.setMANTT1(strANTT1st);
+                primaryDataRequestModel.setMANTT2(strANTT2nd);
+                primaryDataRequestModel.setMIFAStateDate(strFIAStartDate);
+                primaryDataRequestModel.setMHeight(strHeight);
+                primaryDataRequestModel.setMBloodGroup(strBloodGroup);
+                primaryDataRequestModel.setMHIV(strHIV);
+                primaryDataRequestModel.setMVDRL(strVDRL);
+                primaryDataRequestModel.setMHepatitis(strHelpatitis);
+                primaryDataRequestModel.setHBloodGroup(strHusbBloodGroup);
+                primaryDataRequestModel.setHHIV(strHusbHIV);
+                primaryDataRequestModel.setHVDRL(strHusbVDRL);
+                primaryDataRequestModel.setHHepatitis(strHusbHelpatitis);
+
+                primaryRegisterPresenter.postprimaryData(strPicmeId, primaryDataRequestModel);
+            }
+        }
+
+        private void showAlert(String msg) {
+            Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void showProgress() {
+            pDialog.show();
+        }
+
+        @Override
+        public void hideProgress() {
+            pDialog.hide();
+        }
+
+        @Override
+        public void getAllMotherPrimaryRegisterSuccess(String response) {
+            Log.d(PrimaryRegister.class.getSimpleName(), "Success response" + response);
+            setValuetoUI(response);
+        }
+
+        @Override
+        public void getAllMotherPrimaryRegisterFailiur(String response) {
+            Log.d(PrimaryRegister.class.getSimpleName(), "failiur" + response);
+
+        }
+
+        @Override
+        public void postDataSuccess(String response) {
+            Log.d(PrimaryRegister.class.getSimpleName(), "Success post method" + response);
+            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+            finish();
+        }
+
+        @Override
+        public void postDataFailiure(String response) {
+            Log.d(PrimaryRegister.class.getSimpleName(), "faild post method" + response);
+        }
+
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            switch (parent.getId()) {
+                case R.id.sp_hsbd_occ:
+                    strHusbandOcc = parent.getSelectedItem().toString();
+                    break;
+                case R.id.sp_mthr_occ:
+                    strMotherOcc = parent.getSelectedItem().toString();
+                    break;
+
+                case R.id.sp_consangulneous_marriage:
+                    strConsangulneousMarriage = parent.getSelectedItem().toString();
+                    break;
+
+                case R.id.sp_history_illness:
+                    strHistoryIllness = parent.getSelectedItem().toString();
+                    break;
+
+                case R.id.sp_historyIllness_fmly:
+                    strHistoryIllnessFmly = parent.getSelectedItem().toString();
+                    break;
+
+                case R.id.sp_any_surgery_before:
+                    strAnySurgeryBefore = parent.getSelectedItem().toString();
+                    break;
+
+                case R.id.sp_dose_tobacco:
+                    strDoseTobacco = parent.getSelectedItem().toString();
+                    break;
+
+
+                case R.id.sp_dose_alcohol:
+                    strDoseAlcohol = parent.getSelectedItem().toString();
+                    break;
+
+
+                case R.id.sp_dose_on_any_medication:
+                    strDoseOnAnyMedication = parent.getSelectedItem().toString();
+                    break;
+
+
+                case R.id.sp_dose_allergicto_drugs:
+                    strDoseAllergictoDrugs = parent.getSelectedItem().toString();
+                    break;
+
+
+                case R.id.sp_pre_pregnancy:
+                    strPrePregnancy = parent.getSelectedItem().toString();
+                    break;
+
+
+                case R.id.sp_lscs_done:
+                    strLSCSDone = parent.getSelectedItem().toString();
+                    break;
+
+
+                case R.id.sp_comDuring_prgncy:
+                    strComDuringPrgncy = parent.getSelectedItem().toString();
+                    break;
+
+
+                case R.id.sp_pre_prgncy_g:
+                    strPrePrgncyG = parent.getSelectedItem().toString();
+                    break;
+
+                case R.id.sp_pre_prgncy_p:
+                    strPrePrgncyP = parent.getSelectedItem().toString();
+                    break;
+
+
+                case R.id.sp_pre_prgncy_l:
+                    strPrePrgncyL = parent.getSelectedItem().toString();
+                    break;
+
+                case R.id.sp_pre_prgncy_a:
+                    strPrePrgncyA = parent.getSelectedItem().toString();
+                    break;
+
+
+                case R.id.sp_blood_group:
+                    strBloodGroup = parent.getSelectedItem().toString();
+                    break;
+
+                case R.id.sp_hiv:
+                    strHIV = parent.getSelectedItem().toString();
+                    break;
+
+
+                case R.id.sp_vdrl:
+                    strVDRL = parent.getSelectedItem().toString();
+                    break;
+
+                case R.id.sp_helpatitis:
+                    strHelpatitis = parent.getSelectedItem().toString();
+                    break;
+
+
+                case R.id.sp_husb_blood_group:
+                    strHusbBloodGroup = parent.getSelectedItem().toString();
+                    break;
+
+                case R.id.sp_husb_hiv:
+                    strHusbHIV = parent.getSelectedItem().toString();
+                    break;
+
+
+                case R.id.sp_husb_vdrl:
+                    strHusbVDRL = parent.getSelectedItem().toString();
+                    break;
+                case R.id.sp_husb_helpatitis:
+                    strHusbHelpatitis = parent.getSelectedItem().toString();
+                    break;
+
+
+            }
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+
+        }
+
+        private void setValuetoUI(String response) {
+            JSONObject jObj = null;
+            try {
+
+                jObj = new JSONObject(response);
+
+                int status = jObj.getInt("status");
+                String message = jObj.getString("message");
+                if (status == 1) {
+                    Log.d("message---->", message);
+                    strId = jObj.getString("mid");
+                    strMasterId = jObj.getString("masterId");
+                    strPicmeId = jObj.getString("mPicmeId");
+                    txtMotherName.setText(jObj.getString("mName"));
+                    txtMotherAge.setText(jObj.getString("mAge"));
+                    edtLmpDate.setText(jObj.getString("mLMP"));
+                    edtEddDate.setText(jObj.getString("mEDD"));
+                    edt_primary_mobile_number.setText(jObj.getString("mMotherMobile"));
+                    edt_alternative_mobile_number.setText(jObj.getString("mHusbandMobile"));
+                    edtAgeAtMarriage.setText(jObj.getString("mAgeatMarriage"));
+                    edtRegWeek.setText(jObj.getString("mRegistrationWeek"));
+                    edtANTT1st.setText(jObj.getString("mANTT1"));
+                    edtANTT2nd.setText(jObj.getString("mANTT2"));
+                    edtFIAStartDate.setText(jObj.getString("mIFAStateDate"));
+                    edtHeight.setText(jObj.getString("mHeight"));
+
+                    spMotherOcc.setSelection(getListPosition(Occ,jObj.getString("mMotherOccupation")));
+                    spHusbandOcc.setSelection(getListPosition(Occ,jObj.getString("mHusbandOccupation")));    //Private Sector, Govt Sector
+                    spConsangulneousMarriage.setSelection(getListPosition(yn,jObj.getString("mConsanguineousMarraige")));   // Yes,No
+                    spHistoryIllness.setSelection(getListPosition(hdcdt,jObj.getString("mHistoryIllness")));    //Hypertention, Diabetes, Congenital Heart Disease, Tb, Others
+                    spHistoryIllnessFmly.setSelection(getListPosition(hdcdt,jObj.getString("mHistoryIllnessFamily"))); //Hypertention, Diabetes, Congenital Heart Disease, Tb, Others
+                    spAnySurgeryBefore.setSelection(getListPosition(yn,jObj.getString("mAnySurgeryBefore")));  //Yes,No
+                    spDoseTobacco.setSelection(getListPosition(yn,jObj.getString("mUseTobacco")));       //Yes,No
+                    spDoseAlcohol.setSelection(getListPosition(yn,jObj.getString("mUseAlcohol")));       //Yes,No
+                    spDoseOnAnyMedication.setSelection(getListPosition(yn,jObj.getString("mAnyMeditation"))); //Yes,No
+                    spDoseAllergictoDrugs.setSelection(getListPosition(yn,jObj.getString("mAllergicToanyDrug"))); //Yes,No
+                  spPrePregnancy.setSelection(getListPosition(yn,jObj.getString("mHistroyPreviousPreganancy")));          //Yes,No
+                  spLSCSDone.setSelection(getListPosition(yn,jObj.getString("mLscsDone")));             //Yes,No
+                  spComDuringPrgncy.setSelection(getListPosition(hdcdt,jObj.getString("mAnyComplecationDuringPreganancy")));  //Hypertention, Diabetes, Congenital Heart Disease, Tb, Others
+                    spPrePrgncyG.setSelection(getListPosition(num,jObj.getString("mPresentPreganancyG")));  //1234567890
+                    spPrePrgncyP.setSelection(getListPosition(num,jObj.getString("mPresentPreganancyP")));  //1234567890
+                    spPrePrgncyA.setSelection(getListPosition(num,jObj.getString("mPresentPreganancyA")));  //1234567890
+                    spPrePrgncyL.setSelection(getListPosition(num,jObj.getString("mPresentPreganancyL")));   //1234567890
+                    spBloodGroup.setSelection(getListPosition(bg,jObj.getString("mBloodGroup")));   //A+ve, A-, B+, B-, O+, O-,
+                    spHIV.setSelection(getListPosition(rnr,jObj.getString("mHIV")));      //Reactive, Non Reactive
+                    spVDRL.setSelection(getListPosition(rnr,jObj.getString("mVDRL")));      //Reactive, Non Reactive
+                    spHelpatitis.setSelection(getListPosition(rnr,jObj.getString("mHepatitis")));   //Reactive, Non Reactive
+                    spHusbBloodGroup.setSelection(getListPosition(bg,jObj.getString("hBloodGroup")));  //A+ve, A-, B+, B-, O+, O-,
+                    spHusbHIV.setSelection(getListPosition(rnr,jObj.getString("hHIV")));         //Reactive, Non Reactive
+                    spHusbVDRL.setSelection(getListPosition(rnr,jObj.getString("hVDRL")));       //Reactive, Non Reactive
+                    spHusbHelpatitis.setSelection(getListPosition(rnr,jObj.getString("hHepatitis")));  //Reactive, Non Reactive
+
+                } else {
+                    Log.d("message---->", message);
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        private int getListPosition(String[] occ, String mMotherOccupation) {
+           int x=0;
+            List<String> listOcc = Arrays.asList(occ);
+            if (listOcc.contains(mMotherOccupation)) {
+                for (int i=0;i<listOcc.size();i++) {
+                    if (mMotherOccupation.equalsIgnoreCase(occ[i]))
+                        x =i;
+//                        spMotherOcc.setSelection(i);
+                }
+            } else {
+//                spMotherOcc.setSelection(0);    //Home Maker, Private Sector, Govt Sector
+            }
+            return x;
         }
     }
-    private void initUI() {
-        txtMotherName = (TextView) findViewById(R.id.txt_name);
-        txtMotherAge = (TextView) findViewById(R.id.txt_mother_age);
-        edtLmpDate = (EditText) findViewById(R.id.edt_lmp_date);
-        edtEddDate = (EditText) findViewById(R.id.edt_edd_date);
 
-        spMotherOcc = (Spinner) findViewById(R.id.sp_mthr_occ);
-        spHusbandOcc = (Spinner) findViewById(R.id.sp_hsbd_occ);
-
-        edtAgeAtMarriage = (EditText) findViewById(R.id.edt_age_at_marriage);
-
-        spConsangulneousMarriage = (Spinner) findViewById(R.id.sp_consangulneous_marriage);
-        spHistoryIllness = (Spinner) findViewById(R.id.sp_history_illness);
-        spHistoryIllnessFmly = (Spinner) findViewById(R.id.sp_historyIllness_fmly);
-        spAnySurgeryBefore = (Spinner) findViewById(R.id.sp_any_surgery_before);
-
-    }
-
-    private void onClickListner() {
-
-
-
-    }
-
-
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        Intent intent = new Intent(PrimaryRegister.this, MainActivity.class);
-        finish();
-        startActivity(intent);
-        return super.onOptionsItemSelected(item);
-    }
-}

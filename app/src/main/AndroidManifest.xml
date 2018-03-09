@@ -161,8 +161,6 @@
         </activity>
 
 
-        <service android:name=".utility.LocationServices" />
-
     </application>
 
 </manifest>
