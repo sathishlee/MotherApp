@@ -95,7 +95,9 @@ public class health_records extends Fragment implements GetVisitHelthRecordsView
         mhealthRecordList =new ArrayList<>();
         viewPager = view. findViewById(R.id.hre_viewpager);
         setupViewPager(viewPager);
+
         tabLayout = view .findViewById(R.id.hre_tabs);
+
         tabLayoutmain = view.findViewById(R.id.tabLayoutmain);
         tabLayout.setupWithViewPager(viewPager);
         btn_primary_report = (Button) view .findViewById(R.id.btn_primary_report);
@@ -158,7 +160,7 @@ public class health_records extends Fragment implements GetVisitHelthRecordsView
         adapter1.addFragmentMain(new PicmeVisit(), "Picme Visits");
         adapter1.addFragmentMain(new OtherVisit(), "Other Visits");
 
-        viewPager.setAdapter(viewPagerAdapter);
+        viewPager.setAdapter(adapter1);
 
     }
 
