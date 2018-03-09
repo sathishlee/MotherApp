@@ -407,7 +407,7 @@ ArrayList ysList,occList;
 
         @Override
         public void getAllMotherPrimaryRegisterFailiur(String response) {
-            Log.d(PrimaryRegister.class.getSimpleName(), "failiur" + response);
+            Log.d(PrimaryRegister.class.getSimpleName(), "failure" + response);
 
         }
 
@@ -420,7 +420,7 @@ ArrayList ysList,occList;
 
         @Override
         public void postDataFailiure(String response) {
-            Log.d(PrimaryRegister.class.getSimpleName(), "faild post method" + response);
+            Log.d(PrimaryRegister.class.getSimpleName(), "fail post method" + response);
         }
 
         @Override

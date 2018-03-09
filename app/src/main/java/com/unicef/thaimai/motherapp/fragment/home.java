@@ -76,7 +76,7 @@ public class home extends Fragment implements LoginViews, View.OnClickListener {
 
 
 
-        profile = (CardView) view.findViewById(R.id.android_card_view_example);
+        profile = (CardView) view.findViewById(R.id.user_profile_photo);
 
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
