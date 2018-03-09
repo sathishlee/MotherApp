@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="wrap_content
+"
+
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -234,38 +236,64 @@
 
 <!--</android.support.v7.widget.CardView>-->
 
-    <android.support.v7.widget.CardView
+    <!--<android.support.v7.widget.CardView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="50dp"-->
+        <!--android:layout_margin="10dp"-->
+        <!--android:backgroundT="@drawable/tab_background"-->
+        <!--app:cardElevation="2dp"-->
+        <!--app:cardUseCompatPadding="true">-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:orientation="vertical">-->
+
+            <!--<android.support.design.widget.TabLayout-->
+                <!--android:id="@+id/tabLayout"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="50dp"-->
+                <!--app:tabBackground="@drawable/tab_color_selector"-->
+                <!--app:tabSelectedTextColor="@color/white"-->
+                <!--app:tabTextColor="@color/black"-->
+                <!--android:minHeight="?attr/actionBarSize"-->
+                <!--android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />-->
+
+        <!--</LinearLayout>-->
+
+    <!--</android.support.v7.widget.CardView>-->
+
+
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="match_parent"
         android:layout_margin="10dp"
-        android:backgroundT="@drawable/tab_background"
-        app:cardElevation="2dp"
-        app:cardUseCompatPadding="true">
+        android:weightSum="2"
+        android:orientation="horizontal">
 
-        <LinearLayout
+        <Button
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="PICME Visit"
+            android:background="@color/colorPrimary"
+            android:textColor="#ffffff"
+            android:id="@+id/btn_picme"/>
 
-            <android.support.design.widget.TabLayout
-                android:id="@+id/tabLayoutmain"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                app:tabBackground="@drawable/tab_color_selector"
-                app:tabSelectedTextColor="@color/white"
-                app:tabTextColor="@color/black"
-                android:minHeight="?attr/actionBarSize"
-                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/secondary"
+            android:layout_weight="1"
+            android:text="Other Visit"
+            android:textColor="#ffffff"
+            android:id="@+id/btn_submit"/>
 
-            <android.support.v4.view.ViewPager
-                android:id="@+id/pager"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_below="@+id/tabLayout" />
+    </LinearLayout>
 
-        </LinearLayout>
 
-    </android.support.v7.widget.CardView>
+
 
 
     <android.support.design.widget.TabLayout
