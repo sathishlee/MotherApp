@@ -1,10 +1,13 @@
 package com.unicef.thaimai.motherapp.adapter;
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.util.Log;
 
+import com.unicef.thaimai.motherapp.fragment.OneFragment;
+import com.unicef.thaimai.motherapp.fragment.health_records;
 import com.unicef.thaimai.motherapp.model.responsemodel.HealthRecordResponseModel;
 
 import java.util.ArrayList;
@@ -18,13 +21,16 @@ public class ViewPagerAdapter   extends FragmentPagerAdapter {
     private final List<Fragment> mFragmentList = new ArrayList<>();
     private final List<String> mFragmentTitleList = new ArrayList<>();
    public  ArrayList<HealthRecordResponseModel> mhealthRecordList;
+    health_records context;
+
     public ViewPagerAdapter(FragmentManager manager) {
         super(manager);
     }
 
     @Override
     public Fragment getItem(int position) {
-        return mFragmentList.get(position);
+//       return mFragmentList.get(position);
+         return OneFragment.newInstance(mhealthRecordList);
     }
 
     @Override
@@ -32,15 +38,19 @@ public class ViewPagerAdapter   extends FragmentPagerAdapter {
         return mFragmentList.size();
     }
 
-    public void addFragment(Fragment fragment, String title, ArrayList<HealthRecordResponseModel> mhealthRecordList) {
+    public void addFragment(health_records context, Fragment fragment, String title, ArrayList<HealthRecordResponseModel> mhealthRecordList) {
+       this.context = context;
         mFragmentList.add(fragment);
         mFragmentTitleList.add(title);
         this.mhealthRecordList =mhealthRecordList;
-        Log.e(ViewPagerAdapter.class.getSimpleName(),mhealthRecordList.toString());
-    }
+        }
 
     @Override
     public CharSequence getPageTitle(int position) {
         return mFragmentTitleList.get(position);
+    }
+
+    public ArrayList<HealthRecordResponseModel> getMhealthRecordList() {
+        return mhealthRecordList;
     }
 }
