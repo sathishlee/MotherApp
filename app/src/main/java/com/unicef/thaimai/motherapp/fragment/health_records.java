@@ -45,7 +45,9 @@ public class health_records extends Fragment implements TabLayout.OnTabSelectedL
 
         viewPager = view. findViewById(R.id.hre_viewpager);
         setupViewPager(viewPager);
+
         tabLayout = view .findViewById(R.id.hre_tabs);
+
         tabLayoutmain = view.findViewById(R.id.tabLayoutmain);
         tabLayout.setupWithViewPager(viewPager);
 
@@ -86,7 +88,7 @@ public class health_records extends Fragment implements TabLayout.OnTabSelectedL
         adapter1.addFragmentMain(new PicmeVisit(), "Picme Visits");
         adapter1.addFragmentMain(new OtherVisit(), "Other Visits");
 
-        viewPager.setAdapter(viewPagerAdapter);
+        viewPager.setAdapter(adapter1);
 
     }
 
