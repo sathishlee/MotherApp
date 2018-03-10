@@ -29,6 +29,7 @@ import android.widget.Toast;
 import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.constant.AppConstants;
 import com.unicef.thaimai.motherapp.fragment.NotificationFragment;
+import com.unicef.thaimai.motherapp.fragment.PNhbncVisit;
 import com.unicef.thaimai.motherapp.fragment.baby;
 import com.unicef.thaimai.motherapp.fragment.health_records;
 import com.unicef.thaimai.motherapp.fragment.home;
@@ -263,31 +264,23 @@ if (AppConstants.isMainActivityOpen) {
 //            startActivity(i);
         }
 
-        else if (id == R.id.pn_HBNC_visit){
-            Intent i = new Intent(getApplicationContext(), PnHbncVisit.class);
-            startActivity(i);
-        }
-
         else if (id == R.id.immunization_menu){
             Intent i = new Intent(getApplicationContext(),ImmunizationActivity.class);
             startActivity(i);
         }
-        else if (id == R.id.referral) {
-            Intent v = new Intent(getApplicationContext(), ReferralList.class);
-            startActivity(v);
-        }
+
        else if (id == R.id.health_tips) {
             Intent i = new Intent(getApplicationContext(), HeathTipsActivity.class);
             startActivity(i);
         }
 
         else if (id == R.id.pn_visit_entry) {
-            Intent v = new Intent(getApplicationContext(), ReferralList.class);
+            Intent v = new Intent(getApplicationContext(), PNMotherVisit_editActivity.class);
             startActivity(v);
         }
 
         else if (id == R.id.hbnc_visit_entry) {
-            Intent v = new Intent(getApplicationContext(), ReferralList.class);
+            Intent v = new Intent(getApplicationContext(), InfantTrackingEditActivity.class);
             startActivity(v);
         }
 
@@ -341,7 +334,7 @@ if (AppConstants.isMainActivityOpen) {
                 break;
 
             case R.id.pn_HBNC_visit:
-                selectedFragment =  baby.newInstance();
+                selectedFragment =  PNhbncVisit.newInstance();
                 break;
 
         }

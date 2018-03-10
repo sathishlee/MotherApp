@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/hbnc"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -91,7 +91,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/due_date"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -99,6 +99,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="21-02-2018"
+                android:textSize="@dimen/text_secondary"
                 android:textColor="@color/text_primary"
                 android:layout_weight="1"/>
 
@@ -139,7 +140,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/place"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -214,7 +215,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/umbilical_stump"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -238,13 +239,14 @@
             android:weightSum="2">
 
             <TextView
+                android:id="@+id/textView3"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="@string/cry"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_secondary"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
+                android:textSize="@dimen/text_primary"
+                android:textStyle="bold" />
 
             <Spinner
                 android:layout_width="fill_parent"
@@ -270,7 +272,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/eyes"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -299,7 +301,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/skin"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -327,7 +329,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/exclusive_breast_feeding"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -355,7 +357,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/exclusive_breast_feeding_no_reasons"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -383,7 +385,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/outcome"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
