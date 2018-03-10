@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="text_primary">16.0sp</dimen>
+    <dimen name="text_primary">14.0sp</dimen>
 
     <dimen name="text_field">13.0sp</dimen>
 
@@ -18,7 +18,7 @@
 
 
     <dimen name="text_title">24.0sp</dimen>
-    <dimen name="text_lable">14.0sp</dimen>
+    <dimen name="text_label">15.0sp</dimen>
     <dimen name="text_content_list">18.0sp</dimen>
 
 
