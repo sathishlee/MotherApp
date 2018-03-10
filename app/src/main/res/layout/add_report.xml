@@ -114,6 +114,7 @@
                 android:layout_weight="1"/>
 
             <Spinner
+                android:id="@+id/sp_type_of_visit"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_primary"
@@ -130,7 +131,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="5dp"
-            android:weightSum="2">
+            android:weightSum="3">
 
             <TextView
                 android:layout_width="fill_parent"
@@ -142,6 +143,7 @@
                 android:layout_weight="1"/>
 
             <Spinner
+                android:id="@+id/sp_facility"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_primary"
@@ -151,6 +153,24 @@
                 android:entries="@array/array_facillity_type"
                 style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
 
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                >
+
+                <EditText
+                    android:id="@+id/edt_facility_other"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:textSize="@dimen/text_secondary"
+                    android:textColor="@color/secondary"
+                    android:hint="Specify"
+                    android:visibility="gone"/>
+
+            </android.support.design.widget.TextInputLayout>
+
         </LinearLayout>
 
         <LinearLayout
@@ -158,7 +178,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="5dp"
-            android:weightSum="2">
+            android:weightSum="3">
 
             <TextView
                 android:layout_width="fill_parent"
@@ -170,6 +190,7 @@
                 android:layout_weight="1"/>
 
             <Spinner
+                android:id="@+id/sp_any_complaints"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_primary"
@@ -178,7 +199,23 @@
                 android:drawSelectorOnTop="true"
                 android:entries="@array/complaints"
                 style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                >
 
+                <EditText
+                    android:id="@+id/edt_any_complaints_other"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:textSize="@dimen/text_secondary"
+                    android:textColor="@color/secondary"
+                    android:hint="Specify"
+                    android:visibility="gone"/>
+
+            </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 
 
@@ -265,6 +302,7 @@
                 android:weightSum="2">
 
                 <EditText
+                    android:id="@+id/edt_bp_sys"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -278,6 +316,7 @@
                     android:text="/"/>
 
                 <EditText
+                    android:id="@+id/edt_bp_dis"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -300,6 +339,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText
+                    android:id="@+id/edt_pluse_rate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
@@ -324,6 +364,7 @@
             android:layout_height="wrap_content">
 
             <EditText
+                android:id="@+id/edt_weight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
@@ -352,6 +393,7 @@
                 android:layout_weight="1"/>
 
             <Spinner
+                android:id="@+id/sp_fundal_height"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_primary"
@@ -374,6 +416,7 @@
                 android:layout_height="wrap_content">
 
             <EditText
+                android:id="@+id/edt_fhs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
@@ -402,17 +445,20 @@
                 android:layout_weight="1"/>
 
             <RadioGroup
+                android:id="@+id/rg_pep"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight=".07"
                 android:orientation="horizontal">
 
                 <RadioButton
+                    android:id="@+id/rb_yes"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="@string/yes" />
 
                 <RadioButton
+                    android:id="@+id/rb_no"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="No" />
@@ -432,6 +478,7 @@
                 android:layout_height="wrap_content">
 
             <EditText
+                android:id="@+id/edt_temp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
@@ -516,6 +563,7 @@
                 android:layout_height="wrap_content">
 
             <EditText
+                android:id="@+id/edt_hemo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Enter Hemoglobin"
@@ -538,6 +586,7 @@
                 android:layout_height="wrap_content">
 
             <EditText
+                android:id="@+id/edt_rbs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Enter RBS"
@@ -561,6 +610,7 @@
                 android:layout_height="wrap_content">
 
             <EditText
+                android:id="@+id/edt_fbs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Enter FBS"
@@ -583,6 +633,7 @@
                 android:layout_height="wrap_content">
 
             <EditText
+                android:id="@+id/edt_ppbs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Enter PPBS"
@@ -605,6 +656,7 @@
                 android:layout_height="wrap_content">
 
             <EditText
+                android:id="@+id/edt_gtt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Enter GTT"
@@ -627,6 +679,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText
+                    android:id="@+id/edt_tsh"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Enter TSH"
@@ -646,25 +699,21 @@
             android:padding="5dp"
             android:weightSum="2">
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="Urine Sugar"
-                android:textColor="@color/secondary"
-                android:textSize="@dimen/text_field"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
-            <Spinner
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="O+ve"
-                android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
-                android:layout_weight="1"
-                android:drawSelectorOnTop="true"
-                android:entries="@array/array_name"
-                style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
 
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/edt_urine_sugar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Urine Sugar"
+                    android:textColor="@color/secondary"
+                    android:textSize="@dimen/text_secondary"
+                    android:inputType="text"/>
+
+            </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -674,24 +723,20 @@
             android:padding="5dp"
             android:weightSum="2">
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="Albumin"
-                android:textColor="@color/secondary"
-                android:textSize="@dimen/text_field"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
-            <Spinner
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="O+ve"
-                android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
-                android:layout_weight="1"
-                android:drawSelectorOnTop="true"
-                android:entries="@array/array_name"
-                style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/edt_albumin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Albumin"
+                    android:textColor="@color/secondary"
+                    android:textSize="@dimen/text_secondary"
+                    android:inputType="text"/>
+
+            </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
 
@@ -766,6 +811,7 @@
                 android:layout_height="wrap_content">
 
             <EditText
+                android:id="@+id/edt_fetus"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
@@ -787,6 +833,7 @@
                 android:layout_height="wrap_content">
 
             <EditText
+               android:id="@+id/edt_gestation_sac"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
@@ -808,11 +855,12 @@
                 android:layout_height="wrap_content">
 
             <EditText
+                android:id="@+id/edt_liquor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 android:textSize="@dimen/text_secondary"
-                android:hint="Enter Value"/>
+                android:hint="Enter Liquor"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -829,36 +877,18 @@
                 android:layout_height="wrap_content">
 
                 <EditText
+                    android:id="@+id/edt_placenta"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
                     android:textSize="@dimen/text_secondary"
-                    android:hint="Enter Value"/>
+                    android:hint="Enter Placenta"/>
 
             </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="5dp">
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:textSize="@dimen/text_secondary"
-                    android:hint="Enter Value"/>
-
-            </android.support.design.widget.TextInputLayout>
-
-        </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -896,7 +926,8 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/pdf" />
+                        android:src="@drawable/pdf"
+                        tools:ignore="VectorDrawableCompat" />
 
                 </LinearLayout>
 
@@ -910,7 +941,8 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/pdf" />
+                        android:src="@drawable/pdf"
+                        tools:ignore="VectorDrawableCompat" />
 
                 </LinearLayout>
 
@@ -924,7 +956,8 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/pdf" />
+                        android:src="@drawable/pdf"
+                        tools:ignore="VectorDrawableCompat" />
 
                 </LinearLayout>
 
@@ -938,7 +971,8 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/pdf" />
+                        android:src="@drawable/pdf"
+                        tools:ignore="VectorDrawableCompat" />
 
                 </LinearLayout>
 
@@ -952,7 +986,8 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/pdf" />
+                        android:src="@drawable/pdf"
+                        tools:ignore="VectorDrawableCompat" />
 
                 </LinearLayout>
 
@@ -970,7 +1005,8 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/pdf" />
+                        android:src="@drawable/pdf"
+                        tools:ignore="VectorDrawableCompat" />
 
                 </LinearLayout>
 
@@ -985,7 +1021,8 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/pdf" />
+                        android:src="@drawable/pdf"
+                        tools:ignore="VectorDrawableCompat" />
 
                 </LinearLayout>
 
