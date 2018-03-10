@@ -52,7 +52,7 @@ public class health_records extends Fragment implements GetVisitHelthRecordsView
         health_records fragment = new health_records();
         return fragment;
     }
-
+//change
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
