@@ -20,9 +20,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import static com.unicef.thaimai.motherapp.fragment.OneFragment.mhealthRecordList;
+
 public class health_records extends Fragment implements TabLayout.OnTabSelectedListener {
 
-    Button btn_primary;
+    Button btn_primary_report, btn_view_report;
     private TabLayout tabLayout, tabLayoutmain;
     private ViewPager viewPager, pager;
 
@@ -44,8 +46,6 @@ public class health_records extends Fragment implements TabLayout.OnTabSelectedL
         view=inflater.inflate(R.layout.fragment_health_records, container, false);
         getActivity().setTitle("Health Records");
 
-        pager = view.findViewById(R.id.pager);
-        PagerView(pager);
 
         viewPager = view. findViewById(R.id.hre_viewpager);
         setupViewPager(viewPager);
@@ -68,16 +68,16 @@ public class health_records extends Fragment implements TabLayout.OnTabSelectedL
         viewPager.setAdapter(adapter);
     }
 
-    private void PagerView(ViewPager PagerView){
-
-        ViewPagerAdapterMain adapter1 = new ViewPagerAdapterMain(getActivity().getSupportFragmentManager());
-
-        adapter1.addFragmentMain(new PicmeVisit(), "Picme Visits");
-        adapter1.addFragmentMain(new OtherVisit(), "Other Visits");
-
-        viewPager.setAdapter(adapter1);
-
-    }
+//    private void PagerView(ViewPager PagerView){
+//
+//        ViewPagerAdapterMain adapter1 = new ViewPagerAdapterMain(getActivity().getSupportFragmentManager());
+//
+//        adapter1.addFragmentMain(new PicmeVisit(), "Picme Visits");
+//        adapter1.addFragmentMain(new OtherVisit(), "Other Visits");
+//
+//        viewPager.setAdapter(adapter1);
+//
+//    }
 
     @Override
     public void onTabSelected(TabLayout.Tab tab) {

@@ -9,10 +9,10 @@ import android.view.ViewGroup;
 import com.unicef.thaimai.motherapp.R;
 
 
-public class visits extends Fragment {
-    public static visits newInstance()
+public class referral extends Fragment {
+    public static referral newInstance()
     {
-        visits fragment = new visits();
+        referral fragment = new referral();
         return fragment;
     }
     @Override
@@ -21,6 +21,6 @@ public class visits extends Fragment {
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        return inflater.inflate(R.layout.fragment_visits, container, false);
+        return inflater.inflate(R.layout.layout_referral, container, false);
     }
 }

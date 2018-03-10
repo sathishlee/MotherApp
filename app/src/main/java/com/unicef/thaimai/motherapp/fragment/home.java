@@ -83,8 +83,8 @@ public class home extends Fragment implements LoginViews, View.OnClickListener {
                 Intent intent = new Intent(getActivity(), profile.class);
                 getActivity().finish();
                 startActivity(intent);
-       }
-});
+             }
+        });
         return view;
     }
 

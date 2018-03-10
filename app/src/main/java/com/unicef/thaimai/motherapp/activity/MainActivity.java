@@ -32,6 +32,7 @@ import com.unicef.thaimai.motherapp.fragment.NotificationFragment;
 import com.unicef.thaimai.motherapp.fragment.baby;
 import com.unicef.thaimai.motherapp.fragment.health_records;
 import com.unicef.thaimai.motherapp.fragment.home;
+import com.unicef.thaimai.motherapp.fragment.referral;
 
 import java.util.Locale;
 
@@ -326,18 +327,18 @@ if (AppConstants.isMainActivityOpen) {
         switch (item.getItemId()) {
 
             case R.id.navigation_home:
-                // Action to perform when Home Menu item is selected.
+
                 selectedFragment = home.newInstance();
                 break;
 
             case R.id.navigation_notifications:
-                // Action to perform when Bag Menu item is selected.
+
                 selectedFragment =  health_records.newInstance();
                 break;
 
-//            case R.id.visit:
-//                selectedFragment = visits.newInstance();
-//                break;
+            case R.id.referral:
+                selectedFragment = referral.newInstance();
+                break;
 
             case R.id.pn_HBNC_visit:
                 selectedFragment =  baby.newInstance();

@@ -16,7 +16,7 @@
     <!--<item-->
         <!--android:id="@+id/visit"-->
         <!--android:icon="@drawable/ic_visit_24dp"-->
-        <!--android:title="@string/visits"/>-->
+        <!--android:title="@string/referral"/>-->
 
     <item
         android:id="@+id/pn_HBNC_visit"
