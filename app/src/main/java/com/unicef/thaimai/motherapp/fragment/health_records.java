@@ -12,20 +12,38 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.unicef.thaimai.motherapp.Preference.PreferenceData;
+import com.unicef.thaimai.motherapp.Presenter.GetVisitHealthRecordsPresenteer;
 import com.unicef.thaimai.motherapp.R;
-import com.unicef.thaimai.motherapp.activity.PrimaryRegister;
 import com.unicef.thaimai.motherapp.adapter.ViewPagerAdapter;
-import com.unicef.thaimai.motherapp.adapter.ViewPagerAdapterMain;
+import com.unicef.thaimai.motherapp.constant.AppConstants;
+import com.unicef.thaimai.motherapp.model.responsemodel.HealthRecordResponseModel;
+import com.unicef.thaimai.motherapp.view.GetVisitHelthRecordsViews;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class health_records extends Fragment implements TabLayout.OnTabSelectedListener {
+import java.util.ArrayList;
+//public class health_records extends Fragment implements TabLayout.OnTabSelectedListener {
 
+import static android.content.Context.MODE_PRIVATE;
+
+
+public class health_records extends Fragment implements GetVisitHelthRecordsViews  {
+
+    Button btn_primary_report, btn_view_report;
+        private TabLayout tabLayout;
+    private ViewPager viewPager;
+    PreferenceData preferenceData;
+    SharedPreferences.Editor editor;
+    ProgressDialog pDialog;
+
+    GetVisitHealthRecordsPresenteer gVHRecordsPresenteer;
+    HealthRecordResponseModel mhealthRecordResponseModel;
+    ArrayList<HealthRecordResponseModel> mhealthRecordList;
+    ViewPagerAdapter adapter;
     Button btn_primary;
-    private TabLayout tabLayout, tabLayoutmain;
-    private ViewPager viewPager, pager;
 
 
 
@@ -34,20 +52,27 @@ public class health_records extends Fragment implements TabLayout.OnTabSelectedL
         health_records fragment = new health_records();
         return fragment;
     }
+//change
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
     }
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = null;
-        view=inflater.inflate(R.layout.fragment_health_records, container, false);
+        view = inflater.inflate(R.layout.fragment_health_records, container, false);
+        initUI(view);
+
+
+        return view;
+    }
+
+    private void initUI(View view) {
         getActivity().setTitle("Health Records");
 
-        pager = view.findViewById(R.id.pager);
-        PagerView(pager);
+//        pager = view.findViewById(R.id.pager);
+//        PagerView(pager);
 
 
         preferenceData = new PreferenceData(getActivity());
