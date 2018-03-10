@@ -409,6 +409,7 @@
 
     <string-array name="husbands_occupation_list">
         <item>--Select--</item>
+        <item>Home Maker</item>
         <item>Private Sector</item>
         <item>Govt Sector</item>
     </string-array>

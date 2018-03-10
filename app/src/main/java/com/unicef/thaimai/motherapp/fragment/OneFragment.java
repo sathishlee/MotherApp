@@ -54,7 +54,7 @@ public class OneFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.item_visit_screen, container, false);
         txt_visited_date = view.findViewById(R.id.txt_visited_date);
-        txt_visited_date.setText(mhealthRecordList.get(0).getMasterId());
+//        txt_visited_date.setText(mhealthRecordList.get(0).getMasterId());
         return view;
     }
 

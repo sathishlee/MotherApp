@@ -28,16 +28,15 @@
 
     import java.util.ArrayList;
     import java.util.Arrays;
+    import java.util.HashMap;
     import java.util.List;
 
 
     public class PrimaryRegister extends AppCompatActivity implements View.OnClickListener, PrimaryRegisterViews, AdapterView.OnItemSelectedListener {
-
         TextView txtMotherName, txtMotherAge;
         EditText edtLmpDate, edtEddDate, edtAgeAtMarriage, edtRegWeek, edtANTT1st, edtANTT2nd, edtFIAStartDate, edtHeight,
                 edtOthers, edtMedicationSpecify, edtAllergictoDrugsSpecify, edt_primary_mobile_number, edt_alternative_mobile_number,
-                edt_history_illness,edt_history_illness_fmly,edt_any_surgery_before,edt_comDuring_prgncy;
-
+        edt_history_illness,edt_history_illness_fmly,edt_any_surgery_before,edt_comDuring_prgncy;
         Spinner spMotherOcc, spHusbandOcc, spConsangulneousMarriage, spHistoryIllness, spHistoryIllnessFmly, spAnySurgeryBefore,
                 spDoseTobacco, spDoseAlcohol, spDoseOnAnyMedication, spDoseAllergictoDrugs,
                 spPrePregnancy, spLSCSDone, spComDuringPrgncy,
@@ -51,8 +50,7 @@
                 strHelpatitis, strHusbBloodGroup, strHusbHIV, strHusbVDRL, strHusbHelpatitis,
                 strLmpDate, strEddDate, strAgeAtMarriage, strRegWeek, strANTT1st, strANTT2nd, strFIAStartDate, strHeight,
                 strOthers, strMedicationSpecify, strAllergictoDrugsSpecify, strPrimaryMobileNumber, strAlternativeMobileNumber;
-
-        ArrayList ysList,occList;
+ArrayList ysList,occList;
         Button butSubmit;
         ProgressDialog pDialog;
 
@@ -192,6 +190,11 @@
             strAllergictoDrugsSpecify = edtAllergictoDrugsSpecify.getText().toString();
             strPrimaryMobileNumber = edt_primary_mobile_number.getText().toString();
             strAlternativeMobileNumber = edt_alternative_mobile_number.getText().toString();
+
+            strHistory_illness_other =edt_history_illness.getText().toString();
+            strHhistory_illness_fmly_other =edt_history_illness_fmly.getText().toString();
+            strAny_surgery_before_other =edt_any_surgery_before.getText().toString();
+            strAnyComDuring_prgncy_other =edt_comDuring_prgncy.getText().toString();
         }
 
 
@@ -234,10 +237,10 @@
 
             }
             else if (strLmpDate.equalsIgnoreCase("")){
-                showAlert("LMP is Empty");
+                showAlert("Id is Empty");
 
             }else if (strEddDate.equalsIgnoreCase("")){
-                showAlert("EDD is Empty");
+                showAlert("Id is Empty");
 
             }else if (strPrimaryMobileNumber.equalsIgnoreCase("")){
                 showAlert("Primary Mobile Number is Empty");
@@ -246,7 +249,7 @@
                 showAlert("Alternative Mobile Number is Empty");
 
             }else if (strMotherOcc.equalsIgnoreCase("--Select--")){
-                showAlert("Mother Occupation is Empty");
+                showAlert("Id is Empty");
 
             }else if (strHusbandOcc.equalsIgnoreCase("--Select--")){
                 showAlert("Husband Occupation is Empty");
@@ -383,6 +386,11 @@
                 primaryDataRequestModel.setHVDRL(strHusbVDRL);
                 primaryDataRequestModel.setHHepatitis(strHusbHelpatitis);
 
+                primaryDataRequestModel.setMHistoryIllnessOthers(strHistory_illness_other);
+                primaryDataRequestModel.setMHistoryIllnessFamilyOthers(strHhistory_illness_fmly_other);
+                primaryDataRequestModel.setMAnySurgeryBeforeOthers(strAny_surgery_before_other);
+                primaryDataRequestModel.setMAnyComplecationDuringOthers(strAnyComDuring_prgncy_other);
+
                 primaryRegisterPresenter.postprimaryData(strPicmeId, primaryDataRequestModel);
             }
         }
@@ -441,6 +449,13 @@
 
                 case R.id.sp_history_illness:
                     strHistoryIllness = parent.getSelectedItem().toString();
+                    if (strHistoryIllness.equalsIgnoreCase("Others")) {
+                        edt_history_illness.setVisibility(View.VISIBLE);
+                    }
+                    else {
+                        edt_history_illness.setVisibility(View.GONE);
+
+                    }
                     break;
 
                 case R.id.sp_historyIllness_fmly:

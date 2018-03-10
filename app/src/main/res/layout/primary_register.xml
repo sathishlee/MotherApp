@@ -339,7 +339,7 @@
                     android:id="@+id/edt_other_history_illness"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Other"
+                    android:hint="Specify"
                     android:textColor="@color/secondary"
                     android:textSize="@dimen/text_secondary"
                     android:layout_weight="1"/>
@@ -379,10 +379,11 @@
                 android:id="@+id/edt_history_illness_fmly"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Age at Marriage"
+                android:hint="Specify"
                 android:textColor="@color/secondary"
                 android:textSize="@dimen/text_secondary"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:visibility="gone"/>
         </LinearLayout>
 
         <LinearLayout
@@ -415,7 +416,7 @@
                 android:id="@+id/edt_any_surgery_before"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="other"
+                android:hint="Specify"
                 android:textColor="@color/secondary"
                 android:textSize="@dimen/text_secondary"
                 android:layout_weight="1"/>

@@ -1,9 +1,12 @@
 package com.unicef.thaimai.motherapp.activity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.unicef.thaimai.motherapp.Presenter.PrimaryRegisterPresenter;
@@ -26,18 +29,26 @@ public class PrimaryRegisterView extends AppCompatActivity implements PrimaryReg
             txt_any_complication, txt_g, txt_p, txt_a, txt_l, txt_registration_week, txt_an_tt_1st, txt_an_tt_2nd,
             txt_ifa_start_date, txt_height, txt_blood_group, txt_hiv, txt_vdrl, txt_Hepatitis, txt_hus_blood_group,
             txt_hus_hiv, txt_hus_vdrl, txt_hus_Hepatitis;
+    FloatingActionButton fab_edi_details;
     ProgressDialog pDialog;
-
     PrimaryRegisterPresenter primaryRegisterPresenter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.primary_details);
+        setContentView(R.layout.primary_register_view);
         initUI();
+        onClickListner();
 
+    }
+
+    private void onClickListner() {
+        fab_edi_details.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),PrimaryRegister.class));
+            }
+        });
     }
 
     private void initUI() {
@@ -46,7 +57,7 @@ public class PrimaryRegisterView extends AppCompatActivity implements PrimaryReg
         pDialog.setMessage("Please Wait ...");
         primaryRegisterPresenter = new PrimaryRegisterPresenter(PrimaryRegisterView.this, this);
         primaryRegisterPresenter.getAllMotherPrimaryRegistration("1000000000001");
-
+        fab_edi_details = (FloatingActionButton) findViewById(R.id.fab_edi_details);
         txt_name = (TextView) findViewById(R.id.txt_name);
         txt_mother_age = (TextView) findViewById(R.id.txt_mother_age);
         txt_lmp_date = (TextView) findViewById(R.id.txt_lmp_date);
