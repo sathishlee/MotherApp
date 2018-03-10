@@ -49,7 +49,8 @@
                 strPrePrgncyG, strPrePrgncyP, strPrePrgncyA, strPrePrgncyL, strBloodGroup, strHIV, strVDRL,
                 strHelpatitis, strHusbBloodGroup, strHusbHIV, strHusbVDRL, strHusbHelpatitis,
                 strLmpDate, strEddDate, strAgeAtMarriage, strRegWeek, strANTT1st, strANTT2nd, strFIAStartDate, strHeight,
-                strOthers, strMedicationSpecify, strAllergictoDrugsSpecify, strPrimaryMobileNumber, strAlternativeMobileNumber;
+                strOthers, strMedicationSpecify, strAllergictoDrugsSpecify, strPrimaryMobileNumber, strAlternativeMobileNumber,
+                strHistory_illness_other,strHhistory_illness_fmly_other,strAny_surgery_before_other,strAnyComDuring_prgncy_other;
 ArrayList ysList,occList;
         Button butSubmit;
         ProgressDialog pDialog;
@@ -141,6 +142,12 @@ ArrayList ysList,occList;
             spHusbHelpatitis = (Spinner) findViewById(R.id.sp_husb_helpatitis);
             butSubmit = (Button) findViewById(R.id.btn_submit);
 
+
+            edt_history_illness = (EditText) findViewById(R.id.edt_other_history_illness);
+            edt_history_illness_fmly = (EditText) findViewById(R.id.edt_history_illness_fmly);
+            edt_any_surgery_before = (EditText) findViewById(R.id.edt_any_surgery_before);
+            edt_comDuring_prgncy = (EditText) findViewById(R.id.edt_comDuring_prgncy);
+
         }
 
         private void onClickListner() {
@@ -190,6 +197,11 @@ ArrayList ysList,occList;
             strAllergictoDrugsSpecify = edtAllergictoDrugsSpecify.getText().toString();
             strPrimaryMobileNumber = edt_primary_mobile_number.getText().toString();
             strAlternativeMobileNumber = edt_alternative_mobile_number.getText().toString();
+
+            strHistory_illness_other =edt_history_illness.getText().toString();
+            strHhistory_illness_fmly_other =edt_history_illness_fmly.getText().toString();
+            strAny_surgery_before_other =edt_any_surgery_before.getText().toString();
+            strAnyComDuring_prgncy_other =edt_comDuring_prgncy.getText().toString();
         }
 
 
@@ -381,6 +393,11 @@ ArrayList ysList,occList;
                 primaryDataRequestModel.setHVDRL(strHusbVDRL);
                 primaryDataRequestModel.setHHepatitis(strHusbHelpatitis);
 
+                primaryDataRequestModel.setMHistoryIllnessOthers(strHistory_illness_other);
+                primaryDataRequestModel.setMHistoryIllnessFamilyOthers(strHhistory_illness_fmly_other);
+                primaryDataRequestModel.setMAnySurgeryBeforeOthers(strAny_surgery_before_other);
+                primaryDataRequestModel.setMAnyComplecationDuringOthers(strAnyComDuring_prgncy_other);
+
                 primaryRegisterPresenter.postprimaryData(strPicmeId, primaryDataRequestModel);
             }
         }
@@ -439,10 +456,24 @@ ArrayList ysList,occList;
 
                 case R.id.sp_history_illness:
                     strHistoryIllness = parent.getSelectedItem().toString();
+                    if (strHistoryIllness.equalsIgnoreCase("Others")) {
+                        edt_history_illness.setVisibility(View.VISIBLE);
+                    }
+                    else {
+                        edt_history_illness.setVisibility(View.GONE);
+
+                    }
                     break;
 
                 case R.id.sp_historyIllness_fmly:
                     strHistoryIllnessFmly = parent.getSelectedItem().toString();
+                    if (strHistoryIllnessFmly.equalsIgnoreCase("Others")) {
+                        edt_history_illness_fmly.setVisibility(View.VISIBLE);
+                    }
+                    else {
+                        edt_history_illness_fmly.setVisibility(View.GONE);
+
+                    }
                     break;
 
                 case R.id.sp_any_surgery_before:

@@ -236,7 +236,7 @@ if (AppConstants.isMainActivityOpen) {
 //
 //        }
         if (id == R.id.primary_register){
-            Intent i = new Intent(getApplicationContext(), PrimaryRegister.class);
+            Intent i = new Intent(getApplicationContext(), PrimaryRegisterView.class);
             startActivity(i);
         }
 

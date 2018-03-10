@@ -160,6 +160,11 @@
 
         </activity>
 
+         <activity android:name=".activity.PrimaryRegisterView"
+            android:theme="@style/AppTheme">
+
+        </activity>
+
 
     </application>
 

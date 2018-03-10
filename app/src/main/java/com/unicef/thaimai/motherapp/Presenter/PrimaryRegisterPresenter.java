@@ -148,6 +148,13 @@
             params.put("hHIV", primaryDataRequestModel.getHHIV());
             params.put("hVDRL", primaryDataRequestModel.getHVDRL());
             params.put("hHepatitis", primaryDataRequestModel.getMHepatitis());
+
+            params.put("mHistoryIllnessOthers", primaryDataRequestModel.getMHistoryIllnessOthers());
+            params.put("mHistoryIllnessFamilyOthers", primaryDataRequestModel.getMHistoryIllnessFamilyOthers());
+            params.put("mAnySurgeryBeforeOthers", primaryDataRequestModel.getMAnySurgeryBeforeOthers());
+            params.put("mAnyComplecationDuringOthers", primaryDataRequestModel.getMAnyComplecationDuringOthers());
+
+
             Log.d("params send to server", String.valueOf(new JSONObject(params)));
 
             JsonObjectRequest req = new JsonObjectRequest(url, new JSONObject(params), new Response.Listener<JSONObject>() {
