@@ -1,6 +1,7 @@
 package com.unicef.thaimai.motherapp.fragment;
 
-import android.content.Intent;
+import android.app.ProgressDialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -15,6 +16,9 @@ import com.unicef.thaimai.motherapp.activity.PrimaryRegister;
 import com.unicef.thaimai.motherapp.adapter.ViewPagerAdapter;
 import com.unicef.thaimai.motherapp.adapter.ViewPagerAdapterMain;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class health_records extends Fragment implements TabLayout.OnTabSelectedListener {
 
@@ -40,44 +44,27 @@ public class health_records extends Fragment implements TabLayout.OnTabSelectedL
         view=inflater.inflate(R.layout.fragment_health_records, container, false);
         getActivity().setTitle("Health Records");
 
-//        pager = view.findViewById(R.id.pager);
-//        PagerView(pager);
+        pager = view.findViewById(R.id.pager);
+        PagerView(pager);
 
         viewPager = view. findViewById(R.id.hre_viewpager);
         setupViewPager(viewPager);
-
-        tabLayout = view .findViewById(R.id.hre_tabs);
-
+        tabLayout = view.findViewById(R.id.hre_tabs);
 //        tabLayoutmain = view.findViewById(R.id.tabLayoutmain);
 //        tabLayout.setupWithViewPager(viewPager);
-
-
-        btn_primary = (Button) view .findViewById(R.id.btn_primary);
-
-        btn_primary.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(getActivity(), PrimaryRegister.class);
-                getActivity().finish();
-                startActivity(intent);
-
-            }
-        });
-
-
-        return view;
+        btn_primary_report = (Button) view.findViewById(R.id.btn_primary_report);
+        btn_view_report = (Button) view.findViewById(R.id.btn_view_report);
     }
 
 
-
     private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager());
-        adapter.addFragment(new OneFragment(), "Present Status\nVISIT 5");
-        adapter.addFragment(new OneFragment(), "VISIT 4");
-        adapter.addFragment(new OneFragment(), "VISIT 3");
-        adapter.addFragment(new OneFragment(), "VISIT 2");
-        adapter.addFragment(new OneFragment(), "VISIT 1");
+        adapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager());
+        adapter.addFragment(health_records.this,new OneFragment(), "Present Status\nVISIT 5", mhealthRecordList);
+
+//        adapter.addFragment(new OneFragment(), "VISIT 4");
+//        adapter.addFragment(new OneFragment(), "VISIT 3");
+//        adapter.addFragment(new OneFragment(), "VISIT 2");
+//        adapter.addFragment(new OneFragment(), "VISIT 1");
         viewPager.setAdapter(adapter);
     }
 
@@ -86,9 +73,9 @@ public class health_records extends Fragment implements TabLayout.OnTabSelectedL
         ViewPagerAdapterMain adapter1 = new ViewPagerAdapterMain(getActivity().getSupportFragmentManager());
 
         adapter1.addFragmentMain(new PicmeVisit(), "Picme Visits");
-        adapter1.addFragmentMain(new PicmeVisit(), "Other Visits");
+        adapter1.addFragmentMain(new OtherVisit(), "Other Visits");
 
-        PagerView.setAdapter(adapter1);
+        viewPager.setAdapter(adapter1);
 
     }
 

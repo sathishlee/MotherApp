@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:orientation="vertical"
+<LinearLayout android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content
+"
+
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -247,15 +249,15 @@
     <!--android:layout_height="match_parent"-->
     <!--android:orientation="vertical">-->
 
-    <!--<android.support.design.widget.TabLayout-->
-    <!--android:id="@+id/tabLayout"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="50dp"-->
-    <!--app:tabBackground="@drawable/tab_color_selector"-->
-    <!--app:tabSelectedTextColor="@color/white"-->
-    <!--app:tabTextColor="@color/black"-->
-    <!--android:minHeight="?attr/actionBarSize"-->
-    <!--android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />-->
+            <!--<android.support.design.widget.TabLayout-->
+                <!--android:id="@+id/tabLayout"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="50dp"-->
+                <!--app:tabBackground="@drawable/tab_color_selector"-->
+                <!--app:tabSelectedTextColor="@color/white"-->
+                <!--app:tabTextColor="@color/black"-->
+                <!--android:minHeight="?attr/actionBarSize"-->
+                <!--android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />-->
 
     <!--</LinearLayout>-->
 
@@ -263,33 +265,33 @@
 
 
 
-    <!--<LinearLayout-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:layout_margin="10dp"-->
-    <!--android:weightSum="2"-->
-    <!--android:orientation="horizontal">-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:weightSum="2"
+        android:orientation="horizontal">
 
-    <!--<Button-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="20dp"-->
-    <!--android:layout_weight="1"-->
-    <!--android:text="PICME Visit"-->
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="PICME Visit"
+            android:background="@color/colorPrimary"
+            android:textColor="#ffffff"
+            android:id="@+id/btn_picme"/>
 
-    <!--android:background="@drawable/tab_background"-->
-    <!--android:textColor="@color/colorPrimary"-->
-    <!--android:id="@+id/btn_picme"/>-->
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/secondary"
+            android:layout_weight="1"
+            android:text="Other Visit"
+            android:textColor="#ffffff"
+            android:id="@+id/btn_submit"/>
 
-    <!--<Button-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="20dp"-->
-    <!--android:layout_weight="1"-->
-    <!--android:text="Other Visit"-->
-    <!--android:background="@drawable/tab_background"-->
-    <!--android:textColor="@color/colorPrimary"-->
-    <!--android:id="@+id/btn_submit"/>-->
+    </LinearLayout>
 
-    <!--</LinearLayout>-->
 
 
 
@@ -322,7 +324,7 @@
         android:layout_marginBottom="50dp">
 
         <Button
-            android:id="@+id/btn_primary"
+            android:id="@+id/btn_primary_report"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
@@ -334,7 +336,7 @@
             android:drawableEnd="@drawable/ic_file_view"/>
 
         <Button
-            android:id="@+id/btn_view"
+            android:id="@+id/btn_view_report"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
@@ -348,4 +350,4 @@
     </LinearLayout>
 
 
-</RelativeLayout>
+</LinearLayout>

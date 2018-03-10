@@ -1,7 +1,7 @@
 package com.unicef.thaimai.motherapp.Presenter;
 
-
-import android.app.Activity;
+import android.app.DownloadManager;
+import android.content.Context;
 import android.util.Base64;
 import android.util.Log;
 
@@ -11,58 +11,57 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.unicef.thaimai.motherapp.constant.Apiconstants;
-import com.unicef.thaimai.motherapp.interactor.LoginInteractor;
-import com.unicef.thaimai.motherapp.view.LoginViews;
+import com.unicef.thaimai.motherapp.interactor.GetVisitHealthRecordsInteractor;
+import com.unicef.thaimai.motherapp.view.GetVisitHelthRecordsViews;
 import com.unicef.thaimai.motherapp.volleyservice.VolleySingleton;
+
+import org.json.JSONArray;
 
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Created by sathish on 3/9/2018.
+ */
 
-public class LoginPresenter implements LoginInteractor {
+public class GetVisitHealthRecordsPresenteer implements GetVisitHealthRecordsInteractor {
+    Context mContext;
+    GetVisitHelthRecordsViews view;
 
-    private LoginViews view;
-    private Activity activity;
-
-    public LoginPresenter(Activity activity, LoginViews view) {
+    public GetVisitHealthRecordsPresenteer(Context mContext, GetVisitHelthRecordsViews view) {
+        this.mContext = mContext;
         this.view = view;
-        this.activity = activity;
     }
 
     @Override
-    public void checkPickmeId(final String strPicmeId, final String strDob) {
+    public void getAllVistHeathRecord(final String strPicmeId, final String mid) {
         view.showProgress();
-        String url = Apiconstants.BASE_URL + Apiconstants.LOG_IN_CHECK_PIKME;
+        String url = Apiconstants.BASE_URL + Apiconstants.POST_VIST_HEALTH_RECORD;
 
         Log.d("Log in check Url--->",url);
         Log.d("Url--->",strPicmeId);
-        Log.d("Dob--->",strDob);
-
-        StringRequest strReq = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+        Log.d("Dob--->",mid);
+        StringRequest strReq =new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-            view.hideProgress();
-                Log.d("success",response);
-
-                view.showPickmeResult(response.toString());
+view.hideProgress();
+view.getVisitHealthRecordsSuccess(response);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 view.hideProgress();
-                Log.d(" error",error.toString());
-
-                view.showErrorMessage(error.toString());
-
+            view.getVisitHealthRecordsFailiur(error.toString());
             }
-        }) {
+        }){
 
-                        @Override
+
+            @Override
             protected Map<String, String> getParams() {
                 // Posting parameters to login url
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("picmeId",strPicmeId);
-                params.put("DOB",strDob);
+                params.put("mid",mid);
 
                 Log.d("params--->",params.toString());
 
@@ -88,9 +87,6 @@ public class LoginPresenter implements LoginInteractor {
                 return Method.POST;
             }
         };
-        // Adding request to request queue
-        VolleySingleton.getInstance(activity).addToRequestQueue(strReq);
-
+        VolleySingleton.getInstance(mContext).addToRequestQueue(strReq);
     }
-
 }

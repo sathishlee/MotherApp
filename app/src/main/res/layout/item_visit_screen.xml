@@ -170,6 +170,7 @@
                                 android:textStyle="bold" />
 
                             <TextView
+                                android:id="@+id/txt_visited_date"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="15-02-2018"

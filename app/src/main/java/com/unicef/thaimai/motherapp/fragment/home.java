@@ -32,15 +32,17 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class home extends Fragment implements LoginViews, View.OnClickListener {
 
-    TextView txt_username, picme_id, txt_age,
-            txt_risk,txt_gst_week,txt_weight,txt_next_visit,txt_lmp_date,txt_edd_date,txt_husb_name,txt_husb_mobile_number,txt_vhn_name,txt_vhn_mobile_number,txt_aww_name,txt_aww_mobile_number,txt_phc_name,txt_phc_mobile_number;
+    TextView txt_username, picme_id, txt_age, txt_risk,txt_gst_week,txt_weight,
+            txt_next_visit,txt_lmp_date,txt_edd_date,txt_husb_name,
+            txt_husb_mobile_number,txt_vhn_name,txt_vhn_mobile_number,txt_aww_name,
+            txt_aww_mobile_number,txt_phc_name,txt_phc_mobile_number;
+
     ImageView img_call_husb,img_call_vhn,img_call_aww,img_call_phc;
-    String strname, strpicmeId, strage,str_mobile_number_hsbn,str_mobile_number_vhn,str_mobile_number_aww,str_mobile_number_phc;
+
+     String strname, strpicmeId, strage,str_mobile_number_hsbn,
+            str_mobile_number_vhn, str_mobile_number_aww,str_mobile_number_phc;
 
     CardView profile;
-
-
-
 
     PreferenceData preferenceData;
     SharedPreferences.Editor editor;
@@ -67,9 +69,6 @@ public class home extends Fragment implements LoginViews, View.OnClickListener {
          initUI(view);
          onClickListner();
 
-
-
-
         getActivity().setTitle("Dashboard");
 
 
@@ -81,18 +80,12 @@ public class home extends Fragment implements LoginViews, View.OnClickListener {
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent intent = new Intent(getActivity(), profile.class);
                 getActivity().finish();
                 startActivity(intent);
-
-            }
-        });
-
-
-
+       }
+});
         return view;
-
     }
 
 
