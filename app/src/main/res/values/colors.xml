@@ -6,10 +6,6 @@
 
     <color name="colorPrimaryDark">#057ef4</color>
 
-    <color name="black">#000</color>
-
-    <color name="black_transparent">#66000000</color>
-
     <color name="red">#fff44336</color>
 
     <color name="text_primary">#ff212121</color>
@@ -26,23 +22,9 @@
 
     <color name="cloudy_blue">#ffd8e4e6</color>
 
-    <color name="person_background">#FFE3E8EF</color>
-
     <color name="divider">#ff818181</color>
 
-    <color name="list_item_color">#241E90FF</color>
-
-    <color name="editTextBG">#DADADA</color>
-
     <color name="white">#ffffff</color>
-
-    <color name="transparent">#00000000</color>
-
-    <color name="textColor">#6e6e6e</color>
-
-
-    <color name="text_title">#0502ff</color>
-    <color name="text_lable">#0a0909</color>
 
 
     <color name="header">#2F80ED</color>
@@ -51,6 +33,5 @@
     <color name="primary_dark">#0097A7</color>
     <color name="accent">#FFEB3B</color>
     <color name="accent_translucent">#80FFEB3B</color>
-    <color name="accent_bright">#FFF493</color>
 
 </resources>

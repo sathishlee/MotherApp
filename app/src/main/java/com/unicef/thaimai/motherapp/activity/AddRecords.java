@@ -45,23 +45,22 @@
 
         //    edt_facility_other,edt_any_complaints_other--->gone
 
-        ProgressDialog pDialog;
-        AddVisitRecordsPresenter addVisitRecordsPresenter;
-        AddRecordRequestModel addRecordRequestModel;
-        PreferenceData preferenceData;
+            ProgressDialog pDialog;
+            AddVisitRecordsPresenter addVisitRecordsPresenter;
+            AddRecordRequestModel addRecordRequestModel;
+            PreferenceData preferenceData;
 
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.add_report);
-            showActionBar();
+                @Override
+                    protected void onCreate(Bundle savedInstanceState) {
+                        super.onCreate(savedInstanceState);
+                        setContentView(R.layout.add_report);
+                        showActionBar();
+                        initUI();
+                        onClickListner();
+                        OnItemSelectedListener();
 
-            initUI();
-            onClickListner();
-            OnItemSelectedListener();
 
-
-        }
+                    }
 
         private void OnItemSelectedListener() {
             sp_type_of_visit.setOnItemSelectedListener(this);
