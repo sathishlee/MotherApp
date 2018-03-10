@@ -35,7 +35,7 @@ public class PrimaryRegisterView extends AppCompatActivity implements PrimaryReg
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.primary_details);
+        setContentView(R.layout.primary_register_view);
         initUI();
 
     }

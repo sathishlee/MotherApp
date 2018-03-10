@@ -80,8 +80,6 @@
             pDialog.setMessage("Please Wait ...");
             preferenceData = new PreferenceData(this);
             addVisitRecordsPresenter = new AddVisitRecordsPresenter(AddRecords.this, this);
-
-
             sp_type_of_visit = (Spinner) findViewById(R.id.sp_type_of_visit);
             sp_facility = (Spinner) findViewById(R.id.sp_facility);
             sp_any_complaints = (Spinner) findViewById(R.id.sp_any_complaints);
