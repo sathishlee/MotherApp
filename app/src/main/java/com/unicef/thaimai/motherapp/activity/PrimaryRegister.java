@@ -33,10 +33,12 @@
 
 
     public class PrimaryRegister extends AppCompatActivity implements View.OnClickListener, PrimaryRegisterViews, AdapterView.OnItemSelectedListener {
+
         TextView txtMotherName, txtMotherAge;
         EditText edtLmpDate, edtEddDate, edtAgeAtMarriage, edtRegWeek, edtANTT1st, edtANTT2nd, edtFIAStartDate, edtHeight,
                 edtOthers, edtMedicationSpecify, edtAllergictoDrugsSpecify, edt_primary_mobile_number, edt_alternative_mobile_number,
-        edt_history_illness,edt_history_illness_fmly,edt_any_surgery_before,edt_comDuring_prgncy;
+                edt_history_illness,edt_history_illness_fmly,edt_any_surgery_before,edt_comDuring_prgncy;
+
         Spinner spMotherOcc, spHusbandOcc, spConsangulneousMarriage, spHistoryIllness, spHistoryIllnessFmly, spAnySurgeryBefore,
                 spDoseTobacco, spDoseAlcohol, spDoseOnAnyMedication, spDoseAllergictoDrugs,
                 spPrePregnancy, spLSCSDone, spComDuringPrgncy,
@@ -49,8 +51,10 @@
                 strPrePrgncyG, strPrePrgncyP, strPrePrgncyA, strPrePrgncyL, strBloodGroup, strHIV, strVDRL,
                 strHelpatitis, strHusbBloodGroup, strHusbHIV, strHusbVDRL, strHusbHelpatitis,
                 strLmpDate, strEddDate, strAgeAtMarriage, strRegWeek, strANTT1st, strANTT2nd, strFIAStartDate, strHeight,
-                strOthers, strMedicationSpecify, strAllergictoDrugsSpecify, strPrimaryMobileNumber, strAlternativeMobileNumber;
+                strOthers, strMedicationSpecify, strAllergictoDrugsSpecify, strPrimaryMobileNumber, strAlternativeMobileNumber,
+                strHistory_illness_other,strHhistory_illness_fmly_other,strAny_surgery_before_other,strAnyComDuring_prgncy_other;
 ArrayList ysList,occList;
+>>>>>>>>> Temporary merge branch 2
         Button butSubmit;
         ProgressDialog pDialog;
 
@@ -140,6 +144,12 @@ ArrayList ysList,occList;
             spHusbVDRL = (Spinner) findViewById(R.id.sp_husb_vdrl);
             spHusbHelpatitis = (Spinner) findViewById(R.id.sp_husb_helpatitis);
             butSubmit = (Button) findViewById(R.id.btn_submit);
+
+
+            edt_history_illness = (EditText) findViewById(R.id.edt_other_history_illness);
+            edt_history_illness_fmly = (EditText) findViewById(R.id.edt_history_illness_fmly);
+            edt_any_surgery_before = (EditText) findViewById(R.id.edt_any_surgery_before);
+            edt_comDuring_prgncy = (EditText) findViewById(R.id.edt_comDuring_prgncy);
 
         }
 
@@ -237,10 +247,10 @@ ArrayList ysList,occList;
 
             }
             else if (strLmpDate.equalsIgnoreCase("")){
-                showAlert("Id is Empty");
+                showAlert("LMP is Empty");
 
             }else if (strEddDate.equalsIgnoreCase("")){
-                showAlert("Id is Empty");
+                showAlert("EDD is Empty");
 
             }else if (strPrimaryMobileNumber.equalsIgnoreCase("")){
                 showAlert("Primary Mobile Number is Empty");
@@ -249,7 +259,7 @@ ArrayList ysList,occList;
                 showAlert("Alternative Mobile Number is Empty");
 
             }else if (strMotherOcc.equalsIgnoreCase("--Select--")){
-                showAlert("Id is Empty");
+                showAlert("Mother Occupation is Empty");
 
             }else if (strHusbandOcc.equalsIgnoreCase("--Select--")){
                 showAlert("Husband Occupation is Empty");
@@ -460,6 +470,13 @@ ArrayList ysList,occList;
 
                 case R.id.sp_historyIllness_fmly:
                     strHistoryIllnessFmly = parent.getSelectedItem().toString();
+                    if (strHistoryIllnessFmly.equalsIgnoreCase("Others")) {
+                        edt_history_illness_fmly.setVisibility(View.VISIBLE);
+                    }
+                    else {
+                        edt_history_illness_fmly.setVisibility(View.GONE);
+
+                    }
                     break;
 
                 case R.id.sp_any_surgery_before:
