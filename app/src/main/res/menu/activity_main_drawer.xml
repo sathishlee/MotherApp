@@ -8,10 +8,7 @@
             android:icon="@drawable/primary_register"
             android:title="Primary Register" />
 
-        <item
-            android:id="@+id/visit_record"
-            android:icon="@drawable/health_care"
-            android:title="Visit Entry" />
+
 
 
         <!--<item-->
@@ -51,9 +48,25 @@
             android:title="Immunization" />
 
         <item
-            android:id="@+id/referral"
-            android:icon="@drawable/warning_card_hand"
-            android:title="@string/referral" />
+            android:id="@+id/visit_record"
+            android:icon="@drawable/health_care"
+            android:title="Visit Entry" />
+
+        <item
+            android:id="@+id/pn_visit_entry"
+            android:icon="@drawable/health_care"
+            android:title="PN Visit Entry" />
+
+        <item
+            android:id="@+id/hbnc_visit_entry"
+            android:icon="@drawable/health_care"
+            android:title="HBNC Visit Entry" />
+
+
+        <!--<item-->
+            <!--android:id="@+id/referral"-->
+            <!--android:icon="@drawable/warning_card_hand"-->
+            <!--android:title="@string/referral" />-->
         <!--<item-->
         <!--android:id="@+id/add_record"-->
         <!--android:icon="@drawable/health_care"-->

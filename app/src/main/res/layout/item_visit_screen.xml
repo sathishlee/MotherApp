@@ -14,16 +14,62 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:layout_margin="2dp"
+            android:weightSum="2"
             android:orientation="horizontal">
 
-            <TextView
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:padding="2dp"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#2F80ED"
-                android:text="PicMe"/>
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:background="@drawable/tab_background"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:textSize="@dimen/text_primary"
+                        android:textStyle="bold"
+                        android:layout_margin="2dp"
+                        android:layout_gravity="end"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#FFFFFF"
+                        android:text="Picme Visit"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/tab_background"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:textSize="@dimen/text_primary"
+                        android:textStyle="bold"
+                        android:padding="2dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#2F80ED"
+                        android:text="Other Visit"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -60,6 +106,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Visit Details"
+                            android:textSize="@dimen/text_label"
                             android:textAlignment="textStart"
                             android:textColor="#2F80ED"
                             android:textStyle="bold" />
@@ -117,7 +164,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Date of Visit"
-                                android:textSize="14sp"
+                                android:textSize="@dimen/text_primary"
                                 android:textAlignment="textStart"
                                 android:textColor="#aaffffff"
                                 android:textStyle="bold" />
@@ -129,7 +176,7 @@
                                 android:text="15-02-2018"
                                 android:textAlignment="textStart"
                                 android:textColor="#fff"
-                                android:textStyle="bold" />
+                                android:textSize="@dimen/text_secondary"/>
 
                         </LinearLayout>
 
@@ -160,7 +207,7 @@
                                 android:layout_height="wrap_content"
                                 android:textColor="#aaffffff"
                                 android:text="Visit Type"
-                                android:textSize="14sp"
+                                android:textSize="@dimen/text_primary"
                                 android:layout_gravity="start"
                                 android:textStyle="bold" />
                             <TextView
@@ -169,7 +216,7 @@
                                 android:text="Scheduled"
                                 android:layout_gravity="start"
                                 android:textColor="#fff"
-                                android:textStyle="bold" />
+                                android:textSize="@dimen/text_secondary"/>
 
                         </LinearLayout>
 
@@ -195,15 +242,19 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
                             android:text="Facility"
                             android:textAlignment="textStart"
+                            android:textSize="@dimen/text_primary"
                             android:textColor="@color/secondary"
                             android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
                             android:text="PHC"
+                            android:textSize="@dimen/text_secondary"
                             android:textAlignment="textStart"
                             android:textColor="@color/text_primary"/>
                     </LinearLayout>
@@ -220,6 +271,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
                             android:text="Any C/O"
+                            android:textSize="@dimen/text_primary"
                             android:layout_gravity="start"
                             android:textColor="@color/secondary"
                             android:textStyle="bold" />
@@ -228,6 +280,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
                             android:text="Burning"
+                            android:textSize="@dimen/text_secondary"
                             android:layout_gravity="start"
                             android:textColor="@color/text_primary"/>
 
@@ -273,6 +326,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Clinical Report"
+                            android:textSize="@dimen/text_label"
                             android:textAlignment="textStart"
                             android:textColor="#2F80ED"
                             android:textStyle="bold" />
@@ -331,7 +385,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="BP"
-                                android:textSize="14sp"
+                                android:textSize="@dimen/text_primary"
                                 android:textAlignment="textStart"
                                 android:textColor="#aaffffff"
                                 android:textStyle="bold" />
@@ -342,7 +396,7 @@
                                 android:text="162/102"
                                 android:textAlignment="textStart"
                                 android:textColor="#fff"
-                                android:textStyle="bold" />
+                                android:textSize="@dimen/text_secondary"/>
 
                         </LinearLayout>
 
@@ -373,7 +427,7 @@
                                 android:layout_height="wrap_content"
                                 android:textColor="#aaffffff"
                                 android:text="Pluse Rate"
-                                android:textSize="14sp"
+                                android:textSize="@dimen/text_primary"
                                 android:layout_gravity="start"
                                 android:textStyle="bold" />
 
@@ -383,7 +437,7 @@
                                 android:text="82"
                                 android:layout_gravity="start"
                                 android:textColor="#fff"
-                                android:textStyle="bold" />
+                                android:textSize="@dimen/text_secondary"/>
 
                         </LinearLayout>
 
@@ -410,6 +464,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Weight"
+                            android:textSize="@dimen/text_primary"
                             android:textAlignment="textStart"
                             android:textColor="@color/secondary"
                             android:textStyle="bold" />
@@ -418,6 +473,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="92kg"
+                            android:textSize="@dimen/text_secondary"
                             android:textAlignment="textStart"
                             android:textColor="@color/text_primary"/>
                     </LinearLayout>
@@ -434,6 +490,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
                             android:text="Funbal height"
+                            android:textSize="@dimen/text_primary"
                             android:layout_gravity="start"
                             android:textColor="@color/secondary"
                             android:textStyle="bold" />
@@ -442,6 +499,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
                             android:text="65cm"
+                            android:textSize="@dimen/text_secondary"
                             android:layout_gravity="start"
                             android:textColor="@color/text_primary"/>
 
@@ -468,6 +526,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="FHS"
+                            android:layout_marginStart="5dp"
+                            android:textSize="@dimen/text_primary"
                             android:textAlignment="textStart"
                             android:textColor="@color/secondary"
                             android:textStyle="bold" />
@@ -476,6 +536,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="223"
+                            android:layout_marginStart="5dp"
+                            android:textSize="@dimen/text_secondary"
                             android:textAlignment="textStart"
                             android:textColor="@color/text_primary"/>
                     </LinearLayout>
@@ -491,6 +553,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
+                            android:textSize="@dimen/text_primary"
                             android:text="Pedal Edema Present"
                             android:layout_gravity="start"
                             android:textColor="@color/secondary"
@@ -499,6 +562,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
+                            android:textSize="@dimen/text_secondary"
                             android:text="Yes"
                             android:layout_gravity="start"
                             android:textColor="@color/text_primary"/>
@@ -545,6 +609,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Lab Report"
+                            android:textSize="@dimen/text_label"
                             android:textAlignment="textStart"
                             android:textColor="#2F80ED"
                             android:textStyle="bold" />
@@ -603,7 +668,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="HB"
-                                android:textSize="14sp"
+                                android:textSize="@dimen/text_primary"
                                 android:textAlignment="textStart"
                                 android:textColor="#aaffffff"
                                 android:textStyle="bold" />
@@ -612,6 +677,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="162%"
+                                android:textSize="@dimen/text_secondary"
                                 android:textAlignment="textStart"
                                 android:textColor="#fff" />
 
@@ -644,7 +710,7 @@
                                 android:layout_height="wrap_content"
                                 android:textColor="#aaffffff"
                                 android:text="FBS"
-                                android:textSize="14sp"
+                                android:textSize="@dimen/text_primary"
                                 android:layout_gravity="start"
                                 android:textStyle="bold" />
 
@@ -652,6 +718,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="82"
+                                android:textSize="@dimen/text_secondary"
                                 android:layout_gravity="start"
                                 android:textColor="#fff"/>
 
@@ -679,7 +746,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
                             android:text="PPBS"
+                            android:textSize="@dimen/text_primary"
                             android:textAlignment="textStart"
                             android:textColor="@color/secondary"
                             android:textStyle="bold" />
@@ -687,7 +756,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
                             android:text="92"
+                            android:textSize="@dimen/text_secondary"
                             android:textAlignment="textStart"
                             android:textColor="@color/text_primary"/>
                     </LinearLayout>
@@ -704,6 +775,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
                             android:text="GTT"
+                            android:textSize="@dimen/text_primary"
                             android:layout_gravity="start"
                             android:textColor="@color/secondary"
                             android:textStyle="bold" />
@@ -712,6 +784,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
                             android:text="65cm"
+                            android:textSize="@dimen/text_secondary"
                             android:layout_gravity="start"
                             android:textColor="@color/text_primary" />
 
@@ -735,6 +808,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Sugar"
+                            android:textSize="@dimen/text_primary"
+                            android:layout_marginStart="5dp"
                             android:textAlignment="textStart"
                             android:textColor="@color/secondary"
                             android:textStyle="bold" />
@@ -743,6 +818,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="223"
+                            android:textSize="@dimen/text_secondary"
+                            android:layout_marginStart="5dp"
                             android:textAlignment="textStart"
                             android:textColor="@color/text_primary"/>
 
@@ -788,6 +865,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="UCG Report"
+                            android:textSize="@dimen/text_label"
                             android:textAlignment="textStart"
                             android:textColor="#2F80ED"
                             android:textStyle="bold" />
@@ -831,6 +909,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Fetus"
+                            android:textSize="@dimen/text_primary"
                             android:textAlignment="textStart"
                             android:textColor="@color/secondary"
                             android:textStyle="bold" />
@@ -839,6 +918,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Alive"
+                            android:textSize="@dimen/text_secondary"
                             android:textAlignment="textStart"
                             android:textColor="@color/text_primary"/>
                     </LinearLayout>
@@ -853,7 +933,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="5dp"
+                            android:textSize="@dimen/text_primary"
                             android:text="Gestation Sac"
                             android:layout_gravity="start"
                             android:textColor="@color/secondary"
@@ -861,7 +941,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="5dp"
+                            android:textSize="@dimen/text_secondary"
                             android:text="Single"
                             android:layout_gravity="start"
                             android:textColor="@color/text_primary" />
@@ -889,6 +969,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Liquor"
+                            android:textSize="@dimen/text_primary"
                             android:textAlignment="textStart"
                             android:textColor="@color/secondary"
                             android:textStyle="bold" />
@@ -897,8 +978,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Not"
+                            android:textSize="@dimen/text_secondary"
                             android:textAlignment="textStart"
                             android:textColor="@color/text_primary" />
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -911,7 +994,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="5dp"
+                            android:textSize="@dimen/text_primary"
                             android:text="Placenta"
                             android:layout_gravity="start"
                             android:textColor="@color/secondary"
@@ -919,7 +1002,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="5dp"
+                            android:textSize="@dimen/text_secondary"
                             android:text="Normal"
                             android:layout_gravity="start"
                             android:textColor="@color/text_primary" />
@@ -947,6 +1030,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="TSH"
+                            android:textSize="@dimen/text_primary"
                             android:textAlignment="textStart"
                             android:textColor="@color/secondary"
                             android:textStyle="bold" />
@@ -955,6 +1039,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="NA"
+                            android:textSize="@dimen/text_secondary"
                             android:textAlignment="textStart"
                             android:textColor="@color/text_primary"/>
                     </LinearLayout>

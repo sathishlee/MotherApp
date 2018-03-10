@@ -280,6 +280,16 @@ if (AppConstants.isMainActivityOpen) {
             startActivity(i);
         }
 
+        else if (id == R.id.pn_visit_entry) {
+            Intent v = new Intent(getApplicationContext(), ReferralList.class);
+            startActivity(v);
+        }
+
+        else if (id == R.id.hbnc_visit_entry) {
+            Intent v = new Intent(getApplicationContext(), ReferralList.class);
+            startActivity(v);
+        }
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -329,7 +339,7 @@ if (AppConstants.isMainActivityOpen) {
 //                selectedFragment = visits.newInstance();
 //                break;
 
-            case R.id.baby:
+            case R.id.pn_HBNC_visit:
                 selectedFragment =  baby.newInstance();
                 break;
 

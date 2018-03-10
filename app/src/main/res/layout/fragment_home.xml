@@ -15,7 +15,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:textSize="14sp"
+            android:textSize="@dimen/text_label"
             android:textStyle="bold"
             android:gravity="start|center"
             android:padding="2dp"
@@ -79,7 +79,7 @@
         <!--layout="@layout/layout_next_visit"/>-->
 
     <TextView
-        android:textSize="14.0sp"
+        android:textSize="@dimen/text_label"
         android:textStyle="bold"
         android:gravity="start|center"
         android:layout_gravity="center"

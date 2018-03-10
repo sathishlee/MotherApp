@@ -27,7 +27,7 @@
                 android:padding="4dp"
                 android:text="Govt Hospital"
                 android:textColor="@color/text_primary"
-                android:textSize="14.0sp"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -41,7 +41,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="start|center"
                     android:padding="4dp"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/text_secondary"
                     android:text="PHC"
                     android:textColor="@color/text_primary" />
 
@@ -52,7 +52,7 @@
                     android:padding="4dp"
                     android:text="+91 XXXXXXXXXX"
                     android:textColor="@color/text_primary"
-                    android:textSize="12.0sp" />
+                    android:textSize="@dimen/text_secondary" />
 
             </LinearLayout>
         </LinearLayout>

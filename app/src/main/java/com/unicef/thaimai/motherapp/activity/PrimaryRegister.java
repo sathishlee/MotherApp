@@ -33,6 +33,7 @@
 
 
     public class PrimaryRegister extends AppCompatActivity implements View.OnClickListener, PrimaryRegisterViews, AdapterView.OnItemSelectedListener {
+
         TextView txtMotherName, txtMotherAge;
         EditText edtLmpDate, edtEddDate, edtAgeAtMarriage, edtRegWeek, edtANTT1st, edtANTT2nd, edtFIAStartDate, edtHeight,
                 edtOthers, edtMedicationSpecify, edtAllergictoDrugsSpecify, edt_primary_mobile_number, edt_alternative_mobile_number,
@@ -244,28 +245,28 @@ ArrayList ysList,occList;
 
             }
             else if (strLmpDate.equalsIgnoreCase("")){
-                showAlert("Id is Empty");
+                showAlert("LMP is Empty");
 
             }else if (strEddDate.equalsIgnoreCase("")){
-                showAlert("Id is Empty");
+                showAlert("EDD is Empty");
 
             }else if (strPrimaryMobileNumber.equalsIgnoreCase("")){
-                showAlert("Id is Empty");
+                showAlert("Primary Mobile Number is Empty");
 
             }else if (strAlternativeMobileNumber.equalsIgnoreCase("")){
-                showAlert("Id is Empty");
+                showAlert("Alternative Mobile Number is Empty");
 
             }else if (strMotherOcc.equalsIgnoreCase("--Select--")){
-                showAlert("Id is Empty");
+                showAlert("Mother Occupation is Empty");
 
             }else if (strHusbandOcc.equalsIgnoreCase("--Select--")){
-                showAlert("Id is Empty");
+                showAlert("Husband Occupation is Empty");
 
             }else if (strAgeAtMarriage.equalsIgnoreCase("")){
-                showAlert("Id is Empty");
+                showAlert("Age at Marriage is Empty");
 
             }else if (strConsangulneousMarriage.equalsIgnoreCase("--Select--")){
-                showAlert("Id is Empty");
+                showAlert("Consangulneous Marriage is Empty");
 
             }else if (strHistoryIllness.equalsIgnoreCase("--Select--")){
                 showAlert("Id is Empty");

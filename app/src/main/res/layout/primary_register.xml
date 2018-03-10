@@ -64,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:text="Name"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_field"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -91,7 +91,7 @@
                 android:layout_height="wrap_content"
                 android:text="Age"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_field"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -207,7 +207,7 @@
                 android:layout_height="wrap_content"
                 android:text="Occupation"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_field"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -236,7 +236,7 @@
                 android:layout_height="wrap_content"
                 android:text="Husband's Occupation"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_field"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -289,7 +289,7 @@
                 android:layout_height="wrap_content"
                 android:text="Consanguineous marriage"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_field"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
             <Spinner
@@ -317,7 +317,7 @@
                 android:layout_height="wrap_content"
                 android:text="Histroy of any illness"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_field"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
             <Spinner
@@ -330,6 +330,7 @@
                 android:drawSelectorOnTop="true"
                 android:entries="@array/illness"
                 style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
+
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -344,6 +345,7 @@
                     android:layout_weight="1"/>
 
             </android.support.design.widget.TextInputLayout>
+
         </LinearLayout>
 
         <LinearLayout
@@ -358,9 +360,10 @@
                 android:layout_height="wrap_content"
                 android:text="History of any Illness Family"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_field"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
+
             <Spinner
                 android:id="@+id/sp_historyIllness_fmly"
                 android:layout_width="fill_parent"
@@ -371,6 +374,7 @@
                 android:drawSelectorOnTop="true"
                 android:entries="@array/illness_family"
                 style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
+
             <EditText
                 android:id="@+id/edt_history_illness_fmly"
                 android:layout_width="match_parent"
@@ -394,7 +398,7 @@
                 android:layout_height="wrap_content"
                 android:text="Any Surgery done before"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_field"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -494,7 +498,7 @@
                             android:layout_height="wrap_content"
                             android:text="Does use"
                             android:textAlignment="textStart"
-                            android:textSize="@dimen/text_lable"
+                            android:textSize="@dimen/text_label"
                             android:textColor="@color/header"
                             android:textStyle="bold" />
 
@@ -538,7 +542,7 @@
                             android:layout_height="wrap_content"
                             android:text="Tobacco"
                             android:textColor="@color/secondary"
-                            android:textSize="@dimen/text_field"
+                            android:textSize="@dimen/text_primary"
                             android:textStyle="bold"
                             android:layout_weight="1"/>
                         <Spinner
@@ -566,7 +570,7 @@
                             android:layout_height="wrap_content"
                             android:text="Alcohol"
                             android:textColor="@color/secondary"
-                            android:textSize="@dimen/text_field"
+                            android:textSize="@dimen/text_primary"
                             android:textStyle="bold"
                             android:layout_weight="1"/>
                         <Spinner
@@ -585,6 +589,7 @@
                 </LinearLayout>
 
             </LinearLayout>
+
         </android.support.v7.widget.CardView>
 
         <LinearLayout
@@ -624,7 +629,7 @@
                 android:layout_height="wrap_content"
                 android:text="On any Medication"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_field"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
             <Spinner
@@ -701,6 +706,7 @@
             android:padding="10dp"
             android:visibility="gone"
             android:weightSum="2">
+
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -730,7 +736,7 @@
                 android:layout_height="wrap_content"
                 android:text="History of Previous Pregnancy"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_field"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
             <Spinner
@@ -758,7 +764,7 @@
                 android:layout_height="wrap_content"
                 android:text="LSCS done"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_field"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -787,7 +793,7 @@
                 android:layout_height="wrap_content"
                 android:text="Any Complications during Pregnancy"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_field"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -801,6 +807,7 @@
                 android:drawSelectorOnTop="true"
                 android:entries="@array/pregnancy"
                 style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
+
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -852,7 +859,7 @@
                             android:layout_height="wrap_content"
                             android:text="Present Pregnancy"
                             android:textAlignment="textStart"
-                            android:textSize="@dimen/text_lable"
+                            android:textSize="@dimen/text_label"
                             android:textColor="@color/header"
                             android:textStyle="bold" />
 
@@ -897,9 +904,10 @@
                             android:layout_height="wrap_content"
                             android:text="G"
                             android:textColor="@color/secondary"
-                            android:textSize="@dimen/text_field"
+                            android:textSize="@dimen/text_primary"
                             android:textStyle="bold"
                             android:layout_weight="1"/>
+
                         <Spinner
                             android:id="@+id/sp_pre_prgncy_g"
                             android:layout_width="fill_parent"
@@ -925,9 +933,10 @@
                             android:layout_height="wrap_content"
                             android:text="P"
                             android:textColor="@color/secondary"
-                            android:textSize="@dimen/text_field"
+                            android:textSize="@dimen/text_primary"
                             android:textStyle="bold"
                             android:layout_weight="1"/>
+
                         <Spinner
                             android:id="@+id/sp_pre_prgncy_p"
                             android:layout_width="fill_parent"
@@ -963,9 +972,10 @@
                             android:layout_height="wrap_content"
                             android:text="A"
                             android:textColor="@color/secondary"
-                            android:textSize="@dimen/text_field"
+                            android:textSize="@dimen/text_primary"
                             android:textStyle="bold"
                             android:layout_weight="1"/>
+
                         <Spinner
                             android:id="@+id/sp_pre_prgncy_a"
                             android:layout_width="fill_parent"
@@ -991,9 +1001,10 @@
                             android:layout_height="wrap_content"
                             android:text="L"
                             android:textColor="@color/secondary"
-                            android:textSize="@dimen/text_field"
+                            android:textSize="@dimen/text_primary"
                             android:textStyle="bold"
                             android:layout_weight="1"/>
+
                         <Spinner
                             android:id="@+id/sp_pre_prgncy_l"
                             android:layout_width="fill_parent"
@@ -1008,8 +1019,11 @@
                     </LinearLayout>
 
                 </LinearLayout>
+
             </LinearLayout>
+
         </android.support.v7.widget.CardView>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -1134,7 +1148,7 @@
                 android:layout_height="wrap_content"
                 android:text="Blood Group :"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_field"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"/>
 
             <Spinner
@@ -1160,7 +1174,7 @@
                 android:layout_height="wrap_content"
                 android:text="HIV"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_field"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"/>
 
             <Spinner
@@ -1186,7 +1200,7 @@
                 android:layout_height="wrap_content"
                 android:text="VDRL"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_field"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"/>
 
             <Spinner
@@ -1212,7 +1226,7 @@
                 android:layout_height="wrap_content"
                 android:text="Hepatitis"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_field"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"/>
 
             <Spinner
@@ -1259,7 +1273,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="For Husband"
-                            android:textSize="@dimen/text_lable"
+                            android:textSize="@dimen/text_label"
                             android:textAlignment="textStart"
                             android:textColor="@color/header"
                             android:textStyle="bold" />
@@ -1296,7 +1310,7 @@
                         android:layout_height="wrap_content"
                         android:text="Blood Group :"
                         android:textColor="@color/secondary"
-                        android:textSize="@dimen/text_field"
+                        android:textSize="@dimen/text_primary"
                         android:textStyle="bold"/>
 
                     <Spinner
@@ -1322,7 +1336,7 @@
                         android:layout_height="wrap_content"
                         android:text="HIV"
                         android:textColor="@color/secondary"
-                        android:textSize="@dimen/text_field"
+                        android:textSize="@dimen/text_primary"
                         android:textStyle="bold"/>
 
                     <Spinner
@@ -1348,7 +1362,7 @@
                         android:layout_height="wrap_content"
                         android:text="VDRL"
                         android:textColor="@color/secondary"
-                        android:textSize="@dimen/text_field"
+                        android:textSize="@dimen/text_primary"
                         android:textStyle="bold"/>
 
                     <Spinner
@@ -1374,7 +1388,7 @@
                         android:layout_height="wrap_content"
                         android:text="Hepatitis"
                         android:textColor="@color/secondary"
-                        android:textSize="@dimen/text_field"
+                        android:textSize="@dimen/text_primary"
                         android:textStyle="bold"/>
 
                     <Spinner
@@ -1388,8 +1402,11 @@
                         style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
 
                 </LinearLayout>
+
             </LinearLayout>
+
         </android.support.v7.widget.CardView>
+
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -1399,6 +1416,7 @@
             android:textColor="#ffffff"
             android:id="@+id/btn_submit"
             android:padding="10dp"/>
+
     </LinearLayout>
 
 </ScrollView>

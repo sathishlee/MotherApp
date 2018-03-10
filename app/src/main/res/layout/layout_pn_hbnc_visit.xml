@@ -235,7 +235,7 @@
     <!--</android.support.v7.widget.CardView>-->
 
     <android.support.design.widget.TabLayout
-        android:id="@+id/hre_tabs"
+        android:id="@+id/pn_tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
@@ -248,7 +248,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:layout_below="@+id/hre_tabs"
+        android:layout_below="@+id/pn_tabs"
         android:layout_above="@+id/rel_bottom"/>
 
 
@@ -258,8 +258,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
-        android:weightSum="2"
-        android:layout_marginBottom="50dp">
+        android:weightSum="2">
 
         <Button
             android:id="@+id/btn_delivery"

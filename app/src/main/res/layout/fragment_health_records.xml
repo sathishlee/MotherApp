@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:orientation="vertical"
+<RelativeLayout android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -263,45 +263,45 @@
 
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="10dp"
-        android:weightSum="2"
-        android:orientation="horizontal">
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_margin="10dp"-->
+        <!--android:weightSum="2"-->
+        <!--android:orientation="horizontal">-->
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="PICME Visit"
-            android:background="@color/colorPrimary"
-            android:textColor="#ffffff"
-            android:id="@+id/btn_picme"/>
+        <!--<Button-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:text="PICME Visit"-->
+            <!--android:background="@color/colorPrimary"-->
+            <!--android:textColor="#ffffff"-->
+            <!--android:id="@+id/btn_picme"/>-->
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/secondary"
-            android:layout_weight="1"
-            android:text="Other Visit"
-            android:textColor="#ffffff"
-            android:id="@+id/btn_submit"/>
+        <!--<Button-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@color/secondary"-->
+            <!--android:layout_weight="1"-->
+            <!--android:text="Other Visit"-->
+            <!--android:textColor="#ffffff"-->
+            <!--android:id="@+id/btn_submit"/>-->
 
-    </LinearLayout>
+    <!--</LinearLayout>-->
 
 
 
 
 
     <android.support.design.widget.TabLayout
-    android:id="@+id/hre_tabs"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/colorPrimary"
-    app:tabMode="scrollable"
-    app:tabGravity="center"
-    app:tabTextColor="#ffffff"/>
+        android:id="@+id/hre_tabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        app:tabMode="scrollable"
+        app:tabGravity="center"
+        app:tabTextColor="#ffffff"/>
 
         <android.support.v4.view.ViewPager
             android:id="@+id/hre_viewpager"
@@ -322,11 +322,11 @@
         android:layout_marginBottom="50dp">
 
         <Button
-            android:id="@+id/btn_primary_report"
+            android:id="@+id/btn_primary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
-            android:text="@string/primary_reports"
+            android:text="PRIMARY RECORDS"
             android:textColor="#ffffff"
             android:layout_weight="1"
             android:padding="5dp"
@@ -334,7 +334,7 @@
             android:drawableEnd="@drawable/ic_file_view"/>
 
         <Button
-            android:id="@+id/btn_view_report"
+            android:id="@+id/btn_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
@@ -348,4 +348,4 @@
     </LinearLayout>
 
 
-</LinearLayout>
+</RelativeLayout>
