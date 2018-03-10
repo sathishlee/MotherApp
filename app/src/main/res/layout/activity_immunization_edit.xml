@@ -32,6 +32,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Immunization Visit "
+                            android:textSize="@dimen/text_label"
                             android:textAlignment="textStart"
                             android:textColor="#2F80ED"
                             android:textStyle="bold" />
@@ -90,7 +91,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Due Date"
-                                android:textSize="14sp"
+                                android:textSize="@dimen/text_primary"
                                 android:textAlignment="textStart"
                                 android:textColor="#aaffffff"
                                 android:textStyle="bold" />
@@ -101,7 +102,7 @@
                                 android:text="25-02-2018"
                                 android:textAlignment="textStart"
                                 android:textColor="#fff"
-                                android:textStyle="bold" />
+                                android:textSize="@dimen/text_secondary"/>
 
                         </LinearLayout>
 
@@ -132,7 +133,7 @@
                                 android:layout_height="wrap_content"
                                 android:textColor="#aaffffff"
                                 android:text="Provided Date"
-                                android:textSize="14sp"
+                                android:textSize="@dimen/text_primary"
                                 android:layout_gravity="start"
                                 android:textStyle="bold" />
                             <TextView
@@ -141,7 +142,7 @@
                                 android:text="18-02-2018"
                                 android:layout_gravity="start"
                                 android:textColor="#fff"
-                                android:textStyle="bold" />
+                                android:textSize="@dimen/text_secondary"/>
 
                         </LinearLayout>
 
@@ -166,6 +167,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Vaccine Received "
+                            android:textSize="@dimen/text_label"
                             android:textAlignment="textStart"
                             android:textColor="#2F80ED"
                             android:textStyle="bold" />
@@ -207,7 +209,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/opv"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -236,7 +238,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/pentavalent"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -265,7 +267,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/rota"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -294,7 +296,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/ipv"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 

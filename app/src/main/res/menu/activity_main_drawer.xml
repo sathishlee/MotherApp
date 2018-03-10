@@ -63,10 +63,10 @@
             android:title="HBNC Visit Entry" />
 
 
-        <item
-            android:id="@+id/referral"
-            android:icon="@drawable/warning_card_hand"
-            android:title="@string/referral" />
+        <!--<item-->
+            <!--android:id="@+id/referral"-->
+            <!--android:icon="@drawable/warning_card_hand"-->
+            <!--android:title="@string/referral" />-->
         <!--<item-->
         <!--android:id="@+id/add_record"-->
         <!--android:icon="@drawable/health_care"-->

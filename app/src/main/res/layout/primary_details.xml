@@ -25,6 +25,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Primary Registration "
+                    android:textSize="@dimen/text_label"
                     android:textAlignment="textStart"
                     android:textColor="#2F80ED"
                     android:textStyle="bold" />
@@ -61,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:text="Name"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_field"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -88,7 +89,7 @@
                 android:layout_height="wrap_content"
                 android:text="Age"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_field"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -108,76 +109,106 @@
             android:layout_height="wrap_content"
             android:baselineAligned="false"
             android:weightSum="2"
-            android:padding="5dp"
             android:orientation="horizontal">
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_margin="1dp"
-                android:orientation="vertical">
+                android:background="@drawable/background_image"
+                android:layout_margin="4dp"
+                android:orientation="horizontal">
 
-                <TextView
+                <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="LMP Date"
-                    android:textAlignment="textStart"
-                    android:textSize="@dimen/text_field"
-                    android:textColor="@color/secondary"
-                    android:textStyle="bold" />
+                    android:layout_margin="4dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/calendar"
+                    tools:ignore="VectorDrawableCompat" />
 
-                <TextView
-                    android:id="@+id/txt_lmp_date"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="02/12/2017"
-                    android:textSize="@dimen/text_secondary"
-                    android:textAlignment="textStart"
-                    android:textColor="@color/text_primary"/>
+                    android:layout_margin="4dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="LMP Date"
+                        android:textSize="@dimen/text_primary"
+                        android:textAlignment="textStart"
+                        android:textColor="#aaffffff"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="24-02-2018"
+                        android:textAlignment="textStart"
+                        android:textColor="#fff"
+                        android:textSize="@dimen/text_secondary" />
+
+                </LinearLayout>
+
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_margin="1dp"
-                android:orientation="vertical">
+                android:background="@drawable/background_image"
+                android:layout_margin="4dp"
+                android:orientation="horizontal">
 
-                <TextView
+                <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:text="EDD Date"
-                    android:layout_gravity="start"
-                    android:textSize="@dimen/text_field"
-                    android:textColor="@color/secondary"
-                    android:textStyle="bold" />
-                <TextView
-                    android:id="@+id/txt_edd_date"
-                    android:layout_width="match_parent"
+                    android:layout_margin="4dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/calendar"
+                    tools:ignore="VectorDrawableCompat" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:textSize="@dimen/text_secondary"
-                    android:text="02/10/2018"
-                    android:layout_gravity="start"
-                    android:textColor="@color/text_primary"/>
+                    android:layout_margin="4dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#aaffffff"
+                        android:text="EDD Date"
+                        android:textSize="@dimen/text_primary"
+                        android:layout_gravity="start"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="02/10/2018"
+                        android:layout_gravity="start"
+                        android:textColor="#fff"
+                        android:textSize="@dimen/text_secondary"/>
+
+                </LinearLayout>
 
             </LinearLayout>
 
         </LinearLayout>
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:baselineAligned="false"
-            android:padding="5dp"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="1dp"
+                android:layout_margin="5dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -185,7 +216,7 @@
                     android:layout_height="wrap_content"
                     android:text="Primary Mobile Number"
                     android:textAlignment="textStart"
-                    android:textSize="@dimen/text_field"
+                    android:textSize="@dimen/text_primary"
                     android:textColor="@color/secondary"
                     android:textStyle="bold" />
 
@@ -202,7 +233,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="1dp"
+                android:layout_margin="5dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -211,7 +242,7 @@
                     android:text="Alternative Mobile Number"
                     android:layout_gravity="start"
                     android:textColor="@color/secondary"
-                    android:textSize="@dimen/text_field"
+                    android:textSize="@dimen/text_primary"
                     android:textStyle="bold" />
 
                 <TextView
@@ -224,22 +255,21 @@
                     android:textColor="@color/text_primary" />
 
             </LinearLayout>
-        </LinearLayout>
 
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:baselineAligned="false"
             android:weightSum="2"
-            android:padding="5dp"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_margin="1dp"
+                android:layout_margin="5dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -247,7 +277,7 @@
                     android:layout_height="wrap_content"
                     android:text="Occupation"
                     android:textAlignment="textStart"
-                    android:textSize="@dimen/text_field"
+                    android:textSize="@dimen/text_primary"
                     android:textColor="@color/secondary"
                     android:textStyle="bold" />
 
@@ -259,13 +289,14 @@
                     android:textSize="@dimen/text_secondary"
                     android:textAlignment="textStart"
                     android:textColor="@color/text_primary"/>
+
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_margin="1dp"
+                android:layout_margin="5dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -274,7 +305,7 @@
                     android:text="Husband's Occupation"
                     android:layout_gravity="start"
                     android:textColor="@color/secondary"
-                    android:textSize="@dimen/text_field"
+                    android:textSize="@dimen/text_primary"
                     android:textStyle="bold" />
                 <TextView
                     android:id="@+id/txt_hus_occupation"
@@ -294,21 +325,20 @@
             android:layout_height="wrap_content"
             android:baselineAligned="false"
             android:weightSum="2"
-            android:padding="5dp"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_margin="1dp"
+                android:layout_margin="5dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Age at Marriage"
-                    android:textSize="@dimen/text_field"
+                    android:textSize="@dimen/text_primary"
                     android:textAlignment="textStart"
                     android:textColor="@color/secondary"
                     android:textStyle="bold" />
@@ -321,20 +351,21 @@
                     android:text="28"
                     android:textAlignment="textStart"
                     android:textColor="@color/text_primary"/>
+
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_margin="1dp"
+                android:layout_margin="5dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Consanguineous Marraige"
-                    android:textSize="@dimen/text_field"
+                    android:textSize="@dimen/text_primary"
                     android:layout_gravity="start"
                     android:textColor="@color/secondary"
                     android:textStyle="bold" />
@@ -351,20 +382,18 @@
 
         </LinearLayout>
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:baselineAligned="false"
             android:weightSum="2"
-            android:padding="5dp"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_margin="1dp"
+                android:layout_margin="5dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -372,7 +401,7 @@
                     android:layout_height="wrap_content"
                     android:text="History of any illness"
                     android:textAlignment="textStart"
-                    android:textSize="@dimen/text_field"
+                    android:textSize="@dimen/text_primary"
                     android:textColor="@color/secondary"
                     android:textStyle="bold" />
 
@@ -391,14 +420,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_margin="1dp"
+                android:layout_margin="5dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="History of Illness Family"
-                    android:textSize="@dimen/text_field"
+                    android:textSize="@dimen/text_primary"
                     android:layout_gravity="start"
                     android:textColor="@color/secondary"
                     android:textStyle="bold" />
@@ -416,12 +445,11 @@
         </LinearLayout>
 
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="5dp"
+            android:layout_margin="5dp"
             android:weightSum="2">
 
             <TextView
@@ -429,7 +457,7 @@
                 android:layout_height="wrap_content"
                 android:text="Any Surgery done before"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_field"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -477,7 +505,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Does use"
-                            android:textSize="@dimen/text_lable"
+                            android:textSize="@dimen/text_label"
                             android:textAlignment="textStart"
                             android:textColor="@color/header"
                             android:textStyle="bold" />
@@ -507,7 +535,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:padding="5dp"
+                    android:layout_margin="5dp"
                     android:weightSum="2">
 
                     <LinearLayout
@@ -522,7 +550,7 @@
                             android:layout_height="wrap_content"
                             android:text="Tobacco"
                             android:textColor="@color/secondary"
-                            android:textSize="@dimen/text_secondary"
+                            android:textSize="@dimen/text_primary"
                             android:textStyle="bold"
                             android:layout_weight="1"/>
 
@@ -549,7 +577,7 @@
                             android:layout_height="wrap_content"
                             android:text="Alcohol"
                             android:textColor="@color/secondary"
-                            android:textSize="@dimen/text_secondary"
+                            android:textSize="@dimen/text_primary"
                             android:textStyle="bold"
                             android:layout_weight="1"/>
 
@@ -567,6 +595,7 @@
                 </LinearLayout>
 
             </LinearLayout>
+
         </android.support.v7.widget.CardView>
 
 
@@ -574,7 +603,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="5dp"
+            android:layout_margin="5dp"
             android:weightSum="2">
 
             <TextView
@@ -582,7 +611,7 @@
                 android:layout_height="wrap_content"
                 android:text="On any Medication"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_field"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -602,7 +631,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="5dp"
+            android:layout_margin="5dp"
             android:weightSum="2">
 
             <TextView
@@ -610,7 +639,7 @@
                 android:layout_height="wrap_content"
                 android:text="Allergic to Any Drugs  "
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_field"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -630,7 +659,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="5dp"
+            android:layout_margin="5dp"
             android:weightSum="2">
 
             <TextView
@@ -638,7 +667,7 @@
                 android:layout_height="wrap_content"
                 android:text="History of Previous Pregnancy"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_field"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -657,7 +686,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="5dp"
+            android:layout_margin="5dp"
             android:weightSum="2">
 
             <TextView
@@ -665,7 +694,7 @@
                 android:layout_height="wrap_content"
                 android:text="LSCS done"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_field"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -678,14 +707,13 @@
                 android:layout_gravity="start"
                 android:textColor="@color/text_primary"/>
 
-
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="5dp"
+            android:layout_margin="5dp"
             android:weightSum="2">
 
             <TextView
@@ -693,7 +721,7 @@
                 android:layout_height="wrap_content"
                 android:text="Any Complications during Pregnancy"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -705,7 +733,6 @@
                 android:text="Hypertension"
                 android:layout_gravity="start"
                 android:textColor="@color/text_primary"/>
-
 
         </LinearLayout>
 
@@ -723,7 +750,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="5dp">
+                android:layout_margin="5dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -742,7 +769,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Present Pregnancy"
-                            android:textSize="@dimen/text_lable"
+                            android:textSize="@dimen/text_label"
                             android:textAlignment="textStart"
                             android:textColor="@color/header"
                             android:textStyle="bold" />
@@ -768,12 +795,11 @@
                 </LinearLayout>
 
 
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:padding="5dp"
+                    android:layout_margin="5dp"
                     android:weightSum="2">
 
                     <LinearLayout
@@ -788,14 +814,14 @@
                             android:layout_height="wrap_content"
                             android:text="G"
                             android:textColor="@color/secondary"
-                            android:textSize="@dimen/text_field"
+                            android:textSize="@dimen/text_primary"
                             android:textStyle="bold"
                             android:layout_weight="1"/>
                         <TextView
                             android:id="@+id/txt_g"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="@dimen/text_secondary"
+                            android:textSize="@dimen/text_primary"
                             android:text="1"
                             android:layout_gravity="start"
                             android:textColor="@color/text_primary"/>
@@ -814,7 +840,7 @@
                             android:layout_height="wrap_content"
                             android:text="P"
                             android:textColor="@color/secondary"
-                            android:textSize="@dimen/text_secondary"
+                            android:textSize="@dimen/text_primary"
                             android:textStyle="bold"
                             android:layout_weight="1"/>
 
@@ -836,7 +862,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:padding="5dp"
+                    android:layout_margin="5dp"
                     android:weightSum="2">
 
                     <LinearLayout
@@ -851,7 +877,7 @@
                             android:layout_height="wrap_content"
                             android:text="A"
                             android:textColor="@color/secondary"
-                            android:textSize="@dimen/text_secondary"
+                            android:textSize="@dimen/text_primary"
                             android:textStyle="bold"
                             android:layout_weight="1"/>
                         <TextView
@@ -877,7 +903,7 @@
                             android:layout_height="wrap_content"
                             android:text="L"
                             android:textColor="@color/secondary"
-                            android:textSize="@dimen/text_secondary"
+                            android:textSize="@dimen/text_primary"
                             android:textStyle="bold"
                             android:layout_weight="1"/>
 
@@ -893,14 +919,16 @@
                     </LinearLayout>
 
                 </LinearLayout>
+
             </LinearLayout>
+
         </android.support.v7.widget.CardView>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="5dp"
+            android:layout_margin="5dp"
             android:weightSum="2">
 
             <TextView
@@ -908,7 +936,7 @@
                 android:layout_height="wrap_content"
                 android:text="Registration Week"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_field"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -932,57 +960,86 @@
             android:layout_margin="2dp"
             android:orientation="horizontal">
 
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_margin="1dp"
-                android:orientation="vertical">
+                android:background="@drawable/background_image"
+                android:layout_margin="4dp"
+                android:orientation="horizontal">
 
-                <TextView
+                <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="AN TT 1st"
-                    android:textAlignment="textStart"
-                    android:textSize="@dimen/text_field"
-                    android:textColor="@color/secondary"
-                    android:textStyle="bold" />
+                    android:layout_margin="4dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/injection"
+                    tools:ignore="VectorDrawableCompat" />
 
-                <TextView
-                    android:id="@+id/txt_an_tt_1st"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="02/12/2017"
-                    android:textSize="@dimen/text_secondary"
-                    android:textAlignment="textStart"
-                    android:textColor="@color/text_primary"/>
+                    android:layout_margin="4dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="AN TT 1st"
+                        android:textSize="@dimen/text_primary"
+                        android:textAlignment="textStart"
+                        android:textColor="#aaffffff"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="02/12/2017"
+                        android:textAlignment="textStart"
+                        android:textColor="#fff"
+                        android:textSize="@dimen/text_secondary" />
+                </LinearLayout>
+
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_margin="1dp"
-                android:orientation="vertical">
+                android:background="@drawable/background_image"
+                android:layout_margin="4dp"
+                android:orientation="horizontal">
 
-                <TextView
+                <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:text="AN TT 2nd"
-                    android:layout_gravity="start"
-                    android:textSize="@dimen/text_field"
-                    android:textColor="@color/secondary"
-                    android:textStyle="bold" />
-                <TextView
-                    android:id="@+id/txt_an_tt_2nd"
-                    android:layout_width="match_parent"
+                    android:layout_margin="4dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/injection"
+                    tools:ignore="VectorDrawableCompat" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:textSize="@dimen/text_secondary"
-                    android:text="02/10/2018"
-                    android:layout_gravity="start"
-                    android:textColor="@color/text_primary"/>
+                    android:layout_margin="4dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#aaffffff"
+                        android:text="AN TT 2nd"
+                        android:textSize="@dimen/text_primary"
+                        android:layout_gravity="start"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="02/10/2018"
+                        android:layout_gravity="start"
+                        android:textColor="#fff"
+                        android:textSize="@dimen/text_secondary"/>
+
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -1009,7 +1066,7 @@
                     android:layout_height="wrap_content"
                     android:text="IFA Start date :"
                     android:textAlignment="textStart"
-                    android:textSize="@dimen/text_field"
+                    android:textSize="@dimen/text_primary"
                     android:textColor="@color/secondary"
                     android:textStyle="bold" />
 
@@ -1036,7 +1093,7 @@
                     android:layout_marginStart="5dp"
                     android:text="Height"
                     android:layout_gravity="start"
-                    android:textSize="@dimen/text_field"
+                    android:textSize="@dimen/text_primary"
                     android:textColor="@color/secondary"
                     android:textStyle="bold" />
                 <TextView
@@ -1073,7 +1130,7 @@
                     android:layout_height="wrap_content"
                     android:text="Blood Group"
                     android:textAlignment="textStart"
-                    android:textSize="@dimen/text_field"
+                    android:textSize="@dimen/text_primary"
                     android:textColor="@color/secondary"
                     android:textStyle="bold" />
 
@@ -1100,7 +1157,7 @@
                     android:layout_marginStart="5dp"
                     android:text="HIV"
                     android:layout_gravity="start"
-                    android:textSize="@dimen/text_field"
+                    android:textSize="@dimen/text_primary"
                     android:textColor="@color/secondary"
                     android:textStyle="bold" />
                 <TextView
@@ -1138,7 +1195,7 @@
                     android:layout_height="wrap_content"
                     android:text="VDRL"
                     android:textAlignment="textStart"
-                    android:textSize="@dimen/text_field"
+                    android:textSize="@dimen/text_primary"
                     android:textColor="@color/secondary"
                     android:textStyle="bold" />
 
@@ -1165,7 +1222,7 @@
                     android:layout_marginStart="5dp"
                     android:text="Hepatitis"
                     android:layout_gravity="start"
-                    android:textSize="@dimen/text_field"
+                    android:textSize="@dimen/text_primary"
                     android:textColor="@color/secondary"
                     android:textStyle="bold" />
                 <TextView
@@ -1214,7 +1271,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="For Husband"
-                            android:textSize="@dimen/text_lable"
+                            android:textSize="@dimen/text_label"
                             android:textAlignment="textStart"
                             android:textColor="@color/header"
                             android:textStyle="bold" />
@@ -1260,7 +1317,7 @@
                             android:layout_height="wrap_content"
                             android:text="Blood Group"
                             android:textAlignment="textStart"
-                            android:textSize="@dimen/text_field"
+                            android:textSize="@dimen/text_primary"
                             android:textColor="@color/secondary"
                             android:textStyle="bold" />
 
@@ -1286,7 +1343,7 @@
                             android:layout_height="wrap_content"
                             android:text="HIV"
                             android:layout_gravity="start"
-                            android:textSize="@dimen/text_field"
+                            android:textSize="@dimen/text_primary"
                             android:textColor="@color/secondary"
                             android:textStyle="bold" />
                         <TextView
@@ -1322,7 +1379,7 @@
                             android:layout_height="wrap_content"
                             android:text="VDRL"
                             android:textAlignment="textStart"
-                            android:textSize="@dimen/text_field"
+                            android:textSize="@dimen/text_primary"
                             android:textColor="@color/secondary"
                             android:textStyle="bold" />
 
@@ -1346,17 +1403,15 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="5dp"
                             android:text="Hepatitis"
                             android:layout_gravity="start"
-                            android:textSize="@dimen/text_field"
+                            android:textSize="@dimen/text_primary"
                             android:textColor="@color/secondary"
                             android:textStyle="bold" />
                         <TextView
                             android:id="@+id/txt_hus_Hepatitis"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="5dp"
                             android:textSize="@dimen/text_secondary"
                             android:text="Non Reactive"
                             android:layout_gravity="start"

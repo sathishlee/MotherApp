@@ -339,7 +339,7 @@ if (AppConstants.isMainActivityOpen) {
 //                selectedFragment = visits.newInstance();
 //                break;
 
-            case R.id.baby:
+            case R.id.pn_HBNC_visit:
                 selectedFragment =  baby.newInstance();
                 break;
 

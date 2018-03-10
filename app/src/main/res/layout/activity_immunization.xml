@@ -44,6 +44,7 @@
                             android:layout_height="wrap_content"
                             android:text="Immunization Visit "
                             android:textAlignment="textStart"
+                            android:textSize="@dimen/text_label"
                             android:textColor="#2F80ED"
                             android:textStyle="bold" />
 
@@ -101,7 +102,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Due Date"
-                                android:textSize="14sp"
+                                android:textSize="@dimen/text_primary"
                                 android:textAlignment="textStart"
                                 android:textColor="#aaffffff"
                                 android:textStyle="bold" />
@@ -110,9 +111,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="25-02-2018"
+                                android:textSize="@dimen/text_secondary"
                                 android:textAlignment="textStart"
-                                android:textColor="#fff"
-                                android:textStyle="bold" />
+                                android:textColor="#fff"/>
 
                         </LinearLayout>
 
@@ -143,7 +144,7 @@
                                 android:layout_height="wrap_content"
                                 android:textColor="#aaffffff"
                                 android:text="Provided Date"
-                                android:textSize="14sp"
+                                android:textSize="@dimen/text_primary"
                                 android:layout_gravity="start"
                                 android:textStyle="bold" />
                             <TextView
@@ -152,7 +153,7 @@
                                 android:text="18-02-2018"
                                 android:layout_gravity="start"
                                 android:textColor="#fff"
-                                android:textStyle="bold" />
+                                android:textSize="@dimen/text_secondary"/>
 
                         </LinearLayout>
 
@@ -177,6 +178,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Vaccine Received "
+                            android:textSize="@dimen/text_label"
                             android:textAlignment="textStart"
                             android:textColor="#2F80ED"
                             android:textStyle="bold" />
@@ -222,6 +224,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="OPV"
+                            android:textSize="@dimen/text_primary"
                             android:textAlignment="textStart"
                             android:textColor="@color/secondary"
                             android:textStyle="bold" />
@@ -232,7 +235,8 @@
                             android:text="Yes"
                             android:textAlignment="textStart"
                             android:textColor="#333333"
-                            android:textStyle="bold" />
+                            android:textSize="@dimen/text_secondary"/>
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -245,19 +249,18 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="5dp"
                             android:text="Pentavalent"
+                            android:textSize="@dimen/text_primary"
                             android:layout_gravity="start"
                             android:textColor="@color/secondary"
                             android:textStyle="bold" />
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="5dp"
+                            android:textSize="@dimen/text_secondary"
                             android:text="Yes"
                             android:layout_gravity="start"
-                            android:textColor="#333333"
-                            android:textStyle="bold" />
+                            android:textColor="#333333"/>
 
                     </LinearLayout>
 
@@ -282,6 +285,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Rota"
+                            android:textSize="@dimen/text_primary"
                             android:textAlignment="textStart"
                             android:textColor="@color/secondary"
                             android:textStyle="bold" />
@@ -292,7 +296,8 @@
                             android:text="Yes"
                             android:textAlignment="textStart"
                             android:textColor="#333333"
-                            android:textStyle="bold" />
+                            android:textSize="@dimen/text_secondary"/>
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -305,19 +310,18 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="5dp"
                             android:text="IPV"
                             android:layout_gravity="start"
+                            android:textSize="@dimen/text_primary"
                             android:textColor="@color/secondary"
                             android:textStyle="bold" />
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="5dp"
                             android:text="Yes"
                             android:layout_gravity="start"
                             android:textColor="#333333"
-                            android:textStyle="bold" />
+                            android:textSize="@dimen/text_secondary"/>
 
                     </LinearLayout>
 
