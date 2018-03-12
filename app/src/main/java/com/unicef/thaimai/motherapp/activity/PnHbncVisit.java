@@ -47,7 +47,7 @@ public class PnHbncVisit extends AppCompatActivity {
 
     private void init() {
 
-        tabLayout = (TabLayout) findViewById(R.id.pn_tabs);
+//        tabLayout = (TabLayout) findViewById(R.id.pn_tabs);
 
 //Adding the tabs using addTab() method
         tabLayout.addTab(tabLayout.newTab().setText("Tab1"));
@@ -64,11 +64,11 @@ public class PnHbncVisit extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new PNoneFragment(), "Present Status\nVISIT 5");
-        adapter.addFragment(new PNtwoFragment(), "VISIT 4");
-        adapter.addFragment(new PNoneFragment(), "VISIT 3");
-        adapter.addFragment(new PNtwoFragment(), "VISIT 2");
-        adapter.addFragment(new PNoneFragment(), "VISIT 1");
+//        adapter.addFragment(new PNoneFragment(), "Present Status\nVISIT 5");
+//        adapter.addFragment(new PNtwoFragment(), "VISIT 4");
+//        adapter.addFragment(new PNoneFragment(), "VISIT 3");
+//        adapter.addFragment(new PNtwoFragment(), "VISIT 2");
+//        adapter.addFragment(new PNoneFragment(), "VISIT 1");
         viewPager.setAdapter(adapter);
     }
 }

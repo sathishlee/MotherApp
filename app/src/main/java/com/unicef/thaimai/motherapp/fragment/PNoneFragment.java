@@ -1,7 +1,6 @@
 package com.unicef.thaimai.motherapp.fragment;
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,9 +10,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.unicef.thaimai.motherapp.R;
-import com.unicef.thaimai.motherapp.activity.ClinicalReportActivity;
-import com.unicef.thaimai.motherapp.activity.LabReportActivity;
-import com.unicef.thaimai.motherapp.activity.UCGReportActivity;
 
 
 /**

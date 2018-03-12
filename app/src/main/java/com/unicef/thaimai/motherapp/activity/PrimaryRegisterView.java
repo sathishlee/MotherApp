@@ -125,45 +125,80 @@ public class PrimaryRegisterView extends AppCompatActivity implements PrimaryReg
             String message = jObj.getString("message");
             if (status==1){
                 Log.d("message---->",message);
+                if (jObj.getString("mName")!="")
                 txt_name.setText(jObj.getString("mName"));
+                if (jObj.getString("mAge")!="")
                 txt_mother_age.setText(jObj.getString("mAge"));
-                txt_lmp_date.setText(jObj.getString("mLMP"));
-                txt_edd_date.setText(jObj.getString("mEDD"));
-                txt_pry_mobile_no.setText(jObj.getString("mEDD"));
-                txt_alter_mobile_no.setText(jObj.getString("mEDD"));
-                txt_mother_occupation.setText(jObj.getString("mMotherOccupation"));
-                txt_hus_occupation.setText(jObj.getString("mHusbandOccupation"));
+                if (jObj.getString("mLMP")!="")
+                     txt_lmp_date.setText(jObj.getString("mLMP"));
+                if (jObj.getString("mEDD")!="")
+                    txt_edd_date.setText(jObj.getString("mEDD"));
+                if (jObj.getString("mMotherMobile")!="")
+                    txt_pry_mobile_no.setText(jObj.getString("mMotherMobile"));
+                if (jObj.getString("mHusbandMobile")!="")
+                    txt_alter_mobile_no.setText(jObj.getString("mHusbandMobile"));
+                if (jObj.getString("mMotherOccupation")!="")
+                    txt_mother_occupation.setText(jObj.getString("mMotherOccupation"));
+                if (jObj.getString("mHusbandOccupation")!="")
+                    txt_hus_occupation.setText(jObj.getString("mHusbandOccupation"));
+                if (jObj.getString("mAgeatMarriage")!="")
                 txt_age_at_marriage.setText(jObj.getString("mAgeatMarriage"));
+                if (jObj.getString("mConsanguineousMarraige")!="")
                 txt_consanguineous_marraige.setText(jObj.getString("mConsanguineousMarraige"));
+                if (jObj.getString("mHistoryIllness")!="")
                 txt_history_of_illness.setText(jObj.getString("mHistoryIllness"));
+                if (jObj.getString("mHistoryIllnessFamily")!="")
                 txt_history_of_illness_family.setText(jObj.getString("mHistoryIllnessFamily"));
+                if (jObj.getString("mAnySurgeryBefore")!="")
                 txt_any_surgery_done.setText(jObj.getString("mAnySurgeryBefore"));
+                if (jObj.getString("mUseTobacco")!="")
                 txt_tobacco.setText(jObj.getString("mUseTobacco"));
+                if (jObj.getString("mUseAlcohol")!="")
                 txt_alcohol.setText(jObj.getString("mUseAlcohol"));
+                if (jObj.getString("mAnyMeditation")!="")
                 txt_on_any_medication.setText(jObj.getString("mAnyMeditation"));
+                if (jObj.getString("mAllergicToanyDrug")!="")
                 txt_allergic_to_any_drug.setText(jObj.getString("mAllergicToanyDrug"));
+                if (jObj.getString("mHistroyPreviousPreganancy")!="")
                 txt_history_of_previous_pregnancy.setText(jObj.getString("mHistroyPreviousPreganancy"));
+                if (jObj.getString("mLscsDone")!="")
                 txt_lscs_done.setText(jObj.getString("mLscsDone"));
+                if (jObj.getString("mAnyComplecationDuringPreganancy")!="")
                 txt_any_complication.setText(jObj.getString("mAnyComplecationDuringPreganancy"));
+                if (jObj.getString("mPresentPreganancyG")!="")
                 txt_g.setText(jObj.getString("mPresentPreganancyG"));
+                if (jObj.getString("mPresentPreganancyP")!="")
                 txt_p.setText(jObj.getString("mPresentPreganancyP"));
+                if (jObj.getString("mPresentPreganancyA")!="")
                 txt_a.setText(jObj.getString("mPresentPreganancyA"));
+                if (jObj.getString("mPresentPreganancyL")!="")
                 txt_l.setText(jObj.getString("mPresentPreganancyL"));
 
-
+                if (jObj.getString("mRegistrationWeek")!="")
                 txt_registration_week.setText(jObj.getString("mRegistrationWeek"));
+                if (jObj.getString("mANTT1")!="")
                 txt_an_tt_1st.setText(jObj.getString("mANTT1"));
+                if (jObj.getString("mANTT2")!="")
                 txt_an_tt_2nd.setText(jObj.getString("mANTT2"));
-
+                if (jObj.getString("mIFAStateDate")!="")
                 txt_ifa_start_date.setText(jObj.getString("mIFAStateDate"));
+                if (jObj.getString("mHeight")!="")
                 txt_height.setText(jObj.getString("mHeight"));
+                if (jObj.getString("mBloodGroup")!="")
                 txt_blood_group.setText(jObj.getString("mBloodGroup"));
+                if (jObj.getString("mHIV")!="")
                 txt_hiv.setText(jObj.getString("mHIV"));
+                if (jObj.getString("mVDRL")!="")
                 txt_vdrl.setText(jObj.getString("mVDRL"));
+                if (jObj.getString("mHepatitis")!="")
                 txt_Hepatitis.setText(jObj.getString("mHepatitis"));
+                if (jObj.getString("hBloodGroup")!="")
                 txt_hus_blood_group.setText(jObj.getString("hBloodGroup"));
+                if (jObj.getString("hVDRL")!="")
                 txt_hus_hiv.setText(jObj.getString("hVDRL"));
+                if (jObj.getString("hHIV")!="")
                 txt_hus_vdrl.setText(jObj.getString("hHIV"));
+                if (jObj.getString("hHepatitis")!="")
                 txt_hus_Hepatitis.setText(jObj.getString("hHepatitis"));
             }else{
                 Log.d("message---->",message);
