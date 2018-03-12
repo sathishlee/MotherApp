@@ -19,7 +19,7 @@
         <!--android:title="@string/referral"/>-->
 
     <item
-        android:id="@+id/pn_HBNC_visit"
+        android:id="@+id/pn_hbnc_visit"
         android:title="PN / HBNC Visit"
         android:icon="@drawable/mother_and_baby"/>
 

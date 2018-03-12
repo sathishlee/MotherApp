@@ -28,6 +28,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Delivery Details"
+                    android:textSize="@dimen/text_label"
                     android:textAlignment="textStart"
                     android:textColor="#2F80ED"
                     android:textStyle="bold" />
@@ -67,7 +68,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="text"
                     android:textColor="@color/secondary"
-                    android:textSize="@dimen/text_secondary"
+                    android:textSize="@dimen/text_primary"
                     android:hint="Date of Delivery "/>
 
             </android.support.design.widget.TextInputLayout>
@@ -89,7 +90,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="text"
                     android:textColor="@color/secondary"
-                    android:textSize="@dimen/text_secondary"
+                    android:textSize="@dimen/text_primary"
                     android:hint="Time of Delivery "/>
 
             </android.support.design.widget.TextInputLayout>
@@ -110,7 +111,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/place"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -138,7 +139,7 @@
                 android:layout_height="wrap_content"
                 android:text="Delivery Details"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -171,6 +172,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Delivery Outcome"
+                    android:textSize="@dimen/text_label"
                     android:textAlignment="textStart"
                     android:textColor="#2F80ED"
                     android:textStyle="bold" />
@@ -208,7 +210,7 @@
                 android:layout_height="wrap_content"
                 android:text="Mother"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -236,7 +238,7 @@
                 android:layout_height="wrap_content"
                 android:text="Newborn"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -271,6 +273,7 @@
                     android:text="Infant Details"
                     android:textAlignment="textStart"
                     android:textColor="#2F80ED"
+                    android:textSize="@dimen/text_label"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -308,7 +311,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="text"
                     android:textColor="@color/secondary"
-                    android:textSize="@dimen/text_secondary"
+                    android:textSize="@dimen/text_primary"
                     android:hint="Enter Infant ID"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -327,7 +330,7 @@
                 android:layout_height="wrap_content"
                 android:text="Birth details"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -359,7 +362,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="text"
                     android:textColor="@color/secondary"
-                    android:textSize="@dimen/text_secondary"
+                    android:textSize="@dimen/text_primary"
                     android:hint="Enter Infant Weight"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -381,7 +384,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="text"
                     android:textColor="@color/secondary"
-                    android:textSize="@dimen/text_secondary"
+                    android:textSize="@dimen/text_primary"
                     android:hint="Enter Infant Height"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -401,7 +404,7 @@
                 android:layout_height="wrap_content"
                 android:text="Breast feeding given"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -429,7 +432,7 @@
                 android:layout_height="wrap_content"
                 android:text="Admitted in SNCU"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -457,7 +460,7 @@
                 android:layout_height="wrap_content"
                 android:text="SNCU name"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -491,6 +494,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="SNCU name "
+                    android:textSize="@dimen/text_label"
                     android:textAlignment="textStart"
                     android:textColor="#2F80ED"
                     android:textStyle="bold" />
@@ -532,7 +536,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="text"
                     android:textColor="@color/secondary"
-                    android:textSize="@dimen/text_secondary"
+                    android:textSize="@dimen/text_primary"
                     android:hint="Enter New Born Birth Date"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -552,7 +556,7 @@
                 android:layout_height="wrap_content"
                 android:text="Outcome"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -585,6 +589,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Enter Dose "
+                    android:textSize="@dimen/text_label"
                     android:textAlignment="textStart"
                     android:textColor="#2F80ED"
                     android:textStyle="bold" />
@@ -625,7 +630,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="text"
                     android:textColor="@color/secondary"
-                    android:textSize="@dimen/text_secondary"
+                    android:textSize="@dimen/text_primary"
                     android:hint="BCG given date "/>
 
             </android.support.design.widget.TextInputLayout>
@@ -647,7 +652,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="text"
                     android:textColor="@color/secondary"
-                    android:textSize="@dimen/text_secondary"
+                    android:textSize="@dimen/text_primary"
                     android:hint="OPV given date "/>
 
             </android.support.design.widget.TextInputLayout>
@@ -669,7 +674,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="text"
                     android:textColor="@color/secondary"
-                    android:textSize="@dimen/text_secondary"
+                    android:textSize="@dimen/text_primary"
                     android:hint="Hep B given date "/>
 
             </android.support.design.widget.TextInputLayout>

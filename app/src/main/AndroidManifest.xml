@@ -118,7 +118,7 @@
             android:name=".activity.ImmunizationEditActivity"
             android:theme="@style/AppTheme"/>
         <activity
-            android:name=".activity.DeliveryDetailsActivity"
+            android:name=".activity.DeliveryDetailsActivityEntry"
             android:theme="@style/AppTheme">
 
         </activity>
@@ -154,7 +154,6 @@
             android:theme="@style/AppTheme">
 
         </activity>
-
 
     </application>
 

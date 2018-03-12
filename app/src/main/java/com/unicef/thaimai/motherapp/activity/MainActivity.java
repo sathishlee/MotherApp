@@ -30,7 +30,6 @@ import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.constant.AppConstants;
 import com.unicef.thaimai.motherapp.fragment.NotificationFragment;
 import com.unicef.thaimai.motherapp.fragment.PNhbncVisit;
-import com.unicef.thaimai.motherapp.fragment.baby;
 import com.unicef.thaimai.motherapp.fragment.health_records;
 import com.unicef.thaimai.motherapp.fragment.home;
 import com.unicef.thaimai.motherapp.fragment.referral;
@@ -284,6 +283,10 @@ if (AppConstants.isMainActivityOpen) {
             startActivity(v);
         }
 
+        else if (id == R.id.delivery_details_entry){
+            Intent i = new Intent(getApplicationContext(), DeliveryDetailsActivityEntry.class);
+            startActivity(i);
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -320,21 +323,19 @@ if (AppConstants.isMainActivityOpen) {
         switch (item.getItemId()) {
 
             case R.id.navigation_home:
-
                 selectedFragment = home.newInstance();
                 break;
 
             case R.id.navigation_notifications:
-
                 selectedFragment =  health_records.newInstance();
+                break;
+
+            case R.id.pn_hbnc_visit:
+                selectedFragment =  PNhbncVisit.newInstance();
                 break;
 
             case R.id.referral:
                 selectedFragment = referral.newInstance();
-                break;
-
-            case R.id.pn_HBNC_visit:
-                selectedFragment =  PNhbncVisit.newInstance();
                 break;
 
         }

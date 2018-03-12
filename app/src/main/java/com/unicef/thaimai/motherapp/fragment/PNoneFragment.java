@@ -46,8 +46,8 @@ public class PNoneFragment extends Fragment implements View.OnClickListener {
      * @return A new instance of fragment OneFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static OneFragment newInstance(String param1, String param2) {
-        OneFragment fragment = new OneFragment();
+    public static PNoneFragment newInstance(String param1, String param2) {
+        PNoneFragment fragment = new PNoneFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

@@ -90,7 +90,7 @@ public class health_records extends Fragment implements GetVisitHelthRecordsView
         setupViewPager(viewPager);
         tabLayout = view.findViewById(R.id.hre_tabs);
 //        tabLayoutmain = view.findViewById(R.id.tabLayoutmain);
-//        tabLayout.setupWithViewPager(viewPager);
+        tabLayout.setupWithViewPager(viewPager);
         btn_primary_report = (Button) view.findViewById(R.id.btn_primary_report);
         btn_view_report = (Button) view.findViewById(R.id.btn_view_report);
 
@@ -101,10 +101,10 @@ public class health_records extends Fragment implements GetVisitHelthRecordsView
         adapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager());
         adapter.addFragment(health_records.this,new OneFragment(), "Present Status\nVISIT 5", mhealthRecordList);
 
-//        adapter.addFragment(new OneFragment(), "VISIT 4");
-//        adapter.addFragment(new OneFragment(), "VISIT 3");
-//        adapter.addFragment(new OneFragment(), "VISIT 2");
-//        adapter.addFragment(new OneFragment(), "VISIT 1");
+        adapter.addFragment(health_records.this,new OneFragment(), "VISIT 4",mhealthRecordList);
+        adapter.addFragment(health_records.this,new OneFragment(), "VISIT 3",mhealthRecordList);
+        adapter.addFragment(health_records.this,new OneFragment(), "VISIT 2",mhealthRecordList);
+        adapter.addFragment(health_records.this,new OneFragment(), "VISIT 1",mhealthRecordList);
         viewPager.setAdapter(adapter);
     }
 

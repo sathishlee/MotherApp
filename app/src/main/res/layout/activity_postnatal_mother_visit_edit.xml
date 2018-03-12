@@ -28,6 +28,7 @@
                     android:text="PN Mother Visit Entry"
                     android:textAlignment="textStart"
                     android:textColor="#2F80ED"
+                    android:textSize="@dimen/text_label"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -62,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/post_natal"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -91,7 +92,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/due_date"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -120,7 +121,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="text"
                     android:textColor="@color/secondary"
-                    android:textSize="@dimen/text_secondary"
+                    android:textSize="@dimen/text_primary"
                     android:hint="Care Provided Date"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -139,7 +140,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/place"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -168,7 +169,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/any_complient"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -195,7 +196,7 @@
                 android:layout_height="wrap_content"
                 android:text="Blood presure"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:padding="5dp"/>
@@ -211,7 +212,7 @@
                         android:layout_height="wrap_content"
                         android:inputType="text"
                         android:textColor="@color/secondary"
-                        android:textSize="@dimen/text_secondary"
+                        android:textSize="@dimen/text_primary"
                         android:layout_weight="1"
                         android:hint="Systolic"/>
 
@@ -227,9 +228,10 @@
                         android:layout_height="wrap_content"
                         android:inputType="text"
                         android:textColor="@color/secondary"
-                        android:textSize="@dimen/text_secondary"
+                        android:textSize="@dimen/text_primary"
                         android:layout_weight="1"
                         android:hint="Diastolic"/>
+
 
             </LinearLayout>
 
@@ -251,7 +253,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="text"
                     android:textColor="@color/secondary"
-                    android:textSize="@dimen/text_secondary"
+                    android:textSize="@dimen/text_primary"
                     android:hint="Enter Pulse Rate"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -274,7 +276,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="text"
                     android:textColor="@color/secondary"
-                    android:textSize="@dimen/text_secondary"
+                    android:textSize="@dimen/text_primary"
                     android:hint="Enter Temp"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -294,7 +296,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/epistomy"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -322,7 +324,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/pv_discharge"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -352,7 +354,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/exclusive_breast_feeding"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -380,7 +382,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/exclusive_breast_feeding_no_reasons"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -408,7 +410,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/breast_examinatione"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
@@ -436,7 +438,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/outcome"
                 android:textColor="@color/secondary"
-                android:textSize="@dimen/text_secondary"
+                android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 

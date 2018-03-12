@@ -4,22 +4,21 @@ import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 
 import com.unicef.thaimai.motherapp.R;
 
-public class DeliveryDetailsActivity extends AppCompatActivity {
+public class DeliveryDetailsActivityEntry extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_delivery_details);
+        setContentView(R.layout.activity_delivery_details_entry);
 
 
         ActionBar actionBar = getSupportActionBar();
 
-        actionBar.setTitle("Edit Delivery Details");
+        actionBar.setTitle("Enter Delivery Details");
 
         actionBar.setHomeButtonEnabled(true);
 
@@ -28,7 +27,7 @@ public class DeliveryDetailsActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent intent = new Intent(DeliveryDetailsActivity.this, MainActivity.class);
+        Intent intent = new Intent(DeliveryDetailsActivityEntry.this, MainActivity.class);
         finish();
         startActivity(intent);
         return super.onOptionsItemSelected(item);

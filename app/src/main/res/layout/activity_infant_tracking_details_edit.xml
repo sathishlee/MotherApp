@@ -27,6 +27,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Infant Visits "
+                    android:textSize="@dimen/text_label"
                     android:textAlignment="textStart"
                     android:textColor="#2F80ED"
                     android:textStyle="bold" />

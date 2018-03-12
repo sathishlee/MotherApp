@@ -37,10 +37,10 @@
             <!--android:icon="@drawable/silhouette"-->
             <!--android:title="Infant Tracking" />-->
 
-        <item
-            android:id="@+id/pn_HBNC_visit"
-            android:icon="@drawable/mother_and_baby"
-            android:title="PN / HBNC Visit" />
+        <!--<item-->
+            <!--android:id="@+id/pn_HBNC_visit"-->
+            <!--android:icon="@drawable/mother_and_baby"-->
+            <!--android:title="PN / HBNC Visit" />-->
 
         <item
             android:id="@+id/immunization_menu"
@@ -61,6 +61,11 @@
             android:id="@+id/hbnc_visit_entry"
             android:icon="@drawable/health_care"
             android:title="HBNC Visit Entry" />
+
+        <item
+            android:id="@+id/delivery_details_entry"
+            android:icon="@drawable/health_care"
+            android:title="Delivery Entry" />
 
 
         <!--<item-->

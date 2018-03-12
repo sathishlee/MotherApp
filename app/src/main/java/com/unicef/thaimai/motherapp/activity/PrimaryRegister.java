@@ -54,7 +54,7 @@
                 strOthers, strMedicationSpecify, strAllergictoDrugsSpecify, strPrimaryMobileNumber, strAlternativeMobileNumber,
                 strHistory_illness_other,strHhistory_illness_fmly_other,strAny_surgery_before_other,strAnyComDuring_prgncy_other;
 ArrayList ysList,occList;
->>>>>>>>> Temporary merge branch 2
+
         Button butSubmit;
         ProgressDialog pDialog;
 
