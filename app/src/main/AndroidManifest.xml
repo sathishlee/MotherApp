@@ -93,15 +93,6 @@
             android:name=".activity.ViewFullVideo"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".activity.ClinicalReportActivity"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".activity.LabReportActivity"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".activity.UCGReportActivity"
-            android:theme="@style/AppTheme" />
-        <activity
             android:name=".activity.PrimaryRegister"
             android:theme="@style/AppTheme" />
         <activity

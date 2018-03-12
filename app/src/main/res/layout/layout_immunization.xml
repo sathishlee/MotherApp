@@ -28,7 +28,7 @@
                 android:padding="4dp"
                 android:text="Immunization Dose (Date)"
                 android:textColor="@color/dark_blue"
-                android:textSize="@dimen/text_lable"
+                android:textSize="@dimen/text_label"
                 android:textStyle="bold" />
 
             <TextView

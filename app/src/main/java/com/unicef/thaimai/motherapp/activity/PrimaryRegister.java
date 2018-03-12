@@ -481,6 +481,13 @@ ArrayList ysList,occList;
 
                 case R.id.sp_any_surgery_before:
                     strAnySurgeryBefore = parent.getSelectedItem().toString();
+                    if (strAnySurgeryBefore.equalsIgnoreCase("No")) {
+                        edt_any_surgery_before.setVisibility(View.VISIBLE);
+                    }
+                    else {
+                        edt_any_surgery_before.setVisibility(View.GONE);
+
+                    }
                     break;
 
                 case R.id.sp_dose_tobacco:
@@ -515,6 +522,13 @@ ArrayList ysList,occList;
 
                 case R.id.sp_comDuring_prgncy:
                     strComDuringPrgncy = parent.getSelectedItem().toString();
+                    if (strComDuringPrgncy.equalsIgnoreCase("No")) {
+                        edt_comDuring_prgncy.setVisibility(View.VISIBLE);
+                    }
+                    else {
+                        edt_comDuring_prgncy.setVisibility(View.GONE);
+
+                    }
                     break;
 
 

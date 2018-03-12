@@ -144,6 +144,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/txt_lmp_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="24-02-2018"
@@ -185,6 +186,7 @@
                         android:layout_gravity="start"
                         android:textStyle="bold" />
                     <TextView
+                        android:id="@+id/txt_edd_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="02/10/2018"
@@ -992,6 +994,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/txt_an_tt_1st"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="02/12/2017"
@@ -1032,6 +1035,7 @@
                         android:layout_gravity="start"
                         android:textStyle="bold" />
                     <TextView
+                        android:id="@+id/txt_an_tt_2nd"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="02/10/2018"

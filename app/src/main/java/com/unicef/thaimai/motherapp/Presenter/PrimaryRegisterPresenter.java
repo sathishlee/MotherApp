@@ -105,6 +105,7 @@
             primaryRegisterViews.showProgress();
 
             Map<String, String> params = new HashMap<String, String>();
+
             params.put("mPicmeId", primaryDataRequestModel.getMPicmeId());
             params.put("masterId", primaryDataRequestModel.getMasterId());
             params.put("mid", primaryDataRequestModel.getMid());
