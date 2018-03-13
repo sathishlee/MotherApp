@@ -13,8 +13,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
-import com.unicef.thaimai.motherapp.Presenter.GetVisitHealthRecordsPresenteer;
+import com.unicef.thaimai.motherapp.Presenter.GetVisitHealthRecordsPresenter;
 import com.unicef.thaimai.motherapp.R;
+import com.unicef.thaimai.motherapp.adapter.HealthRecordsAdapter;
 import com.unicef.thaimai.motherapp.adapter.ViewPagerAdapter;
 import com.unicef.thaimai.motherapp.constant.AppConstants;
 import com.unicef.thaimai.motherapp.model.responsemodel.HealthRecordResponseModel;
@@ -31,18 +32,18 @@ import static android.content.Context.MODE_PRIVATE;
 
 
 public class health_records extends Fragment implements GetVisitHelthRecordsViews  {
-
     Button btn_primary_report, btn_view_report;
-        private TabLayout tabLayout;
+    private TabLayout tabLayout;
     private ViewPager viewPager;
     PreferenceData preferenceData;
     SharedPreferences.Editor editor;
     ProgressDialog pDialog;
 
-    GetVisitHealthRecordsPresenteer gVHRecordsPresenteer;
-    HealthRecordResponseModel mhealthRecordResponseModel;
-    ArrayList<HealthRecordResponseModel> mhealthRecordList;
-    ViewPagerAdapter adapter;
+    GetVisitHealthRecordsPresenter gVHRecordsPresenteer;
+    HealthRecordResponseModel.Visit_Records mhealthRecordResponseModel;
+    ArrayList<HealthRecordResponseModel.Visit_Records> mhealthRecordList;
+
+    HealthRecordsAdapter hAdapter;
     Button btn_primary;
 
 
@@ -68,28 +69,21 @@ public class health_records extends Fragment implements GetVisitHelthRecordsView
         return view;
     }
 
+
+
     private void initUI(View view) {
         getActivity().setTitle("Health Records");
-
-//        pager = view.findViewById(R.id.pager);
-//        PagerView(pager);
-
-
         preferenceData = new PreferenceData(getActivity());
         editor = getActivity().getSharedPreferences(AppConstants.PREF_NAME, MODE_PRIVATE).edit();
-
         pDialog = new ProgressDialog(getActivity());
         pDialog.setCancelable(false);
         pDialog.setMessage("Please Wait ...");
-
-        gVHRecordsPresenteer = new GetVisitHealthRecordsPresenteer(getActivity(), this);
+        gVHRecordsPresenteer = new GetVisitHealthRecordsPresenter(getActivity(), this);
         gVHRecordsPresenteer.getAllVistHeathRecord(preferenceData.getPicmeId(), "1");
-        mhealthRecordResponseModel = new HealthRecordResponseModel();
         mhealthRecordList = new ArrayList<>();
         viewPager = view.findViewById(R.id.hre_viewpager);
         setupViewPager(viewPager);
         tabLayout = view.findViewById(R.id.hre_tabs);
-//        tabLayoutmain = view.findViewById(R.id.tabLayoutmain);
         tabLayout.setupWithViewPager(viewPager);
         btn_primary_report = (Button) view.findViewById(R.id.btn_primary_report);
         btn_view_report = (Button) view.findViewById(R.id.btn_view_report);
@@ -98,14 +92,8 @@ public class health_records extends Fragment implements GetVisitHelthRecordsView
 
 
     private void setupViewPager(ViewPager viewPager) {
-        adapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager());
-        adapter.addFragment(health_records.this,new OneFragment(), "Present Status\nVISIT 5", mhealthRecordList);
-
-        adapter.addFragment(health_records.this,new OneFragment(), "VISIT 4",mhealthRecordList);
-        adapter.addFragment(health_records.this,new OneFragment(), "VISIT 3",mhealthRecordList);
-        adapter.addFragment(health_records.this,new OneFragment(), "VISIT 2",mhealthRecordList);
-        adapter.addFragment(health_records.this,new OneFragment(), "VISIT 1",mhealthRecordList);
-        viewPager.setAdapter(adapter);
+        hAdapter =new HealthRecordsAdapter(getActivity(),mhealthRecordList);
+        viewPager.setAdapter(hAdapter);
     }
 
     @Override
@@ -126,21 +114,54 @@ public class health_records extends Fragment implements GetVisitHelthRecordsView
             JSONObject mJsnobject = new JSONObject(healthRecordResponseModel);
             JSONArray jsonArray = mJsnobject.getJSONArray("Visit_Records");
             for (int i = 0; i < jsonArray.length(); i++) {
+                mhealthRecordResponseModel = new HealthRecordResponseModel.Visit_Records();
+
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                Log.d(health_records.class.getSimpleName(), "jsonObject" + i + jsonObject);
+                mhealthRecordResponseModel.setVDate(jsonObject.getString("vDate"));
+                mhealthRecordResponseModel.setVFacility(jsonObject.getString("vFacility"));
+//                mhealthRecordResponseModel.setMLongitude(jsonObject.getString("mLongitude"));
+//                mhealthRecordResponseModel.setMLatitude(jsonObject.getString("mLatitude"));
+                mhealthRecordResponseModel.setMotherStatus(jsonObject.getString("motherStatus"));
+                mhealthRecordResponseModel.setMotherCloseDate(jsonObject.getString("motherCloseDate"));
+                mhealthRecordResponseModel.setMRiskStatus(jsonObject.getString("mRiskStatus"));
+                mhealthRecordResponseModel.setMEDD(jsonObject.getString("mEDD"));
+                mhealthRecordResponseModel.setMLMP(jsonObject.getString("mLMP"));
+                mhealthRecordResponseModel.setPhcId(jsonObject.getString("phcId"));
+                mhealthRecordResponseModel.setAwwId(jsonObject.getString("awwId"));
+                mhealthRecordResponseModel.setVhnId(jsonObject.getString("vhnId"));
                 mhealthRecordResponseModel.setMasterId(jsonObject.getString("masterId"));
-                Log.d("masterId",jsonObject.getString("masterId"));
-                mhealthRecordResponseModel.setMasterId(jsonObject.getString("vDate"));
-                Log.d("vDate",jsonObject.getString("vDate"));
-                mhealthRecordResponseModel.setMasterId(jsonObject.getString("vFacility"));
-                Log.d("vFacility",jsonObject.getString("vFacility"));
-
+                mhealthRecordResponseModel.setVTSH(jsonObject.getString("vTSH"));
+                mhealthRecordResponseModel.setUsgPlacenta(jsonObject.getString("usgPlacenta"));
+                mhealthRecordResponseModel.setUsgLiquor(jsonObject.getString("usgLiquor"));
+                mhealthRecordResponseModel.setUsgGestationSac(jsonObject.getString("usgGestationSac"));
+                mhealthRecordResponseModel.setUsgFetus(jsonObject.getString("usgFetus"));
+                mhealthRecordResponseModel.setVAlbumin(jsonObject.getString("vAlbumin"));
+                mhealthRecordResponseModel.setVUrinSugar(jsonObject.getString("vUrinSugar"));
+                mhealthRecordResponseModel.setVGTT(jsonObject.getString("vGTT"));
+                mhealthRecordResponseModel.setVPPBS(jsonObject.getString("vPPBS"));
+                mhealthRecordResponseModel.setVFBS(jsonObject.getString("vFBS"));
+                mhealthRecordResponseModel.setVRBS(jsonObject.getString("vRBS"));
+                mhealthRecordResponseModel.setVFHS(jsonObject.getString("vFHS"));
+                mhealthRecordResponseModel.setVHemoglobin(jsonObject.getString("vHemoglobin"));
+                mhealthRecordResponseModel.setVBodyTemp(jsonObject.getString("vBodyTemp"));
+                mhealthRecordResponseModel.setVPedalEdemaPresent(jsonObject.getString("vPedalEdemaPresent"));
+                mhealthRecordResponseModel.setVFundalHeight(jsonObject.getString("vFundalHeight"));
+                mhealthRecordResponseModel.setVEnterWeight(jsonObject.getString("vEnterWeight"));
+                mhealthRecordResponseModel.setVEnterPulseRate(jsonObject.getString("vEnterPulseRate"));
+                mhealthRecordResponseModel.setVClinicalBPDiastolic(jsonObject.getString("vClinicalBPDiastolic"));
+                mhealthRecordResponseModel.setVClinicalBPSystolic(jsonObject.getString("vClinicalBPSystolic"));
+//                mhealthRecordResponseModel.setVAnyComplaintsOthers(jsonObject.getString("vAnyComplaintsOthers"));
+                mhealthRecordResponseModel.setVAnyComplaints(jsonObject.getString("vAnyComplaints"));
+//                mhealthRecordResponseModel.setVFacilityOthers(jsonObject.getString("vFacilityOthers"));
+                mhealthRecordResponseModel.setVtypeOfVisit(jsonObject.getString("vtypeOfVisit"));
+                mhealthRecordResponseModel.setPicmeId(jsonObject.getString("picmeId"));
+                mhealthRecordResponseModel.setMid(jsonObject.getString("mid"));
+                mhealthRecordResponseModel.setVisitId(jsonObject.getString("visitId"));
+                mhealthRecordResponseModel.setVDate(jsonObject.getString("vDate"));
+                mhealthRecordResponseModel.setVid(jsonObject.getString("vid"));
                 mhealthRecordList.add(mhealthRecordResponseModel);
-//                Log.e(health_records.class.getSimpleName(), mhealthRecordList.toString());
-                adapter.notifyDataSetChanged();
+                hAdapter.notifyDataSetChanged();
             }
-//            Log.e(health_records.class.getSimpleName(), mhealthRecordList.size()+"");
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -152,32 +173,7 @@ public class health_records extends Fragment implements GetVisitHelthRecordsView
 
     }
 
-    /*private void PagerView(ViewPager PagerView) {
 
-        ViewPagerAdapterMain adapter1 = new ViewPagerAdapterMain(getActivity().getSupportFragmentManager());
 
-        adapter1.addFragmentMain(new PicmeVisit(), "Picme Visits");
-        adapter1.addFragmentMain(new PicmeVisit(), "Other Visits");
-
-        PagerView.setAdapter(adapter1);
-
-    }
-*/
-    /*@Override
-    public void onTabSelected(TabLayout.Tab tab) {
-
-        viewPager.setCurrentItem(tab.getPosition());
-
-    }
-
-    @Override
-    public void onTabUnselected(TabLayout.Tab tab) {
-
-    }
-
-    @Override
-    public void onTabReselected(TabLayout.Tab tab) {
-
-    }*/
 
 }
