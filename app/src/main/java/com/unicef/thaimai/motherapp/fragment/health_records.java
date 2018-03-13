@@ -69,6 +69,8 @@ public class health_records extends Fragment implements GetVisitHelthRecordsView
         return view;
     }
 
+
+
     private void initUI(View view) {
         getActivity().setTitle("Health Records");
         preferenceData = new PreferenceData(getActivity());
