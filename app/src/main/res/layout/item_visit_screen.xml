@@ -1,4 +1,5 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -26,6 +27,7 @@
                 android:orientation="vertical">
 
                 <LinearLayout
+                    android:id="@+id/ll_click_pickme_visit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
@@ -53,6 +55,7 @@
                 android:orientation="vertical">
 
                 <LinearLayout
+                    android:id="@+id/ll_click_other_visit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/tab_background"
@@ -153,7 +156,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="4dp"
                             android:layout_gravity="center"
-                            android:src="@drawable/calendar"/>
+                            app:srcCompat="@drawable/calendar"/>
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -176,7 +179,7 @@
                                 android:text="15-02-2018"
                                 android:textAlignment="textStart"
                                 android:textColor="#fff"
-                                android:textSize="@dimen/text_secondary"/>
+                                android:textSize="@dimen/text_secondary" />
 
                         </LinearLayout>
 
@@ -195,7 +198,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="4dp"
                             android:layout_gravity="center"
-                            android:src="@drawable/visit_type"/>
+                            app:srcCompat="@drawable/visit_type"/>
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -211,6 +214,7 @@
                                 android:layout_gravity="start"
                                 android:textStyle="bold" />
                             <TextView
+                                android:id="@+id/txt_visited_type"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Scheduled"
@@ -250,6 +254,7 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/txt_facility"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
@@ -276,6 +281,7 @@
                             android:textColor="@color/secondary"
                             android:textStyle="bold" />
                         <TextView
+                            android:id="@+id/txt_any_complient"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
@@ -373,7 +379,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="4dp"
                             android:layout_gravity="center"
-                            android:src="@drawable/ic_blood_pressure_16dp"/>
+                            app:srcCompat="@drawable/ic_blood_pressure_16dp"/>
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -391,6 +397,7 @@
                                 android:textStyle="bold" />
 
                             <TextView
+                                android:id="@+id/txt_bp_value"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="162/102"
@@ -415,7 +422,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="4dp"
                             android:layout_gravity="center"
-                            android:src="@drawable/pluse_rate"/>
+                            app:srcCompat="@drawable/pluse_rate"/>
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -432,6 +439,7 @@
                                 android:textStyle="bold" />
 
                             <TextView
+                                android:id="@+id/txt_pluse_rate"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="82"
@@ -470,6 +478,7 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/txt_weight"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="92kg"
@@ -495,6 +504,7 @@
                             android:textColor="@color/secondary"
                             android:textStyle="bold" />
                         <TextView
+                            android:id="@+id/txt_funbal_height"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
@@ -533,6 +543,7 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/txt_fhs"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="223"
@@ -559,6 +570,7 @@
                             android:textColor="@color/secondary"
                             android:textStyle="bold" />
                         <TextView
+                            android:id="@+id/txt_pep"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
@@ -656,7 +668,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="4dp"
                             android:layout_gravity="center"
-                            android:src="@drawable/ic_heartbeat_16dp"/>
+                            app:srcCompat="@drawable/ic_heartbeat_16dp"/>
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -674,6 +686,7 @@
                                 android:textStyle="bold" />
 
                             <TextView
+                                android:id="@+id/txt_hp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="162%"
@@ -698,7 +711,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="4dp"
                             android:layout_gravity="center"
-                            android:src="@drawable/ic_blood_transfusion"/>
+                            app:srcCompat="@drawable/ic_blood_transfusion"/>
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -715,6 +728,7 @@
                                 android:textStyle="bold" />
 
                             <TextView
+                                android:id="@+id/txt_fbs"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="82"
@@ -754,6 +768,7 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/txt_ppbs"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
@@ -780,6 +795,7 @@
                             android:textColor="@color/secondary"
                             android:textStyle="bold" />
                         <TextView
+                            android:id="@+id/txt_gtt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
@@ -815,6 +831,7 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/txt_sugar"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="223"
@@ -915,6 +932,7 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/txt_fetus"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Alive"
@@ -939,6 +957,7 @@
                             android:textColor="@color/secondary"
                             android:textStyle="bold" />
                         <TextView
+                            android:id="@+id/txt_gestation_sac"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textSize="@dimen/text_secondary"
@@ -975,6 +994,7 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/txt_liquor"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Not"
@@ -1000,6 +1020,7 @@
                             android:textColor="@color/secondary"
                             android:textStyle="bold" />
                         <TextView
+                            android:id="@+id/txt_placenta"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textSize="@dimen/text_secondary"
@@ -1036,6 +1057,7 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/txt_tsh"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="NA"
