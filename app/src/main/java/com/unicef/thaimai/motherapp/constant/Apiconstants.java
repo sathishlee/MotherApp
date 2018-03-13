@@ -15,6 +15,7 @@ public class Apiconstants {
      /*    http://192.168.100.19/thaimaiapp/api/Mother/mPrimaryInfo
 */
     public static final String POST_VIST_HEALTH_RECORD = "mother/mHealthRecord/";
+    public static final String POST_VIST_HEALTH_RECORD_PICME = "mother/mHealthRecordPicme/";
      /*    http://192.168.100.19/thaimaiapp/api/mother/mHealthRecord*/
 
  public static final String POST_VIST_HEALTH_RECORD_INSERT = "mother/mHealthRecordInsert";

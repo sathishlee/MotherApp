@@ -13,8 +13,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
-import com.unicef.thaimai.motherapp.Presenter.GetVisitHealthRecordsPresenteer;
+import com.unicef.thaimai.motherapp.Presenter.GetVisitHealthRecordsPresenter;
 import com.unicef.thaimai.motherapp.R;
+import com.unicef.thaimai.motherapp.adapter.HealthRecordsAdapter;
 import com.unicef.thaimai.motherapp.adapter.ViewPagerAdapter;
 import com.unicef.thaimai.motherapp.constant.AppConstants;
 import com.unicef.thaimai.motherapp.model.responsemodel.HealthRecordResponseModel;
@@ -31,18 +32,19 @@ import static android.content.Context.MODE_PRIVATE;
 
 
 public class health_records extends Fragment implements GetVisitHelthRecordsViews  {
-
     Button btn_primary_report, btn_view_report;
-        private TabLayout tabLayout;
+    private TabLayout tabLayout;
     private ViewPager viewPager;
     PreferenceData preferenceData;
     SharedPreferences.Editor editor;
     ProgressDialog pDialog;
 
-    GetVisitHealthRecordsPresenteer gVHRecordsPresenteer;
-    HealthRecordResponseModel mhealthRecordResponseModel;
-    ArrayList<HealthRecordResponseModel> mhealthRecordList;
-    ViewPagerAdapter adapter;
+    GetVisitHealthRecordsPresenter gVHRecordsPresenteer;
+    HealthRecordResponseModel.Visit_Records mhealthRecordResponseModel;
+    ArrayList<HealthRecordResponseModel.Visit_Records> mhealthRecordList;
+//    ViewPagerAdapter adapter;
+
+    HealthRecordsAdapter hAdapter;
     Button btn_primary;
 
 
@@ -82,9 +84,9 @@ public class health_records extends Fragment implements GetVisitHelthRecordsView
         pDialog.setCancelable(false);
         pDialog.setMessage("Please Wait ...");
 
-        gVHRecordsPresenteer = new GetVisitHealthRecordsPresenteer(getActivity(), this);
+        gVHRecordsPresenteer = new GetVisitHealthRecordsPresenter(getActivity(), this);
         gVHRecordsPresenteer.getAllVistHeathRecord(preferenceData.getPicmeId(), "1");
-        mhealthRecordResponseModel = new HealthRecordResponseModel();
+        mhealthRecordResponseModel = new HealthRecordResponseModel.Visit_Records();
         mhealthRecordList = new ArrayList<>();
         viewPager = view.findViewById(R.id.hre_viewpager);
         setupViewPager(viewPager);
@@ -98,14 +100,19 @@ public class health_records extends Fragment implements GetVisitHelthRecordsView
 
 
     private void setupViewPager(ViewPager viewPager) {
-        adapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager());
-        adapter.addFragment(health_records.this,new OneFragment(), "Present Status\nVISIT 5", mhealthRecordList);
+//        adapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager());
+        hAdapter =new HealthRecordsAdapter(getActivity(),mhealthRecordList);
 
-        adapter.addFragment(health_records.this,new OneFragment(), "VISIT 4",mhealthRecordList);
-        adapter.addFragment(health_records.this,new OneFragment(), "VISIT 3",mhealthRecordList);
-        adapter.addFragment(health_records.this,new OneFragment(), "VISIT 2",mhealthRecordList);
-        adapter.addFragment(health_records.this,new OneFragment(), "VISIT 1",mhealthRecordList);
-        viewPager.setAdapter(adapter);
+//        for (int i=0;i<mhealthRecordList.size();i++){
+//            adapter.addFragment(health_records.this,new OneFragment(), "Present Status\nVISIT 5", mhealthRecordList);
+//            adapter.addFragment(health_records.this,new OneFragment(), "VISIT 1", mhealthRecordList);
+//            adapter.addFragment(health_records.this,new OneFragment(), "VISIT 2", mhealthRecordList);
+//            adapter.addFragment(health_records.this,new OneFragment(), "VISIT 3", mhealthRecordList);
+//        }
+//        viewPager.setAdapter(adapter);
+
+        viewPager.setAdapter(hAdapter);
+
     }
 
     @Override
@@ -137,7 +144,8 @@ public class health_records extends Fragment implements GetVisitHelthRecordsView
 
                 mhealthRecordList.add(mhealthRecordResponseModel);
 //                Log.e(health_records.class.getSimpleName(), mhealthRecordList.toString());
-                adapter.notifyDataSetChanged();
+                hAdapter.notifyDataSetChanged();
+//                adapter.notifyDataSetChanged();
             }
 //            Log.e(health_records.class.getSimpleName(), mhealthRecordList.size()+"");
 
@@ -152,32 +160,7 @@ public class health_records extends Fragment implements GetVisitHelthRecordsView
 
     }
 
-    /*private void PagerView(ViewPager PagerView) {
 
-        ViewPagerAdapterMain adapter1 = new ViewPagerAdapterMain(getActivity().getSupportFragmentManager());
 
-        adapter1.addFragmentMain(new PicmeVisit(), "Picme Visits");
-        adapter1.addFragmentMain(new PicmeVisit(), "Other Visits");
-
-        PagerView.setAdapter(adapter1);
-
-    }
-*/
-    /*@Override
-    public void onTabSelected(TabLayout.Tab tab) {
-
-        viewPager.setCurrentItem(tab.getPosition());
-
-    }
-
-    @Override
-    public void onTabUnselected(TabLayout.Tab tab) {
-
-    }
-
-    @Override
-    public void onTabReselected(TabLayout.Tab tab) {
-
-    }*/
 
 }

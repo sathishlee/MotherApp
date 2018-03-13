@@ -4,11 +4,11 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.model.responsemodel.HealthRecordResponseModel;
 
@@ -27,7 +27,7 @@ public class OneFragment extends Fragment implements View.OnClickListener {
 
     private OnFragmentInteractionListener mListener;
 
-    static ArrayList<HealthRecordResponseModel> mhealthRecordList;
+//     HealthRecordResponseModel.Visit_Records mAhealthRecordList;
     TextView txt_visited_date;
     public OneFragment() {
         // Required empty public constructor
@@ -35,9 +35,11 @@ public class OneFragment extends Fragment implements View.OnClickListener {
 
 
     // TODO: Rename and change types and number of parameters
-    public static OneFragment newInstance(ArrayList<HealthRecordResponseModel> mAhealthRecordList) {
+    public static OneFragment newInstance(HealthRecordResponseModel.Visit_Records mAhealthRecordList) {
 
-        mhealthRecordList =mAhealthRecordList;
+//        this.mAhealthRecordList =mAhealthRecordList;
+//        Log.d("One fragment",mAhealthRecordList.getVtypeOfVisit());
+
         OneFragment fragment = new OneFragment();
 
         return fragment;
@@ -54,7 +56,6 @@ public class OneFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.item_visit_screen, container, false);
         txt_visited_date = view.findViewById(R.id.txt_visited_date);
-//        txt_visited_date.setText(mhealthRecordList.get(0).getMasterId());
         return view;
     }
 
@@ -81,6 +82,10 @@ public class OneFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()){
         }
+    }
+
+    public void setDetail(HealthRecordResponseModel.Visit_Records items) {
+        Log.d("one fragment>>>-->>",items.getVisitId());
     }
 
     public interface OnFragmentInteractionListener {

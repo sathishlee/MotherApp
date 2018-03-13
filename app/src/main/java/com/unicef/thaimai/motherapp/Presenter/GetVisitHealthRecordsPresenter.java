@@ -24,11 +24,11 @@ import java.util.Map;
  * Created by sathish on 3/9/2018.
  */
 
-public class GetVisitHealthRecordsPresenteer implements GetVisitHealthRecordsInteractor {
+public class GetVisitHealthRecordsPresenter implements GetVisitHealthRecordsInteractor {
     Context mContext;
     GetVisitHelthRecordsViews view;
 
-    public GetVisitHealthRecordsPresenteer(Context mContext, GetVisitHelthRecordsViews view) {
+    public GetVisitHealthRecordsPresenter(Context mContext, GetVisitHelthRecordsViews view) {
         this.mContext = mContext;
         this.view = view;
     }
@@ -36,7 +36,8 @@ public class GetVisitHealthRecordsPresenteer implements GetVisitHealthRecordsInt
     @Override
     public void getAllVistHeathRecord(final String strPicmeId, final String mid) {
         view.showProgress();
-        String url = Apiconstants.BASE_URL + Apiconstants.POST_VIST_HEALTH_RECORD;
+//        String url = Apiconstants.BASE_URL + Apiconstants.POST_VIST_HEALTH_RECORD;
+        String url = Apiconstants.BASE_URL + Apiconstants.POST_VIST_HEALTH_RECORD_PICME;
 
         Log.d("Log in check Url--->",url);
         Log.d("Url--->",strPicmeId);
@@ -44,8 +45,8 @@ public class GetVisitHealthRecordsPresenteer implements GetVisitHealthRecordsInt
         StringRequest strReq =new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-view.hideProgress();
-view.getVisitHealthRecordsSuccess(response);
+            view.hideProgress();
+            view.getVisitHealthRecordsSuccess(response);
             }
         }, new Response.ErrorListener() {
             @Override
