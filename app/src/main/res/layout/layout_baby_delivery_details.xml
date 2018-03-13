@@ -109,9 +109,11 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/txt_delivery_date"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="24-02-2018"
+                            android:inputType="date"
                             android:textAlignment="textStart"
                             android:textColor="#fff"
                             android:textSize="@dimen/text_secondary" />
@@ -149,8 +151,10 @@
                             android:layout_gravity="start"
                             android:textStyle="bold" />
                         <TextView
+                            android:id="@+id/txt_delivery_time"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:inputType="time"
                             android:text="02:30 PM"
                             android:layout_gravity="start"
                             android:textColor="#fff"
