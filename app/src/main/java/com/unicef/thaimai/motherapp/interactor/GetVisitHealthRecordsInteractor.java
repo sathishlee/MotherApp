@@ -5,6 +5,7 @@ package com.unicef.thaimai.motherapp.interactor;
  */
 
 public interface GetVisitHealthRecordsInteractor {
-    void getAllVistHeathRecord(String pickmeid,String mid) ;
+    void getAllVistHeathRecord(String strUrl,String pickmeid,String mid) ;
+    void getPN_HBNC_VisitRecord(String strUrl,String pickmeid,String mid) ;
 
 }

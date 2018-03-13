@@ -23,8 +23,8 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
             sp_sncu_name,sp_outcome;
 
     String strDeliveryDate, strDeliveryTime, strPlace, strDeliveryDetails, strMotherOutcome, strNewbornOutcome,
-    strInfantID, strBirthdetails, strInfantWeight, strInfantHeight, strBreastFeeding, strAdmittedSNCU, strSNCUName,
-    str
+    strInfantID, strBirthdetails, strInfantWeight, strInfantHeight, strBreastFeeding, strAdmittedSNCU, strSNCUName;
+
     Button btn_delivery_submit;
 
     @Override
@@ -71,7 +71,7 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
         sp_birth_details = (Spinner) findViewById(R.id.sp_birth_details);
         sp_breast_feeding_given = (Spinner) findViewById(R.id.sp_breast_feeding_given);
         sp_admitted_in_sncu = (Spinner) findViewById(R.id.sp_admitted_in_sncu);
-        sp_sncu_name = (Spinner) findViewById(R.id.sp_sncu_name);
+//        sp_sncu_name = (Spinner) findViewById(R.id.sp_sncu_name);
         sp_outcome = (Spinner) findViewById(R.id.sp_outcome);
 
 

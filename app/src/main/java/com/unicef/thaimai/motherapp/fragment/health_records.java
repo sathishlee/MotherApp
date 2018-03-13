@@ -1,6 +1,7 @@
 package com.unicef.thaimai.motherapp.fragment;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -11,12 +12,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.GetVisitHealthRecordsPresenter;
 import com.unicef.thaimai.motherapp.R;
+import com.unicef.thaimai.motherapp.activity.PrimaryRegisterView;
 import com.unicef.thaimai.motherapp.adapter.HealthRecordsAdapter;
 import com.unicef.thaimai.motherapp.adapter.ViewPagerAdapter;
+import com.unicef.thaimai.motherapp.constant.Apiconstants;
 import com.unicef.thaimai.motherapp.constant.AppConstants;
 import com.unicef.thaimai.motherapp.model.responsemodel.HealthRecordResponseModel;
 import com.unicef.thaimai.motherapp.view.GetVisitHelthRecordsViews;
@@ -31,23 +35,18 @@ import java.util.ArrayList;
 import static android.content.Context.MODE_PRIVATE;
 
 
-public class health_records extends Fragment implements GetVisitHelthRecordsViews  {
+public class health_records extends Fragment implements GetVisitHelthRecordsViews, View.OnClickListener {
     Button btn_primary_report, btn_view_report;
+    LinearLayout llClickPickMeVisit, llClickOtherVisit;
     private TabLayout tabLayout;
     private ViewPager viewPager;
     PreferenceData preferenceData;
     SharedPreferences.Editor editor;
     ProgressDialog pDialog;
-
     GetVisitHealthRecordsPresenter gVHRecordsPresenteer;
     HealthRecordResponseModel.Visit_Records mhealthRecordResponseModel;
     ArrayList<HealthRecordResponseModel.Visit_Records> mhealthRecordList;
-
     HealthRecordsAdapter hAdapter;
-    Button btn_primary;
-
-
-
 
     public static health_records newInstance() {
         health_records fragment = new health_records();
@@ -64,12 +63,16 @@ public class health_records extends Fragment implements GetVisitHelthRecordsView
         View view = null;
         view = inflater.inflate(R.layout.fragment_health_records, container, false);
         initUI(view);
-
-
+        onClickListner();
         return view;
     }
 
-
+    private void onClickListner() {
+        llClickPickMeVisit.setOnClickListener(this);
+        llClickOtherVisit.setOnClickListener(this);
+        btn_primary_report.setOnClickListener(this);
+        btn_view_report.setOnClickListener(this);
+    }
 
     private void initUI(View view) {
         getActivity().setTitle("Health Records");
@@ -78,13 +81,18 @@ public class health_records extends Fragment implements GetVisitHelthRecordsView
         pDialog = new ProgressDialog(getActivity());
         pDialog.setCancelable(false);
         pDialog.setMessage("Please Wait ...");
+
         gVHRecordsPresenteer = new GetVisitHealthRecordsPresenter(getActivity(), this);
-        gVHRecordsPresenteer.getAllVistHeathRecord(preferenceData.getPicmeId(), "1");
+        gVHRecordsPresenteer.getAllVistHeathRecord(Apiconstants.POST_VIST_HEALTH_RECORD_PICME,preferenceData.getPicmeId(), "1");
+
         mhealthRecordList = new ArrayList<>();
         viewPager = view.findViewById(R.id.hre_viewpager);
         setupViewPager(viewPager);
         tabLayout = view.findViewById(R.id.hre_tabs);
         tabLayout.setupWithViewPager(viewPager);
+
+        llClickPickMeVisit = view.findViewById(R.id.ll_click_pickme_visit);
+        llClickOtherVisit = view.findViewById(R.id.ll_click_other_visit);
         btn_primary_report = (Button) view.findViewById(R.id.btn_primary_report);
         btn_view_report = (Button) view.findViewById(R.id.btn_view_report);
 
@@ -173,7 +181,31 @@ public class health_records extends Fragment implements GetVisitHelthRecordsView
 
     }
 
+    @Override
+    public void getPNHBNCVisitRecordsSuccess(String healthRecordResponseModel) {
+
+    }
+
+    @Override
+    public void getPNHBNCVisitRecordsFailiur(String errorMsg) {
+
+    }
 
 
-
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+//            case R.id.ll_click_pickme_visit:
+//                mhealthRecordList.clear();
+//                gVHRecordsPresenteer.getAllVistHeathRecord(Apiconstants.POST_VIST_HEALTH_RECORD_PICME,preferenceData.getPicmeId(), "1");
+//                break;
+//            case R.id.ll_click_other_visit:
+//                mhealthRecordList.clear();
+//                gVHRecordsPresenteer.getAllVistHeathRecord(Apiconstants.POST_VIST_HEALTH_RECORD,preferenceData.getPicmeId(), "1");
+//                break;
+            case R.id.btn_primary_report:
+                startActivity(new Intent(getActivity().getApplicationContext(), PrimaryRegisterView.class));break;
+            case R.id.btn_view_report: break;
+        }
+    }
 }

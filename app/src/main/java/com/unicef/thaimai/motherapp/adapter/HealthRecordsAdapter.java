@@ -24,18 +24,11 @@ public class HealthRecordsAdapter extends PagerAdapter {
     private ArrayList<HealthRecordResponseModel.Visit_Records> mhealthRecordList;
     HealthRecordResponseModel.Visit_Records mhealthRecordResponseModel;
     private LayoutInflater inflater;
-    private Context context;
     FragmentActivity activity;
-
     LinearLayout llClickPickMeVisit,llClickOtherVisit;
     TextView txtVisitedDate, txtVisitedType, txtFacility, txtAnyComplient, txtBPValue,
             txtPluseRate, txtWeight, txtFunbalHeight, txtFhs, txtPep, txtHp, txtFbs, txtPpbs, txtGtt, txtSugar, txtFetus, txtGestationSac, txtLiquor, txtPlacenta;
-    public HealthRecordsAdapter(ArrayList<HealthRecordResponseModel.Visit_Records> mhealthRecordList, LayoutInflater inflater, Context context) {
-        this.inflater = inflater;
-        this.context = context;
-        this.mhealthRecordList = mhealthRecordList;
 
-    }
 
     public HealthRecordsAdapter(FragmentActivity activity,  ArrayList<HealthRecordResponseModel.Visit_Records> mhealthRecordList) {
         this.mhealthRecordList = mhealthRecordList;

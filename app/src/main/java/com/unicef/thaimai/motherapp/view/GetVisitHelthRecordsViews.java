@@ -11,4 +11,7 @@ public interface GetVisitHelthRecordsViews {
     void hideProgress();
     void getVisitHealthRecordsSuccess(String healthRecordResponseModel);
     void  getVisitHealthRecordsFailiur(String errorMsg);
+
+    void getPNHBNCVisitRecordsSuccess(String healthRecordResponseModel);
+    void  getPNHBNCVisitRecordsFailiur(String errorMsg);
 }
