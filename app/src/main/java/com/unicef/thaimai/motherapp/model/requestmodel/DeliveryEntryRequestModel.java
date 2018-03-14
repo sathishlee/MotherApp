@@ -22,10 +22,13 @@ public class DeliveryEntryRequestModel {
     private String ddeleveryOutcomeMother;
     private String ddeleveryDetails;
     private String dplace;
-    private String ddateTime;
+    private String dtime;
+    private String ddatetime;
     private String dpicmeId;
     private String mid;
     private String did;
+
+
 
     public String getDHEPBDate() {
         return dHEPBDate;
@@ -147,12 +150,20 @@ public class DeliveryEntryRequestModel {
         this.dplace = dplace;
     }
 
-    public String getDdateTime() {
-        return ddateTime;
+    public String getDtime() {
+        return dtime;
     }
 
-    public void setDdateTime(String ddateTime) {
-        this.ddateTime = ddateTime;
+    public void setDtime(String dtime) {
+        this.dtime = dtime;
+    }
+
+    public String getDdatetime() {
+        return ddatetime;
+    }
+
+    public void setDdatetime(String ddatetime) {
+        this.ddatetime = ddatetime;
     }
 
     public String getDpicmeId() {

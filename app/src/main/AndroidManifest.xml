@@ -117,6 +117,13 @@
 
         </activity>
         <activity
+            android:name=".activity.ImmunizationVisit"
+            android:theme="@style/AppTheme"
+            android:label="@string/immunization">
+
+        </activity>
+
+        <activity
             android:name=".activity.ImmunizationEditActivity"
             android:theme="@style/AppTheme"/>
         <activity
@@ -135,21 +142,20 @@
             tools:ignore="WrongManifestParent">
 
         </activity>
+
         <activity android:name=".activity.PNMotherVisitListActivity"
             android:theme="@style/AppTheme">
 
         </activity>
-        <activity android:name=".activity.PNMotherVisit_editActivity"
+
+        <activity android:name=".activity.PNHBNCVisitEntry"
             android:theme="@style/AppTheme">
 
         </activity>
+
         <activity android:name=".activity.InfantTrackingVisits"
             android:theme="@style/AppTheme">
 
-        </activity>
-
-        <activity android:name=".activity.ImmunizationVisit"
-            android:theme="@style/AppTheme">
         </activity>
 
          <activity android:name=".activity.PrimaryRegisterView"

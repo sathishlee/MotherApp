@@ -52,20 +52,16 @@
             android:icon="@drawable/health_care"
             android:title="Visit Entry" />
 
-        <item
-            android:id="@+id/pn_visit_entry"
-            android:icon="@drawable/health_care"
-            android:title="PN Visit Entry" />
-
-        <item
-            android:id="@+id/hbnc_visit_entry"
-            android:icon="@drawable/health_care"
-            android:title="HBNC Visit Entry" />
 
         <item
             android:id="@+id/delivery_details_entry"
             android:icon="@drawable/health_care"
             android:title="Delivery Entry" />
+
+        <item
+            android:id="@+id/pn_hbnc_visit_entry"
+            android:icon="@drawable/health_care"
+            android:title="PN/HBNC Visit Entry" />
 
 
         <!--<item-->

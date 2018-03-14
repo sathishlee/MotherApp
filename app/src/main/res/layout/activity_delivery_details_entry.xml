@@ -60,7 +60,8 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:id="@+id/til_delivery_date">
 
                 <EditText
                     android:id="@+id/edt_delivery_date"
@@ -83,7 +84,8 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:id="@+id/til_delivery_time">
 
                 <EditText
                     android:id="@+id/edt_time_of_delivery"
@@ -153,7 +155,7 @@
                 android:textSize="@dimen/text_secondary"
                 android:layout_weight="1"
                 android:drawSelectorOnTop="true"
-                android:entries="@array/array_facillity_type"
+                android:entries="@array/array_delivery_details"
                 style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
 
         </LinearLayout>
@@ -309,7 +311,8 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:id="@+id/til_infant_id">
 
                 <EditText
                     android:id="@+id/edt_infant_id"
@@ -362,7 +365,8 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:id="@+id/til_infant_weight">
 
                 <EditText
                     android:id="@+id/edt_infant_weight"
@@ -385,7 +389,8 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:id="@+id/til_infant_height">
 
                 <EditText
                     android:id="@+id/edt_infant_height"
@@ -541,7 +546,8 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:id="@+id/til_new_born_date">
 
                 <EditText
                     android:id="@+id/edt_new_born_birth_date"
@@ -637,7 +643,8 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:id="@+id/til_bcg_date">
 
                 <EditText
                     android:id="@+id/edt_bcg_given_date"
@@ -660,7 +667,8 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:id="@+id/til_opv_date">
 
                 <EditText
                     android:id="@+id/edt_opv_given_date"
@@ -683,7 +691,8 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:id="@+id/til_hepb_date">
 
                 <EditText
                     android:id="@+id/edt_hepb_given_date"

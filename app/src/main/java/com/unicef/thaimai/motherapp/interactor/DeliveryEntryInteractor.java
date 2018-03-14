@@ -10,4 +10,6 @@ public interface DeliveryEntryInteractor {
 
     void deliveryEntry(DeliveryEntryRequestModel deliveryEntryRequestModel);
 
+    void deliveryNumber(String strPicmeid, String strMid);
+
 }

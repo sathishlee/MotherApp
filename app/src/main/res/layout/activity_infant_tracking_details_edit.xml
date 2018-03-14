@@ -75,7 +75,7 @@
                 android:textSize="@dimen/text_secondary"
                 android:layout_weight="1"
                 android:drawSelectorOnTop="true"
-                android:entries="@array/array_hbnc_visit"
+                android:entries="@array/array_pn_hbnc_visit"
                 style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
 
         </LinearLayout>

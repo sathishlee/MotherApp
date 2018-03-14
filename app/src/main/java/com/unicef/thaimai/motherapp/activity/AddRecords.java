@@ -86,7 +86,6 @@
             pDialog.setMessage("Please Wait ...");
             preferenceData = new PreferenceData(this);
             addVisitRecordsPresenter = new AddVisitRecordsPresenter(AddRecords.this, this);
-            addVisitRecordsPresenter.getVisitCount(preferenceData.getPicmeId(),preferenceData.getMId());
             edt_date =(EditText) findViewById(R.id.edt_date);
             sp_type_of_visit = (Spinner) findViewById(R.id.sp_type_of_visit);
             sp_facility = (Spinner) findViewById(R.id.sp_facility);
@@ -205,8 +204,8 @@
                 addRecordRequestModel = new AddRecordRequestModel();
 //                addRecordRequestModel.setVid("1");
                 addRecordRequestModel.setVDate(strDate);
-                addRecordRequestModel.setVisitId(strTotalVisitCount);
-                addRecordRequestModel.setMid(preferenceData.getMId());
+                addRecordRequestModel.setVisitId("7");
+                addRecordRequestModel.setMid("1");
                 addRecordRequestModel.setPicmeId(preferenceData.getPicmeId());
                 addRecordRequestModel.setVtypeOfVisit(strTypeOfVisit);
                 addRecordRequestModel.setVFacility(strFacility);
