@@ -133,7 +133,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
             String message = jObj.getString("message");
             if (status == 1) {
                 Log.d("message---->", message);
-                preferenceData.storeUserInfo(jObj.getString("picmeId"), jObj.getString("mName"), jObj.getString("motherAge"), jObj.getString("motherStatus"));
+                preferenceData.storeUserInfo(jObj.getString("picmeId"),jObj.getString("mid"), jObj.getString("mName"), jObj.getString("motherAge"), jObj.getString("motherStatus"));
+                preferenceData.setLogin(true);
                 if (message.equalsIgnoreCase("Successfully Logined")) {
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     finish();

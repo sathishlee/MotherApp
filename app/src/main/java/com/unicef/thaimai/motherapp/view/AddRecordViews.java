@@ -9,4 +9,7 @@ public interface AddRecordViews {
     void hideProgress();
     void insertRecordSuccess(String response);
     void insertRecordFailiure(String response);
+
+    void getVisitIDSuccess(String response);
+    void getVisitIDFailiure(String response);
 }

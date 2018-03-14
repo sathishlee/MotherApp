@@ -47,6 +47,7 @@
                 strFacility_other, strany_complaints_other, strbp_sys, strbp_dis, strpluse_rate, strweight, strfhs, strtemp, strhemo,
                 strrbs, strfbs, strppbs, strgtt, strtsh, strurine_sugar, stralbumin, strfetus, strgestation_sac, strliquor, strplacenta,strPep;
 
+       public static String strTotalVisitCount="0";
         //    edt_facility_other,edt_any_complaints_other--->gone
 
             ProgressDialog pDialog;
@@ -85,6 +86,7 @@
             pDialog.setMessage("Please Wait ...");
             preferenceData = new PreferenceData(this);
             addVisitRecordsPresenter = new AddVisitRecordsPresenter(AddRecords.this, this);
+            addVisitRecordsPresenter.getVisitCount(preferenceData.getPicmeId(),preferenceData.getMId());
             edt_date =(EditText) findViewById(R.id.edt_date);
             sp_type_of_visit = (Spinner) findViewById(R.id.sp_type_of_visit);
             sp_facility = (Spinner) findViewById(R.id.sp_facility);
@@ -203,8 +205,8 @@
                 addRecordRequestModel = new AddRecordRequestModel();
 //                addRecordRequestModel.setVid("1");
                 addRecordRequestModel.setVDate(strDate);
-                addRecordRequestModel.setVisitId("7");
-                addRecordRequestModel.setMid("1");
+                addRecordRequestModel.setVisitId(strTotalVisitCount);
+                addRecordRequestModel.setMid(preferenceData.getMId());
                 addRecordRequestModel.setPicmeId(preferenceData.getPicmeId());
                 addRecordRequestModel.setVtypeOfVisit(strTypeOfVisit);
                 addRecordRequestModel.setVFacility(strFacility);
@@ -333,6 +335,27 @@
         @Override
         public void insertRecordFailiure(String response) {
             Log.d(AddRecords.class.getSimpleName(), "Response Failiur-->" + response);
+
+        }
+
+        @Override
+        public void getVisitIDSuccess(String response) {
+            Log.d(AddRecords.class.getSimpleName(), "Response Success--->" + response);
+            try {
+                JSONObject jsonObject =new JSONObject(response);
+                String status =jsonObject.getString("status");
+                String msg = jsonObject.getString("message");
+                strTotalVisitCount= jsonObject.getString("visitId");
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        public void getVisitIDFailiure(String response) {
+            Log.d(AddRecords.class.getSimpleName(), "Response Success--->" + response);
 
         }
 

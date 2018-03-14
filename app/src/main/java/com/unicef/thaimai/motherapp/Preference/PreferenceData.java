@@ -29,8 +29,9 @@ public class PreferenceData {
         return  sharedPreferences.getBoolean(AppConstants.IS_LOGIN, Boolean.parseBoolean(""));
     }
 
-    public void storeUserInfo(String picmeid,String name, String age, String status){
+    public void storeUserInfo(String picmeid,String mid,String name, String age, String status){
         sharedPreferences.edit().putString(AppConstants.PICME_ID, picmeid).commit();
+        sharedPreferences.edit().putString(AppConstants.M_ID, mid).commit();
         sharedPreferences.edit().putString(AppConstants.MOTHER_NAME, name).commit();
         sharedPreferences.edit().putString(AppConstants.MOTHER_AGE, age).commit();
         sharedPreferences.edit().putString(AppConstants.MOTHER_STATUS,status ).commit();
@@ -45,6 +46,8 @@ public class PreferenceData {
 
     public String getPicmeId(){
         return sharedPreferences.getString(AppConstants.PICME_ID,"");
+    } public String getMId(){
+        return sharedPreferences.getString(AppConstants.M_ID,"");
     }public String getMotherName(){
         return sharedPreferences.getString(AppConstants.MOTHER_NAME,"");
     }public String getMotherAge(){

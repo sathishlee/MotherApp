@@ -7,5 +7,6 @@ import com.unicef.thaimai.motherapp.model.requestmodel.AddRecordRequestModel;
  */
 
 public interface AddRecordsInteractor {
+    void getVisitCount(String  strPickmeId, String strMid);
     void insertVistRecords(AddRecordRequestModel addRecordRequestModel);
 }
