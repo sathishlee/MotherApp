@@ -68,7 +68,9 @@ public class AddVisitRecordsPresenter implements AddRecordsInteractor {
         params.put("usgPlacenta", addRecordRequestModel.getUsgPlacenta());
         params.put("usgFetus", addRecordRequestModel.getUsgFetus());
         params.put("vTSH", addRecordRequestModel.getVTSH());
+
         Log.d(AddVisitRecordsPresenter.class.getSimpleName(),new JSONObject(params).toString());
+
         JsonObjectRequest req = new JsonObjectRequest(url, new JSONObject(params), new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {

@@ -9,4 +9,7 @@ public interface DeliveryEntryViews {
     void hideProgress();
     void deliveryentrySuccess(String response);
     void deliveryentryFailiure(String response);
+
+    void getdeliveryNumberSuccess(String response);
+    void getdeliveryNumberFailiure(String response);
 }

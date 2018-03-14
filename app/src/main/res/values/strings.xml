@@ -78,19 +78,25 @@
     <string name="outcome">Out Come</string>
 
 
-    <string-array name="array_hbnc_visit">
+    <string-array name="array_pn_hbnc_visit">
 
         <item>--Select--</item>
-        <item>Vist 1</item>
-        <item>Vist 2</item>
-        <item>Vist 3</item>
-        <item>Vist 4</item>
-        <item>Vist 5</item>
-        <item>Vist 6</item>
-        <item>Vist 7</item>
+        <item>Vist 1 (Day 0)</item>
+        <item>Vist 2 (Day 3)</item>
+        <item>Vist 3 (Day 7)</item>
+        <item>Vist 4 (Day 14)</item>
+        <item>Vist 5 (Day 21)</item>
+        <item>Vist 6 (Day 28)</item>
+        <item>Vist 7 (Day 42)</item>
 
     </string-array>
-
+    <string-array name="array_delivery_details">
+        <item>--Select--</item>
+        <item>Normal Vaginal Delivery</item>
+        <item>Vaginal Assisted</item>
+        <item>Elective LSCS</item>
+        <item>Emergency LSCS</item>
+    </string-array>
     <string-array name="array_umbilical_stump">
         <item>--Select--</item>
         <item>Healthy</item>

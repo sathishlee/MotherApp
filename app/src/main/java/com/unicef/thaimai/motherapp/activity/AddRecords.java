@@ -204,7 +204,7 @@
 //                addRecordRequestModel.setVid("1");
                 addRecordRequestModel.setVDate(strDate);
                 addRecordRequestModel.setVisitId("7");
-                addRecordRequestModel.setMid("1");
+                addRecordRequestModel.setMid(preferenceData.getMid());
                 addRecordRequestModel.setPicmeId(preferenceData.getPicmeId());
                 addRecordRequestModel.setVtypeOfVisit(strTypeOfVisit);
                 addRecordRequestModel.setVFacility(strFacility);
@@ -332,7 +332,7 @@
 
         @Override
         public void insertRecordFailiure(String response) {
-            Log.d(AddRecords.class.getSimpleName(), "Response Failiur-->" + response);
+            Log.d(AddRecords.class.getSimpleName(), "Response Failiure-->" + response);
 
         }
 

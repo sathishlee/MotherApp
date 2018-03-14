@@ -273,15 +273,15 @@ if (AppConstants.isMainActivityOpen) {
             startActivity(i);
         }
 
-        else if (id == R.id.pn_visit_entry) {
-            Intent v = new Intent(getApplicationContext(), PNMotherVisit_editActivity.class);
+        else if (id == R.id.pn_hbnc_visit_entry) {
+            Intent v = new Intent(getApplicationContext(), PNHBNCVisitEntry.class);
             startActivity(v);
         }
 
-        else if (id == R.id.hbnc_visit_entry) {
-            Intent v = new Intent(getApplicationContext(), InfantTrackingEditActivity.class);
-            startActivity(v);
-        }
+//        else if (id == R.id.hbnc_visit_entry) {
+//            Intent v = new Intent(getApplicationContext(), InfantTrackingEditActivity.class);
+//            startActivity(v);
+//        }
 
         else if (id == R.id.delivery_details_entry){
             Intent i = new Intent(getApplicationContext(), DeliveryDetailsActivityEntry.class);
