@@ -1,7 +1,10 @@
 package com.unicef.thaimai.motherapp.activity;
 
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.icu.util.Calendar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -12,8 +15,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.android.volley.toolbox.StringRequest;
@@ -51,6 +56,9 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
 
     PreferenceData preferenceData;
 
+    Calendar mCurrentDate;
+    int day, month, year, hour, minute, sec;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,7 +89,55 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
         deliveryEntryPresenter = new DeliveryEntryPresenter(DeliveryDetailsActivityEntry.this, this);
 
         edt_delivery_date = (EditText) findViewById(R.id.edt_delivery_date);
+
+        mCurrentDate = Calendar.getInstance();
+        day = mCurrentDate.get(Calendar.DAY_OF_MONTH);
+        month = mCurrentDate.get(Calendar.MONTH);
+        year = mCurrentDate.get(Calendar.YEAR);
+        hour = mCurrentDate.get(Calendar.HOUR);
+        minute = mCurrentDate.get(Calendar.MINUTE);
+        sec = mCurrentDate.get(Calendar.SECOND);
+
+        month = month + 1;
+//        edt_delivery_date.setText(day + "-" + month + "-" + year);
+
+         edt_delivery_date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(DeliveryDetailsActivityEntry.this, R.style.DatePickerDialogTheme, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                        monthOfYear = monthOfYear + 1;
+                        edt_delivery_date.setText(dayOfMonth + "-" + monthOfYear + "-" + year);
+                    }
+                }, year, month, day);
+                datePickerDialog.show();
+
+            }
+
+        });
+
+
         edt_time_of_delivery = (EditText) findViewById(R.id.edt_time_of_delivery);
+
+//        edt_time_of_delivery.setText(hour + ":" + minute + ":" + sec);
+
+        edt_time_of_delivery.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
+                TimePickerDialog  mTimePicker = new TimePickerDialog(DeliveryDetailsActivityEntry.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int hour, int minute) {
+                        edt_time_of_delivery.setText(hour + ":" + minute);
+                    }
+                }, hour, minute, true);
+                mTimePicker.show();
+
+
+            }
+        });
+
         edt_infant_id = (EditText) findViewById(R.id.edt_infant_id);
         edt_infant_weight = (EditText) findViewById(R.id.edt_infant_weight);
         edt_infant_height = (EditText) findViewById(R.id.edt_infant_height);
@@ -205,34 +261,35 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
             til_hepb_date.setError(null);
         }
 
-        if (strPlace.equalsIgnoreCase("")){
+        if (strPlace.equalsIgnoreCase("--Select--")){
             showAlert("Delivery Place is Empty");
         }
-        else if (strDeliveryDetails.equalsIgnoreCase("")){
+        else if (strDeliveryDetails.equalsIgnoreCase("--Select--")){
             showAlert("Delivery Details is Empty");
         }
-        else if(strMotherOutcome.equalsIgnoreCase("")){
+        else if(strMotherOutcome.equalsIgnoreCase("--Select--")){
             showAlert("Mother Outcome is Empty");
         }
-        else if(strNewbornOutcome.equalsIgnoreCase("")){
+        else if(strNewbornOutcome.equalsIgnoreCase("--Select--")){
             showAlert("New Born Outcome is Empty");
         }
-        else if(strBirthdetails.equalsIgnoreCase("")){
+        else if(strBirthdetails.equalsIgnoreCase("--Select--")){
             showAlert("Birth Details is Empty");
         }
-        else if(strBreastFeeding.equalsIgnoreCase("")){
+        else if(strBreastFeeding.equalsIgnoreCase("--Select--")){
             showAlert("Breast Feeding is Empty");
         }
-        else if(strAdmittedSNCU.equalsIgnoreCase("")){
+        else if(strAdmittedSNCU.equalsIgnoreCase("--Select--")){
             showAlert("Admitted in SNCU is Empty");
         }
-        else if(strSNCUOutcome.equalsIgnoreCase("")){
+        else if(strSNCUOutcome.equalsIgnoreCase("--Select--")){
             showAlert("SNCU Outcome is Empty");
         }
             else {
             deliveryEntryRequestModel = new DeliveryEntryRequestModel();
             deliveryEntryRequestModel.setDpicmeId(preferenceData.getPicmeId());
             deliveryEntryRequestModel.setMid(preferenceData.getMid());
+            deliveryEntryRequestModel.setDid(strDid);
             deliveryEntryRequestModel.setDdatetime(strDeliveryDate);
             deliveryEntryRequestModel.setDtime(strDeliveryTime);
             deliveryEntryRequestModel.setDplace(strPlace);
@@ -352,6 +409,7 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
             String status =jsonObject.getString("status");
             String msg = jsonObject.getString("message");
             strDid = jsonObject.getString("did");
+
         }
         catch(JSONException e){
             e.printStackTrace();
