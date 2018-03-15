@@ -143,7 +143,7 @@ public class DeliveryEntryPresenter implements DeliveryEntryInteractor {
             protected Map<String, String> getParams() {
                 // Posting parameters to login url
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("picmeId",strPicmeid);
+                params.put("dpicmeId",strPicmeid);
                 params.put("mid",strMid);
 
                 Log.d("params--->",params.toString());

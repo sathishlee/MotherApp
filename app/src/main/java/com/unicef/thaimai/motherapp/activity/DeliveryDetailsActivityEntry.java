@@ -1,6 +1,10 @@
 package com.unicef.thaimai.motherapp.activity;
 
+import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,11 +14,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.android.volley.toolbox.StringRequest;
+import com.unicef.thaimai.motherapp.Preference.PreferenceData;
+import com.unicef.thaimai.motherapp.Presenter.DeliveryEntryPresenter;
 import com.unicef.thaimai.motherapp.R;
+import com.unicef.thaimai.motherapp.model.requestmodel.DeliveryEntryRequestModel;
 import com.unicef.thaimai.motherapp.view.DeliveryEntryViews;
 
 import org.json.JSONException;
@@ -26,11 +35,14 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
             edt_bcg_given_date,edt_opv_given_date, edt_hepb_given_date;
 
     Spinner sp_place, sp_delivery_details, sp_mother, sp_newborn, sp_birth_details, sp_breast_feeding_given, sp_admitted_in_sncu,
-            sp_sncu_name,sp_outcome;
+            sp_outcome;
 
     String strDeliveryDate, strDeliveryTime, strPlace, strDeliveryDetails, strMotherOutcome, strNewbornOutcome,
-    strInfantID, strBirthdetails, strInfantWeight, strInfantHeight, strBreastFeeding, strAdmittedSNCU, strSNCUName,
-    str
+    strInfantID, strBirthdetails, strInfantWeight, strInfantHeight, strBreastFeeding, strAdmittedSNCU,
+    strSNCUNewBornDate, strSNCUOutcome, strBCGDate, strOPVDate, strHEPDate;
+
+    public static String strDid;
+
     Button btn_delivery_submit;
 
     TextInputLayout til_delivery_date, til_delivery_time, til_infant_id, til_infant_weight, til_infant_height, til_new_born_date,
@@ -42,6 +54,9 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
 
     PreferenceData preferenceData;
 
+    Calendar mCurrentDate;
+    int day, month, year, hour, minute, sec;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,9 +65,6 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
         initUI();
         onClickListner();
         OnItemSelectedListener();
-
-
-
 
     }
 
@@ -76,6 +88,25 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
 
         edt_delivery_date = (EditText) findViewById(R.id.edt_delivery_date);
         edt_time_of_delivery = (EditText) findViewById(R.id.edt_time_of_delivery);
+
+//        edt_time_of_delivery.setText(hour + ":" + minute + ":" + sec);
+
+        edt_time_of_delivery.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
+                TimePickerDialog  mTimePicker = new TimePickerDialog(DeliveryDetailsActivityEntry.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int hour, int minute) {
+                        edt_time_of_delivery.setText(hour + ":" + minute);
+                    }
+                }, hour, minute, true);
+                mTimePicker.show();
+
+
+            }
+        });
+
         edt_infant_id = (EditText) findViewById(R.id.edt_infant_id);
         edt_infant_weight = (EditText) findViewById(R.id.edt_infant_weight);
         edt_infant_height = (EditText) findViewById(R.id.edt_infant_height);
@@ -93,10 +124,17 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
         sp_birth_details = (Spinner) findViewById(R.id.sp_birth_details);
         sp_breast_feeding_given = (Spinner) findViewById(R.id.sp_breast_feeding_given);
         sp_admitted_in_sncu = (Spinner) findViewById(R.id.sp_admitted_in_sncu);
-        sp_sncu_name = (Spinner) findViewById(R.id.sp_sncu_name);
         sp_outcome = (Spinner) findViewById(R.id.sp_outcome);
 
-
+        til_delivery_date = (TextInputLayout) findViewById(R.id.til_delivery_date);
+        til_delivery_time = (TextInputLayout) findViewById(R.id.til_delivery_time);
+        til_infant_id = (TextInputLayout) findViewById(R.id.til_infant_id);
+        til_infant_weight = (TextInputLayout) findViewById(R.id.til_infant_weight);
+        til_infant_height = (TextInputLayout) findViewById(R.id.til_infant_height);
+        til_new_born_date = (TextInputLayout) findViewById(R.id.til_new_born_date);
+        til_bcg_date = (TextInputLayout) findViewById(R.id.til_bcg_date);
+        til_opv_date = (TextInputLayout) findViewById(R.id.til_opv_date);
+        til_hepb_date = (TextInputLayout) findViewById(R.id.til_hepb_date);
 
     }
 
@@ -105,6 +143,7 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
 
     }
     public void OnItemSelectedListener(){
+
         sp_place.setOnItemSelectedListener(this);
         sp_delivery_details.setOnItemSelectedListener(this);
         sp_mother.setOnItemSelectedListener(this);
@@ -112,6 +151,8 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
         sp_birth_details.setOnItemSelectedListener(this);
         sp_admitted_in_sncu.setOnItemSelectedListener(this);
         sp_breast_feeding_given.setOnItemSelectedListener(this);
+        sp_outcome.setOnItemSelectedListener(this);
+
     }
 
     @Override
@@ -189,34 +230,35 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
             til_hepb_date.setError(null);
         }
 
-        if (strPlace.equalsIgnoreCase("")){
+        if (strPlace.equalsIgnoreCase("--Select--")){
             showAlert("Delivery Place is Empty");
         }
-        else if (strDeliveryDetails.equalsIgnoreCase("")){
+        else if (strDeliveryDetails.equalsIgnoreCase("--Select--")){
             showAlert("Delivery Details is Empty");
         }
-        else if(strMotherOutcome.equalsIgnoreCase("")){
+        else if(strMotherOutcome.equalsIgnoreCase("--Select--")){
             showAlert("Mother Outcome is Empty");
         }
-        else if(strNewbornOutcome.equalsIgnoreCase("")){
+        else if(strNewbornOutcome.equalsIgnoreCase("--Select--")){
             showAlert("New Born Outcome is Empty");
         }
-        else if(strBirthdetails.equalsIgnoreCase("")){
+        else if(strBirthdetails.equalsIgnoreCase("--Select--")){
             showAlert("Birth Details is Empty");
         }
-        else if(strBreastFeeding.equalsIgnoreCase("")){
+        else if(strBreastFeeding.equalsIgnoreCase("--Select--")){
             showAlert("Breast Feeding is Empty");
         }
-        else if(strAdmittedSNCU.equalsIgnoreCase("")){
+        else if(strAdmittedSNCU.equalsIgnoreCase("--Select--")){
             showAlert("Admitted in SNCU is Empty");
         }
-        else if(strSNCUOutcome.equalsIgnoreCase("")){
+        else if(strSNCUOutcome.equalsIgnoreCase("--Select--")){
             showAlert("SNCU Outcome is Empty");
         }
             else {
             deliveryEntryRequestModel = new DeliveryEntryRequestModel();
             deliveryEntryRequestModel.setDpicmeId(preferenceData.getPicmeId());
             deliveryEntryRequestModel.setMid(preferenceData.getMid());
+            deliveryEntryRequestModel.setDid(strDid);
             deliveryEntryRequestModel.setDdatetime(strDeliveryDate);
             deliveryEntryRequestModel.setDtime(strDeliveryTime);
             deliveryEntryRequestModel.setDplace(strPlace);
@@ -298,21 +340,52 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
 
     @Override
     public void showProgress() {
-
+        progressDialog.show();
     }
 
     @Override
     public void hideProgress() {
-
+        progressDialog.hide();
     }
 
     @Override
     public void deliveryentrySuccess(String response) {
+        Log.e(DeliveryDetailsActivityEntry.class.getSimpleName(), "Response Success--->" + response);
+        try {
+            JSONObject jsonObject =new JSONObject(response);
+            String status =jsonObject.getString("status");
+            String msg = jsonObject.getString("message");
+            if (status.equalsIgnoreCase("1")){
+                Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+            }
 
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void deliveryentryFailiure(String response) {
+        Log.d(DeliveryDetailsActivityEntry.class.getSimpleName(),"Response Failiure-->" + response);
+    }
 
+    @Override
+    public void getdeliveryNumberSuccess(String response) {
+        Log.d(DeliveryDetailsActivityEntry.class.getSimpleName(), "Response Success--->" + response);
+        try{
+            JSONObject jsonObject = new JSONObject(response);
+            String status =jsonObject.getString("status");
+            String msg = jsonObject.getString("message");
+            strDid = jsonObject.getString("did");
+        }
+        catch(JSONException e){
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void getdeliveryNumberFailiure(String response) {
+        Log.d(DeliveryDetailsActivityEntry.class.getSimpleName(),"Response Failiure-->" + response);
     }
 }
