@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.android.volley.toolbox.StringRequest;
@@ -28,6 +29,8 @@ import com.unicef.thaimai.motherapp.view.DeliveryEntryViews;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Calendar;
 
 public class DeliveryDetailsActivityEntry extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener, DeliveryEntryViews  {
 
@@ -54,7 +57,7 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
 
     PreferenceData preferenceData;
 
-//    Calendar mCurrentDate;
+    Calendar mCurrentDate;
     int day, month, year, hour, minute, sec;
 
     @Override
@@ -87,24 +90,55 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
         deliveryEntryPresenter = new DeliveryEntryPresenter(DeliveryDetailsActivityEntry.this, this);
 
         edt_delivery_date = (EditText) findViewById(R.id.edt_delivery_date);
+
+        mCurrentDate = Calendar.getInstance();
+        day = mCurrentDate.get(Calendar.DAY_OF_MONTH);
+        month = mCurrentDate.get(Calendar.MONTH);
+        year = mCurrentDate.get(Calendar.YEAR);
+        hour = mCurrentDate.get(Calendar.HOUR);
+        minute = mCurrentDate.get(Calendar.MINUTE);
+        sec = mCurrentDate.get(Calendar.SECOND);
+
+        month = month + 1;
+//        edt_delivery_date.setText(day + "-" + month + "-" + year);
+
+        edt_delivery_date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(DeliveryDetailsActivityEntry.this, R.style.DatePickerDialogTheme, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                        monthOfYear = monthOfYear + 1;
+                        edt_delivery_date.setText(dayOfMonth + "-" + monthOfYear + "-" + year);
+                    }
+                }, year, month, day);
+                datePickerDialog.show();
+
+            }
+
+        });
+
+
         edt_time_of_delivery = (EditText) findViewById(R.id.edt_time_of_delivery);
 
 //        edt_time_of_delivery.setText(hour + ":" + minute + ":" + sec);
-//        edt_time_of_delivery.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v) {
-//
-//                TimePickerDialog  mTimePicker = new TimePickerDialog(DeliveryDetailsActivityEntry.this, new TimePickerDialog.OnTimeSetListener() {
-//                    @Override
-//                    public void onTimeSet(TimePicker timePicker, int hour, int minute) {
-//                        edt_time_of_delivery.setText(hour + ":" + minute);
-//                    }
-//                }, hour, minute, true);
-//                mTimePicker.show();
-//
-//
-//            }
-//        });
+
+        edt_time_of_delivery.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
+                TimePickerDialog  mTimePicker = new TimePickerDialog(DeliveryDetailsActivityEntry.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int hour, int minute) {
+                        edt_time_of_delivery.setText(hour + ":" + minute);
+                    }
+                }, hour, minute, true);
+                mTimePicker.show();
+
+
+            }
+        });
+
 
         edt_infant_id = (EditText) findViewById(R.id.edt_infant_id);
         edt_infant_weight = (EditText) findViewById(R.id.edt_infant_weight);
