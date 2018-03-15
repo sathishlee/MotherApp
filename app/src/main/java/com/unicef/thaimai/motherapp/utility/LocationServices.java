@@ -81,9 +81,18 @@ public class LocationServices extends Service implements
         return null;
     }
 
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+
+    }
+
     /*
-     * LOCATION CALLBACKS
-     */
+         * LOCATION CALLBACKS
+         */
+/* LOCATION CALLBACKS*//*
+
+
+
     @Override
     public void onConnected(Bundle dataBundle) {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {

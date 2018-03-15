@@ -54,7 +54,7 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
 
     PreferenceData preferenceData;
 
-    Calendar mCurrentDate;
+//    Calendar mCurrentDate;
     int day, month, year, hour, minute, sec;
 
     @Override
@@ -90,22 +90,21 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
         edt_time_of_delivery = (EditText) findViewById(R.id.edt_time_of_delivery);
 
 //        edt_time_of_delivery.setText(hour + ":" + minute + ":" + sec);
-
-        edt_time_of_delivery.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-
-                TimePickerDialog  mTimePicker = new TimePickerDialog(DeliveryDetailsActivityEntry.this, new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker timePicker, int hour, int minute) {
-                        edt_time_of_delivery.setText(hour + ":" + minute);
-                    }
-                }, hour, minute, true);
-                mTimePicker.show();
-
-
-            }
-        });
+//        edt_time_of_delivery.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v) {
+//
+//                TimePickerDialog  mTimePicker = new TimePickerDialog(DeliveryDetailsActivityEntry.this, new TimePickerDialog.OnTimeSetListener() {
+//                    @Override
+//                    public void onTimeSet(TimePicker timePicker, int hour, int minute) {
+//                        edt_time_of_delivery.setText(hour + ":" + minute);
+//                    }
+//                }, hour, minute, true);
+//                mTimePicker.show();
+//
+//
+//            }
+//        });
 
         edt_infant_id = (EditText) findViewById(R.id.edt_infant_id);
         edt_infant_weight = (EditText) findViewById(R.id.edt_infant_weight);
@@ -170,7 +169,6 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
                 datatosever();
                 break;
         }
-
     }
     public void datatosever(){
         editTextValues();

@@ -74,21 +74,18 @@ public class Splashscreen extends Activity {
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
         pDialog.setMessage("Please Wait ...");
-pDialog.show();
+        pDialog.show();
         session_status= preferenceData.getLogin();
         if(session_status)
         {
             pDialog.hide();
-
             startActivity(new Intent(new Intent(splashscreen.this,MainActivity.class)));
             finish();
         }else{
             pDialog.hide();
-
             Intent i = new Intent(splashscreen.this, Login.class);
             startActivity(i);
         }
-
     }
 
     }

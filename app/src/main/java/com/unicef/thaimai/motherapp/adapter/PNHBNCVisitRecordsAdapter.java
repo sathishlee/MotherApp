@@ -63,16 +63,16 @@ public class PNHBNCVisitRecordsAdapter extends PagerAdapter {
         txt_mother_breast_examination.setText(mhealthRecordResponseModel.getPnBreastExamination());
         txt_mother_out_come.setText(mhealthRecordResponseModel.getPnOutCome());
 
-
-//        txt_umbilical_tump.setText(mhealthRecordResponseModel.getVDate());
-//        txt_cry.setText(mhealthRecordResponseModel.getVDate());
-//        txt_eye.setText(mhealthRecordResponseModel.getVDate());
-//        txt_skin.setText(mhealthRecordResponseModel.getVDate());
-//        txt_breat_feeding.setText(mhealthRecordResponseModel.getVDate());
-//        txt_reasons.setText(mhealthRecordResponseModel.getVDate());
-//        txt_out_come.setText(mhealthRecordResponseModel.getVDate());
-//        txt_mother_any_complient.setText(mhealthRecordResponseModel.getVDate());
-//        txt_mother_temp.setText(mhealthRecordResponseModel.getVDate());
+        txt_weight.setText(mhealthRecordResponseModel.getCWeight());
+        txt_umbilical_tump.setText(mhealthRecordResponseModel.getCUmbilicalStump());
+        txt_cry.setText(mhealthRecordResponseModel.getCCry());
+        txt_eye.setText(mhealthRecordResponseModel.getCEyes());
+        txt_skin.setText(mhealthRecordResponseModel.getCSkin());
+        txt_breat_feeding.setText(mhealthRecordResponseModel.getCBreastFeeding());
+        txt_reasons.setText(mhealthRecordResponseModel.getCBreastFeedingReason());
+        txt_out_come.setText(mhealthRecordResponseModel.getCOutCome());
+        txt_mother_any_complient.setText(mhealthRecordResponseModel.getPnAnyComplaints());
+        txt_mother_temp.setText(mhealthRecordResponseModel.getPnTemp());
 
 
     }

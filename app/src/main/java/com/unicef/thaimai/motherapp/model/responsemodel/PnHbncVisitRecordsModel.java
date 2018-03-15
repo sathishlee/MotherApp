@@ -37,6 +37,15 @@ public class PnHbncVisitRecordsModel {
     }
 
     public static class Visit_Records {
+        private String cOutCome;
+        private String cBreastFeedingReason;
+        private String cBreastFeeding;
+        private String cSkin;
+        private String cEyes;
+        private String cCry;
+        private String cUmbilicalStump;
+        private String cTemp;
+        private String cWeight;
         private String pnOutCome;
         private String pnBreastExamination;
         private String pnBreastFeedingReason;
@@ -55,6 +64,78 @@ public class PnHbncVisitRecordsModel {
         private String picmeId;
         private String mid;
         private String pnId;
+
+        public String getCOutCome() {
+            return cOutCome;
+        }
+
+        public void setCOutCome(String cOutCome) {
+            this.cOutCome = cOutCome;
+        }
+
+        public String getCBreastFeedingReason() {
+            return cBreastFeedingReason;
+        }
+
+        public void setCBreastFeedingReason(String cBreastFeedingReason) {
+            this.cBreastFeedingReason = cBreastFeedingReason;
+        }
+
+        public String getCBreastFeeding() {
+            return cBreastFeeding;
+        }
+
+        public void setCBreastFeeding(String cBreastFeeding) {
+            this.cBreastFeeding = cBreastFeeding;
+        }
+
+        public String getCSkin() {
+            return cSkin;
+        }
+
+        public void setCSkin(String cSkin) {
+            this.cSkin = cSkin;
+        }
+
+        public String getCEyes() {
+            return cEyes;
+        }
+
+        public void setCEyes(String cEyes) {
+            this.cEyes = cEyes;
+        }
+
+        public String getCCry() {
+            return cCry;
+        }
+
+        public void setCCry(String cCry) {
+            this.cCry = cCry;
+        }
+
+        public String getCUmbilicalStump() {
+            return cUmbilicalStump;
+        }
+
+        public void setCUmbilicalStump(String cUmbilicalStump) {
+            this.cUmbilicalStump = cUmbilicalStump;
+        }
+
+        public String getCTemp() {
+            return cTemp;
+        }
+
+        public void setCTemp(String cTemp) {
+            this.cTemp = cTemp;
+        }
+
+        public String getCWeight() {
+            return cWeight;
+        }
+
+        public void setCWeight(String cWeight) {
+            this.cWeight = cWeight;
+        }
 
         public String getPnOutCome() {
             return pnOutCome;

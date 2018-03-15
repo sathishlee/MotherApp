@@ -133,7 +133,6 @@ public class AddVisitRecordsPresenter implements AddRecordsInteractor {
             @Override
             public void onResponse(JSONObject response) {
                 views.hideProgress();
-
                 views.insertRecordSuccess(String.valueOf(response));
             }
         }, new Response.ErrorListener() {
@@ -148,7 +147,7 @@ public class AddVisitRecordsPresenter implements AddRecordsInteractor {
                 String credentials = "admin" + ":" + "1234";
                 String base64EncodedCredentials = Base64.encodeToString(credentials.getBytes(), Base64.DEFAULT);
                 HashMap<String, String> header = new HashMap<>();
-                //                header.put("Content-Type", "application/x-www-from-urlencoded; charset=utf-8");
+//                header.put("Content-Type", "application/x-www-from-urlencoded; charset=utf-8");
                 header.put("Authorization", "Basic " + base64EncodedCredentials);
                 header.put("Content-Type", "application/json; charset=utf-8");
                 Log.d("Credentials ", "Basic " + base64EncodedCredentials.toString());
@@ -156,9 +155,9 @@ public class AddVisitRecordsPresenter implements AddRecordsInteractor {
                 return header;
             }
 
-            //            public String getBodyContentType() {
-            //                return "application/x-www-from-urlencoded; charset=utf-8";
-            //            }
+//                        public String getBodyContentType() {
+//                return "application/json; charset=utf-8";
+//            }
 
             public int getMethod() {
                 return Method.POST;

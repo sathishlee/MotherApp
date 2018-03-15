@@ -117,9 +117,6 @@
             params.put("mHusbandMobile", primaryDataRequestModel.getMHusbandMobile());
             params.put("mMotherOccupation", primaryDataRequestModel.getMMotherOccupation());
             params.put("mHusbandOccupation", primaryDataRequestModel.getMHusbandOccupation());
-
-            Log.e("mHusbandOccupation",primaryDataRequestModel.getMHusbandOccupation());
-
             params.put("mAgeatMarriage", primaryDataRequestModel.getMAgeatMarriage());
             params.put("mConsanguineousMarraige", primaryDataRequestModel.getMConsanguineousMarraige());
             params.put("mHistoryIllness", primaryDataRequestModel.getMHistoryIllness());
@@ -149,7 +146,6 @@
             params.put("hHIV", primaryDataRequestModel.getHHIV());
             params.put("hVDRL", primaryDataRequestModel.getHVDRL());
             params.put("hHepatitis", primaryDataRequestModel.getMHepatitis());
-
             params.put("mHistoryIllnessOthers", primaryDataRequestModel.getMHistoryIllnessOthers());
             params.put("mHistoryIllnessFamilyOthers", primaryDataRequestModel.getMHistoryIllnessFamilyOthers());
             params.put("mAnySurgeryBeforeOthers", primaryDataRequestModel.getMAnySurgeryBeforeOthers());
@@ -177,6 +173,7 @@
                     String base64EncodedCredentials = Base64.encodeToString(credentials.getBytes(), Base64.DEFAULT);
                     HashMap<String, String> header = new HashMap<>();
     //                header.put("Content-Type", "application/x-www-from-urlencoded; charset=utf-8");
+                    header.put("Content-Type", "application/json; charset=utf-8");
                     header.put("Authorization", "Basic " + base64EncodedCredentials);
                     Log.d("Credentials ", "Basic " + base64EncodedCredentials.toString());
 

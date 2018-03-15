@@ -465,31 +465,31 @@
         </LinearLayout>
 
         <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:orientation="vertical"-->
-            <!--android:padding="5dp"-->
-            <!--android:weightSum="2">-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="vertical"-->
+        <!--android:padding="5dp"-->
+        <!--android:weightSum="2">-->
 
-            <!--<TextView-->
-                <!--android:layout_width="fill_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="SNCU name"-->
-                <!--android:textColor="@color/secondary"-->
-                <!--android:textSize="@dimen/text_primary"-->
-                <!--android:textStyle="bold"-->
-                <!--android:layout_weight="1"/>-->
+        <!--<TextView-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="SNCU name"-->
+        <!--android:textColor="@color/secondary"-->
+        <!--android:textSize="@dimen/text_primary"-->
+        <!--android:textStyle="bold"-->
+        <!--android:layout_weight="1"/>-->
 
-            <!--<Spinner-->
-                <!--android:id="@+id/sp_sncu_name"-->
-                <!--android:layout_width="fill_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:textColor="@color/text_primary"-->
-                <!--android:textSize="@dimen/text_secondary"-->
-                <!--android:layout_weight="1"-->
-                <!--android:drawSelectorOnTop="true"-->
-                <!--android:entries="@array/array_name"-->
-                <!--style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>-->
+        <!--<Spinner-->
+        <!--android:id="@+id/sp_sncu_name"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textColor="@color/text_primary"-->
+        <!--android:textSize="@dimen/text_secondary"-->
+        <!--android:layout_weight="1"-->
+        <!--android:drawSelectorOnTop="true"-->
+        <!--android:entries="@array/array_name"-->
+        <!--style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>-->
 
         <!--</LinearLayout>-->
 
