@@ -200,8 +200,6 @@
                 showAlert("TSH is Empty");
             }
             else {
-
-
                 addRecordRequestModel = new AddRecordRequestModel();
 //                addRecordRequestModel.setVid("1");
                 addRecordRequestModel.setVDate(strDate);
