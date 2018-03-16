@@ -39,7 +39,7 @@ public class PNhbncVisit extends Fragment implements GetVisitHelthRecordsViews {
     SharedPreferences.Editor editor;
     ProgressDialog pDialog;
     GetVisitHealthRecordsPresenter gVHRecordsPresenteer;
-//    HealthRecordResponseModel.Visit_Records mhealthRecordResponseModel;
+    //    HealthRecordResponseModel.Visit_Records mhealthRecordResponseModel;
     PnHbncVisitRecordsModel.Visit_Records mPnHbncVisitRecordsModel;
     ArrayList<PnHbncVisitRecordsModel.Visit_Records> mPnHbncVisitRecordsList;
     HealthRecordsAdapter hAdapter;
@@ -57,7 +57,7 @@ public class PNhbncVisit extends Fragment implements GetVisitHelthRecordsViews {
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-       View view =  inflater.inflate(R.layout.layout_pn_hbnc_visit, container, false);
+        View view =  inflater.inflate(R.layout.layout_pn_hbnc_visit, container, false);
         initUI(view);
 
         return  view;

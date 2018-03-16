@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.unicef.thaimai.motherapp.R;
-import com.unicef.thaimai.motherapp.model.responsemodel.HealthRecordResponseModel;
 import com.unicef.thaimai.motherapp.model.responsemodel.PnHbncVisitRecordsModel;
 
 import java.util.ArrayList;
@@ -26,7 +25,7 @@ public class PNHBNCVisitRecordsAdapter extends PagerAdapter {
     private LayoutInflater inflater;
     FragmentActivity activity;
 
-    TextView txt_due_date,txt_provided_date,txt_hbnc_visit_num, txt_place,txt_weight,txt_temp,txt_umbilical_tump,txt_cry,txt_eye,txt_skin,txt_breat_feeding,txt_reasons,txt_out_come,
+   private TextView txt_due_date,txt_provided_date,txt_hbnc_visit_num, txt_place,txt_weight,txt_temp,txt_umbilical_tump,txt_cry,txt_eye,txt_skin,txt_breat_feeding,txt_reasons,txt_out_come,
             txt_mother_any_complient,txt_mother_bp,txt_mother_pluse_rate,txt_mother_temp,txt_mother_epistomy_tear_suture,txt_mother_pv_discharge,txt_mother_breast_feeding,txt_mother_reasons,
             txt_mother_breast_examination,txt_mother_out_come;
 

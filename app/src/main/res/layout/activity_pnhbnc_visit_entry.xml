@@ -68,6 +68,7 @@
                 android:layout_weight="1"/>
 
             <Spinner
+                android:id="@+id/sp_visit_no"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_primary"
@@ -83,25 +84,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="5dp"
-            android:weightSum="2">
+            android:padding="5dp">
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/due_date"
-                android:textColor="@color/secondary"
-                android:textSize="@dimen/text_primary"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
-
-            <TextView
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="21-02-2018"
-                android:textSize="@dimen/text_secondary"
-                android:textColor="@color/text_primary"
-                android:layout_weight="1"/>
+                android:id="@+id/til_due_date">
+
+                <EditText
+                    android:id="@+id/edt_due_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="date"
+                    android:textColor="@color/secondary"
+                    android:textSize="@dimen/text_secondary"
+                    android:hint="Due Provided Date"/>
+
+            </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
 
@@ -114,12 +113,14 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:id="@+id/til_care_provided_date">
 
                 <EditText
+                    android:id="@+id/edt_care_provided_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text"
+                    android:inputType="date"
                     android:textColor="@color/secondary"
                     android:textSize="@dimen/text_secondary"
                     android:hint="Care Provided Date"/>
@@ -145,6 +146,7 @@
                 android:layout_weight="1"/>
 
             <Spinner
+                android:id="@+id/sp_facility"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_primary"
@@ -165,12 +167,14 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:id="@+id/til_infant_weight">
 
                 <EditText
+                    android:id="@+id/edt_infant_weight"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text"
+                    android:inputType="numberSigned"
                     android:textColor="@color/secondary"
                     android:textSize="@dimen/text_secondary"
                     android:hint="Enter Weight"/>
@@ -188,9 +192,11 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:id="@+id/til_infant_temp">
 
                 <EditText
+                    android:id="@+id/edt_infant_temp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
@@ -220,6 +226,7 @@
                 android:layout_weight="1"/>
 
             <Spinner
+                android:id="@+id/sp_infant_umbilical_stump"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_primary"
@@ -249,6 +256,7 @@
                 android:textStyle="bold" />
 
             <Spinner
+                android:id="@+id/sp_infant_cry"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_primary"
@@ -277,6 +285,7 @@
                 android:layout_weight="1"/>
 
             <Spinner
+                android:id="@+id/sp_infant_eyes"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_primary"
@@ -306,6 +315,7 @@
                 android:layout_weight="1"/>
 
             <Spinner
+                android:id="@+id/sp_infant_skin"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_primary"
@@ -334,6 +344,7 @@
                 android:layout_weight="1"/>
 
             <Spinner
+                android:id="@+id/sp_infant_breast_feeding"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_primary"
@@ -362,6 +373,7 @@
                 android:layout_weight="1"/>
 
             <Spinner
+                android:id="@+id/sp_infant_reason"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_primary"
@@ -390,6 +402,7 @@
                 android:layout_weight="1"/>
 
             <Spinner
+                android:id="@+id/sp_infant_outcome"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_primary"
@@ -461,6 +474,7 @@
                 android:layout_weight="1"/>
 
             <Spinner
+                android:id="@+id/sp_mother_any_complaints"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_primary"
@@ -495,6 +509,7 @@
                 android:weightSum="2">
 
                     <EditText
+                        android:id="@+id/edt_mother_systolic"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
@@ -510,14 +525,15 @@
                         android:layout_height="wrap_content"
                         android:text="/"/>
 
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:textColor="@color/secondary"
-                        android:textSize="@dimen/text_primary"
-                        android:layout_weight="1"
-                        android:hint="Diastolic"/>
+                <EditText
+                    android:id="@+id/edt_mother_diastolic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Diastolic"
+                    android:inputType="text"
+                    android:textColor="@color/secondary"
+                    android:textSize="@dimen/text_primary" />
 
 
             </LinearLayout>
@@ -528,14 +544,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="5dp"
-            android:weightSum="2">
+            android:padding="5dp">
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:id="@+id/til_mother_pulse_rate">
 
                 <EditText
+                    android:id="@+id/edt_mother_pluse_rate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
@@ -556,9 +573,11 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:id="@+id/til_mother_temp">
 
                 <EditText
+                    android:id="@+id/edt_mother_temp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
@@ -588,6 +607,7 @@
                 android:layout_weight="1"/>
 
             <Spinner
+                android:id="@+id/sp_mother_epistomy"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_primary"
@@ -616,6 +636,7 @@
                 android:layout_weight="1"/>
 
             <Spinner
+                android:id="@+id/sp_pv_discharge"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_primary"
@@ -646,6 +667,7 @@
                 android:layout_weight="1"/>
 
             <Spinner
+                android:id="@+id/sp_mother_breast_feeding"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_primary"
@@ -674,6 +696,7 @@
                 android:layout_weight="1"/>
 
             <Spinner
+                android:id="@+id/sp_mother_reasons"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_primary"
@@ -702,6 +725,7 @@
                 android:layout_weight="1"/>
 
             <Spinner
+                android:id="@+id/sp_breast_examination"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_primary"
@@ -730,6 +754,7 @@
                 android:layout_weight="1"/>
 
             <Spinner
+                android:id="@+id/sp_mother_outcome"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_primary"
@@ -750,7 +775,7 @@
             android:background="@drawable/button_backgroumd"
             android:text="@string/submit"
             android:textColor="#ffffff"
-            android:id="@+id/btn_submit"
+            android:id="@+id/btn_pnhbnc_submit"
             android:padding="10dp"/>
 
     </LinearLayout>

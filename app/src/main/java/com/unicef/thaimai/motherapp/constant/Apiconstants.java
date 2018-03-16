@@ -32,6 +32,10 @@ public class Apiconstants {
 
     public static final String DELIVERY_NUMBER = "mother/mDeleveryNumber";
 
+    public static final String PN_HBNC_VISIT_INSERT = "mother/mPN_Record_Insert";
+
+    public static final String PN_HBNC_VISITNUMBER = "mother/mPN_RecordVisitNumber";
+
 
 
 

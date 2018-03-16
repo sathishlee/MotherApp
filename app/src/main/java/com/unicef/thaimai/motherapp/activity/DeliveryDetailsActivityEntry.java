@@ -44,7 +44,7 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
     strInfantID, strBirthdetails, strInfantWeight, strInfantHeight, strBreastFeeding, strAdmittedSNCU,
     strSNCUNewBornDate, strSNCUOutcome, strBCGDate, strOPVDate, strHEPDate;
 
-    public static String strDid;
+    public static String strDid, strPicmeId;
 
     Button btn_delivery_submit;
 
@@ -88,7 +88,7 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
         progressDialog.setMessage("Please Wait...");
         preferenceData = new PreferenceData(this);
         deliveryEntryPresenter = new DeliveryEntryPresenter(DeliveryDetailsActivityEntry.this, this);
-
+        deliveryEntryPresenter.deliveryNumber(preferenceData.getPicmeId(),preferenceData.getMid());
         edt_delivery_date = (EditText) findViewById(R.id.edt_delivery_date);
 
         mCurrentDate = Calendar.getInstance();
@@ -288,9 +288,9 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
         }
             else {
             deliveryEntryRequestModel = new DeliveryEntryRequestModel();
-            deliveryEntryRequestModel.setDpicmeId(preferenceData.getPicmeId());
+            deliveryEntryRequestModel.setDpicmeId(preferenceData.getPicmeId());                         //preferenceData.getPicmeId()
             deliveryEntryRequestModel.setMid(preferenceData.getMid());
-            deliveryEntryRequestModel.setDid(strDid);
+            deliveryEntryRequestModel.setDid("2");
             deliveryEntryRequestModel.setDdatetime(strDeliveryDate);
             deliveryEntryRequestModel.setDtime(strDeliveryTime);
             deliveryEntryRequestModel.setDplace(strPlace);
@@ -315,7 +315,6 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
     }
 
     public void editTextValues(){
-
         strDeliveryDate = edt_delivery_date.getText().toString();
         strDeliveryTime = edt_time_of_delivery.getText().toString();
         strInfantID = edt_infant_id.getText().toString();
@@ -325,7 +324,6 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
         strBCGDate = edt_bcg_given_date.getText().toString();
         strOPVDate = edt_opv_given_date.getText().toString();
         strHEPDate = edt_hepb_given_date.getText().toString();
-
     }
 
     @Override
@@ -410,6 +408,7 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
             String status =jsonObject.getString("status");
             String msg = jsonObject.getString("message");
             strDid = jsonObject.getString("did");
+            strPicmeId = jsonObject.getString("dpicmeId");
         }
         catch(JSONException e){
             e.printStackTrace();

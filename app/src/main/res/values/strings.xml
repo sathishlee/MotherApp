@@ -81,13 +81,13 @@
     <string-array name="array_pn_hbnc_visit">
 
         <item>--Select--</item>
-        <item>Vist 1 (Day 0)</item>
-        <item>Vist 2 (Day 3)</item>
-        <item>Vist 3 (Day 7)</item>
-        <item>Vist 4 (Day 14)</item>
-        <item>Vist 5 (Day 21)</item>
-        <item>Vist 6 (Day 28)</item>
-        <item>Vist 7 (Day 42)</item>
+        <item>Visit 1 (Day 0)</item>
+        <item>Visit 2 (Day 3)</item>
+        <item>Visit 3 (Day 7)</item>
+        <item>Visit 4 (Day 14)</item>
+        <item>Visit 5 (Day 21)</item>
+        <item>Visit 6 (Day 28)</item>
+        <item>Visit 7 (Day 42)</item>
 
     </string-array>
     <string-array name="array_delivery_details">
