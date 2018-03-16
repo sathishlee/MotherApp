@@ -30,6 +30,7 @@ public class HealthRecordsAdapter extends PagerAdapter {
             txtPluseRate, txtWeight, txtFunbalHeight, txtFhs, txtPep, txtHp, txtFbs, txtPpbs, txtGtt, txtSugar, txtFetus, txtGestationSac, txtLiquor, txtPlacenta;
 
 
+
     public HealthRecordsAdapter(FragmentActivity activity,  ArrayList<HealthRecordResponseModel.Visit_Records> mhealthRecordList) {
         this.mhealthRecordList = mhealthRecordList;
         this.activity =activity;
