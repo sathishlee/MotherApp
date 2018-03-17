@@ -190,6 +190,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/txt_delivery_place"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="HSC"
@@ -215,6 +216,7 @@
                         android:textColor="@color/secondary"
                         android:textStyle="bold" />
                     <TextView
+                        android:id="@+id/txt_delivery_type"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
@@ -315,6 +317,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/txt_delivery_mother_outcome"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Alive"
@@ -340,6 +343,7 @@
                         android:textColor="@color/secondary"
                         android:textStyle="bold" />
                     <TextView
+                        android:id="@+id/txt_delivery_new_born"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
@@ -456,6 +460,7 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/txt_infant_height"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="50 cms"
@@ -496,6 +501,7 @@
                             android:layout_gravity="start"
                             android:textStyle="bold" />
                         <TextView
+                            android:id="@+id/txt_infant_weight"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="2000 gms"
@@ -534,6 +540,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/txt_infant_id"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="100001"
@@ -559,6 +566,7 @@
                         android:textColor="@color/secondary"
                         android:textStyle="bold" />
                     <TextView
+                        android:id="@+id/txt_infant_birth_type"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
@@ -596,6 +604,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/txt_breast_feeding_given"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Yes"
@@ -621,6 +630,7 @@
                         android:textColor="@color/secondary"
                         android:textStyle="bold" />
                     <TextView
+                        android:id="@+id/txt_admitted_in_sncu"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
@@ -721,6 +731,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/new_born_sncu_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="29-08-2018"
@@ -746,6 +757,7 @@
                         android:textColor="@color/secondary"
                         android:textStyle="bold" />
                     <TextView
+                        android:id="@+id/txt_new_born_outcome"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
@@ -859,6 +871,7 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/txt_bcg_given_date"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="22-02-2018"
@@ -899,6 +912,7 @@
                             android:layout_gravity="start"
                             android:textStyle="bold" />
                         <TextView
+                            android:id="@+id/txt_opv_given_date"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="22-02-2018"
@@ -906,6 +920,59 @@
                             android:textColor="#fff"
                             android:textSize="@dimen/text_secondary"/>
 
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:layout_gravity="center"
+                android:layout_margin="2dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/background_image"
+                    android:layout_margin="4dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/calendar"
+                        tools:ignore="VectorDrawableCompat" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Hep B given date"
+                            android:textSize="@dimen/text_primary"
+                            android:textAlignment="textStart"
+                            android:textColor="#aaffffff"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txt_hepb_given_date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="22-02-2018"
+                            android:textAlignment="textStart"
+                            android:textColor="#fff"
+                            android:textSize="@dimen/text_secondary"/>
                     </LinearLayout>
 
                 </LinearLayout>
