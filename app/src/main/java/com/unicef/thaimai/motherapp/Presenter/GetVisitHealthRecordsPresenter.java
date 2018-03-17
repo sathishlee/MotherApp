@@ -46,14 +46,14 @@ public class GetVisitHealthRecordsPresenter implements GetVisitHealthRecordsInte
         StringRequest strReq =new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-            view.hideProgress();
-            view.getVisitHealthRecordsSuccess(response);
+                view.hideProgress();
+                view.getVisitHealthRecordsSuccess(response);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 view.hideProgress();
-            view.getVisitHealthRecordsFailiur(error.toString());
+                view.getVisitHealthRecordsFailiur(error.toString());
             }
         }){
 
@@ -104,6 +104,7 @@ public class GetVisitHealthRecordsPresenter implements GetVisitHealthRecordsInte
         StringRequest strReq =new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                Log.d("PN_HBNC succes response",response);
                 view.hideProgress();
                 view.getPNHBNCVisitRecordsSuccess(response);
             }
@@ -111,6 +112,8 @@ public class GetVisitHealthRecordsPresenter implements GetVisitHealthRecordsInte
             @Override
             public void onErrorResponse(VolleyError error) {
                 view.hideProgress();
+                Log.d("PN_HBNC erorr response",error.toString());
+
                 view.getPNHBNCVisitRecordsFailiur(error.toString());
             }
         }){

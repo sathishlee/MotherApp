@@ -6,4 +6,6 @@ package com.unicef.thaimai.motherapp.interactor;
 
 public interface LocationUpdateIntractor {
       void uploadLocationToServer(String picmeId,String vhnId,String mid,String latitude,String longitude);
+
+      void getNearByHospitalFromServer(String latitude, String longitude);
 }

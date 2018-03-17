@@ -9,4 +9,7 @@ public interface LocationUpdateViews {
     void hideProgress();
     void locationUpdateSuccess(String loginResponseModel);
     void locationUpdateFailiure(String string);
+
+    void getNearbyHospitalSuccess(String loginResponseModel);
+    void getNearbyHospitalFailiure(String string);
 }

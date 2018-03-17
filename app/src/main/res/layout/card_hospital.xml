@@ -31,7 +31,7 @@
                     app:srcCompat="@drawable/ic_hospital" />
 
                 <TextView
-                    android:id="@+id/txt_call"
+                    android:id="@+id/txt_phc_call"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -43,7 +43,8 @@
                     android:padding="4.0dip"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/text_primary"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:text="phcMobile"/>
 
             </LinearLayout>
 
@@ -60,7 +61,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/hosp_name"
+                    android:id="@+id/txt_f_nin_num"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:paddingBottom="4.0dip"
@@ -69,10 +70,11 @@
                     android:paddingTop="4.0dip"
                     android:textColor="@color/text_primary"
                     android:textSize="@dimen/text_primary"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:text="f_nin_num"/>
 
                 <TextView
-                    android:id="@+id/hosp_facility"
+                    android:id="@+id/txt_phc_name"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:paddingBottom="4.0dip"
@@ -80,14 +82,15 @@
                     android:paddingRight="8.0dip"
                     android:paddingTop="4.0dip"
                     android:textSize="@dimen/text_secondary"
-                    android:textColor="@color/text_primary" />
+                    android:textColor="@color/text_primary"
+                    android:text="phcName"/>
 
                 <TextView
-                    android:id="@+id/hosp_location"
+                    android:id="@+id/txt_fac_name"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:paddingBottom="4.0dip"
-                    android:drawableStart="@drawable/ic_place_16dp"
+                    android:text="f_facility_name"
                     android:paddingLeft="8.0dip"
                     android:paddingRight="8.0dip"
                     android:paddingTop="4.0dip"
@@ -96,17 +99,19 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/hosp_distance"
+                    android:id="@+id/txt_hosp_distance"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:drawablePadding="4.0dip"
                     android:drawableStart="@drawable/ic_place_16dp"
+                    android:text="distance"
                     android:paddingBottom="4.0dip"
                     android:paddingLeft="8.0dip"
                     android:paddingRight="8.0dip"
                     android:textSize="@dimen/text_secondary"
                     android:paddingTop="4.0dip"
-                    android:textColor="@color/text_primary" />
+                    android:textColor="@color/text_primary"
+                    />
 
             </LinearLayout>
 

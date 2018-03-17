@@ -4,12 +4,14 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.unicef.thaimai.motherapp.R;
+import com.unicef.thaimai.motherapp.model.responsemodel.HealthRecordResponseModel;
 import com.unicef.thaimai.motherapp.model.responsemodel.PnHbncVisitRecordsModel;
 
 import java.util.ArrayList;
@@ -25,7 +27,7 @@ public class PNHBNCVisitRecordsAdapter extends PagerAdapter {
     private LayoutInflater inflater;
     FragmentActivity activity;
 
-   private TextView txt_due_date,txt_provided_date,txt_hbnc_visit_num, txt_place,txt_weight,txt_temp,txt_umbilical_tump,txt_cry,txt_eye,txt_skin,txt_breat_feeding,txt_reasons,txt_out_come,
+    TextView txt_due_date,txt_provided_date,txt_hbnc_visit_num, txt_place,txt_weight,txt_temp,txt_umbilical_tump,txt_cry,txt_eye,txt_skin,txt_breat_feeding,txt_reasons,txt_out_come,
             txt_mother_any_complient,txt_mother_bp,txt_mother_pluse_rate,txt_mother_temp,txt_mother_epistomy_tear_suture,txt_mother_pv_discharge,txt_mother_breast_feeding,txt_mother_reasons,
             txt_mother_breast_examination,txt_mother_out_come;
 
@@ -33,10 +35,11 @@ public class PNHBNCVisitRecordsAdapter extends PagerAdapter {
         this.activity = activity;
         this.mhealthRecordList = mhealthRecordList;
         inflater    = LayoutInflater.from(activity);
-   }
+    }
 
     @Override
     public Object instantiateItem(ViewGroup view, int position) {
+        Log.d("instantiateItem",position+"");
         View healthRecordLayout = inflater.inflate(R.layout.item_pn_hbnc_visit, view, false);
         mPnHbncVisitRecordsModel   =mhealthRecordList.get(position);
         initUI(healthRecordLayout);
@@ -72,8 +75,6 @@ public class PNHBNCVisitRecordsAdapter extends PagerAdapter {
         txt_out_come.setText(mhealthRecordResponseModel.getCOutCome());
         txt_mother_any_complient.setText(mhealthRecordResponseModel.getPnAnyComplaints());
         txt_mother_temp.setText(mhealthRecordResponseModel.getPnTemp());
-
-
     }
 
     private void initUI(View healthRecordLayout) {
@@ -100,20 +101,23 @@ public class PNHBNCVisitRecordsAdapter extends PagerAdapter {
         txt_mother_reasons = healthRecordLayout.findViewById(R.id.txt_mother_reasons);
         txt_mother_breast_examination = healthRecordLayout.findViewById(R.id.txt_mother_breast_examination);
         txt_mother_out_come = healthRecordLayout.findViewById(R.id.txt_mother_out_come);
-
     }
 
     @Override
     public int getCount() {
+        Log.d("mhealthRecordList --->",""+mhealthRecordList.size());
         return mhealthRecordList.size();
     }
 
     @Override
     public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
+
         return view.equals(object);
     }
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
+        Log.d("destroyItem --->",""+position);
+
         container.removeView((View) object);
     }
 

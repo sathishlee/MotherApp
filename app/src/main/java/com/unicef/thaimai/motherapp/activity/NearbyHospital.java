@@ -1,4 +1,4 @@
-//
+package com.unicef.thaimai.motherapp.activity;//
 //package com.unicef.thaimai.motherapp.activity;
 //
 //
@@ -34,8 +34,8 @@
 //import com.unicef.thaimai.motherapp.BuildConfig;
 //import com.unicef.thaimai.motherapp.Interface.Nbh;
 //import com.unicef.thaimai.motherapp.R;
-//import com.unicef.thaimai.motherapp.utility.LocationServices;
-//import com.unicef.thaimai.motherapp.utility.LocationServices;
+//import com.unicef.thaimai.motherapp.utility.LocationMonitoringService;
+//import com.unicef.thaimai.motherapp.utility.LocationMonitoringService;
 //import com.unicef.thaimai.motherapp.adapter.NearByHospitalAdapter;
 //import com.unicef.thaimai.motherapp.helper.ServerUpload;
 //import com.unicef.thaimai.motherapp.model.NearByHospitalModel;
@@ -101,7 +101,7 @@
 //
 //
 //                    }
-//                }, new IntentFilter(LocationServices.ACTION_LOCATION_BROADCAST)
+//                }, new IntentFilter(LocationMonitoringService.ACTION_LOCATION_BROADCAST)
 //
 //
 //        );
@@ -181,9 +181,11 @@
 //
 //
 //
-///**
+//
+/**
 //     * Step 1: Check Google Play services
-//     */
+//     *//*
+
 //
 //    private void startStep1() {
 //
@@ -200,9 +202,11 @@
 //
 //
 //
-///**
+//*/
+/**
 //     * Step 2: Check & Prompt Internet connection
-//     */
+//     *//*
+
 //
 //    private Boolean startStep2(DialogInterface dialog) {
 //        ConnectivityManager connectivityManager
@@ -230,9 +234,11 @@
 //    }
 //
 //
-///**
+//*/
+/**
 //     * Show A Dialog with button to refresh the internet state.
-//     */
+//     *//*
+
 //
 //    private void promptInternetConnect() {
 //        AlertDialog.Builder builder = new AlertDialog.Builder(NearbyHospital.this);
@@ -267,10 +273,14 @@
 //        dialog.show();
 //    }
 //
-//    */
-///**
+//    *//*
+
+//*/
+/**
 //     * Step 3: Start the Location Monitor Service
 //     *//*
+*/
+/*
 //
 //    private void startStep3() {
 //
@@ -282,7 +292,7 @@
 //
 //
 //            //Start location sharing service to app server.........
-//            Intent intent = new Intent(this, LocationServices.class);
+//            Intent intent = new Intent(this, LocationMonitoringService.class);
 //            startService(intent);
 //
 //            mAlreadyStartedService = true;
@@ -290,10 +300,14 @@
 //        }
 //    }
 //
-//    */
-///**
+//    *//*
+
+//*/
+/**
 //     * Return the availability of GooglePlayServices
 //     *//*
+*/
+/*
 //
 //    public boolean isGooglePlayServicesAvailable() {
 //        GoogleApiAvailability googleApiAvailability = GoogleApiAvailability.getInstance();
@@ -308,10 +322,14 @@
 //    }
 //
 //
-//    */
-///**
+//    *//*
+
+//*/
+/**
 //     * Return the current state of the permissions needed.
 //     *//*
+*/
+/*
 //
 //    private boolean checkPermissions() {
 //        int permissionState1 = ActivityCompat.checkSelfPermission(this,
@@ -324,10 +342,14 @@
 //
 //    }
 //
-//    */
-///**
+//    *//*
+
+//*/
+/**
 //     * Start permissions requests.
 //     *//*
+*/
+/*
 //
 //    private void requestPermissions() {
 //
@@ -366,14 +388,18 @@
 //    }
 //
 //
-//    */
-///**
+//    *//*
+
+//*/
+/**
 //     * Shows a {@link Snackbar}.
 //     *
 //     * @param mainTextStringId The id for the string resource for the Snackbar text.
 //     * @param actionStringId   The text of the action item.
 //     * @param listener         The listener associated with the Snackbar action.
 //     *//*
+*/
+/*
 //
 //    private void showSnackbar(final int mainTextStringId, final int actionStringId,
 //                              View.OnClickListener listener) {
@@ -384,10 +410,14 @@
 //                .setAction(getString(actionStringId), listener).show();
 //    }
 //
-//    */
-///**
+//    *//*
+
+//*/
+/**
 //     * Callback received when a permissions request has been completed.
 //     *//*
+*/
+/*
 //
 //    @Override
 //    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
@@ -441,7 +471,7 @@
 //
 //        //Stop location sharing service to app server.........
 //
-//        stopService(new Intent(this, LocationServices.class));
+//        stopService(new Intent(this, LocationMonitoringService.class));
 //        mAlreadyStartedService = false;
 //        //Ends................................................
 //

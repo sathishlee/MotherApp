@@ -259,8 +259,8 @@ if (AppConstants.isMainActivityOpen) {
 //        }
 
         else if (id == R.id.nearbyhospital) {
-//            Intent i = new Intent(getApplicationContext(), NearbyHospital.class);
-//            startActivity(i);
+            Intent i = new Intent(getApplicationContext(), NearHospitalActivity.class);
+            startActivity(i);
         }
 
         else if (id == R.id.immunization_menu){
