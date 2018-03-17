@@ -25,12 +25,13 @@ public class AppConstants {
 
     public static final String PICME_ID = "picme_id";
     public static final String M_ID = "m_id";
-    public static final String PHC_ID = "m_id";
-    public static final String VHN_ID = "m_id";
-    public static final String AWW_ID = "m_id";
+    public static final String PHC_ID = "phcId";
+    public static final String VHN_ID = "vhnId";
+    public static final String AWW_ID = "awwId";
     public static final String MOTHER_NAME = "name";
     public static final String MOTHER_AGE = "age";
     public static final String MOTHER_STATUS = "status";
+    public static final String DELIVERY_ID = "dId";
 //    public static final String M_ID = "m_id";
 
 }

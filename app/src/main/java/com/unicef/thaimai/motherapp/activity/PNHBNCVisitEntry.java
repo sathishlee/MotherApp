@@ -88,7 +88,7 @@ public class PNHBNCVisitEntry extends AppCompatActivity implements View.OnClickL
         progressDialog.setMessage("Please Wait...");
         preferenceData = new PreferenceData(this);
         pnhbncVisitPresenter = new PNHBNCVisitPresenter(PNHBNCVisitEntry.this, this);
-        pnhbncVisitPresenter.getPNHBNCVisitCount(preferenceData.getPicmeId(), preferenceData.getMid());
+        pnhbncVisitPresenter.getPNHBNCVisitCount(preferenceData.getPicmeId(), preferenceData.getMId());
 
 
 
@@ -300,7 +300,7 @@ public class PNHBNCVisitEntry extends AppCompatActivity implements View.OnClickL
         else {
             pnhbncVisitEntryRequestModel = new PNHBNCVisitEntryRequestModel();
             pnhbncVisitEntryRequestModel.setPicmeId(preferenceData.getPicmeId());
-            pnhbncVisitEntryRequestModel.setMid(preferenceData.getMid());
+            pnhbncVisitEntryRequestModel.setMid(preferenceData.getMId());
             pnhbncVisitEntryRequestModel.setPnVisitNo(strVisitNo);
             pnhbncVisitEntryRequestModel.setPnDueDate(strDueDate);
             pnhbncVisitEntryRequestModel.setPnCareProvidedDate(strCareDate);

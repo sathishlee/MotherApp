@@ -12,4 +12,8 @@ public interface DeliveryEntryViews {
 
     void getdeliveryNumberSuccess(String response);
     void getdeliveryNumberFailiure(String response);
+
+    void deliveryDetailsSuccess(String response);
+    void deliveryDetailsFailure(String response);
+
 }

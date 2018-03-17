@@ -88,7 +88,7 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
         progressDialog.setMessage("Please Wait...");
         preferenceData = new PreferenceData(this);
         deliveryEntryPresenter = new DeliveryEntryPresenter(DeliveryDetailsActivityEntry.this, this);
-        deliveryEntryPresenter.deliveryNumber(preferenceData.getPicmeId(),preferenceData.getMid());
+        deliveryEntryPresenter.deliveryNumber(preferenceData.getPicmeId(),preferenceData.getMId());
         edt_delivery_date = (EditText) findViewById(R.id.edt_delivery_date);
 
         mCurrentDate = Calendar.getInstance();
@@ -289,8 +289,8 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
             else {
             deliveryEntryRequestModel = new DeliveryEntryRequestModel();
             deliveryEntryRequestModel.setDpicmeId(preferenceData.getPicmeId());                         //preferenceData.getPicmeId()
-            deliveryEntryRequestModel.setMid(preferenceData.getMid());
-            deliveryEntryRequestModel.setDid("2");
+            deliveryEntryRequestModel.setMid(preferenceData.getMId());
+            deliveryEntryRequestModel.setDid(preferenceData.getDid());
             deliveryEntryRequestModel.setDdatetime(strDeliveryDate);
             deliveryEntryRequestModel.setDtime(strDeliveryTime);
             deliveryEntryRequestModel.setDplace(strPlace);
@@ -419,4 +419,58 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
     public void getdeliveryNumberFailiure(String response) {
         Log.d(DeliveryDetailsActivityEntry.class.getSimpleName(),"Response Failiure-->" + response);
     }
+
+    @Override
+    public void deliveryDetailsSuccess(String response) {
+        Log.d(DeliveryDetailsView.class.getSimpleName(), "Success Response" + response);
+        deliveryValues(response);
+    }
+
+    @Override
+    public void deliveryDetailsFailure(String response) {
+        Log.d(DeliveryDetailsView.class.getSimpleName(), "failure" + response);
+    }
+
+    public void deliveryValues (String response){
+        JSONObject jsonObject =null;
+        try{
+            jsonObject = new JSONObject(response);
+            int status = jsonObject.getInt("status");
+            String message = jsonObject.getString("message");
+
+            if (status==1) {
+                Log.d("message---->", message);
+
+                strDid = jsonObject.getString("did");
+                strPicmeId = jsonObject.getString("dpicmeId");
+                strDeliveryDate = jsonObject.getString("ddateTime");
+                strDeliveryTime = jsonObject.getString("dtime");
+                strDeliveryDetails = jsonObject.getString("ddeleveryDetails");
+                strNewbornOutcome = jsonObject.getString("dnewBorn");
+                strInfantHeight = jsonObject.getString("dBirthHeight");
+                strInfantWeight = jsonObject.getString("dBirthWeight");
+                strInfantID = jsonObject.getString("dInfantId");
+                strBirthdetails = jsonObject.getString("dBirthDetails");
+                strBreastFeeding = jsonObject.getString("dBreastFeedingGiven");
+                strAdmittedSNCU = jsonObject.getString("dAdmittedSNCU");
+                strSNCUNewBornDate =jsonObject.getString("dSNCUDate");
+                strSNCUOutcome = jsonObject.getString("dSNCUOutcome");
+                strBCGDate = jsonObject.getString("dBCGDate");
+                strOPVDate = jsonObject.getString("dOPVDate");
+                strHEPDate = jsonObject.getString("dHEPBDate");
+
+            }
+            else{
+                Log.d("message---->",message);
+
+            }
+
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
 }

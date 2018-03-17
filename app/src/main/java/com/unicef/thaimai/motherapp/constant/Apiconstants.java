@@ -6,8 +6,8 @@ package com.unicef.thaimai.motherapp.constant;
 public class Apiconstants {
 
 //    public static final String BASE_URL = "http://192.168.100.19/thaimaiapp/api/";
-//    public static final String BASE_URL = "http://192.168.100.235/thaimaiapp/api/";
-    public static final String BASE_URL = "http://demo.satvatinfosol.com/thaimai/api/";
+    public static final String BASE_URL = "http://192.168.100.235/thaimaiapp/api/";
+//    public static final String BASE_URL = "http://demo.satvatinfosol.com/thaimai/api/";
 
 //    public static final String LOG_IN_CHECK_PICME = "login/";                  //100000000013
     public static final String LOG_IN_CHECK_PIKME = "login/check/";
@@ -32,6 +32,9 @@ public class Apiconstants {
     public static final String DELIVERY_DETAIL_ENTRY = "mother/mDeleveryDetailsInsert";
 
     public static final String DELIVERY_NUMBER = "mother/mDeleveryNumber";
+
+    public static final String DELIVERY_DETAILS = "mother/mDeleveryDetails";
+
     public static final String POST_SOS_ALERT = "Sos/mSOS_alert";
 
 

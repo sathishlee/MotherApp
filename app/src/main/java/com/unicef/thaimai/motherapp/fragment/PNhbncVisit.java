@@ -1,6 +1,7 @@
 package com.unicef.thaimai.motherapp.fragment;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -10,10 +11,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Switch;
 
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.GetVisitHealthRecordsPresenter;
 import com.unicef.thaimai.motherapp.R;
+import com.unicef.thaimai.motherapp.activity.DeliveryDetailsView;
 import com.unicef.thaimai.motherapp.adapter.HealthRecordsAdapter;
 import com.unicef.thaimai.motherapp.adapter.PNHBNCVisitRecordsAdapter;
 import com.unicef.thaimai.motherapp.adapter.ViewPageAdapterPN;
@@ -30,10 +34,12 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 
-public class PNhbncVisit extends Fragment implements GetVisitHelthRecordsViews {
+public class PNhbncVisit extends Fragment implements GetVisitHelthRecordsViews, View.OnClickListener {
     private TabLayout tabLayout;
     private ViewPager viewPager;
     ViewPageAdapterPN adapter;
+
+    Button btn_delivery_reports, btn_visit_reports;
 
     PreferenceData preferenceData;
     SharedPreferences.Editor editor;
@@ -59,6 +65,7 @@ public class PNhbncVisit extends Fragment implements GetVisitHelthRecordsViews {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view =  inflater.inflate(R.layout.layout_pn_hbnc_visit, container, false);
         initUI(view);
+        onClickListner();
 
         return  view;
     }
@@ -80,6 +87,16 @@ public class PNhbncVisit extends Fragment implements GetVisitHelthRecordsViews {
         tabLayout = view.findViewById(R.id.pn_tabs);
         tabLayout.setupWithViewPager(viewPager);
 
+        btn_delivery_reports = (Button) view.findViewById(R.id.btn_delivery_reports);
+        btn_visit_reports = (Button) view.findViewById(R.id.btn_visit_reports);
+
+
+    }
+
+    private void onClickListner() {
+
+        btn_delivery_reports.setOnClickListener(this);
+        btn_visit_reports.setOnClickListener(this);
     }
 
     private void setupViewPager(ViewPager viewPager) {
@@ -217,5 +234,16 @@ public class PNhbncVisit extends Fragment implements GetVisitHelthRecordsViews {
     public void getPNHBNCVisitRecordsFailiur(String errorMsg) {
         Log.d(health_records.class.getSimpleName(), "--->errorMsg" + errorMsg);
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btn_delivery_reports:
+                startActivity(new Intent(getActivity().getApplicationContext(), DeliveryDetailsView.class));
+                break;
+            case R.id.btn_visit_reports:
+                break;
+        }
     }
 }

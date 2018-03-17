@@ -3,7 +3,7 @@ package com.unicef.thaimai.motherapp.model.responsemodel;
 import java.util.List;
 
 /**
- * Created by Suthishan on 20/1/2018.
+ * Created by sathish on 3/15/2018.
  */
 
 public class NearHospitalResponseModel {
