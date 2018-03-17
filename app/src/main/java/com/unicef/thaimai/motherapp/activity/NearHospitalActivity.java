@@ -15,6 +15,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.unicef.thaimai.motherapp.Interface.MakeCallInterface;
@@ -71,6 +72,21 @@ if (isDataUpdate) {
         prepareMovieData();
     }
 
+    // Action bar function back button press & set title
+    private void showActionBar() {
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Near By Hospital");
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent = new Intent(NearHospitalActivity.this, MainActivity.class);
+        finish();
+        startActivity(intent);
+        return super.onOptionsItemSelected(item);
+    }
     private void prepareMovieData() {
 
     }
@@ -133,14 +149,7 @@ if (isDataUpdate) {
 
     }
 
-    private void showActionBar() {
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Near By Hospital");
 
-            actionBar.setHomeButtonEnabled(true);
-            actionBar.setDisplayHomeAsUpEnabled(true);
-
-    }
 
     @Override
     public void makeCall(String phcMobile) {
@@ -148,24 +157,15 @@ if (isDataUpdate) {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE)
                 != PackageManager.PERMISSION_GRANTED) {
             // Camera permission has not been granted.
-
             requestCallPermission();
 
         } else {
 
-            // Camera permissions is already available, show the camera preview.
-            Log.i(NearHospitalActivity.class.getSimpleName(),"CALL permission has already been granted. Displaying camera preview.");
-//            showCameraPreview();
+//            Log.i(NearHospitalActivity.class.getSimpleName(),"CALL permission has already been granted. Displaying camera preview.");
             startActivity(new Intent(Intent.ACTION_CALL, Uri.parse("tel:+"+phcMobile)));
 
         }
 
-
-        /*if (checkPermission(Manifest.permission.CALL_PHONE)) {
-            startActivity(new Intent(Intent.ACTION_CALL, Uri.parse(phcMobile)));
-        } else {
-            Toast.makeText(getApplicationContext(), "Permission Call Phone denied", Toast.LENGTH_SHORT).show();
-        }*/
     }
 
     private void requestCallPermission() {
@@ -173,23 +173,13 @@ if (isDataUpdate) {
 
         // BEGIN_INCLUDE(camera_permission_request)
         if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                Manifest.permission.CAMERA)) {
+                Manifest.permission.CALL_PHONE)) {
             // Provide an additional rationale to the user if the permission was not granted
             // and the user would benefit from additional context for the use of the permission.
             // For example if the user has previously denied the permission.
-            Log.i(NearHospitalActivity.class.getSimpleName(),            "Displaying camera permission rationale to provide additional context.");
-            Toast.makeText(getApplicationContext(),"Displaying camera permission rationale to provide additional context.",Toast.LENGTH_SHORT).show();
-            /*Snackbar.make(mLayout, R.string.permission_camera_rationale,
-                    Snackbar.LENGTH_INDEFINITE)
-                    .setAction(R.string.ok, new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            ActivityCompat.requestPermissions(MainActivity.this,
-                                    new String[]{Manifest.permission.CAMERA},
-                                    REQUEST_CAMERA);
-                        }
-                    })
-                    .show();*/
+//            Log.i(NearHospitalActivity.class.getSimpleName(),            "Displaying camera permission rationale to provide additional context.");
+            Toast.makeText(getApplicationContext(),"Displaying Call permission rationale to provide additional context.",Toast.LENGTH_SHORT).show();
+
         } else {
 
             // Camera permission has not been granted yet. Request it directly.
@@ -198,12 +188,6 @@ if (isDataUpdate) {
         }
 // END_INCLUDE(camera_permission_request)
     }
-
-    private boolean checkPermission(String permission) {
-        return ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED;
-
-    }
-
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {

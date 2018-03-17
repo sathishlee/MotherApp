@@ -10,5 +10,5 @@ import java.util.Map;
 
 public interface PrimaryRegisterInteractor {
     void getAllMotherPrimaryRegistration(String picmeId);
-    void postprimaryData(String strPicmeId,PrimaryDataRequestModel primaryDataRequestModel);
+    void postprimaryData(String strPicmeId, PrimaryDataRequestModel primaryDataRequestModel);
 }

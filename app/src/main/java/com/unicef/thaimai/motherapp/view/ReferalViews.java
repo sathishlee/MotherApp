@@ -9,4 +9,7 @@ public interface ReferalViews {
     void hideProgress();
     void successReferalAdd(String response);
     void errorReferalAdd(String response);
+
+    void successReferalNearestHospital(String response);
+    void errorReferalNearestHospital(String response);
 }

@@ -29,7 +29,7 @@ public class PreferenceData {
         return  sharedPreferences.getBoolean(AppConstants.IS_LOGIN, Boolean.parseBoolean(""));
     }
 
-    public void storeUserInfo(String picmeid,String mid,String name, String age, String status, String phcId, String vhnId, String awwId, String dId){
+    public void storeUserInfo(String picmeid,String mid,String name, String age, String status, String phcId, String vhnId, String awwId){
         sharedPreferences.edit().putString(AppConstants.PICME_ID, picmeid).commit();
         sharedPreferences.edit().putString(AppConstants.M_ID, mid).commit();
         sharedPreferences.edit().putString(AppConstants.MOTHER_NAME, name).commit();
@@ -38,13 +38,10 @@ public class PreferenceData {
         sharedPreferences.edit().putString(AppConstants.PHC_ID,phcId).commit();
         sharedPreferences.edit().putString(AppConstants.VHN_ID,vhnId).commit();
         sharedPreferences.edit().putString(AppConstants.AWW_ID,awwId).commit();
-        sharedPreferences.edit().putString(AppConstants.DELIVERY_ID, dId).commit();
         Log.e("PICME_ID",sharedPreferences.getString(AppConstants.PICME_ID,""));
         Log.e("MOTHER_NAME",sharedPreferences.getString(AppConstants.MOTHER_NAME,""));
         Log.e("MOTHER_AGE",sharedPreferences.getString(AppConstants.MOTHER_AGE,""));
         Log.e("MOTHER_STATUS",sharedPreferences.getString(AppConstants.MOTHER_STATUS,""));
-
-        Log.e("D_ID", sharedPreferences.getString(AppConstants.DELIVERY_ID,""));
     }
 
 
@@ -66,7 +63,12 @@ public class PreferenceData {
     } public String getAwwId(){
         return sharedPreferences.getString(AppConstants.AWW_ID,"");
     }
-    public String getDid(){
-        return sharedPreferences.getString(AppConstants.DELIVERY_ID, "1");
+
+    public void storeDid(String strDid) {
+        sharedPreferences.edit().putString(AppConstants.DELIVERY_ID,strDid);
+    }
+    public  String getDid(){
+        return sharedPreferences.getString(AppConstants.DELIVERY_ID,"");
+
     }
 }

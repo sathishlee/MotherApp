@@ -85,6 +85,7 @@
             pDialog.setCancelable(false);
             pDialog.setMessage("Please Wait ...");
             preferenceData = new PreferenceData(this);
+
             addVisitRecordsPresenter = new AddVisitRecordsPresenter(AddRecords.this, this);
             addVisitRecordsPresenter.getVisitCount(preferenceData.getPicmeId(),preferenceData.getMId());
             edt_date =(EditText) findViewById(R.id.edt_date);

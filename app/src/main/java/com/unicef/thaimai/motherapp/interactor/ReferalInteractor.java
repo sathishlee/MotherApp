@@ -1,13 +1,25 @@
 package com.unicef.thaimai.motherapp.interactor;
 
-import com.unicef.thaimai.motherapp.model.requestmodel.AddReferalRequestModel;
-
 /**
  * Created by sathish on 3/17/2018.
  */
 
 public interface ReferalInteractor {
-    void addNewReferal(AddReferalRequestModel addReferalRequestModel) ;
+    //    void addNewReferal(NearestReferalHospitalModel addReferalRequestModel) ;
+    void addNewReferal(
+            String picmeId,
+            String mid,
+            String vhnId,
+            String phcId,
+            String rReferalDate,
+            String rReferalTime,
+            String rFacilityReferring,
+            String rFacilityReferredTo,
+            String rDiagonosis,
+            String rReferalReason,
+            String rReferredBy, String rFacilityReferredCode, String rFacilityReferredToCode);
+
+    void getReffralNearestHospital(String latitude, String longitude);
 
 }
 

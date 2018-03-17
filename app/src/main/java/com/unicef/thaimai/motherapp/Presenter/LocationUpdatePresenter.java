@@ -33,7 +33,7 @@ public class LocationUpdatePresenter implements LocationUpdateIntractor {
     }
 
     @Override
-    public void uploadLocationToServer(final String picmeId, final String vhnId, final String mid, final String latitude, final String longitude) {
+    public void uploadLocationToServer(final String picmeId, final String vhnId, final String mid, final String latitude, final String longitude, final String strAddress) {
 
         view.showProgress();
         String url = Apiconstants.BASE_URL + Apiconstants.LOCATION_UPDATE;
@@ -74,6 +74,7 @@ public class LocationUpdatePresenter implements LocationUpdateIntractor {
                 params.put("mid",mid);
                 params.put("latitude",latitude);
                 params.put("longitude",longitude);
+                params.put("address",strAddress);
 
                 Log.d("params--->",params.toString());
 

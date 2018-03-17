@@ -12,6 +12,6 @@ public interface DeliveryEntryInteractor {
 
     void deliveryNumber(String strPicmeid, String strMid);
 
-    void deliveryDetails (String strPicmeid, String strMid, String strDid);
+    void deliveryDetails(String strPicmeid, String strMid, String strDid);
 
 }

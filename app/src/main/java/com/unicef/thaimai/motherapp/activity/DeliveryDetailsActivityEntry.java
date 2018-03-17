@@ -290,7 +290,12 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
             deliveryEntryRequestModel = new DeliveryEntryRequestModel();
             deliveryEntryRequestModel.setDpicmeId(preferenceData.getPicmeId());                         //preferenceData.getPicmeId()
             deliveryEntryRequestModel.setMid(preferenceData.getMId());
-            deliveryEntryRequestModel.setDid(preferenceData.getDid());
+//            deliveryEntryRequestModel.setDid("2");
+            deliveryEntryRequestModel.setDpicmeId(preferenceData.getPicmeId());
+//            deliveryEntryRequestModel.setMid(preferenceData.getMId());
+            deliveryEntryRequestModel.setDid(strDid);
+//            deliveryEntryRequestModel.setMid(preferenceData.getMId());
+//            deliveryEntryRequestModel.setDid(preferenceData.getDid());
             deliveryEntryRequestModel.setDdatetime(strDeliveryDate);
             deliveryEntryRequestModel.setDtime(strDeliveryTime);
             deliveryEntryRequestModel.setDplace(strPlace);
@@ -408,6 +413,7 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
             String status =jsonObject.getString("status");
             String msg = jsonObject.getString("message");
             strDid = jsonObject.getString("did");
+            preferenceData.storeDid(strDid);
             strPicmeId = jsonObject.getString("dpicmeId");
         }
         catch(JSONException e){

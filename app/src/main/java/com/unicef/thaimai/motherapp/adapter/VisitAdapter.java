@@ -27,7 +27,7 @@ public class VisitAdapter extends RecyclerView.Adapter<VisitAdapter.ViewHolder>{
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.layout_visit_1, parent, false);
 
-        return new VisitAdapter.ViewHolder(itemView);
+        return new ViewHolder(itemView);
 
 
     }

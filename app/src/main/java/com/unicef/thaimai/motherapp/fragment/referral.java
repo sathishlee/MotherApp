@@ -12,13 +12,12 @@ import android.view.ViewGroup;
 import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.activity.AddReferral;
 import com.unicef.thaimai.motherapp.activity.ReferralActivity;
-import com.unicef.thaimai.motherapp.activity.ReferralList;
 
 
 public class referral extends Fragment {
 
-    CardView referral_display;
-
+//    CardView referral_display;
+FloatingActionButton fabAddNewReferal;
     public static referral newInstance()
     {
         referral fragment = new referral();
@@ -42,19 +41,19 @@ public class referral extends Fragment {
 
         getActivity().setTitle("Referral Details");
 
-        CardView referral_display = (CardView)view.findViewById(R.id.referral_display);
+//        CardView referral_display = (CardView)view.findViewById(R.id.referral_display);
+        fabAddNewReferal = (FloatingActionButton) view.findViewById(R.id.fab_add_new_referal);
 
-        referral_display.setOnClickListener(new View.OnClickListener(){
+       /* referral_display.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 Intent e = new Intent(getActivity(), ReferralActivity.class);
                 startActivity(e);
             }
-        });
+        });*/
 
-        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
 
-        fab.setOnClickListener(new View.OnClickListener() {
+        fabAddNewReferal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i  = new Intent(getActivity(), AddReferral.class);

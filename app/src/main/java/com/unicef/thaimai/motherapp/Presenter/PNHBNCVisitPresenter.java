@@ -161,7 +161,7 @@ public class PNHBNCVisitPresenter implements PNHBNCVisitInteractor {
 //            }
 
         public int getMethod() {
-            return Request.Method.POST;
+            return Method.POST;
         }
         };
         VolleySingleton.getInstance(pnhbncVisitEntry).addToRequestQueue(jsonObjectRequest);

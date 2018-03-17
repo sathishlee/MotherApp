@@ -4,5 +4,5 @@ package com.unicef.thaimai.motherapp.interactor;
 
 public interface LoginInteractor {
 
-    void checkPickmeId(String pickmeid,String dob) ;
+    void checkPickmeId(String pickmeid, String dob) ;
 }

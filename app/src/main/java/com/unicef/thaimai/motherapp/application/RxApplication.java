@@ -1,4 +1,4 @@
-/*
+package com.unicef.thaimai.motherapp.application;/*
 package com.unicef.thaimai.motherapp.application;
 
 import android.app.Application;
