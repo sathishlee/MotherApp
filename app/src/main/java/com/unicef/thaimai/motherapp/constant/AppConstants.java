@@ -17,14 +17,17 @@ public class AppConstants {
     public static final int FASTEST_LOCATION_INTERVAL = 5000;
     public static final String EXTRA_LATITUDE = "13.0011794";
     public static final String EXTRA_LONGITUDE = "80.2824802";
-    public static final int REQUEST_LOCATION=001;
 
+    public static final int REQUEST_LOCATION=001;
 
 
     public  static boolean BACK_BUTTON_GONE=false;
 
     public static final String PICME_ID = "picme_id";
     public static final String M_ID = "m_id";
+    public static final String PHC_ID = "m_id";
+    public static final String VHN_ID = "m_id";
+    public static final String AWW_ID = "m_id";
     public static final String MOTHER_NAME = "name";
     public static final String MOTHER_AGE = "age";
     public static final String MOTHER_STATUS = "status";

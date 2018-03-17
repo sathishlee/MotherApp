@@ -32,15 +32,19 @@ public class Apiconstants {
     public static final String DELIVERY_DETAIL_ENTRY = "mother/mDeleveryDetailsInsert";
 
     public static final String DELIVERY_NUMBER = "mother/mDeleveryNumber";
+    public static final String POST_SOS_ALERT = "Sos/mSOS_alert";
+
+
+    public static final String NEAR_BY_HOSPITAL = "mother/findNearbyLocation";
 
     public static final String PN_HBNC_VISIT_INSERT = "mother/mPN_Record_Insert";
 
     public static final String PN_HBNC_VISITNUMBER = "mother/mPN_RecordVisitNumber";
 
-    public static final String POST_SOS_ALERT = "/Sos/mSOS_alert";
+    //    http://192.168.100.235/thaimaiapp/api/Referal/mReferalAdd
+    public static final String POST_ADD_REFERAL = "Referal/mReferalAdd";
 
 
-    public static final String NEAR_BY_HOSPITAL = "mother/findNearbyLocation";
 
 
 

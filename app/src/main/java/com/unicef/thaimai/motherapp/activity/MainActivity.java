@@ -1,5 +1,6 @@
 package com.unicef.thaimai.motherapp.activity;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,6 +15,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -26,6 +28,8 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.unicef.thaimai.motherapp.Preference.PreferenceData;
+import com.unicef.thaimai.motherapp.Presenter.SosAlertPresenter;
 import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.constant.AppConstants;
 import com.unicef.thaimai.motherapp.fragment.NotificationFragment;
@@ -33,26 +37,40 @@ import com.unicef.thaimai.motherapp.fragment.PNhbncVisit;
 import com.unicef.thaimai.motherapp.fragment.health_records;
 import com.unicef.thaimai.motherapp.fragment.home;
 import com.unicef.thaimai.motherapp.fragment.referral;
+import com.unicef.thaimai.motherapp.view.SosAlertViews;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener   {
+        implements NavigationView.OnNavigationItemSelectedListener, SosAlertViews {
     Intent intent;
 
     Locale mylocale;
     TextView tam,eng;
+    SosAlertPresenter sosAlertPresenter;
+    PreferenceData preferenceData;
+
+    ProgressDialog pDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
+        pDialog.setMessage("Please Wait ...");
+        preferenceData = new PreferenceData(this);
+
+        sosAlertPresenter =new SosAlertPresenter(MainActivity.this,this);
 
 
-
-if (AppConstants.isMainActivityOpen) {
+/*if (AppConstants.isMainActivityOpen) {
     showAlertDialog();
 
-}
+}*/
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -61,8 +79,9 @@ if (AppConstants.isMainActivityOpen) {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                sosAlertPresenter.postSosAlert(preferenceData.getPicmeId(),preferenceData.getMId(),preferenceData.getVhnId(),preferenceData.getPhcId(),preferenceData.getAwwId());
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
             }
         });
 
@@ -126,31 +145,34 @@ if (AppConstants.isMainActivityOpen) {
 
     }
 
-    private void showAlertDialog() {
+    private void showAlertDialog(String msg) {
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 
 
+//        builder.setTitle("Hi Tamil Selvi,");
+//        builder.setMessage("Have you take tablets regulerlly: ");
         builder.setTitle("Hi Tamil Selvi,");
-        builder.setMessage("Have you take tablets regulerlly: ");
+        builder.setMessage(msg);
 
 
         //Yes Button
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 //                Toast.makeText(getApplicationContext(),"Take care",Toast.LENGTH_LONG).show();
-                AppConstants.isMainActivityOpen=false;
+                Toast.makeText(getApplicationContext(),"Alert has set to VHN,  They will contact soon..",Toast.LENGTH_LONG).show();
+//                AppConstants.isMainActivityOpen=false;
                 dialog.dismiss();
             }
         });
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+        /*builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(getApplicationContext(),"Alert has set to VHN,  They will contact soon..",Toast.LENGTH_LONG).show();
-                AppConstants.isMainActivityOpen=false;
+//                Toast.makeText(getApplicationContext(),"Alert has set to VHN,  They will contact soon..",Toast.LENGTH_LONG).show();
+//                AppConstants.isMainActivityOpen=false;
                 dialog.dismiss();
             }
-        });
+        });*/
 
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
@@ -268,7 +290,7 @@ if (AppConstants.isMainActivityOpen) {
             startActivity(i);
         }
 
-       else if (id == R.id.health_tips) {
+        else if (id == R.id.health_tips) {
             Intent i = new Intent(getApplicationContext(), HeathTipsActivity.class);
             startActivity(i);
         }
@@ -346,4 +368,42 @@ if (AppConstants.isMainActivityOpen) {
 
     }
 
+    @Override
+    public void showProgress() {
+        pDialog.show();
+
+    }
+
+    @Override
+    public void hideProgress() {
+        pDialog.hide();
+    }
+
+    @Override
+    public void showPickmeResult(String response) {
+        Log.d(MainActivity.class.getSimpleName(), "Response Success--->" + response);
+        showAlertDialog(response);
+
+        try {
+            JSONObject jsonObject =new JSONObject(response);
+            String status =jsonObject.getString("status");
+            String msg = jsonObject.getString("message");
+            showAlertDialog(msg);
+
+//            if (status.equalsIgnoreCase("1")){
+//                Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
+//                showAlertDialog(msg);
+////                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+//            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void showErrorMessage(String response) {
+        Log.d(AddRecords.class.getSimpleName(), "Response Error--->" + response);
+
+    }
 }
