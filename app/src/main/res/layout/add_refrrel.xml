@@ -78,10 +78,11 @@
                         android:layout_weight="1">
 
                         <EditText
+                            android:id="@+id/edt_date_of_referral_start"
                             android:layout_width="match_parent"
                             android:hint="Date of Referral"
                             android:textSize="@dimen/text_secondary"
-                            android:inputType="text"
+                            android:inputType="date"
                             android:textColor="@color/secondary"
                             android:layout_height="wrap_content"/>
 
@@ -100,10 +101,11 @@
                         android:layout_weight="1">
 
                         <EditText
+                            android:id="@+id/edt_time_of_referral_start"
                             android:layout_width="match_parent"
                             android:hint="Time of Referral"
                             android:textSize="@dimen/text_secondary"
-                            android:inputType="text"
+                            android:inputType="time"
                             android:textColor="@color/secondary"
                             android:layout_height="wrap_content"/>
 
@@ -133,6 +135,7 @@
                 android:layout_weight="1"/>
 
             <Spinner
+                android:id="@+id/sp_referred_by"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_primary"
@@ -162,6 +165,7 @@
                     android:layout_weight="1"/>
 
                 <Spinner
+                    android:id="@+id/sp_referring_facility_start"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/text_primary"
@@ -191,6 +195,7 @@
                 android:layout_weight="1"/>
 
             <Spinner
+                android:id="@+id/sp_facility_referred_to_start"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_primary"
@@ -216,7 +221,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/sp_diagnosis"
+                    android:id="@+id/edt_diagnosis"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Diagnosis"
@@ -259,7 +264,7 @@
                         android:layout_weight="1"/>
 
                     <Spinner
-                        android:id="@+id/sp_refered_why"
+                        android:id="@+id/sp_reason_for_referral_start"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -350,10 +355,11 @@
                         android:layout_weight="1">
 
                         <EditText
+                            android:id="@+id/edt_date_of_referral_end"
                             android:layout_width="match_parent"
                             android:hint="Date of Referral"
                             android:textSize="@dimen/text_secondary"
-                            android:inputType="text"
+                            android:inputType="date"
                             android:textColor="@color/secondary"
                             android:layout_height="wrap_content"/>
 
@@ -372,10 +378,11 @@
                             android:layout_weight="1">
 
                             <EditText
+                                android:id="@+id/edt_time_of_referral_end"
                                 android:layout_width="match_parent"
                                 android:hint="Time of Referral"
                                 android:textSize="@dimen/text_secondary"
-                                android:inputType="text"
+                                android:inputType="time"
                                 android:textColor="@color/secondary"
                                 android:layout_height="wrap_content"/>
 
@@ -404,6 +411,7 @@
                     android:layout_weight="1"/>
 
                 <Spinner
+                    android:id="@+id/sp_received_by_end"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="5"
@@ -432,6 +440,7 @@
                     android:layout_weight="1"/>
 
                 <Spinner
+                    android:id="@+id/sp_receiving_facility_end"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="5"
@@ -469,18 +478,21 @@
                         android:layout_weight="1"/>
 
                     <RadioGroup
+                        android:id="@+id/rg_labour"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:weightSum="2">
 
                         <RadioButton
+                            android:id="@+id/rb_yes_labour"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="12.0sp"
                             android:text="@string/yes" />
 
                         <RadioButton
+                            android:id="@+id/rb_no_labour"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="12.0sp"
@@ -508,18 +520,21 @@
 
 
                     <RadioGroup
+                        android:id="@+id/rg_admitted"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:weightSum="2">
 
                         <RadioButton
+                            android:id="@+id/rb_yes_admitted"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="12.0sp"
                             android:text="@string/yes" />
 
                         <RadioButton
+                            android:id="@+id/rb_no_admitted"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="12.0sp"
