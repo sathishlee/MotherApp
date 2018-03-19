@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sosAlertPresenter.postSosAlert(preferenceData.getPicmeId(),preferenceData.getMId(),preferenceData.getVhnId(),preferenceData.getPhcId(),preferenceData.getAwwId());
+                sosAlertPresenter.postSosAlert(preferenceData.getPicmeId(),preferenceData.getMId(),preferenceData.getVhnId(),preferenceData.getPhcId(),preferenceData.getAwwId(), preferenceData.getDeviceId());
 //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
             }

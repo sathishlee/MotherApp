@@ -5,6 +5,6 @@ package com.unicef.thaimai.motherapp.interactor;
  */
 
 public interface SosAlertInteractor {
-    void postSosAlert(String pickmeid, String mid, String vhnId, String phcid, String awwid) ;
+    void postSosAlert(String pickmeid, String mid, String vhnId, String phcid, String awwid, String tokenId) ;
 
 }

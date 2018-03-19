@@ -32,6 +32,7 @@ public class Apiconstants {
     public static final String DELIVERY_DETAIL_ENTRY = "mother/mDeleveryDetailsInsert";
 
     public static final String DELIVERY_NUMBER = "mother/mDeleveryNumber";
+
     public static final String POST_SOS_ALERT = "Sos/mSOS_alert";
 
 

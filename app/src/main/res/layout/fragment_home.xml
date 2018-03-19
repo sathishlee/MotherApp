@@ -95,11 +95,11 @@
     <include
         layout="@layout/layout_emergency_call_2"/>
 
-    <include
-        layout="@layout/layout_emergency_call_3"/>
+    <!--<include-->
+        <!--layout="@layout/layout_emergency_call_3"/>-->
 
-    <include
-        layout="@layout/layout_emergency_call_4"/>
+    <!--<include-->
+        <!--layout="@layout/layout_emergency_call_4"/>-->
 
     <include
         layout="@layout/layout_emergency_call_5"/>

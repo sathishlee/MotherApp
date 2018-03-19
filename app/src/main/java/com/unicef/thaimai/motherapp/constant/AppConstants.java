@@ -32,6 +32,9 @@ public class AppConstants {
     public static final String MOTHER_AGE = "age";
     public static final String MOTHER_STATUS = "status";
     public static final String DELIVERY_ID = "dId";
+
+    public static final String DEVICE_ID = "token";
+
 //    public static final String M_ID = "m_id";
 
 }

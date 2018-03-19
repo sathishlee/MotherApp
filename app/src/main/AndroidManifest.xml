@@ -16,7 +16,6 @@
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
-
     <meta-data
         android:name="com.google.android.gms.version"
         android:value="@integer/google_play_services_version" />
@@ -51,12 +50,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".activity.LocationUpdateActivity"
-            android:theme="@style/AppTheme">
-
-        </activity>
-
+        <activity
+            android:name=".activity.LocationUpdateActivity"
+            android:theme="@style/AppTheme"></activity>
         <activity
             android:name=".activity.ForgotPicme"
             android:screenOrientation="portrait"
@@ -140,18 +136,33 @@
             android:name=".activity.PrimaryRegisterView"
             android:theme="@style/AppTheme" />
 
-
         <service android:name=".utility.LocationMonitoringService" />
 
-        <activity android:name=".activity.NearHospitalActivity"
+        <activity
+            android:name=".activity.NearHospitalActivity"
+            android:theme="@style/AppTheme">
+
+        </activity>
+        <activity
+            android:name=".activity.DeliveryDetailsView"
             android:theme="@style/AppTheme">
 
         </activity>
 
-        <activity android:name=".activity.DeliveryDetailsView"
-            android:theme="@style/AppTheme">
+        <service android:name=".utility.MyFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
 
-        </activity>
+        <service
+            android:name=".utility.MyFirebaseMessagingService"
+            android:enabled="true"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

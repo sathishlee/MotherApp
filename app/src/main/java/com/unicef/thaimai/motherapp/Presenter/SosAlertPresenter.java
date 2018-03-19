@@ -32,7 +32,7 @@ public class SosAlertPresenter implements SosAlertInteractor {
     }
 
     @Override
-    public void postSosAlert(final String pickmeid, final String mid, final String vhnId, final String phcid, final String awwid) {
+    public void postSosAlert(final String pickmeid, final String mid, final String vhnId, final String phcid, final String awwid, final String tokenId) {
         String url = Apiconstants.BASE_URL + Apiconstants.POST_SOS_ALERT;
         Log.d("Log in check Url--->", url);
         Log.d("picmeId--->", pickmeid);
@@ -40,12 +40,13 @@ public class SosAlertPresenter implements SosAlertInteractor {
         Log.d("mid--->", mid);
         Log.d("awwId--->", awwid);
         Log.d("vhnId--->", vhnId);
+        Log.d("tokenId--->",tokenId);
         view.showProgress();
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-view.hideProgress();
-view.showPickmeResult(response);
+                view.hideProgress();
+                view.showPickmeResult(response);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -66,6 +67,7 @@ view.showPickmeResult(response);
                 params.put("mid", mid);
                 params.put("awwId", awwid);
                 params.put("vhnId", vhnId);
+                params.put("tokenId",tokenId);
 
                 Log.d("SOS params--->", params.toString());
 

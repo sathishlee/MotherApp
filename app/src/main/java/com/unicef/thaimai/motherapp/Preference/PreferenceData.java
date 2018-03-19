@@ -38,6 +38,8 @@ public class PreferenceData {
         sharedPreferences.edit().putString(AppConstants.PHC_ID,phcId).commit();
         sharedPreferences.edit().putString(AppConstants.VHN_ID,vhnId).commit();
         sharedPreferences.edit().putString(AppConstants.AWW_ID,awwId).commit();
+
+//        sharedPreferences.edit().putString(AppConstants.DEVICE_ID,tokenId).commit();
         Log.e("PICME_ID",sharedPreferences.getString(AppConstants.PICME_ID,""));
         Log.e("MOTHER_NAME",sharedPreferences.getString(AppConstants.MOTHER_NAME,""));
         Log.e("MOTHER_AGE",sharedPreferences.getString(AppConstants.MOTHER_AGE,""));
@@ -62,6 +64,10 @@ public class PreferenceData {
         return sharedPreferences.getString(AppConstants.VHN_ID,"");
     } public String getAwwId(){
         return sharedPreferences.getString(AppConstants.AWW_ID,"");
+    }
+
+    public String getDeviceId(){
+        return sharedPreferences.getString(AppConstants.DEVICE_ID,"c600nN1dj9c:APA91bGo0a8W1Jp5WBDVSRh1HbwikPDaqN1-PK3-fYEV-slu59qztEdepxTyFdlZvweLEoqZ0XZw8mReyrwxdeOuGUVcBvgrL_ca05cU7PKH4yAFZVL9TpEAeW_lo80ISEhKQ-ru8ztR");
     }
 
     public void storeDid(String strDid) {

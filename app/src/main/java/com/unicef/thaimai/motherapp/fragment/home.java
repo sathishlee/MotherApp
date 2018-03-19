@@ -124,13 +124,13 @@ public class home extends Fragment implements LoginViews, View.OnClickListener {
         txt_risk = (TextView) view.findViewById(R.id.txt_risk);
 
         txt_husb_name = (TextView) view.findViewById(R.id.txt_husb_name);
-        txt_husb_mobile_number = (TextView) view.findViewById(R.id.txt_husb_mobile_number);
+//        txt_husb_mobile_number = (TextView) view.findViewById(R.id.txt_husb_mobile_number);
         txt_vhn_name = (TextView) view.findViewById(R.id.txt_vhn_name);
         txt_vhn_mobile_number = (TextView) view.findViewById(R.id.txt_vhn_mobile_number);
         txt_aww_name = (TextView) view.findViewById(R.id.txt_aww_name);
         txt_aww_mobile_number = (TextView) view.findViewById(R.id.txt_aww_mobile_number);
         txt_phc_name = (TextView) view.findViewById(R.id.txt_phc_name);
-        txt_phc_mobile_number = (TextView) view.findViewById(R.id.txt_phc_mobile_number);
+//        txt_phc_mobile_number = (TextView) view.findViewById(R.id.txt_phc_mobile_number);
 
         img_call_husb =(ImageView) view.findViewById(R.id.img_call_husb);
         img_call_vhn =(ImageView) view.findViewById(R.id.img_call_vhn);
@@ -168,17 +168,17 @@ public class home extends Fragment implements LoginViews, View.OnClickListener {
             txt_risk.setText(jObj.getString("mRiskStatus"));
             txt_weight.setText(jObj.getString("mWeight"));
             txt_husb_name.setText(jObj.getString("mHusbandName"));
-            str_mobile_number_hsbn =jObj.getString("mHusbandMobile");
-            txt_husb_mobile_number.setText(str_mobile_number_hsbn);
+//            str_mobile_number_hsbn =jObj.getString("mHusbandMobile");
+//            txt_husb_mobile_number.setText(str_mobile_number_hsbn);
             txt_vhn_name.setText(jObj.getString("vhnName"));
-            str_mobile_number_vhn =jObj.getString("vhnMobile");
-            txt_vhn_mobile_number.setText(str_mobile_number_vhn);
+//            str_mobile_number_vhn =jObj.getString("vhnMobile");
+//            txt_vhn_mobile_number.setText(str_mobile_number_vhn);
             txt_aww_name.setText(jObj.getString("awwName"));
-            str_mobile_number_aww = jObj.getString("awwMobile");
-            txt_aww_mobile_number.setText(str_mobile_number_aww);
-            txt_aww_mobile_number.setText(jObj.getString("phcName"));
-            str_mobile_number_phc = jObj.getString("phcMobile");
-            txt_phc_mobile_number.setText(str_mobile_number_phc);
+//            str_mobile_number_aww = jObj.getString("awwMobile");
+//            txt_aww_mobile_number.setText(str_mobile_number_aww);
+//            txt_aww_mobile_number.setText(jObj.getString("phcName"));
+//            str_mobile_number_phc = jObj.getString("phcMobile");
+//            txt_phc_mobile_number.setText(str_mobile_number_phc);
         } catch (JSONException e) {
             e.printStackTrace();
         }

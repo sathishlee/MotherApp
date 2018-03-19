@@ -302,9 +302,8 @@
         android:background="@color/colorPrimary"
         app:tabMode="scrollable"
         app:tabGravity="center"
-        app:tabTextColor="#ffffff"
+        app:tabTextColor="#ffffff"/>
 
-        />
     <LinearLayout
         android:id="@+id/ll_click_visit_view"
         android:layout_width="fill_parent"
@@ -371,14 +370,14 @@
         </LinearLayout>
 
     </LinearLayout>
+
         <android.support.v4.view.ViewPager
             android:id="@+id/hre_viewpager"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:layout_below="@+id/ll_click_visit_view"
-            android:layout_above="@+id/rel_bottom"
-           />
+            android:layout_above="@+id/rel_bottom"/>
 
 
     <LinearLayout
@@ -387,7 +386,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:weightSum="2"
-      android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true">
 
         <Button
             android:id="@+id/btn_primary_report"

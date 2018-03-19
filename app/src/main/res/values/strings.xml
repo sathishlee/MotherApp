@@ -156,6 +156,13 @@
     <string name="rota">Rota</string>
     <string name="ipv">IPV</string>
 
+    <string-array name="dose_number">
+        <item>--Select--</item>
+        <item>Dose 1 (Day 45)</item>
+        <item>Dose 2 (Day 75)</item>
+        <item>Dose 3 (Day 105)</item>
+        <item>Dose 4 (Day 270)</item>
+    </string-array>
 
     <string-array name="array_immunization">
         <item>--Select--</item>

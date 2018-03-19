@@ -26,7 +26,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:padding="4dp"
-                android:text="Immunization Dose (Date)"
+                android:text="Dose 1 (20-12-2018)"
                 android:textColor="@color/dark_blue"
                 android:textSize="@dimen/text_label"
                 android:textStyle="bold" />
@@ -40,9 +40,7 @@
                 android:textSize="@dimen/text_secondary"
                 android:layout_margin="3dp"
                 android:text="Due Date"
-                android:textColor="@color/text_primary"
-
-                />
+                android:textColor="@color/text_primary"/>
 
             <TextView
                 android:layout_width="fill_parent"
