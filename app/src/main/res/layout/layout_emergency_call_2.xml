@@ -87,15 +87,14 @@
 
 </android.support.v7.widget.CardView>
         </LinearLayout>
-
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:layout_margin="1dp"
         android:orientation="vertical">
+
+
         <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="fill_parent"
@@ -118,11 +117,11 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/txt_aww_name"
+                        android:id="@+id/txt_phc_name"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:padding="4dp"
-                        android:text="Rani"
+                        android:text="Govt Hospital"
                         android:textColor="@color/text_primary"
                         android:textSize="@dimen/text_primary"
                         android:textStyle="bold" />
@@ -139,31 +138,36 @@
                             android:gravity="start|center"
                             android:padding="4dp"
                             android:textSize="@dimen/text_secondary"
-                            android:text="AWW"
+                            android:text="PHC"
                             android:textColor="@color/text_primary" />
 
                         <!--<TextView-->
-                            <!--android:id="@+id/txt_aww_mobile_number"-->
-                            <!--android:layout_width="wrap_content"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:padding="4dp"-->
-                            <!--android:text="+91 XXXXXXXXXX"-->
-                            <!--android:textColor="@color/text_primary"-->
-                            <!--android:textSize="@dimen/text_secondary" />-->
+                        <!--android:id="@+id/txt_phc_mobile_number"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:padding="4dp"-->
+                        <!--android:text="+91 XXXXXXXXXX"-->
+                        <!--android:textColor="@color/text_primary"-->
+                        <!--android:textSize="@dimen/text_secondary" />-->
 
                     </LinearLayout>
                 </LinearLayout>
 
                 <ImageView
-                    android:id="@+id/img_call_aww"
+                    android:id="@+id/img_call_phc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="5dp"
                     android:padding="7.0dip"
                     android:background="@drawable/phone_background"
-                    app:srcCompat="@drawable/phone_call"  />
+                    app:srcCompat="@drawable/phone_call" />
+
             </LinearLayout>
+
         </android.support.v7.widget.CardView>
     </LinearLayout>
+
+
+
     </LinearLayout>
