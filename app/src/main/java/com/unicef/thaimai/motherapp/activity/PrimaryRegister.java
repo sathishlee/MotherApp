@@ -273,83 +273,83 @@ ArrayList ysList,occList;
                 showAlert("Id is Empty");
 
             }else if (strHistoryIllnessFmly.equalsIgnoreCase("--Select--")){
-                showAlert("Id is Empty");
+                showAlert("History of illness is Empty");
 
             }else if (strAnySurgeryBefore.equalsIgnoreCase("--Select--")){
-                showAlert("Id is Empty");
+                showAlert("Any Surgery Before is Empty");
 
             }else if (strDoseTobacco.equalsIgnoreCase("--Select--")){
-                showAlert("Id is Empty");
+                showAlert("Tobacco is Empty");
 
             }else if (strDoseAlcohol.equalsIgnoreCase("--Select--")){
-                showAlert("Id is Empty");
+                showAlert("Alcohol is Empty");
 
             }else if (strDoseOnAnyMedication.equalsIgnoreCase("--Select--")){
-                showAlert("Id is Empty");
+                showAlert("On any Medication is Empty");
 
             }else if (strDoseAllergictoDrugs.equalsIgnoreCase("--Select--")){
-                showAlert("Id is Empty");
+                showAlert("Allergic to Drug is Empty");
 
             }else if (strPrePregnancy.equalsIgnoreCase("--Select--")){
-                showAlert("Id is Empty");
+                showAlert("Pre Pregnancy is Empty");
 
             }else if (strLSCSDone.equalsIgnoreCase("--Select--")){
-                showAlert("Id is Empty");
+                showAlert("LSC Done is Empty");
 
             }else if (strComDuringPrgncy.equalsIgnoreCase("--Select--")){
-                showAlert("Id is Empty");
+                showAlert("During Pregnancy is Empty");
 
             }else if (strPrePrgncyG.equalsIgnoreCase("--Select--")){
-                showAlert("Id is Empty");
+                showAlert("G is Empty");
 
             }else if (strPrePrgncyP.equalsIgnoreCase("--Select--")){
-                showAlert("Id is Empty");
+                showAlert("P is Empty");
 
             }else if (strPrePrgncyA.equalsIgnoreCase("--Select--")){
-                showAlert("Id is Empty");
+                showAlert("A is Empty");
 
             }else if (strPrePrgncyL.equalsIgnoreCase("--Select--")){
-                showAlert("Id is Empty");
+                showAlert("L is Empty");
 
             }else if (strRegWeek.equalsIgnoreCase("")){
-                showAlert("Id is Empty");
+                showAlert("Registration Week is Empty");
 
             }else if (strANTT1st.equalsIgnoreCase("")){
-                showAlert("Id is Empty");
+                showAlert("AN TT1st is Empty");
 
             }else if (strANTT2nd.equalsIgnoreCase("")){
-                showAlert("Id is Empty");
+                showAlert("AN TT2nd is Empty");
 
             }
             else if (strFIAStartDate.equalsIgnoreCase("")){
-                showAlert("Id is Empty");
+                showAlert("FIA Start Date is Empty");
 
             }else if (strHeight.equalsIgnoreCase("")){
-                showAlert("Id is Empty");
+                showAlert("Height is Empty");
 
             }else if (strBloodGroup.equalsIgnoreCase("--Select--")){
-                showAlert("Id is Empty");
+                showAlert("Blood Group is Empty");
 
             }else if (strHIV.equalsIgnoreCase("--Select--")){
-                showAlert("Id is Empty");
+                showAlert("HIV is Empty");
 
             }else if (strVDRL.equalsIgnoreCase("--Select--")){
-                showAlert("Id is Empty");
+                showAlert("VDRL is Empty");
 
             }else if (strHelpatitis.equalsIgnoreCase("--Select--")){
-                showAlert("Id is Empty");
+                showAlert("Helpatitis is Empty");
 
             }else if (strHusbBloodGroup.equalsIgnoreCase("--Select--")){
-                showAlert("Id is Empty");
+                showAlert("Husband Blood Group is Empty");
 
             }else if (strHusbHIV.equalsIgnoreCase("--Select--")){
-                showAlert("Id is Empty");
+                showAlert("Husband Hiv is Empty");
 
             }else if (strHusbVDRL.equalsIgnoreCase("--Select--")){
-                showAlert("Id is Empty");
+                showAlert("Husband VDRL is Empty");
 
             }else if (strHusbHelpatitis.equalsIgnoreCase("--Select--")){
-                showAlert("Id is Empty");
+                showAlert("HUSBAND Helpatities is Empty");
 
             }
             else {
