@@ -124,6 +124,6 @@ public class PNHBNCVisitRecordsAdapter extends PagerAdapter {
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
-        return "Visit "+mhealthRecordList.get(position).getPnVisitNo();
+        return mhealthRecordList.get(position).getPnVisitNo();
     }
 }

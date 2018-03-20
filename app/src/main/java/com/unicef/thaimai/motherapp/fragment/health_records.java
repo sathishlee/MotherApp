@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import com.unicef.thaimai.motherapp.Interface.TypeOfHealthRecords;
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.GetVisitHealthRecordsPresenter;
 import com.unicef.thaimai.motherapp.R;
@@ -35,9 +36,9 @@ import java.util.ArrayList;
 import static android.content.Context.MODE_PRIVATE;
 
 
-public class health_records extends Fragment implements GetVisitHelthRecordsViews, View.OnClickListener {
+public class health_records extends Fragment implements GetVisitHelthRecordsViews, View.OnClickListener, TypeOfHealthRecords {
     Button btn_primary_report, btn_view_report;
-    LinearLayout llClickPickMeVisit, llClickOtherVisit;
+    static LinearLayout llClickPickMeVisit, llClickOtherVisit;
     private TabLayout tabLayout;
     private ViewPager viewPager;
     PreferenceData preferenceData;
@@ -47,6 +48,7 @@ public class health_records extends Fragment implements GetVisitHelthRecordsView
     HealthRecordResponseModel.Visit_Records mhealthRecordResponseModel;
     ArrayList<HealthRecordResponseModel.Visit_Records> mhealthRecordList;
     HealthRecordsAdapter hAdapter;
+
 
     public static health_records newInstance() {
         health_records fragment = new health_records();
@@ -83,7 +85,8 @@ public class health_records extends Fragment implements GetVisitHelthRecordsView
         pDialog.setMessage("Please Wait ...");
 
         gVHRecordsPresenteer = new GetVisitHealthRecordsPresenter(getActivity(), this);
-        gVHRecordsPresenteer.getAllVistHeathRecord(Apiconstants.POST_VIST_HEALTH_RECORD_BASE,preferenceData.getPicmeId(), preferenceData.getMId());
+//        gVHRecordsPresenteer.getAllVistHeathRecord(Apiconstants.POST_VIST_HEALTH_RECORD_PICME,preferenceData.getPicmeId(), preferenceData.getMId());
+        gVHRecordsPresenteer.getAllVistHeathRecord(Apiconstants.POST_VIST_HEALTH_RECORD,preferenceData.getPicmeId(), preferenceData.getMId());
 
         mhealthRecordList = new ArrayList<>();
         viewPager = view.findViewById(R.id.hre_viewpager);
@@ -92,27 +95,17 @@ public class health_records extends Fragment implements GetVisitHelthRecordsView
         tabLayout.setupWithViewPager(viewPager);
 
         llClickPickMeVisit = view.findViewById(R.id.ll_click_pickme_visit);
-
         llClickOtherVisit = view.findViewById(R.id.ll_click_other_visit);
         btn_primary_report = (Button) view.findViewById(R.id.btn_primary_report);
         btn_view_report = (Button) view.findViewById(R.id.btn_view_report);
 
     }
 
-    private void setVisitType(String vtypeOfVisit){
-
-        if (vtypeOfVisit.equalsIgnoreCase("Scheduled")) {
-            llClickPickMeVisit.setVisibility(View.VISIBLE);
-        }
-        else {
-            llClickOtherVisit.setVisibility(View.GONE);
-
-        }
-    }
-
 
     private void setupViewPager(ViewPager viewPager) {
-        hAdapter =new HealthRecordsAdapter(getActivity(),mhealthRecordList);
+        hAdapter =new HealthRecordsAdapter(getActivity(),mhealthRecordList,this);
+        viewPager.setOffscreenPageLimit(mhealthRecordList.size());
+
         viewPager.setAdapter(hAdapter);
     }
 
@@ -181,8 +174,6 @@ public class health_records extends Fragment implements GetVisitHelthRecordsView
                 mhealthRecordResponseModel.setVid(jsonObject.getString("vid"));
                 mhealthRecordList.add(mhealthRecordResponseModel);
                 hAdapter.notifyDataSetChanged();
-
-
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -220,6 +211,17 @@ public class health_records extends Fragment implements GetVisitHelthRecordsView
             case R.id.btn_primary_report:
                 startActivity(new Intent(getActivity().getApplicationContext(), PrimaryRegisterView.class));break;
             case R.id.btn_view_report: break;
+        }
+    }
+
+    @Override
+    public void ispickme(boolean isPickme) {
+        if (isPickme){
+            llClickPickMeVisit.setVisibility(View.VISIBLE);
+            llClickOtherVisit.setVisibility(View.GONE);
+        }else {
+            llClickPickMeVisit.setVisibility(View.GONE);
+            llClickOtherVisit.setVisibility(View.VISIBLE);
         }
     }
 }

@@ -11,7 +11,9 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.unicef.thaimai.motherapp.Interface.TypeOfHealthRecords;
 import com.unicef.thaimai.motherapp.R;
+import com.unicef.thaimai.motherapp.fragment.health_records;
 import com.unicef.thaimai.motherapp.model.responsemodel.HealthRecordResponseModel;
 
 import java.util.ArrayList;
@@ -25,16 +27,18 @@ public class HealthRecordsAdapter extends PagerAdapter {
     HealthRecordResponseModel.Visit_Records mhealthRecordResponseModel;
     private LayoutInflater inflater;
     FragmentActivity activity;
+    TypeOfHealthRecords mTypeOfHealthRecords;
     LinearLayout llClickPickMeVisit,llClickOtherVisit;
     TextView txtVisitedDate, txtVisitedType, txtFacility, txtAnyComplient, txtBPValue,
             txtPluseRate, txtWeight, txtFunbalHeight, txtFhs, txtPep, txtHp, txtFbs, txtPpbs, txtGtt, txtSugar, txtFetus, txtGestationSac, txtLiquor, txtPlacenta;
 
 
 
-    public HealthRecordsAdapter(FragmentActivity activity,  ArrayList<HealthRecordResponseModel.Visit_Records> mhealthRecordList) {
+    public HealthRecordsAdapter(FragmentActivity activity, ArrayList<HealthRecordResponseModel.Visit_Records> mhealthRecordList, TypeOfHealthRecords mTypeOfHealthRecords) {
         this.mhealthRecordList = mhealthRecordList;
         this.activity =activity;
         inflater    = LayoutInflater.from(activity);
+        this.mTypeOfHealthRecords = mTypeOfHealthRecords;
 
     }
 
@@ -72,6 +76,13 @@ public class HealthRecordsAdapter extends PagerAdapter {
         txtGestationSac.setText(mhealthRecordResponseModel.getUsgGestationSac());
         txtLiquor.setText(mhealthRecordResponseModel.getUsgLiquor());
         txtPlacenta.setText(mhealthRecordResponseModel.getUsgPlacenta());
+        if (mhealthRecordResponseModel.getVtypeOfVisit().equalsIgnoreCase("Picme")){
+            mTypeOfHealthRecords.ispickme(true);
+        }else if (mhealthRecordResponseModel.getVtypeOfVisit().equalsIgnoreCase("Scheduled")){
+
+            mTypeOfHealthRecords.ispickme(false);
+
+        }
     }
 
     private void initUI(View healthRecordLayout) {

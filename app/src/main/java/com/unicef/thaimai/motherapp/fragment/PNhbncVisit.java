@@ -102,6 +102,7 @@ public class PNhbncVisit extends Fragment implements GetVisitHelthRecordsViews, 
     private void setupViewPager(ViewPager viewPager) {
 
         pnhbncVisitRecordsAdapter =new PNHBNCVisitRecordsAdapter(getActivity(),mPnHbncVisitRecordsList);
+        viewPager.setOffscreenPageLimit(mPnHbncVisitRecordsList.size());
         viewPager.setAdapter(pnhbncVisitRecordsAdapter);
 
 

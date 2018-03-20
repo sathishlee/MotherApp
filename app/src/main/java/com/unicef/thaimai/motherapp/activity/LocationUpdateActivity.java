@@ -79,27 +79,40 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
         locationUpdatePresenter =new LocationUpdatePresenter(LocationUpdateActivity.this,this);
 
         preferenceData = new PreferenceData(this);
+        startStep1();
+        if (mAlreadyStartedService ) {
+if(!preferenceData.getLogin()) {
+
+    stopService(new Intent(this, LocationMonitoringService.class));
 
 
-        LocalBroadcastManager.getInstance(this).registerReceiver(
-                new BroadcastReceiver() {
-                    @Override
-                    public void onReceive(Context context, Intent intent) {
-                        String latitude = intent.getStringExtra(AppConstants.EXTRA_LATITUDE);
-                        String longitude = intent.getStringExtra(AppConstants.EXTRA_LONGITUDE);
-                        String mylocaton = latitude+"\t"+longitude;
-                        if (latitude != null && longitude != null) {
+    mAlreadyStartedService = false;
+    //Ends................................................
+}
+        }
+        if (preferenceData.getLogin()) {
+            LocalBroadcastManager.getInstance(this).registerReceiver(
+                    new BroadcastReceiver() {
+                        @Override
+                        public void onReceive(Context context, Intent intent) {
+                            String latitude = intent.getStringExtra(AppConstants.EXTRA_LATITUDE);
+                            String longitude = intent.getStringExtra(AppConstants.EXTRA_LONGITUDE);
+                            String mylocaton = latitude + "\t" + longitude;
+                            if (latitude != null && longitude != null) {
 //                            serverUpload.sendlocationtServer(mylocaton,latitude,longitude,LocationUpdateActivity.this);
-                            strAddress = getCompleteAddressString(latitude,longitude);
+                                strAddress = getCompleteAddressString(latitude, longitude);
+//if (preferenceData.getPicmeId().equalsIgnoreCase("") && preferenceData.getVhnId().equalsIgnoreCase("")&& preferenceData.getMId().equalsIgnoreCase(""))
 
-                            locationUpdatePresenter.uploadLocationToServer(preferenceData.getPicmeId(),preferenceData.getVhnId(),preferenceData.getMId(),latitude,longitude,strAddress);
+
+                                locationUpdatePresenter.uploadLocationToServer(preferenceData.getPicmeId(), preferenceData.getVhnId(), preferenceData.getMId(), latitude, longitude, strAddress);
+
+                            }
                         }
-                    }
-                }, new IntentFilter(LocationMonitoringService.ACTION_LOCATION_BROADCAST)
-        );
+                    }, new IntentFilter(LocationMonitoringService.ACTION_LOCATION_BROADCAST)
+            );
 
 
-
+        }
         new Handler().postDelayed(new Runnable() {
 
             /*
@@ -111,18 +124,20 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
             public void run() {
                 // This method will be executed once the timer is over
                 // Start your app main activity
+//                if (preferenceData.getPicmeId().equalsIgnoreCase("") && preferenceData.getVhnId().equalsIgnoreCase("") && preferenceData.getMId().equalsIgnoreCase("")) {
                 if (preferenceData.getLogin()) {
+                    Log.d("LOG LOGIN",preferenceData.getPicmeId()+","+preferenceData.getVhnId() +","+ preferenceData.getMId() );
+//                    AppConstants.POP_UP_COUNT= Integer.parseInt(preferenceData.getMainScreenOpen());
                     Intent i = new Intent(LocationUpdateActivity.this, MainActivity.class);
                     startActivity(i);
-
-                    // close this activity
-                    finish();
                 }else{
                     Intent i = new Intent(LocationUpdateActivity.this, Login.class);
                     startActivity(i);
-                    // close this activity
-                    finish();
                 }
+
+
+                // close this activity
+                finish();
             }
         }, SPLASH_TIME_OUT);
 
@@ -445,7 +460,6 @@ Log.d(TAG,"success--->"+loginResponseModel);
         double dlongitude= Double.parseDouble(longitude);
         Log.w("dlatitude",dlatitude+"");
         Log.w("dlongitude",dlongitude+"");
-        Log.d("Address", strAdd);
         Geocoder geocoder = new Geocoder(this, Locale.getDefault());
         try {
             List<Address> addresses = geocoder.getFromLocation(dlatitude, dlongitude, 1);

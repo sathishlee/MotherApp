@@ -4,8 +4,10 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -37,9 +39,29 @@ public class PrimaryRegisterView extends AppCompatActivity implements PrimaryReg
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.primary_register_view);
+        showActionBar();
         initUI();
         onClickListner();
 
+    }
+
+    private void showActionBar() {
+
+        ActionBar actionBar = getSupportActionBar();
+
+        actionBar.setTitle("Primary Records");
+
+        actionBar.setHomeButtonEnabled(true);
+
+        actionBar.setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent = new Intent(PrimaryRegisterView.this, MainActivity.class);
+        finish();
+        startActivity(intent);
+        return super.onOptionsItemSelected(item);
     }
 
     private void onClickListner() {

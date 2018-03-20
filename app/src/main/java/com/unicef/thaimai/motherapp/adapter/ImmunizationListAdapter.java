@@ -29,14 +29,14 @@ public class ImmunizationListAdapter extends RecyclerView.Adapter<ImmunizationLi
     }
 
     @Override
-    public ImmunizationListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_immunization,parent,false);
-        return new ImmunizationListAdapter.ViewHolder(view);
+        return new ViewHolder(view);
     }
 
 
     @Override
-    public void onBindViewHolder(final ImmunizationListAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, int position) {
         final ImmunizationResponseModel.Result result = resultList.get(position);
         holder.txt_imu_dose_number.setText(result.getImmDoseNumber());
         holder.txt_due_date.setText(result.getImmDueDate());

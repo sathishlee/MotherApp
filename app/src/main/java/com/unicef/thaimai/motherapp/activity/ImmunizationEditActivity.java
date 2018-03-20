@@ -35,7 +35,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
-public class ImmunizationEditActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener, ImmunizationEntryView {
+public class ImmunizationEditActivity extends AppCompatActivity implements View.OnClickListener, OnItemSelectedListener, ImmunizationEntryView {
 
     Spinner sp_dose_number, sp_opv, sp_pentavalent, sp_rota, sp_ipv;
 
@@ -160,34 +160,34 @@ public class ImmunizationEditActivity extends AppCompatActivity implements View.
 
         });
 
-        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(
-                this,R.layout.spinner_item_position,dosenumber );
-
-        spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item_position);
-
-        sp_dose_number.setAdapter(spinnerArrayAdapter);
-
-
-        sp_dose_number.setOnItemSelectedListener(new OnItemSelectedListener() {
-
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view,
-                                       int position, long id) {
-                // TODO Auto-generated method stub
-
-                value = sp_dose_number.getSelectedItemPosition() + 1 ;
-
-                txt_dose_number_value.setText("Item Position is = " + value );
-
-                Log.d("Dose Number--->",txt_dose_number_value.toString());
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // TODO Auto-generated method stub
-
-            }
-        });
+//        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(
+//                this,R.layout.spinner_item_position,dosenumber );
+//
+//        spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item_position);
+//
+//        sp_dose_number.setAdapter(spinnerArrayAdapter);
+//
+//
+//        sp_dose_number.setOnItemSelectedListener(new OnItemSelectedListener() {
+//
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view,
+//                                       int position, long id) {
+//                // TODO Auto-generated method stub
+//
+//                value = sp_dose_number.getSelectedItemPosition() + 1 ;
+//
+//                txt_dose_number_value.setText("Item Position is = " + value );
+//
+//                Log.d("Dose Number--->",txt_dose_number_value.toString());
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//                // TODO Auto-generated method stub
+//
+//            }
+//        });
 
 
 
@@ -223,9 +223,8 @@ public class ImmunizationEditActivity extends AppCompatActivity implements View.
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent intent = new Intent(ImmunizationEditActivity.this, ImmunizationVisit.class);
+
         finish();
-        startActivity(intent);
         return super.onOptionsItemSelected(item);
     }
 
@@ -279,7 +278,7 @@ public class ImmunizationEditActivity extends AppCompatActivity implements View.
             immunizationEntryRequestModel.setPicmeId(preferenceData.getPicmeId());
             immunizationEntryRequestModel.setMid(preferenceData.getMId());
             immunizationEntryRequestModel.setImmDoseId(strImmuID);
-            immunizationEntryRequestModel.setImmDoseIDValue(strDoseNumberValue);
+//            immunizationEntryRequestModel.setImmDoseIDValue(strDoseNumberValue);
             immunizationEntryRequestModel.setImmDueDate(strDueDate);
             immunizationEntryRequestModel.setImmCarePovidedDate(strCareDate);
 
@@ -370,7 +369,7 @@ public class ImmunizationEditActivity extends AppCompatActivity implements View.
             String status = jsonObject.getString("status");
             String msg = jsonObject.getString("message");
             strImmuID = jsonObject.getString("immDoseId");
-            preferenceData.storeDid(strImmuID);
+            preferenceData.storeImmuid(strImmuID);
         } catch (JSONException e) {
             e.printStackTrace();
         }

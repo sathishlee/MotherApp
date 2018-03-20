@@ -17,6 +17,9 @@ public class AppConstants {
     public static String REFERAL_ID = "";
     public static boolean CREATE_NEW_REFRAL = false;
     public  static  boolean isMainActivityOpen=true;
+    public static int POP_UP_COUNT;
+    public   static final String isMainActivityOpen_Count="minActivity_open_count";
+
     public static final String PREF_NAME = "motherapp";
     public static final String IS_LOGIN = "is_Login";
     public static final String USER_INFO = "user_info";
@@ -45,6 +48,8 @@ public class AppConstants {
 
 
     public static final String DEVICE_ID = "token";
+
+    public static final String IMMUNIZATION_ID = "immId";
 
 //    public static final String M_ID = "m_id";
 

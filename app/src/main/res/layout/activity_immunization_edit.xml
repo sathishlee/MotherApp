@@ -81,6 +81,7 @@
                         android:textSize="@dimen/text_secondary"
                         android:layout_weight="1"
                         android:drawSelectorOnTop="true"
+                        android:entries="@array/dose_number"
                         style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
 <!--android:entries="@array/dose_number"-->
 

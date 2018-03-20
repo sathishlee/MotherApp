@@ -1,5 +1,6 @@
 package com.unicef.thaimai.motherapp.activity;
 
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +26,8 @@ import com.unicef.thaimai.motherapp.view.LoginViews;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Calendar;
+
 
 public class Login extends AppCompatActivity implements View.OnClickListener, LoginViews
 {
@@ -36,6 +40,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
     LoginPresenter loginPresenter;
     PreferenceData preferenceData;
     ConnectivityManager conMgr;
+    Calendar mCurrentDate;
+    int day, month, year, hour, minute, sec;
+    private String message;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +67,13 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
         pDialog.setMessage("Please Wait ...");
+        mCurrentDate = Calendar.getInstance();
+        day = mCurrentDate.get(Calendar.DAY_OF_MONTH);
+        month = mCurrentDate.get(Calendar.MONTH);
+        year = mCurrentDate.get(Calendar.YEAR);
+        hour = mCurrentDate.get(Calendar.HOUR);
+        minute = mCurrentDate.get(Calendar.MINUTE);
+        sec = mCurrentDate.get(Calendar.SECOND);
         loginPresenter = new LoginPresenter(Login.this, this);
         preferenceData = new PreferenceData(this);
         btn_login = (Button) findViewById(R.id.btn_submit);
@@ -73,6 +87,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
     private void onClickListner() {
         btn_login.setOnClickListener(this);
         txtForgetPicme.setOnClickListener(this);
+        edtDob.setOnClickListener(this);
     }
 
     @Override
@@ -84,7 +99,24 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
             case R.id.txt_forgot_picme:
                 goforgetPicmepage();
                 break;
+
+                case R.id.edt_dob:
+//                getDob(edtDob);
+                break;
         }
+
+    }
+
+    private void getDob(final EditText edtDob) {
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(Login.this, R.style.DatePickerDialogTheme, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                monthOfYear = monthOfYear + 1;
+                edtDob.setText(dayOfMonth + "-" + monthOfYear + "-" + year);
+            }
+        }, year, month, day);
+        datePickerDialog.show();
 
     }
 
@@ -137,6 +169,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
                         jObj.getString("mName"), jObj.getString("motherAge"),
                         jObj.getString("motherStatus"), jObj.getString("phcId"), jObj.getString("vhnId"), jObj.getString("awwId"));
                 preferenceData.setLogin(true);
+               preferenceData.setMainScreenOpen(0);
+               AppConstants.POP_UP_COUNT=0;
                 if (message.equalsIgnoreCase("Successfully Logined")) {
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     finish();

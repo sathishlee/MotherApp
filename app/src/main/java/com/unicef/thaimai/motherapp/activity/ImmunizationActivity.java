@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.ImmunizationListPresenter;
 import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.adapter.ImmunizationListAdapter;
@@ -21,6 +22,7 @@ import com.unicef.thaimai.motherapp.adapter.NearByHospitalAdapter;
 import com.unicef.thaimai.motherapp.model.responsemodel.ImmunizationResponseModel;
 import com.unicef.thaimai.motherapp.model.responsemodel.NearHospitalResponseModel;
 import com.unicef.thaimai.motherapp.view.ImmunizationEntryView;
+import com.unicef.thaimai.motherapp.view.ImmunizationListViews;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,11 +31,11 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ImmunizationActivity extends AppCompatActivity implements ImmunizationEntryView {
+public class ImmunizationActivity extends AppCompatActivity implements  ImmunizationListViews {
 
     ProgressDialog pDialog;
     ImmunizationListPresenter immunizationListPresenter;
-
+    PreferenceData preferenceData;
     private List<ImmunizationResponseModel.Result> mResult ;
     ImmunizationResponseModel.Result mresponseResult;
     private RecyclerView recyclerView;
@@ -47,7 +49,9 @@ public class ImmunizationActivity extends AppCompatActivity implements Immunizat
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
         pDialog.setMessage("Please Wait ...");
-
+        preferenceData =new PreferenceData(this);
+        immunizationListPresenter = new ImmunizationListPresenter(ImmunizationActivity.this,this);
+        immunizationListPresenter.getImmunizationList(preferenceData.getPicmeId(),preferenceData.getMId());
         mResult = new ArrayList<>();
         recyclerView = (RecyclerView) findViewById(R.id.rec_immunization);
 
@@ -90,27 +94,8 @@ public class ImmunizationActivity extends AppCompatActivity implements Immunizat
     }
 
     @Override
-    public void immunizationEntrySuccess(String response) {
+    public void getImmunizationListSuccess(String response) {
 
-    }
-
-    @Override
-    public void immunizationEntryFailure(String response) {
-
-    }
-
-    @Override
-    public void immunizationIDSuccess(String response) {
-
-    }
-
-    @Override
-    public void immunizationIDFailure(String response) {
-
-    }
-
-    @Override
-    public void immunizationListSuccess(String response) {
 
         Log.e(ImmunizationActivity.class.getSimpleName(), "Response success" + response);
 
@@ -140,7 +125,8 @@ public class ImmunizationActivity extends AppCompatActivity implements Immunizat
     }
 
     @Override
-    public void immunizationListFailure(String response) {
+    public void getImmunizationListFailure(String response) {
         Log.e(ImmunizationActivity.class.getSimpleName(),"Response error"+response);
     }
+
 }

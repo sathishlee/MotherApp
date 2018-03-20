@@ -48,7 +48,7 @@ public class ImmunizationEntryPresenter implements ImmunizationEntryInteractor{
         params.put("picmeId",immunizationEntryRequestModel.getPicmeId());
         params.put("immDoseId",immunizationEntryRequestModel.getImmDoseId());
         params.put("immDoseNumber",immunizationEntryRequestModel.getImmDoseNumber());
-        params.put("immDoseIDValue", immunizationEntryRequestModel.getImmDoseIDValue());
+//        params.put("immDoseIDValue", immunizationEntryRequestModel.getImmDoseIDValue());
         params.put("immDueDate", immunizationEntryRequestModel.getImmDueDate());
         params.put("immCarePovidedDate", immunizationEntryRequestModel.getImmCarePovidedDate());
         params.put("immOpvStatus",immunizationEntryRequestModel.getImmOpvStatus());

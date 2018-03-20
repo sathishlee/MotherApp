@@ -30,6 +30,7 @@ import android.widget.Toast;
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.SosAlertPresenter;
 import com.unicef.thaimai.motherapp.R;
+import com.unicef.thaimai.motherapp.constant.AppConstants;
 import com.unicef.thaimai.motherapp.fragment.NotificationFragment;
 import com.unicef.thaimai.motherapp.fragment.PNhbncVisit;
 import com.unicef.thaimai.motherapp.fragment.ReferralListFragment;
@@ -40,7 +41,10 @@ import com.unicef.thaimai.motherapp.view.SosAlertViews;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Locale;
+
+import static com.unicef.thaimai.motherapp.constant.AppConstants.isMainActivityOpen_Count;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, SosAlertViews {
@@ -52,11 +56,12 @@ public class MainActivity extends AppCompatActivity
     PreferenceData preferenceData;
 
     ProgressDialog pDialog;
-
+ArrayList<String> msgList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+//        addMsgtoList();
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
         pDialog.setMessage("Please Wait ...");
@@ -65,10 +70,26 @@ public class MainActivity extends AppCompatActivity
         sosAlertPresenter =new SosAlertPresenter(MainActivity.this,this);
 
 
-/*if (AppConstants.isMainActivityOpen) {
-    showAlertDialog();
+if (AppConstants.isMainActivityOpen) {
 
-}*/
+
+    if(preferenceData.getMainScreenOpen().equalsIgnoreCase("0")){
+        preferenceData.setMainScreenOpen(1);
+        showAlertDialog("Good Morning Mrs. "+ preferenceData.getMotherName()+".","Close");
+    } else  if(preferenceData.getMainScreenOpen().equalsIgnoreCase("1")){
+        preferenceData.setMainScreenOpen(2);
+        showAlertDialog("Hope you are doing well..","Close");
+    }else  if(preferenceData.getMainScreenOpen().equalsIgnoreCase("2")){
+        preferenceData.setMainScreenOpen(3);
+        showAlertDialog("This is your 12th Week of pregnancy.","Close");
+    }else  if(preferenceData.getMainScreenOpen().equalsIgnoreCase("3")){
+        preferenceData.setMainScreenOpen(4);
+        showAlertDialog("this is the Period of child monthly development.","Close");
+    }else  if(preferenceData.getMainScreenOpen().equalsIgnoreCase("4")){
+        preferenceData.setMainScreenOpen(0);
+        showAlertDialog("If you are not feeling well please Click here.","Click here");
+    }
+}
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -143,13 +164,24 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    /*private void addMsgtoList() {
+        msgList =new ArrayList<>();
+
+        msgList.add(0,"Good Morning"+preferenceData.getMotherName()+".");
+        msgList.add(1,"Hope you are doing well.");
+        msgList.add(2,"This is your GST Week of pregnancy.");
+        msgList.add(3,"this is the Period of child monthly development.");
+        msgList.add(4,"If you are not feeling well please press here.");
+
+    }*/
+
     private void showAlertDialog(String msg) {
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 
 
 //        builder.setTitle("Hi Tamil Selvi,");
 //        builder.setMessage("Have you take tablets regulerlly: ");
-        builder.setTitle("Hi Tamil Selvi,");
+        builder.setTitle("Hi"+preferenceData.getMotherName()+",");
         builder.setMessage(msg);
 
 
@@ -158,8 +190,52 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(DialogInterface dialog, int which) {
 //                Toast.makeText(getApplicationContext(),"Take care",Toast.LENGTH_LONG).show();
-                Toast.makeText(getApplicationContext(),"Alert has set to VHN,  They will contact soon..",Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(),"Alert has set to VHN,  They will contact soon..",Toast.LENGTH_LONG).show();
 //                AppConstants.isMainActivityOpen=false;
+                dialog.dismiss();
+            }
+        });
+        /*builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+//                Toast.makeText(getApplicationContext(),"Alert has set to VHN,  They will contact soon..",Toast.LENGTH_LONG).show();
+//                AppConstants.isMainActivityOpen=false;
+                dialog.dismiss();
+            }
+        });*/
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+    private void showAlertDialog(String msg, final String action) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+
+
+//        builder.setTitle("Hi Tamil Selvi,");
+//        builder.setMessage("Have you take tablets regulerlly: ");
+        builder.setTitle("Hi"+preferenceData.getMotherName()+",");
+        builder.setMessage(msg);
+
+
+        //Yes Button
+        builder.setPositiveButton(action, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+//                Toast.makeText(getApplicationContext(),"Take care",Toast.LENGTH_LONG).show();
+                if (action.equalsIgnoreCase("Click here")){
+//                    Toast.makeText(getApplicationContext(),"Alert has set to VHN,  They will contact soon..",Toast.LENGTH_LONG).show();
+                    showAlertDialog("Alert has set to VHN,  They will contact soon..");
+                    sosAlertPresenter.postSosAlert(preferenceData.getPicmeId(),preferenceData.getMId(),preferenceData.getVhnId(),preferenceData.getPhcId(),preferenceData.getAwwId(), preferenceData.getDeviceId());
+                }else{
+                    showAlertDialog("Thank You, Mrs."+preferenceData.getMotherName());
+
+//                    Toast.makeText(getApplicationContext(),"Thank you Mrs."+preferenceData.getMotherName(),Toast.LENGTH_LONG).show();
+
+                }
+
+
+                AppConstants.isMainActivityOpen=false;
                 dialog.dismiss();
             }
         });
@@ -230,9 +306,12 @@ public class MainActivity extends AppCompatActivity
                 return true;
 
             case R.id.action_help:
-                Intent i  = new Intent(MainActivity.this, Help.class);
+                preferenceData.setLogin(false);
+
+//                Intent i  = new Intent(MainActivity.this, LocationUpdateActivity.class);
+//
+//                startActivity(i);
                 finish();
-                startActivity(i);
                 Toast.makeText(getApplicationContext(),"Help Menu",Toast.LENGTH_LONG).show();
                 return true;
             default:
@@ -391,7 +470,7 @@ public class MainActivity extends AppCompatActivity
             JSONObject jsonObject =new JSONObject(response);
             String status =jsonObject.getString("status");
             String msg = jsonObject.getString("message");
-            showAlertDialog(msg);
+//            showAlertDialog(msg);
 
 //            if (status.equalsIgnoreCase("1")){
 //                Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
