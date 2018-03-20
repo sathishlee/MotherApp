@@ -83,7 +83,7 @@ public class health_records extends Fragment implements GetVisitHelthRecordsView
         pDialog.setMessage("Please Wait ...");
 
         gVHRecordsPresenteer = new GetVisitHealthRecordsPresenter(getActivity(), this);
-        gVHRecordsPresenteer.getAllVistHeathRecord(Apiconstants.POST_VIST_HEALTH_RECORD_PICME,preferenceData.getPicmeId(), "1");
+        gVHRecordsPresenteer.getAllVistHeathRecord(Apiconstants.POST_VIST_HEALTH_RECORD_BASE,preferenceData.getPicmeId(), preferenceData.getMId());
 
         mhealthRecordList = new ArrayList<>();
         viewPager = view.findViewById(R.id.hre_viewpager);
@@ -92,10 +92,22 @@ public class health_records extends Fragment implements GetVisitHelthRecordsView
         tabLayout.setupWithViewPager(viewPager);
 
         llClickPickMeVisit = view.findViewById(R.id.ll_click_pickme_visit);
+
         llClickOtherVisit = view.findViewById(R.id.ll_click_other_visit);
         btn_primary_report = (Button) view.findViewById(R.id.btn_primary_report);
         btn_view_report = (Button) view.findViewById(R.id.btn_view_report);
 
+    }
+
+    private void setVisitType(String vtypeOfVisit){
+
+        if (vtypeOfVisit.equalsIgnoreCase("Scheduled")) {
+            llClickPickMeVisit.setVisibility(View.VISIBLE);
+        }
+        else {
+            llClickOtherVisit.setVisibility(View.GONE);
+
+        }
     }
 
 
@@ -169,6 +181,8 @@ public class health_records extends Fragment implements GetVisitHelthRecordsView
                 mhealthRecordResponseModel.setVid(jsonObject.getString("vid"));
                 mhealthRecordList.add(mhealthRecordResponseModel);
                 hAdapter.notifyDataSetChanged();
+
+
             }
         } catch (JSONException e) {
             e.printStackTrace();

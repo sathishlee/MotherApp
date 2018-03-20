@@ -1,5 +1,7 @@
 package com.unicef.thaimai.motherapp.model.responsemodel;
 
+import android.widget.LinearLayout;
+
 import java.util.List;
 
 /**
@@ -7,6 +9,8 @@ import java.util.List;
  */
 
 public class HealthRecordResponseModel {
+
+
 
     private List<Visit_Records> Visit_Records;
     private String message;
