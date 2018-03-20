@@ -44,7 +44,7 @@ public class GetUserInfoPresenter implements UserInfoInteractor{
       view.showProgress();
 
 
-        Log.e("url", Apiconstants.BASE_URL+Apiconstants.USER_INFO);
+        Log.e("url", Apiconstants.BASE_URL+Apiconstants.POST_DASH_BOARD);
 
         StringRequest strReq = new StringRequest(Request.Method.POST,Apiconstants.BASE_URL+Apiconstants.POST_DASH_BOARD , new Response.Listener<String>() {
 
@@ -81,7 +81,7 @@ public class GetUserInfoPresenter implements UserInfoInteractor{
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("user info Login Error:", "Login Error: " + error.getMessage());
+                Log.e("User Info Login Error:", "Login Error: " + error.getMessage());
                 Toast.makeText(activity.getApplicationContext(),
                         error.getMessage(), Toast.LENGTH_LONG).show();
 

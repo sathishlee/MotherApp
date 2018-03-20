@@ -1,23 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.v7.widget.CardView android:id="@+id/referral_display"
+<android.support.v7.widget.CardView
+    android:id="@+id/referral_card"
     android:orientation="vertical"
     android:padding="16.0dip"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8.0dip"
-    app:cardBackgroundColor="@android:color/white"
+    app:cardBackgroundColor="@color/card_blue"
     app:cardElevation="2.0dip"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
+        android:id="@+id/ll_referal_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:padding="10dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        >
 
         <!--<LinearLayout-->
         <!--android:layout_width="wrap_content"-->
@@ -54,7 +57,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="start"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:id="@+id/ll_referal_card_inner">
 
 
 
@@ -210,7 +214,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="4dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/calendar"/>
+                        app:srcCompat="@drawable/calendar"/>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -220,14 +224,15 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Date of Referral"
+                            android:text="Date of Ref"
                             android:textSize="@dimen/text_primary"
                             android:textAlignment="textStart"
                             android:textColor="#aaffffff"
                             android:textStyle="bold" />
-
+<!--                            android:text="Date of Referral"
+-->
                         <TextView
-                            android:id="@+id/txt_delivery_date"
+                            android:id="@+id/txt_referal_date"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="24-02-2018"
@@ -269,7 +274,7 @@
                             android:layout_gravity="start"
                             android:textStyle="bold" />
                         <TextView
-                            android:id="@+id/txt_delivery_time"
+                            android:id="@+id/txt_referal_time"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="time"
@@ -305,17 +310,19 @@
                         android:text="Referred by :"
                         android:textAlignment="textStart"
                         android:textSize="@dimen/text_primary"
-                        android:textColor="@color/secondary"
+                        android:textColor="#ffffff"
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/txt_referred_by"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="3dp"
                         android:text="ASHA"
                         android:textSize="@dimen/text_secondary"
                         android:textAlignment="textStart"
-                        android:textColor="@color/text_primary"/>
+                        android:textColor="#ffffff"
+                        />
                 </LinearLayout>
 
                 <LinearLayout
@@ -331,16 +338,19 @@
                         android:text="Referred From :"
                         android:textSize="@dimen/text_primary"
                         android:layout_gravity="start"
-                        android:textColor="@color/secondary"
+                        android:textColor="#ffffff"
+
                         android:textStyle="bold" />
                     <TextView
+                        android:id="@+id/txt_referred_from"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="3dp"
                         android:text="HOME-TD"
                         android:layout_gravity="start"
                         android:textSize="@dimen/text_secondary"
-                        android:textColor="@color/text_primary"/>
+                        android:textColor="#ffffff"
+                        />
 
                 </LinearLayout>
 
@@ -367,17 +377,21 @@
                         android:text="Referred to :"
                         android:textAlignment="textStart"
                         android:textSize="@dimen/text_primary"
-                        android:textColor="@color/secondary"
-                        android:textStyle="bold" />
+
+                        android:textStyle="bold"
+                        android:textColor="#ffffff"
+                        />
 
                     <TextView
+                        android:id="@+id/txt_referred_to"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="3dp"
                         android:text="HSC"
                         android:textSize="@dimen/text_secondary"
                         android:textAlignment="textStart"
-                        android:textColor="@color/text_primary"/>
+                        android:textColor="#ffffff"
+                        />
                 </LinearLayout>
 
                 <LinearLayout
@@ -393,16 +407,17 @@
                         android:text="Diagnosis : "
                         android:textSize="@dimen/text_primary"
                         android:layout_gravity="start"
-                        android:textColor="@color/secondary"
+                        android:textColor="#ffffff"
                         android:textStyle="bold" />
                     <TextView
+                        android:id="@+id/txt_diagnosis"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="3dp"
                         android:text="Details"
                         android:layout_gravity="start"
                         android:textSize="@dimen/text_secondary"
-                        android:textColor="@color/text_primary"/>
+                        android:textColor="#ffffff" />
 
                 </LinearLayout>
 
@@ -420,16 +435,17 @@
                     android:text="Referred Why : "
                     android:textSize="@dimen/text_primary"
                     android:layout_gravity="start"
-                    android:textColor="@color/secondary"
+                    android:textColor="#ffffff"
                     android:textStyle="bold" />
                 <TextView
+                    android:id="@+id/txt_referred_why"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="3dp"
                     android:text="Improper Facility"
                     android:layout_gravity="start"
                     android:textSize="@dimen/text_secondary"
-                    android:textColor="@color/text_primary"/>
+                    android:textColor="#ffffff" />
 
             </LinearLayout>
 

@@ -14,7 +14,6 @@ import com.unicef.thaimai.motherapp.R;
 public class ImmunizationActivity extends AppCompatActivity {
 
 
-    CardView immunization__visit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,15 +27,15 @@ public class ImmunizationActivity extends AppCompatActivity {
 
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        CardView immunization__visit = (CardView) findViewById(R.id.immunization__visit);
-
-        immunization__visit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(ImmunizationActivity.this, ImmunizationVisit.class);
-                startActivity(i);
-            }
-        });
+//        CardView immunization__visit = (CardView) findViewById(R.id.immunization__visit);
+//
+//        immunization__visit.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent i = new Intent(ImmunizationActivity.this, ImmunizationVisit.class);
+//                startActivity(i);
+//            }
+//        });
 
     }
 

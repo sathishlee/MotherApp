@@ -164,10 +164,12 @@ public class home extends Fragment implements LoginViews, View.OnClickListener {
         try {
             JSONObject jObj = new JSONObject(response);
             txt_lmp_date.setText(jObj.getString("mLMP"));
-            txt_edd_date.setText(jObj.getString("mLMP"));
+            txt_edd_date.setText(jObj.getString("mEDD"));
+            txt_age.setText(jObj.getString("mAge"));
             txt_risk.setText(jObj.getString("mRiskStatus"));
             txt_weight.setText(jObj.getString("mWeight"));
             txt_husb_name.setText(jObj.getString("mHusbandName"));
+            txt_gst_week.setText(jObj.getString("mGesWeek"));
 //            str_mobile_number_hsbn =jObj.getString("mHusbandMobile");
 //            txt_husb_mobile_number.setText(str_mobile_number_hsbn);
             txt_vhn_name.setText(jObj.getString("vhnName"));

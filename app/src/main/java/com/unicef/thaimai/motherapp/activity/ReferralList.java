@@ -1,3 +1,4 @@
+package com.unicef.thaimai.motherapp.activity;/*
 package com.unicef.thaimai.motherapp.activity;
 
 import android.content.Intent;
@@ -60,3 +61,4 @@ public class ReferralList extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
+*/

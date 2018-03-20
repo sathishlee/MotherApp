@@ -111,11 +111,18 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
             public void run() {
                 // This method will be executed once the timer is over
                 // Start your app main activity
-                Intent i = new Intent(LocationUpdateActivity.this, MainActivity.class);
-                startActivity(i);
+                if (preferenceData.getLogin()) {
+                    Intent i = new Intent(LocationUpdateActivity.this, MainActivity.class);
+                    startActivity(i);
 
-                // close this activity
-                finish();
+                    // close this activity
+                    finish();
+                }else{
+                    Intent i = new Intent(LocationUpdateActivity.this, Login.class);
+                    startActivity(i);
+                    // close this activity
+                    finish();
+                }
             }
         }, SPLASH_TIME_OUT);
 
@@ -438,6 +445,7 @@ Log.d(TAG,"success--->"+loginResponseModel);
         double dlongitude= Double.parseDouble(longitude);
         Log.w("dlatitude",dlatitude+"");
         Log.w("dlongitude",dlongitude+"");
+        Log.d("Address", strAdd);
         Geocoder geocoder = new Geocoder(this, Locale.getDefault());
         try {
             List<Address> addresses = geocoder.getFromLocation(dlatitude, dlongitude, 1);

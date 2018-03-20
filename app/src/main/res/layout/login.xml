@@ -73,7 +73,7 @@
                 android:inputType="date"
                 android:textSize="14.0sp"
                 android:hint="Date of Birth*"
-                android:text="02-02-1989"/>
+                android:text="01-01-1980"/>
 
         </android.support.design.widget.TextInputLayout>
 

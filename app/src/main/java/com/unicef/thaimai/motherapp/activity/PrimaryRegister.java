@@ -628,9 +628,9 @@ ArrayList ysList,occList;
                     spDoseAlcohol.setSelection(getListPosition(yn,jObj.getString("mUseAlcohol")));       //Yes,No
                     spDoseOnAnyMedication.setSelection(getListPosition(yn,jObj.getString("mAnyMeditation"))); //Yes,No
                     spDoseAllergictoDrugs.setSelection(getListPosition(yn,jObj.getString("mAllergicToanyDrug"))); //Yes,No
-                  spPrePregnancy.setSelection(getListPosition(yn,jObj.getString("mHistroyPreviousPreganancy")));          //Yes,No
-                  spLSCSDone.setSelection(getListPosition(yn,jObj.getString("mLscsDone")));             //Yes,No
-                  spComDuringPrgncy.setSelection(getListPosition(hdcdt,jObj.getString("mAnyComplecationDuringPreganancy")));  //Hypertention, Diabetes, Congenital Heart Disease, Tb, Others
+                    spPrePregnancy.setSelection(getListPosition(yn,jObj.getString("mHistroyPreviousPreganancy")));          //Yes,No
+                    spLSCSDone.setSelection(getListPosition(yn,jObj.getString("mLscsDone")));             //Yes,No
+                    spComDuringPrgncy.setSelection(getListPosition(hdcdt,jObj.getString("mAnyComplecationDuringPreganancy")));  //Hypertention, Diabetes, Congenital Heart Disease, Tb, Others
                     spPrePrgncyG.setSelection(getListPosition(num,jObj.getString("mPresentPreganancyG")));  //1234567890
                     spPrePrgncyP.setSelection(getListPosition(num,jObj.getString("mPresentPreganancyP")));  //1234567890
                     spPrePrgncyA.setSelection(getListPosition(num,jObj.getString("mPresentPreganancyA")));  //1234567890

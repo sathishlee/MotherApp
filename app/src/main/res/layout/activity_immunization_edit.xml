@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/immunization_details">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -12,8 +13,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="7dp">
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -83,7 +83,12 @@
                         android:drawSelectorOnTop="true"
                         android:entries="@array/dose_number"
                         style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
+<!--android:entries="@array/dose_number"-->
 
+                    <TextView
+                        android:id="@+id/txt_dose_number_value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
                 </LinearLayout>
 
                 <LinearLayout

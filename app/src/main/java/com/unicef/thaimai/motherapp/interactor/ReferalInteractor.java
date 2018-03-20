@@ -19,7 +19,22 @@ public interface ReferalInteractor {
             String rReferalReason,
             String rReferredBy, String rFacilityReferredCode, String rFacilityReferredToCode);
 
+    void updateReferal(
+            String rid,
+            String rUpdateDate,
+            String rUpdateTime,
+
+            String rUpdateReceivedBy,
+            String rUpdateReceivingFacility,
+            String rUpdateInLabour,
+            String rUpdateAdmitted);
+
     void getReffralNearestHospital(String latitude, String longitude);
+
+    void getReffralNeList(String mid,
+                          String phcId,
+                          String vhnId,
+                          String picmeId);
 
 }
 

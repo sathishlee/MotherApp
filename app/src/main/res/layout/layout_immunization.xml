@@ -1,61 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="6.0dip"
+<LinearLayout
     android:orientation="vertical"
-    android:padding="16.0dip"
-    android:id="@+id/immunization__visit"
-    app:cardBackgroundColor="@android:color/white">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:baselineAligned="false"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/rec_immunization">
 
-        <LinearLayout
-            android:layout_width="0.0dip"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.0"
-            android:orientation="vertical"
-            android:paddingBottom="4.0dip">
+    </android.support.v7.widget.RecyclerView>
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:padding="4dp"
-                android:text="Dose 1 (20-12-2018)"
-                android:textColor="@color/dark_blue"
-                android:textSize="@dimen/text_label"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:drawablePadding="4.0dip"
-                android:drawableStart="@drawable/ic_weekly_calendar_24dp"
-                android:gravity="start|center"
-                android:textSize="@dimen/text_secondary"
-                android:layout_margin="3dp"
-                android:text="Due Date"
-                android:textColor="@color/text_primary"/>
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:drawablePadding="4.0dip"
-                android:drawableStart="@drawable/ic_hospital_24dp"
-                android:gravity="start|center"
-                android:layout_margin="3dp"
-                android:textSize="@dimen/text_secondary"
-                android:text="Govt Hospital"
-                android:textColor="@color/text_primary" />
-
-        </LinearLayout>
-
-
-    </LinearLayout>
-
-</android.support.v7.widget.CardView>
+</LinearLayout>

@@ -193,8 +193,6 @@ public class DeliveryEntryPresenter implements DeliveryEntryInteractor {
             }
         })
         {
-
-
             @Override
             public Map<String,String> getHeaders() throws AuthFailureError {
                 String credentials ="admin"+":"+"1234";

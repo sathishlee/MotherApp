@@ -66,15 +66,17 @@ public class PreferenceData {
         return sharedPreferences.getString(AppConstants.AWW_ID,"");
     }
 
+    public void storeDid(String strDid) {
+        sharedPreferences.edit().putString(AppConstants.DELIVERY_ID,strDid);
+    }
+    public  String getDid() {
+        return sharedPreferences.getString(AppConstants.DELIVERY_ID, "");
+    }
+
     public String getDeviceId(){
         return sharedPreferences.getString(AppConstants.DEVICE_ID,"c600nN1dj9c:APA91bGo0a8W1Jp5WBDVSRh1HbwikPDaqN1-PK3-fYEV-slu59qztEdepxTyFdlZvweLEoqZ0XZw8mReyrwxdeOuGUVcBvgrL_ca05cU7PKH4yAFZVL9TpEAeW_lo80ISEhKQ-ru8ztR");
     }
 
-    public void storeDid(String strDid) {
-        sharedPreferences.edit().putString(AppConstants.DELIVERY_ID,strDid);
-    }
-    public  String getDid(){
-        return sharedPreferences.getString(AppConstants.DELIVERY_ID,"");
 
-    }
+
 }

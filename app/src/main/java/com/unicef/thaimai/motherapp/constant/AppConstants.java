@@ -6,6 +6,16 @@ package com.unicef.thaimai.motherapp.constant;
 
 public class AppConstants {
 
+    public static boolean REFERAL_STATUS = false;
+    public static String REFERAL_REASON = "";
+    public static String REFERAL_DIAGONOSIS = "";
+    public static String REFERAL_TO = "";
+    public static String REFERAL_FACILITY = "";
+    public static String REFERAL_BY = "";
+    public static String REFERAL_TIME = "";
+    public static String REFERAL_DATE = "";
+    public static String REFERAL_ID = "";
+    public static boolean CREATE_NEW_REFRAL = false;
     public  static  boolean isMainActivityOpen=true;
     public static final String PREF_NAME = "motherapp";
     public static final String IS_LOGIN = "is_Login";
@@ -32,6 +42,7 @@ public class AppConstants {
     public static final String MOTHER_AGE = "age";
     public static final String MOTHER_STATUS = "status";
     public static final String DELIVERY_ID = "dId";
+
 
     public static final String DEVICE_ID = "token";
 

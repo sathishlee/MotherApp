@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -31,12 +30,11 @@ import android.widget.Toast;
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.SosAlertPresenter;
 import com.unicef.thaimai.motherapp.R;
-import com.unicef.thaimai.motherapp.constant.AppConstants;
 import com.unicef.thaimai.motherapp.fragment.NotificationFragment;
 import com.unicef.thaimai.motherapp.fragment.PNhbncVisit;
+import com.unicef.thaimai.motherapp.fragment.ReferralListFragment;
 import com.unicef.thaimai.motherapp.fragment.health_records;
 import com.unicef.thaimai.motherapp.fragment.home;
-import com.unicef.thaimai.motherapp.fragment.referral;
 import com.unicef.thaimai.motherapp.view.SosAlertViews;
 
 import org.json.JSONException;
@@ -300,6 +298,11 @@ public class MainActivity extends AppCompatActivity
             startActivity(v);
         }
 
+        else if (id == R.id.immunization_entry) {
+            Intent v = new Intent(getApplicationContext(), ImmunizationEditActivity.class);
+            startActivity(v);
+        }
+
 //        else if (id == R.id.hbnc_visit_entry) {
 //            Intent v = new Intent(getApplicationContext(), InfantTrackingEditActivity.class);
 //            startActivity(v);
@@ -357,7 +360,7 @@ public class MainActivity extends AppCompatActivity
                 break;
 
             case R.id.referral:
-                selectedFragment = referral.newInstance();
+                selectedFragment = ReferralListFragment.newInstance();
                 break;
 
         }
