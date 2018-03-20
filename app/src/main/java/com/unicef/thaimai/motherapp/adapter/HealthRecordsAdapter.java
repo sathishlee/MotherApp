@@ -76,9 +76,10 @@ public class HealthRecordsAdapter extends PagerAdapter {
         txtGestationSac.setText(mhealthRecordResponseModel.getUsgGestationSac());
         txtLiquor.setText(mhealthRecordResponseModel.getUsgLiquor());
         txtPlacenta.setText(mhealthRecordResponseModel.getUsgPlacenta());
-        if (mhealthRecordResponseModel.getVtypeOfVisit().equalsIgnoreCase("Picme")){
+
+        if (mhealthRecordResponseModel.getVtypeOfVisit().equalsIgnoreCase("Scheduled")){
             mTypeOfHealthRecords.ispickme(true);
-        }else if (mhealthRecordResponseModel.getVtypeOfVisit().equalsIgnoreCase("Scheduled")){
+        }else if (mhealthRecordResponseModel.getVtypeOfVisit().equalsIgnoreCase("Others")){
 
             mTypeOfHealthRecords.ispickme(false);
 

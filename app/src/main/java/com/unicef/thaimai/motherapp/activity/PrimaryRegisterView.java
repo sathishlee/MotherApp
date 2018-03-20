@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.PrimaryRegisterPresenter;
 import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.view.PrimaryRegisterViews;
@@ -34,6 +35,8 @@ public class PrimaryRegisterView extends AppCompatActivity implements PrimaryReg
     FloatingActionButton fab_edi_details;
     ProgressDialog pDialog;
     PrimaryRegisterPresenter primaryRegisterPresenter;
+
+    PreferenceData preferenceData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,8 +80,9 @@ public class PrimaryRegisterView extends AppCompatActivity implements PrimaryReg
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
         pDialog.setMessage("Please Wait ...");
+        preferenceData = new PreferenceData(this);
         primaryRegisterPresenter = new PrimaryRegisterPresenter(PrimaryRegisterView.this, this);
-        primaryRegisterPresenter.getAllMotherPrimaryRegistration("1000000000001");
+        primaryRegisterPresenter.getAllMotherPrimaryRegistration(preferenceData.getPicmeId());
         fab_edi_details = (FloatingActionButton) findViewById(R.id.fab_edi_details);
         txt_name = (TextView) findViewById(R.id.txt_name);
         txt_mother_age = (TextView) findViewById(R.id.txt_mother_age);

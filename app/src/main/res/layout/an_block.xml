@@ -113,7 +113,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Gst Age"
+                android:text="Gest Age"
                 android:textSize="@dimen/text_primary"
                 android:textAlignment="textStart"
                 android:textColor="@color/secondary"

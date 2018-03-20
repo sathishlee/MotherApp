@@ -78,7 +78,7 @@ public class PNhbncVisit extends Fragment implements GetVisitHelthRecordsViews, 
         preferenceData = new PreferenceData(getActivity());
 
         gVHRecordsPresenteer = new GetVisitHealthRecordsPresenter(getActivity(), this);
-        gVHRecordsPresenteer.getPN_HBNC_VisitRecord(Apiconstants.POST_PN_HBNC_VIST_RECORD,preferenceData.getPicmeId(), "1");
+        gVHRecordsPresenteer.getPN_HBNC_VisitRecord(Apiconstants.POST_PN_HBNC_VIST_RECORD,preferenceData.getPicmeId(), preferenceData.getMId());
 
         mPnHbncVisitRecordsList = new ArrayList<>();
 

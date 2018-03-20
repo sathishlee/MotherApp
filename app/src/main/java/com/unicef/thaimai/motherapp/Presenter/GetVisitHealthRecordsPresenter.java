@@ -41,8 +41,8 @@ public class GetVisitHealthRecordsPresenter implements GetVisitHealthRecordsInte
         String url = Apiconstants.BASE_URL + strUrl;
 
         Log.d("Log in check Url--->",url);
-        Log.d("Url--->",strPicmeId);
-        Log.d("Dob--->",mid);
+        Log.d("Picme--->",strPicmeId);
+        Log.d("Mid--->",mid);
         StringRequest strReq =new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
