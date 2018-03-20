@@ -9,17 +9,18 @@ import java.util.List;
 public class ImmunizationResponseModel {
 
 
-    private List<ResultValue> result;
+    private List<Result> result;
 
-    public List<ResultValue> getResultValue(){
+    public List<Result> getResult() {
         return result;
     }
 
-    public void setResultValue(List<ResultValue> result){
+    public void setResult(List<Result> result) {
         this.result = result;
     }
 
-    public static class ResultValue {
+
+    public static class Result{
         private String immIpvStatus;
         private String immRotaStatus;
         private String immPentanvalentStatus;

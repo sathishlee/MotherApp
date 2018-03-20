@@ -89,6 +89,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/txt_imu_dose_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Immunization Visits"
@@ -188,6 +189,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/txt_due_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="25-02-2018"
@@ -228,6 +230,7 @@
                         android:layout_gravity="start"
                         android:textStyle="bold" />
                     <TextView
+                        android:id="@+id/txt_provided_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="18-02-2018"
@@ -310,6 +313,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/txt_opv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Yes"
@@ -335,6 +339,7 @@
                     android:textColor="@color/secondary"
                     android:textStyle="bold" />
                 <TextView
+                    android:id="@+id/txt_pentavalent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_secondary"
@@ -371,6 +376,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/txt_rota"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Yes"
@@ -396,6 +402,7 @@
                     android:textColor="@color/secondary"
                     android:textStyle="bold" />
                 <TextView
+                    android:id="@+id/txt_ipv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Yes"

@@ -15,4 +15,7 @@ public interface ImmunizationEntryView {
     void immunizationIDSuccess(String response);
     void immunizationIDFailure(String response);
 
+    void immunizationListSuccess(String response);
+    void immunizationListFailure(String response);
+
 }

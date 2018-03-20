@@ -53,7 +53,13 @@ public class ImmunizationEditActivity extends AppCompatActivity implements View.
     ImmunizationEntryPresenter immunizationEntryPresenter;
     ImmunizationEntryRequestModel immunizationEntryRequestModel;
 
-    String [] dosenumber = new String[]{"--Select--","Dose 1 (Day 45)", "Dose 2 (Day 75)","Dose 3 (Day 105)", "Dose 4 (Day 270)"};
+    String [] dosenumber = new String[]{
+            "--Select--",
+            "Dose 1 (Day 45)",
+            "Dose 2 (Day 75)",
+            "Dose 3 (Day 105)",
+            "Dose 4 (Day 270)"
+    };
     String [] dosenumber_i = {"1", "2","3", "4"};
 
     PreferenceData preferenceData;
@@ -155,11 +161,12 @@ public class ImmunizationEditActivity extends AppCompatActivity implements View.
         });
 
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(
-                this,R.layout.support_simple_spinner_dropdown_item,dosenumber );
+                this,R.layout.spinner_item_position,dosenumber );
 
-        spinnerArrayAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item_position);
 
         sp_dose_number.setAdapter(spinnerArrayAdapter);
+
 
         sp_dose_number.setOnItemSelectedListener(new OnItemSelectedListener() {
 
@@ -372,6 +379,16 @@ public class ImmunizationEditActivity extends AppCompatActivity implements View.
     @Override
     public void immunizationIDFailure(String response) {
         Log.d(ImmunizationEditActivity.class.getSimpleName(), "Response Failiure-->" + response);
+    }
+
+    @Override
+    public void immunizationListSuccess(String response) {
+
+    }
+
+    @Override
+    public void immunizationListFailure(String response) {
+
     }
 
 //    private int getListPosition(String[] doseId, String doseNumber) {

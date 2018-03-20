@@ -1,5 +1,9 @@
 package com.unicef.thaimai.motherapp.model.requestmodel;
 
+import com.unicef.thaimai.motherapp.model.responsemodel.NearHospitalResponseModel;
+
+import java.util.List;
+
 /**
  * Created by Suthishan on 20/1/2018.
  */
@@ -107,3 +111,4 @@ public class ImmunizationEntryRequestModel {
         this.mid = mid;
     }
 }
+
