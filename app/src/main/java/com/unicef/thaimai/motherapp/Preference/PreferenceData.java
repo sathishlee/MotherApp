@@ -67,10 +67,10 @@ public class PreferenceData {
     }
 
     public void storeDid(String strDid) {
-        sharedPreferences.edit().putString(AppConstants.DELIVERY_ID,strDid);
+        sharedPreferences.edit().putString(AppConstants.DELIVERY_ID,strDid).commit();
     }
     public void storeImmuid(String strImmuID){
-        sharedPreferences.edit().putString(AppConstants.IMMUNIZATION_ID, strImmuID);
+        sharedPreferences.edit().putString(AppConstants.IMMUNIZATION_ID, strImmuID).commit();
     }
 
     public  String getDid() {
@@ -83,7 +83,7 @@ public class PreferenceData {
 
 
     public void setMainScreenOpen(int count) {
-        sharedPreferences.edit().putString(AppConstants.isMainActivityOpen_Count, String.valueOf(count)).commit();;
+        sharedPreferences.edit().putString(AppConstants.isMainActivityOpen_Count, String.valueOf(count)).commit();
     }
 
     public String getMainScreenOpen() {

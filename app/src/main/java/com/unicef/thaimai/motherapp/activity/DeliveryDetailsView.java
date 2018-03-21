@@ -113,48 +113,48 @@ public class DeliveryDetailsView extends AppCompatActivity implements DeliveryEn
         JSONObject jsonObject_res =null;
         try{
             jsonObject_res = new JSONObject(response);
-            int status = jsonObject_res.getInt("status");
+            String status = jsonObject_res.getString("status");
 
             String message = jsonObject_res.getString("message");
-            if (status==1) {
-            String delevery_Info = jsonObject_res.getString("Delevery_Info");
-            JSONObject  jsonObject = new JSONObject(delevery_Info);
+            if (status.equalsIgnoreCase("1")) {
+                JSONObject  jsonObject = jsonObject_res.getJSONObject("Delevery_Info");
 
+preferenceData.storeDid(jsonObject.getString("did" ));
                 Log.d("message---->", message);
-                if(jsonObject.getString("ddateTime")!="")
-                    txt_delivery_date.setText(jsonObject.getString("ddateTime"));
-                if (jsonObject.getString("dtime")!="")
+//                if(jsonObject.getString("ddatetime")!="")
+                    txt_delivery_date.setText(jsonObject.getString("ddatetime"   ));
+//                if (jsonObject.getString("dtime")!="")
                     txt_delivery_time.setText(jsonObject.getString("dtime"));
-                if (jsonObject.getString("dplace")!="")
+//                if (jsonObject.getString("dplace")!="")
                     txt_delivery_place.setText(jsonObject.getString("dplace"));
-                if (jsonObject.getString("ddeleveryDetails")!="")
+//                if (jsonObject.getString("ddeleveryDetails")!="")
                     txt_delivery_type.setText(jsonObject.getString("ddeleveryDetails"));
-                if (jsonObject.getString("ddeleveryOutcome")!="")
-                    txt_delivery_mother_outcome.setText(jsonObject.getString("ddeleveryOutcome"));
-                if (jsonObject.getString("dnewBorn")!="")
+//                if (jsonObject.getString("ddeleveryOutcome")!="")
+                    txt_delivery_mother_outcome.setText(jsonObject.getString("ddeleveryOutcomeMother"));
+//                if (jsonObject.getString("dnewBorn")!="")
                     txt_delivery_new_born.setText(jsonObject.getString("dnewBorn"));
-                if (jsonObject.getString("dInfantId")!="")
+//                if (jsonObject.getString("dInfantId")!="")
                     txt_infant_id.setText(jsonObject.getString("dInfantId"));
-                if (jsonObject.getString("dBirthDetails")!="")
+//                if (jsonObject.getString("dBirthDetails")!="")
                     txt_infant_birth_type.setText(jsonObject.getString("dBirthDetails"));
-                if (jsonObject.getString("dBirthWeight")!="")
+//                if (jsonObject.getString("dBirthWeight")!="")
                     txt_infant_weight.setText(jsonObject.getString("dBirthWeight"));
 
-                if (jsonObject.getString("dBirthHeight")!="")
+//                if (jsonObject.getString("dBirthHeight")!="")
                     txt_infant_height.setText(jsonObject.getString("dBirthHeight"));
-                if (jsonObject.getString("dBreastFeedingGiven")!="")
+//                if (jsonObject.getString("dBreastFeedingGiven")!="")
                     txt_breast_feeding_given.setText(jsonObject.getString("dBreastFeedingGiven"));
-                if (jsonObject.getString("dAdmittedSNCU")!="")
+//                if (jsonObject.getString("dAdmittedSNCU")!="")
                     txt_admitted_in_sncu.setText(jsonObject.getString("dAdmittedSNCU"));
-                if (jsonObject.getString("dSNCUDate")!="")
+//                if (jsonObject.getString("dSNCUDate")!="")
                     new_born_sncu_date.setText(jsonObject.getString("dSNCUDate"));
-                if (jsonObject.getString("dSNCUOutcome")!="")
+//                if (jsonObject.getString("dSNCUOutcome")!="")
                     txt_new_born_outcome.setText(jsonObject.getString("dSNCUOutcome"));
-                if (jsonObject.getString("dBCGDate")!="")
+//                if (jsonObject.getString("dBCGDate")!="")
                     txt_bcg_given_date.setText(jsonObject.getString("dBCGDate"));
-                if (jsonObject.getString("dOPVDate")!="")
+//                if (jsonObject.getString("dOPVDate")!="")
                     txt_opv_given_date.setText(jsonObject.getString("dOPVDate"));
-                if (jsonObject.getString("dHEPBDate")!="")
+//                if (jsonObject.getString("dHEPBDate")!="")
                     txt_hepb_given_date.setText(jsonObject.getString("dHEPBDate"));
             }
             else{

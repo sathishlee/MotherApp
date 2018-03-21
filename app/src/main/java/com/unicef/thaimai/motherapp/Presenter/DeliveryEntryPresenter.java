@@ -209,7 +209,7 @@ public class DeliveryEntryPresenter implements DeliveryEntryInteractor {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("dpicmeId",strPicmeid);
                 params.put("mid",strMid);
-                params.put("did",strDid);
+//                params.put("did",strDid);
 
                 Log.d("params--->",params.toString());
 

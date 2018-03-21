@@ -86,6 +86,8 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
         progressDialog.setCancelable(false);
         progressDialog.setMessage("Please Wait...");
         preferenceData = new PreferenceData(this);
+
+        strDid = preferenceData.getDid();
         deliveryEntryPresenter = new DeliveryEntryPresenter(DeliveryDetailsActivityEntry.this, this);
         deliveryEntryPresenter.deliveryNumber(preferenceData.getPicmeId(), preferenceData.getMId());
         edt_delivery_date = (EditText) findViewById(R.id.edt_delivery_date);
@@ -208,7 +210,11 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
     public void datatosever() {
         editTextValues();
 
-        if (TextUtils.isEmpty(strDeliveryDate)) {
+        if (TextUtils.isEmpty(strDid)) {
+           Toast.makeText(getApplicationContext(),"DID is empty",Toast.LENGTH_SHORT).show();
+        } else {
+
+        }if (TextUtils.isEmpty(strDeliveryDate)) {
             til_delivery_date.setError("Delivery Date is Empty");
         } else {
             til_delivery_date.setError(null);
@@ -272,12 +278,14 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
             showAlert("SNCU Outcome is Empty");
         } else {
             deliveryEntryRequestModel = new DeliveryEntryRequestModel();
-            deliveryEntryRequestModel.setDpicmeId(preferenceData.getPicmeId());                         //preferenceData.getPicmeId()
+//            deliveryEntryRequestModel.setDpicmeId(preferenceData.getPicmeId());                         //preferenceData.getPicmeId()
             deliveryEntryRequestModel.setMid(preferenceData.getMId());
 //            deliveryEntryRequestModel.setDid("2");
             deliveryEntryRequestModel.setDpicmeId(preferenceData.getPicmeId());
 //            deliveryEntryRequestModel.setMid(preferenceData.getMId());
-            deliveryEntryRequestModel.setDid(strDid);
+//            deliveryEntryRequestModel.setDid(strDid);
+
+            deliveryEntryRequestModel.setDid(preferenceData.getDid());
 //            deliveryEntryRequestModel.setMid(preferenceData.getMId());
 //            deliveryEntryRequestModel.setDid(preferenceData.getDid());
             deliveryEntryRequestModel.setDdatetime(strDeliveryDate);
@@ -396,9 +404,14 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
             JSONObject jsonObject = new JSONObject(response);
             String status = jsonObject.getString("status");
             String msg = jsonObject.getString("message");
-            strDid = jsonObject.getString("did");
-            preferenceData.storeDid(strDid);
-            strPicmeId = jsonObject.getString("dpicmeId");
+            if (status.equalsIgnoreCase("1")) {
+                strDid = jsonObject.getString("did");
+                Log.w(DeliveryDetailsActivityEntry.class.getSimpleName(), "getdeliveryNumberSuccess" + strDid);
+                preferenceData.storeDid(strDid);
+                strPicmeId = jsonObject.getString("dpicmeId");
+            }else{
+                Log.w(DeliveryDetailsActivityEntry.class.getSimpleName(), "getdeliveryNumberSuccess" + strDid);
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -406,13 +419,13 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
 
     @Override
     public void getdeliveryNumberFailiure(String response) {
-        Log.d(DeliveryDetailsActivityEntry.class.getSimpleName(), "Response Failiure-->" + response);
+        Log.d(DeliveryDetailsActivityEntry.class.getSimpleName(), "Response getdeliveryNumberFailiure-->" + response);
     }
 
     @Override
     public void deliveryDetailsSuccess(String response) {
         Log.d(DeliveryDetailsView.class.getSimpleName(), "Success Response" + response);
-        deliveryValues(response);
+//        deliveryValues(response);
     }
 
     @Override
