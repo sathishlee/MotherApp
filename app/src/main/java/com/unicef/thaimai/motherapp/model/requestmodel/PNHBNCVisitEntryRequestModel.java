@@ -31,6 +31,16 @@ public class PNHBNCVisitEntryRequestModel {
     private String pnCareProvidedDate;
     private String pnDueDate;
     private String pnVisitNo;
+
+    public String getPnVisitId() {
+        return pnVisitId;
+    }
+
+    public void setPnVisitId(String pnVisitId) {
+        this.pnVisitId = pnVisitId;
+    }
+
+    private String pnVisitId;
     private String picmeId;
     private String mid;
 

@@ -150,9 +150,12 @@ public class ReferralListFragment extends Fragment implements ReferalViews {
 
         try {
             JSONObject mJsnobject = new JSONObject(response);
-            JSONArray jsonArray = mJsnobject.getJSONArray("nearestHospitals");
-            for (int i = 0; i < jsonArray.length(); i++) {
-                mReferalListModel = new ReferalListResponseModel.NearestHospitals();
+            String status = mJsnobject.getString("status");
+            String message = mJsnobject.getString("message");
+            if (status.equalsIgnoreCase("1")) {
+                JSONArray jsonArray = mJsnobject.getJSONArray("nearestHospitals");
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    mReferalListModel = new ReferalListResponseModel.NearestHospitals();
 
 
                 /*holder.txt_referal_date.setText(mReferalListmodel.getRReferalDate());
@@ -162,20 +165,24 @@ public class ReferralListFragment extends Fragment implements ReferalViews {
         holder.txt_referred_to.setText(mReferalListmodel.getRFacilityReferredTo());
         holder.txt_diagnosis.setText(mReferalListmodel.getRDiagonosis());
         holder.txt_referred_why.setText(mReferalListmodel.getRReferalReason());*/
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                mReferalListModel.setRid(jsonObject.getString("rid"));
-                mReferalListModel.setRReferalDate(jsonObject.getString("rReferalDate"));
-                mReferalListModel.setRReferalTime(jsonObject.getString("rReferalTime"));
-                mReferalListModel.setRReferredBy(jsonObject.getString("rReferredBy"));
-                mReferalListModel.setRFacilityReferring(jsonObject.getString("rFacilityReferring"));
-                mReferalListModel.setRFacilityReferredTo(jsonObject.getString("rFacilityReferredTo"));
-                mReferalListModel.setRDiagonosis(jsonObject.getString("rDiagonosis"));
-                mReferalListModel.setRReferalReason(jsonObject.getString("rReferalReason"));
-                mReferalListModel.setRUpdateAdmitted(jsonObject.getString("rUpdateAdmitted"));
-                mReferalListModel.setReferalStatus(jsonObject.getString("referalStatus"));
-                mReferalList.add(mReferalListModel);
-                hAdapter.notifyDataSetChanged();
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    mReferalListModel.setRid(jsonObject.getString("rid"));
+                    mReferalListModel.setRReferalDate(jsonObject.getString("rReferalDate"));
+                    mReferalListModel.setRReferalTime(jsonObject.getString("rReferalTime"));
+                    mReferalListModel.setRReferredBy(jsonObject.getString("rReferredBy"));
+                    mReferalListModel.setRFacilityReferring(jsonObject.getString("rFacilityReferring"));
+                    mReferalListModel.setRFacilityReferredTo(jsonObject.getString("rFacilityReferredTo"));
+                    mReferalListModel.setRDiagonosis(jsonObject.getString("rDiagonosis"));
+                    mReferalListModel.setRReferalReason(jsonObject.getString("rReferalReason"));
+                    mReferalListModel.setRUpdateAdmitted(jsonObject.getString("rUpdateAdmitted"));
+                    mReferalListModel.setReferalStatus(jsonObject.getString("referalStatus"));
+                    mReferalList.add(mReferalListModel);
+                    hAdapter.notifyDataSetChanged();
+                }
+            }else{
+                Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
             }
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

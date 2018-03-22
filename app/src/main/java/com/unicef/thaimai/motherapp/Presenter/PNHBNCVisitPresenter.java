@@ -104,6 +104,7 @@ public class PNHBNCVisitPresenter implements PNHBNCVisitInteractor {
         params.put("mid",pnhbncVisitEntryRequestModel.getMid());
         params.put("picmeId",pnhbncVisitEntryRequestModel.getPicmeId());
         params.put("pnVisitNo",pnhbncVisitEntryRequestModel.getPnVisitNo());
+        params.put("pnVisitId",pnhbncVisitEntryRequestModel.getPnVisitId());
         params.put("pnDueDate",pnhbncVisitEntryRequestModel.getPnDueDate());
         params.put("pnCareProvidedDate",pnhbncVisitEntryRequestModel.getPnCareProvidedDate());
         params.put("pnPlace",pnhbncVisitEntryRequestModel.getPnPlace());
@@ -130,11 +131,15 @@ public class PNHBNCVisitPresenter implements PNHBNCVisitInteractor {
 
         Log.d(PNHBNCVisitPresenter.class.getSimpleName(), new JSONObject(params).toString());
 
+
+
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, new JSONObject(params), new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 pnhbncVisitViews.hideProgress();
                 pnhbncVisitViews.pnhbncVisitSuccess(String.valueOf(response));
+
+
             }
         },new Response.ErrorListener() {
             @Override

@@ -181,7 +181,7 @@ if (AppConstants.isMainActivityOpen) {
 
 //        builder.setTitle("Hi Tamil Selvi,");
 //        builder.setMessage("Have you take tablets regulerlly: ");
-        builder.setTitle("Hi"+preferenceData.getMotherName()+",");
+        builder.setTitle("Hi" +preferenceData.getMotherName()+ ",");
         builder.setMessage(msg);
 
 

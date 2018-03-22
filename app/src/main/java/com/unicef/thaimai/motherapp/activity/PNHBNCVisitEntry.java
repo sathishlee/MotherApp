@@ -18,13 +18,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.google.android.gms.vision.text.Text;
-import com.google.gson.JsonObject;
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.PNHBNCVisitPresenter;
 import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.model.requestmodel.PNHBNCVisitEntryRequestModel;
-import com.unicef.thaimai.motherapp.model.responsemodel.PnHbncVisitRecordsModel;
 import com.unicef.thaimai.motherapp.view.PNHBNCVisitViews;
 
 import org.json.JSONException;
@@ -302,6 +299,7 @@ public class PNHBNCVisitEntry extends AppCompatActivity implements View.OnClickL
             pnhbncVisitEntryRequestModel.setPicmeId(preferenceData.getPicmeId());
             pnhbncVisitEntryRequestModel.setMid(preferenceData.getMId());
             pnhbncVisitEntryRequestModel.setPnVisitNo(strVisitNo);
+//            pnhbncVisitEntryRequestModel.setPnVisitId(strVisitId);
             pnhbncVisitEntryRequestModel.setPnDueDate(strDueDate);
             pnhbncVisitEntryRequestModel.setPnCareProvidedDate(strCareDate);
             pnhbncVisitEntryRequestModel.setPnPlace(strFacility);

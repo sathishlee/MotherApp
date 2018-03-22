@@ -82,6 +82,7 @@ public class PreferenceData {
     }
 
 
+
     public void setMainScreenOpen(int count) {
         sharedPreferences.edit().putString(AppConstants.isMainActivityOpen_Count, String.valueOf(count)).commit();
     }

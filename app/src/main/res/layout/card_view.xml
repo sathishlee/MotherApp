@@ -86,9 +86,9 @@
                            android:id="@+id/txt_picme_id"
                            android:layout_width="match_parent"
                            android:layout_height="wrap_content"
-                           android:textAlignment="textStart"
                            android:padding="1dp"
                            android:text="123456789101"
+                           android:textAlignment="textStart"
                            android:textColor="#333333"
                            android:textSize="@dimen/text_secondary" />
                    </LinearLayout>

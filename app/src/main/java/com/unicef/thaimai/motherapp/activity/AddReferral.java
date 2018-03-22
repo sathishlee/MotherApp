@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -49,12 +50,12 @@ public class AddReferral extends AppCompatActivity implements View.OnClickListen
     String strUPDateOfReferral, strUPTimeOfReferral, strUPReceivedBy, strUPReferringFacility, strInLabour, strAdmitted;
     ProgressDialog pDialog;
     PreferenceData preferenceData;
-    ;
+
     ReferalPresenter referalPresenter;
     NearestReferalHospitalModel.NearestHospitals nearestReferalHospitalModel;
     ArrayList<NearestReferalHospitalModel.NearestHospitals> nearestReferalHospitalList;
 
-
+    ArrayList<String> arr_nearstReferalHospitalList;
 
     Calendar mCurrentDate;
     int day, month, year, hour, minute, sec;
@@ -128,9 +129,12 @@ public class AddReferral extends AppCompatActivity implements View.OnClickListen
         preferenceData = new PreferenceData(this);
 
         referalPresenter = new ReferalPresenter(AddReferral.this, this);
-        referalPresenter.getReffralNearestHospital(AppConstants.EXTRA_LATITUDE, AppConstants.EXTRA_LONGITUDE);
+        if (AppConstants.CREATE_NEW_REFRAL) {
+            referalPresenter.getReffralNearestHospital(AppConstants.EXTRA_LATITUDE, AppConstants.EXTRA_LONGITUDE);
+        }
         nearestReferalHospitalList = new ArrayList<>();
-
+        arr_nearstReferalHospitalList = new ArrayList<>();
+        arr_nearstReferalHospitalList.add("--Select--");
         mCurrentDate = Calendar.getInstance();
         day = mCurrentDate.get(Calendar.DAY_OF_MONTH);
         month = mCurrentDate.get(Calendar.MONTH);
@@ -158,6 +162,14 @@ public class AddReferral extends AppCompatActivity implements View.OnClickListen
         rgInLabour = (RadioGroup) findViewById(R.id.rg_labour);
         rgAdmitted = (RadioGroup) findViewById(R.id.rg_admitted);
         btnReferalSubmit = (Button) findViewById(R.id.btn_referal_submit);
+
+        sp_referring_facility_start.setAdapter(new ArrayAdapter<String>(AddReferral.this,
+                android.R.layout.simple_spinner_dropdown_item,
+                arr_nearstReferalHospitalList));
+
+        sp_facility_referred_to_start.setAdapter(new ArrayAdapter<String>(AddReferral.this,
+                android.R.layout.simple_spinner_dropdown_item,
+                arr_nearstReferalHospitalList));
     }
 
     private void showActionBar() {
@@ -227,7 +239,6 @@ public class AddReferral extends AppCompatActivity implements View.OnClickListen
             }
         }, year, month, day);
         datePickerDialog.show();
-
     }
 
     private void UpdateReferalOnServer() {
@@ -305,12 +316,22 @@ public class AddReferral extends AppCompatActivity implements View.OnClickListen
 
             case R.id.sp_referring_facility_start:
                 strReferringFacility = parent.getSelectedItem().toString();
-//                strReferringFacilityCode=f_phcId.get(position).toString();
-//                Log.d("RefergFaciyCode",position+"-->"+strReferringFacilityCode);
+if (parent.getSelectedItem().toString().equalsIgnoreCase("--Select--")) {
+}else{
+    strReferringFacilityCode = nearestReferalHospitalList.get(position).getPhcId();
+    Log.e("ReferringFacToCode-->",position+""+strReferringFacilityCode);
+
+    //                Log.d("RefergFaciyCode",position+"-->"+strReferringFacilityCode);
+}
                 break;
             case R.id.sp_facility_referred_to_start:
                 strFacilityReferredTo = parent.getSelectedItem().toString();
-//                strFacilityReferredToCode=f_phcId.get(position).toString();
+                if (parent.getSelectedItem().toString().equalsIgnoreCase("--Select--")) {
+
+                }else{
+                    strFacilityReferredToCode=nearestReferalHospitalList.get(position).getPhcId();
+                    Log.e("FacilityRefToCode-->",position+""+strFacilityReferredToCode);
+                }
 //                Log.d("RefergFaciyToCode",position+"-->"+strFacilityReferredToCode);
 
 
@@ -378,7 +399,7 @@ public class AddReferral extends AppCompatActivity implements View.OnClickListen
             JSONObject jsonObject = new JSONObject(response);
             String status = jsonObject.getString("status");
             if (status.equalsIgnoreCase("1")) {
-                JSONArray jsonArray = new JSONArray("nearestHospitals");
+                JSONArray jsonArray = jsonObject.getJSONArray("nearestHospitals");
                 Log.e("nearestHospitals arr", jsonArray.length() + "");
 
                 for (int i = 0; i < jsonArray.length(); i++) {
@@ -387,7 +408,9 @@ public class AddReferral extends AppCompatActivity implements View.OnClickListen
                     nearestReferalHospitalModel.setDistance(jsonObject1.getString("phcId"));
                     nearestReferalHospitalModel.setPhcCode(jsonObject1.getString("phcCode"));
                     nearestReferalHospitalModel.setPhcId(jsonObject1.getString("distance"));
+                    arr_nearstReferalHospitalList.add(jsonObject1.getString("phcCode")+"-"+jsonObject1.getString("distance"));
                     nearestReferalHospitalList.add(nearestReferalHospitalModel);
+
                 }
 
 //                sp_referring_facility_start.setAdapter((SpinnerAdapter) nearestReferalHospitalList);

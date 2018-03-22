@@ -149,10 +149,10 @@ public class LocationMonitoringService extends Service implements
 
 
         if (location != null) {
-            Log.d(TAG, "== location != null");
-            Log.d(TAG, "== location != null");
-            Log.d(TAG, "Latitude"+String.valueOf(location.getLatitude()));
-            Log.d(TAG, "Longitude"+String.valueOf(location.getLongitude()));
+//            Log.d(TAG, "== location != null");
+//            Log.d(TAG, "== location != null");
+//            Log.d(TAG, "Latitude"+String.valueOf(location.getLatitude()));
+//            Log.d(TAG, "Longitude"+String.valueOf(location.getLongitude()));
 
             //Send result to activities
             sendMessageToUI(String.valueOf(location.getLatitude()), String.valueOf(location.getLongitude()));
@@ -162,7 +162,7 @@ public class LocationMonitoringService extends Service implements
 
     private void sendMessageToUI(String lat, String lng) {
 
-        Log.d(TAG, "Sending info...");
+//        Log.d(TAG, "Sending info...");
 
         Intent intent = new Intent(ACTION_LOCATION_BROADCAST);
         intent.putExtra(EXTRA_LATITUDE, lat);
