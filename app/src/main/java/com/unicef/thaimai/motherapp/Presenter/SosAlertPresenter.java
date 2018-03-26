@@ -62,7 +62,7 @@ public class SosAlertPresenter implements SosAlertInteractor {
             protected Map<String, String> getParams() {
                 // Posting parameters to login url
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("picmeId", "1000000000015");
+                params.put("picmeId", pickmeid);
                 params.put("phcId", phcid);
                 params.put("mid", mid);
                 params.put("awwId", awwid);

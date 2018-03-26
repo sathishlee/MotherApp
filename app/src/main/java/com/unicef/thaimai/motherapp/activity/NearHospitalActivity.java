@@ -2,12 +2,16 @@ package com.unicef.thaimai.motherapp.activity;
 
 import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,6 +28,7 @@ import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.adapter.NearByHospitalAdapter;
 import com.unicef.thaimai.motherapp.constant.AppConstants;
 import com.unicef.thaimai.motherapp.model.responsemodel.NearHospitalResponseModel;
+import com.unicef.thaimai.motherapp.utility.LocationMonitoringService;
 import com.unicef.thaimai.motherapp.view.LocationUpdateViews;
 
 import org.json.JSONArray;
@@ -45,18 +50,33 @@ public class NearHospitalActivity extends AppCompatActivity implements LocationU
     private NearByHospitalAdapter mAdapter;
     boolean isDataUpdate=true;
 
+    String latitude,longitude;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_near_hospital);
         showActionBar();
+        /*LocalBroadcastManager.getInstance(this).registerReceiver(
+                new BroadcastReceiver() {
+                    @Override
+                    public void onReceive(Context context, Intent intent) {
+                         latitude = intent.getStringExtra(AppConstants.EXTRA_LATITUDE);
+                         longitude = intent.getStringExtra(AppConstants.EXTRA_LONGITUDE);
+                        if (latitude != null && longitude != null) {
+Log.e("My LAtLong",latitude+longitude);
+                        }
+                    }
+                }, new IntentFilter(LocationMonitoringService.ACTION_LOCATION_BROADCAST)
+        );*/
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
         pDialog.setMessage("Please Wait ...");
 
         locationUpdatePresenter =new LocationUpdatePresenter(NearHospitalActivity.this,this);
 if (isDataUpdate) {
-    locationUpdatePresenter.getNearByHospitalFromServer(AppConstants.EXTRA_LATITUDE, AppConstants.EXTRA_LONGITUDE);
+    locationUpdatePresenter.getNearByHospitalFromServer(AppConstants.NEAR_LATITUDE, AppConstants.NEAR_LONGITUDE);
+
+
 }else{
 
 }

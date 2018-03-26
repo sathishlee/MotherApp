@@ -20,4 +20,8 @@ public interface ReferalViews {
     void successReferalList(String response);
 
     void errorReferalList(String response);
+
+    void successReferalClosed(String response);
+
+    void errorReferalClosed(String response);
 }

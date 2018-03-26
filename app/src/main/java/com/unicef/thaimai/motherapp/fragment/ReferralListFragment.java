@@ -16,14 +16,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.unicef.thaimai.motherapp.Interface.RefrealAutoComplete;
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.ReferalPresenter;
 import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.activity.AddReferral;
-import com.unicef.thaimai.motherapp.adapter.HealthRecordsAdapter;
 import com.unicef.thaimai.motherapp.adapter.ReferalListAdapter;
 import com.unicef.thaimai.motherapp.constant.AppConstants;
-import com.unicef.thaimai.motherapp.model.responsemodel.HealthRecordResponseModel;
 import com.unicef.thaimai.motherapp.model.responsemodel.ReferalListResponseModel;
 import com.unicef.thaimai.motherapp.view.ReferalViews;
 
@@ -36,7 +35,7 @@ import java.util.ArrayList;
 import static android.content.Context.MODE_PRIVATE;
 
 
-public class ReferralListFragment extends Fragment implements ReferalViews {
+public class ReferralListFragment extends Fragment implements ReferalViews, RefrealAutoComplete {
 
     FloatingActionButton fabAddNewReferal;
     RecyclerView rec_referral_list;
@@ -50,7 +49,7 @@ public class ReferralListFragment extends Fragment implements ReferalViews {
     ArrayList<ReferalListResponseModel.NearestHospitals> mReferalList;
     ReferalListAdapter hAdapter;
 
-
+String ref_status;
     public static ReferralListFragment newInstance() {
         ReferralListFragment fragment = new ReferralListFragment();
         return fragment;
@@ -89,7 +88,7 @@ public class ReferralListFragment extends Fragment implements ReferalViews {
         referalPresenter.getReffralNeList(preferenceData.getMId(), preferenceData.getPhcId(), preferenceData.getVhnId(), preferenceData.getPicmeId());
         fabAddNewReferal = (FloatingActionButton) view.findViewById(R.id.fab_add_new_referal);
         rec_referral_list = (RecyclerView) view.findViewById(R.id.rec_referral_list);
-        hAdapter = new ReferalListAdapter(getActivity(), mReferalList);
+        hAdapter = new ReferalListAdapter(getActivity(), mReferalList,this);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         rec_referral_list.setLayoutManager(mLayoutManager);
         rec_referral_list.setItemAnimator(new DefaultItemAnimator());
@@ -103,10 +102,7 @@ public class ReferralListFragment extends Fragment implements ReferalViews {
                     Intent i = new Intent(getActivity(), AddReferral.class);
                     AppConstants.CREATE_NEW_REFRAL = true;
                     startActivity(i);
-
 //                    Toast.makeText(getActivity(),"Already Referal InProgress, you can't make new Referal",Toast.LENGTH_SHORT).show();
-
-
             }
         });
 
@@ -190,6 +186,48 @@ public class ReferralListFragment extends Fragment implements ReferalViews {
 
     @Override
     public void errorReferalList(String response) {
+        Toast.makeText(getActivity(),response,Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void successReferalClosed(String response) {
+        try {
+            JSONObject mJsnobject = new JSONObject(response);
+            String status = mJsnobject.getString("status");
+            String message = mJsnobject.getString("message");
+            if (status.equalsIgnoreCase("1")) {
+                if (!message.equalsIgnoreCase("Referral Already Closed..!")){
+                    startActivity(new Intent(getActivity(), AddReferral.class));
+                }
+
+            }else
+            {
+                Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+//        status
+    }
+
+    @Override
+    public void errorReferalClosed(String response) {
+        Toast.makeText(getActivity(),response,Toast.LENGTH_SHORT).show();
+
+    }
+
+
+    @Override
+    public void isRefrealAutoComplete(String referalId, String refStatus) {
+        ref_status = refStatus;
+        if(ref_status.equalsIgnoreCase("Created")) {
+            startActivity(new Intent(getActivity(), AddReferral.class));
+
+        }else{
+            referalPresenter.checkReferalClosed(referalId);
+        }
 
     }
 }

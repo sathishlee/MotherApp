@@ -30,13 +30,14 @@ public class LoginPresenter implements LoginInteractor {
     }
 
     @Override
-    public void checkPickmeId(final String strPicmeId, final String strDob) {
+    public void checkPickmeId(final String strPicmeId, final String strDob, final String strdeviceId) {
         view.showProgress();
         String url = Apiconstants.BASE_URL + Apiconstants.LOG_IN_CHECK_PIKME;
 
         Log.d("Log in check Url--->",url);
         Log.d("PicmeId--->",strPicmeId);
         Log.d("Dob--->",strDob);
+        Log.d("Device Id--->", strdeviceId);
 
         StringRequest strReq = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -63,6 +64,7 @@ public class LoginPresenter implements LoginInteractor {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("picmeId",strPicmeId);
                 params.put("DOB",strDob);
+                params.put("deviceId",strdeviceId);
 
                 Log.d("params--->",params.toString());
 

@@ -31,6 +31,9 @@ public class AppConstants {
     public static final String EXTRA_LATITUDE = "13.0011794";
     public static final String EXTRA_LONGITUDE = "80.2824802";
 
+    public static String NEAR_LATITUDE = "";
+    public static String NEAR_LONGITUDE = "";
+
     public static final int REQUEST_LOCATION=001;
 
 
@@ -47,7 +50,7 @@ public class AppConstants {
     public static final String DELIVERY_ID = "did";
 
 
-    public static final String DEVICE_ID = "token";
+    public static final String DEVICE_ID = "deviceId";
 
     public static final String IMMUNIZATION_ID = "immId";
 

@@ -209,6 +209,8 @@
                 addRecordRequestModel.setPicmeId(preferenceData.getPicmeId());
                 addRecordRequestModel.setVtypeOfVisit(strTypeOfVisit);
                 addRecordRequestModel.setVFacility(strFacility);
+                addRecordRequestModel.setvFacilityOthers(strFacility_other);
+                addRecordRequestModel.setvAnyComplaintsOthers(strany_complaints_other);
                 addRecordRequestModel.setVAnyComplaints(strAnyComplaints);
                 addRecordRequestModel.setVClinicalBPSystolic(strbp_sys);
                 addRecordRequestModel.setVClinicalBPDiastolic(strbp_dis);

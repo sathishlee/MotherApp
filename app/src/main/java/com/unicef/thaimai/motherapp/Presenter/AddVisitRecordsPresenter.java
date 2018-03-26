@@ -106,6 +106,11 @@ public class AddVisitRecordsPresenter implements AddRecordsInteractor {
         params.put("mid", addRecordRequestModel.getMid());
         params.put("picmeId", addRecordRequestModel.getPicmeId());
         params.put("vtypeOfVisit", addRecordRequestModel.getVtypeOfVisit());
+        params.put("vFacility", addRecordRequestModel.getVFacility());
+        params.put("vAnyComplaints", addRecordRequestModel.getVAnyComplaints());
+        params.put("vFacilityOthers", addRecordRequestModel.getVFacility());
+        params.put("vAnyComplaintsOthers", addRecordRequestModel.getVAnyComplaints());
+
         params.put("vClinicalBPSystolic", addRecordRequestModel.getVClinicalBPSystolic());
         params.put("vClinicalBPDiastolic", addRecordRequestModel.getVClinicalBPDiastolic());
         params.put("vEnterPulseRate", addRecordRequestModel.getVEnterPulseRate());

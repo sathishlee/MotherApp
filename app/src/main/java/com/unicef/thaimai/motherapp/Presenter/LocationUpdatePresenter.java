@@ -45,6 +45,7 @@ public class LocationUpdatePresenter implements LocationUpdateIntractor {
         Log.d("mid--->",mid);
         Log.d("latitude--->",latitude);
         Log.d("longitude--->",longitude);
+//        Log.d("Address--->",strAddress);
 
         StringRequest strReq = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -110,7 +111,7 @@ public class LocationUpdatePresenter implements LocationUpdateIntractor {
     public void getNearByHospitalFromServer(final String latitude, final String longitude) {
         view.showProgress();
         String url = Apiconstants.BASE_URL + Apiconstants.NEAR_BY_HOSPITAL;
-        Log.d(LocationUpdatePresenter.class.getSimpleName(),"Near by Hospital url"+url);
+        Log.d(LocationUpdatePresenter.class.getSimpleName(),"URL--> "+url);
         Log.d("latitude--->",latitude);
         Log.d("longitude--->",longitude);
 

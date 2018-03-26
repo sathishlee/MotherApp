@@ -8,9 +8,14 @@ import android.util.Log;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
+import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 
 public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
+
+    PreferenceData preferenceData;
     public MyFirebaseInstanceIDService() {
+
+
     }
 
     private Activity activity;
@@ -36,8 +41,10 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
         storeToken(refreshedToken);
     }
     private void storeToken(String token) {
+
+        preferenceData = new PreferenceData(this);
         //saving the token on shared preferences
-        SharedPrefManager.getInstance(getApplicationContext()).saveDeviceToken(token);
+        preferenceData.setDeviceId(token);
     }
 
     // [END refresh_token]

@@ -6,7 +6,7 @@ package com.unicef.thaimai.motherapp.constant;
 public class Apiconstants {
 
 //    public static final String BASE_URL = "http://192.168.100.19/thaimaiapp/api/";
-    public static final String BASE_URL = "http://192.168.100.235/thaimaiapp/api/";
+    public static final String BASE_URL = "http://192.168.100.27/thaimaiapp/api/";
 //    public static final String BASE_URL = "http://demo.satvatinfosol.com/thaimai/api/";
 
 //    public static final String LOG_IN_CHECK_PICME = "login/";                  //100000000013
@@ -39,9 +39,12 @@ public class Apiconstants {
 
     public static final String NEAR_BY_HOSPITAL = "mother/findNearbyLocation";
 
-    public static final String PN_HBNC_VISIT_INSERT = "mother/mPN_Record_Insert";
+    public static final String PN_HBNC_VISIT_INSERT = "mother/mPN_Record_Insert";     //pnVisitID
 
     public static final String PN_HBNC_VISITNUMBER = "mother/mPN_RecordVisitNumber";
+
+//    http://192.168.100.235/thaimaiapp/api/mother/mPN_RecordVisitExist
+    public static final String PN_HBNC_VISIT_EXIST = "mother/mPN_RecordVisitExist";
 
     //    http://192.168.100.235/thaimaiapp/api/Referal/mReferalAdd
     public static final String POST_ADD_REFERAL = "Referal/mReferalAdd";
@@ -62,6 +65,11 @@ public class Apiconstants {
 
     public static final String IMMUNIZATION_LIST = "mother/mImmunizationList";
 
+
+
+//    http://192.168.100.235/thaimaiapp/api/Referal/mReferalClosed
+
+    public static final String POST_REFERAL_CLOSED = "Referal/mReferalClosed";
 
 
 

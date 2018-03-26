@@ -36,6 +36,8 @@ public interface ReferalInteractor {
                           String vhnId,
                           String picmeId);
 
+    void checkReferalClosed(String rid);
+
 }
 
 

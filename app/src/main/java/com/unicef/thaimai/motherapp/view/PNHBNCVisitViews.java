@@ -13,6 +13,7 @@ public interface PNHBNCVisitViews {
 
         void getpnhbncVisitNumberSuccess(String response);
         void getpnhbncVisitNumberFailiure(String response);
-
+void checkpnhbncVisitIdSuccess(String response);
+void checkpnhbncVisitIdFailiure(String response);
 
 }

@@ -167,6 +167,71 @@ public class ReferalPresenter implements ReferalInteractor {
     }
 
     @Override
+    public void checkReferalClosed(final String rid) {
+        view.showProgress();
+
+        final String url = Apiconstants.BASE_URL + Apiconstants.POST_REFERAL_CLOSED;
+
+        Log.d("Log in check Url--->", url);
+        Log.d("rid", rid);
+
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                view.hideProgress();
+                view.successReferalClosed(response);
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                view.hideProgress();
+                view.errorReferalClosed(error.toString());
+
+
+            }
+        }) {
+
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                String credentials = "admin" + ":" + "1234";
+                String base64EncodedCredentials = Base64.encodeToString(credentials.getBytes(), Base64.DEFAULT);
+                HashMap<String, String> header = new HashMap<>();
+                //                header.put("Content-Type", "application/x-www-from-urlencoded; charset=utf-8");
+                header.put("Authorization", "Basic " + base64EncodedCredentials);
+                Log.d("Credentials ", "Basic " + base64EncodedCredentials.toString());
+
+                return header;
+            }
+
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting parameters to login url
+                Map<String, String> params = new HashMap<String, String>();
+
+                params.put("rid", rid);
+
+
+
+                Log.d("params--->", "Reffral List " + params.toString());
+
+                return params;
+            }
+
+            //            public String getBodyContentType() {
+            //                return "application/x-www-from-urlencoded; charset=utf-8";
+            //            }
+
+            public int getMethod() {
+                return Method.POST;
+            }
+        };
+        VolleySingleton.getInstance(activity).addToRequestQueue(stringRequest);
+    }
+
+    @Override
     public void addNewReferal(final String picmeId, final String mid, final String vhnId, final String phcId, final String rReferalDate, final String rReferalTime,
                               final String rFacilityReferring, final String rFacilityReferredTo, final String rDiagonosis, final String rReferalReason, final String rReferredBy, final String rFacilityReferredCode, final String rFacilityReferredToCode) {
         view.showProgress();

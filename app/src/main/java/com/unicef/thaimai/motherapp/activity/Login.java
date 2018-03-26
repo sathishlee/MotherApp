@@ -127,6 +127,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
     private void getValue() {
         strPicme = edtPicme.getText().toString();
         strDob = edtDob.getText().toString();
+        preferenceData.getDeviceId();
 
         if (strPicme.equalsIgnoreCase("")) {
             iplPicmeId.setError("Pickme ID is Empty");
@@ -140,7 +141,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
         if (strPicme.length() > 13) {
             iplPicmeId.setError("Enter Correct Picme ID");
         } else {
-            loginPresenter.checkPickmeId(strPicme, strDob);
+            loginPresenter.checkPickmeId(strPicme, strDob, preferenceData.getDeviceId());
 
         }
     }

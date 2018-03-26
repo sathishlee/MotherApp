@@ -48,7 +48,7 @@ public class PNHBNCVisitEntry extends AppCompatActivity implements View.OnClickL
             strMotherEpistomy, strPVDischarge, strMotherBreastFeeding, strMotherReason, strBreastExamination,
             strMotherOutcome, strVisitNo;
 
-    public static String strVisitId, strPicmeId;
+    public static String strVisitId="0", strPicmeId;
 
     ProgressDialog progressDialog;
 
@@ -68,7 +68,6 @@ public class PNHBNCVisitEntry extends AppCompatActivity implements View.OnClickL
         initUI();
         onClickListner();
         OnItemSelectedListener();
-
     }
 
     public void showActionBar(){
@@ -299,7 +298,7 @@ public class PNHBNCVisitEntry extends AppCompatActivity implements View.OnClickL
             pnhbncVisitEntryRequestModel.setPicmeId(preferenceData.getPicmeId());
             pnhbncVisitEntryRequestModel.setMid(preferenceData.getMId());
             pnhbncVisitEntryRequestModel.setPnVisitNo(strVisitNo);
-//            pnhbncVisitEntryRequestModel.setPnVisitId(strVisitId);
+            pnhbncVisitEntryRequestModel.setPnVisitId(strVisitId);
             pnhbncVisitEntryRequestModel.setPnDueDate(strDueDate);
             pnhbncVisitEntryRequestModel.setPnCareProvidedDate(strCareDate);
             pnhbncVisitEntryRequestModel.setPnPlace(strFacility);
@@ -349,7 +348,13 @@ public class PNHBNCVisitEntry extends AppCompatActivity implements View.OnClickL
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         switch(parent.getId()){
             case R.id.sp_visit_no:
+
                 strVisitNo = parent.getSelectedItem().toString();
+                strVisitId= String.valueOf(position);
+
+                pnhbncVisitPresenter.checkPNHBNCVisitId(preferenceData.getPicmeId(),preferenceData.getMId(),strVisitId);
+
+
                 break;
             case R.id.sp_facility:
                 strFacility = parent.getSelectedItem().toString();
@@ -425,9 +430,13 @@ public class PNHBNCVisitEntry extends AppCompatActivity implements View.OnClickL
             if (status.equalsIgnoreCase("1")){
                 Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(getApplicationContext(),MainActivity.class));
+
+                Log.e(PNHBNCVisitEntry.class.getSimpleName(),"Response Success--->"+response);
             }
         } catch (JSONException e) {
             e.printStackTrace();
+
+
         }
     }
 
@@ -444,7 +453,7 @@ public class PNHBNCVisitEntry extends AppCompatActivity implements View.OnClickL
             JSONObject jsonObject = new JSONObject(response);
             String status =jsonObject.getString("status");
             String msg = jsonObject.getString("message");
-            strVisitId = jsonObject.getString("pnVisitNo");
+//            strVisitId = jsonObject.getString("pnVisitNo");
             strPicmeId = jsonObject.getString("picmeId");
         }
         catch(JSONException e){
@@ -457,6 +466,32 @@ public class PNHBNCVisitEntry extends AppCompatActivity implements View.OnClickL
     public void getpnhbncVisitNumberFailiure(String response) {
         Log.d(PNHBNCVisitEntry.class.getSimpleName(),"Response Failiure-->" + response);
 
+    }
+
+    @Override
+    public void checkpnhbncVisitIdSuccess(String response) {
+//        strVisitId = strVisitNo;
+
+        Toast.makeText(getApplicationContext(),response,Toast.LENGTH_SHORT).show();
+        try{
+            JSONObject jsonObject = new JSONObject(response);
+            String status =jsonObject.getString("status");
+            String msg = jsonObject.getString("message");
+
+            if (status.equalsIgnoreCase("1")){
+                Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
+            }
+        }
+        catch(JSONException e){
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void checkpnhbncVisitIdFailiure(String response) {
+        Toast.makeText(getApplicationContext(),response,Toast.LENGTH_SHORT).show();
     }
 }
 

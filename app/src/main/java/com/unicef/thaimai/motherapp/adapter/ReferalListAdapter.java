@@ -1,6 +1,7 @@
 package com.unicef.thaimai.motherapp.adapter;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -14,6 +15,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.unicef.thaimai.motherapp.Interface.RefrealAutoComplete;
+import com.unicef.thaimai.motherapp.Presenter.ReferalPresenter;
 import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.activity.AddReferral;
 import com.unicef.thaimai.motherapp.constant.AppConstants;
@@ -29,10 +32,14 @@ public class ReferalListAdapter extends  RecyclerView.Adapter<ReferalListAdapter
     ArrayList<ReferalListResponseModel.NearestHospitals> mReferalLis;
     ReferalListResponseModel.NearestHospitals      mReferalListmodel;
     Context mcontext;
+    RefrealAutoComplete refrealAutoComplete;
 
-    public ReferalListAdapter(Context mcontext,ArrayList<ReferalListResponseModel.NearestHospitals> mReferalLis) {
+
+
+    public ReferalListAdapter(Context mcontext,ArrayList<ReferalListResponseModel.NearestHospitals> mReferalLis,RefrealAutoComplete refrealAutoComplete) {
         this.mReferalLis = mReferalLis;
         this.mcontext = mcontext;
+        this.refrealAutoComplete = refrealAutoComplete;
     }
 
 
@@ -48,10 +55,13 @@ public class ReferalListAdapter extends  RecyclerView.Adapter<ReferalListAdapter
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         mReferalListmodel = mReferalLis.get(position);
-       if (mReferalListmodel.getReferalStatus().equalsIgnoreCase("InProgress") ){
+       if (mReferalListmodel.getReferalStatus().equalsIgnoreCase("Created") ){
 
            holder.ll_referal_card.setBackgroundColor(Color.RED);
-       }  if (mReferalListmodel.getReferalStatus().equalsIgnoreCase("InProgress")&& mReferalListmodel.getRUpdateAdmitted().equalsIgnoreCase("Yes") ){
+       }  /*if (mReferalListmodel.getReferalStatus().equalsIgnoreCase("InProgress") ){
+
+           holder.ll_referal_card.setBackgroundColor(Color.RED);
+       } */ if (mReferalListmodel.getReferalStatus().equalsIgnoreCase("InProgress")&& mReferalListmodel.getRUpdateAdmitted().equalsIgnoreCase("Yes") ){
 
             holder.ll_referal_card.setBackgroundColor(mcontext.getResources().getColor(R.color.card_blue));
 
@@ -87,12 +97,29 @@ public class ReferalListAdapter extends  RecyclerView.Adapter<ReferalListAdapter
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mReferalLis.get(position).getReferalStatus().equalsIgnoreCase("InProgress")) {
+                if (mReferalLis.get(position).getReferalStatus().equalsIgnoreCase("Created")){
                     AppConstants.CREATE_NEW_REFRAL = false;
                     AppConstants.REFERAL_ID = mReferalLis.get(position).getRid();
-                    mcontext.startActivity(new Intent(mcontext.getApplicationContext(), AddReferral.class));
+                    mcontext.startActivity(new Intent(mcontext, AddReferral.class));
 
-                }else{
+
+                }
+                else if (mReferalLis.get(position).getReferalStatus().equalsIgnoreCase("InProgress")) {
+
+//                    AppConstants.CREATE_NEW_REFRAL = false;
+//                    AppConstants.REFERAL_ID = mReferalLis.get(position).getRid();
+//                    refrealAutoComplete.isRefrealAutoComplete( AppConstants.REFERAL_ID,"InProgress" );
+
+                    AppConstants.CREATE_NEW_REFRAL = false;
+                    AppConstants.REFERAL_ID = mReferalLis.get(position).getRid();
+                    mcontext.startActivity(new Intent(mcontext, AddReferral.class));
+
+
+                }/*else if (mReferalListmodel.getReferalStatus().equalsIgnoreCase("Created")){
+                    AppConstants.CREATE_NEW_REFRAL = false;
+                    AppConstants.REFERAL_ID = mReferalLis.get(position).getRid();
+                    refrealAutoComplete.isRefrealAutoComplete( AppConstants.REFERAL_ID ,"Created");
+                }*/else{
                     Toast.makeText(mcontext.getApplicationContext(),"Referal Completed",Toast.LENGTH_SHORT).show();
                 }
 

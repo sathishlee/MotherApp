@@ -25,6 +25,7 @@ public class PreferenceData {
         sharedPreferences.edit().putBoolean(AppConstants.IS_LOGIN, isLogin).commit();
     }
 
+
     public boolean getLogin() {
         return  sharedPreferences.getBoolean(AppConstants.IS_LOGIN, Boolean.parseBoolean(""));
     }
@@ -77,8 +78,12 @@ public class PreferenceData {
         return sharedPreferences.getString(AppConstants.DELIVERY_ID, "");
     }
 
+    public void setDeviceId(String deviceId) {
+        sharedPreferences.edit().putString(AppConstants.DEVICE_ID, deviceId).commit();
+    }
+
     public String getDeviceId(){
-        return sharedPreferences.getString(AppConstants.DEVICE_ID,"c600nN1dj9c:APA91bGo0a8W1Jp5WBDVSRh1HbwikPDaqN1-PK3-fYEV-slu59qztEdepxTyFdlZvweLEoqZ0XZw8mReyrwxdeOuGUVcBvgrL_ca05cU7PKH4yAFZVL9TpEAeW_lo80ISEhKQ-ru8ztR");
+        return sharedPreferences.getString(AppConstants.DEVICE_ID,"");
     }
 
 

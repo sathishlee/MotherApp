@@ -55,8 +55,7 @@
             android:textSize="14.0sp"
             android:digits="0123456789"
             android:hint="@string/picmeid"
-            android:text="1000000000003"
-            android:focusable="false"/>
+            android:text="1000000000003"/>
 
         </android.support.design.widget.TextInputLayout>
 

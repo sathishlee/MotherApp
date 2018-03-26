@@ -105,7 +105,6 @@ public class health_records extends Fragment implements GetVisitHelthRecordsView
     private void setupViewPager(ViewPager viewPager) {
         hAdapter =new HealthRecordsAdapter(getActivity(),mhealthRecordList,this);
         viewPager.setOffscreenPageLimit(mhealthRecordList.size());
-
         viewPager.setAdapter(hAdapter);
     }
 

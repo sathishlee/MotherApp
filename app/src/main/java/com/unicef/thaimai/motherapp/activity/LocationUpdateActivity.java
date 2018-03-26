@@ -97,13 +97,22 @@ if(!preferenceData.getLogin()) {
                         public void onReceive(Context context, Intent intent) {
                             String latitude = intent.getStringExtra(AppConstants.EXTRA_LATITUDE);
                             String longitude = intent.getStringExtra(AppConstants.EXTRA_LONGITUDE);
+                            AppConstants.NEAR_LATITUDE=latitude;
+                                    AppConstants.NEAR_LONGITUDE=longitude;
                             String mylocaton = latitude + "\t" + longitude;
                             if (latitude != null && longitude != null) {
 //                            serverUpload.sendlocationtServer(mylocaton,latitude,longitude,LocationUpdateActivity.this);
                                 strAddress = getCompleteAddressString(latitude, longitude);
 //if (preferenceData.getPicmeId().equalsIgnoreCase("") && preferenceData.getVhnId().equalsIgnoreCase("")&& preferenceData.getMId().equalsIgnoreCase(""))
 
-
+//if(strAddress.equalsIgnoreCase("")){
+//    strAddress="chennai";
+//    locationUpdatePresenter.uploadLocationToServer(preferenceData.getPicmeId(), preferenceData.getVhnId(), preferenceData.getMId(), latitude, longitude, strAddress);
+//
+//}else{
+//    locationUpdatePresenter.uploadLocationToServer(preferenceData.getPicmeId(), preferenceData.getVhnId(), preferenceData.getMId(), latitude, longitude, strAddress);
+//
+//}
                                 locationUpdatePresenter.uploadLocationToServer(preferenceData.getPicmeId(), preferenceData.getVhnId(), preferenceData.getMId(), latitude, longitude, strAddress);
 
                             }
@@ -128,9 +137,13 @@ if(!preferenceData.getLogin()) {
                 if (preferenceData.getLogin()) {
                     Log.d("LOG LOGIN",preferenceData.getPicmeId()+","+preferenceData.getVhnId() +","+ preferenceData.getMId() );
 //                    AppConstants.POP_UP_COUNT= Integer.parseInt(preferenceData.getMainScreenOpen());
+                    preferenceData.setMainScreenOpen(0);
+
                     Intent i = new Intent(LocationUpdateActivity.this, MainActivity.class);
                     startActivity(i);
                 }else{
+                    preferenceData.setMainScreenOpen(0);
+
                     Intent i = new Intent(LocationUpdateActivity.this, Login.class);
                     startActivity(i);
                 }

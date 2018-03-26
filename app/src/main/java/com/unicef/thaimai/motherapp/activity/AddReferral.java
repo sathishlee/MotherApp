@@ -3,8 +3,10 @@ package com.unicef.thaimai.motherapp.activity;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
-import android.support.v7.app.ActionBar;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,14 +22,12 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.ReferalPresenter;
 import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.constant.AppConstants;
 import com.unicef.thaimai.motherapp.model.responsemodel.NearestReferalHospitalModel;
-import com.unicef.thaimai.motherapp.model.responsemodel.ReferalListResponseModel;
 import com.unicef.thaimai.motherapp.view.ReferalViews;
 
 import org.json.JSONArray;
@@ -56,6 +56,9 @@ public class AddReferral extends AppCompatActivity implements View.OnClickListen
     ArrayList<NearestReferalHospitalModel.NearestHospitals> nearestReferalHospitalList;
 
     ArrayList<String> arr_nearstReferalHospitalList;
+    ArrayList<String> arr_nearstReferalHospitalList_name_distance;
+    ArrayList<String> arr_nearstReferalHospitalList_hospital_name;
+    ArrayList<String> arr_nearstReferalHospitalList_hospital_id;
 
     Calendar mCurrentDate;
     int day, month, year, hour, minute, sec;
@@ -129,12 +132,20 @@ public class AddReferral extends AppCompatActivity implements View.OnClickListen
         preferenceData = new PreferenceData(this);
 
         referalPresenter = new ReferalPresenter(AddReferral.this, this);
-        if (AppConstants.CREATE_NEW_REFRAL) {
+//        if (AppConstants.CREATE_NEW_REFRAL) {
+
             referalPresenter.getReffralNearestHospital(AppConstants.EXTRA_LATITUDE, AppConstants.EXTRA_LONGITUDE);
-        }
+//        }
         nearestReferalHospitalList = new ArrayList<>();
         arr_nearstReferalHospitalList = new ArrayList<>();
+        arr_nearstReferalHospitalList_name_distance = new ArrayList<>();
+        arr_nearstReferalHospitalList_hospital_name = new ArrayList<>();
+        arr_nearstReferalHospitalList_hospital_id = new ArrayList<>();
+
+        arr_nearstReferalHospitalList_name_distance.add("--Select--");
         arr_nearstReferalHospitalList.add("--Select--");
+        arr_nearstReferalHospitalList_hospital_name.add("--Select--");
+        arr_nearstReferalHospitalList_hospital_id.add("--Select--");
         mCurrentDate = Calendar.getInstance();
         day = mCurrentDate.get(Calendar.DAY_OF_MONTH);
         month = mCurrentDate.get(Calendar.MONTH);
@@ -165,11 +176,11 @@ public class AddReferral extends AppCompatActivity implements View.OnClickListen
 
         sp_referring_facility_start.setAdapter(new ArrayAdapter<String>(AddReferral.this,
                 android.R.layout.simple_spinner_dropdown_item,
-                arr_nearstReferalHospitalList));
+                arr_nearstReferalHospitalList_hospital_name));
 
         sp_facility_referred_to_start.setAdapter(new ArrayAdapter<String>(AddReferral.this,
                 android.R.layout.simple_spinner_dropdown_item,
-                arr_nearstReferalHospitalList));
+                arr_nearstReferalHospitalList_name_distance));
     }
 
     private void showActionBar() {
@@ -296,9 +307,40 @@ public class AddReferral extends AppCompatActivity implements View.OnClickListen
     }
 
     private void showAlert(String msg) {
-        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
 
+            final AlertDialog.Builder builder = new AlertDialog.Builder(AddReferral.this);
+
+
+//        builder.setTitle("Hi Tamil Selvi,");
+//        builder.setMessage("Have you take tablets regulerlly: ");
+            builder.setTitle("Hi " +preferenceData.getMotherName()+ ",");
+            builder.setMessage(msg);
+
+
+            //Yes Button
+            builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+//                Toast.makeText(getApplicationContext(),"Take care",Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(),"Alert has set to VHN,  They will contact soon..",Toast.LENGTH_LONG).show();
+//                AppConstants.isMainActivityOpen=false;
+
+                    dialog.dismiss();
+                }
+            });
+         builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+//                Toast.makeText(getApplicationContext(),"Alert has set to VHN,  They will contact soon..",Toast.LENGTH_LONG).show();
+//                AppConstants.isMainActivityOpen=false;
+                dialog.dismiss();
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
+
 
 
     private void getallEditTextvalues() {
@@ -318,18 +360,21 @@ public class AddReferral extends AppCompatActivity implements View.OnClickListen
                 strReferringFacility = parent.getSelectedItem().toString();
 if (parent.getSelectedItem().toString().equalsIgnoreCase("--Select--")) {
 }else{
-    strReferringFacilityCode = nearestReferalHospitalList.get(position).getPhcId();
+    strReferringFacilityCode = arr_nearstReferalHospitalList_hospital_id.get(position);
     Log.e("ReferringFacToCode-->",position+""+strReferringFacilityCode);
 
     //                Log.d("RefergFaciyCode",position+"-->"+strReferringFacilityCode);
 }
                 break;
             case R.id.sp_facility_referred_to_start:
-                strFacilityReferredTo = parent.getSelectedItem().toString();
+//                strFacilityReferredTo = parent.getSelectedItem().toString();
+                strFacilityReferredTo = arr_nearstReferalHospitalList_hospital_name.get(position).toString();
+//                parent.getSelectedItem().toString();
+
                 if (parent.getSelectedItem().toString().equalsIgnoreCase("--Select--")) {
 
                 }else{
-                    strFacilityReferredToCode=nearestReferalHospitalList.get(position).getPhcId();
+                    strFacilityReferredToCode=arr_nearstReferalHospitalList_hospital_id.get(position);
                     Log.e("FacilityRefToCode-->",position+""+strFacilityReferredToCode);
                 }
 //                Log.d("RefergFaciyToCode",position+"-->"+strFacilityReferredToCode);
@@ -373,16 +418,57 @@ if (parent.getSelectedItem().toString().equalsIgnoreCase("--Select--")) {
 
         try {
             JSONObject jsonObject = new JSONObject(response);
-//            String status =jsonObject.getString("status");
+            String status =jsonObject.getString("status");
             String msg = jsonObject.getString("message");
-            Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+            if (status.equalsIgnoreCase("1")) {
+//                Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+                showAlert(msg,"gomain");
+            }else{
+             showAlert(msg);
+            }
 
-            startActivity(new Intent(getApplicationContext(),MainActivity.class));
-            finish();
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    private void showAlert(String msg, String gomain) {
+
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(AddReferral.this);
+
+
+//        builder.setTitle("Hi Tamil Selvi,");
+//        builder.setMessage("Have you take tablets regulerlly: ");
+        builder.setTitle("Hi " +preferenceData.getMotherName()+ ",");
+        builder.setMessage(msg);
+
+
+        //Yes Button
+        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+//                Toast.makeText(getApplicationContext(),"Take care",Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(),"Alert has set to VHN,  They will contact soon..",Toast.LENGTH_LONG).show();
+//                AppConstants.isMainActivityOpen=false;
+//                dialog.dismiss();
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                finish();
+            }
+        });
+        /*builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+//                Toast.makeText(getApplicationContext(),"Alert has set to VHN,  They will contact soon..",Toast.LENGTH_LONG).show();
+//                AppConstants.isMainActivityOpen=false;
+                dialog.dismiss();
+            }
+        });*/
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
     }
 
 
@@ -408,9 +494,12 @@ if (parent.getSelectedItem().toString().equalsIgnoreCase("--Select--")) {
                     nearestReferalHospitalModel.setDistance(jsonObject1.getString("phcId"));
                     nearestReferalHospitalModel.setPhcCode(jsonObject1.getString("phcCode"));
                     nearestReferalHospitalModel.setPhcId(jsonObject1.getString("distance"));
-                    arr_nearstReferalHospitalList.add(jsonObject1.getString("phcCode")+"-"+jsonObject1.getString("distance"));
-                    nearestReferalHospitalList.add(nearestReferalHospitalModel);
+                    arr_nearstReferalHospitalList_hospital_name.add(jsonObject1.getString("phcCode"));
 
+                    arr_nearstReferalHospitalList.add(jsonObject1.getString("phcId")+"-"+jsonObject1.getString("distance"));
+                    arr_nearstReferalHospitalList_name_distance.add(jsonObject1.getString("phcCode")+"         "+jsonObject1.getString("distance").substring(0,2)+" km");
+                    arr_nearstReferalHospitalList_hospital_id.add(jsonObject1.getString("phcId"));/*+"-"+jsonObject1.getString("distance")*/
+                    nearestReferalHospitalList.add(nearestReferalHospitalModel);
                 }
 
 //                sp_referring_facility_start.setAdapter((SpinnerAdapter) nearestReferalHospitalList);
@@ -438,6 +527,16 @@ if (parent.getSelectedItem().toString().equalsIgnoreCase("--Select--")) {
 
     @Override
     public void errorReferalList(String response) {
+
+    }
+
+    @Override
+    public void successReferalClosed(String response) {
+
+    }
+
+    @Override
+    public void errorReferalClosed(String response) {
 
     }
 

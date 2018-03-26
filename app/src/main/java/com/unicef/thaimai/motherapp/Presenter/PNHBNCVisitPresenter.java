@@ -93,6 +93,62 @@ public class PNHBNCVisitPresenter implements PNHBNCVisitInteractor {
     }
 
     @Override
+    public void checkPNHBNCVisitId(final String strPicmeId, final String strMid, final String strpnVisitId) {
+
+        String url = Apiconstants.BASE_URL + Apiconstants.PN_HBNC_VISIT_EXIST;
+        Log.d("Log in check Url--->", url);
+        pnhbncVisitViews.showProgress();
+
+        StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                pnhbncVisitViews.hideProgress();
+                pnhbncVisitViews.checkpnhbncVisitIdSuccess(String.valueOf(response));
+            }
+        },new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                pnhbncVisitViews.hideProgress();
+                pnhbncVisitViews.checkpnhbncVisitIdFailiure(error.toString());
+            }
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                String credentials = "admin" + ":" + "1234";
+                String base64EncodedCredentials = Base64.encodeToString(credentials.getBytes(), Base64.DEFAULT);
+                HashMap<String, String> header = new HashMap<>();
+                //                header.put("Content-Type", "application/x-www-from-urlencoded; charset=utf-8");
+                header.put("Authorization", "Basic " + base64EncodedCredentials);
+//                header.put("Content-Type", "application/json; charset=utf-8");
+                Log.d("Credentials ", "Basic " + base64EncodedCredentials.toString());
+
+                return header;
+            }
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting parameters to login url
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("picmeId",strPicmeId);
+                params.put("mid",strMid);
+                params.put("pnVisitId",strpnVisitId);
+
+                Log.d("params--->",params.toString());
+
+                return params;
+            }
+
+            //            public String getBodyContentType() {
+            //                return "application/x-www-from-urlencoded; charset=utf-8";
+            //            }
+
+            public int getMethod() {
+                return Method.POST;
+            }
+        };
+        VolleySingleton.getInstance(pnhbncVisitEntry).addToRequestQueue(request);
+    }
+
+    @Override
     public void insertPNHBNCVistRecords(PNHBNCVisitEntryRequestModel pnhbncVisitEntryRequestModel) {
 
         String url = Apiconstants.BASE_URL + Apiconstants.PN_HBNC_VISIT_INSERT;

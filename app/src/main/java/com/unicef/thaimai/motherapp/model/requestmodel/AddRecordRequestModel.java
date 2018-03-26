@@ -36,7 +36,31 @@ public class AddRecordRequestModel {
     private String vClinicalBPDiastolic;
     private String vClinicalBPSystolic;
     private String vAnyComplaints;
+
+    public String getvAnyComplaintsOthers() {
+        return vAnyComplaintsOthers;
+    }
+
+    public void setvAnyComplaintsOthers(String vAnyComplaintsOthers) {
+        this.vAnyComplaintsOthers = vAnyComplaintsOthers;
+    }
+
+    private String vAnyComplaintsOthers;
     private String vFacility;
+
+   /* public AddRecordRequestModel(String motherStatus) {
+        this.motherStatus = motherStatus;
+    }*/
+
+    public String getvFacilityOthers() {
+        return vFacilityOthers;
+    }
+
+    public void setvFacilityOthers(String vFacilityOthers) {
+        this.vFacilityOthers = vFacilityOthers;
+    }
+
+    private String vFacilityOthers;
     private String vtypeOfVisit;
     private String picmeId;
     private String mid;
