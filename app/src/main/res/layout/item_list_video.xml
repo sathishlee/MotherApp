@@ -77,8 +77,8 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
             android:background="#f1f1f1" />
 
 
@@ -123,7 +123,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_weight="0"
                 android:drawablePadding="5dp"
-                android:drawableRight="@drawable/icon_view"
+                android:drawableEnd="@drawable/download"
                 android:gravity="center"
                 android:singleLine="true"
                 android:textColor="#656565" />
