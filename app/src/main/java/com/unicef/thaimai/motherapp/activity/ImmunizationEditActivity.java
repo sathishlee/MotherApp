@@ -25,6 +25,8 @@ import android.widget.Toast;
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.ImmunizationEntryPresenter;
 import com.unicef.thaimai.motherapp.R;
+import com.unicef.thaimai.motherapp.constant.Apiconstants;
+import com.unicef.thaimai.motherapp.constant.AppConstants;
 import com.unicef.thaimai.motherapp.model.requestmodel.ImmunizationEntryRequestModel;
 import com.unicef.thaimai.motherapp.view.ImmunizationEntryView;
 
@@ -60,6 +62,8 @@ public class ImmunizationEditActivity extends AppCompatActivity implements View.
             "Dose 3 (Day 105)",
             "Dose 4 (Day 270)"
     };
+    String[] yn ={"--Select--","Yes","No"};
+
     String [] dosenumber_i = {"1", "2","3", "4"};
 
     PreferenceData preferenceData;
@@ -99,8 +103,18 @@ public class ImmunizationEditActivity extends AppCompatActivity implements View.
         progressDialog.setMessage("Please Wait...");
         preferenceData = new PreferenceData(this);
         immunizationEntryPresenter = new ImmunizationEntryPresenter(ImmunizationEditActivity.this, this);
+if (AppConstants.IMMUNIZATION_EDIT) {
+    Log.e(ImmunizationEditActivity.class.getSimpleName(),"IS FROM Main"+AppConstants.IMMUNIZATION_EDIT);
+    immunizationEntryPresenter.immunizationID(preferenceData.getPicmeId(), preferenceData.getMId());
 
-        immunizationEntryPresenter.immunizationID(preferenceData.getPicmeId(), preferenceData.getMId());
+}else{
+    strImmuID =AppConstants.ImmuID;
+    Log.e(ImmunizationEditActivity.class.getSimpleName(),"IS FROM Main"+AppConstants.IMMUNIZATION_EDIT);
+
+    immunizationEntryPresenter.getImmunizationByVisit(strImmuID,preferenceData.getMId());
+}
+
+
 
         sp_dose_number = (Spinner) findViewById(R.id.sp_dose_number);
 //        sp_dose_number.setSelection(Integer.parseInt(strImmuID));
@@ -287,8 +301,11 @@ public class ImmunizationEditActivity extends AppCompatActivity implements View.
             immunizationEntryRequestModel.setImmPentanvalentStatus(strPentavalent);
             immunizationEntryRequestModel.setImmRotaStatus(strRota);
             immunizationEntryRequestModel.setImmIpvStatus(strIPV);
-
-            immunizationEntryPresenter.immunizationEntry(immunizationEntryRequestModel);
+            if (AppConstants.IMMUNIZATION_EDIT) {
+                immunizationEntryPresenter.immunizationEntry(Apiconstants.IMMUNIZATION_ENTRY, immunizationEntryRequestModel);
+            }else {
+                immunizationEntryPresenter.immunizationEntry(Apiconstants.IMMUNIZATION_BY_VISIT_EDIT, immunizationEntryRequestModel);
+            }
         }
     }
 
@@ -381,14 +398,42 @@ public class ImmunizationEditActivity extends AppCompatActivity implements View.
     }
 
     @Override
-    public void immunizationListSuccess(String response) {
+    public void getImmunizationByVisitSuccess(String response) {
+        Log.d(ImmunizationEditActivity.class.getSimpleName(), "ImmunizationByVisit Success-->" + response);
+        try {
+            JSONObject jsonObject  = new JSONObject(response);
+            JSONObject jsonObject_immList = jsonObject.getJSONObject("immList");
+            String status = jsonObject.getString("status");
+            String msg = jsonObject.getString("message");
 
+            String strImmId = jsonObject_immList.getString("immId");
+            String strImID = jsonObject_immList.getString("mid");
+            String strPicmeId = jsonObject_immList.getString("picmeId");
+            txt_dose_number_value.setText(jsonObject_immList.getString("immDoseNumber"));
+          String strImmDoseId= jsonObject_immList.getString("immDoseId");
+            edt_due_date.setText( jsonObject_immList.getString("immDueDate"));
+            edt_care_provided_date.setText( jsonObject_immList.getString("immCarePovidedDate"));
+
+//            spHusbHelpatitis.setSelection(nr,
+            sp_dose_number.setSelection(getListPosition(dosenumber,jsonObject_immList.getString("immDoseNumber")));
+            sp_opv.setSelection(getListPosition(yn,jsonObject_immList.getString("immOpvStatus")));
+            sp_pentavalent.setSelection(getListPosition(yn,jsonObject_immList.getString("immPentanvalentStatus")));
+            sp_rota.setSelection(getListPosition(yn,jsonObject_immList.getString("immRotaStatus")));
+            sp_ipv.setSelection(getListPosition(yn,jsonObject_immList.getString("immIpvStatus")));
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public void immunizationListFailure(String response) {
+    public void getImmunizationByVisitFailure(String response) {
+        Log.d(ImmunizationEditActivity.class.getSimpleName(), "ImmunizationByVisit Failiure-->" + response);
 
     }
+
+
 
 //    private int getListPosition(String[] doseId, String doseNumber) {
 //        int x=0;
@@ -403,4 +448,18 @@ public class ImmunizationEditActivity extends AppCompatActivity implements View.
 //        }
 //        return x;
 //    }
+
+    private int getListPosition(String[] occ, String mMotherOccupation) {
+        int x=0;
+        List<String> listOcc = Arrays.asList(occ);
+        if (listOcc.contains(mMotherOccupation)) {
+            for (int i=0;i<listOcc.size();i++) {
+                if (mMotherOccupation.equalsIgnoreCase(occ[i]))
+                    x =i;
+            }
+        } else {
+
+        }
+        return x;
+    }
 }

@@ -100,7 +100,7 @@ public class GetVisitHealthRecordsPresenter implements GetVisitHealthRecordsInte
 
         Log.d("Log in check Url--->",url);
         Log.d("Url--->",strPicmeId);
-        Log.d("Dob--->",mid);
+        Log.d("mid--->",mid);
         StringRequest strReq =new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {

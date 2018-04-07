@@ -64,9 +64,11 @@ ArrayList ysList,occList;
         String[] Occ = {"--Select--","Home Maker", "Private Sector", "Govt Sector"};
         String[] yn ={"--Select--","Yes","No"};
         String[] hdcdt ={"--Select--","Hypertention", "Diabetes", "Congenital Heart Disease", "Tb", "Others"};
+        String[] hoaif = {"--Select--","Htn","DM","CHD","TB","Others"};
         String[] num = {"--Select--","1","2","3","4","5","6","7","8","9","10"};
         String[] bg = {"--Select--","A+ve","A-ve","B+ve","B-ve","O+ve","O-ve","AB+ve","AB-ve"};
         String [] rnr ={"--Select--","Reactive", "Non Reactive"};
+        String[] acdp = {"--Select--","Hypertention", "Diabetes", "Congenital Heart Disease", "Tb", "Others"};
 
         @SuppressLint("ResourceType")
         @Override
@@ -199,7 +201,6 @@ ArrayList ysList,occList;
             strAllergictoDrugsSpecify = edtAllergictoDrugsSpecify.getText().toString();
             strPrimaryMobileNumber = edt_primary_mobile_number.getText().toString();
             strAlternativeMobileNumber = edt_alternative_mobile_number.getText().toString();
-
             strHistory_illness_other =edt_history_illness.getText().toString();
             strHhistory_illness_fmly_other =edt_history_illness_fmly.getText().toString();
             strAny_surgery_before_other =edt_any_surgery_before.getText().toString();
@@ -622,7 +623,7 @@ ArrayList ysList,occList;
                     spHusbandOcc.setSelection(getListPosition(Occ,jObj.getString("mHusbandOccupation")));    //Private Sector, Govt Sector
                     spConsangulneousMarriage.setSelection(getListPosition(yn,jObj.getString("mConsanguineousMarraige")));   // Yes,No
                     spHistoryIllness.setSelection(getListPosition(hdcdt,jObj.getString("mHistoryIllness")));    //Hypertention, Diabetes, Congenital Heart Disease, Tb, Others
-                    spHistoryIllnessFmly.setSelection(getListPosition(hdcdt,jObj.getString("mHistoryIllnessFamily"))); //Hypertention, Diabetes, Congenital Heart Disease, Tb, Others
+                    spHistoryIllnessFmly.setSelection(getListPosition(hoaif,jObj.getString("mHistoryIllnessFamily"))); //Hypertention, Diabetes, Congenital Heart Disease, Tb, Others
                     spAnySurgeryBefore.setSelection(getListPosition(yn,jObj.getString("mAnySurgeryBefore")));  //Yes,No
                     spDoseTobacco.setSelection(getListPosition(yn,jObj.getString("mUseTobacco")));       //Yes,No
                     spDoseAlcohol.setSelection(getListPosition(yn,jObj.getString("mUseAlcohol")));       //Yes,No
@@ -630,7 +631,7 @@ ArrayList ysList,occList;
                     spDoseAllergictoDrugs.setSelection(getListPosition(yn,jObj.getString("mAllergicToanyDrug"))); //Yes,No
                     spPrePregnancy.setSelection(getListPosition(yn,jObj.getString("mHistroyPreviousPreganancy")));          //Yes,No
                     spLSCSDone.setSelection(getListPosition(yn,jObj.getString("mLscsDone")));             //Yes,No
-                    spComDuringPrgncy.setSelection(getListPosition(hdcdt,jObj.getString("mAnyComplecationDuringPreganancy")));  //Hypertention, Diabetes, Congenital Heart Disease, Tb, Others
+                    spComDuringPrgncy.setSelection(getListPosition(acdp,jObj.getString("mAnyComplecationDuringPreganancy")));  //Hypertention, Diabetes, Congenital Heart Disease, Tb, Others
                     spPrePrgncyG.setSelection(getListPosition(num,jObj.getString("mPresentPreganancyG")));  //1234567890
                     spPrePrgncyP.setSelection(getListPosition(num,jObj.getString("mPresentPreganancyP")));  //1234567890
                     spPrePrgncyA.setSelection(getListPosition(num,jObj.getString("mPresentPreganancyA")));  //1234567890

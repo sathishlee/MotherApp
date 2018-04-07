@@ -49,20 +49,12 @@ public class HeathTipsActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_heath_tips);
-        ActionBar actionBar = getSupportActionBar();
+        initUI();
+        onClickListner();
+        showActionBar();
 
-        actionBar.setTitle("Health tips");
-
-        actionBar.setHomeButtonEnabled(true);
-
-        actionBar.setDisplayHomeAsUpEnabled(true);
-
-        video_list = (ListView) findViewById(R.id.video_list);
-
-
-
-        VideoModel video1 = new VideoModel("http://demo.satvatinfosol.com/thaimai/Pregnancy_Tamil_Week_21.mp4");
-        VideoModel video2 = new VideoModel("http://demo.satvatinfosol.com/thaimai/Pregnancy_Tamil_Week_21.mp4");
+        VideoModel video1 = new VideoModel("http://demo.satvatinfosol.com/thaimai/assets/mother_videos/month2.mp4");
+        VideoModel video2 = new VideoModel("http://demo.satvatinfosol.com/thaimai/assets/mother_videos/month2.mp4");
         VideoModel video3 = new VideoModel("http://demo.satvatinfosol.com/thaimai/Pregnancy_Tamil_Week_21.mp4");
 
 
@@ -75,6 +67,31 @@ public class HeathTipsActivity extends AppCompatActivity{
         mVideoAdapter = new VideoAdapter(this, mVideosList);
         video_list.setAdapter(mVideoAdapter);
 
+    }
+
+    public  void initUI(){
+
+
+
+        video_list = (ListView) findViewById(R.id.video_list);
+
+
+
+
+    }
+
+    public void  onClickListner(){
+
+    }
+    public void showActionBar(){
+
+        ActionBar actionBar = getSupportActionBar();
+
+        actionBar.setTitle("Health tips");
+
+        actionBar.setHomeButtonEnabled(true);
+
+        actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
 

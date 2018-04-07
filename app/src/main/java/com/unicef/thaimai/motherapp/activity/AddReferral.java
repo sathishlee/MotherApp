@@ -497,7 +497,8 @@ if (parent.getSelectedItem().toString().equalsIgnoreCase("--Select--")) {
                     arr_nearstReferalHospitalList_hospital_name.add(jsonObject1.getString("phcCode"));
 
                     arr_nearstReferalHospitalList.add(jsonObject1.getString("phcId")+"-"+jsonObject1.getString("distance"));
-                    arr_nearstReferalHospitalList_name_distance.add(jsonObject1.getString("phcCode")+"         "+jsonObject1.getString("distance").substring(0,2)+" km");
+                    arr_nearstReferalHospitalList_name_distance.add(jsonObject1.getString("phcCode")+"   "+jsonObject1.getString("distance").substring(0,2)+" km"+"  ("+jsonObject1.getString("" +
+                            "f_facility_name")+")");
                     arr_nearstReferalHospitalList_hospital_id.add(jsonObject1.getString("phcId"));/*+"-"+jsonObject1.getString("distance")*/
                     nearestReferalHospitalList.add(nearestReferalHospitalModel);
                 }

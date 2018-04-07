@@ -9,5 +9,6 @@ public interface SosAlertViews {
     void showProgress();
     void hideProgress();
     void showPickmeResult(String response);
+    void showFlashResult(String response);
     void showErrorMessage(String response);
 }

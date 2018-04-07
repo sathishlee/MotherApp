@@ -11,4 +11,6 @@ public interface ImmunizationListViews {
 
     void getImmunizationListSuccess(String response);
     void getImmunizationListFailure(String response);
+
+
 }

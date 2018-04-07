@@ -4,8 +4,10 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -42,6 +44,7 @@ public class DeliveryDetailsView extends AppCompatActivity implements DeliveryEn
         setContentView(R.layout.activity_delivery_details_view);
         initUI();
         onClickListner();
+        showActionBar();
 
     }
 
@@ -54,8 +57,14 @@ public class DeliveryDetailsView extends AppCompatActivity implements DeliveryEn
         });
     }
 
-   private void initUI(){
+    private void showActionBar() {
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Delivery Details");
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+    }
 
+   private void initUI(){
        progressDialog = new ProgressDialog(this);
        progressDialog.setCancelable(false);
        progressDialog.setMessage("Please Wait ...");
@@ -95,7 +104,14 @@ public class DeliveryDetailsView extends AppCompatActivity implements DeliveryEn
         progressDialog.hide();
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
 
+//        Intent intent = new Intent(AddReferral.this, ReferralList.class);
+        finish();
+//        startActivity(intent);
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     public void deliveryDetailsSuccess(String response) {
@@ -119,10 +135,10 @@ public class DeliveryDetailsView extends AppCompatActivity implements DeliveryEn
             if (status.equalsIgnoreCase("1")) {
                 JSONObject  jsonObject = jsonObject_res.getJSONObject("Delevery_Info");
 
-preferenceData.storeDid(jsonObject.getString("did" ));
-                Log.d("message---->", message);
+                preferenceData.storeDid(jsonObject.getString("did" ));
+                Log.d("response---->", response);
 //                if(jsonObject.getString("ddatetime")!="")
-                    txt_delivery_date.setText(jsonObject.getString("ddatetime"   ));
+                    txt_delivery_date.setText(jsonObject.getString("ddatetime"));
 //                if (jsonObject.getString("dtime")!="")
                     txt_delivery_time.setText(jsonObject.getString("dtime"));
 //                if (jsonObject.getString("dplace")!="")
@@ -159,7 +175,6 @@ preferenceData.storeDid(jsonObject.getString("did" ));
             }
             else{
                 Log.d("message---->",message);
-
             }
 
         }

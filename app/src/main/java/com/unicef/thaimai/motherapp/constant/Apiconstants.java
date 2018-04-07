@@ -66,14 +66,27 @@ public class Apiconstants {
     public static final String IMMUNIZATION_LIST = "mother/mImmunizationList";
 
 
+//    http://192.168.100.27/thaimaiapp/api/mother/mImmunizationEditSingle
+    public static final String GET_IMMUNIZATION_BY_VISIT= "mother/mImmunizationEditSingle";
+//    http://192.168.100.27/thaimaiapp/api/mother/mImmunizationEdit
+    public static final String IMMUNIZATION_BY_VISIT_EDIT= "mother/mImmunizationEdit";
+
+//    http://192.168.100.27/thaimaiapp/api/mother/mMotherFlashNotification
+public static final String FLASH_NOTIFICATION= "mother/mMotherFlashNotification";
+
 
 //    http://192.168.100.235/thaimaiapp/api/Referal/mReferalClosed
 
     public static final String POST_REFERAL_CLOSED = "Referal/mReferalClosed";
 
+//NOTIFICATION API's
+//    http://192.168.100.27/thaimaiapp/api/mother/mNotificationCount
 
 
+    public static final String POST_NOTIFICATION_COUNT= "mother/mNotificationCount";
+//    http://192.168.100.27/thaimaiapp/api/mother/mNotificationDetails
 
+    public static final String POST_NOTIFICATION_LIST= "mother/mNotificationDetails";
 
 
     private static final String REGISTER_REQUEST_URL = "http://192.168.100.19/maps/sample.php";

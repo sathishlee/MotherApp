@@ -13,9 +13,9 @@
         android:layout_gravity="bottom|end"
         android:background="@color/colorPrimary"
         app:backgroundTint="@color/colorPrimary"
-        android:layout_margin="10dp"
+        android:layout_margin="30dp"
         app:srcCompat="@drawable/edit_button"
-        app:fabSize="mini" />
+        app:fabSize="normal" />
 
     <FrameLayout
         android:id="@+id/dashboard_content"

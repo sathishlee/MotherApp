@@ -6,16 +6,12 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
 
 import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.adapter.MothervistListAdapter;
-import com.unicef.thaimai.motherapp.adapter.MyAdapter;
 import com.unicef.thaimai.motherapp.model.NotificationModel;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class PNMotherVisitListActivity extends AppCompatActivity {

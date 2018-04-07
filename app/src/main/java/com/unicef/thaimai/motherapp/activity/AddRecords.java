@@ -45,7 +45,7 @@
 
        public String strDate,strTypeOfVisit, strFacility, strAnyComplaints, strFundal_Height,
                 strFacility_other, strany_complaints_other, strbp_sys, strbp_dis, strpluse_rate, strweight, strfhs, strtemp, strhemo,
-                strrbs, strfbs, strppbs, strgtt, strtsh, strurine_sugar, stralbumin, strfetus, strgestation_sac, strliquor, strplacenta,strPep;
+                strrbs, strfbs, strppbs, strgtt, strtsh, strurine_sugar, stralbumin, strfetus, strgestation_sac, strliquor, strplacenta,strPep="Not Selected";
 
        public static String strTotalVisitCount="0";
         //    edt_facility_other,edt_any_complaints_other--->gone
@@ -153,11 +153,11 @@
             getallEditTextvalues();
             if (strDate.equalsIgnoreCase("")){
                 showAlert("Date is Empty");
-            } else if (strTypeOfVisit.equalsIgnoreCase("")){
+            } else if (strTypeOfVisit.equalsIgnoreCase("--Select--")){
                 showAlert("type of is Empty");
-            }else if (strFacility.equalsIgnoreCase("")){
+            }else if (strFacility.equalsIgnoreCase("--Select--")){
                 showAlert("Facility is Empty");
-            }else if (strAnyComplaints.equalsIgnoreCase("")){
+            }else if (strAnyComplaints.equalsIgnoreCase("--Select--")){
                 showAlert("AnyComplaints is Empty");
             }else if (strbp_sys.equalsIgnoreCase("")){
                 showAlert("Systolic is Empty");
@@ -167,11 +167,11 @@
                 showAlert("pluse rate is Empty");
             }else if (strweight.equalsIgnoreCase("")){
                 showAlert("Weight is Empty");
-            }else if (strFundal_Height.equalsIgnoreCase("")){
+            }else if (strFundal_Height.equalsIgnoreCase("--Select--")){
                 showAlert("Fundal Height is Empty");
             }else if (strfhs.equalsIgnoreCase("")){
                 showAlert("FHS Height is Empty");
-            }else if (strPep.equalsIgnoreCase("")){
+            }else if (strPep.equalsIgnoreCase("Not Selected")){
                 showAlert("Pedal Edema Present Height is Empty");
             }else if (strtemp.equalsIgnoreCase("")){
                 showAlert("BodyTemp is Empty");
@@ -289,6 +289,7 @@
                         edt_any_complaints_other.setVisibility(View.VISIBLE);
                     }
                     else {
+                        strany_complaints_other="Not Selected Others";
                         edt_any_complaints_other.setVisibility(View.GONE);
 
                     }

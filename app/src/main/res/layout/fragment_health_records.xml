@@ -304,6 +304,8 @@
         app:tabGravity="center"
         app:tabTextColor="#ffffff"/>
 
+
+
     <LinearLayout
         android:id="@+id/ll_click_visit_view"
         android:layout_width="fill_parent"
@@ -325,16 +327,17 @@
                 android:id="@+id/ll_click_pickme_visit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
+                android:layout_gravity="center"
                 android:backgroundTint="@color/colorPrimary"
                 android:background="@drawable/tab_background"
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/txt_visit_type"
                     android:textSize="@dimen/text_primary"
                     android:textStyle="bold"
                     android:layout_margin="2dp"
-                    android:layout_gravity="end"
+                    android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#FFFFFF"
@@ -347,12 +350,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:visibility="gone"
             android:orientation="vertical">
 
             <LinearLayout
                 android:id="@+id/ll_click_other_visit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorPrimary"
                 android:background="@drawable/tab_background"
                 android:orientation="vertical">
 
@@ -362,7 +367,7 @@
                     android:padding="2dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#2F80ED"
+                    android:textColor="#FFFFFF"
                     android:text="Other Visit"/>
 
             </LinearLayout>
@@ -370,6 +375,8 @@
         </LinearLayout>
 
     </LinearLayout>
+
+
 
         <android.support.v4.view.ViewPager
             android:id="@+id/hre_viewpager"
@@ -379,6 +386,14 @@
             android:layout_below="@+id/ll_click_visit_view"
             android:layout_above="@+id/rel_bottom"/>
 
+    <TextView
+        android:id="@+id/txt_no_records"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="90dp"
+        android:textSize="@dimen/text_label"
+        android:text="No Records Found"
+        android:gravity="center"/>
 
     <LinearLayout
         android:id="@+id/rel_bottom"

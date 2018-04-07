@@ -1,11 +1,13 @@
 package com.unicef.thaimai.motherapp.activity;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -16,8 +18,10 @@ import android.net.Uri;
 import android.os.Handler;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -28,6 +32,16 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResult;
+import com.google.android.gms.location.LocationSettingsStates;
+import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.unicef.thaimai.motherapp.BuildConfig;
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.LocationUpdatePresenter;
@@ -41,7 +55,9 @@ import com.unicef.thaimai.motherapp.view.LocationUpdateViews;
 import java.util.List;
 import java.util.Locale;
 
-public class LocationUpdateActivity extends AppCompatActivity implements LocationUpdateViews {
+import static android.Manifest.permission.CAMERA;
+
+public class LocationUpdateActivity extends AppCompatActivity implements LocationUpdateViews, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     private static final String TAG = LocationUpdateActivity.class.getSimpleName();
     private static final int REQUEST_PERMISSIONS_REQUEST_CODE = 34;
@@ -75,85 +91,83 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_update);
 
+
+
+
+
+
+
 //        serverUpload = new ServerUpload();
-        locationUpdatePresenter =new LocationUpdatePresenter(LocationUpdateActivity.this,this);
+            locationUpdatePresenter = new LocationUpdatePresenter(LocationUpdateActivity.this, this);
 
-        preferenceData = new PreferenceData(this);
-        startStep1();
-        if (mAlreadyStartedService ) {
-if(!preferenceData.getLogin()) {
+            preferenceData = new PreferenceData(this);
+            startStep1();
+            if (mAlreadyStartedService) {
+                if (!preferenceData.getLogin()) {
 
-    stopService(new Intent(this, LocationMonitoringService.class));
+                    stopService(new Intent(this, LocationMonitoringService.class));
 
 
-    mAlreadyStartedService = false;
-    //Ends................................................
-}
-        }
-        if (preferenceData.getLogin()) {
-            LocalBroadcastManager.getInstance(this).registerReceiver(
-                    new BroadcastReceiver() {
-                        @Override
-                        public void onReceive(Context context, Intent intent) {
-                            String latitude = intent.getStringExtra(AppConstants.EXTRA_LATITUDE);
-                            String longitude = intent.getStringExtra(AppConstants.EXTRA_LONGITUDE);
-                            AppConstants.NEAR_LATITUDE=latitude;
-                                    AppConstants.NEAR_LONGITUDE=longitude;
-                            String mylocaton = latitude + "\t" + longitude;
-                            if (latitude != null && longitude != null) {
+                    mAlreadyStartedService = false;
+                    //Ends................................................
+                }
+            }
+            if (preferenceData.getLogin()) {
+                LocalBroadcastManager.getInstance(this).registerReceiver(
+                        new BroadcastReceiver() {
+                            @Override
+                            public void onReceive(Context context, Intent intent) {
+                                String latitude = intent.getStringExtra(AppConstants.EXTRA_LATITUDE);
+                                String longitude = intent.getStringExtra(AppConstants.EXTRA_LONGITUDE);
+
+                                String mylocaton = latitude + "\t" + longitude;
+                                if (latitude != null && longitude != null) {
 //                            serverUpload.sendlocationtServer(mylocaton,latitude,longitude,LocationUpdateActivity.this);
-                                strAddress = getCompleteAddressString(latitude, longitude);
+                                    strAddress = getCompleteAddressString(latitude, longitude);
 //if (preferenceData.getPicmeId().equalsIgnoreCase("") && preferenceData.getVhnId().equalsIgnoreCase("")&& preferenceData.getMId().equalsIgnoreCase(""))
 
-//if(strAddress.equalsIgnoreCase("")){
-//    strAddress="chennai";
-//    locationUpdatePresenter.uploadLocationToServer(preferenceData.getPicmeId(), preferenceData.getVhnId(), preferenceData.getMId(), latitude, longitude, strAddress);
-//
-//}else{
-//    locationUpdatePresenter.uploadLocationToServer(preferenceData.getPicmeId(), preferenceData.getVhnId(), preferenceData.getMId(), latitude, longitude, strAddress);
-//
-//}
-                                locationUpdatePresenter.uploadLocationToServer(preferenceData.getPicmeId(), preferenceData.getVhnId(), preferenceData.getMId(), latitude, longitude, strAddress);
+                                    AppConstants.NEAR_LATITUDE = latitude;
+                                    AppConstants.NEAR_LONGITUDE = longitude;
+                                    locationUpdatePresenter.uploadLocationToServer(preferenceData.getPicmeId(), preferenceData.getVhnId(), preferenceData.getMId(), latitude, longitude, strAddress);
 
+                                }
                             }
-                        }
-                    }, new IntentFilter(LocationMonitoringService.ACTION_LOCATION_BROADCAST)
-            );
+                        }, new IntentFilter(LocationMonitoringService.ACTION_LOCATION_BROADCAST)
+                );
 
 
-        }
-        new Handler().postDelayed(new Runnable() {
+            }
+            new Handler().postDelayed(new Runnable() {
 
             /*
              * Showing splash screen with a timer. This will be useful when you
              * want to show case your app logo / company
              */
 
-            @Override
-            public void run() {
-                // This method will be executed once the timer is over
-                // Start your app main activity
+                @Override
+                public void run() {
+                    // This method will be executed once the timer is over
+                    // Start your app main activity
 //                if (preferenceData.getPicmeId().equalsIgnoreCase("") && preferenceData.getVhnId().equalsIgnoreCase("") && preferenceData.getMId().equalsIgnoreCase("")) {
-                if (preferenceData.getLogin()) {
-                    Log.d("LOG LOGIN",preferenceData.getPicmeId()+","+preferenceData.getVhnId() +","+ preferenceData.getMId() );
+                    if (preferenceData.getLogin()) {
+                        Log.d("LOG LOGIN", preferenceData.getPicmeId() + "," + preferenceData.getVhnId() + "," + preferenceData.getMId());
 //                    AppConstants.POP_UP_COUNT= Integer.parseInt(preferenceData.getMainScreenOpen());
-                    preferenceData.setMainScreenOpen(0);
+                        preferenceData.setMainScreenOpen(0);
 
-                    Intent i = new Intent(LocationUpdateActivity.this, MainActivity.class);
-                    startActivity(i);
-                }else{
-                    preferenceData.setMainScreenOpen(0);
+                        Intent i = new Intent(LocationUpdateActivity.this, MainActivity.class);
+                        startActivity(i);
+                    } else {
+                        preferenceData.setMainScreenOpen(0);
 
-                    Intent i = new Intent(LocationUpdateActivity.this, Login.class);
-                    startActivity(i);
+                        Intent i = new Intent(LocationUpdateActivity.this, Login.class);
+                        startActivity(i);
+                    }
+
+
+                    // close this activity
+                    finish();
                 }
-
-
-                // close this activity
-                finish();
-            }
-        }, SPLASH_TIME_OUT);
-
+            }, SPLASH_TIME_OUT);
 
 
 //        locationUpdatePresenter =new LocationUpdatePresenter(LocationUpdateActivity.this,this);
@@ -172,8 +186,9 @@ if(!preferenceData.getLogin()) {
 
 //        registerReceiver(mNetworkDetectReceiver, new IntentFilter(android.net.ConnectivityManager.CONNECTIVITY_ACTION));
 
-    }
 
+    }
+    
 
 
     @Override
@@ -486,15 +501,29 @@ Log.d(TAG,"success--->"+loginResponseModel);
                 strAdd = returnedAddress.getSubAdminArea();
 //                strAdd = strReturnedAddress.toString();
 //                Log.w(TAG, "My Current loction address"+strReturnedAddress.toString());
-                Log.w(TAG, "My Current loction address--->"+returnedAddress.getSubAdminArea().toString());
+//                Log.w(TAG, "My Current loction address--->"+returnedAddress.getSubAdminArea().toString());
             } else {
-                Log.w(TAG,"My Current loction address--->"+"No Address returned!");
+//                Log.w(TAG,"My Current loction address--->"+"No Address returned!");
             }
         } catch (Exception e) {
             e.printStackTrace();
-            Log.w(TAG,"My Current loction address--->"+ "Canont get Address!");
+//            Log.w(TAG,"My Current loction address--->"+ "Canont get Address!");
         }
         return strAdd;
     }
 
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
 }

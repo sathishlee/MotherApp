@@ -15,6 +15,10 @@
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission
+        android:name="android.permission.WRITE_SECURE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
 
     <meta-data
         android:name="com.google.android.gms.version"
@@ -22,6 +26,16 @@
     <meta-data
         android:name="com.google.android.geo.API_KEY"
         android:value="@string/google_maps_key" />
+
+    <!--<provider-->
+        <!--android:name="android.support.v4.content.FileProvider"-->
+        <!--android:authorities="<your provider authority>"-->
+    <!--android:exported="false"-->
+    <!--android:grantUriPermissions="true">-->
+    <!--<meta-data-->
+        <!--android:name="android.support.FILE_PROVIDER_PATHS"-->
+        <!--android:resource="@xml/file_provider_paths"/>-->
+<!--</provider>-->
 
     <application
         android:name="android.support.multidex.MultiDexApplication"
@@ -43,9 +57,7 @@
         <activity
             android:name=".activity.Login"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme">
-
-        </activity>
+            android:theme="@style/AppTheme"></activity>
         <activity
             android:name=".activity.LocationUpdateActivity"
             android:theme="@style/AppTheme1">
@@ -74,9 +86,9 @@
         <!-- <activity -->
         <!-- android:name=".activity.NearbyHospital" -->
         <!-- android:theme="@style/AppTheme" /> -->
-        <!--<activity-->
-            <!--android:name=".activity.ReferralList"-->
-            <!--android:theme="@style/AppTheme" />-->
+        <!-- <activity -->
+        <!-- android:name=".activity.ReferralList" -->
+        <!-- android:theme="@style/AppTheme" /> -->
         <activity
             android:name=".activity.AddRecords"
             android:theme="@style/AppTheme" />
@@ -97,7 +109,7 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".activity.splashscreen"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme1" />
         <activity
             android:name=".activity.InfantTrackingActivity"
             android:theme="@style/AppTheme" />
@@ -142,29 +154,46 @@
 
         <activity
             android:name=".activity.NearHospitalActivity"
-            android:theme="@style/AppTheme">
-
-        </activity>
+            android:theme="@style/AppTheme"></activity>
         <activity
             android:name=".activity.DeliveryDetailsView"
-            android:theme="@style/AppTheme">
-
-        </activity>
+            android:theme="@style/AppTheme"></activity>
 
         <service android:name=".utility.MyFirebaseInstanceIDService">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
-
         <service
             android:name=".utility.MyFirebaseMessagingService"
             android:enabled="true"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
+        <activity android:name=".activity.Splash"
+            android:theme="@style/AppTheme1">
+            <!--<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+        </activity>
+        <receiver android:name=".broadCastReceivers.GpsLocationReceiver">
+            <intent-filter>
+                <action android:name="android.location.PROVIDERS_CHANGED" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+        <!-- <receiver
+              android:name=".bradcastReceiver.ConnectivityReceiver"
+              android:enabled="true">
+              <intent-filter>
+                  <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+              </intent-filter>
+          </receiver>-->
     </application>
 
 </manifest>

@@ -21,7 +21,7 @@
     <item
         android:id="@+id/pn_hbnc_visit"
         android:title="PN / HBNC Visit"
-        android:icon="@drawable/mother_and_baby"/>
+        android:icon="@drawable/mother_baby"/>
 
     <item
         android:id="@+id/referral"

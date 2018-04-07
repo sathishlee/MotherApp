@@ -25,6 +25,7 @@ import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.GetUserInfoPresenter;
 import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.activity.NearHospitalActivity;
+//import com.unicef.thaimai.motherapp.bradcastReceiver.ConnectivityReceiver;
 import com.unicef.thaimai.motherapp.constant.AppConstants;
 import com.unicef.thaimai.motherapp.activity.profile;
 import com.unicef.thaimai.motherapp.model.responsemodel.LoginResponseModel;
@@ -42,6 +43,8 @@ public class home extends Fragment implements LoginViews, View.OnClickListener {
             txt_next_visit,txt_lmp_date,txt_edd_date,txt_husb_name,
             txt_husb_mobile_number,txt_vhn_name,txt_vhn_mobile_number,txt_aww_name,
             txt_aww_mobile_number,txt_phc_name,txt_phc_mobile_number;
+
+    TextView txt_no_network;
 
     ImageView img_call_husb,img_call_vhn,img_call_aww,img_call_phc;
 
@@ -74,6 +77,7 @@ public class home extends Fragment implements LoginViews, View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
          View view = inflater.inflate(R.layout.fragment_home, container, false);
          initUI(view);
+        checkConnection();
          onClickListner();
 
         getActivity().setTitle("Dashboard");
@@ -95,6 +99,19 @@ public class home extends Fragment implements LoginViews, View.OnClickListener {
         return view;
     }
 
+    private void checkConnection() {
+//        boolean isConnected = ConnectivityReceiver.isConnected();
+//        showSnack(isConnected);
+    }
+
+    private void showSnack(boolean isConnected) {
+        if (isConnected){
+            txt_no_network.setVisibility(View.GONE);
+
+        }else {
+            txt_no_network.setVisibility(View.VISIBLE);
+        }
+    }
 
 
     private void initUI(View view) {
@@ -140,6 +157,8 @@ public class home extends Fragment implements LoginViews, View.OnClickListener {
         txt_username .setText(strname);
         txt_age.setText(strage);
 
+//        txt_no_network = (TextView) view.findViewById(R.id.txt_no_network);
+
     }
 
     private void onClickListner() {
@@ -161,8 +180,10 @@ public class home extends Fragment implements LoginViews, View.OnClickListener {
 
     @Override
     public void showPickmeResult(String response) {
+        JSONObject jObj = null;
         try {
-            JSONObject jObj = new JSONObject(response);
+
+            jObj = new JSONObject(response);
             txt_lmp_date.setText(jObj.getString("mLMP"));
             txt_edd_date.setText(jObj.getString("mEDD"));
             txt_age.setText(jObj.getString("mAge"));
@@ -170,16 +191,20 @@ public class home extends Fragment implements LoginViews, View.OnClickListener {
             txt_weight.setText(jObj.getString("mWeight"));
             txt_husb_name.setText(jObj.getString("mHusbandName"));
             txt_gst_week.setText(jObj.getString("mGesWeek"));
-//            str_mobile_number_hsbn =jObj.getString("mHusbandMobile");
+            preferenceData.setGstWeek(jObj.getString("mGesWeek"));
+
+            str_mobile_number_hsbn =jObj.getString("mHusbandMobile");
 //            txt_husb_mobile_number.setText(str_mobile_number_hsbn);
             txt_vhn_name.setText(jObj.getString("vhnName"));
-//            str_mobile_number_vhn =jObj.getString("vhnMobile");
+            str_mobile_number_vhn =jObj.getString("vhnMobile");
 //            txt_vhn_mobile_number.setText(str_mobile_number_vhn);
+
+
             txt_aww_name.setText(jObj.getString("awwName"));
-//            str_mobile_number_aww = jObj.getString("awwMobile");
+            str_mobile_number_aww = jObj.getString("awwMobile");
 //            txt_aww_mobile_number.setText(str_mobile_number_aww);
 //            txt_aww_mobile_number.setText(jObj.getString("phcName"));
-//            str_mobile_number_phc = jObj.getString("phcMobile");
+            str_mobile_number_phc = jObj.getString("phcMobile");
 //            txt_phc_mobile_number.setText(str_mobile_number_phc);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -198,6 +223,7 @@ public class home extends Fragment implements LoginViews, View.OnClickListener {
         switch (v.getId()){
             case R.id.img_call_husb:
                 makeCall(str_mobile_number_hsbn); break;
+//                startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("tel:+"+str_mobile_number_hsbn)));
             case R.id.img_call_vhn:
                 makeCall(str_mobile_number_vhn); break;
             case R.id.img_call_aww:

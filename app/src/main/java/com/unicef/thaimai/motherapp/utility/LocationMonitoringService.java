@@ -23,6 +23,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.unicef.thaimai.motherapp.constant.AppConstants;
 
 
 import java.util.Map;
@@ -167,6 +168,8 @@ public class LocationMonitoringService extends Service implements
         Intent intent = new Intent(ACTION_LOCATION_BROADCAST);
         intent.putExtra(EXTRA_LATITUDE, lat);
         intent.putExtra(EXTRA_LONGITUDE, lng);
+        AppConstants.EXTRA_LONGITUDE=lng;
+        AppConstants.EXTRA_LATITUDE=lat;
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
     }
 

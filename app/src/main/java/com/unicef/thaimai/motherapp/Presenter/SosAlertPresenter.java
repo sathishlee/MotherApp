@@ -97,4 +97,63 @@ public class SosAlertPresenter implements SosAlertInteractor {
         VolleySingleton.getInstance(activity).addToRequestQueue(stringRequest);
 
     }
+
+    @Override
+    public void postFlashAlert(final String pickmeid, final String mid) {
+        String url = Apiconstants.BASE_URL + Apiconstants.FLASH_NOTIFICATION;
+        Log.d("Log in check Url--->", url);
+        Log.d("picmeId--->", pickmeid);
+        Log.d("mid--->", mid);
+        view.showProgress();
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                view.hideProgress();
+                view.showPickmeResult(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                view.hideProgress();
+                view.showPickmeResult(error.toString());
+            }
+        }){
+
+
+
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting parameters to login url
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("picmeId", pickmeid);
+                params.put("mid", mid);
+
+                Log.d("SOS params--->", params.toString());
+
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                String credentials = "admin" + ":" + "1234";
+                String base64EncodedCredentials = Base64.encodeToString(credentials.getBytes(), Base64.DEFAULT);
+                HashMap<String, String> header = new HashMap<>();
+                //                header.put("Content-Type", "application/x-www-from-urlencoded; charset=utf-8");
+                header.put("Authorization", "Basic " + base64EncodedCredentials);
+                Log.d("Credentials ", "Basic " + base64EncodedCredentials.toString());
+
+                return header;
+            }
+
+            //            public String getBodyContentType() {
+            //                return "application/x-www-from-urlencoded; charset=utf-8";
+            //            }
+
+            public int getMethod() {
+                return Method.POST;
+            }
+        };
+        VolleySingleton.getInstance(activity).addToRequestQueue(stringRequest);
+
+    }
 }

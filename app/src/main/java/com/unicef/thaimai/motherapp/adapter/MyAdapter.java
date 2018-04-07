@@ -7,8 +7,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.unicef.thaimai.motherapp.R;
+import com.unicef.thaimai.motherapp.model.NotificationListResponseModel;
 import com.unicef.thaimai.motherapp.model.NotificationModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -17,8 +19,9 @@ import java.util.List;
  */
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>  {
-    private List<NotificationModel> moviesList;
-    public MyAdapter(List<NotificationModel> moviesList) {
+    private ArrayList<NotificationListResponseModel.NotificationList> moviesList;
+    NotificationListResponseModel.NotificationList movie;;
+    public MyAdapter(ArrayList<NotificationListResponseModel.NotificationList> moviesList) {
         this.moviesList = moviesList;
     }
 
@@ -34,10 +37,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>  {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        NotificationModel movie = moviesList.get(position);
-        holder.title.setText(movie.getTitle());
-        holder.genre.setText(movie.getGenre());
-        holder.year.setText(movie.getYear());
+        NotificationListResponseModel.NotificationList movie = moviesList.get(position);
+        holder.title.setText(movie.getMPicmeId());
+        holder.genre.setText(movie.getMessage());
+        holder.year.setText(movie.getDateTime());
 
     }
 
@@ -53,8 +56,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>  {
         public ViewHolder(View view) {
             super(view);
             title = (TextView) view.findViewById(R.id.title);
-            genre = (TextView) view.findViewById(R.id.genre);
-            year = (TextView) view.findViewById(R.id.year);
+//            genre = (TextView) view.findViewById(R.id.genre);
+//            year = (TextView) view.findViewById(R.id.year);
         }
     }
 }

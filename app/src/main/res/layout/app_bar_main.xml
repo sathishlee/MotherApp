@@ -10,7 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
-
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
@@ -33,6 +32,7 @@
         app:menu="@menu/navigation" />
 
 
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/floatingActionButton2"
         android:layout_width="wrap_content"
@@ -48,9 +48,11 @@
         app:layout_anchorGravity="bottom|right"
         app:srcCompat="@drawable/sos" />
 
+
     <include
         android:id="@+id/include"
-        layout="@layout/content_main" />
+        layout="@layout/content_main"
+  />
 
 
     <!-- <android.support.design.widget.FloatingActionButton

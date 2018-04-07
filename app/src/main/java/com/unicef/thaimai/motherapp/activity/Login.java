@@ -135,12 +135,13 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
         if (strDob.equalsIgnoreCase("")) {
             iplDob.setError("Dob is Empty");
         }
-        if (strPicme.length() < 13) {
+        if (strPicme.length() < 10) {
             iplPicmeId.setError("Enter Correct Picme ID");
         }
-        if (strPicme.length() > 13) {
+        if (strPicme.length() > 14) {
             iplPicmeId.setError("Enter Correct Picme ID");
         } else {
+//            loginPresenter.checkPickmeId(strPicme, strDob, "dT7h3twBpWU:APA91bHQqQOCBueyUGhvY2uIsMNfIfM7ynMlVzm89tTTWDeKhXzMWCS9WZL1gu8nFz_nkwU5Po9i8ytXHmjoxAeu36BTbIFHwWhWfjbWtO-EjG6n7zW4M_PFCCOID8eE0fQX4RPPHfBQ");
             loginPresenter.checkPickmeId(strPicme, strDob, preferenceData.getDeviceId());
 
         }
@@ -168,7 +169,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
                 Log.d("message---->", message);
                 preferenceData.storeUserInfo(jObj.getString("picmeId"),jObj.getString("mid"),
                         jObj.getString("mName"), jObj.getString("motherAge"),
-                        jObj.getString("motherStatus"), jObj.getString("phcId"), jObj.getString("vhnId"), jObj.getString("awwId"));
+                        jObj.getString("motherStatus"), jObj.getString("phcId"), jObj.getString("vhnId"), jObj.getString("awwId"), jObj.getString("mGesWeek"), jObj.getString("vhnMobile"));
                 preferenceData.setLogin(true);
                preferenceData.setMainScreenOpen(0);
                AppConstants.POP_UP_COUNT=0;

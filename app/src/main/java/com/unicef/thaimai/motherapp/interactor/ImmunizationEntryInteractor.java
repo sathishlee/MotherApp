@@ -8,7 +8,11 @@ import com.unicef.thaimai.motherapp.model.requestmodel.ImmunizationEntryRequestM
 
 public interface ImmunizationEntryInteractor {
 
-    void immunizationEntry(ImmunizationEntryRequestModel immunizationEntryRequestModel);
+    void immunizationEntry(String url, ImmunizationEntryRequestModel immunizationEntryRequestModel);
 
     void immunizationID(String strpicmeId, String strmid);
+
+
+    public void getImmunizationByVisit(String immId, String mid);
+
 }

@@ -18,6 +18,7 @@ import com.unicef.thaimai.motherapp.Interface.MakeCallInterface;
 import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.model.responsemodel.NearHospitalResponseModel;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 /**
@@ -25,6 +26,7 @@ import java.util.List;
  */
 
 public class NearByHospitalAdapter extends RecyclerView.Adapter<NearByHospitalAdapter.ViewHolder>{
+    DecimalFormat precision = new DecimalFormat("0.00");
     List<NearHospitalResponseModel.Nearby> list_nearByHospitalModel;
     Activity applicationContext;
     MakeCallInterface makeCallInterface;
@@ -47,7 +49,9 @@ public class NearByHospitalAdapter extends RecyclerView.Adapter<NearByHospitalAd
         holder.txt_f_nin_num.setText(nearByHospitalModel.getF_nin_num());
         holder.txt_phc_name.setText(nearByHospitalModel.getPhcName());
         holder.txt_fac_name.setText(nearByHospitalModel.getF_facility_name());
-        holder.txt_hosp_distance.setText(nearByHospitalModel.getDistance());
+//        holder.txt_hosp_distance.setText(nearByHospitalModel.getDistance());
+        holder.txt_hosp_distance.setText(precision.format(nearByHospitalModel.getDistance()));
+
         holder.txt_phc_call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -49,23 +49,23 @@
 
         <item
             android:id="@+id/visit_record"
-            android:icon="@drawable/health_care"
+            android:icon="@drawable/checkup"
             android:title="Visit Entry" />
 
 
         <item
             android:id="@+id/delivery_details_entry"
-            android:icon="@drawable/health_care"
+            android:icon="@drawable/pregnancy_delivery"
             android:title="Delivery Entry" />
 
         <item
             android:id="@+id/pn_hbnc_visit_entry"
-            android:icon="@drawable/health_care"
+            android:icon="@drawable/pn_hbnc_dropper"
             android:title="PN/HBNC Visit Entry" />
 
         <item
             android:id="@+id/immunization_entry"
-            android:icon="@drawable/health_care"
+            android:icon="@drawable/immu_charity"
             android:title="Immunization Entry" />
 
         <!--<item-->

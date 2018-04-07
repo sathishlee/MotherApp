@@ -199,7 +199,6 @@ public class PrimaryRegisterView extends AppCompatActivity implements PrimaryReg
                 txt_a.setText(jObj.getString("mPresentPreganancyA"));
                 if (jObj.getString("mPresentPreganancyL")!="")
                 txt_l.setText(jObj.getString("mPresentPreganancyL"));
-
                 if (jObj.getString("mRegistrationWeek")!="")
                 txt_registration_week.setText(jObj.getString("mRegistrationWeek"));
                 if (jObj.getString("mANTT1")!="")

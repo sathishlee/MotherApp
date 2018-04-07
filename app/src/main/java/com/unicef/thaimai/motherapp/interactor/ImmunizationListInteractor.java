@@ -7,4 +7,5 @@ package com.unicef.thaimai.motherapp.interactor;
 public interface ImmunizationListInteractor {
 
     void getImmunizationList(String picmeId, String mid);
+
 }

@@ -28,11 +28,13 @@ public class AppConstants {
 
     public static final int LOCATION_INTERVAL = 10000;
     public static final int FASTEST_LOCATION_INTERVAL = 5000;
-    public static final String EXTRA_LATITUDE = "13.0011794";
-    public static final String EXTRA_LONGITUDE = "80.2824802";
+    public static String EXTRA_LATITUDE = "";
+    public static String EXTRA_LONGITUDE = "";
 
-    public static String NEAR_LATITUDE = "";
-    public static String NEAR_LONGITUDE = "";
+
+
+    public static String NEAR_LATITUDE;
+    public static String NEAR_LONGITUDE;
 
     public static final int REQUEST_LOCATION=001;
 
@@ -51,9 +53,18 @@ public class AppConstants {
 
 
     public static final String DEVICE_ID = "deviceId";
+    public static final String GST_WEEK = "week";
+    public static final String VHN_MOBILE_NUMBER = "9788782667";
 
     public static final String IMMUNIZATION_ID = "immId";
+    public static Boolean IMMUNIZATION_EDIT = true;
+    public  static String ImmuID="";
+
 
 //    public static final String M_ID = "m_id";
+
+
+    public static final String NOTIFICATION_COUNT= "0";
+
 
 }

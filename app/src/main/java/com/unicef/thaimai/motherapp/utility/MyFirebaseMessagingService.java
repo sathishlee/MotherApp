@@ -4,6 +4,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
@@ -14,12 +15,13 @@ import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.activity.MainActivity;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
+
     public MyFirebaseMessagingService() {
     }
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-        // ...
+
 
         sendNotification(remoteMessage.getNotification().getBody());
 
@@ -36,7 +38,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
             NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
 
-            builder.setSmallIcon(R.drawable.ic_stat_name);
+            builder.setLargeIcon(BitmapFactory.decodeResource(getResources(),R.drawable.ic_launcher));
+            builder.setSmallIcon(R.drawable.ic_launcher);
+
+//            builder.setSmallIcon(R.drawable.ic_stat_name);
 
             builder.setContentTitle("THAIMAI");
             builder.setContentText(message);

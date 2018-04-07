@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.preference.Preference;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -23,6 +24,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.unicef.thaimai.motherapp.Interface.MakeCallInterface;
+import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.LocationUpdatePresenter;
 import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.adapter.NearByHospitalAdapter;
@@ -49,34 +51,37 @@ public class NearHospitalActivity extends AppCompatActivity implements LocationU
     private RecyclerView recyclerView;
     private NearByHospitalAdapter mAdapter;
     boolean isDataUpdate=true;
-
+PreferenceData preferenceData;
     String latitude,longitude;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_near_hospital);
         showActionBar();
-        /*LocalBroadcastManager.getInstance(this).registerReceiver(
-                new BroadcastReceiver() {
-                    @Override
-                    public void onReceive(Context context, Intent intent) {
-                         latitude = intent.getStringExtra(AppConstants.EXTRA_LATITUDE);
-                         longitude = intent.getStringExtra(AppConstants.EXTRA_LONGITUDE);
-                        if (latitude != null && longitude != null) {
-Log.e("My LAtLong",latitude+longitude);
+        preferenceData = new PreferenceData(this);
+
+
+            LocalBroadcastManager.getInstance(this).registerReceiver(
+                    new BroadcastReceiver() {
+                        @Override
+                        public void onReceive(Context context, Intent intent) {
+                             latitude = intent.getStringExtra(AppConstants.EXTRA_LATITUDE);
+                             longitude = intent.getStringExtra(AppConstants.EXTRA_LONGITUDE);
+
                         }
-                    }
-                }, new IntentFilter(LocationMonitoringService.ACTION_LOCATION_BROADCAST)
-        );*/
+                    }, new IntentFilter(LocationMonitoringService.ACTION_LOCATION_BROADCAST)
+            );
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
         pDialog.setMessage("Please Wait ...");
 
         locationUpdatePresenter =new LocationUpdatePresenter(NearHospitalActivity.this,this);
 if (isDataUpdate) {
-    locationUpdatePresenter.getNearByHospitalFromServer(AppConstants.NEAR_LATITUDE, AppConstants.NEAR_LONGITUDE);
-
-
+    AppConstants.NEAR_LATITUDE = latitude;
+    AppConstants.NEAR_LONGITUDE = longitude;
+    Log.w(NearHospitalActivity.class.getSimpleName(),"NEAR_LATITUDEA"+AppConstants.NEAR_LATITUDE);
+    Log.w(NearHospitalActivity.class.getSimpleName(),"NEAR_LONGITUDE"+AppConstants.NEAR_LONGITUDE);
+    locationUpdatePresenter.getNearByHospitalFromServer(AppConstants.NEAR_LATITUDE,  AppConstants.NEAR_LONGITUDE );
 }else{
 
 }
@@ -166,10 +171,7 @@ if (isDataUpdate) {
     @Override
     public void getNearbyHospitalFailiure(String loginResponseModel) {
         Log.e(NearHospitalActivity.class.getSimpleName(),"response error"+loginResponseModel);
-
     }
-
-
 
     @Override
     public void makeCall(String phcMobile) {

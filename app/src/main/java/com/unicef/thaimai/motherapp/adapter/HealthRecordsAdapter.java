@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,11 +27,12 @@ public class HealthRecordsAdapter extends PagerAdapter {
     private ArrayList<HealthRecordResponseModel.Visit_Records> mhealthRecordList;
     HealthRecordResponseModel.Visit_Records mhealthRecordResponseModel;
     private LayoutInflater inflater;
+
     FragmentActivity activity;
     TypeOfHealthRecords mTypeOfHealthRecords;
-    LinearLayout llClickPickMeVisit,llClickOtherVisit;
+    LinearLayout llClickPickMeVisit,llClickOtherVisit, ll_click_visit_view;
     TextView txtVisitedDate, txtVisitedType, txtFacility, txtAnyComplient, txtBPValue,
-            txtPluseRate, txtWeight, txtFunbalHeight, txtFhs, txtPep, txtHp, txtFbs, txtPpbs, txtGtt, txtSugar, txtFetus, txtGestationSac, txtLiquor, txtPlacenta;
+            txtPluseRate, txtWeight, txt_no_records, txtFunbalHeight, txtFhs, txtPep, txtHp, txtFbs, txtPpbs, txtGtt, txtSugar, txtFetus, txtGestationSac, txtLiquor, txtPlacenta;
 
 
 
@@ -46,11 +48,11 @@ public class HealthRecordsAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup view, int position) {
 
         View healthRecordLayout = inflater.inflate(R.layout.item_visit_screen, view, false);
-        mhealthRecordResponseModel   =mhealthRecordList.get(position);
-//                Log.e(HealthRecordsAdapter.class.getSimpleName(),mhealthRecordResponseModel.getVisitId());
+        mhealthRecordResponseModel   = mhealthRecordList.get(position);
+                Log.e(HealthRecordsAdapter.class.getSimpleName(),mhealthRecordResponseModel.getVisitId());
         initUI(healthRecordLayout);
         setValuetoUI(mhealthRecordResponseModel);
-        view.addView(healthRecordLayout, position);
+        view.addView(healthRecordLayout);
 
         return healthRecordLayout;
     }
@@ -76,16 +78,28 @@ public class HealthRecordsAdapter extends PagerAdapter {
         txtGestationSac.setText(mhealthRecordResponseModel.getUsgGestationSac());
         txtLiquor.setText(mhealthRecordResponseModel.getUsgLiquor());
         txtPlacenta.setText(mhealthRecordResponseModel.getUsgPlacenta());
-        if (mhealthRecordResponseModel.getVtypeOfVisit().equalsIgnoreCase("Picme")){
-            mTypeOfHealthRecords.ispickme(true);
-        }else if (mhealthRecordResponseModel.getVtypeOfVisit().equalsIgnoreCase("Scheduled")){
 
+        if (mhealthRecordResponseModel.getVtypeOfVisit().equalsIgnoreCase("Scheduled")) {
+            mTypeOfHealthRecords.ispickme(true);
+        } else if (mhealthRecordResponseModel.getVtypeOfVisit().equalsIgnoreCase("Other")) {
             mTypeOfHealthRecords.ispickme(false);
 
         }
+
+
+//        if(mhealthRecordResponseModel.getVtypeOfVisit().length()==0) {
+//            ll_click_visit_view.setVisibility(View.GONE);
+//            txt_no_records.setVisibility(View.VISIBLE);
+//        }
+//        else {
+//            ll_click_visit_view.setVisibility(View.VISIBLE);
+//            txt_no_records.setVisibility(View.GONE);
+//
+//        }
     }
 
     private void initUI(View healthRecordLayout) {
+
         llClickPickMeVisit = healthRecordLayout.findViewById(R.id.ll_click_pickme_visit);
         llClickOtherVisit = healthRecordLayout.findViewById(R.id.ll_click_other_visit);
         txtVisitedDate = healthRecordLayout.findViewById(R.id.txt_visited_date);
@@ -127,6 +141,6 @@ public class HealthRecordsAdapter extends PagerAdapter {
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
-        return "Visit "+mhealthRecordList.get(position).getVisitId();
+        return "Visit "+ mhealthRecordList.get(position).getVisitId();
     }
 }

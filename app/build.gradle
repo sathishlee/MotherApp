@@ -34,9 +34,6 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
     //noinspection GradleCompatible
     // RETROFIT API LIBS
     //noinspection GradleCompatible
@@ -47,8 +44,6 @@ dependencies {
     //    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     //    compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
     //    compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
-    
-
 
 
     compile 'com.android.volley:volley:1.1.0'

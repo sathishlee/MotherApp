@@ -472,7 +472,6 @@ public class PNHBNCVisitEntry extends AppCompatActivity implements View.OnClickL
     public void checkpnhbncVisitIdSuccess(String response) {
 //        strVisitId = strVisitNo;
 
-        Toast.makeText(getApplicationContext(),response,Toast.LENGTH_SHORT).show();
         try{
             JSONObject jsonObject = new JSONObject(response);
             String status =jsonObject.getString("status");

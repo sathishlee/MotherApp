@@ -7,6 +7,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -14,8 +16,10 @@ import android.support.design.widget.FloatingActionButton;
 
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.text.Html;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -25,19 +29,25 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
+import com.unicef.thaimai.motherapp.Presenter.NotificationPresenter;
 import com.unicef.thaimai.motherapp.Presenter.SosAlertPresenter;
 import com.unicef.thaimai.motherapp.R;
+//import com.unicef.thaimai.motherapp.bradcastReceiver.ConnectivityReceiver;
 import com.unicef.thaimai.motherapp.constant.AppConstants;
 import com.unicef.thaimai.motherapp.fragment.NotificationFragment;
 import com.unicef.thaimai.motherapp.fragment.PNhbncVisit;
 import com.unicef.thaimai.motherapp.fragment.ReferralListFragment;
 import com.unicef.thaimai.motherapp.fragment.health_records;
 import com.unicef.thaimai.motherapp.fragment.home;
+import com.unicef.thaimai.motherapp.utility.CheckNetwork;
+import com.unicef.thaimai.motherapp.view.NotificationViews;
 import com.unicef.thaimai.motherapp.view.SosAlertViews;
 
 import org.json.JSONException;
@@ -47,29 +57,48 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, SosAlertViews {
+        implements NavigationView.OnNavigationItemSelectedListener, SosAlertViews, NotificationViews {
     Intent intent;
 
     Locale mylocale;
     TextView tam, eng;
     SosAlertPresenter sosAlertPresenter;
+    NotificationPresenter notificationPresenter;
     PreferenceData preferenceData;
 
     ProgressDialog pDialog;
     ArrayList<String> msgList;
+    CheckNetwork checkNetwork;
+    RelativeLayout noConnection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 //        addMsgtoList();
+        checkNetwork = new CheckNetwork(this);
+        noConnection = (RelativeLayout) findViewById(R.id.view_btm_no_inernet);
+        if (checkNetwork.isNetworkAvailable()) {
+            Toast.makeText(getApplicationContext(), "Internet connection is" + checkNetwork.isNetworkAvailable(), Toast.LENGTH_SHORT).show();
+
+//    noConnection.setVisibility(View.VISIBLE);
+        } else {
+//    noConnection.setVisibility(View.GONE);
+            Toast.makeText(getApplicationContext(), "Internet connection is" + checkNetwork.isNetworkAvailable(), Toast.LENGTH_SHORT).show();
+
+        }
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
         pDialog.setMessage("Please Wait ...");
         preferenceData = new PreferenceData(this);
 
+        notificationPresenter = new NotificationPresenter(getApplicationContext(), this);
         sosAlertPresenter = new SosAlertPresenter(MainActivity.this, this);
 
+        notificationPresenter.getNotificationCount(preferenceData.getMId());
+
+//        TextView txt_notify_count = (TextView)findViewById(R.id.txt_notify_count);
+//        txt_notify_count.setText(preferenceData.getNotificationCount());
 
         if (AppConstants.isMainActivityOpen) {
 
@@ -78,6 +107,7 @@ public class MainActivity extends AppCompatActivity
                 preferenceData.setMainScreenOpen(1);
 
                 showAlertDialog();
+
 //                showAlertDialog("Good Morning Mrs. " + preferenceData.getMotherName() + ".", "Click here", 0);
               /*  showAlertDialog("Good Morning Mrs. " + preferenceData.getMotherName() + "." +
                                 "\nHope you are doing well.." + "\nThis is your 12th Week of pregnancy." +
@@ -109,8 +139,14 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sosAlertPresenter.postSosAlert(preferenceData.getPicmeId(), preferenceData.getMId(), preferenceData.getVhnId(), preferenceData.getPhcId(), preferenceData.getAwwId(), preferenceData.getDeviceId());
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+
+                if (checkNetwork.isNetworkAvailable()) {
+                    sosAlertPresenter.postSosAlert(preferenceData.getPicmeId(), preferenceData.getMId(), preferenceData.getVhnId(), preferenceData.getPhcId(), preferenceData.getAwwId(), preferenceData.getDeviceId());
+                } else {
+                    Toast.makeText(getApplicationContext(), "make call function" + preferenceData.getVHNMobileNumber(), Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("tel:+91" + preferenceData.getVHNMobileNumber())));
+                }
+                //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
             }
         });
@@ -175,6 +211,10 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+   /* private boolean checkConnectivity() {
+//        return ConnectivityReceiver.isConnected();
+    }*/
+
     /*private void addMsgtoList() {
         msgList =new ArrayList<>();
 
@@ -187,8 +227,6 @@ public class MainActivity extends AppCompatActivity
     }*/
 
     private void showAlertDialog() {
-
-
         // custom dialog
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.view_dash_boards_alert);
@@ -196,7 +234,11 @@ public class MainActivity extends AppCompatActivity
 
         // set the custom dialog components - text, image and button
         TextView text = (TextView) dialog.findViewById(R.id.txt_msg_welcome0);
-        text.setText("1. Good Morning Mrs. "+preferenceData.getMotherName() + ".");
+        TextView text1 = (TextView) dialog.findViewById(R.id.txt_msg_welcome1);
+        TextView text2 = (TextView) dialog.findViewById(R.id.txt_msg_welcome2);
+        text.setText("1. Good Morning Mrs. " + preferenceData.getMotherName() + ".");
+        text2.setText("3. This is your " + setSufix(preferenceData.getGstWeek()) + " Week of pregnancy." + ".");
+
 //        ImageView image = (ImageView) dialog.findViewById(R.id.image);
 //        image.setImageResource(R.drawable.ic_launcher);
 
@@ -205,7 +247,7 @@ public class MainActivity extends AppCompatActivity
         dialogClickHere.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sosAlertPresenter.postSosAlert(preferenceData.getPicmeId(), preferenceData.getMId(), preferenceData.getVhnId(), preferenceData.getPhcId(), preferenceData.getAwwId(), preferenceData.getDeviceId());
+                sosAlertPresenter.postFlashAlert(preferenceData.getPicmeId(), preferenceData.getMId());
                 AppConstants.isMainActivityOpen = false;
                 dialog.dismiss();
             }
@@ -218,10 +260,36 @@ public class MainActivity extends AppCompatActivity
                 dialog.dismiss();
             }
         });
-dialog.show();
+        dialog.show();
     }
 
+    private String setSufix(String gstWeek) {
+        String returnstring = gstWeek;
+        if (gstWeek.substring(1).equalsIgnoreCase("1")) {
+            returnstring = gstWeek + " st";
+ /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            returnstring= String.valueOf(Html.fromHtml(gstWeek+"<sup><small>nd</small></sup>", Html.FROM_HTML_MODE_LEGACY));
+        }*/
+        } else if (gstWeek.substring(1).equalsIgnoreCase("2")) {
+            returnstring = gstWeek + " nd";
+            /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                returnstring= String.valueOf(Html.fromHtml(gstWeek+"<sup><small>nd</small></sup>", Html.FROM_HTML_MODE_LEGACY));
+            }*/
 
+        } else if (gstWeek.substring(1).equalsIgnoreCase("3")) {
+            returnstring = gstWeek + " rd";
+            /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                returnstring= String.valueOf(Html.fromHtml(gstWeek+"<sup><small>rd</small></sup>", Html.FROM_HTML_MODE_LEGACY));
+            }*/
+        } else {
+            returnstring = gstWeek + " th";
+            /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                returnstring = String.valueOf(Html.fromHtml(gstWeek + "<sup><small>th</small></sup>", Html.FROM_HTML_MODE_LEGACY));
+
+            }*/
+        }
+        return returnstring;
+    }
 
 
     private void showAlertDialog(String msg, final String action, int i) {
@@ -413,6 +481,7 @@ dialog.show();
             Intent v = new Intent(getApplicationContext(), PNHBNCVisitEntry.class);
             startActivity(v);
         } else if (id == R.id.immunization_entry) {
+            AppConstants.IMMUNIZATION_EDIT = true;
             Intent v = new Intent(getApplicationContext(), ImmunizationEditActivity.class);
             startActivity(v);
         }
@@ -497,6 +566,33 @@ dialog.show();
     }
 
     @Override
+    public void NotificationResponseSuccess(String response) {
+        Log.d(MainActivity.class.getSimpleName(), "Notification count response success" + response);
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            String status = jsonObject.getString("status");
+            String msg = jsonObject.getString("message");
+            String strNotifyCount = jsonObject.getString("notificationCount");
+            if (status.equalsIgnoreCase("1")) {
+                preferenceData.setNotificationCount(strNotifyCount);
+                Log.d(MainActivity.class.getSimpleName(), "Notification Count-->" + strNotifyCount);
+
+            } else {
+                Log.d(MainActivity.class.getSimpleName(), "Notification messsage-->" + msg);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
+    public void NotificationResponseError(String response) {
+        Log.d(MainActivity.class.getSimpleName(), "Notification count response Error" + response);
+
+    }
+
+    @Override
     public void showPickmeResult(String response) {
         Log.d(MainActivity.class.getSimpleName(), "Response Success--->" + response);
 //        showAlertDialog("If you are not feeling well please Click here.", response, 0);
@@ -521,6 +617,11 @@ dialog.show();
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void showFlashResult(String response) {
+        showAlertDialog(response, "close", 5);
     }
 
     @Override

@@ -37,7 +37,7 @@ public class ImmunizationListPresenter implements ImmunizationListInteractor {
         views.showProgress();
         String url = Apiconstants.BASE_URL + Apiconstants.IMMUNIZATION_LIST;
 
-        Log.d(ImmunizationListPresenter.class.getSimpleName(),"Immunization List"+url);
+        Log.d(ImmunizationListPresenter.class.getSimpleName(),"Immunization List "+url);
         Log.d("PicmeId--->",picmeId);
         Log.d("mid--->",picmeId);
 
@@ -92,4 +92,5 @@ public class ImmunizationListPresenter implements ImmunizationListInteractor {
 
 
     }
+
 }

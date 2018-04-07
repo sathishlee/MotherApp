@@ -22,6 +22,9 @@
 
     <color name="cloudy_blue">#ffd8e4e6</color>
 
+    <color name="notification_time">#80333333</color>
+
+
     <color name="divider">#ff818181</color>
 
     <color name="white">#ffffff</color>

@@ -3,24 +3,63 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
+
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_margin="10dp">
-    <TextView
-        android:id="@+id/txt_msg_welcome0"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="1. Good Morning Mrs."
-        android:textColor="@color/text_primary"
-        android:textSize="@dimen/text_label"
-        android:padding="5dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:weightSum="2"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txt_msg_welcome0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Good Morning Mrs."
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_label"
+                    android:padding="5dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:paddingTop="4.0dip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <View
+                android:layout_gravity="center"
+                android:background="@drawable/header_line"
+                android:layout_width="match_parent"
+                android:layout_height="5.0dp"
+                android:layout_weight="1.0"
+                android:layerType="software" />
+
+        </LinearLayout>
+
+
         <TextView
         android:id="@+id/txt_msg_welcome1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="2. Hope you are doing well.."
+        android:text="Hope you are doing well.."
         android:textSize="@dimen/text_label"
             android:textColor="@color/text_primary"
             android:padding="5dp"
@@ -30,7 +69,7 @@
         android:id="@+id/txt_msg_welcome2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="3. This is your 12th Week of pregnancy."
+        android:text="This is your 12th Week of pregnancy."
         android:textSize="@dimen/text_label"
         android:padding="5dp"
             android:textColor="@color/text_primary"
@@ -39,7 +78,7 @@
         android:id="@+id/txt_msg_welcome3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="4. This is the Period of child monthly development."
+        android:text="This is the Period of child monthly development."
         android:textSize="@dimen/text_label"
         android:padding="5dp"
             android:textColor="@color/text_primary"
@@ -47,7 +86,7 @@
         android:id="@+id/txt_msg_welcome4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="5. If you are not feeling well please Click here."
+        android:text="If you are not feeling well please Click here."
         android:textSize="@dimen/text_label"
         android:padding="5dp"
         android:textColor="@color/text_primary"

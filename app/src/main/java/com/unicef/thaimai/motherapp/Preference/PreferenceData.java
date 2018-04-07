@@ -30,7 +30,7 @@ public class PreferenceData {
         return  sharedPreferences.getBoolean(AppConstants.IS_LOGIN, Boolean.parseBoolean(""));
     }
 
-    public void storeUserInfo(String picmeid,String mid,String name, String age, String status, String phcId, String vhnId, String awwId){
+    public void storeUserInfo(String picmeid,String mid,String name, String age, String status, String phcId, String vhnId, String awwId,String gstWeek,String vhnMobileNumber){
         sharedPreferences.edit().putString(AppConstants.PICME_ID, picmeid).commit();
         sharedPreferences.edit().putString(AppConstants.M_ID, mid).commit();
         sharedPreferences.edit().putString(AppConstants.MOTHER_NAME, name).commit();
@@ -39,18 +39,22 @@ public class PreferenceData {
         sharedPreferences.edit().putString(AppConstants.PHC_ID,phcId).commit();
         sharedPreferences.edit().putString(AppConstants.VHN_ID,vhnId).commit();
         sharedPreferences.edit().putString(AppConstants.AWW_ID,awwId).commit();
-
+        sharedPreferences.edit().putString(AppConstants.GST_WEEK, gstWeek).commit();
+        sharedPreferences.edit().putString(AppConstants.VHN_MOBILE_NUMBER, vhnMobileNumber).commit();
 //        sharedPreferences.edit().putString(AppConstants.DEVICE_ID,tokenId).commit();
         Log.e("PICME_ID",sharedPreferences.getString(AppConstants.PICME_ID,""));
         Log.e("MOTHER_NAME",sharedPreferences.getString(AppConstants.MOTHER_NAME,""));
         Log.e("MOTHER_AGE",sharedPreferences.getString(AppConstants.MOTHER_AGE,""));
         Log.e("MOTHER_STATUS",sharedPreferences.getString(AppConstants.MOTHER_STATUS,""));
+        Log.e("MOTHER_STATUS",sharedPreferences.getString(AppConstants.VHN_MOBILE_NUMBER,""));
     }
 
 
 
     public String getPicmeId(){
         return sharedPreferences.getString(AppConstants.PICME_ID,"");
+    } public String getVHNMobileNumber(){
+        return sharedPreferences.getString(AppConstants.VHN_MOBILE_NUMBER,"");
     } public String getMId(){
         return sharedPreferences.getString(AppConstants.M_ID,"");
     }public String getMotherName(){
@@ -87,6 +91,15 @@ public class PreferenceData {
     }
 
 
+   public void setGstWeek(String gstweek) {
+        sharedPreferences.edit().putString(AppConstants.GST_WEEK, gstweek).commit();
+    }
+
+    public String getGstWeek(){
+        return sharedPreferences.getString(AppConstants.GST_WEEK,"");
+    }
+
+
 
     public void setMainScreenOpen(int count) {
         sharedPreferences.edit().putString(AppConstants.isMainActivityOpen_Count, String.valueOf(count)).commit();
@@ -95,5 +108,15 @@ public class PreferenceData {
     public String getMainScreenOpen() {
         return sharedPreferences.getString(AppConstants.isMainActivityOpen_Count,"");
 
+    }
+
+
+    public void setNotificationCount(String count) {
+        sharedPreferences.edit().putString(AppConstants.NOTIFICATION_COUNT, count).commit();
+    }
+
+
+    public String getNotificationCount() {
+        return  sharedPreferences.getString(AppConstants.NOTIFICATION_COUNT, "");
     }
 }
