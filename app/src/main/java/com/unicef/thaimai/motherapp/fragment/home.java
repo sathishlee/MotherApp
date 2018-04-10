@@ -82,10 +82,6 @@ public class home extends Fragment implements LoginViews, View.OnClickListener {
 
         getActivity().setTitle("Dashboard");
 
-
-
-
-
         profile = (CardView) view.findViewById(R.id.user_profile_photo);
 
         profile.setOnClickListener(new View.OnClickListener() {
@@ -171,11 +167,17 @@ public class home extends Fragment implements LoginViews, View.OnClickListener {
     @Override
     public void showProgress() {
         pDialog.show();
+        pDialog.setCancelable(true);
+        pDialog.setMax(100);
     }
 
     @Override
     public void hideProgress() {
         pDialog.hide();
+        pDialog.setCancelable(true);
+        pDialog.setMax(100);
+
+
     }
 
     @Override
@@ -222,7 +224,9 @@ public class home extends Fragment implements LoginViews, View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.img_call_husb:
-                makeCall(str_mobile_number_hsbn); break;
+                makeCall(str_mobile_number_hsbn);
+                break;
+
 //                startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("tel:+"+str_mobile_number_hsbn)));
             case R.id.img_call_vhn:
                 makeCall(str_mobile_number_vhn); break;
@@ -248,6 +252,7 @@ public class home extends Fragment implements LoginViews, View.OnClickListener {
             Log.i(NearHospitalActivity.class.getSimpleName(),"CALL permission has already been granted. Displaying camera preview.");
 //            showCameraPreview();
             startActivity(new Intent(Intent.ACTION_CALL, Uri.parse("tel:+"+str_mobile_number)));
+
 
         }
     }

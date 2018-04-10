@@ -44,7 +44,7 @@ public class PNHBNCVisitRecordsAdapter extends PagerAdapter {
         mPnHbncVisitRecordsModel   =mhealthRecordList.get(position);
         initUI(healthRecordLayout);
         setValuetoUI(mPnHbncVisitRecordsModel);
-        view.addView(healthRecordLayout, position);
+        view.addView(healthRecordLayout);
 
         return healthRecordLayout;
     }

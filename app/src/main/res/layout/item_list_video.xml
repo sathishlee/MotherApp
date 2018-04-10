@@ -6,8 +6,9 @@
     android:layout_margin="6dp"
     android:orientation="vertical"
     android:padding="16.0dip"
+    app:cardCornerRadius="4dp"
     app:cardBackgroundColor="@android:color/white"
-    app:cardElevation="2.0dip">
+    app:cardElevation="4.0dip">
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -34,21 +35,21 @@
             android:layout_centerVertical="true"
             android:src="@drawable/video_play_selector" />
 
-        <TextView
-            android:id="@+id/txt_video_time"
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginBottom="10dp"
-            android:layout_marginStart="10dp"
-            android:background="@drawable/bgr_video_time"
-            android:gravity="center"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:text="3:56"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/text_primary" />
+        <!--<TextView-->
+            <!--android:id="@+id/txt_video_time"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="20dp"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_alignParentEnd="true"-->
+            <!--android:layout_marginBottom="10dp"-->
+            <!--android:layout_marginStart="10dp"-->
+            <!--android:background="@drawable/bgr_video_time"-->
+            <!--android:gravity="center"-->
+            <!--android:paddingLeft="5dp"-->
+            <!--android:paddingRight="5dp"-->
+            <!--android:text="3:56"-->
+            <!--android:textColor="@android:color/white"-->
+            <!--android:textSize="@dimen/text_primary" />-->
 
         <View
             android:layout_width="match_parent"
@@ -64,14 +65,12 @@
         android:padding="10dp">
 
         <TextView
-            android:id="@+id/tvnName"
+            android:id="@+id/txt_video_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:maxLines="2"
-            android:minLines="2"
             android:text="Video Title"
-            android:textColor="#252525"
+            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/text_label" />
 
         <View
@@ -112,24 +111,24 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:singleLine="true"
-                    android:text="New Text"
-                    android:textColor="#cc3333" />
+                    android:text="Month 1"
+                    android:textColor="@color/red" />
             </LinearLayout>
 
             <TextView
-                android:id="@+id/tvnView"
+                android:id="@+id/txt_download"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
                 android:layout_weight="0"
                 android:drawablePadding="5dp"
                 android:drawableEnd="@drawable/download"
-                android:gravity="center"
-                android:singleLine="true"
-                android:textColor="#656565" />
+                android:gravity="center" />
 
         </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>
+
 </android.support.v7.widget.CardView>

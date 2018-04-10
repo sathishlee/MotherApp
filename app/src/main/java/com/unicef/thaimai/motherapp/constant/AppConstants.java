@@ -33,8 +33,8 @@ public class AppConstants {
 
 
 
-    public static String NEAR_LATITUDE;
-    public static String NEAR_LONGITUDE;
+    public static String NEAR_LATITUDE = "";
+    public static String NEAR_LONGITUDE = "";
 
     public static final int REQUEST_LOCATION=001;
 

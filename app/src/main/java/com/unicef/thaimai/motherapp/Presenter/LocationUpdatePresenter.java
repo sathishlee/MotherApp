@@ -45,7 +45,7 @@ public class LocationUpdatePresenter implements LocationUpdateIntractor {
         Log.d("mid--->",mid);
         Log.d("latitude--->",latitude);
         Log.d("longitude--->",longitude);
-//        Log.d("Address--->",strAddress);
+        Log.d("Address--->",strAddress);
 
         StringRequest strReq = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -75,7 +75,7 @@ public class LocationUpdatePresenter implements LocationUpdateIntractor {
                 params.put("mid",mid);
                 params.put("latitude",latitude);
                 params.put("longitude",longitude);
-//                params.put("address",strAddress);
+                params.put("address",strAddress);
 
                 Log.d("params--->",params.toString());
 

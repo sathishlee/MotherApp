@@ -52,39 +52,35 @@ public class NearHospitalActivity extends AppCompatActivity implements LocationU
     private NearByHospitalAdapter mAdapter;
     boolean isDataUpdate=true;
 PreferenceData preferenceData;
-    String latitude,longitude;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_near_hospital);
         showActionBar();
-        preferenceData = new PreferenceData(this);
-
-
-            LocalBroadcastManager.getInstance(this).registerReceiver(
-                    new BroadcastReceiver() {
-                        @Override
-                        public void onReceive(Context context, Intent intent) {
-                             latitude = intent.getStringExtra(AppConstants.EXTRA_LATITUDE);
-                             longitude = intent.getStringExtra(AppConstants.EXTRA_LONGITUDE);
-
-                        }
-                    }, new IntentFilter(LocationMonitoringService.ACTION_LOCATION_BROADCAST)
-            );
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
         pDialog.setMessage("Please Wait ...");
+        preferenceData = new PreferenceData(this);
 
-        locationUpdatePresenter =new LocationUpdatePresenter(NearHospitalActivity.this,this);
-if (isDataUpdate) {
-    AppConstants.NEAR_LATITUDE = latitude;
-    AppConstants.NEAR_LONGITUDE = longitude;
-    Log.w(NearHospitalActivity.class.getSimpleName(),"NEAR_LATITUDEA"+AppConstants.NEAR_LATITUDE);
-    Log.w(NearHospitalActivity.class.getSimpleName(),"NEAR_LONGITUDE"+AppConstants.NEAR_LONGITUDE);
-    locationUpdatePresenter.getNearByHospitalFromServer(AppConstants.NEAR_LATITUDE,  AppConstants.NEAR_LONGITUDE );
-}else{
+        locationUpdatePresenter = new LocationUpdatePresenter(NearHospitalActivity.this, this);
 
-}
+        LocalBroadcastManager.getInstance(this).registerReceiver(new BroadcastReceiver() {
+
+                    @Override
+                    public void onReceive(Context context, Intent intent) {
+                        String latitude = intent.getStringExtra(AppConstants.EXTRA_LATITUDE);
+                        String longitude = intent.getStringExtra(AppConstants.EXTRA_LONGITUDE);
+                        if (isDataUpdate) {
+                            if (latitude != null && longitude != null) {
+                                AppConstants.NEAR_LATITUDE = latitude;
+                                AppConstants.NEAR_LONGITUDE = longitude;
+                                locationUpdatePresenter.getNearByHospitalFromServer(AppConstants.NEAR_LATITUDE, AppConstants.NEAR_LONGITUDE);
+                            }
+                        }
+                    }
+                }, new IntentFilter(LocationMonitoringService.ACTION_LOCATION_BROADCAST)
+        );
+
         mNearbyList =new ArrayList<>();
         recyclerView =(RecyclerView)findViewById(R.id.rec_nearbyhospital);
 
@@ -94,7 +90,6 @@ if (isDataUpdate) {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
 
-        prepareMovieData();
     }
 
     // Action bar function back button press & set title
@@ -111,9 +106,6 @@ if (isDataUpdate) {
         finish();
         startActivity(intent);
         return super.onOptionsItemSelected(item);
-    }
-    private void prepareMovieData() {
-
     }
 
     @Override

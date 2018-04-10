@@ -88,6 +88,8 @@ public static final String FLASH_NOTIFICATION= "mother/mMotherFlashNotification"
 
     public static final String POST_NOTIFICATION_LIST= "mother/mNotificationDetails";
 
+    public static final String HEALTH_TIPS_VIDEO= "mother/HealthTips";
+
 
     private static final String REGISTER_REQUEST_URL = "http://192.168.100.19/maps/sample.php";
 

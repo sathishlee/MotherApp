@@ -99,7 +99,7 @@
             android:name=".activity.Language"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".activity.HeathTipsActivity"
+            android:name=".activity.HealthTipsActivity"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".activity.ViewFullVideo"

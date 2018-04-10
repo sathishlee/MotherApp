@@ -19,7 +19,6 @@ import android.support.v7.app.AlertDialog;
 import android.text.Html;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -29,8 +28,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -88,7 +85,7 @@ public class MainActivity extends AppCompatActivity
 
         }
         pDialog = new ProgressDialog(this);
-        pDialog.setCancelable(false);
+        pDialog.setCancelable(true);
         pDialog.setMessage("Please Wait ...");
         preferenceData = new PreferenceData(this);
 
@@ -161,89 +158,35 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         setupNavigationView();
-
-
-//        tam = (TextView)findViewById(R.id.tam);
-//        eng = (TextView) findViewById(R.id.eng);
-        /*tam.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-
-                android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(MainActivity.this);
-                builder.setMessage("Are you Sure do you want to Change Language?")
-                        .setCancelable(false)
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                setLanguage("ta");
-                            }
-                        })
-                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        });
-                android.app.AlertDialog alert = builder.create();
-                alert.show();
-            }
-        });*/
-
-        /*eng.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-
-                android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(MainActivity.this);
-                builder.setMessage("Are you Sure do you want to Change Language?")
-                        .setCancelable(false)
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                setLanguage("en");
-                            }
-                        })
-                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        });
-                android.app.AlertDialog alert = builder.create();
-                alert.show();
-            }
-        });*/
-
     }
 
    /* private boolean checkConnectivity() {
 //        return ConnectivityReceiver.isConnected();
     }*/
 
-    /*private void addMsgtoList() {
-        msgList =new ArrayList<>();
-
-        msgList.add(0,"Good Morning"+preferenceData.getMotherName()+".");
-        msgList.add(1,"Hope you are doing well.");
-        msgList.add(2,"This is your GST Week of pregnancy.");
-        msgList.add(3,"this is the Period of child monthly development.");
-        msgList.add(4,"If you are not feeling well please press here.");
-
-    }*/
 
     private void showAlertDialog() {
         // custom dialog
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.view_dash_boards_alert);
+        String circle = "\u27a4";
         dialog.setTitle("Hi " + preferenceData.getMotherName() + ",");
 
         // set the custom dialog components - text, image and button
         TextView text = (TextView) dialog.findViewById(R.id.txt_msg_welcome0);
         TextView text1 = (TextView) dialog.findViewById(R.id.txt_msg_welcome1);
         TextView text2 = (TextView) dialog.findViewById(R.id.txt_msg_welcome2);
-        text.setText("1. Good Morning Mrs. " + preferenceData.getMotherName() + ".");
-        text2.setText("3. This is your " + setSufix(preferenceData.getGstWeek()) + " Week of pregnancy." + ".");
+        TextView text3 = (TextView) dialog.findViewById(R.id.txt_msg_welcome3);
+        TextView text4 = (TextView) dialog.findViewById(R.id.txt_msg_welcome4);
+        text.setText("Good Morning Mrs. " + preferenceData.getMotherName() + ".");
+        text1.setText(circle+ "  Hope you are doing well..");
+        text2.setText(circle+ "  This is your " + setSufix(preferenceData.getGstWeek()) + " Week of pregnancy." + ".");
+        text3.setText(circle+ "  This is the Period of child monthly development.");
+        text4.setText(circle+ "  If you are not feeling well please");
 
-//        ImageView image = (ImageView) dialog.findViewById(R.id.image);
-//        image.setImageResource(R.drawable.ic_launcher);
 
         TextView dialogClickHere = (TextView) dialog.findViewById(R.id.btn_click_here);
-        // if button is clicked, close the custom dialog
+
         dialogClickHere.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -253,7 +196,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
         TextView dialogCancel = (TextView) dialog.findViewById(R.id.btn_cancel);
-        // if button is clicked, close the custom dialog
+
         dialogCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -267,26 +210,26 @@ public class MainActivity extends AppCompatActivity
         String returnstring = gstWeek;
         if (gstWeek.substring(1).equalsIgnoreCase("1")) {
             returnstring = gstWeek + " st";
- /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+ if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             returnstring= String.valueOf(Html.fromHtml(gstWeek+"<sup><small>nd</small></sup>", Html.FROM_HTML_MODE_LEGACY));
-        }*/
+        }
         } else if (gstWeek.substring(1).equalsIgnoreCase("2")) {
             returnstring = gstWeek + " nd";
-            /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 returnstring= String.valueOf(Html.fromHtml(gstWeek+"<sup><small>nd</small></sup>", Html.FROM_HTML_MODE_LEGACY));
-            }*/
+            }
 
         } else if (gstWeek.substring(1).equalsIgnoreCase("3")) {
             returnstring = gstWeek + " rd";
-            /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 returnstring= String.valueOf(Html.fromHtml(gstWeek+"<sup><small>rd</small></sup>", Html.FROM_HTML_MODE_LEGACY));
-            }*/
+            }
         } else {
             returnstring = gstWeek + " th";
-            /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 returnstring = String.valueOf(Html.fromHtml(gstWeek + "<sup><small>th</small></sup>", Html.FROM_HTML_MODE_LEGACY));
 
-            }*/
+            }
         }
         return returnstring;
     }
@@ -362,17 +305,6 @@ public class MainActivity extends AppCompatActivity
         alertDialog.show();
     }
 
-    protected void setLanguage(String language) {
-        mylocale = new Locale(language);
-        Resources resources = getResources();
-        DisplayMetrics dm = resources.getDisplayMetrics();
-        Configuration conf = resources.getConfiguration();
-        conf.locale = mylocale;
-        resources.updateConfiguration(conf, dm);
-        Intent refreshIntent = new Intent(MainActivity.this, MainActivity.class);
-        finish();
-        startActivity(refreshIntent);
-    }
 
     @Override
     protected void attachBaseContext(Context context) {
@@ -475,7 +407,7 @@ public class MainActivity extends AppCompatActivity
             Intent i = new Intent(getApplicationContext(), ImmunizationActivity.class);
             startActivity(i);
         } else if (id == R.id.health_tips) {
-            Intent i = new Intent(getApplicationContext(), HeathTipsActivity.class);
+            Intent i = new Intent(getApplicationContext(), HealthTipsActivity.class);
             startActivity(i);
         } else if (id == R.id.pn_hbnc_visit_entry) {
             Intent v = new Intent(getApplicationContext(), PNHBNCVisitEntry.class);
