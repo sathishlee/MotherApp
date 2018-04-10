@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                android:src="@drawable/woman_profile" />
+                app:srcCompat="@drawable/woman_profile" />
 
             <TextView
                 android:id="@+id/user_name"
@@ -70,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                android:src="@drawable/id_card" />
+                app:srcCompat="@drawable/id_card" />
 
             <TextView
                 android:id="@+id/edt_picme_id"
@@ -113,7 +113,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                android:src="@drawable/house" />
+                app:srcCompat="@drawable/house" />
 
             <TextView
                 android:id="@+id/address"
@@ -156,7 +156,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                android:src="@drawable/ic_location_on_black" />
+                app:srcCompat="@drawable/ic_location_on_black" />
 
             <TextView
                 android:id="@+id/village_name"
@@ -200,7 +200,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                android:src="@drawable/ic_location_on_black" />
+                app:srcCompat="@drawable/ic_location_on_black" />
 
             <TextView
                 android:id="@+id/tvNumber5"
@@ -243,7 +243,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                android:src="@drawable/house" />
+                app:srcCompat="@drawable/house" />
 
             <TextView
                 android:id="@+id/district_name"
@@ -286,7 +286,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                android:src="@drawable/ic_phone_black" />
+                app:srcCompat="@drawable/ic_phone_black" />
 
             <TextView
                 android:id="@+id/tvNumber1"
@@ -327,7 +327,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                android:src="@drawable/ic_phone_black" />
+                app:srcCompat="@drawable/ic_phone_black" />
 
             <TextView
                 android:id="@+id/number_1"

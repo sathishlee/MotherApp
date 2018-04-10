@@ -54,7 +54,6 @@ public class ReferalPresenter implements ReferalInteractor {
                 view.hideProgress();
                 view.errorReferalNearestHospital(error.toString());
 
-
             }
         }) {
 

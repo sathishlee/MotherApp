@@ -99,6 +99,9 @@ public static final String FLASH_NOTIFICATION= "mother/mMotherFlashNotification"
 
     private static final String POST_NEAR_HOSPITAL = "near_by.php?lt=13.0054576&lg=80.2552421";
 
+//http://192.168.100.27/thaimaiapp/api/mother/editProfile
+    public   static  final String POST_EDIT_PROFILE ="mother/editProfile";
+
 
 
 }

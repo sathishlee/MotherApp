@@ -167,17 +167,19 @@ public class home extends Fragment implements LoginViews, View.OnClickListener {
     @Override
     public void showProgress() {
         pDialog.show();
-        pDialog.setCancelable(true);
-        pDialog.setMax(100);
     }
 
     @Override
     public void hideProgress() {
         pDialog.hide();
-        pDialog.setCancelable(true);
-        pDialog.setMax(100);
+    }
 
-
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        if (pDialog!=null && pDialog.isShowing() ){
+            pDialog.cancel();
+        }
     }
 
     @Override
