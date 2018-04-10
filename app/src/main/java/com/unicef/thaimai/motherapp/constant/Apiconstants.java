@@ -101,6 +101,9 @@ public static final String FLASH_NOTIFICATION= "mother/mMotherFlashNotification"
 
 //http://192.168.100.27/thaimaiapp/api/mother/editProfile
     public   static  final String POST_EDIT_PROFILE ="mother/editProfile";
+//    http://192.168.100.27/thaimaiapp/api/mother/uploadPhoto
+
+    public  static  final String POST_UPLOAD_PROFILE_PHOTO ="mother/uploadPhoto";
 
 
 

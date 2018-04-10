@@ -26,9 +26,8 @@ import com.unicef.thaimai.motherapp.Presenter.GetUserInfoPresenter;
 import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.activity.NearHospitalActivity;
 //import com.unicef.thaimai.motherapp.bradcastReceiver.ConnectivityReceiver;
+import com.unicef.thaimai.motherapp.activity.ProfileActivity;
 import com.unicef.thaimai.motherapp.constant.AppConstants;
-import com.unicef.thaimai.motherapp.activity.profile;
-import com.unicef.thaimai.motherapp.model.responsemodel.LoginResponseModel;
 import com.unicef.thaimai.motherapp.view.LoginViews;
 
 import org.json.JSONException;
@@ -87,7 +86,7 @@ public class home extends Fragment implements LoginViews, View.OnClickListener {
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), profile.class);
+                Intent intent = new Intent(getActivity(), ProfileActivity.class);
                 getActivity().finish();
                 startActivity(intent);
              }
