@@ -12,6 +12,8 @@ public interface ImmunizationEntryInteractor {
 
     void immunizationID(String strpicmeId, String strmid);
 
+    void checkImmunizationId(String strpicmeId, String strmid, String strImmuID);
+
 
     public void getImmunizationByVisit(String immId, String mid);
 

@@ -88,7 +88,7 @@ public class HealthTipsAdapter extends RecyclerView.Adapter<HealthTipsAdapter.Vi
                     listener.onItemClickListener(position, list);
             }
         });
-        ImageLoader.getInstance().displayImage(list.getVideo(), holder.imvThumbnail, options, animateFirstListener);
+//        ImageLoader.getInstance().displayImage(list.getVideo(), holder.imvThumbnail, options, animateFirstListener);
     }
 
     @Override

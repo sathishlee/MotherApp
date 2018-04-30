@@ -44,8 +44,7 @@ public class LoginPresenter implements LoginInteractor {
             public void onResponse(String response) {
             view.hideProgress();
                 Log.d("success",response);
-
-                view.showPickmeResult(response.toString());
+                view.loginSuccess(response.toString());
             }
         }, new Response.ErrorListener() {
             @Override
@@ -53,7 +52,7 @@ public class LoginPresenter implements LoginInteractor {
                 view.hideProgress();
                 Log.d(" error",error.toString());
 
-                view.showErrorMessage(error.toString());
+                view.loginError(error.toString());
 
             }
         }) {
@@ -93,6 +92,68 @@ public class LoginPresenter implements LoginInteractor {
         // Adding request to request queue
         VolleySingleton.getInstance(activity).addToRequestQueue(strReq);
 
+    }
+
+    @Override
+    public void checkOtp(final String pickmeid, final String dob, final String strdeviceId, final String otp) {
+        view.showProgress();
+        String url = Apiconstants.BASE_URL + Apiconstants.CHECK_OTP;
+
+        Log.d("Log in check Url--->",url);
+        Log.d("otp--->",otp);
+
+        StringRequest strReq = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                view.hideProgress();
+                Log.d("success",response);
+                view.showPickmeResult(response.toString());
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                view.hideProgress();
+                Log.d(" error",error.toString());
+
+                view.showErrorMessage(error.toString());
+
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting parameters to login url
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("picmeId",pickmeid);
+                params.put("DOB",dob);
+                params.put("deviceId",strdeviceId);
+                params.put("OTPCode",otp);
+                Log.d("params--->",params.toString());
+
+                return params;
+            }
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                String credentials = "admin" + ":" + "1234";
+                String base64EncodedCredentials = Base64.encodeToString(credentials.getBytes(), Base64.DEFAULT);
+                HashMap<String, String> header = new HashMap<>();
+//                header.put("Content-Type", "application/x-www-from-urlencoded; charset=utf-8");
+                header.put("Authorization", "Basic " + base64EncodedCredentials);
+                Log.d("Credentials ","Basic " +base64EncodedCredentials.toString());
+
+                return header;
+            }
+
+//            public String getBodyContentType() {
+//                return "application/x-www-from-urlencoded; charset=utf-8";
+//            }
+
+            public int getMethod() {
+                return Method.POST;
+            }
+        };
+        // Adding request to request queue
+        VolleySingleton.getInstance(activity).addToRequestQueue(strReq);
     }
 
 }

@@ -58,13 +58,17 @@ public class AppConstants {
 
     public static final String IMMUNIZATION_ID = "immId";
     public static Boolean IMMUNIZATION_EDIT = true;
-    public  static String ImmuID="";
+//    public  static String ImmuID="";
 
 
 //    public static final String M_ID = "m_id";
 
 
     public static final String NOTIFICATION_COUNT= "0";
+
+    //Store First Time
+    public static final String PICME_ID_CHECK = "picmeId";
+    public static final String MOTHER_DOB = "DOB";
 
 
 }

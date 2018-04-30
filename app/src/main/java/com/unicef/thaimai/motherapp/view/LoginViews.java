@@ -9,6 +9,8 @@ import com.unicef.thaimai.motherapp.model.responsemodel.LoginResponseModel;
 public interface LoginViews {
     void showProgress();
     void hideProgress();
+    void loginSuccess(String response);
+    void loginError(String string);
     void showPickmeResult(String loginResponseModel);
     void showErrorMessage(String string);
 

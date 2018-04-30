@@ -105,6 +105,15 @@ public class DeliveryDetailsView extends AppCompatActivity implements DeliveryEn
     }
 
     @Override
+    public void onDestroy(){
+        super.onDestroy();
+        if (progressDialog!=null && progressDialog.isShowing() ){
+            progressDialog.cancel();
+        }
+    }
+
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
 //        Intent intent = new Intent(AddReferral.this, ReferralList.class);

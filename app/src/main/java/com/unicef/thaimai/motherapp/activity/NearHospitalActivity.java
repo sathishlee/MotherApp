@@ -51,7 +51,7 @@ public class NearHospitalActivity extends AppCompatActivity implements LocationU
     private RecyclerView recyclerView;
     private NearByHospitalAdapter mAdapter;
     boolean isDataUpdate=true;
-PreferenceData preferenceData;
+    PreferenceData preferenceData;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,8 +63,10 @@ PreferenceData preferenceData;
         preferenceData = new PreferenceData(this);
 
         locationUpdatePresenter = new LocationUpdatePresenter(NearHospitalActivity.this, this);
+        locationUpdatePresenter.getNearByHospitalFromServer(AppConstants.NEAR_LATITUDE, AppConstants.NEAR_LONGITUDE);
+//        locationUpdatePresenter.getNearByHospitalFromServer(AppConstants.EXTRA_LATITUDE, AppConstants.EXTRA_LONGITUDE);
 
-        LocalBroadcastManager.getInstance(this).registerReceiver(new BroadcastReceiver() {
+        /*LocalBroadcastManager.getInstance(this).registerReceiver(new BroadcastReceiver() {
 
                     @Override
                     public void onReceive(Context context, Intent intent) {
@@ -75,20 +77,28 @@ PreferenceData preferenceData;
                                 AppConstants.NEAR_LATITUDE = latitude;
                                 AppConstants.NEAR_LONGITUDE = longitude;
                                 locationUpdatePresenter.getNearByHospitalFromServer(AppConstants.NEAR_LATITUDE, AppConstants.NEAR_LONGITUDE);
+
                             }
                         }
                     }
                 }, new IntentFilter(LocationMonitoringService.ACTION_LOCATION_BROADCAST)
-        );
+        );*/
 
         mNearbyList =new ArrayList<>();
         recyclerView =(RecyclerView)findViewById(R.id.rec_nearbyhospital);
-
-        mAdapter = new NearByHospitalAdapter(mNearbyList,NearHospitalActivity.this,this);
+        recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(NearHospitalActivity.this);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(mAdapter);
+
+        if(mAdapter != null) {
+            mAdapter.notifyDataSetChanged();
+        }
+        else {
+            mAdapter = new NearByHospitalAdapter(mNearbyList, NearHospitalActivity.this,this);
+            recyclerView.setAdapter(mAdapter);
+        }
+
 
     }
 
@@ -110,12 +120,22 @@ PreferenceData preferenceData;
 
     @Override
     public void showProgress() {
-        pDialog.show();
+        if (!NearHospitalActivity.this.isDataUpdate) {
+            pDialog.show();
+        }
     }
 
     @Override
     public void hideProgress() {
         pDialog.hide();
+    }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        if (pDialog!=null && pDialog.isShowing() ){
+            pDialog.cancel();
+        }
     }
 
     @Override
@@ -131,33 +151,39 @@ PreferenceData preferenceData;
     @Override
     public void getNearbyHospitalSuccess(String responsne) {
         Log.e(NearHospitalActivity.class.getSimpleName(), "response success" + responsne);
-
+        pDialog.show();
         try {
             JSONObject mJsnobject = new JSONObject(responsne);
-            JSONArray jsonArray = mJsnobject.getJSONArray("nearby");
-            for (int i = 0; i < jsonArray.length(); i++) {
-                mnearbyModel =new NearHospitalResponseModel.Nearby();
+            String status = mJsnobject.getString("status");
+            if (status.equalsIgnoreCase("1")) {
+                JSONArray jsonArray = mJsnobject.getJSONArray("nearby");
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    mnearbyModel = new NearHospitalResponseModel.Nearby();
 
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                mnearbyModel.setPhcId(jsonObject.getString("phcId"));
-                mnearbyModel.setF_district_name(jsonObject.getString("f_district_name"));
-                mnearbyModel.setF_sub_district_nam(jsonObject.getString("f_sub_district_nam"));
-                mnearbyModel.setPhcName(jsonObject.getString("phcName"));
-                mnearbyModel.setPhcCode(jsonObject.getString("phcCode"));
-                mnearbyModel.setF_nin_num(jsonObject.getString("f_nin_num"));
-                mnearbyModel.setF_facility_name(jsonObject.getString("f_facility_name"));
-                mnearbyModel.setF_location(jsonObject.getString("f_location"));
-                mnearbyModel.setF_latitute(jsonObject.getString("f_latitute"));
-                mnearbyModel.setF_longititute(jsonObject.getString("f_longititute"));
-                mnearbyModel.setF_level(jsonObject.getString("f_level"));
-                mnearbyModel.setPhcMobile(jsonObject.getString("phcMobile"));
-                mnearbyModel.setPhcStatus(jsonObject.getString("phcStatus"));
-                mnearbyModel.setDistance(jsonObject.getString("distance"));
-                mNearbyList.add(mnearbyModel);
-                mAdapter.notifyDataSetChanged();
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    mnearbyModel.setPhcId(jsonObject.getString("phcId"));
+                    mnearbyModel.setF_district_name(jsonObject.getString("f_district_name"));
+                    mnearbyModel.setF_sub_district_nam(jsonObject.getString("f_sub_district_nam"));
+                    mnearbyModel.setPhcName(jsonObject.getString("phcName"));
+                    mnearbyModel.setPhcCode(jsonObject.getString("phcCode"));
+                    mnearbyModel.setF_nin_num(jsonObject.getString("f_nin_num"));
+                    mnearbyModel.setF_facility_name(jsonObject.getString("f_facility_name"));
+                    mnearbyModel.setF_location(jsonObject.getString("f_location"));
+                    mnearbyModel.setF_latitute(jsonObject.getString("f_latitute"));
+                    mnearbyModel.setF_longititute(jsonObject.getString("f_longititute"));
+                    mnearbyModel.setF_level(jsonObject.getString("f_level"));
+                    mnearbyModel.setPhcMobile(jsonObject.getString("phcMobile"));
+                    mnearbyModel.setPhcStatus(jsonObject.getString("phcStatus"));
+                    mnearbyModel.setDistance(jsonObject.getString("distance"));
+//                mNearbyList.clear();
+                    mNearbyList.add(mnearbyModel);
+                    mAdapter.notifyDataSetChanged();
+                    pDialog.hide();
+                }
             }
         }catch (JSONException e) {
             e.printStackTrace();
+            pDialog.hide();
         }
     }
     @Override
@@ -174,10 +200,8 @@ PreferenceData preferenceData;
             requestCallPermission();
 
         } else {
-
 //            Log.i(NearHospitalActivity.class.getSimpleName(),"CALL permission has already been granted. Displaying camera preview.");
             startActivity(new Intent(Intent.ACTION_CALL, Uri.parse("tel:+"+phcMobile)));
-
         }
 
     }

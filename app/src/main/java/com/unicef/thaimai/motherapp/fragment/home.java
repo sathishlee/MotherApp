@@ -4,9 +4,12 @@ package com.unicef.thaimai.motherapp.fragment;
 import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -21,13 +24,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.GetUserInfoPresenter;
 import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.activity.NearHospitalActivity;
 //import com.unicef.thaimai.motherapp.bradcastReceiver.ConnectivityReceiver;
 import com.unicef.thaimai.motherapp.activity.ProfileActivity;
+import com.unicef.thaimai.motherapp.constant.Apiconstants;
 import com.unicef.thaimai.motherapp.constant.AppConstants;
+import com.unicef.thaimai.motherapp.utility.RoundedTransformation;
 import com.unicef.thaimai.motherapp.view.LoginViews;
 
 import org.json.JSONException;
@@ -45,12 +53,13 @@ public class home extends Fragment implements LoginViews, View.OnClickListener {
 
     TextView txt_no_network;
 
-    ImageView img_call_husb,img_call_vhn,img_call_aww,img_call_phc;
+    ImageView img_call_husb,img_call_vhn,img_call_aww,img_call_phc, cardview_image;
 
      String strname, strpicmeId, strage,str_mobile_number_hsbn,
-            str_mobile_number_vhn, str_mobile_number_aww,str_mobile_number_phc;
+            str_mobile_number_vhn, str_mobile_number_aww,str_mobile_number_phc, str_mPhoto;
 
     CardView profile;
+    Context context;
 
     PreferenceData preferenceData;
     SharedPreferences.Editor editor;
@@ -112,6 +121,7 @@ public class home extends Fragment implements LoginViews, View.OnClickListener {
     private void initUI(View view) {
 
         preferenceData = new PreferenceData(getActivity());
+        context = getActivity();
         editor = getActivity().getSharedPreferences(AppConstants.PREF_NAME, MODE_PRIVATE).edit();
 
         strname = preferenceData.getMotherName();
@@ -148,9 +158,11 @@ public class home extends Fragment implements LoginViews, View.OnClickListener {
         img_call_vhn =(ImageView) view.findViewById(R.id.img_call_vhn);
         img_call_aww =(ImageView) view.findViewById(R.id.img_call_aww);
         img_call_phc =(ImageView) view.findViewById(R.id.img_call_phc);
+        cardview_image = (ImageView) view.findViewById(R.id.cardview_image);
         picme_id.setText(strpicmeId);
         txt_username .setText(strname);
         txt_age.setText(strage);
+
 
 //        txt_no_network = (TextView) view.findViewById(R.id.txt_no_network);
 
@@ -171,6 +183,16 @@ public class home extends Fragment implements LoginViews, View.OnClickListener {
     @Override
     public void hideProgress() {
         pDialog.hide();
+    }
+
+    @Override
+    public void loginSuccess(String response) {
+
+    }
+
+    @Override
+    public void loginError(String string) {
+
     }
 
     @Override
@@ -206,9 +228,24 @@ public class home extends Fragment implements LoginViews, View.OnClickListener {
             txt_aww_name.setText(jObj.getString("awwName"));
             str_mobile_number_aww = jObj.getString("awwMobile");
 //            txt_aww_mobile_number.setText(str_mobile_number_aww);
-//            txt_aww_mobile_number.setText(jObj.getString("phcName"));
+            txt_phc_name.setText(jObj.getString("phcName"));
             str_mobile_number_phc = jObj.getString("phcMobile");
 //            txt_phc_mobile_number.setText(str_mobile_number_phc);
+
+            str_mPhoto = jObj.getString("mPhoto");
+            Log.d("mphoto-->",Apiconstants.PHOTO_URL+str_mPhoto);
+
+            Picasso.with(context)
+                    .load(Apiconstants.PHOTO_URL+str_mPhoto)
+                    .placeholder(R.drawable.girl_1)
+                    .fit()
+                    .centerCrop()
+                    .memoryPolicy(MemoryPolicy.NO_CACHE)
+                    .networkPolicy(NetworkPolicy.NO_CACHE)
+                    .transform(new RoundedTransformation(90,4))
+                    .error(R.drawable.girl_1)
+                    .into(cardview_image);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

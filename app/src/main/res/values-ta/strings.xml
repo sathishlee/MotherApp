@@ -19,7 +19,7 @@
     <string name="tamil">தமிழ்</string>
     <string name="title_home">Home</string>
     <string name="username">பயனர்பெயர்</string>
-    <string name="vhn">VHN</string>
+    <string name="vhn">அருகில் உள்ள மருத்துவமனை</string>
     <string name="view_reports">அறிக்கைகள் காண்க</string>
     <string name="week_details">வாரம் விவரங்கள்</string>
     <string name="yes">ஆம்</string>
@@ -30,4 +30,28 @@
     <string name="doctor_name">டாக்டர் பெயர்</string>
     <string name="hospital_name">மருத்துவமனை பெயர்</string>
     <string name="name_of_the_doctor">டாக்டரின் பெயர்</string>
+    <string name="any_complient">புகார்</string>
+    <string name="breast_examinatione">மார்பகப் பரிசோதனை</string>
+    <string name="btn_label_refresh">புதுப்பிப்பு</string>
+    <string name="cry">அழ</string>
+    <string name="done">முடிந்தது</string>
+    <string name="due_date">கொடுக்க வேண்டிய தேதி</string>
+    <string name="epistomy">எபிசோடொட்டோமி / பியர் சோர்வு</string>
+    <string name="exclusive_breast_feeding">தாய்ப் பாலூட்டல்</string>
+    <string name="exclusive_breast_feeding_no_reasons">காரணம்</string>
+    <string name="eyes">கண்</string>
+    <string name="focusing">கவனம் / ஃப்ளாஷ் ... ஒரு நிமிடம் காத்திருங்கள்</string>
+    <string name="health_tips">சுகாதார குறிப்புகள்</string>
+    <string name="immunization">நோய்த்தடுப்பு</string>
+    <string name="msg_alert_no_internet">நீங்கள் செயலில் இணைய இணைப்பு இருப்பதை உறுதி செய்து கொள்ளவும்.</string>
+    <string name="name_of_the_hospital_1">மருத்துவமனையின் பெயர்</string>
+    <string name="outcome">பலன்</string>
+    <string name="referral">பரிந்துரை</string>
+    <string name="rota">ரோட்டா</string>
+    <string name="settings">அமைப்புகளை</string>
+    <string name="skin">தோல்</string>
+    <string name="submit">சமர்ப்பி</string>
+    <string name="umbilical_stump">தொப்புள் டம்ப்</string>
+    <string name="visit_week">வாரம் வருகை</string>
+    <string name="weight">எடை</string>
 </resources>

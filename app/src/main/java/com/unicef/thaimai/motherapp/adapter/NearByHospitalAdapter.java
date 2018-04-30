@@ -86,16 +86,13 @@ public class NearByHospitalAdapter extends RecyclerView.Adapter<NearByHospitalAd
 
         TextView txt_phc_call, txt_f_nin_num, txt_phc_name, txt_fac_name, txt_hosp_distance;
 
-
         public ViewHolder(View itemView) {
             super(itemView);
-
             txt_f_nin_num = itemView.findViewById(R.id.txt_f_nin_num);
             txt_phc_name = itemView.findViewById(R.id.txt_phc_name);
             txt_fac_name = itemView.findViewById(R.id.txt_fac_name);
             txt_hosp_distance = itemView.findViewById(R.id.txt_hosp_distance);
             txt_phc_call = itemView.findViewById(R.id.txt_phc_call);
-
         }
     }
 

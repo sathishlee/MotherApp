@@ -16,14 +16,12 @@
     import android.widget.Spinner;
     import android.widget.Toast;
 
+    import com.unicef.thaimai.motherapp.ImageSelectedActivity;
     import com.unicef.thaimai.motherapp.Preference.PreferenceData;
     import com.unicef.thaimai.motherapp.Presenter.AddVisitRecordsPresenter;
-    import com.unicef.thaimai.motherapp.Presenter.PrimaryRegisterPresenter;
     import com.unicef.thaimai.motherapp.R;
     import com.unicef.thaimai.motherapp.model.requestmodel.AddRecordRequestModel;
-    import com.unicef.thaimai.motherapp.model.requestmodel.PrimaryDataRequestModel;
     import com.unicef.thaimai.motherapp.view.AddRecordViews;
-    import com.unicef.thaimai.motherapp.view.PrimaryRegisterViews;
 
     import org.json.JSONException;
     import org.json.JSONObject;
@@ -41,7 +39,7 @@
                 edt_rbs, edt_fbs, edt_ppbs, edt_gtt, edt_tsh, edt_urine_sugar, edt_albumin, edt_fetus, edt_gestation_sac, edt_liquor, edt_placenta;
         RadioGroup rg_pep;
         RadioButton rb_yes, rb_no;
-        Button btn_submit;
+        Button btn_submit, upload_reports;
 
        public String strDate,strTypeOfVisit, strFacility, strAnyComplaints, strFundal_Height,
                 strFacility_other, strany_complaints_other, strbp_sys, strbp_dis, strpluse_rate, strweight, strfhs, strtemp, strhemo,
@@ -78,6 +76,7 @@
 
         private void onClickListner() {
             btn_submit.setOnClickListener(this);
+            upload_reports.setOnClickListener(this);
         }
 
         private void initUI() {
@@ -119,15 +118,13 @@
             rb_yes = (RadioButton) findViewById(R.id.rb_yes);
             rb_no = (RadioButton) findViewById(R.id.rb_no);
             btn_submit = (Button) findViewById(R.id.btn_submit);
+            upload_reports = (Button) findViewById(R.id.upload_reports);
         }
 
         private void showActionBar() {
             ActionBar actionBar = getSupportActionBar();
-
             actionBar.setTitle("Add Records");
-
             actionBar.setHomeButtonEnabled(true);
-
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
@@ -146,6 +143,8 @@
                 case R.id.btn_submit:
                     sendtoServer();
                     break;
+                case R.id.upload_reports:
+                    startActivity(new Intent(getApplicationContext(),ImageSelectedActivity.class));
             }
         }
 
@@ -313,6 +312,14 @@
         @Override
         public void hideProgress() {
             pDialog.hide();
+        }
+
+        @Override
+        public void onDestroy(){
+            super.onDestroy();
+            if (pDialog!=null && pDialog.isShowing() ){
+                pDialog.cancel();
+            }
         }
 
         @Override

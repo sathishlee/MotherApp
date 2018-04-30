@@ -74,7 +74,7 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
     private AlertDialog mGPSDialog;
 
     LocationUpdatePresenter locationUpdatePresenter;
-
+    CheckNetwork checkNetwork;
     PreferenceData preferenceData;
 
     String strAddress="";
@@ -90,11 +90,7 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_update);
-
-
-
-
-
+        checkNetwork = new CheckNetwork(this);
 
 
 //        serverUpload = new ServerUpload();
@@ -104,12 +100,8 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
             startStep1();
             if (mAlreadyStartedService) {
                 if (!preferenceData.getLogin()) {
-
                     stopService(new Intent(this, LocationMonitoringService.class));
-
-
                     mAlreadyStartedService = false;
-                    //Ends................................................
                 }
             }
             if (preferenceData.getLogin()) {
@@ -134,8 +126,6 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
                             }
                         }, new IntentFilter(LocationMonitoringService.ACTION_LOCATION_BROADCAST)
                 );
-
-
             }
             new Handler().postDelayed(new Runnable() {
 
@@ -149,20 +139,21 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
                     // This method will be executed once the timer is over
                     // Start your app main activity
 //                if (preferenceData.getPicmeId().equalsIgnoreCase("") && preferenceData.getVhnId().equalsIgnoreCase("") && preferenceData.getMId().equalsIgnoreCase("")) {
-                    if (preferenceData.getLogin()) {
-                        Log.d("LOG LOGIN", preferenceData.getPicmeId() + "," + preferenceData.getVhnId() + "," + preferenceData.getMId());
+                    if(checkNetwork.isNetworkAvailable()){
+                        if (preferenceData.getLogin()) {
+                            Log.d("LOG LOGIN", preferenceData.getPicmeId() + "," + preferenceData.getVhnId() + "," + preferenceData.getMId());
 //                    AppConstants.POP_UP_COUNT= Integer.parseInt(preferenceData.getMainScreenOpen());
-                        preferenceData.setMainScreenOpen(0);
-
-                        Intent i = new Intent(LocationUpdateActivity.this, MainActivity.class);
-                        startActivity(i);
-                    } else {
-                        preferenceData.setMainScreenOpen(0);
-
-                        Intent i = new Intent(LocationUpdateActivity.this, Login.class);
-                        startActivity(i);
+                            preferenceData.setMainScreenOpen(0);
+                            Intent i = new Intent(LocationUpdateActivity.this, MainActivity.class);
+                            startActivity(i);
+                        } else {
+                            preferenceData.setMainScreenOpen(0);
+                            Intent i = new Intent(LocationUpdateActivity.this, Login.class);
+                            startActivity(i);
+                        }
+                    }else {
+                        startActivity(new Intent(getApplicationContext(),NoInternetConnection.class));
                     }
-
 
                     // close this activity
                     finish();
@@ -225,11 +216,10 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
 
         if (activeNetworkInfo == null || !activeNetworkInfo.isConnected()) {
             promptInternetConnect();
-            return false;
+            return true;
         }
 
-
-        if (dialog != null) {
+        else if (dialog != null) {
             dialog.dismiss();
         }
 
@@ -247,7 +237,7 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
      * Show A Dialog with button to refresh the internet state.
      */
     private void promptInternetConnect() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(LocationUpdateActivity.this);
+        /*AlertDialog.Builder builder = new AlertDialog.Builder(LocationUpdateActivity.this);
         builder.setTitle(R.string.title_alert_no_intenet);
         builder.setMessage(R.string.msg_alert_no_internet);
 
@@ -276,7 +266,10 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
                 });
 
         AlertDialog dialog = builder.create();
-        dialog.show();
+        dialog.show();*/
+
+        startActivity(new Intent(getApplicationContext(), NoInternetConnection.class));
+        finish();
     }
 
     /**
@@ -492,13 +485,14 @@ Log.d(TAG,"success--->"+loginResponseModel);
         try {
             List<Address> addresses = geocoder.getFromLocation(dlatitude, dlongitude, 1);
             if (addresses != null) {
-                Address returnedAddress = addresses.get(0);
+//                Address returnedAddress = addresses.get(0);
+                String maddress = addresses.get(0).getAddressLine(0);
                 StringBuilder strReturnedAddress = new StringBuilder("");
 
                 /*for (int i = 0; i <= returnedAddress.getMaxAddressLineIndex(); i++) {
                     strReturnedAddress.append(returnedAddress.getAddressLine(i)).append("\n");
                 }*/
-                strAdd = returnedAddress.getSubAdminArea();
+                strAdd = String.valueOf(maddress);
 //                strAdd = strReturnedAddress.toString();
 //                Log.w(TAG, "My Current loction address"+strReturnedAddress.toString());
 //                Log.w(TAG, "My Current loction address--->"+returnedAddress.getSubAdminArea().toString());

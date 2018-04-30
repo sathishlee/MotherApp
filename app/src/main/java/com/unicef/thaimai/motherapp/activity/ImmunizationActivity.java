@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.ImmunizationListPresenter;
@@ -40,6 +41,8 @@ public class ImmunizationActivity extends AppCompatActivity implements  Immuniza
     ImmunizationResponseModel.Result mresponseResult;
     private RecyclerView recyclerView;
     private ImmunizationListAdapter mAdapter;
+    TextView txt_no_records_found;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +57,9 @@ public class ImmunizationActivity extends AppCompatActivity implements  Immuniza
         immunizationListPresenter.getImmunizationList(preferenceData.getPicmeId(),preferenceData.getMId());
         mResult = new ArrayList<>();
         recyclerView = (RecyclerView) findViewById(R.id.rec_immunization);
+        txt_no_records_found = (TextView) findViewById(R.id.txt_no_records);
+        txt_no_records_found.setVisibility(View.GONE);
+
 
         mAdapter = new ImmunizationListAdapter(mResult, ImmunizationActivity.this);
 
@@ -67,11 +73,8 @@ public class ImmunizationActivity extends AppCompatActivity implements  Immuniza
 
     public void showActionBar(){
         ActionBar actionBar = getSupportActionBar();
-
         actionBar.setTitle("Immunization List");
-
         actionBar.setHomeButtonEnabled(true);
-
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
@@ -94,6 +97,14 @@ public class ImmunizationActivity extends AppCompatActivity implements  Immuniza
     }
 
     @Override
+    public void onDestroy(){
+        super.onDestroy();
+        if (pDialog!=null && pDialog.isShowing() ){
+            pDialog.cancel();
+        }
+    }
+
+    @Override
     public void getImmunizationListSuccess(String response) {
 
 
@@ -101,21 +112,29 @@ public class ImmunizationActivity extends AppCompatActivity implements  Immuniza
 
         try {
             JSONObject mJsnobject = new JSONObject(response);
-            JSONArray jsonArray = mJsnobject.getJSONArray("result");
-            for (int i = 0; i < jsonArray.length(); i++) {
-                mresponseResult =new ImmunizationResponseModel.Result();
+            String status = mJsnobject.getString("status");
+            String message = mJsnobject.getString("message");
+            if (status.equalsIgnoreCase("1")) {
+                txt_no_records_found.setVisibility(View.GONE);
+                JSONArray jsonArray = mJsnobject.getJSONArray("result");
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    mresponseResult = new ImmunizationResponseModel.Result();
 
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                mresponseResult.setImmDoseNumber(jsonObject.getString("immDoseNumber"));
-                mresponseResult.setImmDueDate(jsonObject.getString("immDueDate"));
-                mresponseResult.setImmCarePovidedDate(jsonObject.getString("immCarePovidedDate"));
-                mresponseResult.setImmOpvStatus(jsonObject.getString("immOpvStatus"));
-                mresponseResult.setImmPentanvalentStatus(jsonObject.getString("immPentanvalentStatus"));
-                mresponseResult.setImmRotaStatus(jsonObject.getString("immRotaStatus"));
-                mresponseResult.setImmIpvStatus(jsonObject.getString("immIpvStatus"));
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    mresponseResult.setImmDoseNumber(jsonObject.getString("immDoseNumber"));
+                    mresponseResult.setImmDueDate(jsonObject.getString("immDueDate"));
+                    mresponseResult.setImmCarePovidedDate(jsonObject.getString("immCarePovidedDate"));
+                    mresponseResult.setImmOpvStatus(jsonObject.getString("immOpvStatus"));
+                    mresponseResult.setImmPentanvalentStatus(jsonObject.getString("immPentanvalentStatus"));
+                    mresponseResult.setImmRotaStatus(jsonObject.getString("immRotaStatus"));
+                    mresponseResult.setImmIpvStatus(jsonObject.getString("immIpvStatus"));
 
-                mResult.add(mresponseResult);
-                mAdapter.notifyDataSetChanged();
+                    mResult.add(mresponseResult);
+                    mAdapter.notifyDataSetChanged();
+                }
+            }else{
+                txt_no_records_found.setVisibility(View.VISIBLE);
+
             }
         }catch (JSONException e) {
             e.printStackTrace();

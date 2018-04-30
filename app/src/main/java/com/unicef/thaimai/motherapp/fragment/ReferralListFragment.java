@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.unicef.thaimai.motherapp.Interface.RefrealAutoComplete;
@@ -48,8 +49,10 @@ public class ReferralListFragment extends Fragment implements ReferalViews, Refr
     ReferalListResponseModel.NearestHospitals mReferalListModel;
     ArrayList<ReferalListResponseModel.NearestHospitals> mReferalList;
     ReferalListAdapter hAdapter;
+    TextView txt_no_records_found;
 
-String ref_status;
+
+    String ref_status;
     public static ReferralListFragment newInstance() {
         ReferralListFragment fragment = new ReferralListFragment();
         return fragment;
@@ -87,7 +90,13 @@ String ref_status;
 
         referalPresenter.getReffralNeList(preferenceData.getMId(), preferenceData.getPhcId(), preferenceData.getVhnId(), preferenceData.getPicmeId());
         fabAddNewReferal = (FloatingActionButton) view.findViewById(R.id.fab_add_new_referal);
+        txt_no_records_found = (TextView) view.findViewById(R.id.txt_no_records);
+        txt_no_records_found.setVisibility(View.GONE);
+
+
+
         rec_referral_list = (RecyclerView) view.findViewById(R.id.rec_referral_list);
+        rec_referral_list.setVisibility(View.GONE);
         hAdapter = new ReferalListAdapter(getActivity(), mReferalList,this);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         rec_referral_list.setLayoutManager(mLayoutManager);
@@ -119,6 +128,14 @@ String ref_status;
         pDialog.hide();
 
     }
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        if (pDialog!=null && pDialog.isShowing() ){
+            pDialog.cancel();
+        }
+    }
+
 
     @Override
     public void successReferalAdd(String response) {
@@ -142,13 +159,15 @@ String ref_status;
 
     @Override
     public void successReferalList(String response) {
-        Log.d(health_records.class.getSimpleName(), "--->ReferalList response success" + response);
+        Log.d(ReferralListFragment.class.getSimpleName(), "--->ReferalList response success" + response);
 
         try {
             JSONObject mJsnobject = new JSONObject(response);
             String status = mJsnobject.getString("status");
             String message = mJsnobject.getString("message");
             if (status.equalsIgnoreCase("1")) {
+                txt_no_records_found.setVisibility(View.GONE);
+                rec_referral_list.setVisibility(View.VISIBLE);
                 JSONArray jsonArray = mJsnobject.getJSONArray("nearestHospitals");
                 for (int i = 0; i < jsonArray.length(); i++) {
                     mReferalListModel = new ReferalListResponseModel.NearestHospitals();
@@ -176,7 +195,10 @@ String ref_status;
                     hAdapter.notifyDataSetChanged();
                 }
             }else{
-                Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
+                txt_no_records_found.setVisibility(View.VISIBLE);
+                rec_referral_list.setVisibility(View.GONE);
+
             }
 
         } catch (JSONException e) {

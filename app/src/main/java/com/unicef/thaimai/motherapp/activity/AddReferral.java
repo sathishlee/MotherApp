@@ -67,7 +67,12 @@ public class AddReferral extends AppCompatActivity implements View.OnClickListen
     protected void onDestroy() {
         super.onDestroy();
         AppConstants.CREATE_NEW_REFRAL = false;
+        if (pDialog!=null && pDialog.isShowing() ){
+            pDialog.cancel();
+        }
     }
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -358,13 +363,13 @@ public class AddReferral extends AppCompatActivity implements View.OnClickListen
 
             case R.id.sp_referring_facility_start:
                 strReferringFacility = parent.getSelectedItem().toString();
-if (parent.getSelectedItem().toString().equalsIgnoreCase("--Select--")) {
-}else{
-    strReferringFacilityCode = arr_nearstReferalHospitalList_hospital_id.get(position);
-    Log.e("ReferringFacToCode-->",position+""+strReferringFacilityCode);
+                if (parent.getSelectedItem().toString().equalsIgnoreCase("--Select--")) {
+                }else{
+                    strReferringFacilityCode = arr_nearstReferalHospitalList_hospital_id.get(position);
+                    Log.e("ReferringFacToCode-->",position+""+strReferringFacilityCode);
 
-    //                Log.d("RefergFaciyCode",position+"-->"+strReferringFacilityCode);
-}
+                    //                Log.d("RefergFaciyCode",position+"-->"+strReferringFacilityCode);
+                }
                 break;
             case R.id.sp_facility_referred_to_start:
 //                strFacilityReferredTo = parent.getSelectedItem().toString();
@@ -410,6 +415,8 @@ if (parent.getSelectedItem().toString().equalsIgnoreCase("--Select--")) {
     public void hideProgress() {
         pDialog.dismiss();
     }
+
+
 
     @Override
     public void successReferalAdd(String response) {
@@ -494,7 +501,7 @@ if (parent.getSelectedItem().toString().equalsIgnoreCase("--Select--")) {
                     nearestReferalHospitalModel.setDistance(jsonObject1.getString("phcId"));
                     nearestReferalHospitalModel.setPhcCode(jsonObject1.getString("phcCode"));
                     nearestReferalHospitalModel.setPhcId(jsonObject1.getString("distance"));
-                    arr_nearstReferalHospitalList_hospital_name.add(jsonObject1.getString("phcCode"));
+                    arr_nearstReferalHospitalList_hospital_name.add(jsonObject1.getString("phcCode")+"  ("+jsonObject1.getString(""+"f_facility_name")+")");
 
                     arr_nearstReferalHospitalList.add(jsonObject1.getString("phcId")+"-"+jsonObject1.getString("distance"));
                     arr_nearstReferalHospitalList_name_distance.add(jsonObject1.getString("phcCode")+"   "+jsonObject1.getString("distance").substring(0,2)+" km"+"  ("+jsonObject1.getString("" +

@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,11 +32,11 @@ import java.util.Calendar;
 
 public class Login extends AppCompatActivity implements View.OnClickListener, LoginViews
 {
-    Button btn_login;
-    EditText edtPicme, edtDob;
-    TextInputLayout iplPicmeId, iplDob;
+    Button btn_login, btn_otp_submit;
+    EditText edtPicme, edtDob, edt_otp;
+    TextInputLayout iplPicmeId, iplDob, input_layout_otp;
     TextView txtForgetPicme;
-    String strPicme, strDob;
+    String strPicme, strDob, strOtp;
     ProgressDialog pDialog;
     LoginPresenter loginPresenter;
     PreferenceData preferenceData;
@@ -43,6 +44,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
     Calendar mCurrentDate;
     int day, month, year, hour, minute, sec;
     private String message;
+    LinearLayout ll_signin, ll_otp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,12 +84,19 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
         txtForgetPicme = (TextView) findViewById(R.id.txt_forgot_picme);
         iplPicmeId = (TextInputLayout) findViewById(R.id.input_layout_picme_id);
         iplDob = (TextInputLayout) findViewById(R.id.input_layout_dob);
+        ll_signin = (LinearLayout) findViewById(R.id.ll_signin);
+        ll_otp = (LinearLayout) findViewById(R.id.ll_otp);
+
+        input_layout_otp = (TextInputLayout) findViewById(R.id.input_layout_otp);
+        edt_otp = (EditText) findViewById(R.id.edt_otp);
+        btn_otp_submit = (Button) findViewById(R.id.btn_otp_submit);
     }
 
     private void onClickListner() {
         btn_login.setOnClickListener(this);
         txtForgetPicme.setOnClickListener(this);
         edtDob.setOnClickListener(this);
+        btn_otp_submit.setOnClickListener(this);
     }
 
     @Override
@@ -96,6 +105,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
             case R.id.btn_submit:
                 getValue();
                 break;
+            case R.id.btn_otp_submit:
+                enterOtp();
+                break;
+
             case R.id.txt_forgot_picme:
                 goforgetPicmepage();
                 break;
@@ -105,6 +118,16 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
                 break;
         }
 
+    }
+
+    private void enterOtp() {
+        strOtp = edt_otp.getText().toString();
+
+        if(strOtp.equalsIgnoreCase("")){
+            input_layout_otp.setError("Please Enter OTP");
+        }else{
+            loginPresenter.checkOtp(preferenceData.getCheckPicmeID(),preferenceData.getCheckDob(),preferenceData.getDeviceId(),strOtp);
+        }
     }
 
     private void getDob(final EditText edtDob) {
@@ -121,7 +144,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
     }
 
     private void goforgetPicmepage() {
-        startActivity(new Intent(getApplicationContext(), ForgotPicme.class));
+        startActivity(new Intent(getApplicationContext(), forgot_password.class));
     }
 
     private void getValue() {
@@ -158,6 +181,43 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
     }
 
     @Override
+    public void loginSuccess(String response) {
+        Log.d("Response success",response);
+        JSONObject jsonObject = null;
+        try{
+            jsonObject = new JSONObject(response);
+            String status = jsonObject.getString("status");
+            String message = jsonObject.getString("message");
+
+            if (status.equalsIgnoreCase("1")){
+                Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
+                ll_otp.setVisibility(View.VISIBLE);
+                ll_signin.setVisibility(View.GONE);
+                preferenceData.storePicmeInfo(jsonObject.getString("picmeId"),jsonObject.getString("DOB"));
+            }else {
+                Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
+                ll_otp.setVisibility(View.GONE);
+                ll_signin.setVisibility(View.VISIBLE);
+            }
+        }catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void loginError(String string) {
+        Log.d("Login Error-->", string);
+    }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        if (pDialog!=null && pDialog.isShowing() ){
+            pDialog.cancel();
+        }
+    }
+
+    @Override
     public void showPickmeResult(String response) {
         Log.d("Response success", response);
         JSONObject jObj = null;
@@ -165,6 +225,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
             jObj = new JSONObject(response);
             int status = jObj.getInt("status");
             String message = jObj.getString("message");
+            Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
             if (status == 1) {
                 Log.d("message---->", message);
                 preferenceData.storeUserInfo(jObj.getString("picmeId"),jObj.getString("mid"),

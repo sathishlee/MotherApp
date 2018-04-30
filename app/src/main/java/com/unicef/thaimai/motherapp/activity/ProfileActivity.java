@@ -4,6 +4,7 @@ import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -31,12 +32,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
+import com.unicef.thaimai.motherapp.ImageSelectedActivity;
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.ImageUploadPresenter;
 import com.unicef.thaimai.motherapp.Presenter.ProfilePresenter;
 import com.unicef.thaimai.motherapp.R;
+import com.unicef.thaimai.motherapp.constant.Apiconstants;
 import com.unicef.thaimai.motherapp.view.ImageUploadViews;
 import com.unicef.thaimai.motherapp.view.ProfileView;
 
@@ -48,6 +55,15 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+
+import static android.Manifest.permission.CAMERA;
+import static android.Manifest.permission.GET_ACCOUNTS;
+import static android.Manifest.permission.INTERNET;
+import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
+import static android.Manifest.permission.RECORD_AUDIO;
+import static android.Manifest.permission.SEND_SMS;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+import static android.Manifest.permission.WRITE_SETTINGS;
 
 
 public class ProfileActivity extends AppCompatActivity implements ProfileView, View.OnClickListener, ImageUploadViews {
@@ -62,7 +78,7 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView, V
 
     ImageView user_profile_photo;
     Intent intent;
-
+    Context context;
     TextView user_name, edt_picme_id, address, village_name, tvNumber5, district_name, tvNumber1, number_1;
     ProgressDialog pDialog;
     ProfilePresenter profilePresenter;
@@ -70,8 +86,10 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView, V
 
     ImageUploadPresenter imageUploadPresenter;
 
+    public static final int RequestPermissionCode = 7;
+
     public static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 123;
-    String userChoosenTask;
+    String userChoosenTask, str_mPhoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +105,18 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView, V
                         .setAction("Action", null).show();
             }
         });
+        if(CheckingPermissionIsEnabledOrNot())
+        {
+            Toast.makeText(ProfileActivity.this, "All Permissions Granted Successfully", Toast.LENGTH_LONG).show();
+        }
+
+        // If, If permission is not enabled then else condition will execute.
+        else {
+
+            //Calling method to enable permission.
+            RequestMultiplePermission();
+
+        }
       /*  if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && ContextCompat.checkSelfPermission(this,
                 android.Manifest.permission.READ_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -125,6 +155,7 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView, V
         pDialog.setCancelable(false);
         pDialog.setMessage("Please Wait ...");
         preferenceData = new PreferenceData(this);
+        context = ProfileActivity.this;
 
         profilePresenter = new ProfilePresenter(ProfileActivity.this, this);
         imageUploadPresenter = new ImageUploadPresenter(ProfileActivity.this, this);
@@ -198,6 +229,14 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView, V
     }
 
     @Override
+    public void onDestroy(){
+        super.onDestroy();
+        if (pDialog!=null && pDialog.isShowing() ){
+            pDialog.cancel();
+        }
+    }
+
+    @Override
     public void successUploadPhoto(String response) {
         Log.d("Image upload success",response);
     }
@@ -211,7 +250,7 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView, V
 
     @Override
     public void successViewProfile(String response) {
-        Log.d("ProfileActivity success", response);
+        Log.d("ProfileActivity success",response);
 
 
         try {
@@ -228,6 +267,20 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView, V
                 district_name.setText(editprofile.getString("mDistrict"));
                 tvNumber1.setText(editprofile.getString("mMotherMobile"));
                 number_1.setText(editprofile.getString("mHusbandMobile"));
+
+                str_mPhoto = editprofile.getString("mPhoto");
+
+                Log.d("mphoto-->", Apiconstants.PHOTO_URL+str_mPhoto);
+
+                Picasso.with(context)
+                        .load(Apiconstants.PHOTO_URL+str_mPhoto)
+                        .placeholder(R.drawable.ln_logo)
+                        .fit()
+                        .centerCrop()
+                        .memoryPolicy(MemoryPolicy.NO_CACHE)
+                        .networkPolicy(NetworkPolicy.NO_CACHE)
+                        .error(R.drawable.ln_logo)
+                        .into(user_profile_photo);
             }
 
         } catch (JSONException e) {
@@ -293,6 +346,67 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView, V
     private void cameraIntent() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent, REQUEST_CAMERA);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+
+            case RequestPermissionCode:
+
+                if (grantResults.length > 0) {
+
+                    boolean CameraPermission = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+                    boolean RecordAudioPermission = grantResults[1] == PackageManager.PERMISSION_GRANTED;
+                    boolean SendSMSPermission = grantResults[2] == PackageManager.PERMISSION_GRANTED;
+                    boolean GetAccountsPermission = grantResults[3] == PackageManager.PERMISSION_GRANTED;
+
+                    if (CameraPermission && RecordAudioPermission && SendSMSPermission && GetAccountsPermission) {
+
+//                        Toast.makeText(ImageSelectedActivity.this, "Permission Granted", Toast.LENGTH_LONG).show();
+                    }
+                    else {
+//                        Toast.makeText(ImageSelectedActivity.this,"Permission Denied",Toast.LENGTH_LONG).show();
+
+                    }
+                }
+
+                break;
+        }
+    }
+
+    private void RequestMultiplePermission() {
+        // Creating String Array with Permissions.
+        ActivityCompat.requestPermissions(ProfileActivity.this, new String[]
+                {CAMERA,
+                        RECORD_AUDIO,
+                        SEND_SMS,
+                        GET_ACCOUNTS,
+                        READ_EXTERNAL_STORAGE,
+                        WRITE_EXTERNAL_STORAGE,
+                        INTERNET,
+                        WRITE_SETTINGS}, RequestPermissionCode);
+
+    }
+
+    private boolean CheckingPermissionIsEnabledOrNot() {
+        int FirstPermissionResult = ContextCompat.checkSelfPermission(getApplicationContext(), CAMERA);
+        int SecondPermissionResult = ContextCompat.checkSelfPermission(getApplicationContext(), RECORD_AUDIO);
+        int ThirdPermissionResult = ContextCompat.checkSelfPermission(getApplicationContext(), SEND_SMS);
+        int ForthPermissionResult = ContextCompat.checkSelfPermission(getApplicationContext(), GET_ACCOUNTS);
+        int FivePermissionResult = ContextCompat.checkSelfPermission(getApplicationContext(), READ_EXTERNAL_STORAGE);
+        int SixPermissionResult = ContextCompat.checkSelfPermission(getApplicationContext(), WRITE_EXTERNAL_STORAGE);
+        int SevenPermissionResult = ContextCompat.checkSelfPermission(getApplicationContext(), INTERNET);
+        int EightPermissionResult = ContextCompat.checkSelfPermission(getApplicationContext(), WRITE_SETTINGS);
+
+        return FirstPermissionResult == PackageManager.PERMISSION_GRANTED &&
+                SecondPermissionResult == PackageManager.PERMISSION_GRANTED &&
+                ThirdPermissionResult == PackageManager.PERMISSION_GRANTED &&
+                ForthPermissionResult == PackageManager.PERMISSION_GRANTED &&
+                FivePermissionResult == PackageManager.PERMISSION_GRANTED &&
+                SixPermissionResult == PackageManager.PERMISSION_GRANTED &&
+                SevenPermissionResult == PackageManager.PERMISSION_GRANTED &&
+                EightPermissionResult == PackageManager.PERMISSION_GRANTED;
     }
 
     private boolean checkPermission() {
@@ -393,22 +507,5 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView, V
 
     private void uploadBitmap(Bitmap bitmap) {
 
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode) {
-            case MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    if(userChoosenTask.equals("Take Photo"))
-                        cameraIntent();
-                    else if(userChoosenTask.equals("Choose from Library"))
-                        galleryIntent();
-                } else {
-                    //code for deny
-                }
-                break;
-        }
     }
 }

@@ -97,6 +97,14 @@ public class ProfileUpdateActivity extends AppCompatActivity implements ProfileV
     }
 
     @Override
+    public void onDestroy(){
+        super.onDestroy();
+        if (pDialog!=null && pDialog.isShowing() ){
+            pDialog.cancel();
+        }
+    }
+
+    @Override
     public void successUploadPhoto(String response) {
 
     }

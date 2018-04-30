@@ -31,7 +31,7 @@ public class Language extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.lang_popup);
+        setContentView(R.layout.activity_change_language);
         showActionBar();
         initUi();
     }

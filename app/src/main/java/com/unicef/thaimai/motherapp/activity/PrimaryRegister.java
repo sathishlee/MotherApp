@@ -230,7 +230,6 @@ ArrayList ysList,occList;
         private void sendtoServer() {
             getallEditTextvalues();
 
-
             if (strMasterId.equalsIgnoreCase("")){
                 showAlert("MasterId is Empty");
             }else if (strId.equalsIgnoreCase("")){
@@ -420,6 +419,14 @@ ArrayList ysList,occList;
         }
 
         @Override
+        public void onDestroy(){
+            super.onDestroy();
+            if (pDialog!=null && pDialog.isShowing() ){
+                pDialog.cancel();
+            }
+        }
+
+        @Override
         public void getAllMotherPrimaryRegisterSuccess(String response) {
             Log.d(PrimaryRegister.class.getSimpleName(), "Success response" + response);
             setValuetoUI(response);
@@ -594,10 +601,10 @@ ArrayList ysList,occList;
         }
 
         private void setValuetoUI(String response) {
-            JSONObject jObj = null;
+//            JSONObject jObj = null;
             try {
 
-                jObj = new JSONObject(response);
+                JSONObject jObj = new JSONObject(response);
 
                 int status = jObj.getInt("status");
                 String message = jObj.getString("message");

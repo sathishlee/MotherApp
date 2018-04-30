@@ -77,11 +77,11 @@ public class MainActivity extends AppCompatActivity
         noConnection = (RelativeLayout) findViewById(R.id.view_btm_no_inernet);
         if (checkNetwork.isNetworkAvailable()) {
             Toast.makeText(getApplicationContext(), "Internet connection is" + checkNetwork.isNetworkAvailable(), Toast.LENGTH_SHORT).show();
-
 //    noConnection.setVisibility(View.VISIBLE);
         } else {
 //    noConnection.setVisibility(View.GONE);
             Toast.makeText(getApplicationContext(), "Internet connection is" + checkNetwork.isNetworkAvailable(), Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(getApplicationContext(),NoInternetConnection.class));
 
         }
         pDialog = new ProgressDialog(this);
@@ -355,7 +355,7 @@ public class MainActivity extends AppCompatActivity
 //
 //                startActivity(i);
                 finish();
-                Toast.makeText(getApplicationContext(), "Help Menu", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Logged Out", Toast.LENGTH_LONG).show();
                 return true;
             default:
                 super.onOptionsItemSelected(item);
@@ -495,6 +495,14 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void hideProgress() {
         pDialog.hide();
+    }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        if (pDialog!=null && pDialog.isShowing() ){
+            pDialog.cancel();
+        }
     }
 
     @Override

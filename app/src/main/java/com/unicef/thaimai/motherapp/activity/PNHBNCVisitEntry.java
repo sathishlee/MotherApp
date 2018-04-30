@@ -48,7 +48,7 @@ public class PNHBNCVisitEntry extends AppCompatActivity implements View.OnClickL
             strMotherEpistomy, strPVDischarge, strMotherBreastFeeding, strMotherReason, strBreastExamination,
             strMotherOutcome, strVisitNo;
 
-    public static String strVisitId="0", strPicmeId;
+    public static String strVisitId="-1", strPicmeId;
 
     ProgressDialog progressDialog;
 
@@ -348,12 +348,20 @@ public class PNHBNCVisitEntry extends AppCompatActivity implements View.OnClickL
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         switch(parent.getId()){
             case R.id.sp_visit_no:
-
                 strVisitNo = parent.getSelectedItem().toString();
-                strVisitId= String.valueOf(position);
+                if(strVisitNo.equalsIgnoreCase("--Select--")){
+                    position = -1;
+                    strVisitId= String.valueOf(position);
+                    pnhbncVisitPresenter.checkPNHBNCVisitId(preferenceData.getPicmeId(),preferenceData.getMId(),strVisitId);
+                }
+                else{
+                    strVisitId= String.valueOf(position);
+                    pnhbncVisitPresenter.checkPNHBNCVisitId(preferenceData.getPicmeId(),preferenceData.getMId(),strVisitId);
 
+                }
+                /*strVisitId= String.valueOf(position);
                 pnhbncVisitPresenter.checkPNHBNCVisitId(preferenceData.getPicmeId(),preferenceData.getMId(),strVisitId);
-
+*/
 
                 break;
             case R.id.sp_facility:
@@ -420,6 +428,14 @@ public class PNHBNCVisitEntry extends AppCompatActivity implements View.OnClickL
     }
 
     @Override
+    public void onDestroy(){
+        super.onDestroy();
+        if (progressDialog!=null && progressDialog.isShowing() ){
+            progressDialog.cancel();
+        }
+    }
+
+    @Override
     public void pnhbncVisitSuccess(String response) {
 
         Log.e(PNHBNCVisitEntry.class.getSimpleName(),"Response Success--->"+response);
@@ -454,7 +470,7 @@ public class PNHBNCVisitEntry extends AppCompatActivity implements View.OnClickL
             String status =jsonObject.getString("status");
             String msg = jsonObject.getString("message");
 //            strVisitId = jsonObject.getString("pnVisitNo");
-            strPicmeId = jsonObject.getString("picmeId");
+//            strPicmeId = jsonObject.getString(preferenceData.getPicmeId());
         }
         catch(JSONException e){
             e.printStackTrace();
@@ -481,6 +497,8 @@ public class PNHBNCVisitEntry extends AppCompatActivity implements View.OnClickL
                 Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
             }else{
                 Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+
             }
         }
         catch(JSONException e){

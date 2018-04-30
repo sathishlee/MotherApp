@@ -17,6 +17,7 @@ import com.unicef.thaimai.motherapp.view.ImageUploadViews;
 import com.unicef.thaimai.motherapp.volleyservice.VolleySingleton;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -98,6 +99,11 @@ public class ImageUploadPresenter implements ImageUploadInteractor {
         //adding the request to volley
 //        Volley.newRequestQueue(this).add(volleyMultipartRequest);
         VolleySingleton.getInstance(activity).addToRequestQueue(volleyMultipartRequest);
+    }
+
+    @Override
+    public void uploadVisitReportsPhoto(String picmeId, ArrayList<Bitmap> bitmap) {
+
     }
 }
 

@@ -1,5 +1,8 @@
 apply plugin: 'com.android.application'
 
+/*apply plugin: 'maven'
+group = 'com.github.ParkSangGwon'*/
+
 android {
     compileSdkVersion 27
     buildToolsVersion "27.0.3"
@@ -21,19 +24,31 @@ android {
         }
     }
     repositories {
+        maven { url "https://s3.amazonaws.com/repo.commonsware.com" }
+        maven { url "https://jitpack.io" }
+
+    }
+    /*repositories {
         maven {
             url "https://maven.google.com"
         }
     }
     repositories {
         mavenCentral()
-    }
+    }*/
+
+
+
 
     dexOptions { javaMaxHeapSize "4g" }
 }
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
+//    compile project(':tedpicker')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
     //noinspection GradleCompatible
     // RETROFIT API LIBS
     //noinspection GradleCompatible
@@ -62,7 +77,13 @@ dependencies {
     compile 'com.google.firebase:firebase-messaging:11.0.4'
     compile 'com.google.code.gson:gson:2.8.2'
     compile 'com.android.support:palette-v7:27.0.0'
-    compile 'com.squareup.picasso:picasso:2.4.0'
+    compile 'com.squareup.picasso:picasso:2.5.2'
+
+    releaseCompile 'com.commonsware.cwac:camera:0.6.+'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.commonsware.cwac:camera:0.6.+'
+    compile 'com.github.ParkSangGwon:TedPicker:v1.0.10'
+
     testCompile 'junit:junit:4.12'
 
     //image loader

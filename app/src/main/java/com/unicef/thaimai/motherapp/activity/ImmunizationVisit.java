@@ -22,11 +22,8 @@ public class ImmunizationVisit extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_immunization);
         ActionBar actionBar = getSupportActionBar();
-
         actionBar.setTitle("Immunization Visit");
-
         actionBar.setHomeButtonEnabled(true);
-
         actionBar.setDisplayHomeAsUpEnabled(true);
 
 

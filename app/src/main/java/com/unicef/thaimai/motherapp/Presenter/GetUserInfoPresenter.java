@@ -33,7 +33,6 @@ public class GetUserInfoPresenter implements UserInfoInteractor{
     public GetUserInfoPresenter(Context mActivity, LoginViews view) {
         this.view = view;
         this.activity = mActivity;
-
     }
 
 

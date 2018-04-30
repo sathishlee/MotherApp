@@ -29,7 +29,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="20dp"
+                android:layout_margin="15dp"
                 android:gravity="center"
                 android:textColor="@color/colorPrimary"
                 android:textSize="18sp"
@@ -43,6 +43,16 @@
                 android:textColor="@color/text_secondary"
                 android:textSize="@dimen/text_label"
                 android:text="Please Check Your Internet Connectivity."/>
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="50dp"
+                android:background="@drawable/button_backgroumd"
+                android:text="Refresh"
+                android:textColor="#ffffff"
+                android:id="@+id/btn_refresh" />
 
         </LinearLayout>
 

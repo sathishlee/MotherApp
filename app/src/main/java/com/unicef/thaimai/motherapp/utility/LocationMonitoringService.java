@@ -43,7 +43,7 @@ public class LocationMonitoringService extends Service implements
     private static final String REGISTER_REQUEST_URL = "http://192.168.100.19/maps/sample.php";
     private Map<String, String> params;
 
-    private static final String TAG = LocationMonitoringService.class.getSimpleName();
+    public static final String TAG = LocationMonitoringService.class.getSimpleName();
     GoogleApiClient mLocationClient;
 
     private ProgressDialog pd;
@@ -168,8 +168,11 @@ public class LocationMonitoringService extends Service implements
         Intent intent = new Intent(ACTION_LOCATION_BROADCAST);
         intent.putExtra(EXTRA_LATITUDE, lat);
         intent.putExtra(EXTRA_LONGITUDE, lng);
-        AppConstants.EXTRA_LONGITUDE=lng;
+        Log.d("Latitude",lat);
+        Log.d("Longitude",lng);
+
         AppConstants.EXTRA_LATITUDE=lat;
+        AppConstants.EXTRA_LONGITUDE=lng;
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
     }
 

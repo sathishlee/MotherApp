@@ -10,6 +10,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
+import com.unicef.thaimai.motherapp.activity.ImmunizationEditActivity;
 import com.unicef.thaimai.motherapp.constant.Apiconstants;
 import com.unicef.thaimai.motherapp.interactor.ImmunizationEntryInteractor;
 import com.unicef.thaimai.motherapp.model.requestmodel.ImmunizationEntryRequestModel;
@@ -27,11 +28,11 @@ import java.util.Map;
 
 public class ImmunizationEntryPresenter implements ImmunizationEntryInteractor{
 
-    Activity context;
+    ImmunizationEditActivity immunizationEditActivity;
     ImmunizationEntryView immunizationEntryView;
 
-    public ImmunizationEntryPresenter(Activity context, ImmunizationEntryView immunizationEntryView){
-        this.context = context;
+    public ImmunizationEntryPresenter(ImmunizationEditActivity immunizationEditActivity, ImmunizationEntryView immunizationEntryView){
+        this.immunizationEditActivity = immunizationEditActivity;
         this.immunizationEntryView = immunizationEntryView;
     }
 
@@ -95,7 +96,7 @@ public class ImmunizationEntryPresenter implements ImmunizationEntryInteractor{
                 return Method.POST;
             }
         };
-        VolleySingleton.getInstance(context).addToRequestQueue(jsonObjectRequest);
+        VolleySingleton.getInstance(immunizationEditActivity).addToRequestQueue(jsonObjectRequest);
     }
 
     @Override
@@ -103,6 +104,8 @@ public class ImmunizationEntryPresenter implements ImmunizationEntryInteractor{
 
         String url = Apiconstants.BASE_URL + Apiconstants.IMMUNIZATION_ID;
         Log.d("Log in check Url--->", url);
+        Log.d("strpicmeId-->",strpicmeId);
+        Log.d("strmid-->",strmid);
         immunizationEntryView.showProgress();
 
         StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -152,17 +155,80 @@ public class ImmunizationEntryPresenter implements ImmunizationEntryInteractor{
 
 
         // Adding request to request queue
-        VolleySingleton.getInstance(context).addToRequestQueue(request);
+        VolleySingleton.getInstance(immunizationEditActivity).addToRequestQueue(request);
 
     }
+
+    @Override
+    public void checkImmunizationId(final String strpicmeId, final String strmid, final String strImmuID) {
+        String url = Apiconstants.BASE_URL + Apiconstants.IMMUNIZATION_ID_EXIST;
+        Log.d("Log in check Url--->", url);
+        Log.d("picmeId-->",strpicmeId);
+        Log.d("mid-->",strmid);
+        Log.d("Immmu ID-->",strImmuID);
+
+        immunizationEntryView.showProgress();
+
+        StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                immunizationEntryView.checkImmunizationIdSuccess(response);
+                immunizationEntryView.hideProgress();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                immunizationEntryView.checkImmunizationFailure(error.toString());
+                immunizationEntryView.hideProgress();
+            }
+        })
+        {
+
+
+            @Override
+            public Map<String,String> getHeaders() throws AuthFailureError {
+                String credentials ="admin"+":"+"1234";
+                String base64EncodedCredentials = Base64.encodeToString(credentials.getBytes(),Base64.DEFAULT);
+                HashMap<String,String> header = new HashMap<>();
+//                header.put("Content-Type","application/x-www-from-urlencoded; charset=utf-8");
+                header.put("Authorization","Basic "+base64EncodedCredentials);
+                return header;
+            }
+
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting parameters to login url
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("picmeId",strpicmeId);
+                params.put("mid",strmid);
+                params.put("immDoseId",strImmuID);
+
+                Log.d("params--->",params.toString());
+
+                return params;
+            }
+            //            public String getBodyContentType(){
+//                return "application/x-www-from-urlencoded; charset=utf-8";
+//            }
+            public int getMethod(){
+                return Method.POST;
+            }
+        };
+
+
+        // Adding request to request queue
+        VolleySingleton.getInstance(immunizationEditActivity).addToRequestQueue(request);
+
+    }
+
     @Override
     public void getImmunizationByVisit(final String immId, final String mid) {
 
-        immunizationEntryView.showProgress();
+        /*immunizationEntryView.showProgress();
         String url = Apiconstants.BASE_URL + Apiconstants.GET_IMMUNIZATION_BY_VISIT;
 
         Log.d(ImmunizationListPresenter.class.getSimpleName(),"Immunization List "+url);
-        Log.d("PicmeId--->",immId);
+        Log.d("immId--->",immId);
         Log.d("mid--->",mid);
 
         StringRequest strReq = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -211,7 +277,7 @@ public class ImmunizationEntryPresenter implements ImmunizationEntryInteractor{
             }
         };
         // Adding request to request queue
-        VolleySingleton.getInstance(context).addToRequestQueue(strReq);
+        VolleySingleton.getInstance(immunizationEditActivity).addToRequestQueue(strReq);*/
     }
 
 }

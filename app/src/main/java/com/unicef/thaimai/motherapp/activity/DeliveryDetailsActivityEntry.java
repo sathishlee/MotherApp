@@ -72,11 +72,8 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
 
     public void showActionBar() {
         ActionBar actionBar = getSupportActionBar();
-
         actionBar.setTitle("Enter Delivery Details");
-
         actionBar.setHomeButtonEnabled(true);
-
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
@@ -376,6 +373,14 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
     }
 
     @Override
+    public void onDestroy(){
+        super.onDestroy();
+        if (progressDialog!=null && progressDialog.isShowing() ){
+            progressDialog.cancel();
+        }
+    }
+
+    @Override
     public void deliveryentrySuccess(String response) {
         Log.e(DeliveryDetailsActivityEntry.class.getSimpleName(), "Response Success--->" + response);
         try {
@@ -409,8 +414,11 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
                 Log.w(DeliveryDetailsActivityEntry.class.getSimpleName(), "getdeliveryNumberSuccess" + strDid);
                 preferenceData.storeDid(strDid);
                 strPicmeId = jsonObject.getString("dpicmeId");
+                Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
             }else{
-                Log.w(DeliveryDetailsActivityEntry.class.getSimpleName(), "getdeliveryNumberSuccess" + strDid);
+                Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+
             }
         } catch (JSONException e) {
             e.printStackTrace();

@@ -49,13 +49,9 @@ public class PrimaryRegisterView extends AppCompatActivity implements PrimaryReg
     }
 
     private void showActionBar() {
-
         ActionBar actionBar = getSupportActionBar();
-
         actionBar.setTitle("Primary Records");
-
         actionBar.setHomeButtonEnabled(true);
-
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
@@ -136,6 +132,14 @@ public class PrimaryRegisterView extends AppCompatActivity implements PrimaryReg
     }
 
     @Override
+    public void onDestroy(){
+        super.onDestroy();
+        if (pDialog!=null && pDialog.isShowing() ){
+            pDialog.cancel();
+        }
+    }
+
+    @Override
     public void getAllMotherPrimaryRegisterSuccess(String response) {
         Log.d(PrimaryRegister.class.getSimpleName(), "Success response" + response);
         setValuetoUI(response);
@@ -144,9 +148,9 @@ public class PrimaryRegisterView extends AppCompatActivity implements PrimaryReg
 
     private void setValuetoUI(String response) {
 
-        JSONObject jObj = null;
+//        JSONObject jObj = null;
         try {
-            jObj = new JSONObject(response);
+            JSONObject jObj = new JSONObject(response);
             int status = jObj.getInt("status");
             String message = jObj.getString("message");
             if (status==1){

@@ -23,5 +23,11 @@
 
     <dimen name="text_content_list">18.0sp</dimen>
 
+    <dimen name="picker_selected_image_height">90dp</dimen>
+    <dimen name="picker_fab_elevation">8dp</dimen>
+    <dimen name="picker_fab_size">60dp</dimen>
+    <dimen name="picker_fab_press_translation_z">9dp</dimen>
+    <dimen name="picker_camera_height">250dp</dimen>
+
 
 </resources>

@@ -127,6 +127,14 @@ public class health_records extends Fragment implements GetVisitHelthRecordsView
     public void hideProgress() {
         pDialog.hide();
     }
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        if (pDialog!=null && pDialog.isShowing() ){
+            pDialog.cancel();
+        }
+    }
+
 
     @Override
     public void getVisitHealthRecordsSuccess(String healthRecordResponseModel) {

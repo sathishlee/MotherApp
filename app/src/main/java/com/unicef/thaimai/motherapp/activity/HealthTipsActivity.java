@@ -110,6 +110,15 @@ public class HealthTipsActivity extends AppCompatActivity implements HealthTipsV
     }
 
     @Override
+    public void onDestroy(){
+        super.onDestroy();
+        if (pDialog!=null && pDialog.isShowing() ){
+            pDialog.cancel();
+        }
+    }
+
+
+    @Override
     public void getHealthTipsVideoSuccess(String response) {
         Log.e(HealthTipsActivity.class.getSimpleName(), "Success Response"+ response);
 

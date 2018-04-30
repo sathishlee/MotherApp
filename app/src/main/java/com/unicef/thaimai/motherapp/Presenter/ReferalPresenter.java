@@ -290,7 +290,6 @@ public class ReferalPresenter implements ReferalInteractor {
                 params.put("rReferalDate", rReferalDate);
                 params.put("rReferalTime", rReferalTime);
                 params.put("rFacilityReferring", rFacilityReferring);
-
                 params.put("rFacilityReferredTo", rFacilityReferredTo);
                 params.put("rDiagonosis", rDiagonosis);
                 params.put("rReferalReason", rReferalReason);

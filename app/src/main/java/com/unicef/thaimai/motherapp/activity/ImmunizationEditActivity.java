@@ -71,7 +71,9 @@ public class ImmunizationEditActivity extends AppCompatActivity implements View.
     Calendar mCurrentDate;
     int day, month, year, hour, minute, sec, value;
 
-    public static String strImmuID;
+    public static String strImmuID="-1";
+
+    ProgressDialog pDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,11 +90,8 @@ public class ImmunizationEditActivity extends AppCompatActivity implements View.
     public void showActionBar(){
 
         ActionBar actionBar = getSupportActionBar();
-
         actionBar.setTitle("Immunization Entry");
-
         actionBar.setHomeButtonEnabled(true);
-
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
@@ -103,16 +102,18 @@ public class ImmunizationEditActivity extends AppCompatActivity implements View.
         progressDialog.setMessage("Please Wait...");
         preferenceData = new PreferenceData(this);
         immunizationEntryPresenter = new ImmunizationEntryPresenter(ImmunizationEditActivity.this, this);
-if (AppConstants.IMMUNIZATION_EDIT) {
-    Log.e(ImmunizationEditActivity.class.getSimpleName(),"IS FROM Main"+AppConstants.IMMUNIZATION_EDIT);
-    immunizationEntryPresenter.immunizationID(preferenceData.getPicmeId(), preferenceData.getMId());
+        immunizationEntryPresenter.immunizationID(preferenceData.getPicmeId(),preferenceData.getMId());
 
-}else{
-    strImmuID =AppConstants.ImmuID;
-    Log.e(ImmunizationEditActivity.class.getSimpleName(),"IS FROM Main"+AppConstants.IMMUNIZATION_EDIT);
+        /*if (AppConstants.IMMUNIZATION_EDIT) {
+            Log.e(ImmunizationEditActivity.class.getSimpleName(),"IS FROM Main"+AppConstants.IMMUNIZATION_EDIT);
+            immunizationEntryPresenter.immunizationID(preferenceData.getPicmeId(), preferenceData.getMId());
 
-    immunizationEntryPresenter.getImmunizationByVisit(strImmuID,preferenceData.getMId());
-}
+        }else{
+            strImmuID =AppConstants.ImmuID;
+            Log.e(ImmunizationEditActivity.class.getSimpleName(),"IS FROM Main"+AppConstants.IMMUNIZATION_EDIT);
+
+            immunizationEntryPresenter.getImmunizationByVisit(strImmuID,preferenceData.getMId());
+        }*/
 
 
 
@@ -174,51 +175,6 @@ if (AppConstants.IMMUNIZATION_EDIT) {
 
         });
 
-//        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(
-//                this,R.layout.spinner_item_position,dosenumber );
-//
-//        spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item_position);
-//
-//        sp_dose_number.setAdapter(spinnerArrayAdapter);
-//
-//
-//        sp_dose_number.setOnItemSelectedListener(new OnItemSelectedListener() {
-//
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view,
-//                                       int position, long id) {
-//                // TODO Auto-generated method stub
-//
-//                value = sp_dose_number.getSelectedItemPosition() + 1 ;
-//
-//                txt_dose_number_value.setText("Item Position is = " + value );
-//
-//                Log.d("Dose Number--->",txt_dose_number_value.toString());
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//                // TODO Auto-generated method stub
-//
-//            }
-//        });
-
-
-
-
-//        List<String> listdosenumber = Arrays.asList(dosenumber);
-//        List<String> listdosenumber_i = Arrays.asList(dosenumber_i);
-//        ArrayAdapter arrayAdapter =new ArrayAdapter(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item,listdosenumber_i);
-//        sp_dose_number.setAdapter(arrayAdapter);
-//
-//        for(int i= 0;i<listdosenumber_i.size();i++){
-//            if(dosenumber_i[i] ==strImmuID){
-//                sp_dose_number.setSelection(Integer.parseInt(strImmuID));
-//                Log.e("dosenumber",dosenumber[i]+"");
-//            }else {
-////                Log.e("dosenumber",dosenumber[i]+"");
-//            }
-//        }
 
     }
 
@@ -237,8 +193,9 @@ if (AppConstants.IMMUNIZATION_EDIT) {
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
+        Intent intent = new Intent(ImmunizationEditActivity.this, MainActivity.class);
         finish();
+        startActivity(intent);
         return super.onOptionsItemSelected(item);
     }
 
@@ -301,11 +258,14 @@ if (AppConstants.IMMUNIZATION_EDIT) {
             immunizationEntryRequestModel.setImmPentanvalentStatus(strPentavalent);
             immunizationEntryRequestModel.setImmRotaStatus(strRota);
             immunizationEntryRequestModel.setImmIpvStatus(strIPV);
-            if (AppConstants.IMMUNIZATION_EDIT) {
+
+            /*if (AppConstants.IMMUNIZATION_EDIT) {
                 immunizationEntryPresenter.immunizationEntry(Apiconstants.IMMUNIZATION_ENTRY, immunizationEntryRequestModel);
             }else {
                 immunizationEntryPresenter.immunizationEntry(Apiconstants.IMMUNIZATION_BY_VISIT_EDIT, immunizationEntryRequestModel);
-            }
+            }*/
+            immunizationEntryPresenter.immunizationEntry(Apiconstants.IMMUNIZATION_ENTRY, immunizationEntryRequestModel);
+
         }
     }
 
@@ -325,6 +285,24 @@ if (AppConstants.IMMUNIZATION_EDIT) {
         switch (parent.getId()) {
             case R.id.sp_dose_number:
                 strDoseNumber = parent.getSelectedItem().toString();
+
+                if(strDoseNumber.equalsIgnoreCase("--Select--")) {
+                    position = -1;
+                    strImmuID = String.valueOf(position);
+                    immunizationEntryPresenter.checkImmunizationId(preferenceData.getPicmeId(), preferenceData.getMId(), strImmuID);
+
+                }else{
+                    strImmuID = String.valueOf(position);
+                    immunizationEntryPresenter.checkImmunizationId(preferenceData.getPicmeId(), preferenceData.getMId(), strImmuID);
+                }
+
+                /*strImmuID = String.valueOf(position);
+                immunizationEntryPresenter.checkImmunizationId(preferenceData.getPicmeId(), preferenceData.getMId(), strImmuID);
+*/
+
+
+
+
                 break;
             case R.id.sp_opv:
                 strOPV = parent.getSelectedItem().toString();
@@ -348,12 +326,12 @@ if (AppConstants.IMMUNIZATION_EDIT) {
 
     @Override
     public void showProgress() {
-
+//        pDialog.show();
     }
 
     @Override
     public void hideProgress() {
-
+//        pDialog.hide();
     }
 
     @Override
@@ -380,16 +358,19 @@ if (AppConstants.IMMUNIZATION_EDIT) {
 
     @Override
     public void immunizationIDSuccess(String response) {
-        Log.d(DeliveryDetailsActivityEntry.class.getSimpleName(), "Response Success--->" + response);
-        try {
+        Log.d(ImmunizationEditActivity.class.getSimpleName(), "Response Success--->" + response);
+        /*try {
             JSONObject jsonObject = new JSONObject(response);
             String status = jsonObject.getString("status");
             String msg = jsonObject.getString("message");
-            strImmuID = jsonObject.getString("immDoseId");
-            preferenceData.storeImmuid(strImmuID);
+            if (status.equalsIgnoreCase("1")){
+                Toast.makeText(getApplicationContext(),msg, Toast.LENGTH_SHORT).show();
+            }
+//            strImmuID = jsonObject.getString("immDoseId");
+//            preferenceData.storeImmuid(strImmuID);
         } catch (JSONException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     @Override
@@ -400,7 +381,7 @@ if (AppConstants.IMMUNIZATION_EDIT) {
     @Override
     public void getImmunizationByVisitSuccess(String response) {
         Log.d(ImmunizationEditActivity.class.getSimpleName(), "ImmunizationByVisit Success-->" + response);
-        try {
+        /*try {
             JSONObject jsonObject  = new JSONObject(response);
             JSONObject jsonObject_immList = jsonObject.getJSONObject("immList");
             String status = jsonObject.getString("status");
@@ -424,7 +405,7 @@ if (AppConstants.IMMUNIZATION_EDIT) {
 
         } catch (JSONException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     @Override
@@ -433,6 +414,30 @@ if (AppConstants.IMMUNIZATION_EDIT) {
 
     }
 
+    @Override
+    public void checkImmunizationIdSuccess(String response) {
+
+        try{
+            JSONObject jsonObject = new JSONObject(response);
+            String status =jsonObject.getString("status");
+            String msg = jsonObject.getString("message");
+
+            if (status.equalsIgnoreCase("1")){
+                Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+            }
+        }
+        catch(JSONException e){
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void checkImmunizationFailure(String response) {
+        Toast.makeText(getApplicationContext(),response,Toast.LENGTH_SHORT).show();
+    }
 
 
 //    private int getListPosition(String[] doseId, String doseNumber) {

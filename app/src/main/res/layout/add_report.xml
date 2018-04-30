@@ -910,14 +910,15 @@
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
             android:background="@drawable/button_backgroumd"
-            android:text="Choose File"
+            android:text="Upload Report"
             android:textColor="#ffffff"
-            android:id="@+id/upload"
+            android:id="@+id/upload_reports"
             android:padding="10dp"/>
 
         <HorizontalScrollView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:scrollbarSize="0dp">
 
             <LinearLayout

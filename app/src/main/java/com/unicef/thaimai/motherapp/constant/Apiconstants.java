@@ -5,12 +5,17 @@ package com.unicef.thaimai.motherapp.constant;
 
 public class Apiconstants {
 
-//    public static final String BASE_URL = "http://192.168.100.19/thaimaiapp/api/";
-    public static final String BASE_URL = "http://192.168.100.27/thaimaiapp/api/";
+//    public static final String BASE_URL = "http://218.248.44.77/thaimaiapp/api/";
+    public static final String BASE_URL = "http://192.168.100.222/thaimaiapp/api/";
 //    public static final String BASE_URL = "http://demo.satvatinfosol.com/thaimai/api/";
 
-//    public static final String LOG_IN_CHECK_PICME = "login/";                  //100000000013
+    public static final String PHOTO_URL = "http://192.168.100.222/thaimaiapp/assets/mother_photos/";
+//    public static final String PHOTO_URL = "http://demo.satvatinfosol.com/thaimai/assets/mother_photos/";
+//    public static final String PHOTO_URL = "http://218.248.44.77/thaimaiapp/assets/mother_photos/";
+
     public static final String LOG_IN_CHECK_PIKME = "login/check/";
+    public static final String CHECK_OTP = "login/checkOTP/";
+
     public static final String POST_PRIMARY_INFO = "Mother/mPrimaryInfo";
     public static final String POST_PRIMARY_INFO_UPDATE = "mother/mPrimaryInfoUpdate";
     public static final String POST_DASH_BOARD = "mother/mDashboard/";/*    http://192.168.100.19/thaimaiapp/api/Mother/mPrimaryInfo
@@ -34,8 +39,8 @@ public class Apiconstants {
     public static final String DELIVERY_DETAIL_ENTRY = "mother/mDeleveryDetailsInsert";
 
     public static final String DELIVERY_NUMBER = "mother/mDeleveryNumber";
-    public static final String POST_SOS_ALERT = "Sos/mSOS_alert";
 
+    public static final String POST_SOS_ALERT = "Sos/mSOS_alert";
 
     public static final String NEAR_BY_HOSPITAL = "mother/findNearbyLocation";
 
@@ -65,6 +70,7 @@ public class Apiconstants {
 
     public static final String IMMUNIZATION_LIST = "mother/mImmunizationList";
 
+    public static final String IMMUNIZATION_ID_EXIST = "mother/mImmunizationIDExist";
 
 //    http://192.168.100.27/thaimaiapp/api/mother/mImmunizationEditSingle
     public static final String GET_IMMUNIZATION_BY_VISIT= "mother/mImmunizationEditSingle";
@@ -74,14 +80,12 @@ public class Apiconstants {
 //    http://192.168.100.27/thaimaiapp/api/mother/mMotherFlashNotification
 public static final String FLASH_NOTIFICATION= "mother/mMotherFlashNotification";
 
-
 //    http://192.168.100.235/thaimaiapp/api/Referal/mReferalClosed
 
     public static final String POST_REFERAL_CLOSED = "Referal/mReferalClosed";
 
 //NOTIFICATION API's
 //    http://192.168.100.27/thaimaiapp/api/mother/mNotificationCount
-
 
     public static final String POST_NOTIFICATION_COUNT= "mother/mNotificationCount";
 //    http://192.168.100.27/thaimaiapp/api/mother/mNotificationDetails
@@ -90,21 +94,12 @@ public static final String FLASH_NOTIFICATION= "mother/mMotherFlashNotification"
 
     public static final String HEALTH_TIPS_VIDEO= "mother/HealthTips";
 
-
-    private static final String REGISTER_REQUEST_URL = "http://192.168.100.19/maps/sample.php";
-
-    private static final String REGISTER_REQUEST_URL_UPLOAD = "http://192.168.100.19/maps/";
-
-    private static final String POST_UPLOAD_LOCATION = "sample.php";
-
-    private static final String POST_NEAR_HOSPITAL = "near_by.php?lt=13.0054576&lg=80.2552421";
-
 //http://192.168.100.27/thaimaiapp/api/mother/editProfile
     public   static  final String POST_EDIT_PROFILE ="mother/editProfile";
 //    http://192.168.100.27/thaimaiapp/api/mother/uploadPhoto
 
     public  static  final String POST_UPLOAD_PROFILE_PHOTO ="mother/uploadPhoto";
 
-
+    public static final String UPLOAD_MULTIPLE_IMAGES = "mother/uploadReports";
 
 }
