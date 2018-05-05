@@ -88,9 +88,10 @@ public static final String FLASH_NOTIFICATION= "mother/mMotherFlashNotification"
 //    http://192.168.100.27/thaimaiapp/api/mother/mNotificationCount
 
     public static final String POST_NOTIFICATION_COUNT= "mother/mNotificationCount";
-//    http://192.168.100.27/thaimaiapp/api/mother/mNotificationDetails
 
-    public static final String POST_NOTIFICATION_LIST= "mother/mNotificationDetails";
+    //    http://192.168.100.222/thaimaiapp/api/mother/mMotherNotificationList
+
+    public static final String POST_NOTIFICATION_LIST= "mother/mMotherNotificationList";
 
     public static final String HEALTH_TIPS_VIDEO= "mother/HealthTips";
 

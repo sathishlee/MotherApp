@@ -72,7 +72,7 @@ public class NotificationFragment extends Fragment implements NotificationViews 
         mRecyclerView.setHasFixedSize(true);
         preferenceData = new PreferenceData(getActivity());
         notificationPresenter = new NotificationPresenter(getActivity(), this);
-        notificationPresenter.getNotificationList(preferenceData.getMId());
+        notificationPresenter.getNotificationList(preferenceData.getPicmeId(),preferenceData.getMId());
         // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -142,9 +142,9 @@ public class NotificationFragment extends Fragment implements NotificationViews 
                 JSONArray jsonArray = jsonObject.getJSONArray("notificationList");
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-                    movie.setMPicmeId(jsonObject1.getString("mName"));
-                    movie.setMessage(jsonObject1.getString("subject"));
-                    movie.setDateTime(jsonObject1.getString("dateTime"));
+                    movie.setSubject(jsonObject1.getString("subject"));
+                    movie.setMessage(jsonObject1.getString("message"));
+                    movie.setNoteStartDateTime(jsonObject1.getString("noteStartDateTime"));
                     moviesList.add(movie);
 
                 }

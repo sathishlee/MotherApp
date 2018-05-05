@@ -1,13 +1,11 @@
 package com.unicef.thaimai.motherapp.activity;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -21,7 +19,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -33,29 +30,18 @@ import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.PendingResult;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.location.LocationSettingsRequest;
-import com.google.android.gms.location.LocationSettingsResult;
-import com.google.android.gms.location.LocationSettingsStates;
-import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.unicef.thaimai.motherapp.BuildConfig;
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.LocationUpdatePresenter;
 import com.unicef.thaimai.motherapp.R;
+import com.unicef.thaimai.motherapp.utility.CheckNetwork;
 import com.unicef.thaimai.motherapp.constant.AppConstants;
 import com.unicef.thaimai.motherapp.helper.ServerUpload;
-import com.unicef.thaimai.motherapp.utility.CheckNetwork;
 import com.unicef.thaimai.motherapp.utility.LocationMonitoringService;
 import com.unicef.thaimai.motherapp.view.LocationUpdateViews;
 
 import java.util.List;
 import java.util.Locale;
-
-import static android.Manifest.permission.CAMERA;
 
 public class LocationUpdateActivity extends AppCompatActivity implements LocationUpdateViews, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
@@ -98,12 +84,14 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
 
             preferenceData = new PreferenceData(this);
             startStep1();
-            if (mAlreadyStartedService) {
-                if (!preferenceData.getLogin()) {
-                    stopService(new Intent(this, LocationMonitoringService.class));
-                    mAlreadyStartedService = false;
+
+                if (mAlreadyStartedService) {
+                    if (!preferenceData.getLogin()) {
+                        stopService(new Intent(this, LocationMonitoringService.class));
+                        mAlreadyStartedService = false;
+                    }
                 }
-            }
+
             if (preferenceData.getLogin()) {
                 LocalBroadcastManager.getInstance(this).registerReceiver(
                         new BroadcastReceiver() {
@@ -152,7 +140,17 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
                             startActivity(i);
                         }
                     }else {
-                        startActivity(new Intent(getApplicationContext(),NoInternetConnection.class));
+//                        startActivity(new Intent(getApplicationContext(),NoInternetConnection.class));
+                        if (preferenceData.getLogin()) {
+                            preferenceData.setMainScreenOpen(0);
+                            Intent i = new Intent(LocationUpdateActivity.this, MainActivity.class);
+                            startActivity(i);
+                        }
+                        else {
+                            preferenceData.setMainScreenOpen(0);
+                            Intent i = new Intent(LocationUpdateActivity.this, Login.class);
+                            startActivity(i);
+                        }
                     }
 
                     // close this activity
@@ -268,7 +266,9 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
         AlertDialog dialog = builder.create();
         dialog.show();*/
 
-        startActivity(new Intent(getApplicationContext(), NoInternetConnection.class));
+//        startActivity(new Intent(getApplicationContext(), NoInternetConnection.class));
+        preferenceData.setMainScreenOpen(0);
+        startActivity(new Intent(getApplicationContext(), MainActivity.class));
         finish();
     }
 

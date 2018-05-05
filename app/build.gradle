@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 
+apply plugin: 'realm-android'
 /*apply plugin: 'maven'
 group = 'com.github.ParkSangGwon'*/
 
@@ -48,6 +49,7 @@ dependencies {
 //    compile project(':tedpicker')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'com.google.code.findbugs'
     })
     //noinspection GradleCompatible
     // RETROFIT API LIBS

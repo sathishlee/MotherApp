@@ -5,8 +5,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,7 +15,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.text.Html;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -37,13 +34,13 @@ import com.unicef.thaimai.motherapp.Presenter.NotificationPresenter;
 import com.unicef.thaimai.motherapp.Presenter.SosAlertPresenter;
 import com.unicef.thaimai.motherapp.R;
 //import com.unicef.thaimai.motherapp.bradcastReceiver.ConnectivityReceiver;
+import com.unicef.thaimai.motherapp.utility.CheckNetwork;
 import com.unicef.thaimai.motherapp.constant.AppConstants;
 import com.unicef.thaimai.motherapp.fragment.NotificationFragment;
 import com.unicef.thaimai.motherapp.fragment.PNhbncVisit;
 import com.unicef.thaimai.motherapp.fragment.ReferralListFragment;
 import com.unicef.thaimai.motherapp.fragment.health_records;
 import com.unicef.thaimai.motherapp.fragment.home;
-import com.unicef.thaimai.motherapp.utility.CheckNetwork;
 import com.unicef.thaimai.motherapp.view.NotificationViews;
 import com.unicef.thaimai.motherapp.view.SosAlertViews;
 
@@ -75,15 +72,14 @@ public class MainActivity extends AppCompatActivity
 //        addMsgtoList();
         checkNetwork = new CheckNetwork(this);
         noConnection = (RelativeLayout) findViewById(R.id.view_btm_no_inernet);
-        if (checkNetwork.isNetworkAvailable()) {
-            Toast.makeText(getApplicationContext(), "Internet connection is" + checkNetwork.isNetworkAvailable(), Toast.LENGTH_SHORT).show();
+       /* if (checkNetwork.isNetworkAvailable()) {
+            Toast.makeText(getApplicationContext(), "Internet connection is " + checkNetwork.isNetworkAvailable(), Toast.LENGTH_SHORT).show();
 //    noConnection.setVisibility(View.VISIBLE);
         } else {
 //    noConnection.setVisibility(View.GONE);
-            Toast.makeText(getApplicationContext(), "Internet connection is" + checkNetwork.isNetworkAvailable(), Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(getApplicationContext(),NoInternetConnection.class));
-
-        }
+            Toast.makeText(getApplicationContext(), "Internet connection is " + checkNetwork.isNetworkAvailable(), Toast.LENGTH_SHORT).show();
+//            startActivity(new Intent(getApplicationContext(),NoInternetConnection.class));
+        }*/
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(true);
         pDialog.setMessage("Please Wait ...");
@@ -92,42 +88,17 @@ public class MainActivity extends AppCompatActivity
         notificationPresenter = new NotificationPresenter(getApplicationContext(), this);
         sosAlertPresenter = new SosAlertPresenter(MainActivity.this, this);
 
-        notificationPresenter.getNotificationCount(preferenceData.getMId());
+//        notificationPresenter.getNotificationCount(preferenceData.getMId());
 
 //        TextView txt_notify_count = (TextView)findViewById(R.id.txt_notify_count);
 //        txt_notify_count.setText(preferenceData.getNotificationCount());
 
         if (AppConstants.isMainActivityOpen) {
-
-
             if (preferenceData.getMainScreenOpen().equalsIgnoreCase("0")) {
                 preferenceData.setMainScreenOpen(1);
-
                 showAlertDialog();
-
-//                showAlertDialog("Good Morning Mrs. " + preferenceData.getMotherName() + ".", "Click here", 0);
-              /*  showAlertDialog("Good Morning Mrs. " + preferenceData.getMotherName() + "." +
-                                "\nHope you are doing well.." + "\nThis is your 12th Week of pregnancy." +
-                                "this is the Period of child monthly development." +
-                                "If you are not feeling well please Click here."
-                        , "Click here", 0);*/
-
-
             }
-    /*if(preferenceData.getMainScreenOpen().equalsIgnoreCase("1")){
-//        preferenceData.setMainScreenOpen(2);
-        showAlertDialog("Hope you are doing well..","Next",2);
-    }else  if(preferenceData.getMainScreenOpen().equalsIgnoreCase("2")){
-//        preferenceData.setMainScreenOpen(3);
-        showAlertDialog("This is your 12th Week of pregnancy.","Next",3);
-    }else  if(preferenceData.getMainScreenOpen().equalsIgnoreCase("3")){
-//        preferenceData.setMainScreenOpen(4);
-        showAlertDialog("this is the Period of child monthly development.","Next",4);
-    }else  if(preferenceData.getMainScreenOpen().equalsIgnoreCase("4")){
-//        preferenceData.setMainScreenOpen(0);
-        showAlertDialog("If you are not feeling well please Click here.","Click here",0);
-    }*/
-        }
+          }
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

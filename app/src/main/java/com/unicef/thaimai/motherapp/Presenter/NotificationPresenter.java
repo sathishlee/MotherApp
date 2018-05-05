@@ -87,12 +87,13 @@ public class NotificationPresenter implements NotificationInteractor {
     }
 
     @Override
-    public void getNotificationList(final String mid) {
+    public void getNotificationList(final String picmeId, final String mid) {
 
 
         String url = Apiconstants.BASE_URL + Apiconstants.POST_NOTIFICATION_LIST;
         Log.d("Url--->", url);
         Log.d("mid--->", mid);
+        Log.d("mid--->", picmeId);
         notificationViews.showProgress();
 
         StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -125,6 +126,7 @@ public class NotificationPresenter implements NotificationInteractor {
                 // Posting parameters to login url
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("mid",mid);
+                params.put("picmeId",picmeId);
 
                 Log.d("params--->",params.toString());
 

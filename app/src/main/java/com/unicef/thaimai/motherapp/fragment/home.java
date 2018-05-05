@@ -8,13 +8,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -30,9 +29,12 @@ import com.squareup.picasso.Picasso;
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.GetUserInfoPresenter;
 import com.unicef.thaimai.motherapp.R;
+import com.unicef.thaimai.motherapp.RealmDBModel.UserInfoRealmModel;
+import com.unicef.thaimai.motherapp.utility.CheckNetwork;
 import com.unicef.thaimai.motherapp.activity.NearHospitalActivity;
 //import com.unicef.thaimai.motherapp.bradcastReceiver.ConnectivityReceiver;
 import com.unicef.thaimai.motherapp.activity.ProfileActivity;
+import com.unicef.thaimai.motherapp.app.RealmController;
 import com.unicef.thaimai.motherapp.constant.Apiconstants;
 import com.unicef.thaimai.motherapp.constant.AppConstants;
 import com.unicef.thaimai.motherapp.utility.RoundedTransformation;
@@ -40,6 +42,9 @@ import com.unicef.thaimai.motherapp.view.LoginViews;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import io.realm.Realm;
+import io.realm.RealmResults;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -70,6 +75,12 @@ public class home extends Fragment implements LoginViews, View.OnClickListener {
     Activity mActivity;
     private static final int MAKE_CALL_PERMISSION_REQUEST_CODE = 1;
 
+
+     CheckNetwork checkNetwork;
+    boolean isoffline = false;
+    Realm realm;
+
+
     public static home newInstance()
     {
         home fragment = new home();
@@ -84,7 +95,13 @@ public class home extends Fragment implements LoginViews, View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
          View view = inflater.inflate(R.layout.fragment_home, container, false);
-         initUI(view);
+
+
+//        realm = Realm.getDefaultInstance(); // opens "myrealm.realm"
+        realm = RealmController.with(getActivity()).getRealm(); // opens "myrealm.realm"
+
+
+        initUI(view);
         checkConnection();
          onClickListner();
 
@@ -133,7 +150,14 @@ public class home extends Fragment implements LoginViews, View.OnClickListener {
         pDialog.setMessage("Please Wait ...");
         getUserInfoPresenter =new GetUserInfoPresenter(getActivity().getApplicationContext(),this);
        Log.e("PICME_ID",preferenceData.getPicmeId());
-        getUserInfoPresenter.getUserInfo(strpicmeId);
+
+       checkNetwork =new CheckNetwork(getActivity());
+        if (checkNetwork.isNetworkAvailable()) {
+            getUserInfoPresenter.getUserInfo(strpicmeId);
+        } else {
+            isoffline = true;
+        }
+
         getActivity().setTitle("Dashboard");
         txt_username = (TextView) view.findViewById(R.id.txt_username);
         picme_id = (TextView) view.findViewById(R.id.txt_picme_id);
@@ -165,6 +189,78 @@ public class home extends Fragment implements LoginViews, View.OnClickListener {
 
 
 //        txt_no_network = (TextView) view.findViewById(R.id.txt_no_network);
+        if (isoffline) {
+            showOfflineData();
+        } else {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setMessage("Record Not Found");
+           /* .setPositiveButton(R.string.fire, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    // FIRE ZE MISSILES!
+                }
+            })
+            .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    // User cancelled the dialog
+                }
+            });*/
+            // Create the AlertDialog object and return it
+            builder.create();
+
+        }
+    }
+
+    private void showOfflineData() {
+
+        // show offline data
+
+
+        realm.beginTransaction();
+
+        RealmResults<UserInfoRealmModel> userInfoRealmResult = realm.where(UserInfoRealmModel.class).findAll();
+        for (int i = 0; i < userInfoRealmResult.size(); i++) {
+            UserInfoRealmModel model = userInfoRealmResult.get(i);
+            Log.d("OffLine Delevery date" + i, model.getDeleveryDate());
+            Log.d("OffLine AN Next visit" + i, model.getANnextVisit() + "");
+            txt_lmp_date.setText(model.getmLMP());
+            txt_edd_date.setText(model.getmEDD());
+            txt_age.setText(model.getmAge() + "");
+            txt_risk.setText(model.getmRiskStatus());
+            txt_weight.setText(model.getmWeight());
+            txt_next_visit.setText(model.getANnextVisit());
+            txt_husb_name.setText(model.getmHusbandName());
+            txt_gst_week.setText(model.getmGesWeek() + "");
+            preferenceData.setGstWeek(String.valueOf(model.getmGesWeek()));
+
+            str_mobile_number_hsbn = model.getmHusbandMobile();
+//            txt_husb_mobile_number.setText(str_mobile_number_hsbn);
+            txt_vhn_name.setText(model.getVhnName());
+            str_mobile_number_vhn = model.getVhnMobile();
+//            txt_vhn_mobile_number.setText(str_mobile_number_vhn);
+
+
+            txt_aww_name.setText(model.getAwwName());
+            str_mobile_number_aww = model.getAwwMobile();
+//            txt_aww_mobile_number.setText(str_mobile_number_aww);
+            txt_phc_name.setText(model.getPhcName());
+            str_mobile_number_phc = model.getPhcMobile();
+//            txt_phc_mobile_number.setText(str_mobile_number_phc);
+
+            str_mPhoto = model.getmPhoto();
+            Log.d("mphoto-->", Apiconstants.PHOTO_URL + str_mPhoto);
+
+            Picasso.with(context)
+                    .load(Apiconstants.PHOTO_URL + str_mPhoto)
+                    .placeholder(R.drawable.girl_1)
+                    .fit()
+                    .centerCrop()
+                    .memoryPolicy(MemoryPolicy.NO_CACHE)
+                    .networkPolicy(NetworkPolicy.NO_CACHE)
+                    .transform(new RoundedTransformation(90, 4))
+                    .error(R.drawable.girl_1)
+                    .into(cardview_image);
+        }
+        realm.commitTransaction();
 
     }
 
@@ -206,49 +302,103 @@ public class home extends Fragment implements LoginViews, View.OnClickListener {
     @Override
     public void showPickmeResult(String response) {
         JSONObject jObj = null;
+        RealmResults<UserInfoRealmModel> userInfoRealmResult = realm.where(UserInfoRealmModel.class).findAll();
+        Log.e("Realm size ---->", userInfoRealmResult.size() + "");
+        if (userInfoRealmResult.size() != 0) {
+
+
+            realm.executeTransaction(new Realm.Transaction() {
+                @Override
+                public void execute(Realm realm) {
+                    realm.delete(UserInfoRealmModel.class);
+                }
+            });
+        } else {
+            Log.e("Realm size  ---->", userInfoRealmResult.size() + "");
+        }
+        Log.e("After Realm size  ---->", userInfoRealmResult.size() + "");
         try {
-
             jObj = new JSONObject(response);
-            txt_lmp_date.setText(jObj.getString("mLMP"));
-            txt_edd_date.setText(jObj.getString("mEDD"));
-            txt_age.setText(jObj.getString("mAge"));
-            txt_risk.setText(jObj.getString("mRiskStatus"));
-            txt_weight.setText(jObj.getString("mWeight"));
-            txt_husb_name.setText(jObj.getString("mHusbandName"));
-            txt_gst_week.setText(jObj.getString("mGesWeek"));
-            preferenceData.setGstWeek(jObj.getString("mGesWeek"));
 
-            str_mobile_number_hsbn =jObj.getString("mHusbandMobile");
+            realm.beginTransaction();
+            UserInfoRealmModel userInfoRealmModel = realm.createObject(UserInfoRealmModel.class);  //this will create a UserInfoRealmModel object which will be inserted in database
+            userInfoRealmModel.setANnextVisit(jObj.getString("ANnextVisit"));
+            userInfoRealmModel.setmAge(Integer.parseInt(jObj.getString("mAge")));
+            userInfoRealmModel.setmPhoto(jObj.getString("mPhoto"));
+            userInfoRealmModel.setmDOB(jObj.getString("mDOB"));
+            userInfoRealmModel.setMotherStatus(jObj.getString("motherStatus"));
+            userInfoRealmModel.setmLMP(jObj.getString("mLMP"));
+            userInfoRealmModel.setmEDD(jObj.getString("mEDD"));
+            userInfoRealmModel.setmRiskStatus(jObj.getString("mRiskStatus"));
+            userInfoRealmModel.setmWeight(jObj.getString("mWeight"));
+            userInfoRealmModel.setmHusbandName(jObj.getString("mHusbandName"));
+            userInfoRealmModel.setmGesWeek(Integer.parseInt(jObj.getString("mGesWeek")));
+            userInfoRealmModel.setmHusbandMobile(jObj.getString("mHusbandMobile"));
+            userInfoRealmModel.setDeleveryDate(jObj.getString("deleveryDate"));
+            userInfoRealmModel.setPicmeId(jObj.getString("picmeId"));
+
+            JSONObject jsonObjPNnextVisit = jObj.getJSONObject("PNnextVisit");
+
+            userInfoRealmModel.setPnVisit(jsonObjPNnextVisit.getString("pnVisit"));
+            userInfoRealmModel.setMeaturityWeeks(jsonObjPNnextVisit.getString("meaturityWeeks"));
+            userInfoRealmModel.setDeleveryType(jsonObjPNnextVisit.getString("deleveryType"));
+            userInfoRealmModel.setChildWeight(jsonObjPNnextVisit.getString("childWeight"));
+
+            realm.commitTransaction();
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        setValueToUI();
+    }
+
+    private void setValueToUI() {
+
+        realm.beginTransaction();
+        RealmResults<UserInfoRealmModel> userInfoRealmResult = realm.where(UserInfoRealmModel.class).findAll();
+        for (int i = 0; i < userInfoRealmResult.size(); i++) {
+            UserInfoRealmModel model = userInfoRealmResult.get(i);
+
+            txt_lmp_date.setText(model.getmLMP());
+            txt_edd_date.setText(model.getmEDD());
+            txt_age.setText(model.getmAge() + "");
+            txt_risk.setText(model.getmRiskStatus());
+            txt_weight.setText(model.getmWeight());
+            txt_next_visit.setText(model.getANnextVisit());
+            txt_husb_name.setText(model.getmHusbandName());
+            txt_gst_week.setText(model.getmGesWeek() + "");
+            preferenceData.setGstWeek(String.valueOf(model.getmGesWeek()));
+
+            str_mobile_number_hsbn = model.getmHusbandMobile();
 //            txt_husb_mobile_number.setText(str_mobile_number_hsbn);
-            txt_vhn_name.setText(jObj.getString("vhnName"));
-            str_mobile_number_vhn =jObj.getString("vhnMobile");
+            txt_vhn_name.setText(model.getVhnName());
+            str_mobile_number_vhn = model.getVhnMobile();
 //            txt_vhn_mobile_number.setText(str_mobile_number_vhn);
 
 
-            txt_aww_name.setText(jObj.getString("awwName"));
-            str_mobile_number_aww = jObj.getString("awwMobile");
+            txt_aww_name.setText(model.getAwwName());
+            str_mobile_number_aww = model.getAwwMobile();
 //            txt_aww_mobile_number.setText(str_mobile_number_aww);
-            txt_phc_name.setText(jObj.getString("phcName"));
-            str_mobile_number_phc = jObj.getString("phcMobile");
+            txt_phc_name.setText(model.getPhcName());
+            str_mobile_number_phc = model.getPhcMobile();
 //            txt_phc_mobile_number.setText(str_mobile_number_phc);
 
-            str_mPhoto = jObj.getString("mPhoto");
-            Log.d("mphoto-->",Apiconstants.PHOTO_URL+str_mPhoto);
+            str_mPhoto = model.getmPhoto();
+            Log.d("mphoto-->", Apiconstants.PHOTO_URL + str_mPhoto);
 
             Picasso.with(context)
-                    .load(Apiconstants.PHOTO_URL+str_mPhoto)
+                    .load(Apiconstants.PHOTO_URL + str_mPhoto)
                     .placeholder(R.drawable.girl_1)
                     .fit()
                     .centerCrop()
                     .memoryPolicy(MemoryPolicy.NO_CACHE)
                     .networkPolicy(NetworkPolicy.NO_CACHE)
-                    .transform(new RoundedTransformation(90,4))
+                    .transform(new RoundedTransformation(90, 4))
                     .error(R.drawable.girl_1)
                     .into(cardview_image);
-
-        } catch (JSONException e) {
-            e.printStackTrace();
         }
+        realm.commitTransaction();
+
     }
 
     @Override
