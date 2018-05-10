@@ -77,7 +77,7 @@ public class HealthTipsAdapter extends RecyclerView.Adapter<HealthTipsAdapter.Vi
             public void onClick(View v) {
                 if (listener != null)
                     listener.onPlayVideoListener(position, list);
-//                applicationContext.startActivity(new Intent(applicationContext.getApplicationContext(), VideoViewActivity.class));
+                applicationContext.startActivity(new Intent(applicationContext.getApplicationContext(), VideoViewActivity.class));
             }
         });
 

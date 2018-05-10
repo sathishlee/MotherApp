@@ -37,7 +37,7 @@ public class UploadMulitipleImagesPresenter implements ImageUploadInteractor {
     }
 
     @Override
-    public void uploadVisitReportsPhoto(final String picmeId, final ArrayList<Bitmap> bitmap) {
+    public void uploadVisitReportsPhoto(final String picmeId, final String visitId, final ArrayList<Bitmap> bitmap) {
 
         imageUploadViews.showProgress();
         VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST,
@@ -67,6 +67,7 @@ public class UploadMulitipleImagesPresenter implements ImageUploadInteractor {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("picmeId", picmeId);
+                params.put("visitId", visitId);
                 return params;
             }
 
@@ -89,7 +90,6 @@ public class UploadMulitipleImagesPresenter implements ImageUploadInteractor {
                 for (int i=0;i<bitmap.size();i++) {
                     params.put("ReportPhoto["+i+"]", new DataPart(imagename + ".png", getFileDataFromDrawable(bitmap.get(i))));
                     Log.d("ReportPhoto ", i+"--->"+String.valueOf(bitmap.get(i)));
-
                 }
                 return params;
             }

@@ -29,11 +29,11 @@ import java.util.Map;
  */
 
 public class AddVisitRecordsPresenter implements AddRecordsInteractor {
-    AddRecords context;
+    Activity activity;
     AddRecordViews views;
 
-    public AddVisitRecordsPresenter(AddRecords context, AddRecordViews views) {
-        this.context = context;
+    public AddVisitRecordsPresenter(Activity activity, AddRecordViews views) {
+        this.activity = activity;
         this.views = views;
     }
 
@@ -88,7 +88,7 @@ public class AddVisitRecordsPresenter implements AddRecordsInteractor {
                 return Method.POST;
             }
         };
-        VolleySingleton.getInstance(context).addToRequestQueue(stringRequest);
+        VolleySingleton.getInstance(activity).addToRequestQueue(stringRequest);
 
     }
 
@@ -168,7 +168,7 @@ public class AddVisitRecordsPresenter implements AddRecordsInteractor {
                 return Method.POST;
             }
         };
-        VolleySingleton.getInstance(context).addToRequestQueue(req);
+        VolleySingleton.getInstance(activity).addToRequestQueue(req);
 
     }
 }

@@ -70,7 +70,9 @@
         <activity
             android:name=".activity.Login"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme">
+
+        </activity>
         <activity
             android:name=".activity.LocationUpdateActivity"
             android:theme="@style/AppTheme1">
@@ -181,6 +183,9 @@
 
         <activity android:name=".ImageSelectedActivity"
             android:theme="@style/AppTheme1"/>
+
+        <activity android:name=".activity.ViewReportsActivity"
+            android:theme="@style/AppTheme"/>
 
         <service android:name=".utility.MyFirebaseInstanceIDService">
             <intent-filter>
