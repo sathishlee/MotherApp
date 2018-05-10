@@ -3,6 +3,7 @@ package com.unicef.thaimai.motherapp.adapter;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -77,7 +78,12 @@ public class HealthTipsAdapter extends RecyclerView.Adapter<HealthTipsAdapter.Vi
             public void onClick(View v) {
                 if (listener != null)
                     listener.onPlayVideoListener(position, list);
-                applicationContext.startActivity(new Intent(applicationContext.getApplicationContext(), VideoViewActivity.class));
+                Bundle bundle =new Bundle();
+                bundle.putString("title", list.getTitle());
+                bundle.putString("videolist", list.getVideo());
+                Intent intent =new Intent(applicationContext.getApplicationContext(), VideoViewActivity.class);
+                intent.putExtra("video",bundle);
+                applicationContext.startActivity(intent);
             }
         });
 

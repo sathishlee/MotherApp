@@ -33,7 +33,7 @@ public class ViewFullVideo extends AppCompatActivity {
 
         Uri uri = Uri.parse("http://demo.satvatinfosol.com/thaimai/Pregnancy_Tamil_Week_21.mp4");
 
-        VideoView simpleVideoView = (VideoView) findViewById(R.id.video_View);
+        VideoView simpleVideoView = (VideoView) findViewById(R.id.video_view);
 
         simpleVideoView.setVideoURI(uri);
         simpleVideoView.start();
