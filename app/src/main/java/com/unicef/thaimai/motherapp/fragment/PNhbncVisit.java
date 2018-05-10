@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.GetVisitHealthRecordsPresenter;
@@ -149,9 +150,12 @@ public class PNhbncVisit extends Fragment implements GetVisitHelthRecordsViews, 
     public void getPNHBNCVisitRecordsSuccess(String response) {
         try {
             JSONObject mJsnobject = new JSONObject(response);
-            JSONArray jsonArray = mJsnobject.getJSONArray("Visit_Records");
-            if (jsonArray.length()!=0){
+            String status = mJsnobject.getString("status");
+            String message = mJsnobject.getString("message");
+            Toast.makeText(getActivity(),message, Toast.LENGTH_SHORT).show();
+            if (status.equalsIgnoreCase("1")){
                 txt_no_records.setVisibility(View.GONE);
+                JSONArray jsonArray = mJsnobject.getJSONArray("Visit_Records");
                 for (int i = 0; i < jsonArray.length(); i++) {
                     mPnHbncVisitRecordsModel = new PnHbncVisitRecordsModel.Visit_Records();
 
@@ -182,11 +186,6 @@ public class PNhbncVisit extends Fragment implements GetVisitHelthRecordsViews, 
                     mPnHbncVisitRecordsModel.setCBreastFeeding(jsonObject.getString("cBreastFeeding"));
                     mPnHbncVisitRecordsModel.setCBreastFeedingReason(jsonObject.getString("cBreastFeedingReason"));
                     mPnHbncVisitRecordsModel.setCOutCome(jsonObject.getString("cOutCome"));
-
-
-
-
-
 
                 /*mPnHbncVisitRecordsModel.setVDate(jsonObject.getString("vDate"));
                 mPnHbncVisitRecordsModel.setVFacility(jsonObject.getString("vFacility"));
@@ -237,6 +236,7 @@ public class PNhbncVisit extends Fragment implements GetVisitHelthRecordsViews, 
                 }
             }else{
                 txt_no_records.setVisibility(View.VISIBLE);
+                Toast.makeText(getActivity(),message, Toast.LENGTH_SHORT).show();
             }
 
 

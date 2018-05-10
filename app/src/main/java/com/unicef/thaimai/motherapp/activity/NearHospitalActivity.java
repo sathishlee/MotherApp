@@ -21,6 +21,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.unicef.thaimai.motherapp.Interface.MakeCallInterface;
@@ -52,6 +54,7 @@ public class NearHospitalActivity extends AppCompatActivity implements LocationU
     private NearByHospitalAdapter mAdapter;
     boolean isDataUpdate=true;
     PreferenceData preferenceData;
+    TextView txt_no_records_found;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,6 +89,9 @@ public class NearHospitalActivity extends AppCompatActivity implements LocationU
 
         mNearbyList =new ArrayList<>();
         recyclerView =(RecyclerView)findViewById(R.id.rec_nearbyhospital);
+        txt_no_records_found = (TextView) findViewById(R.id.txt_no_records_found);
+        txt_no_records_found.setVisibility(View.GONE);
+        recyclerView.setVisibility(View.GONE);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(NearHospitalActivity.this);
         recyclerView.setLayoutManager(mLayoutManager);
@@ -151,11 +157,12 @@ public class NearHospitalActivity extends AppCompatActivity implements LocationU
     @Override
     public void getNearbyHospitalSuccess(String responsne) {
         Log.e(NearHospitalActivity.class.getSimpleName(), "response success" + responsne);
-        pDialog.show();
         try {
             JSONObject mJsnobject = new JSONObject(responsne);
             String status = mJsnobject.getString("status");
             if (status.equalsIgnoreCase("1")) {
+                txt_no_records_found.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.VISIBLE);
                 JSONArray jsonArray = mJsnobject.getJSONArray("nearby");
                 for (int i = 0; i < jsonArray.length(); i++) {
                     mnearbyModel = new NearHospitalResponseModel.Nearby();
@@ -180,6 +187,11 @@ public class NearHospitalActivity extends AppCompatActivity implements LocationU
                     mAdapter.notifyDataSetChanged();
                     pDialog.hide();
                 }
+            }
+            else{
+                txt_no_records_found.setVisibility(View.VISIBLE);
+                recyclerView.setVisibility(View.GONE);
+
             }
         }catch (JSONException e) {
             e.printStackTrace();

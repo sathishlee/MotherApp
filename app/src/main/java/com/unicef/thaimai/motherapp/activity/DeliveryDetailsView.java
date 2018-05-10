@@ -30,7 +30,7 @@ public class DeliveryDetailsView extends AppCompatActivity implements DeliveryEn
             txt_breast_feeding_given, txt_admitted_in_sncu, new_born_sncu_date, txt_new_born_outcome, txt_bcg_given_date,
             txt_opv_given_date, txt_hepb_given_date;
 
-
+    String strDid;
 
 
     ProgressDialog progressDialog;
@@ -72,8 +72,6 @@ public class DeliveryDetailsView extends AppCompatActivity implements DeliveryEn
        deliveryEntryPresenter = new DeliveryEntryPresenter(DeliveryDetailsView.this, this);
        deliveryEntryPresenter.deliveryDetails(preferenceData.getPicmeId(), preferenceData.getMId(), preferenceData.getDid());
        fab_edt_details = (FloatingActionButton) findViewById(R.id.fab_edt_details);
-
-
        txt_delivery_date = (TextView) findViewById(R.id.txt_delivery_date);
        txt_delivery_time = (TextView) findViewById(R.id.txt_delivery_time);
        txt_delivery_place = (TextView) findViewById(R.id.txt_delivery_place);
@@ -91,7 +89,6 @@ public class DeliveryDetailsView extends AppCompatActivity implements DeliveryEn
        txt_bcg_given_date = (TextView) findViewById(R.id.txt_bcg_given_date);
        txt_opv_given_date = (TextView) findViewById(R.id.txt_opv_given_date);
        txt_hepb_given_date = (TextView) findViewById(R.id.txt_hepb_given_date);
-
    }
 
     @Override
@@ -144,7 +141,8 @@ public class DeliveryDetailsView extends AppCompatActivity implements DeliveryEn
             if (status.equalsIgnoreCase("1")) {
                 JSONObject  jsonObject = jsonObject_res.getJSONObject("Delevery_Info");
 
-                preferenceData.storeDid(jsonObject.getString("did" ));
+                strDid = String.valueOf("did");
+                preferenceData.storeDid(jsonObject.getString("did"));
                 Log.d("response---->", response);
 //                if(jsonObject.getString("ddatetime")!="")
                     txt_delivery_date.setText(jsonObject.getString("ddatetime"));
@@ -164,7 +162,6 @@ public class DeliveryDetailsView extends AppCompatActivity implements DeliveryEn
                     txt_infant_birth_type.setText(jsonObject.getString("dBirthDetails"));
 //                if (jsonObject.getString("dBirthWeight")!="")
                     txt_infant_weight.setText(jsonObject.getString("dBirthWeight"));
-
 //                if (jsonObject.getString("dBirthHeight")!="")
                     txt_infant_height.setText(jsonObject.getString("dBirthHeight"));
 //                if (jsonObject.getString("dBreastFeedingGiven")!="")
@@ -185,7 +182,6 @@ public class DeliveryDetailsView extends AppCompatActivity implements DeliveryEn
             else{
                 Log.d("message---->",message);
             }
-
         }
         catch (JSONException e) {
             e.printStackTrace();

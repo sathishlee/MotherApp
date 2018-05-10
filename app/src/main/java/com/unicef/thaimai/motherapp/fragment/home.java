@@ -38,6 +38,7 @@ import com.unicef.thaimai.motherapp.constant.AppConstants;
 import com.unicef.thaimai.motherapp.utility.RoundedTransformation;
 import com.unicef.thaimai.motherapp.view.LoginViews;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -46,19 +47,21 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class home extends Fragment implements LoginViews, View.OnClickListener {
 
-    TextView txt_username, picme_id, txt_age, txt_risk,txt_gst_week,txt_weight,
+    TextView txt_username, picme_id, txt_age, txt_an_risk,txt_pn_risk,txt_gst_week,txt_weight,
             txt_next_visit,txt_lmp_date,txt_edd_date,txt_husb_name,
             txt_husb_mobile_number,txt_vhn_name,txt_vhn_mobile_number,txt_aww_name,
-            txt_aww_mobile_number,txt_phc_name,txt_phc_mobile_number;
+            txt_aww_mobile_number,txt_phc_name,txt_phc_mobile_number, txt_delivery_date,
+            txt_birth_weight, txt_type_delivery, txt_maturity, txt_pn_next_visit;
 
     TextView txt_no_network;
 
     ImageView img_call_husb,img_call_vhn,img_call_aww,img_call_phc, cardview_image;
 
      String strname, strpicmeId, strage,str_mobile_number_hsbn,
-            str_mobile_number_vhn, str_mobile_number_aww,str_mobile_number_phc, str_mPhoto;
+            str_mobile_number_vhn, str_mobile_number_aww,str_mobile_number_phc, str_mPhoto,
+             strPNvisit, strPNNextVisit, strDeliverydate, strMeaturityWeek, strDeliveryDate;
 
-    CardView profile;
+    CardView profile, card_pn_block;
     Context context;
 
     PreferenceData preferenceData;
@@ -85,13 +88,10 @@ public class home extends Fragment implements LoginViews, View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
          View view = inflater.inflate(R.layout.fragment_home, container, false);
          initUI(view);
-        checkConnection();
+         checkConnection();
          onClickListner();
-
         getActivity().setTitle("Dashboard");
-
         profile = (CardView) view.findViewById(R.id.user_profile_photo);
-
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -143,7 +143,8 @@ public class home extends Fragment implements LoginViews, View.OnClickListener {
         txt_next_visit = (TextView) view.findViewById(R.id.txt_next_visit);
         txt_lmp_date = (TextView) view.findViewById(R.id.txt_lmp_date);
         txt_edd_date = (TextView) view.findViewById(R.id.txt_edd_date);
-        txt_risk = (TextView) view.findViewById(R.id.txt_risk);
+        txt_an_risk = (TextView) view.findViewById(R.id.txt_an_risk);
+        txt_pn_risk = (TextView) view.findViewById(R.id.txt_an_risk);
 
         txt_husb_name = (TextView) view.findViewById(R.id.txt_husb_name);
 //        txt_husb_mobile_number = (TextView) view.findViewById(R.id.txt_husb_mobile_number);
@@ -158,7 +159,15 @@ public class home extends Fragment implements LoginViews, View.OnClickListener {
         img_call_vhn =(ImageView) view.findViewById(R.id.img_call_vhn);
         img_call_aww =(ImageView) view.findViewById(R.id.img_call_aww);
         img_call_phc =(ImageView) view.findViewById(R.id.img_call_phc);
+
+        txt_delivery_date = (TextView) view.findViewById(R.id.txt_delivery_date);
+        txt_birth_weight = (TextView) view.findViewById(R.id.txt_birth_weight);
+        txt_type_delivery = (TextView) view.findViewById(R.id.txt_type_delivery);
+        txt_maturity = (TextView) view.findViewById(R.id.txt_maturity);
+        txt_pn_next_visit = (TextView) view.findViewById(R.id.txt_pn_next_visit);
         cardview_image = (ImageView) view.findViewById(R.id.cardview_image);
+        card_pn_block = (CardView) view.findViewById(R.id.card_pn_block);
+        card_pn_block.setVisibility(View.GONE);
         picme_id.setText(strpicmeId);
         txt_username .setText(strname);
         txt_age.setText(strage);
@@ -212,10 +221,13 @@ public class home extends Fragment implements LoginViews, View.OnClickListener {
             txt_lmp_date.setText(jObj.getString("mLMP"));
             txt_edd_date.setText(jObj.getString("mEDD"));
             txt_age.setText(jObj.getString("mAge"));
-            txt_risk.setText(jObj.getString("mRiskStatus"));
+            txt_an_risk.setText(jObj.getString("mRiskStatus"));
             txt_weight.setText(jObj.getString("mWeight"));
             txt_husb_name.setText(jObj.getString("mHusbandName"));
             txt_gst_week.setText(jObj.getString("mGesWeek"));
+            txt_next_visit.setText(jObj.getString("ANnextVisit"));
+
+
             preferenceData.setGstWeek(jObj.getString("mGesWeek"));
 
             str_mobile_number_hsbn =jObj.getString("mHusbandMobile");
@@ -231,12 +243,26 @@ public class home extends Fragment implements LoginViews, View.OnClickListener {
             txt_phc_name.setText(jObj.getString("phcName"));
             str_mobile_number_phc = jObj.getString("phcMobile");
 //            txt_phc_mobile_number.setText(str_mobile_number_phc);
-
             str_mPhoto = jObj.getString("mPhoto");
+
+            strDeliveryDate = jObj.getString("deleveryStatus");
+            if(strDeliveryDate.equalsIgnoreCase("1")){
+                card_pn_block.setVisibility(View.VISIBLE);
+                JSONObject  jsonObject = jObj.getJSONObject("PNnextVisit");
+                    txt_pn_risk.setText(jObj.getString("mRiskStatus"));
+                    txt_delivery_date.setText(jsonObject.getString("deleveryDate"));
+                    txt_birth_weight.setText(jsonObject.getString("childWeight"));
+                    txt_type_delivery.setText(jsonObject.getString("deleveryType"));
+                    txt_maturity.setText(jsonObject.getString("meaturityWeeks"));
+                    txt_pn_next_visit.setText(jsonObject.getString("pnVisit"));
+            }
+            else{
+                card_pn_block.setVisibility(View.GONE);
+            }
             Log.d("mphoto-->",Apiconstants.PHOTO_URL+str_mPhoto);
 
             Picasso.with(context)
-                    .load(Apiconstants.PHOTO_URL+str_mPhoto)
+                    .load(Apiconstants.PHOTO_URL + str_mPhoto)
                     .placeholder(R.drawable.girl_1)
                     .fit()
                     .centerCrop()

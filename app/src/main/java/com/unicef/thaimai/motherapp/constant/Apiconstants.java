@@ -13,6 +13,11 @@ public class Apiconstants {
 //    public static final String PHOTO_URL = "http://demo.satvatinfosol.com/thaimai/assets/mother_photos/";
 //    public static final String PHOTO_URL = "http://218.248.44.77/thaimaiapp/assets/mother_photos/";
 
+
+    public static final String VISIT_REPORTS_URL = "http://192.168.100.222/thaimaiapp/assets/mother_reports/";
+//    public static final String VISIT_REPORTS_URL = "http://demo.satvatinfosol.com/thaimai/assets/mother_reports/";
+//    public static final String VISIT_REPORTS_URL = "http://218.248.44.77/thaimaiapp/assets/mother_reports/";
+
     public static final String LOG_IN_CHECK_PIKME = "login/check/";
     public static final String CHECK_OTP = "login/checkOTP/";
 
@@ -101,5 +106,7 @@ public static final String FLASH_NOTIFICATION= "mother/mMotherFlashNotification"
     public  static  final String POST_UPLOAD_PROFILE_PHOTO ="mother/uploadPhoto";
 
     public static final String UPLOAD_MULTIPLE_IMAGES = "mother/uploadReports";
+
+    public static final String GET_ALL_VISIT_REPORTS = "mother/getAllUploadReports";
 
 }

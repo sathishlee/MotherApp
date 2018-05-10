@@ -33,7 +33,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Present Status"
+                    android:text="Before Delivery"
                     android:textSize="@dimen/text_label"
                     android:textAlignment="textStart"
                     android:textColor="#2F80ED"
@@ -64,7 +64,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/txt_risk"
+                    android:id="@+id/txt_an_risk"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginEnd="5dp"
@@ -255,7 +255,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8.0dip"
                     android:layout_marginRight="8.0dip"
-                    android:text="Next Visit" />
+                    android:text="Next Visit : " />
 
             <TextView
                 android:id="@+id/txt_next_visit"

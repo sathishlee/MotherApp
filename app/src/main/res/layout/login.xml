@@ -61,7 +61,6 @@
             android:textSize="14.0sp"
             android:digits="0123456789"
             android:hint="@string/picmeid"
-            android:text="133006664229"
             android:focusable="true"/>
 
         </android.support.design.widget.TextInputLayout>
@@ -80,7 +79,6 @@
                 android:inputType="date"
                 android:textSize="14.0sp"
                 android:hint="Date of Birth (DD-MM-YYYY)*"
-                android:text="02-11-1983"
                 android:cursorVisible="true"/>
 
         </android.support.design.widget.TextInputLayout>

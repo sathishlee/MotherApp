@@ -14,12 +14,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.unicef.thaimai.motherapp.Interface.TypeOfHealthRecords;
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.GetVisitHealthRecordsPresenter;
 import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.activity.PrimaryRegisterView;
+import com.unicef.thaimai.motherapp.activity.ViewReportsActivity;
 import com.unicef.thaimai.motherapp.adapter.HealthRecordsAdapter;
 import com.unicef.thaimai.motherapp.adapter.ViewPagerAdapter;
 import com.unicef.thaimai.motherapp.constant.Apiconstants;
@@ -142,10 +144,13 @@ public class health_records extends Fragment implements GetVisitHelthRecordsView
 
         try {
             JSONObject mJsnobject = new JSONObject(healthRecordResponseModel);
-            JSONArray jsonArray = mJsnobject.getJSONArray("Visit_Records");
-            if(jsonArray.length()!=0){
+            String status = mJsnobject.getString("status");
+            String message = mJsnobject.getString("message");
+//            Toast.makeText(getActivity(),message, Toast.LENGTH_SHORT).show();
+            if(status.equalsIgnoreCase("1")){
                 ll_click_visit_view.setVisibility(View.VISIBLE);
                 txt_no_records.setVisibility(View.GONE);
+                JSONArray jsonArray = mJsnobject.getJSONArray("Visit_Records");
                 for (int i = 0; i < jsonArray.length(); i++) {
                     mhealthRecordResponseModel = new HealthRecordResponseModel.Visit_Records();
 
@@ -235,8 +240,11 @@ public class health_records extends Fragment implements GetVisitHelthRecordsView
 //                gVHRecordsPresenteer.getAllVistHeathRecord(Apiconstants.POST_VIST_HEALTH_RECORD,preferenceData.getPicmeId(), "1");
 //                break;
             case R.id.btn_primary_report:
-                startActivity(new Intent(getActivity().getApplicationContext(), PrimaryRegisterView.class));break;
-            case R.id.btn_view_report: break;
+                startActivity(new Intent(getActivity().getApplicationContext(), PrimaryRegisterView.class));
+                break;
+            case R.id.btn_view_report:
+                startActivity(new Intent(getActivity().getApplicationContext(), ViewReportsActivity.class));
+                break;
         }
     }
 

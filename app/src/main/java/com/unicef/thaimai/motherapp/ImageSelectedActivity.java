@@ -30,11 +30,17 @@ import android.widget.Toast;
 import com.commonsware.cwac.camera.CameraHost;
 import com.commonsware.cwac.camera.CameraHostProvider;
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
+import com.unicef.thaimai.motherapp.Presenter.AddVisitRecordsPresenter;
 import com.unicef.thaimai.motherapp.Presenter.UploadMulitipleImagesPresenter;
+import com.unicef.thaimai.motherapp.activity.AddRecords;
 import com.unicef.thaimai.motherapp.activity.MainActivity;
 import com.unicef.thaimai.motherapp.adapter.SpacesItemDecoration;
 import com.unicef.thaimai.motherapp.utility.Util;
+import com.unicef.thaimai.motherapp.view.AddRecordViews;
 import com.unicef.thaimai.motherapp.view.ImageUploadViews;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
@@ -54,7 +60,7 @@ import static android.Manifest.permission.WRITE_SETTINGS;
  * Created by Suthishan on 20/1/2018.
  */
 
-public class ImageSelectedActivity extends AppCompatActivity implements CameraHostProvider, ImageUploadViews {
+public class ImageSelectedActivity extends AppCompatActivity implements CameraHostProvider, ImageUploadViews, AddRecordViews {
 
 
     public static final String EXTRA_IMAGE_URIS = "image_uris";
@@ -77,6 +83,8 @@ public class ImageSelectedActivity extends AppCompatActivity implements CameraHo
     Adapter_SelectedPhoto adapter_selectedPhoto;
     ProgressDialog progressDialog;
     PreferenceData preferenceData;
+    public static String strTotalVisitCount="0";
+
 
     public static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 123;
 
@@ -101,6 +109,8 @@ public class ImageSelectedActivity extends AppCompatActivity implements CameraHo
     public static final int RequestPermissionCode = 7;
 
     UploadMulitipleImagesPresenter uploadMulitipleImagesPresenter;
+    AddVisitRecordsPresenter addVisitRecordsPresenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -226,6 +236,8 @@ public class ImageSelectedActivity extends AppCompatActivity implements CameraHo
         progressDialog.setMessage("Please Wait...");
 
         preferenceData = new PreferenceData(this);
+        addVisitRecordsPresenter = new AddVisitRecordsPresenter(ImageSelectedActivity.this, this);
+        addVisitRecordsPresenter.getVisitCount(preferenceData.getPicmeId(),preferenceData.getMId());
 
         mBitmapSelectedImages =new ArrayList<>();
         view_root = findViewById(R.id.view_root);
@@ -364,8 +376,6 @@ public class ImageSelectedActivity extends AppCompatActivity implements CameraHo
         }
         GalleryFragment.mGalleryAdapter.notifyDataSetChanged();
 
-
-
     }
 
     public boolean containsImage(Uri uri) {
@@ -393,8 +403,6 @@ public class ImageSelectedActivity extends AppCompatActivity implements CameraHo
         }
 
         return super.onOptionsItemSelected(item);
-
-
     }
 
     private void updatePicture() {
@@ -406,7 +414,7 @@ public class ImageSelectedActivity extends AppCompatActivity implements CameraHo
         }
         Log.e("mBitmap","SelectedImages size"+mBitmapSelectedImages.size()+"");
 
-        uploadMulitipleImagesPresenter.uploadVisitReportsPhoto(preferenceData.getPicmeId(),mBitmapSelectedImages);
+        uploadMulitipleImagesPresenter.uploadVisitReportsPhoto(preferenceData.getPicmeId(),strTotalVisitCount,mBitmapSelectedImages);
 
 //        Intent intent = new Intent();
 //        intent.putParcelableArrayListExtra(EXTRA_IMAGE_URIS, mSelectedImages);
@@ -436,6 +444,36 @@ public class ImageSelectedActivity extends AppCompatActivity implements CameraHo
     @Override
     public void hideProgress() {
         progressDialog.dismiss();
+    }
+
+    @Override
+    public void insertRecordSuccess(String response) {
+
+    }
+
+    @Override
+    public void insertRecordFailiure(String response) {
+
+    }
+
+    @Override
+    public void getVisitIDSuccess(String response) {
+        Log.d(ImageSelectedActivity.class.getSimpleName(), "Response Success--->" + response);
+        try {
+            JSONObject jsonObject =new JSONObject(response);
+            String status =jsonObject.getString("status");
+            String msg = jsonObject.getString("message");
+            strTotalVisitCount= jsonObject.getString("visitId");
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void getVisitIDFailiure(String response) {
+        Log.d(ImageSelectedActivity.class.getSimpleName(), "Response Success--->" + response);
     }
 
     @Override

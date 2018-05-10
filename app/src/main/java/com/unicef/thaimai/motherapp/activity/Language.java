@@ -101,17 +101,16 @@ public class Language extends AppCompatActivity {
         Configuration conf= resources.getConfiguration();
         conf.locale=mylocale;
         resources.updateConfiguration(conf,dm);
-        Intent refreshIntent=new Intent(Language.this,Language.class);
-        finish();
+        Intent refreshIntent=new Intent(Language.this,MainActivity.class);
+//        finish();
         startActivity(refreshIntent);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         Intent intent = new Intent(Language.this, MainActivity.class);
-        finish();
         startActivity(intent);
+        finish();
         return super.onOptionsItemSelected(item);
     }
 }

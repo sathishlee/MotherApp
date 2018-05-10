@@ -568,6 +568,6 @@ public class MainActivity extends AppCompatActivity
     public void showErrorMessage(String response) {
         Log.d(AddRecords.class.getSimpleName(), "Response Error--->" + response);
         showAlertDialog(response, "close", 5);
-
     }
+
 }
