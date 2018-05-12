@@ -177,6 +177,10 @@
         <activity android:name=".activity.ViewReportsActivity"
             android:theme="@style/AppTheme"/>
 
+        <activity android:name=".activity.VideoViewActivity"
+            android:theme="@style/AppTheme"
+            android:screenOrientation="landscape"/>
+
         <service android:name=".utility.MyFirebaseInstanceIDService">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
