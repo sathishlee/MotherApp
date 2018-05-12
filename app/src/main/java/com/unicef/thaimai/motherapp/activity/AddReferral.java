@@ -1,5 +1,6 @@
 package com.unicef.thaimai.motherapp.activity;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
@@ -102,6 +103,7 @@ public class AddReferral extends AppCompatActivity implements View.OnClickListen
         spUPReferringFacility.setOnItemSelectedListener(this);
 
         rgInLabour.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @SuppressLint("ResourceType")
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 RadioButton rb = (RadioButton) group.findViewById(checkedId);
@@ -111,6 +113,7 @@ public class AddReferral extends AppCompatActivity implements View.OnClickListen
             }
         });
         rgAdmitted.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @SuppressLint("ResourceType")
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 RadioButton rb = (RadioButton) group.findViewById(checkedId);
@@ -314,13 +317,10 @@ public class AddReferral extends AppCompatActivity implements View.OnClickListen
     private void showAlert(String msg) {
 
             final AlertDialog.Builder builder = new AlertDialog.Builder(AddReferral.this);
-
-
 //        builder.setTitle("Hi Tamil Selvi,");
 //        builder.setMessage("Have you take tablets regulerlly: ");
             builder.setTitle("Hi " +preferenceData.getMotherName()+ ",");
             builder.setMessage(msg);
-
 
             //Yes Button
             builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {

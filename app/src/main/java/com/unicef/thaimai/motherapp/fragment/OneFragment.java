@@ -1,3 +1,4 @@
+/*
 package com.unicef.thaimai.motherapp.fragment;
 
 import android.content.Context;
@@ -15,6 +16,7 @@ import com.unicef.thaimai.motherapp.model.responsemodel.HealthRecordResponseMode
 import java.util.ArrayList;
 
 
+*/
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -22,7 +24,8 @@ import java.util.ArrayList;
  * to handle interaction events.
  * Use the {@link OneFragment#newInstance} factory method to
  * create an instance of this fragment.
- */
+ *//*
+
 public class OneFragment extends Fragment implements View.OnClickListener {
 
     private OnFragmentInteractionListener mListener;
@@ -93,3 +96,4 @@ public class OneFragment extends Fragment implements View.OnClickListener {
         void onFragmentInteraction(Uri uri);
     }
 }
+*/

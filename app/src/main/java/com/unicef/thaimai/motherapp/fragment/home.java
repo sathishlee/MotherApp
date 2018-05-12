@@ -301,6 +301,7 @@ public class home extends Fragment implements LoginViews, View.OnClickListener {
 
     @Override
     public void showPickmeResult(String response) {
+
         JSONObject jObj = null;
         RealmResults<UserInfoRealmModel> userInfoRealmResult = realm.where(UserInfoRealmModel.class).findAll();
         Log.e("Realm size ---->", userInfoRealmResult.size() + "");
@@ -336,13 +337,16 @@ public class home extends Fragment implements LoginViews, View.OnClickListener {
             userInfoRealmModel.setmHusbandMobile(jObj.getString("mHusbandMobile"));
             userInfoRealmModel.setDeleveryDate(jObj.getString("deleveryDate"));
             userInfoRealmModel.setPicmeId(jObj.getString("picmeId"));
+if (jObj.getInt("deleveryStatus")==1){
 
-            JSONObject jsonObjPNnextVisit = jObj.getJSONObject("PNnextVisit");
+    JSONObject jsonObjPNnextVisit = jObj.getJSONObject("PNnextVisit");
 
-            userInfoRealmModel.setPnVisit(jsonObjPNnextVisit.getString("pnVisit"));
-            userInfoRealmModel.setMeaturityWeeks(jsonObjPNnextVisit.getString("meaturityWeeks"));
-            userInfoRealmModel.setDeleveryType(jsonObjPNnextVisit.getString("deleveryType"));
-            userInfoRealmModel.setChildWeight(jsonObjPNnextVisit.getString("childWeight"));
+    userInfoRealmModel.setPnVisit(jsonObjPNnextVisit.getString("pnVisit"));
+    userInfoRealmModel.setMeaturityWeeks(jsonObjPNnextVisit.getString("meaturityWeeks"));
+    userInfoRealmModel.setDeleveryType(jsonObjPNnextVisit.getString("deleveryType"));
+    userInfoRealmModel.setChildWeight(jsonObjPNnextVisit.getString("childWeight"));
+}
+
 
             realm.commitTransaction();
 

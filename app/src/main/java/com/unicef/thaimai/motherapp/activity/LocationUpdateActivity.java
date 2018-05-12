@@ -77,15 +77,13 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_update);
         checkNetwork = new CheckNetwork(this);
-
-
 //        serverUpload = new ServerUpload();
             locationUpdatePresenter = new LocationUpdatePresenter(LocationUpdateActivity.this, this);
-
             preferenceData = new PreferenceData(this);
-            startStep1();
 
-                if (mAlreadyStartedService) {
+
+            startStep1();
+            if (mAlreadyStartedService) {
                     if (!preferenceData.getLogin()) {
                         stopService(new Intent(this, LocationMonitoringService.class));
                         mAlreadyStartedService = false;
@@ -103,7 +101,7 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
                                 String mylocaton = latitude + "\t" + longitude;
                                 if (latitude != null && longitude != null) {
 //                            serverUpload.sendlocationtServer(mylocaton,latitude,longitude,LocationUpdateActivity.this);
-                                    strAddress = getCompleteAddressString(latitude, longitude);
+//                                    strAddress = getCompleteAddressString(latitude, longitude);
 //if (preferenceData.getPicmeId().equalsIgnoreCase("") && preferenceData.getVhnId().equalsIgnoreCase("")&& preferenceData.getMId().equalsIgnoreCase(""))
 
                                     AppConstants.NEAR_LATITUDE = latitude;
@@ -115,12 +113,12 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
                         }, new IntentFilter(LocationMonitoringService.ACTION_LOCATION_BROADCAST)
                 );
             }
-            new Handler().postDelayed(new Runnable() {
+           /* new Handler().postDelayed(new Runnable() {
 
-            /*
+            *//*
              * Showing splash screen with a timer. This will be useful when you
              * want to show case your app logo / company
-             */
+             *//*
 
                 @Override
                 public void run() {
@@ -156,7 +154,7 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
                     // close this activity
                     finish();
                 }
-            }, SPLASH_TIME_OUT);
+            }, SPLASH_TIME_OUT);*/
 
 
 //        locationUpdatePresenter =new LocationUpdatePresenter(LocationUpdateActivity.this,this);
@@ -214,7 +212,7 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
 
         if (activeNetworkInfo == null || !activeNetworkInfo.isConnected()) {
             promptInternetConnect();
-            return true;
+            return false;
         }
 
         else if (dialog != null) {
@@ -235,7 +233,15 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
      * Show A Dialog with button to refresh the internet state.
      */
     private void promptInternetConnect() {
-        /*AlertDialog.Builder builder = new AlertDialog.Builder(LocationUpdateActivity.this);
+        /*if (checkPermissions()) {
+
+            //Step 2: Start the Location Monitor Service
+            //Everything is there to start the service.
+            startStep3();
+        } else if (!checkPermissions()) {
+            requestPermissions();
+        }*/
+        AlertDialog.Builder builder = new AlertDialog.Builder(LocationUpdateActivity.this);
         builder.setTitle(R.string.title_alert_no_intenet);
         builder.setMessage(R.string.msg_alert_no_internet);
 
@@ -264,12 +270,12 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
                 });
 
         AlertDialog dialog = builder.create();
-        dialog.show();*/
+        dialog.show();
 
 //        startActivity(new Intent(getApplicationContext(), NoInternetConnection.class));
-        preferenceData.setMainScreenOpen(0);
+       /* preferenceData.setMainScreenOpen(0);
         startActivity(new Intent(getApplicationContext(), MainActivity.class));
-        finish();
+        finish();*/
     }
 
     /**
@@ -290,6 +296,48 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
             mAlreadyStartedService = true;
             //Ends................................................
         }
+
+         new Handler().postDelayed(new Runnable() {
+
+     /*     Showing splash screen with a timer. This will be useful when you
+         * want to show case your app logo / company*/
+
+
+                @Override
+                public void run() {
+                    // This method will be executed once the timer is over
+                    // Start your app main activity
+//                if (preferenceData.getPicmeId().equalsIgnoreCase("") && preferenceData.getVhnId().equalsIgnoreCase("") && preferenceData.getMId().equalsIgnoreCase("")) {
+                    if(checkNetwork.isNetworkAvailable()){
+                        if (preferenceData.getLogin()) {
+                            Log.d("LOG LOGIN", preferenceData.getPicmeId() + "," + preferenceData.getVhnId() + "," + preferenceData.getMId());
+//                    AppConstants.POP_UP_COUNT= Integer.parseInt(preferenceData.getMainScreenOpen());
+                            preferenceData.setMainScreenOpen(0);
+                            Intent i = new Intent(LocationUpdateActivity.this, MainActivity.class);
+                            startActivity(i);
+                        } else {
+                            preferenceData.setMainScreenOpen(0);
+                            Intent i = new Intent(LocationUpdateActivity.this, Login.class);
+                            startActivity(i);
+                        }
+                    }else {
+//                        startActivity(new Intent(getApplicationContext(),NoInternetConnection.class));
+                        if (preferenceData.getLogin()) {
+                            preferenceData.setMainScreenOpen(0);
+                            Intent i = new Intent(LocationUpdateActivity.this, MainActivity.class);
+                            startActivity(i);
+                        }
+                        else {
+                            preferenceData.setMainScreenOpen(0);
+                            Intent i = new Intent(LocationUpdateActivity.this, Login.class);
+                            startActivity(i);
+                        }
+                    }
+
+                    // close this activity
+                    finish();
+                }
+            }, SPLASH_TIME_OUT);
     }
 
     /**

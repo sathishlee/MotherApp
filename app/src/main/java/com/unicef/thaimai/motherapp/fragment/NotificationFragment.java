@@ -145,8 +145,13 @@ public class NotificationFragment extends Fragment implements NotificationViews 
                     movie.setSubject(jsonObject1.getString("subject"));
                     movie.setMessage(jsonObject1.getString("message"));
                     movie.setNoteStartDateTime(jsonObject1.getString("noteStartDateTime"));
-                    moviesList.add(movie);
 
+
+
+
+
+
+                    moviesList.add(movie);
                 }
                 mAdapter.notifyDataSetChanged();
             } else {
