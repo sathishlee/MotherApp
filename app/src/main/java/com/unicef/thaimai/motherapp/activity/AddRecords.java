@@ -124,6 +124,7 @@
             rb_yes = (RadioButton) findViewById(R.id.rb_yes);
             rb_no = (RadioButton) findViewById(R.id.rb_no);
             btn_submit = (Button) findViewById(R.id.btn_submit);
+            upload_reports = (Button) findViewById(R.id.upload_reports);
             mCurrentDate = Calendar.getInstance();
             day = mCurrentDate.get(Calendar.DAY_OF_MONTH);
             month = mCurrentDate.get(Calendar.MONTH);
