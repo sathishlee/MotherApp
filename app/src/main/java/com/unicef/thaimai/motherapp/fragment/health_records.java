@@ -201,6 +201,7 @@ public class health_records extends Fragment implements GetVisitHelthRecordsView
                     hAdapter.notifyDataSetChanged();
                 }
             }else{
+                Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
                 ll_click_visit_view.setVisibility(View.GONE);
                 txt_no_records.setVisibility(View.VISIBLE);
             }

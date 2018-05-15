@@ -283,6 +283,16 @@ public class home extends Fragment implements LoginViews, View.OnClickListener {
 
     }
 
+    @Override
+    public void showForgetResult(String response) {
+
+    }
+
+    @Override
+    public void showForgetErrorMessage(String string) {
+
+    }
+
 
     @Override
     public void onClick(View v) {

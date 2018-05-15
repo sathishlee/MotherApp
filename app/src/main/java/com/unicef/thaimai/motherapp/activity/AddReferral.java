@@ -197,7 +197,6 @@ public class AddReferral extends AppCompatActivity implements View.OnClickListen
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
 //        Intent intent = new Intent(AddReferral.this, ReferralList.class);
         finish();
 //        startActivity(intent);

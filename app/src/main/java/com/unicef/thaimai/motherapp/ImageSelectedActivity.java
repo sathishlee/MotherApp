@@ -306,13 +306,11 @@ public class ImageSelectedActivity extends AppCompatActivity implements CameraHo
         mViewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(mViewPager);
 
-
         if (mConfig.getTabBackgroundColor() > 0)
             tabLayout.setBackgroundColor(ContextCompat.getColor(this, mConfig.getTabBackgroundColor()));
 
         if (mConfig.getTabSelectionIndicatorColor() > 0)
             tabLayout.setSelectedTabIndicatorColor(ContextCompat.getColor(this, mConfig.getTabSelectionIndicatorColor()));
-
     }
 
     private void setSelectedPhotoRecyclerView() {
@@ -479,7 +477,10 @@ public class ImageSelectedActivity extends AppCompatActivity implements CameraHo
     @Override
     public void successUploadPhoto(String response) {
         Log.d("images ", "uploaded successfully"+ response);
-        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+
+        Toast.makeText(this, response, Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(getApplicationContext(), AddRecords.class));
+        finish();
 
     }
 

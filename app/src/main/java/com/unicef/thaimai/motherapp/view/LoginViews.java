@@ -14,4 +14,6 @@ public interface LoginViews {
     void showPickmeResult(String loginResponseModel);
     void showErrorMessage(String string);
 
+    void showForgetResult(String response);
+    void showForgetErrorMessage(String string);
 }

@@ -128,10 +128,6 @@
             android:label="@string/immunization"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".activity.ImmunizationVisit"
-            android:label="@string/immunization"
-            android:theme="@style/AppTheme" />
-        <activity
             android:name=".activity.ImmunizationEditActivity"
             android:theme="@style/AppTheme" />
         <activity
@@ -173,8 +169,11 @@
 
         </activity>
 
-        <activity android:name=".activity.forgot_password"/>
+        <activity android:name=".activity.ForgotPasswordActivity"/>
         <activity android:name=".activity.NoInternetConnection"
+            android:theme="@style/AppTheme1"/>
+
+        <activity android:name=".activity.TurnOnGpsLocation"
             android:theme="@style/AppTheme1"/>
 
         <activity android:name=".ImageSelectedActivity"

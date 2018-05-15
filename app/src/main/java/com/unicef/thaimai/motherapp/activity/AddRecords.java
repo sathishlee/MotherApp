@@ -1,5 +1,6 @@
     package com.unicef.thaimai.motherapp.activity;
 
+    import android.app.DatePickerDialog;
     import android.app.ProgressDialog;
     import android.content.Intent;
     import android.os.Bundle;
@@ -10,6 +11,7 @@
     import android.view.View;
     import android.widget.AdapterView;
     import android.widget.Button;
+    import android.widget.DatePicker;
     import android.widget.EditText;
     import android.widget.RadioButton;
     import android.widget.RadioGroup;
@@ -25,6 +27,8 @@
 
     import org.json.JSONException;
     import org.json.JSONObject;
+
+    import java.util.Calendar;
 
 
     /**
@@ -46,6 +50,8 @@
                 strrbs, strfbs, strppbs, strgtt, strtsh, strurine_sugar, stralbumin, strfetus, strgestation_sac, strliquor, strplacenta,strPep="Not Selected";
 
        public static String strTotalVisitCount="0";
+        Calendar mCurrentDate;
+        int day, month, year, hour, minute, sec;
         //    edt_facility_other,edt_any_complaints_other--->gone
 
             ProgressDialog pDialog;
@@ -118,7 +124,14 @@
             rb_yes = (RadioButton) findViewById(R.id.rb_yes);
             rb_no = (RadioButton) findViewById(R.id.rb_no);
             btn_submit = (Button) findViewById(R.id.btn_submit);
-            upload_reports = (Button) findViewById(R.id.upload_reports);
+            mCurrentDate = Calendar.getInstance();
+            day = mCurrentDate.get(Calendar.DAY_OF_MONTH);
+            month = mCurrentDate.get(Calendar.MONTH);
+            year = mCurrentDate.get(Calendar.YEAR);
+            hour = mCurrentDate.get(Calendar.HOUR);
+            minute = mCurrentDate.get(Calendar.MINUTE);
+            sec = mCurrentDate.get(Calendar.SECOND);
+            month = month + 1;
         }
 
         private void showActionBar() {
@@ -130,9 +143,7 @@
 
         @Override
         public boolean onOptionsItemSelected(MenuItem item) {
-            Intent intent = new Intent(AddRecords.this, MainActivity.class);
             finish();
-            startActivity(intent);
             return super.onOptionsItemSelected(item);
         }
 
@@ -145,7 +156,22 @@
                     break;
                 case R.id.upload_reports:
                     startActivity(new Intent(getApplicationContext(),ImageSelectedActivity.class));
+                    break;
+                case R.id.edt_date:
+                    pickDate(edt_date);
+                    break;
             }
+        }
+
+        private void pickDate(final EditText setDateOfReferral) {
+            DatePickerDialog datePickerDialog = new DatePickerDialog(AddRecords.this, R.style.DatePickerDialogTheme, new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                    monthOfYear = monthOfYear + 1;
+                    setDateOfReferral.setText(dayOfMonth + "-" + monthOfYear + "-" + year);
+                }
+            }, year, month, day);
+            datePickerDialog.show();
         }
 
         private void sendtoServer() {
@@ -238,7 +264,6 @@
 
         private void showAlert(String msg) {
             Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
-
         }
 
         private void getallEditTextvalues() {

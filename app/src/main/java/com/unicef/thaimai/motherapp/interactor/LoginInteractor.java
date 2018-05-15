@@ -6,4 +6,5 @@ public interface LoginInteractor {
 
     void checkPickmeId(String pickmeid, String dob, String strdeviceId) ;
     void checkOtp(String pickmeid, String dob, String strdeviceId,String otp);
+    void forgetPassword(String pickmeid, String mob);
 }

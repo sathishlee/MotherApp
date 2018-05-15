@@ -47,11 +47,14 @@ import com.unicef.thaimai.motherapp.BuildConfig;
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.LocationUpdatePresenter;
 import com.unicef.thaimai.motherapp.R;
+import com.unicef.thaimai.motherapp.broadCastReceivers.GpsLocationReceiver;
 import com.unicef.thaimai.motherapp.constant.AppConstants;
 import com.unicef.thaimai.motherapp.helper.ServerUpload;
 import com.unicef.thaimai.motherapp.utility.CheckNetwork;
 import com.unicef.thaimai.motherapp.utility.LocationMonitoringService;
 import com.unicef.thaimai.motherapp.view.LocationUpdateViews;
+
+import net.alexandroid.gps.GpsStatusDetector;
 
 import java.text.DateFormat;
 import java.util.Calendar;
@@ -61,7 +64,9 @@ import java.util.Locale;
 
 import static android.Manifest.permission.CAMERA;
 
-public class LocationUpdateActivity extends AppCompatActivity implements LocationUpdateViews, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+public class LocationUpdateActivity extends AppCompatActivity implements LocationUpdateViews,
+        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
+        GpsStatusDetector.GpsStatusDetectorCallBack {
 
     private static final String TAG = LocationUpdateActivity.class.getSimpleName();
     private static final int REQUEST_PERMISSIONS_REQUEST_CODE = 34;
@@ -92,6 +97,11 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
         }
     };*/
 
+    GpsLocationReceiver gpsReceiver;
+    IntentFilter intentFilter;
+    private GpsStatusDetector mGpsStatusDetector;
+    boolean mISGpsStatusDetector;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,24 +110,14 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
         checkNetwork = new CheckNetwork(this);
         Create = (TextView) findViewById(R.id.Create);
 
-        //Current Time Update
-        /*mCurrentDate = Calendar.getInstance();
-        day = mCurrentDate.get(Calendar.DAY_OF_MONTH);
-        month = mCurrentDate.get(Calendar.MONTH);
-        year = mCurrentDate.get(Calendar.YEAR);
-        hour = mCurrentDate.get(Calendar.HOUR);
-        minute = mCurrentDate.get(Calendar.MINUTE);
-        sec = mCurrentDate.get(Calendar.SECOND);
-        month = month + 1;
-
-        strTime = DateFormat.getDateTimeInstance().format(new Date());*/
-
-
-
 //        serverUpload = new ServerUpload();
             locationUpdatePresenter = new LocationUpdatePresenter(LocationUpdateActivity.this, this);
 
             preferenceData = new PreferenceData(this);
+            gpsReceiver = new GpsLocationReceiver();
+            intentFilter = new IntentFilter("android.location.PROVIDERS_CHANGED");
+            mGpsStatusDetector = new GpsStatusDetector(this);
+            mGpsStatusDetector.checkGpsStatus();
             startStep1();
             if (mAlreadyStartedService) {
                 if (!preferenceData.getLogin()) {
@@ -132,6 +132,7 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
                             public void onReceive(Context context, Intent intent) {
                                 String latitude = intent.getStringExtra(AppConstants.EXTRA_LATITUDE);
                                 String longitude = intent.getStringExtra(AppConstants.EXTRA_LONGITUDE);
+
 
                                 String mylocaton = latitude + "\t" + longitude;
                                 if (latitude != null && longitude != null) {
@@ -175,7 +176,7 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
     @Override
     public void onResume() {
         super.onResume();
-
+        registerReceiver(gpsReceiver, intentFilter);
         startStep1();
     }
 
@@ -185,13 +186,17 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
     private void startStep1() {
 
         //Check whether this user has installed Google play service which is being used by Location updates.
-        if (isGooglePlayServicesAvailable()) {
+        if (mISGpsStatusDetector) {
+            if (isGooglePlayServicesAvailable()) {
 
-            //Passing null to indicate that it is executing for the first time.
-            startStep2(null);
+                //Passing null to indicate that it is executing for the first time.
+                startStep2(null);
 
-        } else {
-            Toast.makeText(getApplicationContext(), R.string.no_google_playservice_available, Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(getApplicationContext(), R.string.no_google_playservice_available, Toast.LENGTH_LONG).show();
+            }
+        }else{
+            startActivity(new Intent(getApplicationContext(), TurnOnGpsLocation.class));
         }
     }
 
@@ -270,7 +275,7 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
         //And it will be keep running until you close the entire application from task manager.
         //This method will executed only once.
 
-        if (!mAlreadyStartedService ) {
+        if (!mAlreadyStartedService) {
 
 
             //Start location sharing service to app server.........
@@ -280,38 +285,42 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
             mAlreadyStartedService = true;
             //Ends................................................
         }
-        new Handler().postDelayed(new Runnable() {
+        if (mISGpsStatusDetector) {
+            new Handler().postDelayed(new Runnable() {
 
             /*
              * Showing splash screen with a timer. This will be useful when you
              * want to show case your app logo / company
              */
 
-            @Override
-            public void run() {
-                // This method will be executed once the timer is over
-                // Start your app main activity
+                @Override
+                public void run() {
+                    // This method will be executed once the timer is over
+                    // Start your app main activity
 //                if (preferenceData.getPicmeId().equalsIgnoreCase("") && preferenceData.getVhnId().equalsIgnoreCase("") && preferenceData.getMId().equalsIgnoreCase("")) {
-                if(checkNetwork.isNetworkAvailable()){
-                    if (preferenceData.getLogin()) {
-                        Log.d("LOG LOGIN", preferenceData.getPicmeId() + "," + preferenceData.getVhnId() + "," + preferenceData.getMId());
+                    if (checkNetwork.isNetworkAvailable()) {
+                        if (preferenceData.getLogin()) {
+                            Log.d("LOG LOGIN", preferenceData.getPicmeId() + "," + preferenceData.getVhnId() + "," + preferenceData.getMId());
 //                    AppConstants.POP_UP_COUNT= Integer.parseInt(preferenceData.getMainScreenOpen());
-                        preferenceData.setMainScreenOpen(0);
-                        Intent i = new Intent(LocationUpdateActivity.this, MainActivity.class);
-                        startActivity(i);
+                            preferenceData.setMainScreenOpen(0);
+                            Intent i = new Intent(LocationUpdateActivity.this, MainActivity.class);
+                            startActivity(i);
+                        } else {
+                            preferenceData.setMainScreenOpen(0);
+                            Intent i = new Intent(LocationUpdateActivity.this, Login.class);
+                            startActivity(i);
+                        }
                     } else {
-                        preferenceData.setMainScreenOpen(0);
-                        Intent i = new Intent(LocationUpdateActivity.this, Login.class);
-                        startActivity(i);
+                        startActivity(new Intent(getApplicationContext(), NoInternetConnection.class));
                     }
-                }else {
-                    startActivity(new Intent(getApplicationContext(),NoInternetConnection.class));
-                }
 
-                // close this activity
-                finish();
-            }
-        }, SPLASH_TIME_OUT);
+                    // close this activity
+                    finish();
+                }
+            }, SPLASH_TIME_OUT);
+        }else{
+            startActivity(new Intent(getApplicationContext(), TurnOnGpsLocation.class));
+        }
     }
 
     /**
@@ -407,7 +416,9 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
                                                     Manifest.permission.CAMERA,
                                                     Manifest.permission.READ_EXTERNAL_STORAGE,
                                                     Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                                                    Manifest.permission.CALL_PHONE
+                                                    Manifest.permission.CALL_PHONE,
+                                                    Manifest.permission.SEND_SMS
+
                                             },
                                     REQUEST_PERMISSIONS_REQUEST_CODE);
                         }
@@ -587,6 +598,28 @@ Log.d(TAG,"success--->"+loginResponseModel);
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        mGpsStatusDetector.checkOnActivityResult(requestCode, resultCode);
+    }
+
+    @Override
+    public void onGpsSettingStatus(boolean enabled) {
+        Log.d("TAG", "onGpsSettingStatus: " + enabled);
+        mISGpsStatusDetector = enabled;
+        if(!enabled){
+            mGpsStatusDetector.checkGpsStatus();
+        }
+    }
+
+    @Override
+    public void onGpsAlertCanceledByUser() {
+        Log.d("TAG", "onGpsAlertCanceledByUser");
+        startActivity(new Intent(getApplicationContext(),TurnOnGpsLocation.class));
 
     }
 }

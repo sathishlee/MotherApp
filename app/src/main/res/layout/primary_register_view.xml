@@ -5,24 +5,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/delivery_details">
 
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_edi_details"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="bottom|end"
-        android:background="@color/colorPrimary"
-        app:backgroundTint="@color/colorPrimary"
-        android:layout_margin="30dp"
-        app:srcCompat="@drawable/edit_button"
-        app:fabSize="normal" />
+    <TextView
+        android:id="@+id/txt_no_records_found"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="NO RECORDES FOUND"
+        android:layout_gravity="center"
+        android:gravity="center"/>
 
     <FrameLayout
-        android:id="@+id/dashboard_content"
+        android:id="@+id/primary_register"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:visibility="gone">
 
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_edi_details"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom|end"
+            android:background="@color/colorPrimary"
+            app:backgroundTint="@color/colorPrimary"
+            android:layout_margin="30dp"
+            app:srcCompat="@drawable/edit_button"
+            app:fabSize="normal" />
 
         <include layout="@layout/primary_details" />
 

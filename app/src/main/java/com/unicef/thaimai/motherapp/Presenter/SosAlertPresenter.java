@@ -127,7 +127,6 @@ public class SosAlertPresenter implements SosAlertInteractor {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("picmeId", pickmeid);
                 params.put("mid", mid);
-
                 Log.d("SOS params--->", params.toString());
 
                 return params;

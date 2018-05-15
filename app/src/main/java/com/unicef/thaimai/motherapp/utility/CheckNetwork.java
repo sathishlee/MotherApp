@@ -21,6 +21,7 @@ public class CheckNetwork {
         ConnectivityManager connectivityManager = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         NetworkInfo wifiInfo = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-        return activeNetworkInfo != null && activeNetworkInfo.isConnected();}
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
 }
 

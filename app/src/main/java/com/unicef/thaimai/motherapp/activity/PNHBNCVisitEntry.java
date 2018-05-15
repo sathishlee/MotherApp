@@ -189,12 +189,9 @@ public class PNHBNCVisitEntry extends AppCompatActivity implements View.OnClickL
         sp_mother_outcome.setOnItemSelectedListener(this);
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent intent = new Intent(PNHBNCVisitEntry.this, MainActivity.class);
         finish();
-        startActivity(intent);
         return super.onOptionsItemSelected(item);
     }
 

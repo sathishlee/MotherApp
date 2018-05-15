@@ -546,12 +546,11 @@ public class MainActivity extends AppCompatActivity
             if (status.equalsIgnoreCase("1")) {
                 showAlertDialog(msg, "close", 5);
 
-//                Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
 //                showAlertDialog(msg);
-////                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+//                startActivity(new Intent(getApplicationContext(),MainActivity.class));
             } else {
                 showAlertDialog(msg, "close", 5);
-
             }
 
         } catch (JSONException e) {

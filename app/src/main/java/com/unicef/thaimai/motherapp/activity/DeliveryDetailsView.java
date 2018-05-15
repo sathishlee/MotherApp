@@ -9,7 +9,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.DeliveryEntryPresenter;
@@ -31,6 +33,8 @@ public class DeliveryDetailsView extends AppCompatActivity implements DeliveryEn
             txt_opv_given_date, txt_hepb_given_date;
 
     String strDid;
+    TextView txt_no_records_found;
+    FrameLayout delivery_content;
 
 
     ProgressDialog progressDialog;
@@ -71,6 +75,8 @@ public class DeliveryDetailsView extends AppCompatActivity implements DeliveryEn
        preferenceData = new PreferenceData(this);
        deliveryEntryPresenter = new DeliveryEntryPresenter(DeliveryDetailsView.this, this);
        deliveryEntryPresenter.deliveryDetails(preferenceData.getPicmeId(), preferenceData.getMId(), preferenceData.getDid());
+       txt_no_records_found = (TextView) findViewById(R.id.txt_no_records_found);
+       delivery_content = (FrameLayout) findViewById(R.id.delivery_content);
        fab_edt_details = (FloatingActionButton) findViewById(R.id.fab_edt_details);
        txt_delivery_date = (TextView) findViewById(R.id.txt_delivery_date);
        txt_delivery_time = (TextView) findViewById(R.id.txt_delivery_time);
@@ -112,10 +118,7 @@ public class DeliveryDetailsView extends AppCompatActivity implements DeliveryEn
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
-//        Intent intent = new Intent(AddReferral.this, ReferralList.class);
         finish();
-//        startActivity(intent);
         return super.onOptionsItemSelected(item);
     }
 
@@ -139,6 +142,8 @@ public class DeliveryDetailsView extends AppCompatActivity implements DeliveryEn
 
             String message = jsonObject_res.getString("message");
             if (status.equalsIgnoreCase("1")) {
+                delivery_content.setVisibility(View.VISIBLE);
+                txt_no_records_found.setVisibility(View.GONE);
                 JSONObject  jsonObject = jsonObject_res.getJSONObject("Delevery_Info");
 
                 strDid = String.valueOf("did");
@@ -180,6 +185,10 @@ public class DeliveryDetailsView extends AppCompatActivity implements DeliveryEn
                     txt_hepb_given_date.setText(jsonObject.getString("dHEPBDate"));
             }
             else{
+                delivery_content.setVisibility(View.GONE);
+                txt_no_records_found.setVisibility(View.VISIBLE);
+                Toast.makeText(DeliveryDetailsView.this,message, Toast.LENGTH_SHORT).show();
+
                 Log.d("message---->",message);
             }
         }
