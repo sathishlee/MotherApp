@@ -70,7 +70,7 @@ public class ImmunizationEditActivity extends AppCompatActivity implements View.
 
     Calendar mCurrentDate;
     int day, month, year, hour, minute, sec, value;
-
+    String str_immu_id;
     public static String strImmuID="-1";
 
     ProgressDialog pDialog;
@@ -193,9 +193,7 @@ public class ImmunizationEditActivity extends AppCompatActivity implements View.
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent intent = new Intent(ImmunizationEditActivity.this, MainActivity.class);
         finish();
-        startActivity(intent);
         return super.onOptionsItemSelected(item);
     }
 
@@ -299,10 +297,6 @@ public class ImmunizationEditActivity extends AppCompatActivity implements View.
                 /*strImmuID = String.valueOf(position);
                 immunizationEntryPresenter.checkImmunizationId(preferenceData.getPicmeId(), preferenceData.getMId(), strImmuID);
 */
-
-
-
-
                 break;
             case R.id.sp_opv:
                 strOPV = parent.getSelectedItem().toString();
@@ -344,6 +338,8 @@ public class ImmunizationEditActivity extends AppCompatActivity implements View.
             if (status.equalsIgnoreCase("1")) {
                 Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            }else{
+                Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
             }
 
         } catch (JSONException e) {
@@ -359,18 +355,21 @@ public class ImmunizationEditActivity extends AppCompatActivity implements View.
     @Override
     public void immunizationIDSuccess(String response) {
         Log.d(ImmunizationEditActivity.class.getSimpleName(), "Response Success--->" + response);
-        /*try {
+        try {
             JSONObject jsonObject = new JSONObject(response);
             String status = jsonObject.getString("status");
             String msg = jsonObject.getString("message");
-            if (status.equalsIgnoreCase("1")){
+            str_immu_id = jsonObject.getString("immDoseId");
+            if (status.equalsIgnoreCase("0")){
                 Toast.makeText(getApplicationContext(),msg, Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            }else{
+//                Toast.makeText(getApplicationContext(),msg, Toast.LENGTH_SHORT).show();
             }
-//            strImmuID = jsonObject.getString("immDoseId");
 //            preferenceData.storeImmuid(strImmuID);
         } catch (JSONException e) {
             e.printStackTrace();
-        }*/
+        }
     }
 
     @Override

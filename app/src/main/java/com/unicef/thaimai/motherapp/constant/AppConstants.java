@@ -26,8 +26,8 @@ public class AppConstants {
     public static final String USER_MEDICAL = "user_medical";
     public static final String USER_EMERGENCY_CONTACTS = "emergency_contacts";
 
-    public static final int LOCATION_INTERVAL = 1800000;            //1800000
-    public static final int FASTEST_LOCATION_INTERVAL = 180000;
+    public static final int LOCATION_INTERVAL = 1000000;            //1800000
+    public static final int FASTEST_LOCATION_INTERVAL = 100000;
     public static String EXTRA_LATITUDE = "";
     public static String EXTRA_LONGITUDE = "";
 

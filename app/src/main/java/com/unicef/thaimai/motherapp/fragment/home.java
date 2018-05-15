@@ -411,6 +411,16 @@ if (jObj.getInt("deleveryStatus")==1){
 
     }
 
+    @Override
+    public void showForgetResult(String response) {
+
+    }
+
+    @Override
+    public void showForgetErrorMessage(String string) {
+
+    }
+
 
     @Override
     public void onClick(View v) {

@@ -118,9 +118,7 @@ public class NearHospitalActivity extends AppCompatActivity implements LocationU
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent intent = new Intent(NearHospitalActivity.this, MainActivity.class);
         finish();
-        startActivity(intent);
         return super.onOptionsItemSelected(item);
     }
 

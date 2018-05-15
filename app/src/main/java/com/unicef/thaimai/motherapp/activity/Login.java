@@ -1,18 +1,26 @@
 package com.unicef.thaimai.motherapp.activity;
 
+import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,7 +29,6 @@ import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.LoginPresenter;
 import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.constant.AppConstants;
-import com.unicef.thaimai.motherapp.model.responsemodel.LoginResponseModel;
 import com.unicef.thaimai.motherapp.view.LoginViews;
 
 import org.json.JSONException;
@@ -35,7 +42,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
     Button btn_login, btn_otp_submit;
     EditText edtPicme, edtDob, edt_otp;
     TextInputLayout iplPicmeId, iplDob, input_layout_otp;
-    TextView txtForgetPicme;
+    TextView txtForgetPicme, txt_vhn_nameotp;
     String strPicme, strDob, strOtp;
     ProgressDialog pDialog;
     LoginPresenter loginPresenter;
@@ -45,6 +52,11 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
     int day, month, year, hour, minute, sec;
     private String message;
     LinearLayout ll_signin, ll_otp;
+    CardView card_vhn_number;
+    ImageView img_call_vhnnumber;
+    String str_call_vhn;
+    private static final int MAKE_CALL_PERMISSION_REQUEST_CODE = 1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +98,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
         iplDob = (TextInputLayout) findViewById(R.id.input_layout_dob);
         ll_signin = (LinearLayout) findViewById(R.id.ll_signin);
         ll_otp = (LinearLayout) findViewById(R.id.ll_otp);
+        card_vhn_number = (CardView) findViewById(R.id.card_vhn_number);
+        img_call_vhnnumber = (ImageView)findViewById(R.id.img_call_vhnnumber);
+        txt_vhn_nameotp = (TextView) findViewById(R.id.txt_vhn_nameotp);
 
         input_layout_otp = (TextInputLayout) findViewById(R.id.input_layout_otp);
         edt_otp = (EditText) findViewById(R.id.edt_otp);
@@ -97,6 +112,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
         txtForgetPicme.setOnClickListener(this);
         edtDob.setOnClickListener(this);
         btn_otp_submit.setOnClickListener(this);
+        img_call_vhnnumber.setOnClickListener(this);
     }
 
     @Override
@@ -113,8 +129,11 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
                 goforgetPicmepage();
                 break;
 
-                case R.id.edt_dob:
-//                getDob(edtDob);
+            case R.id.edt_dob:
+                getDob(edtDob);
+                break;
+            case R.id.img_call_vhnnumber:
+                makeCall(str_call_vhn);
                 break;
         }
 
@@ -144,7 +163,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
     }
 
     private void goforgetPicmepage() {
-        startActivity(new Intent(getApplicationContext(), forgot_password.class));
+        startActivity(new Intent(getApplicationContext(), ForgotPasswordActivity.class));
     }
 
     private void getValue() {
@@ -192,7 +211,11 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
             if (status.equalsIgnoreCase("1")){
                 Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
                 ll_otp.setVisibility(View.VISIBLE);
+                card_vhn_number.setVisibility(View.VISIBLE);
                 ll_signin.setVisibility(View.GONE);
+                txt_vhn_nameotp.setText(jsonObject.getString("vhnName"));
+                str_call_vhn = jsonObject.getString("vhnMobile");
+
                 preferenceData.storePicmeInfo(jsonObject.getString("picmeId"),jsonObject.getString("DOB"));
             }else {
                 Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
@@ -257,5 +280,76 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
         Log.d("Response field", errormsg);
     }
 
+    @Override
+    public void showForgetResult(String response) {
 
+    }
+
+    @Override
+    public void showForgetErrorMessage(String string) {
+
+    }
+
+    public void makeCall(String str_call_vhn) {
+        Toast.makeText(this.getApplicationContext(),str_call_vhn,Toast.LENGTH_SHORT).show();
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE)
+                != PackageManager.PERMISSION_GRANTED) {
+            // Camera permission has not been granted.
+
+            requestCallPermission();
+
+        } else {
+
+            // Camera permissions is already available, show the camera preview.
+            Log.i(Login.class.getSimpleName(),"CALL permission has already been granted. Displaying camera preview.");
+//            showCameraPreview();
+            startActivity(new Intent(Intent.ACTION_CALL, Uri.parse("tel:+"+str_call_vhn)));
+
+
+        }
+    }
+
+    private void requestCallPermission() {
+
+
+        Log.i(Login.class.getSimpleName(), "CALL permission has NOT been granted. Requesting permission.");
+
+        // BEGIN_INCLUDE(camera_permission_request)
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                Manifest.permission.CALL_PHONE)) {
+            // Provide an additional rationale to the user if the permission was not granted
+            // and the user would benefit from additional context for the use of the permission.
+            // For example if the user has previously denied the permission.
+            Log.i(Login.class.getSimpleName(),            "Displaying camera permission rationale to provide additional context.");
+            Toast.makeText(this,"Displaying camera permission rationale to provide additional context.",Toast.LENGTH_SHORT).show();
+
+        } else {
+
+            // Camera permission has not been granted yet. Request it directly.
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE},
+                    MAKE_CALL_PERMISSION_REQUEST_CODE);
+        }
+// END_INCLUDE(camera_permission_request)
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        switch (requestCode) {
+            case MAKE_CALL_PERMISSION_REQUEST_CODE:
+                if (grantResults.length > 0 && (grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+//                    dial.setEnabled(true);
+                    Toast.makeText(this, "You can call the number by clicking on the button", Toast.LENGTH_SHORT).show();
+                }
+                return;
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        finish();
+        return super.onOptionsItemSelected(item);
+    }
 }

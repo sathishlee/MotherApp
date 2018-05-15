@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.ImmunizationListPresenter;
@@ -80,9 +81,7 @@ public class ImmunizationActivity extends AppCompatActivity implements  Immuniza
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent intent = new Intent(ImmunizationActivity.this, MainActivity.class);
         finish();
-        startActivity(intent);
         return super.onOptionsItemSelected(item);
     }
 
@@ -114,6 +113,7 @@ public class ImmunizationActivity extends AppCompatActivity implements  Immuniza
             JSONObject mJsnobject = new JSONObject(response);
             String status = mJsnobject.getString("status");
             String message = mJsnobject.getString("message");
+            Toast.makeText(ImmunizationActivity.this,message, Toast.LENGTH_SHORT).show();
             if (status.equalsIgnoreCase("1")) {
                 txt_no_records_found.setVisibility(View.GONE);
                 JSONArray jsonArray = mJsnobject.getJSONArray("result");

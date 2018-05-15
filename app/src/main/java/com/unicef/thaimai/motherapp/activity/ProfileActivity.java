@@ -238,6 +238,7 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView, V
 
     @Override
     public void successUploadPhoto(String response) {
+        Toast.makeText(ProfileActivity.this,response,Toast.LENGTH_LONG).show();
         Log.d("Image upload success",response);
     }
 
@@ -279,7 +280,7 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView, V
                         .centerCrop()
                         .memoryPolicy(MemoryPolicy.NO_CACHE)
                         .networkPolicy(NetworkPolicy.NO_CACHE)
-                        .error(R.drawable.ln_logo)
+                        .error(R.drawable.photo_upload)
                         .into(user_profile_photo);
             }
 

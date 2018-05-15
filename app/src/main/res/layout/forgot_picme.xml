@@ -38,14 +38,14 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/mobile_number"
+                    android:id="@+id/edt_pickme_number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="10dp"
                     android:inputType="number"
                     android:digits="0123456789"
-                    android:hint="Enter Primary Mobile Number" />
+                    android:hint="Enter Primary Number" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -55,14 +55,14 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/regDob"
+                    android:id="@+id/edt_mobile_no"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="10dp"
                     android:inputType="number"
                     android:digits="0123456789"
-                    android:hint="Enter Date of Birth " />
+                    android:hint="Enter Mobile Number " />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -90,6 +90,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/txt_backto_login"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"

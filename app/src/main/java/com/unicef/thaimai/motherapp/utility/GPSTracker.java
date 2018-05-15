@@ -11,7 +11,9 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Message;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
@@ -30,6 +32,8 @@ public class GPSTracker extends Service implements LocationListener {
     private boolean isNetworkEnabled = false;
 
     private boolean canGetLocation = false;
+
+    Handler handler;
 
     private Location location; // location
     private double latitude; // latitude
@@ -129,10 +133,33 @@ public class GPSTracker extends Service implements LocationListener {
 
     @Override
     public void onProviderDisabled(String provider) {
+        Message msg = handler.obtainMessage();
+        msg.arg1 = 1;
+        handler.sendMessage(msg);
+
+        final Handler handler = new Handler() {
+            public void handleMessage(Message msg) {
+                if(msg.arg1 == 1){
+                    if (!isFinishing()) { // Without this in certain cases application will show ANR
+                        showSettingsAlert();
+                    }
+                }
+
+            }
+        };
+    }
+
+    public boolean isFinishing() {
+
+        isGPSEnabled = locationManager
+                .isProviderEnabled(LocationManager.GPS_PROVIDER);
+
+        return isGPSEnabled;
     }
 
     @Override
     public void onProviderEnabled(String provider) {
+
     }
 
     @Override

@@ -210,10 +210,7 @@ ArrayList ysList,occList;
 
         @Override
         public boolean onOptionsItemSelected(MenuItem item) {
-
-            Intent intent = new Intent(PrimaryRegister.this, MainActivity.class);
             finish();
-            startActivity(intent);
             return super.onOptionsItemSelected(item);
         }
 
@@ -441,7 +438,7 @@ ArrayList ysList,occList;
         @Override
         public void postDataSuccess(String response) {
             Log.d(PrimaryRegister.class.getSimpleName(), "Success post method" + response);
-            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+            startActivity(new Intent(getApplicationContext(),PrimaryRegisterView.class));
             finish();
         }
 

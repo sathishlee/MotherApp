@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
@@ -37,6 +38,8 @@ public class PrimaryRegisterView extends AppCompatActivity implements PrimaryReg
     PrimaryRegisterPresenter primaryRegisterPresenter;
 
     PreferenceData preferenceData;
+    TextView txt_no_records_found;
+    FrameLayout primary_register;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,9 +60,7 @@ public class PrimaryRegisterView extends AppCompatActivity implements PrimaryReg
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent intent = new Intent(PrimaryRegisterView.this, MainActivity.class);
         finish();
-        startActivity(intent);
         return super.onOptionsItemSelected(item);
     }
 
@@ -79,6 +80,8 @@ public class PrimaryRegisterView extends AppCompatActivity implements PrimaryReg
         preferenceData = new PreferenceData(this);
         primaryRegisterPresenter = new PrimaryRegisterPresenter(PrimaryRegisterView.this, this);
         primaryRegisterPresenter.getAllMotherPrimaryRegistration(preferenceData.getPicmeId());
+        txt_no_records_found = (TextView) findViewById(R.id.txt_no_records_found);
+        primary_register = (FrameLayout) findViewById(R.id.primary_register);
         fab_edi_details = (FloatingActionButton) findViewById(R.id.fab_edi_details);
         txt_name = (TextView) findViewById(R.id.txt_name);
         txt_mother_age = (TextView) findViewById(R.id.txt_mother_age);
@@ -154,6 +157,8 @@ public class PrimaryRegisterView extends AppCompatActivity implements PrimaryReg
             int status = jObj.getInt("status");
             String message = jObj.getString("message");
             if (status==1){
+                primary_register.setVisibility(View.VISIBLE);
+                txt_no_records_found.setVisibility(View.GONE);
                 Log.d("message---->",message);
                 if (jObj.getString("mName")!="")
                 txt_name.setText(jObj.getString("mName"));
@@ -231,6 +236,8 @@ public class PrimaryRegisterView extends AppCompatActivity implements PrimaryReg
                 txt_hus_Hepatitis.setText(jObj.getString("hHepatitis"));
             }else{
                 Log.d("message---->",message);
+                primary_register.setVisibility(View.GONE);
+                txt_no_records_found.setVisibility(View.VISIBLE);
 
             }
 

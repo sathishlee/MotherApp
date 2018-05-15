@@ -1,11 +1,13 @@
 package com.unicef.thaimai.motherapp.activity;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -19,31 +21,52 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResult;
+import com.google.android.gms.location.LocationSettingsStates;
+import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.unicef.thaimai.motherapp.BuildConfig;
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.LocationUpdatePresenter;
 import com.unicef.thaimai.motherapp.R;
-import com.unicef.thaimai.motherapp.utility.CheckNetwork;
+import com.unicef.thaimai.motherapp.broadCastReceivers.GpsLocationReceiver;
 import com.unicef.thaimai.motherapp.constant.AppConstants;
 import com.unicef.thaimai.motherapp.helper.ServerUpload;
+import com.unicef.thaimai.motherapp.utility.CheckNetwork;
 import com.unicef.thaimai.motherapp.utility.LocationMonitoringService;
 import com.unicef.thaimai.motherapp.view.LocationUpdateViews;
 
+import net.alexandroid.gps.GpsStatusDetector;
+
+import java.text.DateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class LocationUpdateActivity extends AppCompatActivity implements LocationUpdateViews, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+import static android.Manifest.permission.CAMERA;
+
+public class LocationUpdateActivity extends AppCompatActivity implements LocationUpdateViews,
+        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
+        GpsStatusDetector.GpsStatusDetectorCallBack {
 
     private static final String TAG = LocationUpdateActivity.class.getSimpleName();
     private static final int REQUEST_PERMISSIONS_REQUEST_CODE = 34;
@@ -62,8 +85,11 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
     LocationUpdatePresenter locationUpdatePresenter;
     CheckNetwork checkNetwork;
     PreferenceData preferenceData;
+    Calendar mCurrentDate;
+    int day, month, year, hour, minute, sec;
+    TextView Create;
 
-    String strAddress="";
+    String strAddress="", strTime;
     /*private BroadcastReceiver mNetworkDetectReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -71,25 +97,34 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
         }
     };*/
 
+    GpsLocationReceiver gpsReceiver;
+    IntentFilter intentFilter;
+    private GpsStatusDetector mGpsStatusDetector;
+    boolean mISGpsStatusDetector;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_update);
         checkNetwork = new CheckNetwork(this);
+        Create = (TextView) findViewById(R.id.Create);
+
 //        serverUpload = new ServerUpload();
             locationUpdatePresenter = new LocationUpdatePresenter(LocationUpdateActivity.this, this);
+
             preferenceData = new PreferenceData(this);
-
-
+            gpsReceiver = new GpsLocationReceiver();
+            intentFilter = new IntentFilter("android.location.PROVIDERS_CHANGED");
+            mGpsStatusDetector = new GpsStatusDetector(this);
+            mGpsStatusDetector.checkGpsStatus();
             startStep1();
             if (mAlreadyStartedService) {
-                    if (!preferenceData.getLogin()) {
-                        stopService(new Intent(this, LocationMonitoringService.class));
-                        mAlreadyStartedService = false;
-                    }
+                if (!preferenceData.getLogin()) {
+                    stopService(new Intent(this, LocationMonitoringService.class));
+                    mAlreadyStartedService = false;
                 }
-
+            }
             if (preferenceData.getLogin()) {
                 LocalBroadcastManager.getInstance(this).registerReceiver(
                         new BroadcastReceiver() {
@@ -98,10 +133,11 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
                                 String latitude = intent.getStringExtra(AppConstants.EXTRA_LATITUDE);
                                 String longitude = intent.getStringExtra(AppConstants.EXTRA_LONGITUDE);
 
+
                                 String mylocaton = latitude + "\t" + longitude;
                                 if (latitude != null && longitude != null) {
 //                            serverUpload.sendlocationtServer(mylocaton,latitude,longitude,LocationUpdateActivity.this);
-//                                    strAddress = getCompleteAddressString(latitude, longitude);
+                                    strAddress = getCompleteAddressString(latitude, longitude);
 //if (preferenceData.getPicmeId().equalsIgnoreCase("") && preferenceData.getVhnId().equalsIgnoreCase("")&& preferenceData.getMId().equalsIgnoreCase(""))
 
                                     AppConstants.NEAR_LATITUDE = latitude;
@@ -113,48 +149,7 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
                         }, new IntentFilter(LocationMonitoringService.ACTION_LOCATION_BROADCAST)
                 );
             }
-           /* new Handler().postDelayed(new Runnable() {
 
-            *//*
-             * Showing splash screen with a timer. This will be useful when you
-             * want to show case your app logo / company
-             *//*
-
-                @Override
-                public void run() {
-                    // This method will be executed once the timer is over
-                    // Start your app main activity
-//                if (preferenceData.getPicmeId().equalsIgnoreCase("") && preferenceData.getVhnId().equalsIgnoreCase("") && preferenceData.getMId().equalsIgnoreCase("")) {
-                    if(checkNetwork.isNetworkAvailable()){
-                        if (preferenceData.getLogin()) {
-                            Log.d("LOG LOGIN", preferenceData.getPicmeId() + "," + preferenceData.getVhnId() + "," + preferenceData.getMId());
-//                    AppConstants.POP_UP_COUNT= Integer.parseInt(preferenceData.getMainScreenOpen());
-                            preferenceData.setMainScreenOpen(0);
-                            Intent i = new Intent(LocationUpdateActivity.this, MainActivity.class);
-                            startActivity(i);
-                        } else {
-                            preferenceData.setMainScreenOpen(0);
-                            Intent i = new Intent(LocationUpdateActivity.this, Login.class);
-                            startActivity(i);
-                        }
-                    }else {
-//                        startActivity(new Intent(getApplicationContext(),NoInternetConnection.class));
-                        if (preferenceData.getLogin()) {
-                            preferenceData.setMainScreenOpen(0);
-                            Intent i = new Intent(LocationUpdateActivity.this, MainActivity.class);
-                            startActivity(i);
-                        }
-                        else {
-                            preferenceData.setMainScreenOpen(0);
-                            Intent i = new Intent(LocationUpdateActivity.this, Login.class);
-                            startActivity(i);
-                        }
-                    }
-
-                    // close this activity
-                    finish();
-                }
-            }, SPLASH_TIME_OUT);*/
 
 
 //        locationUpdatePresenter =new LocationUpdatePresenter(LocationUpdateActivity.this,this);
@@ -181,7 +176,7 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
     @Override
     public void onResume() {
         super.onResume();
-
+        registerReceiver(gpsReceiver, intentFilter);
         startStep1();
     }
 
@@ -191,13 +186,17 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
     private void startStep1() {
 
         //Check whether this user has installed Google play service which is being used by Location updates.
-        if (isGooglePlayServicesAvailable()) {
+        if (mISGpsStatusDetector) {
+            if (isGooglePlayServicesAvailable()) {
 
-            //Passing null to indicate that it is executing for the first time.
-            startStep2(null);
+                //Passing null to indicate that it is executing for the first time.
+                startStep2(null);
 
-        } else {
-            Toast.makeText(getApplicationContext(), R.string.no_google_playservice_available, Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(getApplicationContext(), R.string.no_google_playservice_available, Toast.LENGTH_LONG).show();
+            }
+        }else{
+            startActivity(new Intent(getApplicationContext(), TurnOnGpsLocation.class));
         }
     }
 
@@ -212,7 +211,7 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
 
         if (activeNetworkInfo == null || !activeNetworkInfo.isConnected()) {
             promptInternetConnect();
-            return false;
+            return true;
         }
 
         else if (dialog != null) {
@@ -233,15 +232,7 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
      * Show A Dialog with button to refresh the internet state.
      */
     private void promptInternetConnect() {
-        /*if (checkPermissions()) {
-
-            //Step 2: Start the Location Monitor Service
-            //Everything is there to start the service.
-            startStep3();
-        } else if (!checkPermissions()) {
-            requestPermissions();
-        }*/
-        AlertDialog.Builder builder = new AlertDialog.Builder(LocationUpdateActivity.this);
+        /*AlertDialog.Builder builder = new AlertDialog.Builder(LocationUpdateActivity.this);
         builder.setTitle(R.string.title_alert_no_intenet);
         builder.setMessage(R.string.msg_alert_no_internet);
 
@@ -270,12 +261,10 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
                 });
 
         AlertDialog dialog = builder.create();
-        dialog.show();
+        dialog.show();*/
 
-//        startActivity(new Intent(getApplicationContext(), NoInternetConnection.class));
-       /* preferenceData.setMainScreenOpen(0);
-        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-        finish();*/
+        startActivity(new Intent(getApplicationContext(), NoInternetConnection.class));
+        finish();
     }
 
     /**
@@ -286,7 +275,7 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
         //And it will be keep running until you close the entire application from task manager.
         //This method will executed only once.
 
-        if (!mAlreadyStartedService ) {
+        if (!mAlreadyStartedService) {
 
 
             //Start location sharing service to app server.........
@@ -296,19 +285,20 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
             mAlreadyStartedService = true;
             //Ends................................................
         }
+        if (mISGpsStatusDetector) {
+            new Handler().postDelayed(new Runnable() {
 
-         new Handler().postDelayed(new Runnable() {
-
-     /*     Showing splash screen with a timer. This will be useful when you
-         * want to show case your app logo / company*/
-
+            /*
+             * Showing splash screen with a timer. This will be useful when you
+             * want to show case your app logo / company
+             */
 
                 @Override
                 public void run() {
                     // This method will be executed once the timer is over
                     // Start your app main activity
 //                if (preferenceData.getPicmeId().equalsIgnoreCase("") && preferenceData.getVhnId().equalsIgnoreCase("") && preferenceData.getMId().equalsIgnoreCase("")) {
-                    if(checkNetwork.isNetworkAvailable()){
+                    if (checkNetwork.isNetworkAvailable()) {
                         if (preferenceData.getLogin()) {
                             Log.d("LOG LOGIN", preferenceData.getPicmeId() + "," + preferenceData.getVhnId() + "," + preferenceData.getMId());
 //                    AppConstants.POP_UP_COUNT= Integer.parseInt(preferenceData.getMainScreenOpen());
@@ -320,24 +310,17 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
                             Intent i = new Intent(LocationUpdateActivity.this, Login.class);
                             startActivity(i);
                         }
-                    }else {
-//                        startActivity(new Intent(getApplicationContext(),NoInternetConnection.class));
-                        if (preferenceData.getLogin()) {
-                            preferenceData.setMainScreenOpen(0);
-                            Intent i = new Intent(LocationUpdateActivity.this, MainActivity.class);
-                            startActivity(i);
-                        }
-                        else {
-                            preferenceData.setMainScreenOpen(0);
-                            Intent i = new Intent(LocationUpdateActivity.this, Login.class);
-                            startActivity(i);
-                        }
+                    } else {
+                        startActivity(new Intent(getApplicationContext(), NoInternetConnection.class));
                     }
 
                     // close this activity
                     finish();
                 }
             }, SPLASH_TIME_OUT);
+        }else{
+            startActivity(new Intent(getApplicationContext(), TurnOnGpsLocation.class));
+        }
     }
 
     /**
@@ -362,11 +345,25 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
     private boolean checkPermissions() {
         int permissionState1 = ActivityCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION);
-
         int permissionState2 = ActivityCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_COARSE_LOCATION);
+        int permissionState3 = ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.INTERNET);
+        int permissionState4 = ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.CAMERA);
+        int permissionState5 = ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.SEND_SMS);
+        int permissionState6 = ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.READ_EXTERNAL_STORAGE);
+        int permissionState7 = ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        int permissionState8 = ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.CALL_PHONE);
 
-        return permissionState1 == PackageManager.PERMISSION_GRANTED && permissionState2 == PackageManager.PERMISSION_GRANTED;
+        return permissionState1 == PackageManager.PERMISSION_GRANTED && permissionState2 == PackageManager.PERMISSION_GRANTED &&
+                permissionState3 == PackageManager.PERMISSION_GRANTED && permissionState4 == PackageManager.PERMISSION_GRANTED
+                && permissionState5 == PackageManager.PERMISSION_GRANTED && permissionState6 == PackageManager.PERMISSION_GRANTED
+                && permissionState7 == PackageManager.PERMISSION_GRANTED && permissionState8 == PackageManager.PERMISSION_GRANTED;
 
     }
 
@@ -378,33 +375,68 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
         boolean shouldProvideRationale =
                 ActivityCompat.shouldShowRequestPermissionRationale(this,
                         Manifest.permission.ACCESS_FINE_LOCATION);
-
         boolean shouldProvideRationale2 =
                 ActivityCompat.shouldShowRequestPermissionRationale(this,
                         Manifest.permission.ACCESS_COARSE_LOCATION);
+        boolean shouldProvideRationale3 =
+                ActivityCompat.shouldShowRequestPermissionRationale(this,
+                        Manifest.permission.INTERNET);
+        boolean shouldProvideRationale4 =
+                ActivityCompat.shouldShowRequestPermissionRationale(this,
+                        Manifest.permission.CAMERA);
+        boolean shouldProvideRationale5 =
+                ActivityCompat.shouldShowRequestPermissionRationale(this,
+                        Manifest.permission.SEND_SMS);
+        boolean shouldProvideRationale6 =
+                ActivityCompat.shouldShowRequestPermissionRationale(this,
+                        Manifest.permission.READ_EXTERNAL_STORAGE);
+        boolean shouldProvideRationale7 =
+                ActivityCompat.shouldShowRequestPermissionRationale(this,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        boolean shouldProvideRationale8 =
+                ActivityCompat.shouldShowRequestPermissionRationale(this,
+                        Manifest.permission.CALL_PHONE);
 
 
         // Provide an additional rationale to the img_user. This would happen if the img_user denied the
         // request previously, but didn't check the "Don't ask again" checkbox.
-        if (shouldProvideRationale || shouldProvideRationale2) {
+        if (shouldProvideRationale || shouldProvideRationale2 || shouldProvideRationale3 || shouldProvideRationale4
+                || shouldProvideRationale5 || shouldProvideRationale6 || shouldProvideRationale7 || shouldProvideRationale8) {
             Log.i(TAG, "Displaying permission rationale to provide additional context.");
             showSnackbar(R.string.permission_rationale,
                     android.R.string.ok, new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            // Request permission
                             ActivityCompat.requestPermissions(LocationUpdateActivity.this,
-                                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
+                                    new String[]
+                                            {
+                                                    android.Manifest.permission.ACCESS_FINE_LOCATION,
+                                                    Manifest.permission.ACCESS_COARSE_LOCATION,
+                                                    Manifest.permission.INTERNET,
+                                                    Manifest.permission.CAMERA,
+                                                    Manifest.permission.READ_EXTERNAL_STORAGE,
+                                                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                                                    Manifest.permission.CALL_PHONE,
+                                                    Manifest.permission.SEND_SMS
+
+                                            },
                                     REQUEST_PERMISSIONS_REQUEST_CODE);
                         }
                     });
         } else {
             Log.i(TAG, "Requesting permission");
-            // Request permission. It's possible this can be auto answered if device policy
-            // sets the permission in a given state or the img_user denied the permission
-            // previously and checked "Never ask again".
-            ActivityCompat.requestPermissions(LocationUpdateActivity.this,
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
+            ActivityCompat.requestPermissions(this,
+                    new String[]
+                            {
+                                    android.Manifest.permission.ACCESS_FINE_LOCATION,
+                                    Manifest.permission.ACCESS_COARSE_LOCATION,
+                                    Manifest.permission.INTERNET,
+                                    Manifest.permission.CAMERA,
+                                    Manifest.permission.SEND_SMS,
+                                    Manifest.permission.READ_EXTERNAL_STORAGE,
+                                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                                    Manifest.permission.CALL_PHONE
+                            },
                     REQUEST_PERMISSIONS_REQUEST_CODE);
         }
     }
@@ -566,6 +598,28 @@ Log.d(TAG,"success--->"+loginResponseModel);
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        mGpsStatusDetector.checkOnActivityResult(requestCode, resultCode);
+    }
+
+    @Override
+    public void onGpsSettingStatus(boolean enabled) {
+        Log.d("TAG", "onGpsSettingStatus: " + enabled);
+        mISGpsStatusDetector = enabled;
+        if(!enabled){
+            mGpsStatusDetector.checkGpsStatus();
+        }
+    }
+
+    @Override
+    public void onGpsAlertCanceledByUser() {
+        Log.d("TAG", "onGpsAlertCanceledByUser");
+        startActivity(new Intent(getApplicationContext(),TurnOnGpsLocation.class));
 
     }
 }

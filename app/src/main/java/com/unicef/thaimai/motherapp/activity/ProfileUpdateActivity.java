@@ -42,11 +42,8 @@ public class ProfileUpdateActivity extends AppCompatActivity implements ProfileV
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent intent = new Intent(ProfileUpdateActivity.this, ProfileActivity.class);
         finish();
-        startActivity(intent);
         return super.onOptionsItemSelected(item);
-
     }
 
     private void initUI() {

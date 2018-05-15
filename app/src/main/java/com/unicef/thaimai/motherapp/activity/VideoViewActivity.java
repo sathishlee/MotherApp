@@ -34,7 +34,7 @@ public class VideoViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_view);
         showActionBar();
-Bundle bundle =getIntent().getBundleExtra("video");
+        Bundle bundle =getIntent().getBundleExtra("video");
         video = (VideoView)findViewById(R.id.video_view);
         visitNo = (TextView) findViewById(R.id.visitNo);
         if (bundle.getString("title")!=null)
@@ -101,9 +101,7 @@ Bundle bundle =getIntent().getBundleExtra("video");
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent intent = new Intent(VideoViewActivity.this, HealthTipsActivity.class);
         finish();
-        startActivity(intent);
         return super.onOptionsItemSelected(item);
     }
 }

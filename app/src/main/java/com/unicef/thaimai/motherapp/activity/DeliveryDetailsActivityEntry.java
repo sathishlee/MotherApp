@@ -189,9 +189,9 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent intent = new Intent(DeliveryDetailsActivityEntry.this, MainActivity.class);
+//            Intent intent = new Intent(AddRecords.this, MainActivity.class);
         finish();
-        startActivity(intent);
+//            startActivity(intent);
         return super.onOptionsItemSelected(item);
     }
 

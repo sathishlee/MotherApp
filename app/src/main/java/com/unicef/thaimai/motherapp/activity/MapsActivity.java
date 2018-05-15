@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -320,9 +321,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(MapsActivity.this, MainActivity.class);
+    public boolean onOptionsItemSelected(MenuItem item) {
         finish();
-        startActivity(intent);
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -107,11 +107,30 @@ public class ReferralListFragment extends Fragment implements ReferalViews, Refr
         fabAddNewReferal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                boolean isreffrall=false;
+                for(int i=0;i<mReferalList.size();i++){
+                    mReferalListModel = mReferalList.get(i);
+                    if (mReferalListModel.getReferalStatus().equalsIgnoreCase("Created") ){
+                        isreffrall =true;
+                    }
+                    if (mReferalListModel.getReferalStatus().equalsIgnoreCase("InProgress")&& mReferalListModel.getRUpdateAdmitted().equalsIgnoreCase("Yes") ){
+                        isreffrall =true;
+                    }
+           /* else  if(mReferalListModel.getReferalStatus().equalsIgnoreCase("Closed") && mReferalListModel.getRUpdateAdmitted().equalsIgnoreCase("No")){
 
+            }else if(mReferalListModel.getReferalStatus().equalsIgnoreCase("Closed") && mReferalListModel.getRUpdateAdmitted().equalsIgnoreCase("Yes")){
+
+            }*/
+                }
+                if (!isreffrall) {
                     Intent i = new Intent(getActivity(), AddReferral.class);
                     AppConstants.CREATE_NEW_REFRAL = true;
                     startActivity(i);
 //                    Toast.makeText(getActivity(),"Already Referal InProgress, you can't make new Referal",Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(getActivity(),"Already Referal InProgress, you can't make new Referal",Toast.LENGTH_SHORT).show();
+
+                }
             }
         });
 
@@ -165,6 +184,7 @@ public class ReferralListFragment extends Fragment implements ReferalViews, Refr
             JSONObject mJsnobject = new JSONObject(response);
             String status = mJsnobject.getString("status");
             String message = mJsnobject.getString("message");
+            Toast.makeText(getActivity(),message, Toast.LENGTH_SHORT).show();
             if (status.equalsIgnoreCase("1")) {
                 txt_no_records_found.setVisibility(View.GONE);
                 rec_referral_list.setVisibility(View.VISIBLE);
