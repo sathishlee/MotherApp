@@ -1,10 +1,14 @@
 package com.unicef.thaimai.motherapp.activity;
 
+import android.app.ActivityManager;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.net.Uri;
@@ -15,6 +19,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 
 import android.support.v4.app.Fragment;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AlertDialog;
 import android.text.Html;
 import android.util.DisplayMetrics;
@@ -32,9 +37,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.NotificationPresenter;
 import com.unicef.thaimai.motherapp.Presenter.SosAlertPresenter;
+import com.unicef.thaimai.motherapp.Presenter.UninstallerPresenter;
 import com.unicef.thaimai.motherapp.R;
 //import com.unicef.thaimai.motherapp.bradcastReceiver.ConnectivityReceiver;
 import com.unicef.thaimai.motherapp.constant.AppConstants;
@@ -46,6 +53,7 @@ import com.unicef.thaimai.motherapp.fragment.home;
 import com.unicef.thaimai.motherapp.utility.CheckNetwork;
 import com.unicef.thaimai.motherapp.view.NotificationViews;
 import com.unicef.thaimai.motherapp.view.SosAlertViews;
+import com.unicef.thaimai.motherapp.view.UninstallerViews;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -54,7 +62,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, SosAlertViews, NotificationViews {
+        implements NavigationView.OnNavigationItemSelectedListener, SosAlertViews, NotificationViews, UninstallerViews {
     Intent intent;
 
     Locale mylocale;
@@ -67,19 +75,31 @@ public class MainActivity extends AppCompatActivity
     ArrayList<String> msgList;
     CheckNetwork checkNetwork;
     RelativeLayout noConnection;
+    FirebaseAnalytics firebaseAnalytics;
+    public ActivityManager mActivityManager;
+    private static final String TAG = "MyActivity";
+    UninstallerPresenter uninstallerPresenter;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        addMsgtoList();
         checkNetwork = new CheckNetwork(this);
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        uninstallerPresenter = new UninstallerPresenter();
+        mActivityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+
+
+//        Bundle bundle = new Bundle();
+//        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME,"");
         noConnection = (RelativeLayout) findViewById(R.id.view_btm_no_inernet);
+        LocalBroadcastManager.getInstance(this).registerReceiver(tokenReceiver,
+                new IntentFilter("tokenReceiver"));
+
         if (checkNetwork.isNetworkAvailable()) {
-            Toast.makeText(getApplicationContext(), "Internet connection is" + checkNetwork.isNetworkAvailable(), Toast.LENGTH_SHORT).show();
-//    noConnection.setVisibility(View.VISIBLE);
+//            Toast.makeText(getApplicationContext(), "Internet connection is" + checkNetwork.isNetworkAvailable(), Toast.LENGTH_SHORT).show();
         } else {
-//    noConnection.setVisibility(View.GONE);
             Toast.makeText(getApplicationContext(), "Internet connection is" + checkNetwork.isNetworkAvailable(), Toast.LENGTH_SHORT).show();
             startActivity(new Intent(getApplicationContext(),NoInternetConnection.class));
 
@@ -97,9 +117,23 @@ public class MainActivity extends AppCompatActivity
 //        TextView txt_notify_count = (TextView)findViewById(R.id.txt_notify_count);
 //        txt_notify_count.setText(preferenceData.getNotificationCount());
 
+        ComponentName topActivity = mActivityManager.getRunningTasks(1).get(0).topActivity;
+        String packageName = topActivity.getPackageName();
+        String className = topActivity.getClassName();
+        Log.v(TAG, "packageName" + packageName);
+        Log.v(TAG, "className" + className);
+
+        if ("com.android.packageinstaller".equals(packageName)
+                && "com.android.packageinstaller.UninstallerActivity".equals(className)) {
+            uninstallerPresenter.unInstallApp(preferenceData.getMId());
+        }
+        else{
+            Toast.makeText(getApplicationContext(), "Error in Uninstall" + preferenceData.getVHNMobileNumber(), Toast.LENGTH_SHORT).show();
+        }
+
+
+
         if (AppConstants.isMainActivityOpen) {
-
-
             if (preferenceData.getMainScreenOpen().equalsIgnoreCase("0")) {
                 preferenceData.setMainScreenOpen(1);
 
@@ -164,6 +198,17 @@ public class MainActivity extends AppCompatActivity
 //        return ConnectivityReceiver.isConnected();
     }*/
 
+    BroadcastReceiver tokenReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String token = intent.getStringExtra("token");
+            if(token != null)
+            {
+                //send token to your server or what you want to do
+            }
+
+        }
+    };
 
     private void showAlertDialog() {
         // custom dialog
@@ -210,7 +255,7 @@ public class MainActivity extends AppCompatActivity
         String returnstring = gstWeek;
         if (gstWeek.substring(1).equalsIgnoreCase("1")) {
             returnstring = gstWeek + " st";
- if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             returnstring= String.valueOf(Html.fromHtml(gstWeek+"<sup><small>nd</small></sup>", Html.FROM_HTML_MODE_LEGACY));
         }
         } else if (gstWeek.substring(1).equalsIgnoreCase("2")) {
@@ -361,8 +406,6 @@ public class MainActivity extends AppCompatActivity
                 super.onOptionsItemSelected(item);
         }
         return true;
-
-
     }
 
     /*Slide navigation*/
@@ -377,8 +420,6 @@ public class MainActivity extends AppCompatActivity
 //            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
 //            fragmentManager.beginTransaction().replace(R.id.content,
 //                    home.newInstance()).commit();
-//
-//
 //        }
         if (id == R.id.primary_register) {
             Intent i = new Intent(getApplicationContext(), PrimaryRegisterView.class);
@@ -457,7 +498,6 @@ public class MainActivity extends AppCompatActivity
 
 
     public void selectFragment(MenuItem item) {
-
         item.setChecked(true);
         Fragment selectedFragment = null;
         switch (item.getItemId()) {
@@ -495,6 +535,16 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void hideProgress() {
         pDialog.hide();
+    }
+
+    @Override
+    public void showUninstallSuccess(String response) {
+
+    }
+
+    @Override
+    public void showUninstallError(String error) {
+
     }
 
     @Override

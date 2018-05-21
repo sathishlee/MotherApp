@@ -16,4 +16,8 @@ public interface LoginViews {
 
     void showForgetResult(String response);
     void showForgetErrorMessage(String string);
+
+    void showUninstallSuccess(String response);
+    void showUninstallError(String string);
+
 }

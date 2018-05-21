@@ -101,8 +101,7 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView, V
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                startActivity(new Intent(getApplicationContext(),ProfileUpdateActivity.class));
             }
         });
         if(CheckingPermissionIsEnabledOrNot())
@@ -238,8 +237,23 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView, V
 
     @Override
     public void successUploadPhoto(String response) {
-        Toast.makeText(ProfileActivity.this,response,Toast.LENGTH_LONG).show();
-        Log.d("Image upload success",response);
+        Log.d("successUploadPhoto--->",response);
+
+        Toast.makeText(ProfileActivity.this,"Photo Uploaded Successfully...",Toast.LENGTH_LONG).show();
+
+        /*try {
+            JSONObject jsonObject = new JSONObject(response);
+            String status = jsonObject.getString("status");
+            String msg = jsonObject.getString("message");
+            if (status.equalsIgnoreCase("1")) {
+                Toast.makeText(ProfileActivity.this,msg,Toast.LENGTH_LONG).show();
+            }else{
+                Toast.makeText(ProfileActivity.this,msg,Toast.LENGTH_LONG).show();
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }*/
     }
 
     @Override
@@ -292,7 +306,6 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView, V
     @Override
     public void errorViewProfile(String response) {
         Log.d("ProfileActivity error", response);
-
     }
 
     @Override

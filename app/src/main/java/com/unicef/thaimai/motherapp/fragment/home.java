@@ -293,6 +293,16 @@ public class home extends Fragment implements LoginViews, View.OnClickListener {
 
     }
 
+    @Override
+    public void showUninstallSuccess(String response) {
+
+    }
+
+    @Override
+    public void showUninstallError(String string) {
+
+    }
+
 
     @Override
     public void onClick(View v) {

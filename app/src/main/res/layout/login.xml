@@ -227,6 +227,36 @@
                 </LinearLayout>
 
             </android.support.v7.widget.CardView>
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_vhn_not_found"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/no_vhn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="1dp"
+                android:padding="7.0dip"
+                app:srcCompat="@drawable/sad_smiley"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:padding="7.0dp"
+                android:textSize="@dimen/text_title"
+                android:text="VHN Not Found...!"/>
+
         </LinearLayout>
 
     </LinearLayout>

@@ -4,15 +4,19 @@ import android.app.Activity;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
+import com.unicef.thaimai.motherapp.activity.NoInternetConnection;
 
 public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
 
     PreferenceData preferenceData;
+    CheckNetwork checkNetwork;
     public MyFirebaseInstanceIDService() {
 
 
@@ -33,6 +37,12 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
         String refreshedToken = FirebaseInstanceId.getInstance().getToken();
         Log.d(TAG, "Refreshed token: " + refreshedToken);
 
+        final Intent intent = new Intent("tokenReceiver");
+        // You can also include some extra data.
+        final LocalBroadcastManager broadcastManager = LocalBroadcastManager.getInstance(this);
+        intent.putExtra("token",refreshedToken);
+        broadcastManager.sendBroadcast(intent);
+
         // If you want to send messages to this application instance or
         // manage this apps subscriptions on the server side, send the
         // Instance ID token to your app server.
@@ -43,11 +53,22 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
     private void storeToken(String token) {
 
         preferenceData = new PreferenceData(this);
+        checkNetwork = new CheckNetwork(this);
         //saving the token on shared preferences
-        preferenceData.setDeviceId(token);
+        if (checkNetwork.isNetworkAvailable()) {
+//            Toast.makeText(getApplicationContext(), "Internet connection is" + checkNetwork.isNetworkAvailable(), Toast.LENGTH_SHORT).show();
+            preferenceData.setDeviceId(token);
+        } else {
+            Toast.makeText(getApplicationContext(), "Internet connection is" + checkNetwork.isNetworkAvailable(), Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(getApplicationContext(),NoInternetConnection.class));
+
+        }
+
     }
 
     // [END refresh_token]
+
+
 
     /**
      * Persist token to third-party servers.
@@ -74,16 +95,10 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
 //
 //            }
 //        }){
-//
-//
-//
 //            @Override
 //            protected Map<String, String> getParams() {
-//
 //                Map<String, String> params = new HashMap<String, String>();
-//
 //                params.put("id",token);
-//
 //                return params;
 //            }
 //

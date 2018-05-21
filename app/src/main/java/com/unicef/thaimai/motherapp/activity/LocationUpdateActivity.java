@@ -115,7 +115,7 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
 
             preferenceData = new PreferenceData(this);
             gpsReceiver = new GpsLocationReceiver();
-            intentFilter = new IntentFilter("android.location.PROVIDERS_CHANGED");
+//            intentFilter = new IntentFilter("android.location.PROVIDERS_CHANGED");
             mGpsStatusDetector = new GpsStatusDetector(this);
             mGpsStatusDetector.checkGpsStatus();
             startStep1();
@@ -176,7 +176,6 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
     @Override
     public void onResume() {
         super.onResume();
-        registerReceiver(gpsReceiver, intentFilter);
         startStep1();
     }
 
@@ -196,7 +195,7 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
                 Toast.makeText(getApplicationContext(), R.string.no_google_playservice_available, Toast.LENGTH_LONG).show();
             }
         }else{
-            startActivity(new Intent(getApplicationContext(), TurnOnGpsLocation.class));
+//            startActivity(new Intent(getApplicationContext(), TurnOnGpsLocation.class));
         }
     }
 
@@ -319,7 +318,7 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
                 }
             }, SPLASH_TIME_OUT);
         }else{
-            startActivity(new Intent(getApplicationContext(), TurnOnGpsLocation.class));
+//            startActivity(new Intent(getApplicationContext(), TurnOnGpsLocation.class));
         }
     }
 
@@ -620,6 +619,5 @@ Log.d(TAG,"success--->"+loginResponseModel);
     public void onGpsAlertCanceledByUser() {
         Log.d("TAG", "onGpsAlertCanceledByUser");
         startActivity(new Intent(getApplicationContext(),TurnOnGpsLocation.class));
-
     }
 }
