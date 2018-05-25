@@ -1,16 +1,16 @@
 package com.unicef.thaimai.motherapp.activity;
 
-import android.app.ActivityManager;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.location.Address;
+import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -39,9 +39,9 @@ import android.widget.Toast;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
+import com.unicef.thaimai.motherapp.Presenter.LocationUpdatePresenter;
 import com.unicef.thaimai.motherapp.Presenter.NotificationPresenter;
 import com.unicef.thaimai.motherapp.Presenter.SosAlertPresenter;
-import com.unicef.thaimai.motherapp.Presenter.UninstallerPresenter;
 import com.unicef.thaimai.motherapp.R;
 //import com.unicef.thaimai.motherapp.bradcastReceiver.ConnectivityReceiver;
 import com.unicef.thaimai.motherapp.constant.AppConstants;
@@ -51,24 +51,28 @@ import com.unicef.thaimai.motherapp.fragment.ReferralListFragment;
 import com.unicef.thaimai.motherapp.fragment.health_records;
 import com.unicef.thaimai.motherapp.fragment.home;
 import com.unicef.thaimai.motherapp.utility.CheckNetwork;
+import com.unicef.thaimai.motherapp.utility.LocationMonitoringService;
+import com.unicef.thaimai.motherapp.view.LocationUpdateViews;
 import com.unicef.thaimai.motherapp.view.NotificationViews;
 import com.unicef.thaimai.motherapp.view.SosAlertViews;
-import com.unicef.thaimai.motherapp.view.UninstallerViews;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, SosAlertViews, NotificationViews, UninstallerViews {
+        implements NavigationView.OnNavigationItemSelectedListener, SosAlertViews, NotificationViews{
     Intent intent;
 
     Locale mylocale;
     TextView tam, eng;
     SosAlertPresenter sosAlertPresenter;
     NotificationPresenter notificationPresenter;
+
+
     PreferenceData preferenceData;
 
     ProgressDialog pDialog;
@@ -76,10 +80,6 @@ public class MainActivity extends AppCompatActivity
     CheckNetwork checkNetwork;
     RelativeLayout noConnection;
     FirebaseAnalytics firebaseAnalytics;
-    public ActivityManager mActivityManager;
-    private static final String TAG = "MyActivity";
-    UninstallerPresenter uninstallerPresenter;
-    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,8 +87,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         checkNetwork = new CheckNetwork(this);
         firebaseAnalytics = FirebaseAnalytics.getInstance(this);
-        uninstallerPresenter = new UninstallerPresenter();
-        mActivityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
 
 
 //        Bundle bundle = new Bundle();
@@ -117,50 +115,13 @@ public class MainActivity extends AppCompatActivity
 //        TextView txt_notify_count = (TextView)findViewById(R.id.txt_notify_count);
 //        txt_notify_count.setText(preferenceData.getNotificationCount());
 
-        ComponentName topActivity = mActivityManager.getRunningTasks(1).get(0).topActivity;
-        String packageName = topActivity.getPackageName();
-        String className = topActivity.getClassName();
-        Log.v(TAG, "packageName" + packageName);
-        Log.v(TAG, "className" + className);
-
-        if ("com.android.packageinstaller".equals(packageName)
-                && "com.android.packageinstaller.UninstallerActivity".equals(className)) {
-            uninstallerPresenter.unInstallApp(preferenceData.getMId());
-        }
-        else{
-            Toast.makeText(getApplicationContext(), "Error in Uninstall" + preferenceData.getVHNMobileNumber(), Toast.LENGTH_SHORT).show();
-        }
-
-
-
         if (AppConstants.isMainActivityOpen) {
+
             if (preferenceData.getMainScreenOpen().equalsIgnoreCase("0")) {
                 preferenceData.setMainScreenOpen(1);
 
                 showAlertDialog();
-
-//                showAlertDialog("Good Morning Mrs. " + preferenceData.getMotherName() + ".", "Click here", 0);
-              /*  showAlertDialog("Good Morning Mrs. " + preferenceData.getMotherName() + "." +
-                                "\nHope you are doing well.." + "\nThis is your 12th Week of pregnancy." +
-                                "this is the Period of child monthly development." +
-                                "If you are not feeling well please Click here."
-                        , "Click here", 0);*/
-
-
             }
-    /*if(preferenceData.getMainScreenOpen().equalsIgnoreCase("1")){
-//        preferenceData.setMainScreenOpen(2);
-        showAlertDialog("Hope you are doing well..","Next",2);
-    }else  if(preferenceData.getMainScreenOpen().equalsIgnoreCase("2")){
-//        preferenceData.setMainScreenOpen(3);
-        showAlertDialog("This is your 12th Week of pregnancy.","Next",3);
-    }else  if(preferenceData.getMainScreenOpen().equalsIgnoreCase("3")){
-//        preferenceData.setMainScreenOpen(4);
-        showAlertDialog("this is the Period of child monthly development.","Next",4);
-    }else  if(preferenceData.getMainScreenOpen().equalsIgnoreCase("4")){
-//        preferenceData.setMainScreenOpen(0);
-        showAlertDialog("If you are not feeling well please Click here.","Click here",0);
-    }*/
         }
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -177,8 +138,6 @@ public class MainActivity extends AppCompatActivity
                     Toast.makeText(getApplicationContext(), "make call function" + preferenceData.getVHNMobileNumber(), Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("tel:+91" + preferenceData.getVHNMobileNumber())));
                 }
-                //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
             }
         });
 
@@ -194,9 +153,6 @@ public class MainActivity extends AppCompatActivity
         setupNavigationView();
     }
 
-   /* private boolean checkConnectivity() {
-//        return ConnectivityReceiver.isConnected();
-    }*/
 
     BroadcastReceiver tokenReceiver = new BroadcastReceiver() {
         @Override
@@ -255,7 +211,7 @@ public class MainActivity extends AppCompatActivity
         String returnstring = gstWeek;
         if (gstWeek.substring(1).equalsIgnoreCase("1")) {
             returnstring = gstWeek + " st";
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+ if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             returnstring= String.valueOf(Html.fromHtml(gstWeek+"<sup><small>nd</small></sup>", Html.FROM_HTML_MODE_LEGACY));
         }
         } else if (gstWeek.substring(1).equalsIgnoreCase("2")) {
@@ -366,7 +322,6 @@ public class MainActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
-
     }
 
     @Override
@@ -406,6 +361,8 @@ public class MainActivity extends AppCompatActivity
                 super.onOptionsItemSelected(item);
         }
         return true;
+
+
     }
 
     /*Slide navigation*/
@@ -420,6 +377,8 @@ public class MainActivity extends AppCompatActivity
 //            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
 //            fragmentManager.beginTransaction().replace(R.id.content,
 //                    home.newInstance()).commit();
+//
+//
 //        }
         if (id == R.id.primary_register) {
             Intent i = new Intent(getApplicationContext(), PrimaryRegisterView.class);
@@ -498,6 +457,7 @@ public class MainActivity extends AppCompatActivity
 
 
     public void selectFragment(MenuItem item) {
+
         item.setChecked(true);
         Fragment selectedFragment = null;
         switch (item.getItemId()) {
@@ -537,15 +497,6 @@ public class MainActivity extends AppCompatActivity
         pDialog.hide();
     }
 
-    @Override
-    public void showUninstallSuccess(String response) {
-
-    }
-
-    @Override
-    public void showUninstallError(String error) {
-
-    }
 
     @Override
     public void onDestroy(){
@@ -618,5 +569,6 @@ public class MainActivity extends AppCompatActivity
         Log.d(AddRecords.class.getSimpleName(), "Response Error--->" + response);
         showAlertDialog(response, "close", 5);
     }
+
 
 }

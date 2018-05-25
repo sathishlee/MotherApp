@@ -103,6 +103,7 @@ public class LoginPresenter implements LoginInteractor {
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));*/
         // Adding request to request queue
         VolleySingleton.getInstance(activity).addToRequestQueue(strReq);
+        VolleySingleton.getInstance(activity).getRequestQueue().getCache().remove(url);
 
     }
 
@@ -168,6 +169,8 @@ public class LoginPresenter implements LoginInteractor {
         };
         // Adding request to request queue
         VolleySingleton.getInstance(activity).addToRequestQueue(strReq);
+        VolleySingleton.getInstance(activity).getRequestQueue().getCache().remove(url);
+
     }
 
     @Override
@@ -231,6 +234,7 @@ public class LoginPresenter implements LoginInteractor {
         };
         // Adding request to request queue
         VolleySingleton.getInstance(activity).addToRequestQueue(strReq);
+        VolleySingleton.getInstance(activity).getRequestQueue().getCache().remove(url);
 
     }
 
