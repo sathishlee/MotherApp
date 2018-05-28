@@ -32,7 +32,8 @@ public class LoginPresenter implements LoginInteractor {
     }
 
     @Override
-    public void checkPickmeId(final String strPicmeId, final String strDob, final String strdeviceId, final String mobileCheck, final String mLatitude, final String mLongitude) {
+    public void checkPickmeId(final String strPicmeId, final String strDob, final String strdeviceId,
+                              final String mobileCheck, final String mLatitude, final String mLongitude, final String versionCode) {
         view.showProgress();
         String url = Apiconstants.BASE_URL + Apiconstants.LOG_IN_CHECK_PIKME;
 
@@ -43,6 +44,7 @@ public class LoginPresenter implements LoginInteractor {
         Log.d("Mobile Check--->", mobileCheck);
         Log.d("mLatitude--->", mLatitude);
         Log.d("mLongitude--->", mLongitude);
+        Log.d("AppVersion--->", versionCode);
 
         StringRequest strReq = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -71,6 +73,7 @@ public class LoginPresenter implements LoginInteractor {
                 params.put("mobileCheck",mobileCheck);
                 params.put("mLatitude",mLatitude);
                 params.put("mLongitude",mLongitude);
+                params.put("appversion",versionCode);
 
                 Log.d("params--->",params.toString());
 

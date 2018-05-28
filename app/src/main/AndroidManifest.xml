@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.unicef.thaimai.motherapp">
+    package="com.unicef.thaimai.motherapp"
+    android:versionCode="1"
+    android:versionName="1.0">
 
     //Camera View
     <uses-feature android:name="android.hardware.camera2" />
@@ -187,6 +189,9 @@
         <activity android:name=".activity.VideoViewActivity"
             android:theme="@style/AppTheme"
             android:screenOrientation="landscape"/>
+
+        <activity android:name=".activity.LowerVersionActivity"
+            android:theme="@style/AppTheme1"/>
 
         <service android:name=".utility.MyFirebaseInstanceIDService">
             <intent-filter>
