@@ -1,22 +1,33 @@
 package com.unicef.thaimai.motherapp.activity;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.net.ConnectivityManager;
 import android.net.Uri;
+import android.net.wifi.WifiManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
+import android.text.format.Formatter;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -26,19 +37,23 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
+import com.unicef.thaimai.motherapp.Presenter.LocationUpdatePresenter;
 import com.unicef.thaimai.motherapp.Presenter.LoginPresenter;
 import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.constant.AppConstants;
+import com.unicef.thaimai.motherapp.utility.LocationMonitoringService;
+import com.unicef.thaimai.motherapp.view.LocationUpdateViews;
 import com.unicef.thaimai.motherapp.view.LoginViews;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Calendar;
+import java.util.List;
+import java.util.Locale;
 
 
-public class Login extends AppCompatActivity implements View.OnClickListener, LoginViews
-{
+public class Login extends AppCompatActivity implements View.OnClickListener, LoginViews{
     Button btn_login, btn_otp_submit;
     EditText edtPicme, edtDob, edt_otp;
     TextInputLayout iplPicmeId, iplDob, input_layout_otp;
@@ -51,11 +66,13 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
     Calendar mCurrentDate;
     int day, month, year, hour, minute, sec;
     private String message;
-    LinearLayout ll_signin, ll_otp;
+    LinearLayout ll_signin, ll_otp, ll_vhn_not_found;
     CardView card_vhn_number;
     ImageView img_call_vhnnumber;
-    String str_call_vhn;
+    String str_call_vhn, str_vhn_status, mobileCheck, ipAddress, apiVersion;
     private static final int MAKE_CALL_PERMISSION_REQUEST_CODE = 1;
+    Boolean IPValue;
+    String currentVersion;
 
 
     @Override
@@ -98,6 +115,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
         iplDob = (TextInputLayout) findViewById(R.id.input_layout_dob);
         ll_signin = (LinearLayout) findViewById(R.id.ll_signin);
         ll_otp = (LinearLayout) findViewById(R.id.ll_otp);
+        ll_vhn_not_found = (LinearLayout) findViewById(R.id.ll_vhn_not_found);
         card_vhn_number = (CardView) findViewById(R.id.card_vhn_number);
         img_call_vhnnumber = (ImageView)findViewById(R.id.img_call_vhnnumber);
         txt_vhn_nameotp = (TextView) findViewById(R.id.txt_vhn_nameotp);
@@ -145,7 +163,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
         if(strOtp.equalsIgnoreCase("")){
             input_layout_otp.setError("Please Enter OTP");
         }else{
-            loginPresenter.checkOtp(preferenceData.getCheckPicmeID(),preferenceData.getCheckDob(),preferenceData.getDeviceId(),strOtp);
+            loginPresenter.checkOtp(preferenceData.getCheckPicmeID(),preferenceData.getCheckDob(),preferenceData.getDeviceId(),strOtp, mobileCheck);
         }
     }
 
@@ -158,6 +176,11 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
                 edtDob.setText(dayOfMonth + "-" + monthOfYear + "-" + year);
             }
         }, year, month, day);
+
+        InputMethodManager imm =
+                (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(edtDob.getWindowToken(), 0);
+
         datePickerDialog.show();
 
     }
@@ -166,6 +189,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
         startActivity(new Intent(getApplicationContext(), ForgotPasswordActivity.class));
     }
 
+    @SuppressLint("MissingPermission")
     private void getValue() {
         strPicme = edtPicme.getText().toString();
         strDob = edtDob.getText().toString();
@@ -183,9 +207,25 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
         if (strPicme.length() > 14) {
             iplPicmeId.setError("Enter Correct Picme ID");
         } else {
-//            loginPresenter.checkPickmeId(strPicme, strDob, "dT7h3twBpWU:APA91bHQqQOCBueyUGhvY2uIsMNfIfM7ynMlVzm89tTTWDeKhXzMWCS9WZL1gu8nFz_nkwU5Po9i8ytXHmjoxAeu36BTbIFHwWhWfjbWtO-EjG6n7zW4M_PFCCOID8eE0fQX4RPPHfBQ");
-            loginPresenter.checkPickmeId(strPicme, strDob, preferenceData.getDeviceId());
 
+
+//            loginPresenter.checkPickmeId(strPicme, strDob, "dT7h3twBpWU:APA91bHQqQOCBueyUGhvY2uIsMNfIfM7ynMlVzm89tTTWDeKhXzMWCS9WZL1gu8nFz_nkwU5Po9i8ytXHmjoxAeu36BTbIFHwWhWfjbWtO-EjG6n7zW4M_PFCCOID8eE0fQX4RPPHfBQ");
+            WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+            ipAddress = Formatter.formatIpAddress(wifiManager.getConnectionInfo().getIpAddress());
+
+            /*PackageManager manager = this.getPackageManager();
+            PackageInfo info = manager.getPackageInfo(this.getPackageName(), 0);*/
+
+            mobileCheck = "Mobile:"+Build.MANUFACTURER +","+ "Model:" +Build.MODEL + "," + "Api Version:"
+                    + Build.VERSION.RELEASE + "," + "SDK Version:" + Build.VERSION.SDK_INT + "," + "IP Address:"+ ipAddress;
+
+            Log.d("Mobile Check Version-->", mobileCheck);
+
+            apiVersion = Build.VERSION.RELEASE;
+
+            if(apiVersion.equalsIgnoreCase(""))
+
+                loginPresenter.checkPickmeId(strPicme, strDob, preferenceData.getDeviceId(), mobileCheck, AppConstants.EXTRA_LATITUDE, AppConstants.EXTRA_LONGITUDE);
         }
     }
 
@@ -212,14 +252,23 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
                 Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
                 ll_otp.setVisibility(View.VISIBLE);
                 card_vhn_number.setVisibility(View.VISIBLE);
+                ll_vhn_not_found.setVisibility(View.GONE);
                 ll_signin.setVisibility(View.GONE);
-                txt_vhn_nameotp.setText(jsonObject.getString("vhnName"));
-                str_call_vhn = jsonObject.getString("vhnMobile");
-
-                preferenceData.storePicmeInfo(jsonObject.getString("picmeId"),jsonObject.getString("DOB"));
+                str_vhn_status = jsonObject.getString("vhnStatus");
+                if(str_vhn_status.equalsIgnoreCase("1")){
+                    ll_vhn_not_found.setVisibility(View.GONE);
+                    txt_vhn_nameotp.setText(jsonObject.getString("vhnName"));
+                    str_call_vhn = jsonObject.getString("vhnMobile");
+                    preferenceData.storePicmeInfo(jsonObject.getString("picmeId"),jsonObject.getString("DOB"));
+                }else{
+                    ll_vhn_not_found.setVisibility(View.VISIBLE);
+                    card_vhn_number.setVisibility(View.GONE);
+                    Toast.makeText(getApplicationContext(),"VHN Not Found...!",Toast.LENGTH_SHORT).show();
+                }
             }else {
                 Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
                 ll_otp.setVisibility(View.GONE);
+                ll_vhn_not_found.setVisibility(View.GONE);
                 ll_signin.setVisibility(View.VISIBLE);
             }
         }catch (JSONException e) {
@@ -253,10 +302,11 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
                 Log.d("message---->", message);
                 preferenceData.storeUserInfo(jObj.getString("picmeId"),jObj.getString("mid"),
                         jObj.getString("mName"), jObj.getString("motherAge"),
-                        jObj.getString("motherStatus"), jObj.getString("phcId"), jObj.getString("vhnId"), jObj.getString("awwId"), jObj.getString("mGesWeek"), jObj.getString("vhnMobile"));
+                        jObj.getString("motherStatus"), jObj.getString("phcId"), jObj.getString("vhnId"),
+                        jObj.getString("awwId"), jObj.getString("mGesWeek"), jObj.getString("vhnMobile"));
                 preferenceData.setLogin(true);
-               preferenceData.setMainScreenOpen(0);
-               AppConstants.POP_UP_COUNT=0;
+                preferenceData.setMainScreenOpen(0);
+                AppConstants.POP_UP_COUNT=0;
                 if (message.equalsIgnoreCase("Successfully Logined")) {
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     finish();
@@ -287,6 +337,16 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
 
     @Override
     public void showForgetErrorMessage(String string) {
+
+    }
+
+    @Override
+    public void showUninstallSuccess(String response) {
+
+    }
+
+    @Override
+    public void showUninstallError(String string) {
 
     }
 
@@ -352,4 +412,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
         finish();
         return super.onOptionsItemSelected(item);
     }
+
+
 }

@@ -201,4 +201,14 @@ pDialog.hide();
         Log.d("Response field", errormsg);
 
     }
+
+    @Override
+    public void showUninstallSuccess(String response) {
+
+    }
+
+    @Override
+    public void showUninstallError(String string) {
+
+    }
 }

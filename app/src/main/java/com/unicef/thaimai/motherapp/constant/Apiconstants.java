@@ -26,9 +26,9 @@ public class Apiconstants {
 
     public static final String POST_PRIMARY_INFO = "Mother/mPrimaryInfo";
     public static final String POST_PRIMARY_INFO_UPDATE = "mother/mPrimaryInfoUpdate";
-    public static final String POST_DASH_BOARD = "mother/mDashboard/";/*    http://192.168.100.19/thaimaiapp/api/Mother/mPrimaryInfo
-     /*    http://192.168.100.19/thaimaiapp/api/Mother/mPrimaryInfo
-*/
+    public static final String POST_DASH_BOARD = "mother/mDashboard/";
+    /*    http://192.168.100.19/thaimaiapp/api/Mother/mPrimaryInfo
+    http://192.168.100.19/thaimaiapp/api/Mother/mPrimaryInfo       */
     public static final String POST_VIST_HEALTH_RECORD_NUMBER = "mother/mHealthRecordVisitNumber";
     public static final String POST_VIST_HEALTH_RECORD = "mother/mHealthRecord/";
 

@@ -32,7 +32,7 @@ public class LoginPresenter implements LoginInteractor {
     }
 
     @Override
-    public void checkPickmeId(final String strPicmeId, final String strDob, final String strdeviceId) {
+    public void checkPickmeId(final String strPicmeId, final String strDob, final String strdeviceId, final String mobileCheck, final String mLatitude, final String mLongitude) {
         view.showProgress();
         String url = Apiconstants.BASE_URL + Apiconstants.LOG_IN_CHECK_PIKME;
 
@@ -40,11 +40,14 @@ public class LoginPresenter implements LoginInteractor {
         Log.d("PicmeId--->",strPicmeId);
         Log.d("Dob--->",strDob);
         Log.d("Device Id--->", strdeviceId);
+        Log.d("Mobile Check--->", mobileCheck);
+        Log.d("mLatitude--->", mLatitude);
+        Log.d("mLongitude--->", mLongitude);
 
         StringRequest strReq = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-            view.hideProgress();
+                view.hideProgress();
                 Log.d("success",response);
                 view.loginSuccess(response.toString());
             }
@@ -53,19 +56,21 @@ public class LoginPresenter implements LoginInteractor {
             public void onErrorResponse(VolleyError error) {
                 view.hideProgress();
                 Log.d(" error",error.toString());
-
                 view.loginError(error.toString());
 
             }
         }) {
 
-                        @Override
+            @Override
             protected Map<String, String> getParams() {
                 // Posting parameters to login url
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("picmeId",strPicmeId);
                 params.put("DOB",strDob);
                 params.put("deviceId",strdeviceId);
+                params.put("mobileCheck",mobileCheck);
+                params.put("mLatitude",mLatitude);
+                params.put("mLongitude",mLongitude);
 
                 Log.d("params--->",params.toString());
 
@@ -98,16 +103,18 @@ public class LoginPresenter implements LoginInteractor {
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));*/
         // Adding request to request queue
         VolleySingleton.getInstance(activity).addToRequestQueue(strReq);
+        VolleySingleton.getInstance(activity).getRequestQueue().getCache().remove(url);
 
     }
 
     @Override
-    public void checkOtp(final String pickmeid, final String dob, final String strdeviceId, final String otp) {
+    public void checkOtp(final String pickmeid, final String dob, final String strdeviceId, final String otp, final String mobileCheck) {
         view.showProgress();
         String url = Apiconstants.BASE_URL + Apiconstants.CHECK_OTP;
 
         Log.d("Log in check Url--->",url);
         Log.d("otp--->",otp);
+        Log.d("mobileCheck--->",mobileCheck);
 
         StringRequest strReq = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -135,6 +142,7 @@ public class LoginPresenter implements LoginInteractor {
                 params.put("DOB",dob);
                 params.put("deviceId",strdeviceId);
                 params.put("OTPCode",otp);
+                params.put("mobileCheck",mobileCheck);
                 Log.d("params--->",params.toString());
 
                 return params;
@@ -161,6 +169,8 @@ public class LoginPresenter implements LoginInteractor {
         };
         // Adding request to request queue
         VolleySingleton.getInstance(activity).addToRequestQueue(strReq);
+        VolleySingleton.getInstance(activity).getRequestQueue().getCache().remove(url);
+
     }
 
     @Override
@@ -224,7 +234,10 @@ public class LoginPresenter implements LoginInteractor {
         };
         // Adding request to request queue
         VolleySingleton.getInstance(activity).addToRequestQueue(strReq);
+        VolleySingleton.getInstance(activity).getRequestQueue().getCache().remove(url);
 
     }
+
+
 
 }
