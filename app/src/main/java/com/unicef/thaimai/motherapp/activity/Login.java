@@ -1,7 +1,6 @@
 package com.unicef.thaimai.motherapp.activity;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.DownloadManager;
@@ -45,6 +44,7 @@ import com.unicef.thaimai.motherapp.Presenter.LoginPresenter;
 import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.constant.Apiconstants;
 import com.unicef.thaimai.motherapp.constant.AppConstants;
+import com.unicef.thaimai.motherapp.utility.DownloadTask;
 import com.unicef.thaimai.motherapp.utility.LocationMonitoringService;
 import com.unicef.thaimai.motherapp.view.LocationUpdateViews;
 import com.unicef.thaimai.motherapp.view.LoginViews;
@@ -193,7 +193,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
         startActivity(new Intent(getApplicationContext(), ForgotPasswordActivity.class));
     }
 
-    @SuppressLint("MissingPermission")
     private void getValue() {
         strPicme = edtPicme.getText().toString();
         strDob = edtDob.getText().toString();
@@ -216,14 +215,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
 //            loginPresenter.checkPickmeId(strPicme, strDob, "dT7h3twBpWU:APA91bHQqQOCBueyUGhvY2uIsMNfIfM7ynMlVzm89tTTWDeKhXzMWCS9WZL1gu8nFz_nkwU5Po9i8ytXHmjoxAeu36BTbIFHwWhWfjbWtO-EjG6n7zW4M_PFCCOID8eE0fQX4RPPHfBQ");
             WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
             ipAddress = Formatter.formatIpAddress(wifiManager.getConnectionInfo().getIpAddress());
-
-            /*PackageManager manager = this.getPackageManager();
-            PackageInfo info = manager.getPackageInfo(this.getPackageName(), 0);*/
-            WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
-            ipAddress = Formatter.formatIpAddress(wifiManager.getConnectionInfo().getIpAddress());
-
-            /*PackageManager manager = this.getPackageManager();
-            PackageInfo info = manager.getPackageInfo(this.getPackageName(), 0);*/
 
             mobileCheck = "Mobile:"+Build.MANUFACTURER +","+ "Model:" +Build.MODEL + "," + "Api Version:"
                     + Build.VERSION.RELEASE + "," + "SDK Version:" + Build.VERSION.SDK_INT + "," + "IP Address:"+ ipAddress;
@@ -270,7 +261,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
                 AlertDialog.Builder builder = new AlertDialog.Builder(Login.this);
                 builder.setTitle(R.string.app_name);
                 builder.setIcon(R.mipmap.ic_launcher);
-                builder.setMessage("Please Click ok to Download Apk")
+                builder.setMessage("Your are using Older Version of Apk Please Click Ok to Download New Apk")
                         .setCancelable(false)
                         .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {

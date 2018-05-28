@@ -22,6 +22,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AlertDialog;
 import android.text.Html;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -43,7 +44,6 @@ import com.unicef.thaimai.motherapp.Presenter.NotificationPresenter;
 import com.unicef.thaimai.motherapp.Presenter.SosAlertPresenter;
 import com.unicef.thaimai.motherapp.R;
 //import com.unicef.thaimai.motherapp.bradcastReceiver.ConnectivityReceiver;
-import com.unicef.thaimai.motherapp.utility.CheckNetwork;
 import com.unicef.thaimai.motherapp.constant.AppConstants;
 import com.unicef.thaimai.motherapp.fragment.NotificationFragment;
 import com.unicef.thaimai.motherapp.fragment.PNhbncVisit;
@@ -92,19 +92,12 @@ public class MainActivity extends AppCompatActivity
 //        Bundle bundle = new Bundle();
 //        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME,"");
         noConnection = (RelativeLayout) findViewById(R.id.view_btm_no_inernet);
-       /* if (checkNetwork.isNetworkAvailable()) {
-            Toast.makeText(getApplicationContext(), "Internet connection is " + checkNetwork.isNetworkAvailable(), Toast.LENGTH_SHORT).show();
-//    noConnection.setVisibility(View.VISIBLE);
         LocalBroadcastManager.getInstance(this).registerReceiver(tokenReceiver,
                 new IntentFilter("tokenReceiver"));
 
         if (checkNetwork.isNetworkAvailable()) {
 //            Toast.makeText(getApplicationContext(), "Internet connection is" + checkNetwork.isNetworkAvailable(), Toast.LENGTH_SHORT).show();
         } else {
-//    noConnection.setVisibility(View.GONE);
-            Toast.makeText(getApplicationContext(), "Internet connection is " + checkNetwork.isNetworkAvailable(), Toast.LENGTH_SHORT).show();
-//            startActivity(new Intent(getApplicationContext(),NoInternetConnection.class));
-        }*/
             Toast.makeText(getApplicationContext(), "Internet connection is" + checkNetwork.isNetworkAvailable(), Toast.LENGTH_SHORT).show();
             startActivity(new Intent(getApplicationContext(),NoInternetConnection.class));
 
@@ -117,7 +110,7 @@ public class MainActivity extends AppCompatActivity
         notificationPresenter = new NotificationPresenter(getApplicationContext(), this);
         sosAlertPresenter = new SosAlertPresenter(MainActivity.this, this);
 
-//        notificationPresenter.getNotificationCount(preferenceData.getMId());
+        notificationPresenter.getNotificationCount(preferenceData.getMId());
 
 //        TextView txt_notify_count = (TextView)findViewById(R.id.txt_notify_count);
 //        txt_notify_count.setText(preferenceData.getNotificationCount());
@@ -126,9 +119,9 @@ public class MainActivity extends AppCompatActivity
 
             if (preferenceData.getMainScreenOpen().equalsIgnoreCase("0")) {
                 preferenceData.setMainScreenOpen(1);
+
                 showAlertDialog();
             }
-          }
         }
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -218,9 +211,9 @@ public class MainActivity extends AppCompatActivity
         String returnstring = gstWeek;
         if (gstWeek.substring(1).equalsIgnoreCase("1")) {
             returnstring = gstWeek + " st";
- if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            returnstring= String.valueOf(Html.fromHtml(gstWeek+"<sup><small>nd</small></sup>", Html.FROM_HTML_MODE_LEGACY));
-        }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                returnstring= String.valueOf(Html.fromHtml(gstWeek+"<sup><small>nd</small></sup>", Html.FROM_HTML_MODE_LEGACY));
+            }
         } else if (gstWeek.substring(1).equalsIgnoreCase("2")) {
             returnstring = gstWeek + " nd";
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -357,10 +350,6 @@ public class MainActivity extends AppCompatActivity
 
             case R.id.action_help:
                 preferenceData.setLogin(false);
-
-//                Intent i  = new Intent(MainActivity.this, LocationUpdateActivity.class);
-//
-//                startActivity(i);
                 finish();
                 Toast.makeText(getApplicationContext(), "Logged Out", Toast.LENGTH_LONG).show();
                 return true;
@@ -384,9 +373,8 @@ public class MainActivity extends AppCompatActivity
 //            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
 //            fragmentManager.beginTransaction().replace(R.id.content,
 //                    home.newInstance()).commit();
-//
-//
 //        }
+
         if (id == R.id.primary_register) {
             Intent i = new Intent(getApplicationContext(), PrimaryRegisterView.class);
             startActivity(i);
@@ -504,6 +492,7 @@ public class MainActivity extends AppCompatActivity
         pDialog.hide();
     }
 
+
     @Override
     public void onDestroy(){
         super.onDestroy();
@@ -575,5 +564,6 @@ public class MainActivity extends AppCompatActivity
         Log.d(AddRecords.class.getSimpleName(), "Response Error--->" + response);
         showAlertDialog(response, "close", 5);
     }
+
 
 }
