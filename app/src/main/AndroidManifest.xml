@@ -49,6 +49,11 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
 
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.GET_TASKS"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.CLEAR_APP_CACHE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <uses-permission
         android:name="android.permission.WRITE_SECURE_SETTINGS"
@@ -211,6 +216,9 @@
             android:theme="@style/AppTheme"
             android:screenOrientation="landscape"/>
 
+        <activity android:name=".activity.LowerVersionActivity"
+            android:theme="@style/AppTheme1"/>
+
         <service android:name=".utility.MyFirebaseInstanceIDService">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
@@ -239,6 +247,21 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </receiver>
+
+        <receiver android:name=".broadCastReceivers.UninstallIntentReceiver">
+            <intent-filter>
+                <!--<action android:name="android.intent.action.QUERY_PACKAGE_RESTART" />
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED"/>
+                <data android:scheme="package" />-->
+                <category android:name="android.intent.category.DEFAULT" />
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+                <action android:name="android.permission.BROADCAST_PACKAGE_REMOVED"/>
+                <data android:scheme="package"/>
+            </intent-filter>
+        </receiver>
+
         <!-- <receiver
               android:name=".bradcastReceiver.ConnectivityReceiver"
               android:enabled="true">

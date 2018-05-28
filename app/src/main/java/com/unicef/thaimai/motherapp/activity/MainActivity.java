@@ -2,9 +2,15 @@ package com.unicef.thaimai.motherapp.activity;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.location.Address;
+import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,6 +19,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 
 import android.support.v4.app.Fragment;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AlertDialog;
 import android.text.Html;
 import android.util.Log;
@@ -29,7 +36,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
+import com.unicef.thaimai.motherapp.Presenter.LocationUpdatePresenter;
 import com.unicef.thaimai.motherapp.Presenter.NotificationPresenter;
 import com.unicef.thaimai.motherapp.Presenter.SosAlertPresenter;
 import com.unicef.thaimai.motherapp.R;
@@ -41,6 +50,9 @@ import com.unicef.thaimai.motherapp.fragment.PNhbncVisit;
 import com.unicef.thaimai.motherapp.fragment.ReferralListFragment;
 import com.unicef.thaimai.motherapp.fragment.health_records;
 import com.unicef.thaimai.motherapp.fragment.home;
+import com.unicef.thaimai.motherapp.utility.CheckNetwork;
+import com.unicef.thaimai.motherapp.utility.LocationMonitoringService;
+import com.unicef.thaimai.motherapp.view.LocationUpdateViews;
 import com.unicef.thaimai.motherapp.view.NotificationViews;
 import com.unicef.thaimai.motherapp.view.SosAlertViews;
 
@@ -48,38 +60,55 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, SosAlertViews, NotificationViews {
+        implements NavigationView.OnNavigationItemSelectedListener, SosAlertViews, NotificationViews{
     Intent intent;
 
     Locale mylocale;
     TextView tam, eng;
     SosAlertPresenter sosAlertPresenter;
     NotificationPresenter notificationPresenter;
+
+
     PreferenceData preferenceData;
 
     ProgressDialog pDialog;
     ArrayList<String> msgList;
     CheckNetwork checkNetwork;
     RelativeLayout noConnection;
+    FirebaseAnalytics firebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        addMsgtoList();
         checkNetwork = new CheckNetwork(this);
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this);
+
+
+//        Bundle bundle = new Bundle();
+//        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME,"");
         noConnection = (RelativeLayout) findViewById(R.id.view_btm_no_inernet);
        /* if (checkNetwork.isNetworkAvailable()) {
             Toast.makeText(getApplicationContext(), "Internet connection is " + checkNetwork.isNetworkAvailable(), Toast.LENGTH_SHORT).show();
 //    noConnection.setVisibility(View.VISIBLE);
+        LocalBroadcastManager.getInstance(this).registerReceiver(tokenReceiver,
+                new IntentFilter("tokenReceiver"));
+
+        if (checkNetwork.isNetworkAvailable()) {
+//            Toast.makeText(getApplicationContext(), "Internet connection is" + checkNetwork.isNetworkAvailable(), Toast.LENGTH_SHORT).show();
         } else {
 //    noConnection.setVisibility(View.GONE);
             Toast.makeText(getApplicationContext(), "Internet connection is " + checkNetwork.isNetworkAvailable(), Toast.LENGTH_SHORT).show();
 //            startActivity(new Intent(getApplicationContext(),NoInternetConnection.class));
         }*/
+            Toast.makeText(getApplicationContext(), "Internet connection is" + checkNetwork.isNetworkAvailable(), Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(getApplicationContext(),NoInternetConnection.class));
+
+        }
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(true);
         pDialog.setMessage("Please Wait ...");
@@ -94,11 +123,13 @@ public class MainActivity extends AppCompatActivity
 //        txt_notify_count.setText(preferenceData.getNotificationCount());
 
         if (AppConstants.isMainActivityOpen) {
+
             if (preferenceData.getMainScreenOpen().equalsIgnoreCase("0")) {
                 preferenceData.setMainScreenOpen(1);
                 showAlertDialog();
             }
           }
+        }
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -114,8 +145,6 @@ public class MainActivity extends AppCompatActivity
                     Toast.makeText(getApplicationContext(), "make call function" + preferenceData.getVHNMobileNumber(), Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("tel:+91" + preferenceData.getVHNMobileNumber())));
                 }
-                //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
             }
         });
 
@@ -131,10 +160,18 @@ public class MainActivity extends AppCompatActivity
         setupNavigationView();
     }
 
-   /* private boolean checkConnectivity() {
-//        return ConnectivityReceiver.isConnected();
-    }*/
 
+    BroadcastReceiver tokenReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String token = intent.getStringExtra("token");
+            if(token != null)
+            {
+                //send token to your server or what you want to do
+            }
+
+        }
+    };
 
     private void showAlertDialog() {
         // custom dialog
@@ -292,7 +329,6 @@ public class MainActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
-
     }
 
     @Override

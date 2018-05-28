@@ -15,6 +15,7 @@ import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Handler;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
@@ -101,12 +102,15 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
     IntentFilter intentFilter;
     private GpsStatusDetector mGpsStatusDetector;
     boolean mISGpsStatusDetector;
+    int deviceApi = Build.VERSION.SDK_INT;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_update);
+        checkAPiVersion();
+
         checkNetwork = new CheckNetwork(this);
         Create = (TextView) findViewById(R.id.Create);
 
@@ -115,7 +119,7 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
 
             preferenceData = new PreferenceData(this);
             gpsReceiver = new GpsLocationReceiver();
-            intentFilter = new IntentFilter("android.location.PROVIDERS_CHANGED");
+//            intentFilter = new IntentFilter("android.location.PROVIDERS_CHANGED");
             mGpsStatusDetector = new GpsStatusDetector(this);
             mGpsStatusDetector.checkGpsStatus();
             startStep1();
@@ -170,8 +174,15 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
 
 
     }
-    
 
+    private void checkAPiVersion() {
+        if(deviceApi<=Build.VERSION_CODES.KITKAT){
+            startActivity(new Intent(this, LowerVersionActivity.class));
+            finish();
+        }else{
+            startStep1();
+        }
+    }
 
     @Override
     public void onResume() {
@@ -196,7 +207,7 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
                 Toast.makeText(getApplicationContext(), R.string.no_google_playservice_available, Toast.LENGTH_LONG).show();
             }
         }else{
-            startActivity(new Intent(getApplicationContext(), TurnOnGpsLocation.class));
+//            startActivity(new Intent(getApplicationContext(), TurnOnGpsLocation.class));
         }
     }
 
@@ -319,7 +330,7 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
                 }
             }, SPLASH_TIME_OUT);
         }else{
-            startActivity(new Intent(getApplicationContext(), TurnOnGpsLocation.class));
+//            startActivity(new Intent(getApplicationContext(), TurnOnGpsLocation.class));
         }
     }
 
@@ -620,6 +631,5 @@ Log.d(TAG,"success--->"+loginResponseModel);
     public void onGpsAlertCanceledByUser() {
         Log.d("TAG", "onGpsAlertCanceledByUser");
         startActivity(new Intent(getApplicationContext(),TurnOnGpsLocation.class));
-
     }
 }

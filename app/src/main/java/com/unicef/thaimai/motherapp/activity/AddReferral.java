@@ -267,9 +267,9 @@ public class AddReferral extends AppCompatActivity implements View.OnClickListen
             showAlert("Time of is Empty");
         } else if (AppConstants.REFERAL_ID.equalsIgnoreCase("")) {
             showAlert("Referal Id is Empty");
-        } else if (strUPReceivedBy.equalsIgnoreCase("")) {
+        } else if (strUPReceivedBy.equalsIgnoreCase("--Select--")) {
             showAlert("Received By  is Empty");
-        } else if (strUPReferringFacility.equalsIgnoreCase("")) {
+        } else if (strUPReferringFacility.equalsIgnoreCase("--Select--")) {
             showAlert("Referring Facility is Empty");
         } else if (strInLabour.equalsIgnoreCase("")) {
             showAlert("Labour is Empty");

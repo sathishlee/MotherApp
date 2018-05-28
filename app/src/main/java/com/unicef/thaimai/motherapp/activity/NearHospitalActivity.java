@@ -180,6 +180,7 @@ public class NearHospitalActivity extends AppCompatActivity implements LocationU
                     mnearbyModel.setPhcMobile(jsonObject.getString("phcMobile"));
                     mnearbyModel.setPhcStatus(jsonObject.getString("phcStatus"));
                     mnearbyModel.setDistance(jsonObject.getString("distance"));
+                    mnearbyModel.setVillage(jsonObject.getString("village"));
 //                mNearbyList.clear();
                     mNearbyList.add(mnearbyModel);
                     mAdapter.notifyDataSetChanged();

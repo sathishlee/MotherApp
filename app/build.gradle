@@ -75,6 +75,7 @@ dependencies {
     compile 'com.android.support:multidex:1.0.3'
     compile 'com.github.stfalcon:smsverifycatcher:0.3.1'
     compile 'com.google.firebase:firebase-messaging:11.0.4'
+    compile 'com.google.firebase:firebase-core:9.0.2'
     compile 'com.google.code.gson:gson:2.8.2'
     compile 'com.android.support:palette-v7:27.0.0'
     compile 'com.squareup.picasso:picasso:2.5.2'

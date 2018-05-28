@@ -48,8 +48,8 @@ public class NearByHospitalAdapter extends RecyclerView.Adapter<NearByHospitalAd
         final NearHospitalResponseModel.Nearby nearByHospitalModel = list_nearByHospitalModel.get(position);
         holder.txt_phc_call.setText(nearByHospitalModel.getPhcMobile());
         holder.txt_f_nin_num.setText(nearByHospitalModel.getF_nin_num());
-        holder.txt_phc_name.setText(nearByHospitalModel.getPhcName());
-        holder.txt_fac_name.setText(nearByHospitalModel.getF_facility_name());
+        holder.txt_phc_name.setText(nearByHospitalModel.getF_facility_name());
+        holder.txt_fac_name.setText(nearByHospitalModel.getVillage());
         holder.txt_hosp_distance.setText(nearByHospitalModel.getDistance());
 
         holder.txt_phc_call.setOnClickListener(new View.OnClickListener() {

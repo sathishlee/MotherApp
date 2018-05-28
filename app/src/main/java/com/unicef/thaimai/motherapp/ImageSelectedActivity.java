@@ -478,7 +478,7 @@ public class ImageSelectedActivity extends AppCompatActivity implements CameraHo
     public void successUploadPhoto(String response) {
         Log.d("images ", "uploaded successfully"+ response);
 
-        Toast.makeText(this, response, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "uploaded successfully", Toast.LENGTH_SHORT).show();
         startActivity(new Intent(getApplicationContext(), AddRecords.class));
         finish();
 

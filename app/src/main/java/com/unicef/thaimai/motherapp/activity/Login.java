@@ -2,10 +2,13 @@ package com.unicef.thaimai.motherapp.activity;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.DownloadManager;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageInfo;
@@ -40,6 +43,7 @@ import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.LocationUpdatePresenter;
 import com.unicef.thaimai.motherapp.Presenter.LoginPresenter;
 import com.unicef.thaimai.motherapp.R;
+import com.unicef.thaimai.motherapp.constant.Apiconstants;
 import com.unicef.thaimai.motherapp.constant.AppConstants;
 import com.unicef.thaimai.motherapp.utility.LocationMonitoringService;
 import com.unicef.thaimai.motherapp.view.LocationUpdateViews;
@@ -215,17 +219,30 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
 
             /*PackageManager manager = this.getPackageManager();
             PackageInfo info = manager.getPackageInfo(this.getPackageName(), 0);*/
+            WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+            ipAddress = Formatter.formatIpAddress(wifiManager.getConnectionInfo().getIpAddress());
+
+            /*PackageManager manager = this.getPackageManager();
+            PackageInfo info = manager.getPackageInfo(this.getPackageName(), 0);*/
 
             mobileCheck = "Mobile:"+Build.MANUFACTURER +","+ "Model:" +Build.MODEL + "," + "Api Version:"
                     + Build.VERSION.RELEASE + "," + "SDK Version:" + Build.VERSION.SDK_INT + "," + "IP Address:"+ ipAddress;
 
             Log.d("Mobile Check Version-->", mobileCheck);
 
-            apiVersion = Build.VERSION.RELEASE;
+            PackageInfo packageInfo = null;
+            String version_name = "Latest";
+            int version_code = 2;
+            String appversion = String.valueOf(version_code);
 
-            if(apiVersion.equalsIgnoreCase(""))
-
-                loginPresenter.checkPickmeId(strPicme, strDob, preferenceData.getDeviceId(), mobileCheck, AppConstants.EXTRA_LATITUDE, AppConstants.EXTRA_LONGITUDE);
+            try {
+                packageInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+                version_name = packageInfo.versionName;
+                version_code = packageInfo.versionCode;
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
+            }
+            loginPresenter.checkPickmeId(strPicme, strDob, preferenceData.getDeviceId(), mobileCheck, AppConstants.EXTRA_LATITUDE, AppConstants.EXTRA_LONGITUDE, appversion);
         }
     }
 
@@ -248,7 +265,22 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
             String status = jsonObject.getString("status");
             String message = jsonObject.getString("message");
 
-            if (status.equalsIgnoreCase("1")){
+            if(message.equalsIgnoreCase("Please update the latest version app.")){
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(Login.this);
+                builder.setTitle(R.string.app_name);
+                builder.setIcon(R.mipmap.ic_launcher);
+                builder.setMessage("Please Click ok to Download Apk")
+                        .setCancelable(false)
+                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                openUrl();
+                            }
+                        });
+                AlertDialog alert = builder.create();
+                alert.show();
+            }
+            else if (status.equalsIgnoreCase("1")){
                 Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
                 ll_otp.setVisibility(View.VISIBLE);
                 card_vhn_number.setVisibility(View.VISIBLE);
@@ -271,9 +303,20 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
                 ll_vhn_not_found.setVisibility(View.GONE);
                 ll_signin.setVisibility(View.VISIBLE);
             }
+
+
         }catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    private void openUrl() {
+        DownloadManager downloadManager;
+        downloadManager = (DownloadManager)getSystemService(Context.DOWNLOAD_SERVICE);
+        Uri uri = Uri.parse(Apiconstants.APK_URL+Apiconstants.DOWNLOAD_APK);
+        DownloadManager.Request request = new DownloadManager.Request(uri);
+        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+        Long reference = downloadManager.enqueue(request);
     }
 
     @Override
@@ -413,5 +456,27 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onBackPressed() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(Login.this);
+        builder.setTitle(R.string.app_name);
+        builder.setIcon(R.mipmap.ic_launcher);
+        builder.setMessage("Are you Sure do you want to exit?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        finish();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
+
+    }
 
 }

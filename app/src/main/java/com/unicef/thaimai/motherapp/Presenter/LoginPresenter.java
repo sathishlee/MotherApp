@@ -71,6 +71,7 @@ public class LoginPresenter implements LoginInteractor {
                 params.put("mobileCheck",mobileCheck);
                 params.put("mLatitude",mLatitude);
                 params.put("mLongitude",mLongitude);
+                params.put("appversion",versionCode);
 
                 Log.d("params--->",params.toString());
 
