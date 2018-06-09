@@ -2,6 +2,11 @@ package com.unicef.thaimai.motherapp.app;
 
 import android.app.Application;
 
+import com.unicef.thaimai.motherapp.broadCastReceivers.ConnectivityReceiver;
+
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
+
 //import com.unicef.thaimai.motherapp.bradcastReceiver.ConnectivityReceiver;
 
 
@@ -16,14 +21,24 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
+        Realm.init(this);
+
+        RealmConfiguration config = new RealmConfiguration.Builder()
+                .name("Mother.realm")
+                .schemaVersion(0)
+                .deleteRealmIfMigrationNeeded()
+                .build();
+
+        Realm.setDefaultConfiguration(config);
         mInstance = this;
     }
 
     public static synchronized MyApplication getInstance() {
         return mInstance;
     }
-/*
+
     public void setConnectivityListener(ConnectivityReceiver.ConnectivityReceiverListener listener) {
         ConnectivityReceiver.connectivityReceiverListener = listener;
-    }*/
+    }
+
 }

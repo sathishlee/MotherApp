@@ -7,6 +7,10 @@ package com.unicef.thaimai.motherapp.view;
 public interface NotificationViews {
     void showProgress();
     void hideProgress();
+
     void NotificationResponseSuccess(String response);
     void NotificationResponseError(String response);
+
+    void NotificationCountSuccess(String response);
+    void NotificationCountError(String response);
 }

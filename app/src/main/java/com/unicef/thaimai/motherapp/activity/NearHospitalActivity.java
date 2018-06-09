@@ -13,6 +13,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -42,7 +43,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NearHospitalActivity extends AppCompatActivity implements LocationUpdateViews, MakeCallInterface {
+public class NearHospitalActivity extends AppCompatActivity implements LocationUpdateViews, MakeCallInterface{
 
     private static final int MAKE_CALL_PERMISSION_REQUEST_CODE = 1;
 

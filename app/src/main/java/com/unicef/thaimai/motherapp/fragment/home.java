@@ -3,10 +3,12 @@ package com.unicef.thaimai.motherapp.fragment;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -16,6 +18,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,25 +30,38 @@ import android.widget.Toast;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
+import com.unicef.thaimai.motherapp.Interface.MakeCallInterface;
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.GetUserInfoPresenter;
+import com.unicef.thaimai.motherapp.Presenter.PrimaryRegisterPresenter;
 import com.unicef.thaimai.motherapp.R;
+import com.unicef.thaimai.motherapp.activity.Login;
 import com.unicef.thaimai.motherapp.activity.NearHospitalActivity;
 //import com.unicef.thaimai.motherapp.bradcastReceiver.ConnectivityReceiver;
+import com.unicef.thaimai.motherapp.activity.PrimaryRegister;
+import com.unicef.thaimai.motherapp.activity.PrimaryRegisterView;
 import com.unicef.thaimai.motherapp.activity.ProfileActivity;
+import com.unicef.thaimai.motherapp.app.RealmController;
 import com.unicef.thaimai.motherapp.constant.Apiconstants;
 import com.unicef.thaimai.motherapp.constant.AppConstants;
+import com.unicef.thaimai.motherapp.realmDbModelClass.HomeRealmModel;
+import com.unicef.thaimai.motherapp.realmDbModelClass.PrimaryRegisterRealmModel;
+import com.unicef.thaimai.motherapp.utility.CheckNetwork;
 import com.unicef.thaimai.motherapp.utility.RoundedTransformation;
 import com.unicef.thaimai.motherapp.view.LoginViews;
+import com.unicef.thaimai.motherapp.view.PrimaryRegisterViews;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import io.realm.Realm;
+import io.realm.RealmResults;
+
 import static android.content.Context.MODE_PRIVATE;
 
 
-public class home extends Fragment implements LoginViews, View.OnClickListener {
+public class home extends Fragment implements LoginViews, View.OnClickListener, MakeCallInterface, PrimaryRegisterViews {
 
     TextView txt_username, picme_id, txt_age, txt_an_risk,txt_pn_risk,txt_gst_week,txt_weight,
             txt_next_visit,txt_lmp_date,txt_edd_date,txt_husb_name,
@@ -70,8 +86,15 @@ public class home extends Fragment implements LoginViews, View.OnClickListener {
 
     GetUserInfoPresenter getUserInfoPresenter;
 
+    PrimaryRegisterPresenter primaryRegisterPresenter;
+    PrimaryRegisterRealmModel primaryRegisterRealmModel;
+
     Activity mActivity;
     private static final int MAKE_CALL_PERMISSION_REQUEST_CODE = 1;
+
+    Realm realm;
+    boolean isoffline = false;
+    CheckNetwork checkNetwork;
 
     public static home newInstance()
     {
@@ -87,6 +110,7 @@ public class home extends Fragment implements LoginViews, View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
          View view = inflater.inflate(R.layout.fragment_home, container, false);
+        realm = RealmController.with(getActivity()).getRealm();
          initUI(view);
          checkConnection();
          onClickListner();
@@ -108,6 +132,14 @@ public class home extends Fragment implements LoginViews, View.OnClickListener {
 //        showSnack(isConnected);
     }
 
+    private void primarydetails() {
+        RealmResults<HomeRealmModel> homeRealmModels = realm.where(HomeRealmModel.class).findAll();
+        Log.e("Realm size ---->", homeRealmModels.size() + "");
+        for (int i=0; i<=homeRealmModels.size();i++) {
+            primaryRegisterPresenter.getAllMotherPrimaryRegistration(preferenceData.getPicmeId());
+        }
+    }
+
     private void showSnack(boolean isConnected) {
         if (isConnected){
             txt_no_network.setVisibility(View.GONE);
@@ -119,9 +151,8 @@ public class home extends Fragment implements LoginViews, View.OnClickListener {
 
 
     private void initUI(View view) {
-
+        checkNetwork = new CheckNetwork(getActivity());
         preferenceData = new PreferenceData(getActivity());
-        context = getActivity();
         editor = getActivity().getSharedPreferences(AppConstants.PREF_NAME, MODE_PRIVATE).edit();
 
         strname = preferenceData.getMotherName();
@@ -132,8 +163,23 @@ public class home extends Fragment implements LoginViews, View.OnClickListener {
         pDialog.setCancelable(false);
         pDialog.setMessage("Please Wait ...");
         getUserInfoPresenter =new GetUserInfoPresenter(getActivity().getApplicationContext(),this);
-       Log.e("PICME_ID",preferenceData.getPicmeId());
-        getUserInfoPresenter.getUserInfo(strpicmeId);
+        primaryRegisterPresenter = new PrimaryRegisterPresenter(this, getActivity());
+        context = getActivity();
+        Log.e("PICME_ID",preferenceData.getPicmeId());
+        PackageInfo packageInfo = null;
+        String version_name = "Latest";
+        int version_code = 3;
+        String appversion = String.valueOf(version_code);
+
+        try {
+            packageInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
+            version_name = packageInfo.versionName;
+            version_code = packageInfo.versionCode;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
         getActivity().setTitle("Dashboard");
         txt_username = (TextView) view.findViewById(R.id.txt_username);
         picme_id = (TextView) view.findViewById(R.id.txt_picme_id);
@@ -144,7 +190,7 @@ public class home extends Fragment implements LoginViews, View.OnClickListener {
         txt_lmp_date = (TextView) view.findViewById(R.id.txt_lmp_date);
         txt_edd_date = (TextView) view.findViewById(R.id.txt_edd_date);
         txt_an_risk = (TextView) view.findViewById(R.id.txt_an_risk);
-        txt_pn_risk = (TextView) view.findViewById(R.id.txt_an_risk);
+        txt_pn_risk = (TextView) view.findViewById(R.id.txt_pn_risk);
 
         txt_husb_name = (TextView) view.findViewById(R.id.txt_husb_name);
 //        txt_husb_mobile_number = (TextView) view.findViewById(R.id.txt_husb_mobile_number);
@@ -172,10 +218,25 @@ public class home extends Fragment implements LoginViews, View.OnClickListener {
         txt_username .setText(strname);
         txt_age.setText(strage);
 
+        if (checkNetwork.isNetworkAvailable()) {
+            getUserInfoPresenter.getUserInfo(strpicmeId, appversion);
+        } else {
+//            Log.w(home.class.getSimpleName(), "Is" + checkNetwork.isNetworkAvailable());
+//            startActivity(new Intent(getActivity(), NoInternetConnectionActivity.class));
+            isoffline = true;
+        }
 
-//        txt_no_network = (TextView) view.findViewById(R.id.txt_no_network);
+        if (isoffline) {
+            showOffline();
+        } else {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setMessage("Record Not Found");
+            builder.create();
+        }
 
     }
+
+
 
     private void onClickListner() {
         img_call_husb.setOnClickListener(this);
@@ -192,6 +253,93 @@ public class home extends Fragment implements LoginViews, View.OnClickListener {
     @Override
     public void hideProgress() {
         pDialog.hide();
+    }
+
+    @Override
+    public void getAllMotherPrimaryRegisterSuccess(String response) {
+        primaryDetailsStoreinRealm(response);
+    }
+
+    private void primaryDetailsStoreinRealm(String response) {
+        Log.e(PrimaryRegister.class.getSimpleName(), "Response success" + response);
+        try {
+            JSONObject jObj = new JSONObject(response);
+            String status = jObj.getString("status");
+            String message = jObj.getString("message");
+            if(status.equalsIgnoreCase("1")) {
+                RealmResults<PrimaryRegisterRealmModel> primaryRegisterRealmModels = realm.where(PrimaryRegisterRealmModel.class).findAll();
+                Log.e("Realm size ---->", primaryRegisterRealmModels.size() + "");
+                realm.executeTransaction(new Realm.Transaction() {
+                    @Override
+                    public void execute(Realm realm) {
+                        realm.delete(PrimaryRegisterRealmModel.class);
+                    }
+                });
+                Log.d("message---->",message);
+
+                realm.beginTransaction();
+                primaryRegisterRealmModel = realm.createObject(PrimaryRegisterRealmModel.class);
+                primaryRegisterRealmModel.setMName(jObj.getString("mName"));
+                primaryRegisterRealmModel.setMAge(jObj.getString("mAge"));
+                primaryRegisterRealmModel.setMLMP(jObj.getString("mLMP"));
+                primaryRegisterRealmModel.setMEDD(jObj.getString("mEDD"));
+                primaryRegisterRealmModel.setMMotherMobile(jObj.getString("mMotherMobile"));
+                primaryRegisterRealmModel.setMHusbandMobile(jObj.getString("mHusbandMobile"));
+                primaryRegisterRealmModel.setMMotherOccupation(jObj.getString("mMotherOccupation"));
+                primaryRegisterRealmModel.setMHusbandOccupation(jObj.getString("mHusbandOccupation"));
+                primaryRegisterRealmModel.setMAgeatMarriage(jObj.getString("mAgeatMarriage"));
+                primaryRegisterRealmModel.setMConsanguineousMarraige(jObj.getString("mConsanguineousMarraige"));
+                primaryRegisterRealmModel.setMHistoryIllness(jObj.getString("mHistoryIllness"));
+                primaryRegisterRealmModel.setMHistoryIllnessFamily(jObj.getString("mHistoryIllnessFamily"));
+                primaryRegisterRealmModel.setMAnySurgeryBefore(jObj.getString("mAnySurgeryBefore"));
+                primaryRegisterRealmModel.setMUseTobacco(jObj.getString("mUseTobacco"));
+                primaryRegisterRealmModel.setMUseAlcohol(jObj.getString("mUseAlcohol"));
+                primaryRegisterRealmModel.setMAnyMeditation(jObj.getString("mAnyMeditation"));
+                primaryRegisterRealmModel.setMAllergicToanyDrug(jObj.getString("mAllergicToanyDrug"));
+                primaryRegisterRealmModel.setMHistroyPreviousPreganancy(jObj.getString("mHistroyPreviousPreganancy"));
+                primaryRegisterRealmModel.setMLscsDone(jObj.getString("mLscsDone"));
+                primaryRegisterRealmModel.setMAnyComplecationDuringPreganancy(jObj.getString("mAnyComplecationDuringPreganancy"));
+                primaryRegisterRealmModel.setMPresentPreganancyG(jObj.getString("mPresentPreganancyG"));
+                primaryRegisterRealmModel.setMPresentPreganancyP(jObj.getString("mPresentPreganancyP"));
+                primaryRegisterRealmModel.setMPresentPreganancyA(jObj.getString("mPresentPreganancyA"));
+                primaryRegisterRealmModel.setMPresentPreganancyL(jObj.getString("mPresentPreganancyL"));
+                primaryRegisterRealmModel.setMRegistrationWeek(jObj.getString("mRegistrationWeek"));
+                primaryRegisterRealmModel.setMANTT1(jObj.getString("mANTT1"));
+                primaryRegisterRealmModel.setMANTT2(jObj.getString("mANTT2"));
+                primaryRegisterRealmModel.setMIFAStateDate(jObj.getString("mIFAStateDate"));
+                primaryRegisterRealmModel.setMHeight(jObj.getString("mHeight"));
+                primaryRegisterRealmModel.setMBloodGroup(jObj.getString("mBloodGroup"));
+                primaryRegisterRealmModel.setMHIV(jObj.getString("mHIV"));
+                primaryRegisterRealmModel.setMVDRL(jObj.getString("mVDRL"));
+                primaryRegisterRealmModel.setMHepatitis(jObj.getString("mHepatitis"));
+                primaryRegisterRealmModel.setHBloodGroup(jObj.getString("hBloodGroup"));
+                primaryRegisterRealmModel.setHVDRL(jObj.getString("hVDRL"));
+                primaryRegisterRealmModel.setHHIV(jObj.getString("hHIV"));
+                primaryRegisterRealmModel.setHHepatitis(jObj.getString("hHepatitis"));
+                realm.commitTransaction();
+            }else{
+                Log.d("message---->",message);
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
+    public void getAllMotherPrimaryRegisterFailiur(String response) {
+
+    }
+
+    @Override
+    public void postDataSuccess(String response) {
+
+    }
+
+    @Override
+    public void postDataFailiure(String response) {
+
     }
 
     @Override
@@ -212,69 +360,199 @@ public class home extends Fragment implements LoginViews, View.OnClickListener {
         }
     }
 
-    @Override
-    public void showPickmeResult(String response) {
-        JSONObject jObj = null;
-        try {
+    private void showOffline() {
+        Log.e(home.class.getSimpleName(),"your app is now OFF LINE");
+        realm.beginTransaction();
+        RealmResults<HomeRealmModel> homeRealmModels = realm.where(HomeRealmModel.class).findAll();
+        for(int i=0; i < homeRealmModels.size();i++){
+            HomeRealmModel homeRealmModel = homeRealmModels.get(i);
+            txt_lmp_date.setText(homeRealmModel.getMLMP());
+            txt_edd_date.setText(homeRealmModel.getMEDD());
+            txt_age.setText(preferenceData.getMotherAge());
+            txt_an_risk.setText(homeRealmModel.getMRiskStatus());
+            txt_weight.setText(homeRealmModel.getMWeight());
+            txt_husb_name.setText(homeRealmModel.getMHusbandName());
+            txt_gst_week.setText(preferenceData.getGstWeek());
+            txt_next_visit.setText(homeRealmModel.getANnextVisit());
+            str_mobile_number_hsbn = homeRealmModel.getMHusbandMobile();
+            txt_vhn_name.setText(homeRealmModel.getVhnName());
+            str_mobile_number_vhn = homeRealmModel.getVhnMobile();
+            txt_aww_name.setText(homeRealmModel.getAwwName());
+            str_mobile_number_aww = homeRealmModel.getAwwMobile();
+            txt_phc_name.setText(homeRealmModel.getPhcName());
+            str_mobile_number_phc = homeRealmModel.getPhcMobile();
+            str_mPhoto = homeRealmModel.getMPhoto();
 
-            jObj = new JSONObject(response);
-            txt_lmp_date.setText(jObj.getString("mLMP"));
-            txt_edd_date.setText(jObj.getString("mEDD"));
-            txt_age.setText(jObj.getString("mAge"));
-            txt_an_risk.setText(jObj.getString("mRiskStatus"));
-            txt_weight.setText(jObj.getString("mWeight"));
-            txt_husb_name.setText(jObj.getString("mHusbandName"));
-            txt_gst_week.setText(jObj.getString("mGesWeek"));
-            txt_next_visit.setText(jObj.getString("ANnextVisit"));
+                if(TextUtils.isEmpty(str_mPhoto)){
+                    cardview_image.setImageResource(R.drawable.girl_1);
+                }else{
+                    Log.d("mphoto-->",Apiconstants.PHOTO_URL+str_mPhoto);
 
+                    Picasso.with(context)
+                            .load(Apiconstants.PHOTO_URL + str_mPhoto)
+                            .placeholder(R.drawable.girl_1)
+                            .fit()
+                            .centerCrop()
+                            .memoryPolicy(MemoryPolicy.NO_CACHE)
+                            .networkPolicy(NetworkPolicy.NO_CACHE)
+                            .transform(new RoundedTransformation(90,4))
+                            .error(R.drawable.girl_1)
+                            .into(cardview_image);
+                }
 
-            preferenceData.setGstWeek(jObj.getString("mGesWeek"));
-
-            str_mobile_number_hsbn =jObj.getString("mHusbandMobile");
-//            txt_husb_mobile_number.setText(str_mobile_number_hsbn);
-            txt_vhn_name.setText(jObj.getString("vhnName"));
-            str_mobile_number_vhn =jObj.getString("vhnMobile");
-//            txt_vhn_mobile_number.setText(str_mobile_number_vhn);
-
-
-            txt_aww_name.setText(jObj.getString("awwName"));
-            str_mobile_number_aww = jObj.getString("awwMobile");
-//            txt_aww_mobile_number.setText(str_mobile_number_aww);
-            txt_phc_name.setText(jObj.getString("phcName"));
-            str_mobile_number_phc = jObj.getString("phcMobile");
-//            txt_phc_mobile_number.setText(str_mobile_number_phc);
-            str_mPhoto = jObj.getString("mPhoto");
-
-            strDeliveryDate = jObj.getString("deleveryStatus");
+            strDeliveryDate = homeRealmModel.getDeleveryStatus();
             if(strDeliveryDate.equalsIgnoreCase("1")){
                 card_pn_block.setVisibility(View.VISIBLE);
-                JSONObject  jsonObject = jObj.getJSONObject("PNnextVisit");
-                    txt_pn_risk.setText(jObj.getString("mRiskStatus"));
-                    txt_delivery_date.setText(jsonObject.getString("deleveryDate"));
-                    txt_birth_weight.setText(jsonObject.getString("childWeight"));
-                    txt_type_delivery.setText(jsonObject.getString("deleveryType"));
-                    txt_maturity.setText(jsonObject.getString("meaturityWeeks"));
-                    txt_pn_next_visit.setText(jsonObject.getString("pnVisit"));
+                txt_pn_risk.setText(homeRealmModel.getMRiskStatus());
+                txt_delivery_date.setText(homeRealmModel.getDeleveryDate());
+                txt_birth_weight.setText(homeRealmModel.getdBirthWeight());
+                txt_type_delivery.setText(homeRealmModel.getDeleveryType());
+                txt_maturity.setText(homeRealmModel.getMeaturityWeeks());
+                txt_pn_next_visit.setText(homeRealmModel.getPnVisit());
+
             }
             else{
                 card_pn_block.setVisibility(View.GONE);
             }
-            Log.d("mphoto-->",Apiconstants.PHOTO_URL+str_mPhoto);
 
-            Picasso.with(context)
-                    .load(Apiconstants.PHOTO_URL + str_mPhoto)
-                    .placeholder(R.drawable.girl_1)
-                    .fit()
-                    .centerCrop()
-                    .memoryPolicy(MemoryPolicy.NO_CACHE)
-                    .networkPolicy(NetworkPolicy.NO_CACHE)
-                    .transform(new RoundedTransformation(90,4))
-                    .error(R.drawable.girl_1)
-                    .into(cardview_image);
+        }
+        realm.commitTransaction();
+    }
 
+    @Override
+    public void showPickmeResult(String response) {
+        Log.e(home.class.getSimpleName(), "Response success" + response);
+        try {
+            JSONObject jObj = new JSONObject(response);
+            String status = jObj.getString("status");
+            String message = jObj.getString("message");
+            if(status.equalsIgnoreCase("1")){
+                RealmResults<HomeRealmModel> homeRealmModels = realm.where(HomeRealmModel.class).findAll();
+                Log.e("Realm size ---->", homeRealmModels.size() + "");
+                if(homeRealmModels.size() != 0){
+                    realm.executeTransaction(new Realm.Transaction() {
+                        @Override
+                        public void execute(Realm realm) {
+                            realm.delete(HomeRealmModel.class);
+                        }
+                    });
+                }else{
+                    Log.e("Realm size ---->", homeRealmModels.size() + "");
+                }
+                Log.e("After Realm size ---->", homeRealmModels.size() + "");
+                realm.beginTransaction();
+                HomeRealmModel homeRealmModel = realm.createObject(HomeRealmModel.class);
+                homeRealmModel.setPicmeId(jObj.getString("picmeId"));
+                homeRealmModel.setMLMP(jObj.getString("mLMP"));
+                homeRealmModel.setMEDD(jObj.getString("mEDD"));
+                homeRealmModel.setMAge(Integer.parseInt(jObj.getString("mAge")));
+                homeRealmModel.setMRiskStatus(jObj.getString("mRiskStatus"));
+                homeRealmModel.setMWeight(jObj.getString("mWeight"));
+                homeRealmModel.setMHusbandName(jObj.getString("mHusbandName"));
+                homeRealmModel.setMGesWeek(jObj.getString("mGesWeek"));
+                homeRealmModel.setANnextVisit(jObj.getString("ANnextVisit"));
+                homeRealmModel.setMHusbandMobile(jObj.getString("mHusbandMobile"));
+                homeRealmModel.setVhnName(jObj.getString("vhnName"));
+                homeRealmModel.setVhnMobile(jObj.getString("vhnMobile"));
+                homeRealmModel.setAwwName(jObj.getString("awwName"));
+                homeRealmModel.setAwwMobile(jObj.getString("awwMobile"));
+                homeRealmModel.setPhcName(jObj.getString("phcName"));
+                homeRealmModel.setPhcMobile(jObj.getString("phcMobile"));
+
+                if(jObj.getString("mPhoto").equalsIgnoreCase("null")){
+                    homeRealmModel.setMPhoto("");
+                    preferenceData.setMotherPhoto("");
+                }else{
+                    homeRealmModel.setMPhoto(jObj.getString("mPhoto"));
+                    preferenceData.setMotherPhoto(jObj.getString("mPhoto"));
+                }
+
+                homeRealmModel.setDeleveryStatus(jObj.getString("deleveryStatus"));
+                if (jObj.getString("deleveryStatus").equalsIgnoreCase("1")) {
+                    card_pn_block.setVisibility(View.VISIBLE);
+                    JSONObject jsonObject = jObj.getJSONObject("PNnextVisit");
+                    homeRealmModel.setMRiskStatus(jObj.getString("mRiskStatus"));
+                    homeRealmModel.setDeleveryDate(jsonObject.getString("deleveryDate"));
+                    homeRealmModel.setdBirthWeight(jsonObject.getString("childWeight"));
+                    homeRealmModel.setDeleveryType(jsonObject.getString("deleveryType"));
+                    homeRealmModel.setMeaturityWeeks(jsonObject.getString("meaturityWeeks"));
+                    homeRealmModel.setPnVisit(jsonObject.getString("pnVisit"));
+                }
+                else{
+                    card_pn_block.setVisibility(View.GONE);
+                }
+                realm.commitTransaction();
+            }else{
+                if(status.equalsIgnoreCase("0")){
+                    preferenceData.setLogin(false);
+                    startActivity(new Intent(getActivity(), Login.class));
+                }
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        setValueToUI();
+    }
+
+    private void setValueToUI() {
+        Log.e(home.class.getSimpleName(),"your app is now ON LINE");
+
+        realm.beginTransaction();
+        RealmResults<HomeRealmModel> homeRealmModels = realm.where(HomeRealmModel.class).findAll();
+        for(int i=0; i < homeRealmModels.size();i++){
+            HomeRealmModel homeRealmModel = homeRealmModels.get(i);
+            txt_lmp_date.setText(homeRealmModel.getMLMP());
+            txt_edd_date.setText(homeRealmModel.getMEDD());
+            txt_age.setText(homeRealmModel.getMAge()+"");
+            txt_an_risk.setText(homeRealmModel.getMRiskStatus());
+            txt_weight.setText(homeRealmModel.getMWeight());
+            txt_husb_name.setText(homeRealmModel.getMHusbandName());
+            txt_gst_week.setText(homeRealmModel.getMGesWeek()+"");
+            txt_next_visit.setText(homeRealmModel.getANnextVisit());
+            str_mobile_number_hsbn = homeRealmModel.getMHusbandMobile();
+            txt_vhn_name.setText(homeRealmModel.getVhnName());
+            str_mobile_number_vhn = homeRealmModel.getVhnMobile();
+            txt_aww_name.setText(homeRealmModel.getAwwName());
+            str_mobile_number_aww = homeRealmModel.getAwwMobile();
+            txt_phc_name.setText(homeRealmModel.getPhcName());
+            str_mobile_number_phc = homeRealmModel.getPhcMobile();
+            str_mPhoto = homeRealmModel.getMPhoto();
+//            str_mPhoto = preferenceData.getMotherPhoto();
+
+            if(TextUtils.isEmpty(str_mPhoto)){
+                cardview_image.setImageResource(R.drawable.girl_1);
+            }else{
+                Log.d("mphoto-->",Apiconstants.PHOTO_URL+str_mPhoto);
+
+                Picasso.with(context)
+                        .load(Apiconstants.PHOTO_URL + str_mPhoto)
+                        .placeholder(R.drawable.girl_1)
+                        .fit()
+                        .centerCrop()
+                        .memoryPolicy(MemoryPolicy.NO_CACHE)
+                        .networkPolicy(NetworkPolicy.NO_CACHE)
+                        .transform(new RoundedTransformation(90,4))
+                        .error(R.drawable.girl_1)
+                        .into(cardview_image);
+            }
+
+            strDeliveryDate = homeRealmModel.getDeleveryStatus();
+            if(strDeliveryDate.equalsIgnoreCase("1")){
+                card_pn_block.setVisibility(View.VISIBLE);
+                txt_pn_risk.setText(homeRealmModel.getMRiskStatus());
+                txt_delivery_date.setText(homeRealmModel.getDeleveryDate());
+                txt_birth_weight.setText(homeRealmModel.getdBirthWeight());
+                txt_type_delivery.setText(homeRealmModel.getDeleveryType());
+                txt_maturity.setText(homeRealmModel.getMeaturityWeeks());
+                txt_pn_next_visit.setText(homeRealmModel.getPnVisit());
+
+            }
+            else{
+                card_pn_block.setVisibility(View.GONE);
+            }
+
+        }
+        realm.commitTransaction();
     }
 
     @Override

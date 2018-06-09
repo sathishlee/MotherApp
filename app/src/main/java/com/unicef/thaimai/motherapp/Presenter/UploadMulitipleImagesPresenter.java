@@ -88,7 +88,7 @@ public class UploadMulitipleImagesPresenter implements ImageUploadInteractor {
                 Map<String, DataPart> params = new HashMap<>();
                 long imagename = System.currentTimeMillis();
                 for (int i=0;i<bitmap.size();i++) {
-                    params.put("ReportPhoto["+i+"]", new DataPart(imagename + ".png", getFileDataFromDrawable(bitmap.get(i))));
+                    params.put("ReportPhoto["+i+"]", new DataPart(imagename + ".jpg", getFileDataFromDrawable(bitmap.get(i))));
                     Log.d("ReportPhoto ", i+"--->"+String.valueOf(bitmap.get(i)));
                 }
                 return params;
@@ -97,7 +97,7 @@ public class UploadMulitipleImagesPresenter implements ImageUploadInteractor {
 
             private byte[] getFileDataFromDrawable(Bitmap bitmap) {
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG, 80, byteArrayOutputStream);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 60, byteArrayOutputStream);
                 return byteArrayOutputStream.toByteArray();
             }
         };

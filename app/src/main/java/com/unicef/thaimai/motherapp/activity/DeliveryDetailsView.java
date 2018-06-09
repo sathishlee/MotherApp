@@ -39,7 +39,7 @@ public class DeliveryDetailsView extends AppCompatActivity implements DeliveryEn
 
     ProgressDialog progressDialog;
 
-    FloatingActionButton fab_edt_details;
+//    FloatingActionButton fab_edt_details;
     DeliveryEntryPresenter deliveryEntryPresenter;
     PreferenceData preferenceData;
     @Override
@@ -47,18 +47,18 @@ public class DeliveryDetailsView extends AppCompatActivity implements DeliveryEn
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delivery_details_view);
         initUI();
-        onClickListner();
+//        onClickListner();
         showActionBar();
 
     }
 
     private void onClickListner() {
-        fab_edt_details.setOnClickListener(new View.OnClickListener() {
+        /*fab_edt_details.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(),DeliveryDetailsActivityEntry.class));
             }
-        });
+        });*/
     }
 
     private void showActionBar() {
@@ -77,7 +77,7 @@ public class DeliveryDetailsView extends AppCompatActivity implements DeliveryEn
        deliveryEntryPresenter.deliveryDetails(preferenceData.getPicmeId(), preferenceData.getMId(), preferenceData.getDid());
        txt_no_records_found = (TextView) findViewById(R.id.txt_no_records_found);
        delivery_content = (FrameLayout) findViewById(R.id.delivery_content);
-       fab_edt_details = (FloatingActionButton) findViewById(R.id.fab_edt_details);
+//       fab_edt_details = (FloatingActionButton) findViewById(R.id.fab_edt_details);
        txt_delivery_date = (TextView) findViewById(R.id.txt_delivery_date);
        txt_delivery_time = (TextView) findViewById(R.id.txt_delivery_time);
        txt_delivery_place = (TextView) findViewById(R.id.txt_delivery_place);

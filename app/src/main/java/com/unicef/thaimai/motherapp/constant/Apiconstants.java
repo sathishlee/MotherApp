@@ -86,7 +86,7 @@ public class Apiconstants {
 
     public static final String POST_NOTIFICATION_COUNT= "mother/mNotificationCount";
 
-    public static final String POST_NOTIFICATION_LIST= "mother/mNotificationDetails";
+    public static final String POST_NOTIFICATION_LIST= "mother/mMotherAlerts";
 
     public static final String HEALTH_TIPS_VIDEO= "mother/HealthTips";
 

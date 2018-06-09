@@ -69,6 +69,7 @@ public class AppConstants {
     //Store First Time While Login
     public static final String PICME_ID_CHECK = "picmeId";
     public static final String MOTHER_DOB = "DOB";
+    public static final String MOTHER_PHOTO = "mPhoto";
 
 
 

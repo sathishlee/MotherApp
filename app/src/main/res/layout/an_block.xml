@@ -33,7 +33,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Before Delivery"
+                    android:text="@string/before_delivery"
                     android:textSize="@dimen/text_label"
                     android:textAlignment="textStart"
                     android:textColor="#2F80ED"
@@ -68,7 +68,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginEnd="5dp"
-                    android:text="NO RISK"
+                    android:text="@string/no_risk"
                     android:textSize="@dimen/text_secondary"
                     android:layout_gravity="end"
                     android:textColor="#219653"
@@ -113,7 +113,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Gest Age"
+                android:text="@string/gest_age"
                 android:textSize="@dimen/text_primary"
                 android:textAlignment="textStart"
                 android:textColor="@color/secondary"
@@ -141,7 +141,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:textSize="@dimen/text_primary"
-                android:text="Weight"
+                android:text="@string/weight"
                 android:layout_gravity="start"
                 android:textColor="@color/secondary"
                 android:textStyle="bold" />
@@ -176,7 +176,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="LMP Date"
+                    android:text="@string/lmp_date"
                     android:textSize="@dimen/text_primary"
                     android:textAlignment="textStart"
                     android:textColor="@color/secondary"
@@ -203,7 +203,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
-                    android:text="EDD Date"
+                    android:text="@string/edd_date"
                     android:textSize="@dimen/text_primary"
                     android:layout_gravity="start"
                     android:textColor="@color/secondary"
@@ -255,7 +255,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8.0dip"
                     android:layout_marginRight="8.0dip"
-                    android:text="Next Visit : " />
+                    android:text="@string/next_visit" />
 
             <TextView
                 android:id="@+id/txt_next_visit"

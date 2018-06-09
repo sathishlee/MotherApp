@@ -65,14 +65,18 @@ public class VisitRecordsSingleAdapter extends RecyclerView.Adapter<VisitRecords
                     .centerCrop()
                     .memoryPolicy(MemoryPolicy.NO_CACHE)
                     .networkPolicy(NetworkPolicy.NO_CACHE)
-                    .transform(new RoundedTransformation(90, 4))
                     .error(R.drawable.no_image)
                     .into(imageHolder.itemImage);
         }
         else{
             imageHolder.itemImage.setImageResource(R.drawable.no_image);
         }
-//        imageHolder
+        imageHolder.itemImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                new FullImageViewActivity(context, R.layout.activity_full_image_view,v,Apiconstants.VISIT_REPORTS_URL+preferenceData.getPicmeId(),null);
+            }
+        });
     }
 
     @Override

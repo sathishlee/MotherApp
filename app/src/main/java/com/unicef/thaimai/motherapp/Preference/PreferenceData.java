@@ -33,7 +33,15 @@ public class PreferenceData {
     public void storePicmeInfo(String picmeid, String DOB){
         sharedPreferences.edit().putString(AppConstants.PICME_ID_CHECK,picmeid).commit();
         sharedPreferences.edit().putString(AppConstants.MOTHER_DOB,DOB).commit();
+//        sharedPreferences.edit().putString(AppConstants.MOTHER_PHOTO,mPhoto).commit();
     }
+    public String getMotherPhoto(){
+        return sharedPreferences.getString(AppConstants.MOTHER_PHOTO,"");
+    }
+    public void setMotherPhoto(String mPhoto){
+        sharedPreferences.edit().putString(AppConstants.MOTHER_PHOTO, mPhoto).commit();
+    }
+
     public String getCheckPicmeID(){
         return sharedPreferences.getString(AppConstants.PICME_ID_CHECK,"");
     }
@@ -41,7 +49,9 @@ public class PreferenceData {
         return sharedPreferences.getString(AppConstants.MOTHER_DOB,"");
     }
 
-    public void storeUserInfo(String picmeid,String mid,String name, String age, String status, String phcId, String vhnId, String awwId,String gstWeek,String vhnMobileNumber){
+    public void storeUserInfo(String picmeid,String mid,String name, String age, String status,
+                              String phcId, String vhnId, String awwId,String gstWeek,
+                              String vhnMobileNumber){
         sharedPreferences.edit().putString(AppConstants.PICME_ID, picmeid).commit();
         sharedPreferences.edit().putString(AppConstants.M_ID, mid).commit();
         sharedPreferences.edit().putString(AppConstants.MOTHER_NAME, name).commit();
@@ -52,6 +62,7 @@ public class PreferenceData {
         sharedPreferences.edit().putString(AppConstants.AWW_ID,awwId).commit();
         sharedPreferences.edit().putString(AppConstants.GST_WEEK, gstWeek).commit();
         sharedPreferences.edit().putString(AppConstants.VHN_MOBILE_NUMBER, vhnMobileNumber).commit();
+//        sharedPreferences.edit().putString(AppConstants.MOTHER_PHOTO, mPhoto).commit();
 //        sharedPreferences.edit().putString(AppConstants.DEVICE_ID,tokenId).commit();
         Log.e("PICME_ID",sharedPreferences.getString(AppConstants.PICME_ID,""));
         Log.e("MOTHER_NAME",sharedPreferences.getString(AppConstants.MOTHER_NAME,""));

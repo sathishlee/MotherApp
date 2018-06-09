@@ -9,7 +9,7 @@
         android:id="@+id/txt_no_records_found"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="NO RECORDES FOUND"
+        android:text="@string/no_records_found"
         android:layout_gravity="center"
         android:gravity="center"/>
 

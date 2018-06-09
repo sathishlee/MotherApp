@@ -35,7 +35,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Add Referral"
+                    android:text="@string/add_referral"
                     android:textAlignment="textStart"
                     android:textColor="#2F80ED"
                     android:textStyle="bold" />
@@ -82,7 +82,7 @@
                         <EditText
                             android:id="@+id/edt_date_of_referral_start"
                             android:layout_width="match_parent"
-                            android:hint="Date of Referral"
+                            android:hint="@string/date_of_referral"
                             android:textSize="@dimen/text_secondary"
                             android:inputType="date"
                             android:textColor="@color/secondary"
@@ -105,7 +105,7 @@
                         <EditText
                             android:id="@+id/edt_time_of_referral_start"
                             android:layout_width="match_parent"
-                            android:hint="Time of Referral"
+                            android:hint="@string/time_of_referral"
                             android:textSize="@dimen/text_secondary"
                             android:inputType="time"
                             android:textColor="@color/secondary"
@@ -130,7 +130,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Referred by"
+                android:text="@string/referred_by"
                 android:textColor="@color/secondary"
                 android:textSize="@dimen/text_field"
                 android:textStyle="bold"
@@ -160,7 +160,7 @@
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Referring Facility"
+                    android:text="@string/referring_facility"
                     android:textColor="@color/secondary"
                     android:textSize="@dimen/text_field"
                     android:textStyle="bold"
@@ -190,7 +190,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Facility Referred to"
+                android:text="@string/facility_referred_to"
                 android:textColor="@color/secondary"
                 android:textSize="@dimen/text_field"
                 android:textStyle="bold"
@@ -226,7 +226,7 @@
                     android:id="@+id/edt_diagnosis"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Diagnosis"
+                    android:hint="@string/diagnosis"
                     android:textSize="12.0sp"
                     android:layout_weight="1" />
 
@@ -259,7 +259,7 @@
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:text="Reason for referral"
+                        android:text="@string/reason_for_referral"
                         android:textColor="@color/secondary"
                         android:textSize="@dimen/text_field"
                         android:textStyle="bold"
@@ -313,7 +313,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Update Referral"
+                        android:text="@string/update_referral"
                         android:textAlignment="textStart"
                         android:textColor="#2F80ED"
                         android:textStyle="bold" />
@@ -360,7 +360,7 @@
                         <EditText
                             android:id="@+id/edt_date_of_referral_end"
                             android:layout_width="match_parent"
-                            android:hint="Date of Referral"
+                            android:hint="@string/date_of_referral"
                             android:textSize="@dimen/text_secondary"
                             android:inputType="date"
                             android:textColor="@color/secondary"
@@ -383,7 +383,7 @@
                             <EditText
                                 android:id="@+id/edt_time_of_referral_end"
                                 android:layout_width="match_parent"
-                                android:hint="Time of Referral"
+                                android:hint="@string/time_of_referral"
                                 android:textSize="@dimen/text_secondary"
                                 android:inputType="time"
                                 android:textColor="@color/secondary"
@@ -407,7 +407,7 @@
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Received by"
+                    android:text="@string/received_by"
                     android:textColor="@color/secondary"
                     android:textSize="@dimen/text_field"
                     android:textStyle="bold"
@@ -436,7 +436,7 @@
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Receiving Facility"
+                    android:text="@string/receiving_facility"
                     android:textColor="@color/secondary"
                     android:textSize="@dimen/text_field"
                     android:textStyle="bold"
@@ -474,7 +474,7 @@
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:text="In Labour"
+                        android:text="@string/in_labour"
                         android:textColor="@color/secondary"
                         android:textSize="@dimen/text_field"
                         android:textStyle="bold"
@@ -499,7 +499,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="12.0sp"
-                            android:text="No" />
+                            android:text="@string/no" />
 
                     </RadioGroup>
 
@@ -515,7 +515,7 @@
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:text="Admitted"
+                        android:text="@string/admitted"
                         android:textColor="@color/secondary"
                         android:textSize="@dimen/text_field"
                         android:textStyle="bold"
@@ -541,7 +541,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="12.0sp"
-                            android:text="No" />
+                            android:text="@string/no" />
 
                     </RadioGroup>
 

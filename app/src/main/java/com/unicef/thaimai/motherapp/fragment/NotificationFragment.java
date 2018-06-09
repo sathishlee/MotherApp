@@ -40,8 +40,6 @@ public class NotificationFragment extends Fragment implements NotificationViews 
     LinearLayoutManager mLayoutManager;
     RecyclerView mRecyclerView;
 
-    SwipeRefreshLayout mSwipeRefreshLayout;
-
     PreferenceData preferenceData;
     ProgressDialog pDialog;
 
@@ -56,15 +54,13 @@ public class NotificationFragment extends Fragment implements NotificationViews 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View  view = inflater.inflate(R.layout.fragment_notification, container, false);
+        View view = inflater.inflate(R.layout.fragment_notification, container, false);
         pDialog = new ProgressDialog(getActivity());
         pDialog.setCancelable(false);
         pDialog.setMessage("Please Wait ...");
@@ -72,51 +68,15 @@ public class NotificationFragment extends Fragment implements NotificationViews 
         mRecyclerView.setHasFixedSize(true);
         preferenceData = new PreferenceData(getActivity());
         notificationPresenter = new NotificationPresenter(getActivity(), this);
-        notificationPresenter.getNotificationList(preferenceData.getMId());
-        // use a linear layout manager
+        notificationPresenter.getNotificationList(preferenceData.getMId(), preferenceData.getPicmeId());
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
         moviesList = new ArrayList<>();
-        // specify an adapter (see also next example)
         mAdapter = new MyAdapter(moviesList);
         mRecyclerView.setAdapter(mAdapter);
-//        prepareMovieData();
-
         return view;
 
-
     }
-
-    private void prepareMovieData() {
-
-       /* movie = new NotificationModel("Notification Title 1", "Message Deatils", "02/05/2018");
-        moviesList.add(movie);
-
-        movie = new NotificationModel("Notification Title 2", "Message Deatils", "02/05/2018");
-        moviesList.add(movie);
-
-        movie = new NotificationModel("Notification Title 3", "Message Deatils", "02/05/2018");
-        moviesList.add(movie);
-
-        movie = new NotificationModel("Notification Title 4", "Message Deatils", "02/05/2018");
-
-        movie = new NotificationModel("Notification Title 5", "Message Deatils", "02/05/2018");
-        moviesList.add(movie);
-
-        movie = new NotificationModel("Notification Title 6", "Message Deatils", "02/05/2018");
-        moviesList.add(movie);
-
-        movie = new NotificationModel("Notification Title 7", "Message Deatils", "02/05/2018");
-        moviesList.add(movie);
-
-        movie = new NotificationModel("Notification Title 8", "Message Deatils", "02/05/2018");
-        moviesList.add(movie);
-*/
-
-
-//        mAdapter.notifyDataSetChanged();
-    }
-
 
     @Override
     public void showProgress() {
@@ -162,5 +122,14 @@ public class NotificationFragment extends Fragment implements NotificationViews 
     @Override
     public void NotificationResponseError(String response) {
         Log.d(NotificationFragment.class.getSimpleName(), "Notification List Error response" + response);
+    }
+
+    @Override
+    public void NotificationCountError(String response) {
+    }
+
+    @Override
+    public void NotificationCountSuccess(String response) {
+
     }
 }

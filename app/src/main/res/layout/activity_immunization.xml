@@ -42,7 +42,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Immunization Visit "
+                            android:text="@string/immunization_visit"
                             android:textAlignment="textStart"
                             android:textSize="@dimen/text_label"
                             android:textColor="#2F80ED"
@@ -101,7 +101,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Due Date"
+                                android:text="@string/due_date"
                                 android:textSize="@dimen/text_primary"
                                 android:textAlignment="textStart"
                                 android:textColor="#aaffffff"
@@ -143,7 +143,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="#aaffffff"
-                                android:text="Provided Date"
+                                android:text="@string/provided_date"
                                 android:textSize="@dimen/text_primary"
                                 android:layout_gravity="start"
                                 android:textStyle="bold" />
@@ -223,7 +223,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="OPV"
+                            android:text="@string/opv"
                             android:textSize="@dimen/text_primary"
                             android:textAlignment="textStart"
                             android:textColor="@color/secondary"
@@ -249,7 +249,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Pentavalent"
+                            android:text="@string/pentavalent"
                             android:textSize="@dimen/text_primary"
                             android:layout_gravity="start"
                             android:textColor="@color/secondary"
@@ -284,7 +284,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Rota"
+                            android:text="@string/rota"
                             android:textSize="@dimen/text_primary"
                             android:textAlignment="textStart"
                             android:textColor="@color/secondary"
@@ -310,7 +310,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="IPV"
+                            android:text="@string/ipv"
                             android:layout_gravity="start"
                             android:textSize="@dimen/text_primary"
                             android:textColor="@color/secondary"

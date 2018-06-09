@@ -36,7 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Thaimai App ism't available on this device."
+                android:text="@string/thaimai_app_ism_t_available_on_this_device"
                 android:textSize="20sp" />
 
 

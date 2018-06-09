@@ -1,5 +1,5 @@
-package com.unicef.thaimai.motherapp.broadCastReceivers;/*
-package com.unicef.thaimai.motherapp.bradcastReceiver;
+package com.unicef.thaimai.motherapp.broadCastReceivers;
+
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -8,13 +8,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 import com.unicef.thaimai.motherapp.app.MyApplication;
-
-
-*/
-/**
- * Created by sathish on 3/25/2018.
- *//*
-
 
 public class ConnectivityReceiver extends BroadcastReceiver {
     public static ConnectivityReceiverListener connectivityReceiverListener;
@@ -50,4 +43,3 @@ public class ConnectivityReceiver extends BroadcastReceiver {
         void onNetworkConnectionChanged(boolean isConnected);
     }
 }
-*/

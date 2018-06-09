@@ -2,6 +2,7 @@
 
     import android.app.DatePickerDialog;
     import android.app.ProgressDialog;
+    import android.content.Context;
     import android.content.Intent;
     import android.os.Bundle;
     import android.support.v7.app.ActionBar;
@@ -9,6 +10,7 @@
     import android.util.Log;
     import android.view.MenuItem;
     import android.view.View;
+    import android.view.inputmethod.InputMethodManager;
     import android.widget.AdapterView;
     import android.widget.Button;
     import android.widget.DatePicker;
@@ -23,12 +25,15 @@
     import com.unicef.thaimai.motherapp.Presenter.AddVisitRecordsPresenter;
     import com.unicef.thaimai.motherapp.R;
     import com.unicef.thaimai.motherapp.model.requestmodel.AddRecordRequestModel;
+    import com.unicef.thaimai.motherapp.utility.CheckNetwork;
     import com.unicef.thaimai.motherapp.view.AddRecordViews;
 
     import org.json.JSONException;
     import org.json.JSONObject;
 
+    import java.text.SimpleDateFormat;
     import java.util.Calendar;
+    import java.util.Locale;
 
 
     /**
@@ -50,26 +55,27 @@
                 strrbs, strfbs, strppbs, strgtt, strtsh, strurine_sugar, stralbumin, strfetus, strgestation_sac, strliquor, strplacenta,strPep="Not Selected";
 
        public static String strTotalVisitCount="0";
-        Calendar mCurrentDate;
-        int day, month, year, hour, minute, sec;
+       Calendar mCurrentDate;
+       int day, month, year, hour, minute, sec;
         //    edt_facility_other,edt_any_complaints_other--->gone
 
-            ProgressDialog pDialog;
-            AddVisitRecordsPresenter addVisitRecordsPresenter;
-            AddRecordRequestModel addRecordRequestModel;
-            PreferenceData preferenceData;
-
-                @Override
-                    protected void onCreate(Bundle savedInstanceState) {
-                        super.onCreate(savedInstanceState);
-                        setContentView(R.layout.add_report);
-                        showActionBar();
-                        initUI();
-                        onClickListner();
-                        OnItemSelectedListener();
+       ProgressDialog pDialog;
+       AddVisitRecordsPresenter addVisitRecordsPresenter;
+       AddRecordRequestModel addRecordRequestModel;
+       PreferenceData preferenceData;
+        CheckNetwork checkNetwork;
+        private SimpleDateFormat dateFormatter;
 
 
-                    }
+        @Override
+       protected void onCreate(Bundle savedInstanceState) {
+           super.onCreate(savedInstanceState);
+           setContentView(R.layout.add_report);
+           showActionBar();
+           initUI();
+           onClickListner();
+           OnItemSelectedListener();
+        }
 
         private void OnItemSelectedListener() {
             sp_type_of_visit.setOnItemSelectedListener(this);
@@ -83,6 +89,7 @@
         private void onClickListner() {
             btn_submit.setOnClickListener(this);
             upload_reports.setOnClickListener(this);
+            edt_date.setOnClickListener(this);
         }
 
         private void initUI() {
@@ -90,9 +97,15 @@
             pDialog.setCancelable(false);
             pDialog.setMessage("Please Wait ...");
             preferenceData = new PreferenceData(this);
+            checkNetwork = new CheckNetwork(this);
 
             addVisitRecordsPresenter = new AddVisitRecordsPresenter(AddRecords.this, this);
-            addVisitRecordsPresenter.getVisitCount(preferenceData.getPicmeId(),preferenceData.getMId());
+            if (checkNetwork.isNetworkAvailable()) {
+                addVisitRecordsPresenter.getVisitCount(preferenceData.getPicmeId(), preferenceData.getMId());
+            }else{
+                Toast.makeText(getApplicationContext(), "Check Internet Connection..." + checkNetwork.isNetworkAvailable(), Toast.LENGTH_LONG).show();
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            }
             edt_date =(EditText) findViewById(R.id.edt_date);
             sp_type_of_visit = (Spinner) findViewById(R.id.sp_type_of_visit);
             sp_facility = (Spinner) findViewById(R.id.sp_facility);
@@ -153,7 +166,11 @@
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.btn_submit:
-                    sendtoServer();
+                    if (checkNetwork.isNetworkAvailable()) {
+                        sendtoServer();
+                    }else{
+                        Toast.makeText(getApplicationContext(), "Your are offline, Please Try Again After Sometimes." + checkNetwork.isNetworkAvailable(), Toast.LENGTH_LONG).show();
+                    }
                     break;
                 case R.id.upload_reports:
                     startActivity(new Intent(getApplicationContext(),ImageSelectedActivity.class));
@@ -164,14 +181,24 @@
             }
         }
 
-        private void pickDate(final EditText setDateOfReferral) {
+        private void pickDate(final EditText edt_date) {
+
+            Calendar newCalendar = Calendar.getInstance();
+
             DatePickerDialog datePickerDialog = new DatePickerDialog(AddRecords.this, R.style.DatePickerDialogTheme, new DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                    monthOfYear = monthOfYear + 1;
-                    setDateOfReferral.setText(dayOfMonth + "-" + monthOfYear + "-" + year);
+                    Calendar newDate = Calendar.getInstance();
+                    newDate.set(year, monthOfYear, dayOfMonth);
+//                edtDob.setText(dayOfMonth + "-" + monthOfYear + "-" + year);
+                    dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
+
+                    edt_date.setText(dateFormatter.format(newDate.getTime()));
                 }
-            }, year, month, day);
+            }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
+            InputMethodManager imm =
+                    (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(edt_date.getWindowToken(), 0);
             datePickerDialog.show();
         }
 
@@ -310,7 +337,7 @@
                     break;
                 case R.id.sp_any_complaints:
                     strAnyComplaints = parent.getSelectedItem().toString();
-                    if (strAnyComplaints.equalsIgnoreCase("Others")) {
+                    if (strAnyComplaints.equalsIgnoreCase("Others (Specify)")) {
                         edt_any_complaints_other.setVisibility(View.VISIBLE);
                     }
                     else {
@@ -358,18 +385,23 @@
                 if (status.equalsIgnoreCase("1")){
                     Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                }else{
+                    Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                    if(msg.equalsIgnoreCase("Your account is Deactivated")){
+                        preferenceData.setLogin(false);
+                        startActivity(new Intent(getApplicationContext(), Login.class));
+                    }
                 }
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
-
         }
 
         @Override
         public void insertRecordFailiure(String response) {
-            Log.d(AddRecords.class.getSimpleName(), "Response Failiur-->" + response);
+            Log.d(AddRecords.class.getSimpleName(), "Response Failure-->" + response);
 
         }
 
@@ -380,7 +412,17 @@
                 JSONObject jsonObject =new JSONObject(response);
                 String status =jsonObject.getString("status");
                 String msg = jsonObject.getString("message");
-                strTotalVisitCount= jsonObject.getString("visitId");
+
+                if(status.equalsIgnoreCase("1")){
+                    strTotalVisitCount= jsonObject.getString("visitId");
+                }else {
+                    Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                }
+                if(msg.equalsIgnoreCase("Your account is Deactivated")){
+                    preferenceData.setLogin(false);
+                    startActivity(new Intent(getApplicationContext(), Login.class));
+                }
 
 
             } catch (JSONException e) {

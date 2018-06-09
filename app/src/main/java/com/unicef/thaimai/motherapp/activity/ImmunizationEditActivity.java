@@ -28,6 +28,7 @@ import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.constant.Apiconstants;
 import com.unicef.thaimai.motherapp.constant.AppConstants;
 import com.unicef.thaimai.motherapp.model.requestmodel.ImmunizationEntryRequestModel;
+import com.unicef.thaimai.motherapp.utility.CheckNetwork;
 import com.unicef.thaimai.motherapp.view.ImmunizationEntryView;
 
 import org.json.JSONException;
@@ -37,7 +38,8 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
-public class ImmunizationEditActivity extends AppCompatActivity implements View.OnClickListener, OnItemSelectedListener, ImmunizationEntryView {
+public class ImmunizationEditActivity extends AppCompatActivity implements View.OnClickListener,
+        OnItemSelectedListener, ImmunizationEntryView {
 
     Spinner sp_dose_number, sp_opv, sp_pentavalent, sp_rota, sp_ipv;
 
@@ -72,6 +74,7 @@ public class ImmunizationEditActivity extends AppCompatActivity implements View.
     int day, month, year, hour, minute, sec, value;
     String str_immu_id;
     public static String strImmuID="-1";
+    CheckNetwork checkNetwork;
 
     ProgressDialog pDialog;
 
@@ -88,7 +91,6 @@ public class ImmunizationEditActivity extends AppCompatActivity implements View.
     }
 
     public void showActionBar(){
-
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("Immunization Entry");
         actionBar.setHomeButtonEnabled(true);
@@ -101,8 +103,15 @@ public class ImmunizationEditActivity extends AppCompatActivity implements View.
         progressDialog.setCancelable(false);
         progressDialog.setMessage("Please Wait...");
         preferenceData = new PreferenceData(this);
+        checkNetwork = new CheckNetwork(this);
+
         immunizationEntryPresenter = new ImmunizationEntryPresenter(ImmunizationEditActivity.this, this);
-        immunizationEntryPresenter.immunizationID(preferenceData.getPicmeId(),preferenceData.getMId());
+        if (checkNetwork.isNetworkAvailable()) {
+            immunizationEntryPresenter.immunizationID(preferenceData.getPicmeId(), preferenceData.getMId());
+        }else{
+            Toast.makeText(getApplicationContext(), "Check Internet Connection..." + checkNetwork.isNetworkAvailable(), Toast.LENGTH_LONG).show();
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        }
 
         /*if (AppConstants.IMMUNIZATION_EDIT) {
             Log.e(ImmunizationEditActivity.class.getSimpleName(),"IS FROM Main"+AppConstants.IMMUNIZATION_EDIT);

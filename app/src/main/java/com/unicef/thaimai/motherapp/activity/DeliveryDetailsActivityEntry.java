@@ -3,6 +3,7 @@ package com.unicef.thaimai.motherapp.activity;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
@@ -12,6 +13,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -25,12 +27,15 @@ import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.DeliveryEntryPresenter;
 import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.model.requestmodel.DeliveryEntryRequestModel;
+import com.unicef.thaimai.motherapp.utility.CheckNetwork;
 import com.unicef.thaimai.motherapp.view.DeliveryEntryViews;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class DeliveryDetailsActivityEntry extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener, DeliveryEntryViews {
 
@@ -48,6 +53,9 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
 
     Button btn_delivery_submit;
 
+    private SimpleDateFormat dateFormatter;
+
+
     TextInputLayout til_delivery_date, til_delivery_time, til_infant_id, til_infant_weight, til_infant_height, til_new_born_date,
             til_bcg_date, til_opv_date, til_hepb_date;
 
@@ -56,6 +64,7 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
     DeliveryEntryRequestModel deliveryEntryRequestModel;
 
     PreferenceData preferenceData;
+    CheckNetwork checkNetwork;
 
     Calendar mCurrentDate;
     int day, month, year, hour, minute, sec;
@@ -83,11 +92,15 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
         progressDialog.setCancelable(false);
         progressDialog.setMessage("Please Wait...");
         preferenceData = new PreferenceData(this);
-
+        checkNetwork = new CheckNetwork(this);
         strDid = preferenceData.getDid();
         deliveryEntryPresenter = new DeliveryEntryPresenter(DeliveryDetailsActivityEntry.this, this);
-        deliveryEntryPresenter.deliveryNumber(preferenceData.getPicmeId(), preferenceData.getMId());
-        edt_delivery_date = (EditText) findViewById(R.id.edt_delivery_date);
+        if (checkNetwork.isNetworkAvailable()) {
+            deliveryEntryPresenter.deliveryNumber(preferenceData.getPicmeId(), preferenceData.getMId());
+        }else{
+            Toast.makeText(getApplicationContext(), "Check Internet Connection..." + checkNetwork.isNetworkAvailable(), Toast.LENGTH_LONG).show();
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        }
 
         mCurrentDate = Calendar.getInstance();
         day = mCurrentDate.get(Calendar.DAY_OF_MONTH);
@@ -96,48 +109,9 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
         hour = mCurrentDate.get(Calendar.HOUR);
         minute = mCurrentDate.get(Calendar.MINUTE);
         sec = mCurrentDate.get(Calendar.SECOND);
-
         month = month + 1;
-//        edt_delivery_date.setText(day + "-" + month + "-" + year);
-
-        edt_delivery_date.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DatePickerDialog datePickerDialog = new DatePickerDialog(DeliveryDetailsActivityEntry.this, R.style.DatePickerDialogTheme, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                        monthOfYear = monthOfYear + 1;
-                        edt_delivery_date.setText(dayOfMonth + "-" + monthOfYear + "-" + year);
-                    }
-                }, year, month, day);
-                datePickerDialog.show();
-
-            }
-
-        });
-
-
+        edt_delivery_date = (EditText) findViewById(R.id.edt_delivery_date);
         edt_time_of_delivery = (EditText) findViewById(R.id.edt_time_of_delivery);
-
-//        edt_time_of_delivery.setText(hour + ":" + minute + ":" + sec);
-
-        edt_time_of_delivery.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                TimePickerDialog mTimePicker = new TimePickerDialog(DeliveryDetailsActivityEntry.this, new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker timePicker, int hour, int minute) {
-                        edt_time_of_delivery.setText(hour + ":" + minute);
-                    }
-                }, hour, minute, true);
-                mTimePicker.show();
-
-
-            }
-        });
-
-
         edt_infant_id = (EditText) findViewById(R.id.edt_infant_id);
         edt_infant_weight = (EditText) findViewById(R.id.edt_infant_weight);
         edt_infant_height = (EditText) findViewById(R.id.edt_infant_height);
@@ -145,9 +119,7 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
         edt_bcg_given_date = (EditText) findViewById(R.id.edt_bcg_given_date);
         edt_opv_given_date = (EditText) findViewById(R.id.edt_opv_given_date);
         edt_hepb_given_date = (EditText) findViewById(R.id.edt_hepb_given_date);
-
         btn_delivery_submit = (Button) findViewById(R.id.btn_delivery_submit);
-
         sp_place = (Spinner) findViewById(R.id.sp_place);
         sp_delivery_details = (Spinner) findViewById(R.id.sp_delivery_details);
         sp_mother = (Spinner) findViewById(R.id.sp_mother);
@@ -156,7 +128,6 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
         sp_breast_feeding_given = (Spinner) findViewById(R.id.sp_breast_feeding_given);
         sp_admitted_in_sncu = (Spinner) findViewById(R.id.sp_admitted_in_sncu);
         sp_outcome = (Spinner) findViewById(R.id.sp_outcome);
-
         til_delivery_date = (TextInputLayout) findViewById(R.id.til_delivery_date);
         til_delivery_time = (TextInputLayout) findViewById(R.id.til_delivery_time);
         til_infant_id = (TextInputLayout) findViewById(R.id.til_infant_id);
@@ -166,16 +137,55 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
         til_bcg_date = (TextInputLayout) findViewById(R.id.til_bcg_date);
         til_opv_date = (TextInputLayout) findViewById(R.id.til_opv_date);
         til_hepb_date = (TextInputLayout) findViewById(R.id.til_hepb_date);
-
     }
 
     public void onClickListner() {
         btn_delivery_submit.setOnClickListener(this);
+        edt_delivery_date.setOnClickListener(this);
+        edt_time_of_delivery.setOnClickListener(this);
+        edt_new_born_birth_date.setOnClickListener(this);
+        edt_bcg_given_date.setOnClickListener(this);
+        edt_opv_given_date.setOnClickListener(this);
+        edt_hepb_given_date.setOnClickListener(this);
+    }
+
+    private void selectDate(final EditText selectDate) {
+
+        Calendar newCalendar = Calendar.getInstance();
+        DatePickerDialog datePickerDialog = new DatePickerDialog(DeliveryDetailsActivityEntry.this, R.style.DatePickerDialogTheme, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                Calendar newDate = Calendar.getInstance();
+                newDate.set(year, monthOfYear, dayOfMonth);
+                dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
+                selectDate.setText(dateFormatter.format(newDate.getTime()));
+            }
+        }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
+        InputMethodManager imm =
+                (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(selectDate.getWindowToken(), 0);
+
+        datePickerDialog.show();
 
     }
 
-    public void OnItemSelectedListener() {
+    private void selectTime(final EditText selectTime) {
+        TimePickerDialog mTimePicker = new TimePickerDialog(DeliveryDetailsActivityEntry.this, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int hour, int minute) {
+                SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+                String time = sdf.format(Calendar.getInstance().getTime());
+                Log.d("time-->",time);
+                selectTime.setText(time);
+            }
+        }, hour, minute, true);
+        InputMethodManager imm =
+                (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(selectTime.getWindowToken(), 0);
+        mTimePicker.show();
+    }
 
+    public void OnItemSelectedListener() {
         sp_place.setOnItemSelectedListener(this);
         sp_delivery_details.setOnItemSelectedListener(this);
         sp_mother.setOnItemSelectedListener(this);
@@ -184,14 +194,11 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
         sp_admitted_in_sncu.setOnItemSelectedListener(this);
         sp_breast_feeding_given.setOnItemSelectedListener(this);
         sp_outcome.setOnItemSelectedListener(this);
-
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-//            Intent intent = new Intent(AddRecords.this, MainActivity.class);
         finish();
-//            startActivity(intent);
         return super.onOptionsItemSelected(item);
     }
 
@@ -200,6 +207,24 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
         switch (v.getId()) {
             case R.id.btn_delivery_submit:
                 datatosever();
+                break;
+            case R.id.edt_delivery_date:
+                selectDate(edt_delivery_date);
+                break;
+            case R.id.edt_time_of_delivery:
+                selectTime(edt_time_of_delivery);
+                break;
+            case R.id.edt_new_born_birth_date:
+                selectDate(edt_new_born_birth_date);
+                break;
+            case R.id.edt_bcg_given_date:
+                selectDate(edt_bcg_given_date);
+                break;
+            case R.id.edt_opv_given_date:
+                selectDate(edt_opv_given_date);
+                break;
+            case R.id.edt_hepb_given_date:
+                selectDate(edt_hepb_given_date);
                 break;
         }
     }
@@ -282,7 +307,7 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
 //            deliveryEntryRequestModel.setMid(preferenceData.getMId());
 //            deliveryEntryRequestModel.setDid(strDid);
 
-            deliveryEntryRequestModel.setDid(preferenceData.getDid());
+//            deliveryEntryRequestModel.setDid(preferenceData.getDid());
 //            deliveryEntryRequestModel.setMid(preferenceData.getMId());
 //            deliveryEntryRequestModel.setDid(preferenceData.getDid());
             deliveryEntryRequestModel.setDdatetime(strDeliveryDate);
@@ -413,11 +438,16 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
                 strDid = jsonObject.getString("did");
                 Log.w(DeliveryDetailsActivityEntry.class.getSimpleName(), "getdeliveryNumberSuccess" + strDid);
                 preferenceData.storeDid(strDid);
-                strPicmeId = jsonObject.getString("dpicmeId");
+//                strPicmeId = jsonObject.getString("dpicmeId");
                 Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
             }else{
                 Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                if(msg.equalsIgnoreCase("Your account is Deactivated")){
+                    preferenceData.setLogin(false);
+                    Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getApplicationContext(), Login.class));
+                }
 
             }
         } catch (JSONException e) {

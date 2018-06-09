@@ -33,7 +33,8 @@ public class LoginPresenter implements LoginInteractor {
 
     @Override
     public void checkPickmeId(final String strPicmeId, final String strDob, final String strdeviceId,
-                              final String mobileCheck, final String mLatitude, final String mLongitude, final String versionCode) {
+                              final String mobileCheck, final String mLatitude, final String mLongitude,
+                              final String versionCode) {
         view.showProgress();
         String url = Apiconstants.BASE_URL + Apiconstants.LOG_IN_CHECK_PIKME;
 
@@ -63,7 +64,7 @@ public class LoginPresenter implements LoginInteractor {
             }
         }) {
 
-                        @Override
+            @Override
             protected Map<String, String> getParams() {
                 // Posting parameters to login url
                 Map<String, String> params = new HashMap<String, String>();

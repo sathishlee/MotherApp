@@ -5,7 +5,7 @@ package com.unicef.thaimai.motherapp.interactor;
  */
 
 public interface NotificationInteractor {
-    void getNotificationCount(String mid);
-    void getNotificationList(String mid);
+    void getNotificationCount(String mid, String picmeId);
+    void getNotificationList(String mid, String picmeId);
     void getNotificationDetails(String mid);
 }

@@ -22,8 +22,10 @@
 
         </LinearLayout>
 
-        <include layout="@layout/item_list_video"/>
+        <!--<include layout="@layout/item_list_video"/>-->
 
     </LinearLayout>
 
 </LinearLayout>
+
+

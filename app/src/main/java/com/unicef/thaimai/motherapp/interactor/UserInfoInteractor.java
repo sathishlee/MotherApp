@@ -5,5 +5,5 @@ package com.unicef.thaimai.motherapp.interactor;
  */
 
 public interface UserInfoInteractor {
-    void getUserInfo(String pickmeid) ;
+    void getUserInfo(String pickmeid, String versionCode) ;
 }

@@ -67,7 +67,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="After Delivery"
+                        android:text="@string/after_delivery"
                         android:textSize="@dimen/text_label"
                         android:textAlignment="textStart"
                         android:textColor="#2F80ED"
@@ -102,7 +102,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_marginEnd="5dp"
-                            android:text="HIGH RISK"
+                            android:text="@string/high_risk"
                             android:textSize="@dimen/text_secondary"
                             android:layout_gravity="end"
                             android:textColor="#219653"
@@ -147,7 +147,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Date of Delivery"
+                        android:text="@string/date_of_delivery"
                         android:textSize="@dimen/text_primary"
                         android:textAlignment="textStart"
                         android:textColor="@color/secondary"
@@ -175,7 +175,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:textSize="@dimen/text_primary"
-                        android:text="Birth Weight"
+                        android:text="@string/birth_weight"
                         android:layout_gravity="start"
                         android:textColor="@color/secondary"
                         android:textStyle="bold" />
@@ -210,7 +210,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Type of Delivery"
+                        android:text="@string/type_of_delivery"
                         android:textSize="@dimen/text_primary"
                         android:textAlignment="textStart"
                         android:textColor="@color/secondary"
@@ -237,7 +237,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
-                        android:text="Maturity"
+                        android:text="@string/maturity"
                         android:textSize="@dimen/text_primary"
                         android:layout_gravity="start"
                         android:textColor="@color/secondary"
@@ -289,7 +289,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8.0dip"
                         android:layout_marginRight="8.0dip"
-                        android:text="Next Visit" />
+                        android:text="@string/next_visit" />
 
                     <TextView
                         android:id="@+id/txt_pn_next_visit"

@@ -45,7 +45,7 @@
                     android:layout_margin="10dp"
                     android:inputType="number"
                     android:digits="0123456789"
-                    android:hint="Enter Primary Number" />
+                    android:hint="@string/enter_primary_number" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -62,7 +62,7 @@
                     android:layout_margin="10dp"
                     android:inputType="number"
                     android:digits="0123456789"
-                    android:hint="Enter Mobile Number " />
+                    android:hint="@string/enter_mobile_number" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -95,7 +95,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:layout_margin="10dp"
-            android:text="Back to Login"/>
+            android:text="@string/back_to_login"/>
 
     </LinearLayout>
 

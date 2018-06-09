@@ -136,8 +136,6 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
                             public void onReceive(Context context, Intent intent) {
                                 String latitude = intent.getStringExtra(AppConstants.EXTRA_LATITUDE);
                                 String longitude = intent.getStringExtra(AppConstants.EXTRA_LONGITUDE);
-
-
                                 String mylocaton = latitude + "\t" + longitude;
                                 if (latitude != null && longitude != null) {
 //                            serverUpload.sendlocationtServer(mylocaton,latitude,longitude,LocationUpdateActivity.this);
@@ -220,8 +218,14 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
 
         if (activeNetworkInfo == null || !activeNetworkInfo.isConnected()) {
-            promptInternetConnect();
-            return true;
+            if(preferenceData.getLogin()){
+                startStep3();
+                return false;
+            }
+            else{
+                promptInternetConnect();
+                return true;
+            }
         }
 
         else if (dialog != null) {
@@ -272,7 +276,7 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
 
         AlertDialog dialog = builder.create();
         dialog.show();*/
-
+        Toast.makeText(getApplicationContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
         startActivity(new Intent(getApplicationContext(), NoInternetConnection.class));
         finish();
     }
@@ -282,9 +286,6 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
      */
     private void startStep3() {
 
-        //And it will be keep running until you close the entire application from task manager.
-        //This method will executed only once.
-
         if (!mAlreadyStartedService) {
 
 
@@ -293,22 +294,15 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
             startService(intent);
 
             mAlreadyStartedService = true;
-            //Ends................................................
         }
         if (mISGpsStatusDetector) {
             new Handler().postDelayed(new Runnable() {
-
-            /*
-             * Showing splash screen with a timer. This will be useful when you
-             * want to show case your app logo / company
-             */
 
                 @Override
                 public void run() {
                     // This method will be executed once the timer is over
                     // Start your app main activity
 //                if (preferenceData.getPicmeId().equalsIgnoreCase("") && preferenceData.getVhnId().equalsIgnoreCase("") && preferenceData.getMId().equalsIgnoreCase("")) {
-                    if (checkNetwork.isNetworkAvailable()) {
                         if (preferenceData.getLogin()) {
                             Log.d("LOG LOGIN", preferenceData.getPicmeId() + "," + preferenceData.getVhnId() + "," + preferenceData.getMId());
 //                    AppConstants.POP_UP_COUNT= Integer.parseInt(preferenceData.getMainScreenOpen());
@@ -320,10 +314,6 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
                             Intent i = new Intent(LocationUpdateActivity.this, Login.class);
                             startActivity(i);
                         }
-                    } else {
-                        startActivity(new Intent(getApplicationContext(), NoInternetConnection.class));
-                    }
-
                     // close this activity
                     finish();
                 }

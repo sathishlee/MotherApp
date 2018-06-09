@@ -32,24 +32,25 @@ public class NotificationPresenter implements NotificationInteractor {
     }
 
     @Override
-    public void getNotificationCount(final String mid) {
+    public void getNotificationCount(final String mid, final String picmeId) {
 
         String url = Apiconstants.BASE_URL + Apiconstants.POST_NOTIFICATION_COUNT;
         Log.d("Url--->", url);
         Log.d("mid--->", mid);
+        Log.d("picmeId--->", picmeId);
         notificationViews.showProgress();
 
         StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 notificationViews.hideProgress();
-                notificationViews.NotificationResponseSuccess(String.valueOf(response));
+                notificationViews.NotificationCountSuccess(String.valueOf(response));
             }
         },new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 notificationViews.hideProgress();
-                notificationViews.NotificationResponseError(error.toString());
+                notificationViews.NotificationCountError(error.toString());
             }
         }){
             @Override
@@ -69,6 +70,7 @@ public class NotificationPresenter implements NotificationInteractor {
                 // Posting parameters to login url
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("mid",mid);
+                params.put("picmeId",picmeId);
 
                 Log.d("params--->",params.toString());
 
@@ -87,12 +89,13 @@ public class NotificationPresenter implements NotificationInteractor {
     }
 
     @Override
-    public void getNotificationList(final String mid) {
+    public void getNotificationList(final String mid, final String picmeId) {
 
 
         String url = Apiconstants.BASE_URL + Apiconstants.POST_NOTIFICATION_LIST;
         Log.d("Url--->", url);
         Log.d("mid--->", mid);
+        Log.d("picmeId--->",picmeId);
         notificationViews.showProgress();
 
         StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -125,6 +128,7 @@ public class NotificationPresenter implements NotificationInteractor {
                 // Posting parameters to login url
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("mid",mid);
+                params.put("picmeId",picmeId);
 
                 Log.d("params--->",params.toString());
 

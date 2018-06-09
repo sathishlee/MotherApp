@@ -21,6 +21,7 @@
     import com.unicef.thaimai.motherapp.R;
     import com.unicef.thaimai.motherapp.constant.AppConstants;
     import com.unicef.thaimai.motherapp.model.requestmodel.PrimaryDataRequestModel;
+    import com.unicef.thaimai.motherapp.utility.CheckNetwork;
     import com.unicef.thaimai.motherapp.view.PrimaryRegisterViews;
 
     import org.json.JSONException;
@@ -60,6 +61,8 @@ ArrayList ysList,occList;
         PrimaryRegisterPresenter primaryRegisterPresenter;
         PrimaryDataRequestModel primaryDataRequestModel;
         PreferenceData preferenceData;
+        CheckNetwork checkNetwork;
+
 
         String[] Occ = {"--Select--","Home Maker", "Private Sector", "Govt Sector"};
         String[] yn ={"--Select--","Yes","No"};
@@ -98,11 +101,18 @@ ArrayList ysList,occList;
             pDialog.setCancelable(false);
             pDialog.setMessage("Please Wait ...");
             preferenceData = new PreferenceData(this);
+            checkNetwork = new CheckNetwork(this);
+
             strPicmeId = preferenceData.getPicmeId();
             strMotherName = preferenceData.getMotherName();
             strMotherAge = preferenceData.getMotherAge();
             primaryRegisterPresenter = new PrimaryRegisterPresenter(PrimaryRegister.this, this);
-            primaryRegisterPresenter.getAllMotherPrimaryRegistration(strPicmeId);
+            if (checkNetwork.isNetworkAvailable()) {
+                primaryRegisterPresenter.getAllMotherPrimaryRegistration(strPicmeId);
+            }else{
+                Toast.makeText(getApplicationContext(), "Check Internet Connection..." + checkNetwork.isNetworkAvailable(), Toast.LENGTH_LONG).show();
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            }
 
             txtMotherName = (TextView) findViewById(R.id.txt_name);
             txtMotherAge = (TextView) findViewById(R.id.txt_mother_age);
@@ -245,14 +255,26 @@ ArrayList ysList,occList;
             else if (strLmpDate.equalsIgnoreCase("")){
                 showAlert("LMP is Empty");
 
-            }else if (strEddDate.equalsIgnoreCase("")){
+            }else if (strLmpDate.equalsIgnoreCase("null")){
+                showAlert("Please Enter Lmp Date");
+            }
+            else if (strEddDate.equalsIgnoreCase("")){
                 showAlert("EDD is Empty");
 
-            }else if (strPrimaryMobileNumber.equalsIgnoreCase("")){
+            }else if (strEddDate.equalsIgnoreCase("null")){
+                showAlert("Please Enter EDD Date");
+            }
+            else if (strPrimaryMobileNumber.equalsIgnoreCase("")){
                 showAlert("Primary Mobile Number is Empty");
+
+            }else if (strPrimaryMobileNumber.equalsIgnoreCase("null")){
+                showAlert("Please Enter Primary Mobile Number");
 
             }else if (strAlternativeMobileNumber.equalsIgnoreCase("")){
                 showAlert("Alternative Mobile Number is Empty");
+
+            }else if (strAlternativeMobileNumber.equalsIgnoreCase("null")){
+                showAlert("Please Enter Alternative Mobile Number");
 
             }else if (strMotherOcc.equalsIgnoreCase("--Select--")){
                 showAlert("Mother Occupation is Empty");
@@ -263,7 +285,11 @@ ArrayList ysList,occList;
             }else if (strAgeAtMarriage.equalsIgnoreCase("")){
                 showAlert("Age at Marriage is Empty");
 
-            }else if (strConsangulneousMarriage.equalsIgnoreCase("--Select--")){
+            }else if(strMotherAge.equalsIgnoreCase("null")){
+                showAlert("Enter Age at Marriage");
+
+            }
+            else if (strConsangulneousMarriage.equalsIgnoreCase("--Select--")){
                 showAlert("Consangulneous Marriage is Empty");
 
             }else if (strHistoryIllness.equalsIgnoreCase("--Select--")){
@@ -311,43 +337,44 @@ ArrayList ysList,occList;
             }else if (strRegWeek.equalsIgnoreCase("")){
                 showAlert("Registration Week is Empty");
 
+            }else if (strRegWeek.equalsIgnoreCase("null")){
+                showAlert("Please Enter Registration Week");
+
             }else if (strANTT1st.equalsIgnoreCase("")){
                 showAlert("AN TT1st is Empty");
 
+            }else if (strANTT1st.equalsIgnoreCase("null")){
+                showAlert("Please Enter AN TT1st");
+
             }else if (strANTT2nd.equalsIgnoreCase("")){
                 showAlert("AN TT2nd is Empty");
-
+            }else if (strANTT2nd.equalsIgnoreCase("null")){
+                showAlert("Please Enter AN TT2nd");
             }
             else if (strFIAStartDate.equalsIgnoreCase("")){
                 showAlert("FIA Start Date is Empty");
-
+            }else if (strFIAStartDate.equalsIgnoreCase("null")){
+                showAlert("Please Enter FIA Start Date");
             }else if (strHeight.equalsIgnoreCase("")){
                 showAlert("Height is Empty");
-
+            }else if (strHeight.equalsIgnoreCase("")){
+                showAlert("Please Enter Height");
             }else if (strBloodGroup.equalsIgnoreCase("--Select--")){
                 showAlert("Blood Group is Empty");
-
             }else if (strHIV.equalsIgnoreCase("--Select--")){
                 showAlert("HIV is Empty");
-
             }else if (strVDRL.equalsIgnoreCase("--Select--")){
                 showAlert("VDRL is Empty");
-
             }else if (strHelpatitis.equalsIgnoreCase("--Select--")){
                 showAlert("Helpatitis is Empty");
-
             }else if (strHusbBloodGroup.equalsIgnoreCase("--Select--")){
                 showAlert("Husband Blood Group is Empty");
-
             }else if (strHusbHIV.equalsIgnoreCase("--Select--")){
                 showAlert("Husband Hiv is Empty");
-
             }else if (strHusbVDRL.equalsIgnoreCase("--Select--")){
                 showAlert("Husband VDRL is Empty");
-
             }else if (strHusbHelpatitis.equalsIgnoreCase("--Select--")){
                 showAlert("HUSBAND Helpatities is Empty");
-
             }
             else {
                 primaryDataRequestModel = new PrimaryDataRequestModel();
@@ -468,7 +495,6 @@ ArrayList ysList,occList;
                     }
                     else {
                         edt_history_illness.setVisibility(View.GONE);
-
                     }
                     break;
 
@@ -479,7 +505,6 @@ ArrayList ysList,occList;
                     }
                     else {
                         edt_history_illness_fmly.setVisibility(View.GONE);
-
                     }
                     break;
 
@@ -490,40 +515,27 @@ ArrayList ysList,occList;
                     }
                     else {
                         edt_any_surgery_before.setVisibility(View.GONE);
-
                     }
                     break;
 
                 case R.id.sp_dose_tobacco:
                     strDoseTobacco = parent.getSelectedItem().toString();
                     break;
-
-
                 case R.id.sp_dose_alcohol:
                     strDoseAlcohol = parent.getSelectedItem().toString();
                     break;
-
-
                 case R.id.sp_dose_on_any_medication:
                     strDoseOnAnyMedication = parent.getSelectedItem().toString();
                     break;
-
-
                 case R.id.sp_dose_allergicto_drugs:
                     strDoseAllergictoDrugs = parent.getSelectedItem().toString();
                     break;
-
-
                 case R.id.sp_pre_pregnancy:
                     strPrePregnancy = parent.getSelectedItem().toString();
                     break;
-
-
                 case R.id.sp_lscs_done:
                     strLSCSDone = parent.getSelectedItem().toString();
                     break;
-
-
                 case R.id.sp_comDuring_prgncy:
                     strComDuringPrgncy = parent.getSelectedItem().toString();
                     if (strComDuringPrgncy.equalsIgnoreCase("Others")) {
@@ -534,61 +546,42 @@ ArrayList ysList,occList;
 
                     }
                     break;
-
-
                 case R.id.sp_pre_prgncy_g:
                     strPrePrgncyG = parent.getSelectedItem().toString();
                     break;
-
                 case R.id.sp_pre_prgncy_p:
                     strPrePrgncyP = parent.getSelectedItem().toString();
                     break;
-
-
                 case R.id.sp_pre_prgncy_l:
                     strPrePrgncyL = parent.getSelectedItem().toString();
                     break;
-
                 case R.id.sp_pre_prgncy_a:
                     strPrePrgncyA = parent.getSelectedItem().toString();
                     break;
-
-
                 case R.id.sp_blood_group:
                     strBloodGroup = parent.getSelectedItem().toString();
                     break;
-
                 case R.id.sp_hiv:
                     strHIV = parent.getSelectedItem().toString();
                     break;
-
-
                 case R.id.sp_vdrl:
                     strVDRL = parent.getSelectedItem().toString();
                     break;
-
                 case R.id.sp_helpatitis:
                     strHelpatitis = parent.getSelectedItem().toString();
                     break;
-
-
                 case R.id.sp_husb_blood_group:
                     strHusbBloodGroup = parent.getSelectedItem().toString();
                     break;
-
                 case R.id.sp_husb_hiv:
                     strHusbHIV = parent.getSelectedItem().toString();
                     break;
-
-
                 case R.id.sp_husb_vdrl:
                     strHusbVDRL = parent.getSelectedItem().toString();
                     break;
                 case R.id.sp_husb_helpatitis:
                     strHusbHelpatitis = parent.getSelectedItem().toString();
                     break;
-
-
             }
         }
 
