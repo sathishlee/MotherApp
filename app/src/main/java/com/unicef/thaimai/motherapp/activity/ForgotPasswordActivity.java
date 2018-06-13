@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.LoginPresenter;
 import com.unicef.thaimai.motherapp.R;
+import com.unicef.thaimai.motherapp.utility.CheckNetwork;
 import com.unicef.thaimai.motherapp.view.LoginViews;
 
 import org.json.JSONException;
@@ -41,6 +42,8 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
     LoginPresenter loginPresenter;
     PreferenceData preferenceData;
     ConnectivityManager conMgr;
+    CheckNetwork checkNetwork;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +72,7 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
 
         loginPresenter = new LoginPresenter(ForgotPasswordActivity.this, this);
         preferenceData = new PreferenceData(this);
+        checkNetwork = new CheckNetwork(this);
         btn_submit = (Button) findViewById(R.id.btn_submit);
         edt_pickme_number = (EditText) findViewById(R.id.edt_pickme_number);
         edt_mobile_no = (EditText) findViewById(R.id.edt_mobile_no);
@@ -116,8 +120,11 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
             iplPicmeId.setError("Enter Correct Picme ID");
         } else {
 //            loginPresenter.checkPickmeId(strPicme, strDob, "dT7h3twBpWU:APA91bHQqQOCBueyUGhvY2uIsMNfIfM7ynMlVzm89tTTWDeKhXzMWCS9WZL1gu8nFz_nkwU5Po9i8ytXHmjoxAeu36BTbIFHwWhWfjbWtO-EjG6n7zW4M_PFCCOID8eE0fQX4RPPHfBQ");
-            loginPresenter.forgetPassword(strPicme, strMob);
-
+            if (checkNetwork.isNetworkAvailable()) {
+                loginPresenter.forgetPassword(strPicme, strMob);
+            }else {
+                startActivity(new Intent(getApplicationContext(), NoInternetConnection.class));
+            }
         }
     }
 

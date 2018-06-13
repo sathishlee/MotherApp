@@ -24,7 +24,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Primary Registration "
+                    android:text="@string/primary_registration"
                     android:textSize="@dimen/text_label"
                     android:textAlignment="textStart"
                     android:textColor="#2F80ED"
@@ -60,7 +60,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Name"
+                android:text="@string/name"
                 android:textColor="@color/secondary"
                 android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
@@ -87,7 +87,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Age"
+                android:text="@string/age"
                 android:textColor="@color/secondary"
                 android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
@@ -137,7 +137,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="LMP Date"
+                        android:text="@string/lmp_date"
                         android:textSize="@dimen/text_primary"
                         android:textAlignment="textStart"
                         android:textColor="#aaffffff"
@@ -181,7 +181,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#aaffffff"
-                        android:text="EDD Date"
+                        android:text="@string/edd_date"
                         android:textSize="@dimen/text_primary"
                         android:layout_gravity="start"
                         android:textStyle="bold" />
@@ -216,7 +216,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Primary Mobile Number"
+                    android:text="@string/primary_mobile_number"
                     android:textAlignment="textStart"
                     android:textSize="@dimen/text_primary"
                     android:textColor="@color/secondary"
@@ -241,7 +241,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Alternative Mobile Number"
+                    android:text="@string/alternative_mobile_number"
                     android:layout_gravity="start"
                     android:textColor="@color/secondary"
                     android:textSize="@dimen/text_primary"
@@ -277,7 +277,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Occupation"
+                    android:text="@string/occupation"
                     android:textAlignment="textStart"
                     android:textSize="@dimen/text_primary"
                     android:textColor="@color/secondary"
@@ -304,7 +304,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Husband's Occupation"
+                    android:text="@string/husband_s_occupation"
                     android:layout_gravity="start"
                     android:textColor="@color/secondary"
                     android:textSize="@dimen/text_primary"
@@ -339,7 +339,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Age at Marriage"
+                    android:text="@string/age_at_marriage"
                     android:textSize="@dimen/text_primary"
                     android:textAlignment="textStart"
                     android:textColor="@color/secondary"
@@ -366,7 +366,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Consanguineous Marraige"
+                    android:text="@string/consanguineous_marriages"
                     android:textSize="@dimen/text_primary"
                     android:layout_gravity="start"
                     android:textColor="@color/secondary"
@@ -401,7 +401,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="History of any illness"
+                    android:text="@string/history_of_any_illness"
                     android:textAlignment="textStart"
                     android:textSize="@dimen/text_primary"
                     android:textColor="@color/secondary"
@@ -428,7 +428,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="History of Illness Family"
+                    android:text="@string/history_of_illness_family"
                     android:textSize="@dimen/text_primary"
                     android:layout_gravity="start"
                     android:textColor="@color/secondary"
@@ -457,7 +457,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Any Surgery done before"
+                android:text="@string/any_surgery_done_before"
                 android:textColor="@color/secondary"
                 android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
@@ -506,7 +506,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Does use"
+                            android:text="@string/does_use"
                             android:textSize="@dimen/text_label"
                             android:textAlignment="textStart"
                             android:textColor="@color/header"
@@ -550,7 +550,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Tobacco"
+                            android:text="@string/tobacco"
                             android:textColor="@color/secondary"
                             android:textSize="@dimen/text_primary"
                             android:textStyle="bold"
@@ -577,7 +577,7 @@
                         <TextView
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:text="Alcohol"
+                            android:text="@string/alcohol"
                             android:textColor="@color/secondary"
                             android:textSize="@dimen/text_primary"
                             android:textStyle="bold"
@@ -611,7 +611,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="On any Medication"
+                android:text="@string/on_any_medication"
                 android:textColor="@color/secondary"
                 android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
@@ -639,7 +639,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Allergic to Any Drugs  "
+                android:text="@string/allergic_to_any_drugs"
                 android:textColor="@color/secondary"
                 android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
@@ -667,7 +667,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="History of Previous Pregnancy"
+                android:text="@string/history_of_any_illness"
                 android:textColor="@color/secondary"
                 android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
@@ -694,7 +694,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="LSCS done"
+                android:text="@string/lscs_done"
                 android:textColor="@color/secondary"
                 android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
@@ -721,7 +721,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Any Complications during Pregnancy"
+                android:text="@string/any_complications_during_pregnancy"
                 android:textColor="@color/secondary"
                 android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
@@ -770,7 +770,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Present Pregnancy"
+                            android:text="@string/present_pregnancy"
                             android:textSize="@dimen/text_label"
                             android:textAlignment="textStart"
                             android:textColor="@color/header"
@@ -814,7 +814,7 @@
                         <TextView
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:text="G"
+                            android:text="@string/g"
                             android:textColor="@color/secondary"
                             android:textSize="@dimen/text_primary"
                             android:textStyle="bold"
@@ -840,7 +840,7 @@
                         <TextView
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:text="P"
+                            android:text="@string/p"
                             android:textColor="@color/secondary"
                             android:textSize="@dimen/text_primary"
                             android:textStyle="bold"
@@ -877,7 +877,7 @@
                         <TextView
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:text="A"
+                            android:text="@string/a"
                             android:textColor="@color/secondary"
                             android:textSize="@dimen/text_primary"
                             android:textStyle="bold"
@@ -903,7 +903,7 @@
                         <TextView
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:text="L"
+                            android:text="@string/l"
                             android:textColor="@color/secondary"
                             android:textSize="@dimen/text_primary"
                             android:textStyle="bold"
@@ -936,7 +936,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Registration Week"
+                android:text="@string/registration_week"
                 android:textColor="@color/secondary"
                 android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
@@ -987,7 +987,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="AN TT 1st"
+                        android:text="@string/an_tt_1st"
                         android:textSize="@dimen/text_primary"
                         android:textAlignment="textStart"
                         android:textColor="#aaffffff"
@@ -1030,7 +1030,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#aaffffff"
-                        android:text="AN TT 2nd"
+                        android:text="@string/an_tt_2nd"
                         android:textSize="@dimen/text_primary"
                         android:layout_gravity="start"
                         android:textStyle="bold" />
@@ -1068,7 +1068,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="IFA Start date :"
+                    android:text="@string/ifa_start_date"
                     android:textAlignment="textStart"
                     android:textSize="@dimen/text_primary"
                     android:textColor="@color/secondary"
@@ -1095,7 +1095,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
-                    android:text="Height"
+                    android:text="@string/height"
                     android:layout_gravity="start"
                     android:textSize="@dimen/text_primary"
                     android:textColor="@color/secondary"
@@ -1132,7 +1132,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Blood Group"
+                    android:text="@string/blood_group"
                     android:textAlignment="textStart"
                     android:textSize="@dimen/text_primary"
                     android:textColor="@color/secondary"
@@ -1159,7 +1159,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
-                    android:text="HIV"
+                    android:text="@string/hiv"
                     android:layout_gravity="start"
                     android:textSize="@dimen/text_primary"
                     android:textColor="@color/secondary"

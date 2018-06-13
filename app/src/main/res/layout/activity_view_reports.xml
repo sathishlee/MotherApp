@@ -27,7 +27,7 @@
                     android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Mother Reports"
+                    android:text="@string/mother_reports"
                     android:textAlignment="textStart"
                     android:textSize="@dimen/text_label"
                     android:textColor="#2F80ED"

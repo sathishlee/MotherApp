@@ -224,7 +224,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Date of Ref"
+                            android:text="@string/date_of_ref"
                             android:textSize="@dimen/text_primary"
                             android:textAlignment="textStart"
                             android:textColor="#aaffffff"
@@ -269,7 +269,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="#aaffffff"
-                            android:text="Time"
+                            android:text="@string/time"
                             android:textSize="@dimen/text_primary"
                             android:layout_gravity="start"
                             android:textStyle="bold" />
@@ -307,7 +307,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Referred by :"
+                        android:text="@string/referred_by"
                         android:textAlignment="textStart"
                         android:textSize="@dimen/text_primary"
                         android:textColor="#ffffff"
@@ -335,7 +335,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Referred From :"
+                        android:text="@string/referred_from"
                         android:textSize="@dimen/text_primary"
                         android:layout_gravity="start"
                         android:textColor="#ffffff"
@@ -374,7 +374,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Referred to :"
+                        android:text="@string/referred_to"
                         android:textAlignment="textStart"
                         android:textSize="@dimen/text_primary"
                         android:textStyle="bold"
@@ -402,7 +402,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Diagnosis : "
+                        android:text="@string/diagnosis"
                         android:textSize="@dimen/text_primary"
                         android:layout_gravity="start"
                         android:textColor="#ffffff"
@@ -430,7 +430,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Referred Why : "
+                    android:text="@string/referred_why"
                     android:textSize="@dimen/text_primary"
                     android:layout_gravity="start"
                     android:textColor="#ffffff"

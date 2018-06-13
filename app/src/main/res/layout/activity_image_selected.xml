@@ -59,7 +59,7 @@
                 android:background="?attr/colorAccent"
                 android:gravity="center"
                 android:padding="5dp"
-                android:text="Selected Image"
+                android:text="@string/selected_image"
                 android:textColor="#fff"
                 android:textSize="16sp"
                 android:textStyle="bold"/>
@@ -80,7 +80,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="No Image"
+                    android:text="@string/no_image"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textColor="?attr/colorAccent"/>
 

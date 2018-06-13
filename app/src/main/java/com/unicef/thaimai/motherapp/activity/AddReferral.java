@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
@@ -13,6 +14,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -23,20 +25,24 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.ReferalPresenter;
 import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.constant.AppConstants;
 import com.unicef.thaimai.motherapp.model.responsemodel.NearestReferalHospitalModel;
+import com.unicef.thaimai.motherapp.utility.CheckNetwork;
 import com.unicef.thaimai.motherapp.view.ReferalViews;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 
 public class AddReferral extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener, ReferalViews {
@@ -63,6 +69,10 @@ public class AddReferral extends AppCompatActivity implements View.OnClickListen
 
     Calendar mCurrentDate;
     int day, month, year, hour, minute, sec;
+    CheckNetwork checkNetwork;
+
+    private int mYear,mMonth,mDay;
+
 
     @Override
     protected void onDestroy() {
@@ -138,11 +148,18 @@ public class AddReferral extends AppCompatActivity implements View.OnClickListen
         pDialog.setCancelable(false);
         pDialog.setMessage("Please Wait ...");
         preferenceData = new PreferenceData(this);
+        checkNetwork = new CheckNetwork(this);
+
 
         referalPresenter = new ReferalPresenter(AddReferral.this, this);
 //        if (AppConstants.CREATE_NEW_REFRAL) {
-
+        if (checkNetwork.isNetworkAvailable()) {
             referalPresenter.getReffralNearestHospital(AppConstants.EXTRA_LATITUDE, AppConstants.EXTRA_LONGITUDE);
+        }else{
+            Toast.makeText(getApplicationContext(), "Check Internet Connection... Try Again After Sometimes", Toast.LENGTH_LONG).show();
+            finish();
+        }
+
 //        }
         nearestReferalHospitalList = new ArrayList<>();
         arr_nearstReferalHospitalList = new ArrayList<>();
@@ -242,9 +259,15 @@ public class AddReferral extends AppCompatActivity implements View.OnClickListen
         TimePickerDialog mTimePicker = new TimePickerDialog(AddReferral.this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int hour, int minute) {
-                setTimeOfReferral.setText(hour + ":" + minute);
+                SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+                String time = sdf.format(Calendar.getInstance().getTime());
+                Log.d("time-->",time);
+                setTimeOfReferral.setText(time);
             }
         }, hour, minute, true);
+        InputMethodManager imm =
+                (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(setTimeOfReferral.getWindowToken(), 0);
         mTimePicker.show();
     }
 
@@ -252,10 +275,22 @@ public class AddReferral extends AppCompatActivity implements View.OnClickListen
         DatePickerDialog datePickerDialog = new DatePickerDialog(AddReferral.this, R.style.DatePickerDialogTheme, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                monthOfYear = monthOfYear + 1;
-                setDateOfReferral.setText(dayOfMonth + "-" + monthOfYear + "-" + year);
+//                monthOfYear = monthOfYear + 1;
+                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                String date = sdf.format(Calendar.getInstance().getTime());
+                Log.d("date-->",date);
+
+                Calendar c=Calendar.getInstance();
+                mYear=c.get(Calendar.YEAR);
+                mMonth=c.get(Calendar.MONTH);
+                mDay=c.get(Calendar.DAY_OF_MONTH);
+                SimpleDateFormat ssdf = new SimpleDateFormat("dd/MM/yyyy");
+                setDateOfReferral.setText(ssdf.format(c.getTime()));
             }
         }, year, month, day);
+        InputMethodManager imm =
+                (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(setDateOfReferral.getWindowToken(), 0);
         datePickerDialog.show();
     }
 
@@ -276,8 +311,14 @@ public class AddReferral extends AppCompatActivity implements View.OnClickListen
         } else if (strAdmitted.equalsIgnoreCase("")) {
             showAlert("Admitted is Empty");
         } else {
-            referalPresenter.updateReferal(AppConstants.REFERAL_ID, strUPDateOfReferral, strUPTimeOfReferral,
-                    strUPReceivedBy, strUPReferringFacility, strInLabour, strAdmitted);
+
+            if (checkNetwork.isNetworkAvailable()) {
+                referalPresenter.updateReferal(AppConstants.REFERAL_ID, strUPDateOfReferral, strUPTimeOfReferral,
+                        strUPReceivedBy, strUPReferringFacility, strInLabour, strAdmitted);
+            }else{
+                Toast.makeText(getApplicationContext(), "Check Internet Connection... Try Again After Sometimes", Toast.LENGTH_LONG).show();
+                finish();
+            }
 
         }
     }
@@ -304,12 +345,16 @@ public class AddReferral extends AppCompatActivity implements View.OnClickListen
         } else if (strReasonForReferral.equalsIgnoreCase("")) {
             showAlert("ReasonForReferral is Empty");
         } else {
-
-            referalPresenter.addNewReferal(preferenceData.getPicmeId(),
-                    preferenceData.getMId(),
-                    preferenceData.getVhnId(),
-                    preferenceData.getPhcId(), strDateOfReferral, strTimeOfReferral, strReferringFacility, strReferringFacility, strDiagnosis,
-                    strReasonForReferral, strReferredBy, strReferringFacilityCode, strFacilityReferredToCode);
+            if (checkNetwork.isNetworkAvailable()) {
+                referalPresenter.addNewReferal(preferenceData.getPicmeId(),
+                        preferenceData.getMId(),
+                        preferenceData.getVhnId(),
+                        preferenceData.getPhcId(), strDateOfReferral, strTimeOfReferral, strReferringFacility, strReferringFacility, strDiagnosis,
+                        strReasonForReferral, strReferredBy, strReferringFacilityCode, strFacilityReferredToCode);
+            }else{
+                Toast.makeText(getApplicationContext(), "Check Internet Connection... Try Again After Sometimes", Toast.LENGTH_LONG).show();
+                finish();
+            }
         }
     }
 

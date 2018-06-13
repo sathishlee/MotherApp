@@ -31,7 +31,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Immunization Visit "
+                            android:text="@string/immunization_visit"
                             android:textSize="@dimen/text_label"
                             android:textAlignment="textStart"
                             android:textColor="#2F80ED"
@@ -67,7 +67,7 @@
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:text="Dose Number"
+                        android:text="@string/dose_number"
                         android:textColor="@color/secondary"
                         android:textSize="@dimen/text_primary"
                         android:textStyle="bold"
@@ -109,7 +109,7 @@
                             android:inputType="date"
                             android:textColor="@color/secondary"
                             android:textSize="@dimen/text_secondary"
-                            android:hint="Due Provided Date"/>
+                            android:hint="@string/due_provided_date"/>
 
                     </android.support.design.widget.TextInputLayout>
 
@@ -134,7 +134,7 @@
                             android:inputType="date"
                             android:textColor="@color/secondary"
                             android:textSize="@dimen/text_secondary"
-                            android:hint="Care Provided Date"/>
+                            android:hint="@string/care_provided_date"/>
 
                     </android.support.design.widget.TextInputLayout>
 
@@ -156,7 +156,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Vaccine Received "
+                            android:text="@string/vaccine_received"
                             android:textSize="@dimen/text_label"
                             android:textAlignment="textStart"
                             android:textColor="#2F80ED"

@@ -20,8 +20,10 @@ import android.support.design.widget.FloatingActionButton;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AlertDialog;
 import android.text.Html;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -33,25 +35,36 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
+import com.unicef.thaimai.motherapp.Presenter.GetUserInfoPresenter;
 import com.unicef.thaimai.motherapp.Presenter.LocationUpdatePresenter;
 import com.unicef.thaimai.motherapp.Presenter.NotificationPresenter;
 import com.unicef.thaimai.motherapp.Presenter.SosAlertPresenter;
 import com.unicef.thaimai.motherapp.R;
 //import com.unicef.thaimai.motherapp.bradcastReceiver.ConnectivityReceiver;
+import com.unicef.thaimai.motherapp.app.MyApplication;
+import com.unicef.thaimai.motherapp.broadCastReceivers.ConnectivityReceiver;
+import com.unicef.thaimai.motherapp.constant.Apiconstants;
 import com.unicef.thaimai.motherapp.constant.AppConstants;
 import com.unicef.thaimai.motherapp.fragment.NotificationFragment;
 import com.unicef.thaimai.motherapp.fragment.PNhbncVisit;
 import com.unicef.thaimai.motherapp.fragment.ReferralListFragment;
 import com.unicef.thaimai.motherapp.fragment.health_records;
 import com.unicef.thaimai.motherapp.fragment.home;
+import com.unicef.thaimai.motherapp.realmDbModelClass.HomeRealmModel;
 import com.unicef.thaimai.motherapp.utility.CheckNetwork;
 import com.unicef.thaimai.motherapp.utility.LocationMonitoringService;
+import com.unicef.thaimai.motherapp.utility.RoundedTransformation;
 import com.unicef.thaimai.motherapp.view.LocationUpdateViews;
 import com.unicef.thaimai.motherapp.view.NotificationViews;
 import com.unicef.thaimai.motherapp.view.SosAlertViews;
@@ -64,22 +77,30 @@ import java.util.List;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, SosAlertViews, NotificationViews{
+        implements NavigationView.OnNavigationItemSelectedListener, ConnectivityReceiver.ConnectivityReceiverListener,
+        SosAlertViews, NotificationViews{
     Intent intent;
 
     Locale mylocale;
     TextView tam, eng;
     SosAlertPresenter sosAlertPresenter;
     NotificationPresenter notificationPresenter;
-
+    public static TextView notification_count;
+    LinearLayout ll_notifi_count;
+    String strTodayVisitCount="0", str_mPhoto;
+    int mCartItemCount = 10;
 
     PreferenceData preferenceData;
-
+    GetUserInfoPresenter getUserInfoPresenter;
     ProgressDialog pDialog;
     ArrayList<String> msgList;
     CheckNetwork checkNetwork;
     RelativeLayout noConnection;
     FirebaseAnalytics firebaseAnalytics;
+
+    ImageView cardview_image;
+    TextView txt_username,edt_picme_id;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,14 +113,12 @@ public class MainActivity extends AppCompatActivity
 //        Bundle bundle = new Bundle();
 //        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME,"");
         noConnection = (RelativeLayout) findViewById(R.id.view_btm_no_inernet);
-        LocalBroadcastManager.getInstance(this).registerReceiver(tokenReceiver,
-                new IntentFilter("tokenReceiver"));
 
         if (checkNetwork.isNetworkAvailable()) {
 //            Toast.makeText(getApplicationContext(), "Internet connection is" + checkNetwork.isNetworkAvailable(), Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(getApplicationContext(), "Internet connection is" + checkNetwork.isNetworkAvailable(), Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(getApplicationContext(),NoInternetConnection.class));
+            Toast.makeText(getApplicationContext(), "No Internet connection..!" + checkNetwork.isNetworkAvailable(), Toast.LENGTH_SHORT).show();
+//            startActivity(new Intent(getApplicationContext(),NoInternetConnection.class));
 
         }
         pDialog = new ProgressDialog(this);
@@ -110,16 +129,14 @@ public class MainActivity extends AppCompatActivity
         notificationPresenter = new NotificationPresenter(getApplicationContext(), this);
         sosAlertPresenter = new SosAlertPresenter(MainActivity.this, this);
 
-        notificationPresenter.getNotificationCount(preferenceData.getMId());
+        notificationPresenter.getNotificationCount(preferenceData.getMId(),preferenceData.getPicmeId());
 
 //        TextView txt_notify_count = (TextView)findViewById(R.id.txt_notify_count);
 //        txt_notify_count.setText(preferenceData.getNotificationCount());
 
         if (AppConstants.isMainActivityOpen) {
-
             if (preferenceData.getMainScreenOpen().equalsIgnoreCase("0")) {
                 preferenceData.setMainScreenOpen(1);
-
                 showAlertDialog();
             }
         }
@@ -148,23 +165,42 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View headerView = navigationView.getHeaderView(0);
         navigationView.setNavigationItemSelectedListener(this);
+        cardview_image = (ImageView) headerView.findViewById(R.id.cardview_image);
+        txt_username = (TextView) headerView.findViewById(R.id.txt_username);
+        edt_picme_id = (TextView) headerView.findViewById(R.id.edt_picme_id);
+        txt_username.setText(preferenceData.getMotherName());
+        edt_picme_id.setText(preferenceData.getPicmeId());
+        /*int version_code = 2;
+        String appversion = String.valueOf(version_code);*/
+        /*if (checkNetwork.isNetworkAvailable()) {
+            getUserInfoPresenter.getUserInfo(preferenceData.getPicmeId(), appversion);
+        } else {
+            Toast.makeText(getApplicationContext(),"No Internet Connection",Toast.LENGTH_SHORT).show();
+        }*/
 
+        str_mPhoto = preferenceData.getMotherPhoto();
+
+        if(TextUtils.isEmpty(str_mPhoto)){
+            cardview_image.setImageResource(R.drawable.girl_1);
+        }else{
+            Log.d("mphoto-->", Apiconstants.PHOTO_URL+str_mPhoto);
+
+            Picasso.with(getApplicationContext())
+                    .load(Apiconstants.PHOTO_URL + str_mPhoto)
+                    .placeholder(R.drawable.girl_1)
+                    .fit()
+                    .centerCrop()
+                    .memoryPolicy(MemoryPolicy.NO_CACHE)
+                    .networkPolicy(NetworkPolicy.NO_CACHE)
+                    .transform(new RoundedTransformation(90,4))
+                    .error(R.drawable.girl_1)
+                    .into(cardview_image);
+        }
         setupNavigationView();
     }
 
-
-    BroadcastReceiver tokenReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String token = intent.getStringExtra("token");
-            if(token != null)
-            {
-                //send token to your server or what you want to do
-            }
-
-        }
-    };
 
     private void showAlertDialog() {
         // custom dialog
@@ -211,9 +247,9 @@ public class MainActivity extends AppCompatActivity
         String returnstring = gstWeek;
         if (gstWeek.substring(1).equalsIgnoreCase("1")) {
             returnstring = gstWeek + " st";
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                returnstring= String.valueOf(Html.fromHtml(gstWeek+"<sup><small>nd</small></sup>", Html.FROM_HTML_MODE_LEGACY));
-            }
+ if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            returnstring= String.valueOf(Html.fromHtml(gstWeek+"<sup><small>nd</small></sup>", Html.FROM_HTML_MODE_LEGACY));
+        }
         } else if (gstWeek.substring(1).equalsIgnoreCase("2")) {
             returnstring = gstWeek + " nd";
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -326,9 +362,39 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+        final MenuItem menuItem = menu.findItem(R.id.action_notification);
+        MenuItemCompat.setActionView(menuItem, R.layout.notification_count);
+        View view = MenuItemCompat.getActionView(menuItem);
+        ll_notifi_count = view.findViewById(R.id.ll_notifi_count);
+        notification_count = (TextView) view.findViewById(R.id.count);
+        notification_count.setVisibility(View.GONE);
+        notification_count.setText(String.valueOf(strTodayVisitCount));
+        setupNotiCount();
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onOptionsItemSelected(menuItem);
+            }
+        });
         return true;
+    }
+
+    private void setupNotiCount() {
+
+        if(notification_count != null){
+            if(mCartItemCount == 0){
+                if (notification_count.getVisibility() != View.GONE){
+                    notification_count.setVisibility(View.GONE);
+                }
+            }else{
+//                notification_count.setText(String.valueOf(strTodayVisitCount));
+                if (notification_count.getVisibility() != View.VISIBLE){
+                    notification_count.setVisibility(View.VISIBLE);
+                }
+            }
+        }
     }
 
     @Override
@@ -336,7 +402,6 @@ public class MainActivity extends AppCompatActivity
 
         switch (item.getItemId()) {
             case R.id.action_notification:
-//                Toast.makeText(getApplicationContext(),"Notification Clicked",Toast.LENGTH_LONG).show();
                 android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
                 fragmentManager.beginTransaction().replace(R.id.content,
                         NotificationFragment.newInstance()).commit();
@@ -369,12 +434,6 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-//        if (id == R.id.navigation_home) {
-//            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-//            fragmentManager.beginTransaction().replace(R.id.content,
-//                    home.newInstance()).commit();
-//        }
-
         if (id == R.id.primary_register) {
             Intent i = new Intent(getApplicationContext(), PrimaryRegisterView.class);
             startActivity(i);
@@ -382,19 +441,6 @@ public class MainActivity extends AppCompatActivity
             Intent i = new Intent(getApplicationContext(), AddRecords.class);
             startActivity(i);
         }
-
-//        else if (id == R.id.navigation_notifications) {
-//
-//            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-//            fragmentManager.beginTransaction().replace(R.id.content,
-//                    health_records.newInstance()).commit();
-//        }
-//        else if (id == R.id.baby) {
-//            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-//            fragmentManager.beginTransaction().replace(R.id.content,
-//                    baby.newInstance()).commit();
-//        }
-
         else if (id == R.id.nearbyhospital) {
             Intent i = new Intent(getApplicationContext(), NearHospitalActivity.class);
             startActivity(i);
@@ -413,11 +459,6 @@ public class MainActivity extends AppCompatActivity
             startActivity(v);
         }
 
-//        else if (id == R.id.hbnc_visit_entry) {
-//            Intent v = new Intent(getApplicationContext(), InfantTrackingEditActivity.class);
-//            startActivity(v);
-//        }
-
         else if (id == R.id.delivery_details_entry) {
             Intent i = new Intent(getApplicationContext(), DeliveryDetailsActivityEntry.class);
             startActivity(i);
@@ -432,18 +473,13 @@ public class MainActivity extends AppCompatActivity
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
 
         if (bottomNavigationView != null) {
-
-            // Select first menu item by default and show Fragment accordingly.
             Menu menu = bottomNavigationView.getMenu();
             selectFragment(menu.getItem(0));
-
-            // Set action to perform when any menu-item is selected.
             bottomNavigationView.setOnNavigationItemSelectedListener(
                     new BottomNavigationView.OnNavigationItemSelectedListener() {
                         @Override
                         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                             selectFragment(item);
-
                             return false;
                         }
                     });
@@ -503,22 +539,6 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void NotificationResponseSuccess(String response) {
-        Log.d(MainActivity.class.getSimpleName(), "Notification count response success" + response);
-        try {
-            JSONObject jsonObject = new JSONObject(response);
-            String status = jsonObject.getString("status");
-            String msg = jsonObject.getString("message");
-            String strNotifyCount = jsonObject.getString("notificationCount");
-            if (status.equalsIgnoreCase("1")) {
-                preferenceData.setNotificationCount(strNotifyCount);
-                Log.d(MainActivity.class.getSimpleName(), "Notification Count-->" + strNotifyCount);
-
-            } else {
-                Log.d(MainActivity.class.getSimpleName(), "Notification messsage-->" + msg);
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
 
     }
 
@@ -526,6 +546,41 @@ public class MainActivity extends AppCompatActivity
     public void NotificationResponseError(String response) {
         Log.d(MainActivity.class.getSimpleName(), "Notification count response Error" + response);
 
+    }
+
+    @Override
+    public void NotificationCountSuccess(String response) {
+
+        Log.d(MainActivity.class.getSimpleName(), "Notification count response success" + response);
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            String status = jsonObject.getString("status");
+            String msg = jsonObject.getString("message");
+
+            if (status.equalsIgnoreCase("1")) {
+                notification_count.setVisibility(View.VISIBLE);
+                String strNotifyCount = jsonObject.getString("count");
+                preferenceData.setNotificationCount(strNotifyCount);
+                Log.d(MainActivity.class.getSimpleName(), "Notification Count-->" + strNotifyCount);
+            } else {
+                if(msg.equalsIgnoreCase("No Notification")) {
+//                    notification_count.setVisibility(View.GONE);
+                    Log.d(MainActivity.class.getSimpleName(), "Notification message-->" + msg);
+                }
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+    }
+
+    @Override
+    public void NotificationCountError(String response) {
+        Log.d(MainActivity.class.getSimpleName(), "Notification count response Error" + response);
     }
 
     @Override
@@ -555,6 +610,14 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        MyApplication.getInstance().setConnectivityListener(this);
+
+
+    }
+
+    @Override
     public void showFlashResult(String response) {
         showAlertDialog(response, "close", 5);
     }
@@ -566,4 +629,8 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+    @Override
+    public void onNetworkConnectionChanged(boolean isConnected) {
+
+    }
 }

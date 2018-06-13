@@ -1,8 +1,8 @@
 package com.unicef.thaimai.motherapp.app;
 
 import android.app.Application;
-import android.content.Context;
-import android.support.multidex.MultiDex;
+
+import com.unicef.thaimai.motherapp.broadCastReceivers.ConnectivityReceiver;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -19,35 +19,26 @@ public class MyApplication extends Application {
 
     @Override
     public void onCreate() {
-
         super.onCreate();
-
-
 
         Realm.init(this);
 
         RealmConfiguration config = new RealmConfiguration.Builder()
-                .name("ThaimaiMother.realm")
+                .name("Mother.realm")
                 .schemaVersion(0)
                 .deleteRealmIfMigrationNeeded()
                 .build();
 
         Realm.setDefaultConfiguration(config);
-
         mInstance = this;
-    }
-
-    @Override
-    protected void attachBaseContext(Context base) {
-        super.attachBaseContext(base);
-        MultiDex.install(this);
     }
 
     public static synchronized MyApplication getInstance() {
         return mInstance;
     }
-/*
+
     public void setConnectivityListener(ConnectivityReceiver.ConnectivityReceiverListener listener) {
         ConnectivityReceiver.connectivityReceiverListener = listener;
-    }*/
+    }
+
 }

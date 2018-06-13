@@ -57,7 +57,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="start|center"
                     android:padding="4dp"
-                    android:text="Husband"
+                    android:text="@string/husband"
                     android:textSize="@dimen/text_secondary"
                     android:textColor="@color/text_primary" />
 
@@ -138,7 +138,7 @@
                             android:gravity="start|center"
                             android:padding="4dp"
                             android:textSize="@dimen/text_secondary"
-                            android:text="PHC"
+                            android:text="@string/phc"
                             android:textColor="@color/text_primary" />
 
                         <!--<TextView-->

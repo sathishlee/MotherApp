@@ -25,7 +25,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Infant Visits "
+                    android:text="@string/infant_visits"
                     android:textSize="@dimen/text_label"
                     android:textAlignment="textStart"
                     android:textColor="#2F80ED"
@@ -61,7 +61,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Visit Number"
+                android:text="@string/visit_number"
                 android:textColor="@color/secondary"
                 android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
@@ -98,7 +98,7 @@
                     android:inputType="date"
                     android:textColor="@color/secondary"
                     android:textSize="@dimen/text_secondary"
-                    android:hint="Due Provided Date"/>
+                    android:hint="@string/due_provided_date"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -123,7 +123,7 @@
                     android:inputType="date"
                     android:textColor="@color/secondary"
                     android:textSize="@dimen/text_secondary"
-                    android:hint="Care Provided Date"/>
+                    android:hint="@string/care_provided_date"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -177,7 +177,7 @@
                     android:inputType="numberSigned"
                     android:textColor="@color/secondary"
                     android:textSize="@dimen/text_secondary"
-                    android:hint="Enter Weight"/>
+                    android:hint="@string/enter_weight"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -202,7 +202,7 @@
                     android:inputType="text"
                     android:textColor="@color/secondary"
                     android:textSize="@dimen/text_secondary"
-                    android:hint="Enter Temp"/>
+                    android:hint="@string/enter_temp"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -430,7 +430,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="PN Mother Visit Entry"
+                    android:text="@string/pn_mother_visit_entry"
                     android:textAlignment="textStart"
                     android:textColor="#2F80ED"
                     android:textSize="@dimen/text_label"
@@ -495,7 +495,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Blood presure"
+                android:text="@string/blood_presure"
                 android:textColor="@color/secondary"
                 android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
@@ -516,7 +516,7 @@
                         android:textColor="@color/secondary"
                         android:textSize="@dimen/text_primary"
                         android:layout_weight="1"
-                        android:hint="Systolic"/>
+                        android:hint="@string/systolic"/>
 
 
 
@@ -530,7 +530,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="Diastolic"
+                    android:hint="@string/diastolic"
                     android:inputType="text"
                     android:textColor="@color/secondary"
                     android:textSize="@dimen/text_primary" />
@@ -558,7 +558,7 @@
                     android:inputType="text"
                     android:textColor="@color/secondary"
                     android:textSize="@dimen/text_primary"
-                    android:hint="Enter Pulse Rate"/>
+                    android:hint="@string/enter_pulse_rate"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -583,7 +583,7 @@
                     android:inputType="text"
                     android:textColor="@color/secondary"
                     android:textSize="@dimen/text_primary"
-                    android:hint="Enter Temp"/>
+                    android:hint="@string/enter_temp"/>
 
             </android.support.design.widget.TextInputLayout>
 

@@ -25,7 +25,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Delivery Details"
+                    android:text="@string/delivery_details"
                     android:textSize="@dimen/text_label"
                     android:textAlignment="textStart"
                     android:textColor="#2F80ED"
@@ -69,7 +69,7 @@
                     android:textColor="@color/secondary"
                     android:inputType="date"
                     android:textSize="@dimen/text_primary"
-                    android:hint="Date of Delivery "/>
+                    android:hint="@string/date_of_delivery"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -93,7 +93,7 @@
                     android:inputType="time"
                     android:textColor="@color/secondary"
                     android:textSize="@dimen/text_primary"
-                    android:hint="Time of Delivery "/>
+                    android:hint="@string/time_of_delivery"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -140,7 +140,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Delivery Details"
+                android:text="@string/delivery_details"
                 android:textColor="@color/secondary"
                 android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
@@ -175,7 +175,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Delivery Outcome"
+                    android:text="@string/delivery_outcome"
                     android:textSize="@dimen/text_label"
                     android:textAlignment="textStart"
                     android:textColor="#2F80ED"
@@ -212,7 +212,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Mother"
+                android:text="@string/mother"
                 android:textColor="@color/secondary"
                 android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
@@ -241,7 +241,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Newborn"
+                android:text="@string/newborn"
                 android:textColor="@color/secondary"
                 android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
@@ -276,7 +276,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Infant Details"
+                    android:text="@string/infant_details"
                     android:textAlignment="textStart"
                     android:textColor="#2F80ED"
                     android:textSize="@dimen/text_label"
@@ -320,7 +320,7 @@
                     android:inputType="text"
                     android:textColor="@color/secondary"
                     android:textSize="@dimen/text_primary"
-                    android:hint="Enter Infant ID"/>
+                    android:hint="@string/enter_infant_id"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -336,7 +336,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Birth details"
+                android:text="@string/birth_details"
                 android:textColor="@color/secondary"
                 android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
@@ -371,10 +371,10 @@
                     android:id="@+id/edt_infant_weight"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     android:textColor="@color/secondary"
                     android:textSize="@dimen/text_primary"
-                    android:hint="Enter Infant Weight"/>
+                    android:hint="@string/enter_infant_weight"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -395,10 +395,10 @@
                     android:id="@+id/edt_infant_height"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     android:textColor="@color/secondary"
                     android:textSize="@dimen/text_primary"
-                    android:hint="Enter Infant Height"/>
+                    android:hint="@string/enter_infant_height"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -415,7 +415,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Breast feeding given"
+                android:text="@string/breast_feeding_given"
                 android:textColor="@color/secondary"
                 android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
@@ -444,7 +444,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Admitted in SNCU"
+                android:text="@string/admitted_in_sncu"
                 android:textColor="@color/secondary"
                 android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
@@ -509,7 +509,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="SNCU name "
+                    android:text="@string/sncu_name"
                     android:textSize="@dimen/text_label"
                     android:textAlignment="textStart"
                     android:textColor="#2F80ED"
@@ -555,7 +555,7 @@
                     android:inputType="date"
                     android:textColor="@color/secondary"
                     android:textSize="@dimen/text_primary"
-                    android:hint="Enter New Born Birth Date"/>
+                    android:hint="@string/enter_new_born_birth_date"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -607,7 +607,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Enter Dose "
+                    android:text="@string/enter_dose"
                     android:textSize="@dimen/text_label"
                     android:textAlignment="textStart"
                     android:textColor="#2F80ED"
@@ -652,7 +652,7 @@
                     android:inputType="date"
                     android:textColor="@color/secondary"
                     android:textSize="@dimen/text_primary"
-                    android:hint="BCG given date "/>
+                    android:hint="@string/bcg_given_date"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -676,7 +676,7 @@
                     android:inputType="date"
                     android:textColor="@color/secondary"
                     android:textSize="@dimen/text_primary"
-                    android:hint="OPV given date "/>
+                    android:hint="@string/opv_given_date"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -700,7 +700,7 @@
                     android:inputType="date"
                     android:textColor="@color/secondary"
                     android:textSize="@dimen/text_primary"
-                    android:hint="Hep B given date "/>
+                    android:hint="@string/hep_b_given_date"/>
 
             </android.support.design.widget.TextInputLayout>
 

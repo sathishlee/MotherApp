@@ -38,9 +38,11 @@ public class GetUserInfoPresenter implements UserInfoInteractor{
 
 
     @Override
-    public void getUserInfo(final String pickmeid) {
+    public void getUserInfo(final String pickmeid, final String versionCode) {
 
       view.showProgress();
+
+        Log.d("Versioncode", versionCode);
 
 
         Log.e("url", Apiconstants.BASE_URL+Apiconstants.POST_DASH_BOARD);
@@ -105,6 +107,7 @@ public class GetUserInfoPresenter implements UserInfoInteractor{
                 // Posting parameters to login url
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("picmeId",pickmeid);
+                params.put("appversion",versionCode);
 
                 Log.d("params--->",params.toString());
 

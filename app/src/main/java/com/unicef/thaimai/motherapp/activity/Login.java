@@ -44,20 +44,25 @@ import com.unicef.thaimai.motherapp.Presenter.LoginPresenter;
 import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.constant.Apiconstants;
 import com.unicef.thaimai.motherapp.constant.AppConstants;
+import com.unicef.thaimai.motherapp.utility.CheckNetwork;
 import com.unicef.thaimai.motherapp.utility.DownloadTask;
 import com.unicef.thaimai.motherapp.utility.LocationMonitoringService;
 import com.unicef.thaimai.motherapp.view.LocationUpdateViews;
 import com.unicef.thaimai.motherapp.view.LoginViews;
 
+import net.alexandroid.gps.GpsStatusDetector;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
 
-public class Login extends AppCompatActivity implements View.OnClickListener, LoginViews{
+public class Login extends AppCompatActivity implements View.OnClickListener, LoginViews, GpsStatusDetector.GpsStatusDetectorCallBack{
     Button btn_login, btn_otp_submit;
     EditText edtPicme, edtDob, edt_otp;
     TextInputLayout iplPicmeId, iplDob, input_layout_otp;
@@ -68,6 +73,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
     PreferenceData preferenceData;
     ConnectivityManager conMgr;
     Calendar mCurrentDate;
+    CheckNetwork checkNetwork;
     int day, month, year, hour, minute, sec;
     private String message;
     LinearLayout ll_signin, ll_otp, ll_vhn_not_found;
@@ -77,12 +83,20 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
     private static final int MAKE_CALL_PERMISSION_REQUEST_CODE = 1;
     Boolean IPValue;
     String currentVersion;
+    private GpsStatusDetector mGpsStatusDetector;
+    boolean mISGpsStatusDetector;
+    private int mYear,mMonth,mDay;
+    private SimpleDateFormat dateFormatter;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+        mGpsStatusDetector = new GpsStatusDetector(this);
+        mGpsStatusDetector.checkGpsStatus();
+        checkNetwork = new CheckNetwork(this);
+
         conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         {
             if (conMgr.getActiveNetworkInfo() != null
@@ -167,20 +181,32 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
         if(strOtp.equalsIgnoreCase("")){
             input_layout_otp.setError("Please Enter OTP");
         }else{
-            loginPresenter.checkOtp(preferenceData.getCheckPicmeID(),preferenceData.getCheckDob(),preferenceData.getDeviceId(),strOtp, mobileCheck);
+            if (mISGpsStatusDetector) {
+                if (checkNetwork.isNetworkAvailable()) {
+                    loginPresenter.checkOtp(preferenceData.getCheckPicmeID(), preferenceData.getCheckDob(), preferenceData.getDeviceId(), strOtp, mobileCheck);
+                }else {
+                    startActivity(new Intent(getApplicationContext(), NoInternetConnection.class));
+                }
+            }else{
+                Toast.makeText(getApplicationContext(), "Location Unavailable.. Please Turn on Location.." + checkNetwork.isNetworkAvailable(), Toast.LENGTH_LONG).show();
+            }
         }
     }
 
     private void getDob(final EditText edtDob) {
 
+        Calendar newCalendar = Calendar.getInstance();
+
         DatePickerDialog datePickerDialog = new DatePickerDialog(Login.this, R.style.DatePickerDialogTheme, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                monthOfYear = monthOfYear + 1;
-                edtDob.setText(dayOfMonth + "-" + monthOfYear + "-" + year);
+                Calendar newDate = Calendar.getInstance();
+                newDate.set(year, monthOfYear, dayOfMonth);
+//                edtDob.setText(dayOfMonth + "-" + monthOfYear + "-" + year);
+                dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
+                edtDob.setText(dateFormatter.format(newDate.getTime()));
             }
-        }, year, month, day);
-
+        }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
         InputMethodManager imm =
                 (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(edtDob.getWindowToken(), 0);
@@ -223,7 +249,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
 
             PackageInfo packageInfo = null;
             String version_name = "Latest";
-            int version_code = 2;
+            int version_code = 3;
             String appversion = String.valueOf(version_code);
 
             try {
@@ -233,7 +259,11 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
             } catch (PackageManager.NameNotFoundException e) {
                 e.printStackTrace();
             }
-            loginPresenter.checkPickmeId(strPicme, strDob, preferenceData.getDeviceId(), mobileCheck, AppConstants.EXTRA_LATITUDE, AppConstants.EXTRA_LONGITUDE, appversion);
+            if (checkNetwork.isNetworkAvailable()) {
+                loginPresenter.checkPickmeId(strPicme, strDob, preferenceData.getDeviceId(), mobileCheck, AppConstants.EXTRA_LATITUDE, AppConstants.EXTRA_LONGITUDE, appversion);
+            }else {
+                startActivity(new Intent(getApplicationContext(), NoInternetConnection.class));
+            }
         }
     }
 
@@ -347,7 +377,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
                 } else {
                     AppConstants.BACK_BUTTON_GONE = false;
                     finish();
-
                 }
             } else {
                 Log.d("message---->", message);
@@ -468,6 +497,27 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
         AlertDialog alert = builder.create();
         alert.show();
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        mGpsStatusDetector.checkOnActivityResult(requestCode, resultCode);
+    }
+
+    @Override
+    public void onGpsSettingStatus(boolean enabled) {
+        Log.d("TAG", "onGpsSettingStatus: " + enabled);
+        mISGpsStatusDetector = enabled;
+        if(!enabled){
+            mGpsStatusDetector.checkGpsStatus();
+        }
+    }
+
+    @Override
+    public void onGpsAlertCanceledByUser() {
+        Log.d("TAG", "onGpsAlertCanceledByUser");
+        startActivity(new Intent(getApplicationContext(),TurnOnGpsLocation.class));
     }
 
 }

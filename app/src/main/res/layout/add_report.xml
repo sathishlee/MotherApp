@@ -26,7 +26,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Add Visit Details "
+                    android:text="@string/add_visit_details"
                     android:textAlignment="textStart"
                     android:textSize="@dimen/text_label"
                     android:textColor="#2F80ED"
@@ -90,10 +90,10 @@
                     android:id="@+id/edt_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text"
+                    android:inputType="date"
                     android:textColor="@color/secondary"
                     android:textSize="@dimen/text_primary"
-                    android:hint="Select Date"/>
+                    android:hint="@string/select_date"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -109,7 +109,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Type of Visit"
+                android:text="@string/type_of_visit"
                 android:textColor="@color/secondary"
                 android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
@@ -138,7 +138,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Facility"
+                android:text="@string/facility"
                 android:textColor="@color/secondary"
                 android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
@@ -168,7 +168,7 @@
                     android:inputType="text"
                     android:textSize="@dimen/text_secondary"
                     android:textColor="@color/secondary"
-                    android:hint="Specify"
+                    android:hint="@string/specify"
                     android:visibility="gone"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -185,7 +185,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Any Complaints"
+                android:text="@string/any_complaints"
                 android:textColor="@color/secondary"
                 android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
@@ -201,11 +201,11 @@
                 android:drawSelectorOnTop="true"
                 android:entries="@array/complaints"
                 style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
+
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                >
+                android:layout_weight="1">
 
                 <EditText
                     android:id="@+id/edt_any_complaints_other"
@@ -214,7 +214,7 @@
                     android:inputType="text"
                     android:textSize="@dimen/text_secondary"
                     android:textColor="@color/secondary"
-                    android:hint="Specify"
+                    android:hint="@string/specify"
                     android:visibility="gone"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -252,7 +252,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Clinical Report Details"
+                            android:text="@string/clinical_report_details"
                             android:textSize="@dimen/text_label"
                             android:textAlignment="textStart"
                             android:textColor="@color/header"
@@ -291,7 +291,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Blood presure"
+                android:text="@string/blood_presure"
                 android:textColor="@color/secondary"
                 android:textSize="@dimen/text_field"
                 android:textStyle="bold"
@@ -311,7 +311,7 @@
                         android:layout_weight="1"
                         android:textColor="@color/secondary"
                         android:textSize="@dimen/text_primary"
-                        android:hint="Systolic"/>
+                        android:hint="@string/systolic"/>
 
 
                 <TextView
@@ -326,7 +326,7 @@
                         android:layout_weight="1"
                         android:textSize="@dimen/text_primary"
                         android:textColor="@color/secondary"
-                        android:hint="Diastolic"/>
+                        android:hint="@string/diastolic"/>
 
 
             </LinearLayout>
@@ -350,7 +350,7 @@
                     android:inputType="text"
                     android:textSize="@dimen/text_primary"
                     android:textColor="@color/secondary"
-                    android:hint="Enter Pluse Rate"/>
+                    android:hint="@string/enter_pluse_rate"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -375,7 +375,7 @@
                 android:inputType="text"
                 android:textSize="@dimen/text_primary"
                 android:textColor="@color/secondary"
-                android:hint="Enter Weight"/>
+                android:hint="@string/enter_weight"/>
 
         </android.support.design.widget.TextInputLayout>
 
@@ -391,7 +391,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Fundal Height"
+                android:text="@string/fundal_height"
                 android:textColor="@color/secondary"
                 android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
@@ -427,7 +427,7 @@
                 android:inputType="text"
                 android:textSize="@dimen/text_primary"
                 android:textColor="@color/secondary"
-                android:hint="Enter FHS"/>
+                android:hint="@string/enter_fhs"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -443,7 +443,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Pedal Edema Present"
+                android:text="@string/pedal_edema_present"
                 android:textColor="@color/secondary"
                 android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
@@ -468,7 +468,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:textSize="@dimen/text_secondary"
-                    android:text="No" />
+                    android:text="@string/no" />
 
             </RadioGroup>
 
@@ -491,7 +491,7 @@
                 android:inputType="text"
                 android:textSize="@dimen/text_primary"
                 android:textColor="@color/secondary"
-                android:hint="Enter Temp"/>
+                android:hint="@string/enter_temp"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -529,7 +529,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Lab Report Details"
+                            android:text="@string/lab_report_details"
                             android:textSize="@dimen/text_label"
                             android:textAlignment="textStart"
                             android:textColor="@color/header"
@@ -574,7 +574,7 @@
                 android:id="@+id/edt_hemo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter Hemoglobin"
+                android:hint="@string/enter_hemoglobin"
                 android:textSize="@dimen/text_primary"
                 android:textColor="@color/secondary"
                 android:inputType="text"/>
@@ -597,7 +597,7 @@
                 android:id="@+id/edt_rbs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter RBS"
+                android:hint="@string/enter_rbs"
                 android:textSize="@dimen/text_primary"
                 android:textColor="@color/secondary"
                 android:inputType="text"/>
@@ -621,7 +621,7 @@
                 android:id="@+id/edt_fbs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter FBS"
+                android:hint="@string/enter_fbs"
                 android:textSize="@dimen/text_primary"
                 android:textColor="@color/secondary"
                 android:inputType="text"/>
@@ -644,7 +644,7 @@
                 android:id="@+id/edt_ppbs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter PPBS"
+                android:hint="@string/enter_ppbs"
                 android:textColor="@color/secondary"
                 android:textSize="@dimen/text_primary"
                 android:inputType="text"/>
@@ -667,7 +667,7 @@
                 android:id="@+id/edt_gtt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter GTT"
+                android:hint="@string/enter_gtt"
                 android:textColor="@color/secondary"
                 android:textSize="@dimen/text_primary"
                 android:inputType="text"/>
@@ -690,7 +690,7 @@
                     android:id="@+id/edt_tsh"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Enter TSH"
+                    android:hint="@string/enter_tsh"
                     android:textColor="@color/secondary"
                     android:textSize="@dimen/text_primary"
                     android:inputType="text"/>
@@ -716,7 +716,7 @@
                     android:id="@+id/edt_urine_sugar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Urine Sugar"
+                    android:hint="@string/urine_sugar"
                     android:textColor="@color/secondary"
                     android:textSize="@dimen/text_primary"
                     android:inputType="text"/>
@@ -739,7 +739,7 @@
                     android:id="@+id/edt_albumin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Albumin"
+                    android:hint="@string/albumin"
                     android:textColor="@color/secondary"
                     android:textSize="@dimen/text_primary"
                     android:inputType="text"/>
@@ -779,7 +779,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="USG Report Details"
+                            android:text="@string/usg_report_details"
                             android:textSize="@dimen/text_label"
                             android:textAlignment="textStart"
                             android:textColor="@color/header"
@@ -824,7 +824,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
-                android:hint="Enter Fetus"
+                android:hint="@string/enter_fetus"
                 android:textSize="@dimen/text_primary"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -847,7 +847,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 android:textSize="@dimen/text_primary"
-                android:hint="Enter Gestation Sac"/>
+                android:hint="@string/enter_gestation_sac"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -869,7 +869,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 android:textSize="@dimen/text_primary"
-                android:hint="Enter Liquor"/>
+                android:hint="@string/enter_liquor"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -891,7 +891,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="text"
                     android:textSize="@dimen/text_primary"
-                    android:hint="Enter Placenta"/>
+                    android:hint="@string/enter_placenta"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -910,7 +910,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
             android:background="@drawable/button_backgroumd"
-            android:text="Upload Report"
+            android:text="@string/upload_report"
             android:textColor="#ffffff"
             android:id="@+id/upload_reports"
             android:padding="10dp"/>

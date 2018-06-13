@@ -29,7 +29,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#FFFFFF"
-                android:text="Picme Visit"/>
+                android:text="@string/picme_visit"/>
         </LinearLayout>
 
         <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -64,14 +64,14 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Infant Visits"
+                            android:text="@string/infant_visits"
                             android:textAlignment="textStart"
                             android:textColor="#2F80ED"
                             android:textStyle="bold" />
 
                     </LinearLayout>
 
-                    <LinearLayout
+                    <!--<LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -101,7 +101,7 @@
 
                         </LinearLayout>
 
-                    </LinearLayout>
+                    </LinearLayout>-->
 
                 </LinearLayout>
 
@@ -595,7 +595,7 @@
 
                     </LinearLayout>
 
-                    <LinearLayout
+                    <!--<LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -625,7 +625,7 @@
 
                         </LinearLayout>
 
-                    </LinearLayout>
+                    </LinearLayout>-->
 
                 </LinearLayout>
 
@@ -679,7 +679,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Due Date"
+                                android:text="@string/due_date"
                                 android:textSize="14sp"
                                 android:textAlignment="textStart"
                                 android:textColor="#aaffffff"
@@ -722,7 +722,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="#aaffffff"
-                                android:text="Provided Date"
+                                android:text="@string/provided_date"
                                 android:textSize="14sp"
                                 android:layout_gravity="start"
                                 android:textStyle="bold" />
@@ -820,7 +820,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Any C/O"
+                            android:text="@string/any_c_o"
                             android:textAlignment="textStart"
                             android:textColor="@color/secondary"
                             android:textStyle="bold" />
@@ -845,7 +845,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
-                            android:text="Blood Pressure"
+                            android:text="@string/blood_presure"
                             android:layout_gravity="start"
                             android:textColor="@color/secondary"
                             android:textStyle="bold" />
@@ -880,7 +880,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Pluse Rate"
+                            android:text="@string/pluse_rate"
                             android:textAlignment="textStart"
                             android:textColor="@color/secondary"
                             android:textStyle="bold" />
@@ -906,7 +906,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
-                            android:text="Temp"
+                            android:text="@string/temp"
                             android:layout_gravity="start"
                             android:textColor="@color/secondary"
                             android:textStyle="bold" />
@@ -942,7 +942,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Epistomy / Tear suture"
+                            android:text="@string/epistomy_tear_suture"
                             android:textAlignment="textStart"
                             android:textColor="@color/secondary"
                             android:textStyle="bold" />
@@ -968,7 +968,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
-                            android:text="PV Discharge"
+                            android:text="@string/pv_discharge"
                             android:layout_gravity="start"
                             android:textColor="@color/secondary"
                             android:textStyle="bold" />
@@ -1003,7 +1003,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Breast Feeding"
+                            android:text="@string/breast_feeding"
                             android:textAlignment="textStart"
                             android:textColor="@color/secondary"
                             android:textStyle="bold" />
@@ -1029,7 +1029,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
-                            android:text="Reasons"
+                            android:text="@string/reasons"
                             android:layout_gravity="start"
                             android:textColor="@color/secondary"
                             android:textStyle="bold" />
@@ -1064,7 +1064,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Breast Examination"
+                            android:text="@string/breast_examination"
                             android:textAlignment="textStart"
                             android:textColor="@color/secondary"
                             android:textStyle="bold" />
@@ -1090,7 +1090,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
-                            android:text="Out Come"
+                            android:text="@string/out_come"
                             android:layout_gravity="start"
                             android:textColor="@color/secondary"
                             android:textStyle="bold" />

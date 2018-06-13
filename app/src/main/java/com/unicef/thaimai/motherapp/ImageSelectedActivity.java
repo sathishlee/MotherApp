@@ -476,10 +476,10 @@ public class ImageSelectedActivity extends AppCompatActivity implements CameraHo
 
     @Override
     public void successUploadPhoto(String response) {
-        Log.d("images ", "uploaded successfully"+ response);
+        Log.d("images ", "Reports Uploaded Successfully.."+ response);
 
-        Toast.makeText(this, "uploaded successfully", Toast.LENGTH_SHORT).show();
-        startActivity(new Intent(getApplicationContext(), AddRecords.class));
+        Toast.makeText(this, "Reports Uploaded Successfully..", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(getApplicationContext(), MainActivity.class));
         finish();
 
     }

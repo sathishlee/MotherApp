@@ -78,7 +78,7 @@
                            android:layout_height="wrap_content"
                            android:gravity="start"
                            android:padding="1dp"
-                           android:text="Picme Id"
+                           android:text="@string/picme_id"
                            android:textColor="@color/secondary"
                            android:textSize="@dimen/text_primary" />
 
@@ -105,7 +105,7 @@
                            android:layout_height="wrap_content"
                            android:gravity="start"
                            android:padding="1dp"
-                           android:text="Age"
+                           android:text="@string/age"
                            android:textColor="@color/secondary"
                            android:textSize="@dimen/text_primary" />
 

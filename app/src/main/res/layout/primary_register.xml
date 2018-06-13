@@ -64,7 +64,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Name"
+                android:text="@string/name"
                 android:textColor="@color/secondary"
                 android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
@@ -91,7 +91,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Age"
+                android:text="@string/age"
                 android:textColor="@color/secondary"
                 android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
@@ -122,7 +122,7 @@
                     android:id="@+id/edt_lmp_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="LMP Date"
+                    android:hint="@string/lmp_date"
                     android:textColor="@color/secondary"
                     android:textSize="@dimen/text_secondary"/>
 
@@ -145,7 +145,7 @@
                     android:id="@+id/edt_edd_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="EDD Date"
+                    android:hint="@string/edd_date"
                     android:textColor="@color/secondary"
                     android:textSize="@dimen/text_secondary"/>
 
@@ -167,7 +167,7 @@
                     android:id="@+id/edt_primary_mobile_number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Enter Primary Mobile Number"
+                    android:hint="@string/enter_primary_mobile_number"
                     android:textColor="@color/secondary"
                     android:textSize="@dimen/text_secondary"/>
 
@@ -189,7 +189,7 @@
                     android:id="@+id/edt_alternative_mobile_number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Enter Alternative Mobile Number"
+                    android:hint="@string/enter_alternative_mobile_number"
                     android:textColor="@color/secondary"
                     android:textSize="@dimen/text_secondary"/>
 
@@ -207,7 +207,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Occupation"
+                android:text="@string/occupation"
                 android:textColor="@color/secondary"
                 android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
@@ -236,7 +236,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Husband's Occupation"
+                android:text="@string/husband_s_occupation"
                 android:textColor="@color/secondary"
                 android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
@@ -270,7 +270,7 @@
                     android:id="@+id/edt_age_at_marriage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Age at Marriage"
+                    android:hint="@string/age_at_marriage"
                     android:textColor="@color/secondary"
                     android:textSize="@dimen/text_secondary"
                     android:layout_weight="1"/>
@@ -289,7 +289,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Consanguineous marriage"
+                android:text="@string/consanguineous_marriage"
                 android:textColor="@color/secondary"
                 android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
@@ -317,7 +317,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Histroy of any illness"
+                android:text="@string/histroy_of_any_illness"
                 android:textColor="@color/secondary"
                 android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
@@ -341,7 +341,7 @@
                     android:id="@+id/edt_other_history_illness"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Specify"
+                    android:hint="@string/specify"
                     android:textColor="@color/secondary"
                     android:textSize="@dimen/text_secondary"
                     android:layout_weight="1"/>
@@ -360,7 +360,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="History of any Illness Family"
+                android:text="@string/history_of_any_illness_family"
                 android:textColor="@color/secondary"
                 android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
@@ -381,7 +381,7 @@
                 android:id="@+id/edt_history_illness_fmly"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Specify"
+                android:hint="@string/specify"
                 android:textColor="@color/secondary"
                 android:textSize="@dimen/text_secondary"
                 android:layout_weight="1"
@@ -398,7 +398,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Any Surgery done before"
+                android:text="@string/any_surgery_done_before"
                 android:textColor="@color/secondary"
                 android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
@@ -418,7 +418,7 @@
                 android:id="@+id/edt_any_surgery_before"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Specify"
+                android:hint="@string/specify"
                 android:textColor="@color/secondary"
                 android:textSize="@dimen/text_secondary"
                 android:layout_weight="1"/>
@@ -440,7 +440,7 @@
                     android:id="@+id/edt_enter_surgery"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Enter Surgery Details"
+                    android:hint="@string/enter_surgery_details"
                     android:textColor="@color/secondary"
                     android:textSize="@dimen/text_secondary"/>
 
@@ -460,7 +460,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Specify"
+                android:hint="@string/specify"
                 android:textColor="@color/secondary"
                 android:textSize="@dimen/text_secondary"
                 android:layout_weight="1"/>
@@ -498,7 +498,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Does use"
+                            android:text="@string/does_use"
                             android:textAlignment="textStart"
                             android:textSize="@dimen/text_label"
                             android:textColor="@color/header"
@@ -542,7 +542,7 @@
                         <TextView
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:text="Tobacco"
+                            android:text="@string/tobacco"
                             android:textColor="@color/secondary"
                             android:textSize="@dimen/text_primary"
                             android:textStyle="bold"
@@ -570,7 +570,7 @@
                         <TextView
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:text="Alcohol"
+                            android:text="@string/alcohol"
                             android:textColor="@color/secondary"
                             android:textSize="@dimen/text_primary"
                             android:textStyle="bold"
@@ -610,7 +610,7 @@
                     android:id="@+id/edt_others"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Others*"
+                    android:hint="@string/others"
                     android:textColor="@color/secondary"
                     android:textSize="@dimen/text_secondary"
                     android:layout_weight="1"/>
@@ -629,7 +629,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="On any Medication"
+                android:text="@string/on_any_medication"
                 android:textColor="@color/secondary"
                 android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
@@ -663,7 +663,7 @@
                     android:id="@+id/edt_edication_specify"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Specify"
+                    android:hint="@string/specify"
                     android:textColor="@color/secondary"
                     android:textSize="@dimen/text_secondary"
                     android:layout_weight="1"/>
@@ -683,7 +683,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Allergic to Any Drugs  "
+                android:text="@string/allergic_to_any_drugs"
                 android:textColor="@color/secondary"
                 android:textSize="@dimen/text_field"
                 android:textStyle="bold"
@@ -717,7 +717,7 @@
                     android:id="@+id/edt_allergicto_drugs_specify"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Specify"
+                    android:hint="@string/specify"
                     android:textColor="@color/secondary"
                     android:textSize="@dimen/text_secondary"
                     android:layout_weight="1"/>
@@ -736,7 +736,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="History of Previous Pregnancy"
+                android:text="@string/history_of_previous_pregnancy"
                 android:textColor="@color/secondary"
                 android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
@@ -764,7 +764,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="LSCS done"
+                android:text="@string/lscs_done"
                 android:textColor="@color/secondary"
                 android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
@@ -793,7 +793,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Any Complications during Pregnancy"
+                android:text="@string/any_complications_during_pregnancy"
                 android:textColor="@color/secondary"
                 android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
@@ -818,7 +818,7 @@
                     android:id="@+id/edt_comDuring_prgncy"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Specify"
+                    android:hint="@string/specify"
                     android:textColor="@color/secondary"
                     android:textSize="@dimen/text_secondary"
                     android:layout_weight="1"/>
@@ -859,7 +859,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Present Pregnancy"
+                            android:text="@string/present_pregnancy"
                             android:textAlignment="textStart"
                             android:textSize="@dimen/text_label"
                             android:textColor="@color/header"
@@ -904,7 +904,7 @@
                         <TextView
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:text="G"
+                            android:text="@string/g"
                             android:textColor="@color/secondary"
                             android:textSize="@dimen/text_primary"
                             android:textStyle="bold"
@@ -933,7 +933,7 @@
                         <TextView
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:text="P"
+                            android:text="@string/p"
                             android:textColor="@color/secondary"
                             android:textSize="@dimen/text_primary"
                             android:textStyle="bold"
@@ -972,7 +972,7 @@
                         <TextView
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:text="A"
+                            android:text="@string/a"
                             android:textColor="@color/secondary"
                             android:textSize="@dimen/text_primary"
                             android:textStyle="bold"
@@ -1001,7 +1001,7 @@
                         <TextView
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:text="L"
+                            android:text="@string/l"
                             android:textColor="@color/secondary"
                             android:textSize="@dimen/text_primary"
                             android:textStyle="bold"
@@ -1040,7 +1040,7 @@
                     android:id="@+id/edt_reg_week"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Registration Week"
+                    android:hint="@string/registration_week"
                     android:textColor="@color/secondary"
                     android:textSize="@dimen/text_secondary"
                     android:layout_weight="1"/>
@@ -1063,7 +1063,7 @@
                     android:id="@+id/edt_antt1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="AN TT 1st:"
+                    android:hint="@string/an_tt_1st"
                     android:textColor="@color/secondary"
                     android:textSize="@dimen/text_secondary"
                     android:layout_weight="1"/>
@@ -1086,7 +1086,7 @@
                     android:id="@+id/edt_antt2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="An TT 2nd :"
+                    android:hint="@string/an_tt_2nd"
                     android:textColor="@color/secondary"
                     android:textSize="@dimen/text_secondary"/>
 
@@ -1108,7 +1108,7 @@
                     android:id="@+id/edt_fias_tart_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="IFA Start date :"
+                    android:hint="@string/ifa_start_date"
                     android:textColor="@color/secondary"
                     android:textSize="@dimen/text_secondary"/>
 
@@ -1130,7 +1130,7 @@
                     android:id="@+id/edt_height"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Enter Height"
+                    android:hint="@string/enter_height"
                     android:textColor="@color/secondary"
                     android:textSize="@dimen/text_secondary"/>
 
@@ -1148,7 +1148,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Blood Group :"
+                android:text="@string/blood_group"
                 android:textColor="@color/secondary"
                 android:textSize="@dimen/text_primary"
                 android:textStyle="bold"/>
@@ -1174,7 +1174,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="HIV"
+                android:text="@string/hiv"
                 android:textColor="@color/secondary"
                 android:textSize="@dimen/text_primary"
                 android:textStyle="bold"/>
@@ -1200,7 +1200,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="VDRL"
+                android:text="@string/vdrl"
                 android:textColor="@color/secondary"
                 android:textSize="@dimen/text_primary"
                 android:textStyle="bold"/>
@@ -1226,7 +1226,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Hepatitis"
+                android:text="@string/hepatitis"
                 android:textColor="@color/secondary"
                 android:textSize="@dimen/text_primary"
                 android:textStyle="bold"/>
@@ -1274,7 +1274,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="For Husband"
+                            android:text="@string/for_husband"
                             android:textSize="@dimen/text_label"
                             android:textAlignment="textStart"
                             android:textColor="@color/header"
@@ -1310,7 +1310,7 @@
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:text="Blood Group :"
+                        android:text="@string/blood_group"
                         android:textColor="@color/secondary"
                         android:textSize="@dimen/text_primary"
                         android:textStyle="bold"/>
@@ -1336,7 +1336,7 @@
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:text="HIV"
+                        android:text="@string/hiv"
                         android:textColor="@color/secondary"
                         android:textSize="@dimen/text_primary"
                         android:textStyle="bold"/>
@@ -1362,7 +1362,7 @@
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:text="VDRL"
+                        android:text="@string/vdrl"
                         android:textColor="@color/secondary"
                         android:textSize="@dimen/text_primary"
                         android:textStyle="bold"/>
@@ -1388,7 +1388,7 @@
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:text="Hepatitis"
+                        android:text="@string/hepatitis"
                         android:textColor="@color/secondary"
                         android:textSize="@dimen/text_primary"
                         android:textStyle="bold"/>
