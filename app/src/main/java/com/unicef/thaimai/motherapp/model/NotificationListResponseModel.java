@@ -37,6 +37,20 @@ public class NotificationListResponseModel {
     }
 
     public static class NotificationList {
+
+        /*{
+    "status": 1,
+    "message": "Notification Received",
+    "alertList": [
+        {
+            "message": "OTP CODE :8563   date:12-06-2018 16:34:18 picmeId:133000426375 for mother login",
+            "noteId": "53",
+            "clickHeremId": null,
+            "subject": "Mother OTP Alert",
+            "noteStartDateTime": "2018-06-12 16:34:19"
+        }
+    ]
+}*/
         private String noteStartDateTime;
         private String subject;
         private String noteId;

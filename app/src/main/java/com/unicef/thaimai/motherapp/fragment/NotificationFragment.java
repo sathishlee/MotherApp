@@ -102,9 +102,9 @@ public class NotificationFragment extends Fragment implements NotificationViews 
                 JSONArray jsonArray = jsonObject.getJSONArray("notificationList");
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-                    movie.setMPicmeId(jsonObject1.getString("mName"));
+                    movie.setSubject(jsonObject1.getString("mName"));
                     movie.setMessage(jsonObject1.getString("subject"));
-                    movie.setDateTime(jsonObject1.getString("dateTime"));
+                    movie.setNoteStartDateTime(jsonObject1.getString("dateTime"));
                     moviesList.add(movie);
 
                 }
