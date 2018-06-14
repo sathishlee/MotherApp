@@ -109,7 +109,7 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_update);
-        checkAPiVersion();
+//        checkAPiVersion();
 
         checkNetwork = new CheckNetwork(this);
         Create = (TextView) findViewById(R.id.Create);
@@ -129,28 +129,33 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
                     mAlreadyStartedService = false;
                 }
             }
-            if (preferenceData.getLogin()) {
-                LocalBroadcastManager.getInstance(this).registerReceiver(
-                        new BroadcastReceiver() {
-                            @Override
-                            public void onReceive(Context context, Intent intent) {
-                                String latitude = intent.getStringExtra(AppConstants.EXTRA_LATITUDE);
-                                String longitude = intent.getStringExtra(AppConstants.EXTRA_LONGITUDE);
-                                String mylocaton = latitude + "\t" + longitude;
-                                if (latitude != null && longitude != null) {
+            if(checkNetwork.isNetworkAvailable()) {
+                if (preferenceData.getLogin()) {
+                    LocalBroadcastManager.getInstance(this).registerReceiver(
+                            new BroadcastReceiver() {
+                                @Override
+                                public void onReceive(Context context, Intent intent) {
+                                    String latitude = intent.getStringExtra(AppConstants.EXTRA_LATITUDE);
+                                    String longitude = intent.getStringExtra(AppConstants.EXTRA_LONGITUDE);
+                                    String mylocaton = latitude + "\t" + longitude;
+                                    if (latitude != null && longitude != null) {
 //                            serverUpload.sendlocationtServer(mylocaton,latitude,longitude,LocationUpdateActivity.this);
-                                    strAddress = getCompleteAddressString(latitude, longitude);
+                                        strAddress = getCompleteAddressString(latitude, longitude);
 //if (preferenceData.getPicmeId().equalsIgnoreCase("") && preferenceData.getVhnId().equalsIgnoreCase("")&& preferenceData.getMId().equalsIgnoreCase(""))
 
-                                    AppConstants.NEAR_LATITUDE = latitude;
-                                    AppConstants.NEAR_LONGITUDE = longitude;
-                                    locationUpdatePresenter.uploadLocationToServer(preferenceData.getPicmeId(), preferenceData.getVhnId(), preferenceData.getMId(), latitude, longitude, strAddress);
+                                        AppConstants.NEAR_LATITUDE = latitude;
+                                        AppConstants.NEAR_LONGITUDE = longitude;
+                                        locationUpdatePresenter.uploadLocationToServer(preferenceData.getPicmeId(), preferenceData.getVhnId(), preferenceData.getMId(), latitude, longitude, strAddress);
 
+                                    }
                                 }
-                            }
-                        }, new IntentFilter(LocationMonitoringService.ACTION_LOCATION_BROADCAST)
-                );
+                            }, new IntentFilter(LocationMonitoringService.ACTION_LOCATION_BROADCAST)
+                    );
+                }
+            }else{
+
             }
+
 
 
 
@@ -343,6 +348,8 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
     /**
      * Return the current state of the permissions needed.
      */
+
+
     private boolean checkPermissions() {
         int permissionState1 = ActivityCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION);
@@ -564,7 +571,9 @@ Log.d(TAG,"success--->"+loginResponseModel);
         Log.w("dlongitude",dlongitude+"");
         Geocoder geocoder = new Geocoder(this, Locale.getDefault());
         try {
-            List<Address> addresses = geocoder.getFromLocation(dlatitude, dlongitude, 1);
+            if(checkNetwork.isNetworkAvailable()) {
+                List<Address> addresses = geocoder.getFromLocation(dlatitude, dlongitude, 1);
+
             if (addresses != null) {
 //                Address returnedAddress = addresses.get(0);
                 String maddress = addresses.get(0).getAddressLine(0);
@@ -578,7 +587,10 @@ Log.d(TAG,"success--->"+loginResponseModel);
 //                Log.w(TAG, "My Current loction address"+strReturnedAddress.toString());
 //                Log.w(TAG, "My Current loction address--->"+returnedAddress.getSubAdminArea().toString());
             } else {
-//                Log.w(TAG,"My Current loction address--->"+"No Address returned!");
+                Log.w(TAG,"My Current loction address--->"+"No Address returned!");
+            }
+            }else{
+                strAdd = String.valueOf("null");
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -1,8 +1,10 @@
 package com.unicef.thaimai.motherapp.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.location.LocationManager;
@@ -46,6 +48,7 @@ public class TurnOnGpsLocation extends AppCompatActivity implements GpsStatusDet
             @Override
             public void onClick(View v) {
                 mGpsStatusDetector.checkGpsStatus();
+//                turnOnGps();
             }
         });
     }
@@ -94,16 +97,24 @@ public class TurnOnGpsLocation extends AppCompatActivity implements GpsStatusDet
     public void onGpsSettingStatus(boolean enabled) {
         Log.d("TAG", "onGpsSettingStatus: " + enabled);
         mISGpsStatusDetector = enabled;
+        if(mISGpsStatusDetector = enabled){
+            startActivity(new Intent(getApplicationContext(),LocationUpdateActivity.class));
+        }
         if(!enabled){
             mGpsStatusDetector.checkGpsStatus();
+        }else{
+            startActivity(new Intent(getApplicationContext(),LocationUpdateActivity.class));
         }
+        /*if(enabled){
+            startActivity(new Intent(getApplicationContext(),LocationUpdateActivity.class));
+        }*/
         showSnackBar(enabled ? "GPS enabled" : "GPS disabled");
     }
 
     @Override
     public void onGpsAlertCanceledByUser() {
         Log.d("TAG", "onGpsAlertCanceledByUser");
-//        startActivity(new Intent(getApplicationContext(),TurnOnGpsLocation.class));
+        startActivity(new Intent(getApplicationContext(),TurnOnGpsLocation.class));
     }
 
     @Override
@@ -114,5 +125,28 @@ public class TurnOnGpsLocation extends AppCompatActivity implements GpsStatusDet
 
     private void showSnackBar(String text) {
         Snackbar.make(findViewById(android.R.id.content), text, Snackbar.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(TurnOnGpsLocation.this);
+        builder.setTitle(R.string.app_name);
+        builder.setIcon(R.mipmap.ic_launcher);
+        builder.setMessage("Are you Sure do you want to exit?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        finish();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
+
     }
 }

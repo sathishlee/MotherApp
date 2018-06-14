@@ -105,6 +105,7 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+//        pDialog.hide();
     }
 
     @Override
@@ -160,7 +161,7 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
         strage = preferenceData.getMotherAge();
 
         pDialog = new ProgressDialog(getActivity());
-        pDialog.setCancelable(false);
+        pDialog.setCancelable(true);
         pDialog.setMessage("Please Wait ...");
         getUserInfoPresenter =new GetUserInfoPresenter(getActivity().getApplicationContext(),this);
         primaryRegisterPresenter = new PrimaryRegisterPresenter(this, getActivity());
@@ -252,7 +253,7 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
 
     @Override
     public void hideProgress() {
-        pDialog.hide();
+        pDialog.dismiss();
     }
 
     @Override
@@ -355,9 +356,11 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
     @Override
     public void onDestroy(){
         super.onDestroy();
-        if (pDialog!=null && pDialog.isShowing() ){
+        pDialog.hide();
+        /*if (pDialog!=null && pDialog.isShowing() ){
             pDialog.cancel();
-        }
+        }*/
+
     }
 
     private void showOffline() {
@@ -375,12 +378,32 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
             txt_gst_week.setText(preferenceData.getGstWeek());
             txt_next_visit.setText(homeRealmModel.getANnextVisit());
             str_mobile_number_hsbn = homeRealmModel.getMHusbandMobile();
+            if(str_mobile_number_hsbn.equalsIgnoreCase("null")){
+                img_call_husb.setVisibility(View.GONE);
+            }else {
+                img_call_husb.setVisibility(View.VISIBLE);
+            }
             txt_vhn_name.setText(homeRealmModel.getVhnName());
             str_mobile_number_vhn = homeRealmModel.getVhnMobile();
+            if(str_mobile_number_vhn.equalsIgnoreCase("null")){
+                img_call_vhn.setVisibility(View.GONE);
+            }else{
+                img_call_vhn.setVisibility(View.VISIBLE);
+            }
             txt_aww_name.setText(homeRealmModel.getAwwName());
             str_mobile_number_aww = homeRealmModel.getAwwMobile();
+            if(str_mobile_number_aww.equalsIgnoreCase("null")){
+                img_call_aww.setVisibility(View.GONE);
+            }else{
+                img_call_aww.setVisibility(View.VISIBLE);
+            }
             txt_phc_name.setText(homeRealmModel.getPhcName());
             str_mobile_number_phc = homeRealmModel.getPhcMobile();
+            if(str_mobile_number_phc.equalsIgnoreCase("null")){
+                img_call_phc.setVisibility(View.GONE);
+            }else{
+                img_call_phc.setVisibility(View.VISIBLE);
+            }
             str_mPhoto = homeRealmModel.getMPhoto();
 
                 if(TextUtils.isEmpty(str_mPhoto)){
@@ -450,8 +473,10 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
                 homeRealmModel.setMWeight(jObj.getString("mWeight"));
                 homeRealmModel.setMHusbandName(jObj.getString("mHusbandName"));
                 homeRealmModel.setMGesWeek(jObj.getString("mGesWeek"));
+                preferenceData.setGstWeek(jObj.getString("mGesWeek"));
                 homeRealmModel.setANnextVisit(jObj.getString("ANnextVisit"));
                 homeRealmModel.setMHusbandMobile(jObj.getString("mHusbandMobile"));
+
                 homeRealmModel.setVhnName(jObj.getString("vhnName"));
                 homeRealmModel.setVhnMobile(jObj.getString("vhnMobile"));
                 homeRealmModel.setAwwName(jObj.getString("awwName"));
@@ -510,12 +535,32 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
             txt_gst_week.setText(homeRealmModel.getMGesWeek()+"");
             txt_next_visit.setText(homeRealmModel.getANnextVisit());
             str_mobile_number_hsbn = homeRealmModel.getMHusbandMobile();
+            if(str_mobile_number_hsbn.equalsIgnoreCase("null")){
+                img_call_husb.setVisibility(View.GONE);
+            }else {
+                img_call_husb.setVisibility(View.VISIBLE);
+            }
             txt_vhn_name.setText(homeRealmModel.getVhnName());
             str_mobile_number_vhn = homeRealmModel.getVhnMobile();
+            if(str_mobile_number_vhn.equalsIgnoreCase("null")){
+                img_call_vhn.setVisibility(View.GONE);
+            }else{
+                img_call_vhn.setVisibility(View.VISIBLE);
+            }
             txt_aww_name.setText(homeRealmModel.getAwwName());
             str_mobile_number_aww = homeRealmModel.getAwwMobile();
+            if(str_mobile_number_aww.equalsIgnoreCase("null")){
+                img_call_aww.setVisibility(View.GONE);
+            }else{
+                img_call_aww.setVisibility(View.VISIBLE);
+            }
             txt_phc_name.setText(homeRealmModel.getPhcName());
             str_mobile_number_phc = homeRealmModel.getPhcMobile();
+            if(str_mobile_number_phc.equalsIgnoreCase("null")){
+                img_call_phc.setVisibility(View.GONE);
+            }else{
+                img_call_phc.setVisibility(View.VISIBLE);
+            }
             str_mPhoto = homeRealmModel.getMPhoto();
 //            str_mPhoto = preferenceData.getMotherPhoto();
 
@@ -591,11 +636,14 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
 
 //                startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("tel:+"+str_mobile_number_hsbn)));
             case R.id.img_call_vhn:
-                makeCall(str_mobile_number_vhn); break;
+                makeCall(str_mobile_number_vhn);
+                break;
             case R.id.img_call_aww:
-                makeCall(str_mobile_number_aww); break;
+                makeCall(str_mobile_number_aww);
+                break;
             case R.id.img_call_phc:
-                makeCall(str_mobile_number_phc); break;
+                makeCall(str_mobile_number_phc);
+                break;
         }
     }
 
@@ -611,9 +659,11 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
         } else {
 
             // Camera permissions is already available, show the camera preview.
-            Log.i(NearHospitalActivity.class.getSimpleName(),"CALL permission has already been granted. Displaying camera preview.");
+            Log.i(getActivity().getCallingPackage(),"CALL permission has already been granted. Displaying camera preview.");
 //            showCameraPreview();
-            startActivity(new Intent(Intent.ACTION_CALL, Uri.parse("tel:+"+str_mobile_number)));
+            pDialog.hide();
+            startActivity(new Intent(Intent.ACTION_CALL, Uri.parse("tel:+91"+str_mobile_number)));
+
 
 
         }
@@ -622,7 +672,7 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
     private void requestCallPermission() {
 
 
-        Log.i(NearHospitalActivity.class.getSimpleName(), "CALL permission has NOT been granted. Requesting permission.");
+        Log.i(getActivity().getLocalClassName(), "CALL permission has NOT been granted. Requesting permission.");
 
         // BEGIN_INCLUDE(camera_permission_request)
         if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
@@ -630,7 +680,7 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
             // Provide an additional rationale to the user if the permission was not granted
             // and the user would benefit from additional context for the use of the permission.
             // For example if the user has previously denied the permission.
-            Log.i(NearHospitalActivity.class.getSimpleName(),            "Displaying camera permission rationale to provide additional context.");
+            Log.i(getActivity().getLocalClassName(),            "Displaying camera permission rationale to provide additional context.");
             Toast.makeText(getActivity(),"Displaying camera permission rationale to provide additional context.",Toast.LENGTH_SHORT).show();
 
         } else {
@@ -653,5 +703,10 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
                 }
                 return;
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 }

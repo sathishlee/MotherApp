@@ -5,10 +5,11 @@ import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
@@ -22,7 +23,6 @@ import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.android.volley.toolbox.StringRequest;
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.DeliveryEntryPresenter;
 import com.unicef.thaimai.motherapp.R;
@@ -37,7 +37,11 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class DeliveryDetailsActivityEntry extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener, DeliveryEntryViews {
+/**
+ * Created by Suthishan on 20/1/2018.
+ */
+
+public class DeliveryEditActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener, DeliveryEntryViews {
 
     EditText edt_delivery_date, edt_time_of_delivery, edt_infant_id, edt_infant_weight, edt_infant_height, edt_new_born_birth_date,
             edt_bcg_given_date, edt_opv_given_date, edt_hepb_given_date;
@@ -58,18 +62,18 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
     TextInputLayout til_delivery_date, til_delivery_time, til_infant_id, til_infant_weight, til_infant_height, til_new_born_date,
             til_bcg_date, til_opv_date, til_hepb_date;
 
-    ProgressDialog progressDialog;
     DeliveryEntryPresenter deliveryEntryPresenter;
     DeliveryEntryRequestModel deliveryEntryRequestModel;
-
+    ProgressDialog progressDialog;
     PreferenceData preferenceData;
     CheckNetwork checkNetwork;
-
     Calendar mCurrentDate;
     int day, month, year, hour, minute, sec;
 
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delivery_details_entry);
         showActionBar();
@@ -78,28 +82,27 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
         OnItemSelectedListener();
     }
 
-    public void showActionBar() {
+    private void showActionBar() {
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Enter Delivery Details");
+        actionBar.setTitle("Edit Delivery Details");
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
-    public void initUI() {
+    private void initUI() {
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
         progressDialog.setMessage("Please Wait...");
         preferenceData = new PreferenceData(this);
         checkNetwork = new CheckNetwork(this);
         strDid = preferenceData.getDid();
-        deliveryEntryPresenter = new DeliveryEntryPresenter(DeliveryDetailsActivityEntry.this, this);
+        deliveryEntryPresenter = new DeliveryEntryPresenter(DeliveryEditActivity.this, this);
         if (checkNetwork.isNetworkAvailable()) {
-            deliveryEntryPresenter.deliveryNumber(preferenceData.getPicmeId(), preferenceData.getMId());
+            deliveryEntryPresenter.deliveryDetails(preferenceData.getPicmeId(), preferenceData.getMId(), preferenceData.getDid());
         }else{
             Toast.makeText(getApplicationContext(), "Check Internet Connection..." + checkNetwork.isNetworkAvailable(), Toast.LENGTH_LONG).show();
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
         }
-
         mCurrentDate = Calendar.getInstance();
         day = mCurrentDate.get(Calendar.DAY_OF_MONTH);
         month = mCurrentDate.get(Calendar.MONTH);
@@ -135,9 +138,11 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
         til_bcg_date = (TextInputLayout) findViewById(R.id.til_bcg_date);
         til_opv_date = (TextInputLayout) findViewById(R.id.til_opv_date);
         til_hepb_date = (TextInputLayout) findViewById(R.id.til_hepb_date);
-    }
 
-    public void onClickListner() {
+
+
+    }
+    private void onClickListner() {
         btn_delivery_submit.setOnClickListener(this);
         edt_delivery_date.setOnClickListener(this);
         edt_time_of_delivery.setOnClickListener(this);
@@ -150,7 +155,7 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
     private void selectDate(final EditText selectDate) {
 
         Calendar newCalendar = Calendar.getInstance();
-        DatePickerDialog datePickerDialog = new DatePickerDialog(DeliveryDetailsActivityEntry.this, R.style.DatePickerDialogTheme, new DatePickerDialog.OnDateSetListener() {
+        DatePickerDialog datePickerDialog = new DatePickerDialog(DeliveryEditActivity.this, R.style.DatePickerDialogTheme, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                 Calendar newDate = Calendar.getInstance();
@@ -168,7 +173,7 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
     }
 
     private void selectTime(final EditText selectTime) {
-        TimePickerDialog mTimePicker = new TimePickerDialog(DeliveryDetailsActivityEntry.this, new TimePickerDialog.OnTimeSetListener() {
+        TimePickerDialog mTimePicker = new TimePickerDialog(DeliveryEditActivity.this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int hour, int minute) {
                 SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
@@ -183,7 +188,7 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
         mTimePicker.show();
     }
 
-    public void OnItemSelectedListener() {
+    private void OnItemSelectedListener() {
         sp_place.setOnItemSelectedListener(this);
         sp_delivery_details.setOnItemSelectedListener(this);
         sp_mother.setOnItemSelectedListener(this);
@@ -193,12 +198,14 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
         sp_breast_feeding_given.setOnItemSelectedListener(this);
         sp_outcome.setOnItemSelectedListener(this);
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         finish();
         return super.onOptionsItemSelected(item);
     }
+
+
+
 
     @Override
     public void onClick(View v) {
@@ -227,11 +234,11 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
         }
     }
 
-    public void datatosever() {
+    private void datatosever() {
         editTextValues();
 
         if (TextUtils.isEmpty(strDid)) {
-           Toast.makeText(getApplicationContext(),"DID is empty",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"DID is empty",Toast.LENGTH_SHORT).show();
         } else {
 
         }if (TextUtils.isEmpty(strDeliveryDate)) {
@@ -303,7 +310,7 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
 //            deliveryEntryRequestModel.setDid("2");
             deliveryEntryRequestModel.setDpicmeId(preferenceData.getPicmeId());
 //            deliveryEntryRequestModel.setMid(preferenceData.getMId());
-            deliveryEntryRequestModel.setDid(strDid);
+//            deliveryEntryRequestModel.setDid(strDid);
 
 //            deliveryEntryRequestModel.setDid(preferenceData.getDid());
 //            deliveryEntryRequestModel.setMid(preferenceData.getMId());
@@ -328,10 +335,9 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
 
             deliveryEntryPresenter.deliveryEntry(deliveryEntryRequestModel);
         }
-
     }
 
-    public void editTextValues() {
+    private void editTextValues() {
         strDeliveryDate = edt_delivery_date.getText().toString();
         strDeliveryTime = edt_time_of_delivery.getText().toString();
         strInfantID = edt_infant_id.getText().toString();
@@ -345,7 +351,6 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
         switch (parent.getId()) {
             case R.id.sp_place:
                 strPlace = parent.getSelectedItem().toString();
@@ -372,13 +377,12 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
                 strSNCUOutcome = parent.getSelectedItem().toString();
                 break;
         }
-
     }
 
     private void showAlert(String msg) {
         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
-
     }
+
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
@@ -396,16 +400,9 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
     }
 
     @Override
-    public void onDestroy(){
-        super.onDestroy();
-        if (progressDialog!=null && progressDialog.isShowing() ){
-            progressDialog.cancel();
-        }
-    }
-
-    @Override
     public void deliveryentrySuccess(String response) {
-        Log.e(DeliveryDetailsActivityEntry.class.getSimpleName(), "Response Success--->" + response);
+
+        Log.e(DeliveryEditActivity.class.getSimpleName(), "Response Success--->" + response);
         try {
             JSONObject jsonObject = new JSONObject(response);
             String status = jsonObject.getString("status");
@@ -422,12 +419,12 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
 
     @Override
     public void deliveryentryFailiure(String response) {
-        Log.d(DeliveryDetailsActivityEntry.class.getSimpleName(), "Response Failiure-->" + response);
+        Log.d(DeliveryEditActivity.class.getSimpleName(), "Response Failiure-->" + response);
     }
 
     @Override
     public void getdeliveryNumberSuccess(String response) {
-        Log.d(DeliveryDetailsActivityEntry.class.getSimpleName(), "Response Success--->" + response);
+        Log.d(DeliveryEditActivity.class.getSimpleName(), "Response Success--->" + response);
         try {
             JSONObject jsonObject = new JSONObject(response);
             String status = jsonObject.getString("status");
@@ -451,52 +448,51 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
     }
 
     @Override
     public void getdeliveryNumberFailiure(String response) {
         Log.d(DeliveryDetailsActivityEntry.class.getSimpleName(), "Response getdeliveryNumberFailiure-->" + response);
+
     }
 
     @Override
     public void deliveryDetailsSuccess(String response) {
-        Log.d(DeliveryDetailsView.class.getSimpleName(), "Success Response" + response);
+        Log.d(DeliveryEditActivity.class.getSimpleName(), "Success Response" + response);
         deliveryValues(response);
     }
 
     @Override
     public void deliveryDetailsFailure(String response) {
-        Log.d(DeliveryDetailsView.class.getSimpleName(), "failure" + response);
+        Log.d(DeliveryEditActivity.class.getSimpleName(), "failure" + response);
     }
-
     public void deliveryValues(String response) {
         JSONObject jsonObject = null;
         try {
             jsonObject = new JSONObject(response);
-            int status = jsonObject.getInt("status");
+            String status = jsonObject.getString("status");
             String message = jsonObject.getString("message");
 
-            if (status == 1) {
-                Log.d("message---->", message);
-
-                strDid = jsonObject.getString("did");
-                strPicmeId = jsonObject.getString("dpicmeId");
-                strDeliveryDate = jsonObject.getString("ddateTime");
-                strDeliveryTime = jsonObject.getString("dtime");
-                strDeliveryDetails = jsonObject.getString("ddeleveryDetails");
-                strNewbornOutcome = jsonObject.getString("dnewBorn");
-                strInfantHeight = jsonObject.getString("dBirthHeight");
-                strInfantWeight = jsonObject.getString("dBirthWeight");
-                strInfantID = jsonObject.getString("dInfantId");
-                strBirthdetails = jsonObject.getString("dBirthDetails");
-                strBreastFeeding = jsonObject.getString("dBreastFeedingGiven");
-                strAdmittedSNCU = jsonObject.getString("dAdmittedSNCU");
-                strSNCUNewBornDate = jsonObject.getString("dSNCUDate");
-                strSNCUOutcome = jsonObject.getString("dSNCUOutcome");
-                strBCGDate = jsonObject.getString("dBCGDate");
-                strOPVDate = jsonObject.getString("dOPVDate");
-                strHEPDate = jsonObject.getString("dHEPBDate");
-
+            if (status.equalsIgnoreCase("1")) {
+                JSONObject  jsonObject_res = jsonObject.getJSONObject("Delevery_Info");
+                strDid = jsonObject_res.getString("did");
+                strPicmeId = jsonObject_res.getString("dpicmeId");
+                strDeliveryDate = jsonObject_res.getString("ddatetime");
+                strDeliveryTime = jsonObject_res.getString("dtime");
+                strDeliveryDetails = jsonObject_res.getString("ddeleveryDetails");
+                strNewbornOutcome = jsonObject_res.getString("dnewBorn");
+                strInfantHeight = jsonObject_res.getString("dBirthHeight");
+                strInfantWeight = jsonObject_res.getString("dBirthWeight");
+                strInfantID = jsonObject_res.getString("dInfantId");
+                strBirthdetails = jsonObject_res.getString("dBirthDetails");
+                strBreastFeeding = jsonObject_res.getString("dBreastFeedingGiven");
+                strAdmittedSNCU = jsonObject_res.getString("dAdmittedSNCU");
+                strSNCUNewBornDate = jsonObject_res.getString("dSNCUDate");
+                strSNCUOutcome = jsonObject_res.getString("dSNCUOutcome");
+                strBCGDate = jsonObject_res.getString("dBCGDate");
+                strOPVDate = jsonObject_res.getString("dOPVDate");
+                strHEPDate = jsonObject_res.getString("dHEPBDate");
             } else {
                 Log.d("message---->", message);
 
@@ -508,5 +504,4 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
 
 
     }
-
 }

@@ -167,9 +167,20 @@
             android:theme="@style/AppTheme">
 
         </activity>
+        <activity
+            android:name=".activity.FullImageViewActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
 
         <activity
             android:name=".activity.DeliveryDetailsView"
+            android:theme="@style/AppTheme">
+
+        </activity>
+
+        <activity
+            android:name=".activity.DeliveryEditActivity"
             android:theme="@style/AppTheme">
 
         </activity>

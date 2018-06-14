@@ -38,7 +38,7 @@
     <style parent="ThemeOverlay.AppCompat.Light" name="AppTheme.PopupOverlay"/>
 
     <style name="HeaderBar">
-    <item name="android:background">#303F9F</item>
+    <item name="android:background">@color/app_background</item>
     </style>
 
 

@@ -35,6 +35,8 @@
 
     <color name="header">#2F80ED</color>
 
+    <color name="app_background">#303F9F</color>
+
     <color name="primary">#00BCD4</color>
     <color name="primary_dark">#0097A7</color>
     <color name="accent">#FFEB3B</color>

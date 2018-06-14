@@ -6,7 +6,7 @@
         <item
             android:id="@+id/primary_register"
             android:icon="@drawable/primary_register"
-            android:title="Primary Register" />
+            android:title="@string/primary_register" />
 
 
 
@@ -45,28 +45,28 @@
         <item
             android:id="@+id/immunization_menu"
             android:icon="@drawable/syringe"
-            android:title="Immunization" />
+            android:title="@string/immunization_menu" />
 
         <item
             android:id="@+id/visit_record"
             android:icon="@drawable/checkup"
-            android:title="Visit Entry" />
+            android:title="@string/visit_entry" />
 
 
         <item
             android:id="@+id/delivery_details_entry"
             android:icon="@drawable/pregnancy_delivery"
-            android:title="Delivery Entry" />
+            android:title="@string/delivery_entry" />
 
         <item
             android:id="@+id/pn_hbnc_visit_entry"
             android:icon="@drawable/pn_hbnc_dropper"
-            android:title="PN/HBNC Visit Entry" />
+            android:title="@string/pn_hbnc_visit_entry" />
 
         <item
             android:id="@+id/immunization_entry"
             android:icon="@drawable/immu_charity"
-            android:title="Immunization Entry" />
+            android:title="@string/immunization_entry" />
 
         <!--<item-->
             <!--android:id="@+id/referral"-->

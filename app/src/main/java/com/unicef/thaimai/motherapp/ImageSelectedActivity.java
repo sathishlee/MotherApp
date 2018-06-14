@@ -412,7 +412,7 @@ public class ImageSelectedActivity extends AppCompatActivity implements CameraHo
         }
         Log.e("mBitmap","SelectedImages size"+mBitmapSelectedImages.size()+"");
 
-        uploadMulitipleImagesPresenter.uploadVisitReportsPhoto(preferenceData.getPicmeId(),strTotalVisitCount,mBitmapSelectedImages);
+        uploadMulitipleImagesPresenter.uploadVisitReportsPhoto(preferenceData.getPicmeId(),strTotalVisitCount,preferenceData.getMId(),mBitmapSelectedImages);
 
 //        Intent intent = new Intent();
 //        intent.putParcelableArrayListExtra(EXTRA_IMAGE_URIS, mSelectedImages);

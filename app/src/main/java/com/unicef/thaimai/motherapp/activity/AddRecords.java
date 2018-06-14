@@ -402,7 +402,6 @@
         @Override
         public void insertRecordFailiure(String response) {
             Log.d(AddRecords.class.getSimpleName(), "Response Failure-->" + response);
-
         }
 
         @Override
@@ -433,7 +432,6 @@
         @Override
         public void getVisitIDFailiure(String response) {
             Log.d(AddRecords.class.getSimpleName(), "Response Success--->" + response);
-
         }
 
 

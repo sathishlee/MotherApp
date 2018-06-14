@@ -98,12 +98,12 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView, V
         setContentView(R.layout.layout_profile);
         showActionBar();
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        /*fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(),ProfileUpdateActivity.class));
             }
-        });
+        });*/
         if(CheckingPermissionIsEnabledOrNot())
         {
             Toast.makeText(ProfileActivity.this, "All Permissions Granted Successfully", Toast.LENGTH_LONG).show();
@@ -284,6 +284,12 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView, V
                 number_1.setText(editprofile.getString("mHusbandMobile"));
 
                 str_mPhoto = editprofile.getString("mPhoto");
+
+                if(editprofile.getString("mPhoto").equalsIgnoreCase("null")){
+                    preferenceData.setMotherPhoto("");
+                }else{
+                    preferenceData.setMotherPhoto(editprofile.getString("mPhoto"));
+                }
 
                 Log.d("mphoto-->", Apiconstants.PHOTO_URL+str_mPhoto);
 

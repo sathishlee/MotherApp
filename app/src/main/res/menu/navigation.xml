@@ -20,7 +20,7 @@
 
     <item
         android:id="@+id/pn_hbnc_visit"
-        android:title="PN / HBNC Visit"
+        android:title="@string/pn_hbnc_visit"
         android:icon="@drawable/mother_baby"/>
 
     <item
