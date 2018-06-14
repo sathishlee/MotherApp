@@ -1,6 +1,8 @@
 package com.unicef.thaimai.motherapp.app;
 
 import android.app.Application;
+import android.content.Context;
+import android.support.multidex.MultiDex;
 
 import com.unicef.thaimai.motherapp.broadCastReceivers.ConnectivityReceiver;
 
@@ -39,6 +41,12 @@ public class MyApplication extends Application {
 
     public void setConnectivityListener(ConnectivityReceiver.ConnectivityReceiverListener listener) {
         ConnectivityReceiver.connectivityReceiverListener = listener;
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 
 }

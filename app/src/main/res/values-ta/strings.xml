@@ -116,7 +116,7 @@
     <string name="enter_pluse_rate">ப்ளூஸ் ரேட் உள்ளிடவும்</string>
     <string name="enter_ppbs">PPBS ஐ உள்ளிடவும்</string>
     <string name="enter_primary_mobile_number">முதன்மை மொபைல் எண்ணை உள்ளிடவும்</string>
-    <string name="enter_primary_number">முதன்மை எண் ஐ உள்ளிடுக</string>
+    <string name="enter_primary_number">PICME ID*</string>
     <string name="enter_pulse_rate">துடிப்பு விகிதம் உள்ளிடவும்</string>
     <string name="enter_rbs">RBS ஐ உள்ளிடவும்</string>
     <string name="enter_surgery_details">அறுவை சிகிச்சை விவரங்களை உள்ளிடவும்</string>
@@ -141,7 +141,7 @@
     <string name="husband">கணவர்</string>
     <string name="husband_s_occupation">கணவரின் தொழில்</string>
     <string name="ifa_start_date">IFA தொடக்க தேதி:</string>
-    <string name="immunization_visit">" நோய்த்தடுப்பு வருகை"</string>
+    <string name="immunization_visit">நோய்த்தடுப்பு வருகை</string>
     <string name="immunization_visits">நோய்த்தடுப்பு வருகை</string>
     <string name="in_labour">தொழிற்சாலை</string>
     <string name="infant_details">குழந்தை விவரங்கள்</string>
@@ -149,7 +149,7 @@
     <string name="infant_visits">குழந்தைகளுக்கான வருகைகள்</string>
     <string name="l">எல்</string>
     <string name="lab_report_details">ஆய்வு அறிக்கை விவரங்கள்</string>
-    <string name="lmp_date"></string>
+    <string name="lmp_date">LMP தேதி</string>
     <string name="logo">LMP தேதி</string>
     <string name="lscs_done">LSCS செய்யப்பட்டது</string>
     <string name="maturity">முதிர்ச்சி</string>
@@ -207,4 +207,23 @@
     <string name="vaccine_received">தடுப்பூசி பெறப்பட்டது</string>
     <string name="visit_number">எண் வருகை</string>
     <string name="zero_dose">ஜீரோ டோஸ்</string>
+    <string name="primary_register">முதன்மை பதிவு</string>
+    <string name="delivery_entry">டெலிவரி நுழைவு</string>
+    <string name="visit_entry">நுழைவு பார்க்கவும்</string>
+    <string name="block">பிளாக்</string>
+    <string name="district">மாவட்டம்</string>
+    <string name="immunization_entry">நோய்த்தடுப்பு நுழைவு</string>
+    <string name="immunization_menu">நோய்த்தடுப்பு</string>
+    <string name="out_come">பலன்</string>
+    <string name="username_profile">பயனர்பெயர்</string>
+    <string name="address">முகவரி</string>
+    <string name="bp">இரத்த அழுத்தம்</string>
+    <string name="date_of_visit_health_records">வருகை தேதி</string>
+    <string name="fetus">முதிர்மூலவுரு</string>
+    <string name="funbal_height">நிதி உயரம்</string>
+    <string name="liquor">மது</string>
+    <string name="picme_visit">Picme வருகை</string>
+    <string name="registration_week">பதிவு வாரம்</string>
+    <string name="visit_details">விவரங்களைப் பார்வையிடவும்</string>
+    <string name="visit_type">வகை பார்க்கவும்</string>
 </resources>

@@ -109,7 +109,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Visit Details"
+                            android:text="@string/visit_details"
                             android:textSize="@dimen/text_label"
                             android:textAlignment="textStart"
                             android:textColor="#2F80ED"
@@ -167,7 +167,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Date of Visit"
+                                android:text="@string/date_of_visit_health_records"
                                 android:textSize="@dimen/text_primary"
                                 android:textAlignment="textStart"
                                 android:textColor="#aaffffff"
@@ -210,7 +210,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="#aaffffff"
-                                android:text="Visit Type"
+                                android:text="@string/visit_type"
                                 android:textSize="@dimen/text_primary"
                                 android:layout_gravity="start"
                                 android:textStyle="bold" />
@@ -248,7 +248,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
-                            android:text="Facility"
+                            android:text="@string/facility"
                             android:textAlignment="textStart"
                             android:textSize="@dimen/text_primary"
                             android:textColor="@color/secondary"
@@ -276,7 +276,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
-                            android:text="Any C/O"
+                            android:text="@string/any_c_o"
                             android:textSize="@dimen/text_primary"
                             android:layout_gravity="start"
                             android:textColor="@color/secondary"
@@ -332,7 +332,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Clinical Report"
+                            android:text="@string/clinical_report"
                             android:textSize="@dimen/text_label"
                             android:textAlignment="textStart"
                             android:textColor="#2F80ED"
@@ -391,7 +391,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="BP"
+                                android:text="@string/bp"
                                 android:textSize="@dimen/text_primary"
                                 android:textAlignment="textStart"
                                 android:textColor="#aaffffff"
@@ -434,7 +434,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="#aaffffff"
-                                android:text="Pluse Rate"
+                                android:text="@string/pluse_rate"
                                 android:textSize="@dimen/text_primary"
                                 android:layout_gravity="start"
                                 android:textStyle="bold" />
@@ -472,7 +472,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Weight"
+                            android:text="@string/weight"
                             android:textSize="@dimen/text_primary"
                             android:textAlignment="textStart"
                             android:textColor="@color/secondary"
@@ -499,7 +499,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
-                            android:text="Funbal height"
+                            android:text="@string/funbal_height"
                             android:textSize="@dimen/text_primary"
                             android:layout_gravity="start"
                             android:textColor="@color/secondary"
@@ -536,7 +536,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="FHS"
+                            android:text="@string/fhs"
                             android:layout_marginStart="5dp"
                             android:textSize="@dimen/text_primary"
                             android:textAlignment="textStart"
@@ -566,7 +566,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
                             android:textSize="@dimen/text_primary"
-                            android:text="Pedal Edema Present"
+                            android:text="@string/pedal_edema_present"
                             android:layout_gravity="start"
                             android:textColor="@color/secondary"
                             android:textStyle="bold" />
@@ -621,7 +621,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Lab Report"
+                            android:text="@string/lab_report"
                             android:textSize="@dimen/text_label"
                             android:textAlignment="textStart"
                             android:textColor="#2F80ED"
@@ -680,7 +680,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="HB"
+                                android:text="@string/hb"
                                 android:textSize="@dimen/text_primary"
                                 android:textAlignment="textStart"
                                 android:textColor="#aaffffff"
@@ -723,7 +723,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="#aaffffff"
-                                android:text="FBS"
+                                android:text="@string/fbs"
                                 android:textSize="@dimen/text_primary"
                                 android:layout_gravity="start"
                                 android:textStyle="bold" />
@@ -762,7 +762,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
-                            android:text="PPBS"
+                            android:text="@string/ppbs"
                             android:textSize="@dimen/text_primary"
                             android:textAlignment="textStart"
                             android:textColor="@color/secondary"
@@ -790,7 +790,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
-                            android:text="GTT"
+                            android:text="@string/gtt"
                             android:textSize="@dimen/text_primary"
                             android:layout_gravity="start"
                             android:textColor="@color/secondary"
@@ -824,7 +824,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Sugar"
+                            android:text="@string/sugar"
                             android:textSize="@dimen/text_primary"
                             android:layout_marginStart="5dp"
                             android:textAlignment="textStart"
@@ -882,7 +882,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="UCG Report"
+                            android:text="@string/ucg_report"
                             android:textSize="@dimen/text_label"
                             android:textAlignment="textStart"
                             android:textColor="#2F80ED"
@@ -926,7 +926,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Fetus"
+                            android:text="@string/fetus"
                             android:textSize="@dimen/text_primary"
                             android:textAlignment="textStart"
                             android:textColor="@color/secondary"
@@ -953,7 +953,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="@dimen/text_primary"
-                            android:text="Gestation Sac"
+                            android:text="@string/gestation_sac"
                             android:layout_gravity="start"
                             android:textColor="@color/secondary"
                             android:textStyle="bold" />
@@ -988,7 +988,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Liquor"
+                            android:text="@string/liquor"
                             android:textSize="@dimen/text_primary"
                             android:textAlignment="textStart"
                             android:textColor="@color/secondary"
@@ -1016,7 +1016,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="@dimen/text_primary"
-                            android:text="Placenta"
+                            android:text="@string/placenta"
                             android:layout_gravity="start"
                             android:textColor="@color/secondary"
                             android:textStyle="bold" />
@@ -1051,7 +1051,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="TSH"
+                            android:text="@string/tsh"
                             android:textSize="@dimen/text_primary"
                             android:textAlignment="textStart"
                             android:textColor="@color/secondary"

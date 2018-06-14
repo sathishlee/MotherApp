@@ -38,10 +38,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 
 public class AddReferral extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener, ReferalViews {
@@ -182,7 +184,14 @@ public class AddReferral extends AppCompatActivity implements View.OnClickListen
         llAddNewReferal = (LinearLayout) findViewById(R.id.ll_add_new_referal);
         llUpdateRefral = (LinearLayout) findViewById(R.id.ll_update_refral);
         edtDateOfReferral = (EditText) findViewById(R.id.edt_date_of_referral_start);
+//        String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
+        SimpleDateFormat dateF = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+        String date = dateF.format(Calendar.getInstance().getTime());
+        edtDateOfReferral.setText(date);
         edtTimeOfReferral = (EditText) findViewById(R.id.edt_time_of_referral_start);
+        SimpleDateFormat timeF = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
+        String time = timeF.format(Calendar.getInstance().getTime());
+        edtTimeOfReferral.setText(time);
         sp_referred_by = (Spinner) findViewById(R.id.sp_referred_by);
         sp_referring_facility_start = (Spinner) findViewById(R.id.sp_referring_facility_start);
         sp_facility_referred_to_start = (Spinner) findViewById(R.id.sp_facility_referred_to_start);
@@ -247,7 +256,6 @@ public class AddReferral extends AppCompatActivity implements View.OnClickListen
                 break;
             case R.id.edt_time_of_referral_end:
                 pickTime(edtUPTimeOfReferral);
-
                 break;
         }
     }

@@ -2,6 +2,7 @@ package com.unicef.thaimai.motherapp.activity;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,6 +52,7 @@ public class ViewReportsActivity extends AppCompatActivity implements GetAllRepo
     String visitImage;
     Context context;
     ImageView itemImage;
+    boolean isImageFitToScreen;
 
     ArrayList<VisitRecordsSingleResponseModel> singleResponseModelsList;
     @Override
@@ -62,8 +65,8 @@ public class ViewReportsActivity extends AppCompatActivity implements GetAllRepo
     }
 
 
-
     private void initUI() {
+
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
         progressDialog.setMessage("Please Wait ...");
@@ -76,6 +79,13 @@ public class ViewReportsActivity extends AppCompatActivity implements GetAllRepo
         getVisitReportsPresenter.getallVisitReports(preferenceData.getPicmeId(),preferenceData.getMId());
         txt_no_records_found = (TextView) findViewById(R.id.txt_no_records);
         itemImage = (ImageView) findViewById(R.id.itemImage);
+/*        itemImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });*/
+
 
         txt_no_records_found.setVisibility(View.GONE);
 //        displayRecords();

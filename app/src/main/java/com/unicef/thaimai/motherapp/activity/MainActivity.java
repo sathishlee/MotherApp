@@ -532,9 +532,10 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onDestroy(){
         super.onDestroy();
-        if (pDialog!=null && pDialog.isShowing() ){
+        pDialog.hide();
+       /* if (pDialog!=null && pDialog.isShowing() ){
             pDialog.cancel();
-        }
+        }*/
     }
 
     @Override
@@ -612,7 +613,8 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
-        MyApplication.getInstance().setConnectivityListener(this);
+        pDialog.hide();
+//        MyApplication.getInstance().setConnectivityListener(this);
 
 
     }

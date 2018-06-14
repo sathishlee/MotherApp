@@ -69,7 +69,6 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
         pDialog.setMessage("Please Wait ...");
-
         loginPresenter = new LoginPresenter(ForgotPasswordActivity.this, this);
         preferenceData = new PreferenceData(this);
         checkNetwork = new CheckNetwork(this);
@@ -79,8 +78,6 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
         txt_backto_login = (TextView) findViewById(R.id.txt_backto_login);
         iplPicmeId = (TextInputLayout) findViewById(R.id.input_layout_mobile_number);
         iplDob = (TextInputLayout) findViewById(R.id.input_regDob);
-
-
     }
 
     @Override
@@ -108,18 +105,11 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
         preferenceData.getDeviceId();
 
         if (strPicme.equalsIgnoreCase("")) {
-            iplPicmeId.setError("Pickme ID is Empty");
+            iplPicmeId.setError("Enter Picme Id");
         }
         if (strMob.equalsIgnoreCase("")) {
-            iplDob.setError("Dob is Empty");
-        }
-        if (strPicme.length() < 10) {
-            iplPicmeId.setError("Enter Correct Picme ID");
-        }
-        if (strPicme.length() > 14) {
-            iplPicmeId.setError("Enter Correct Picme ID");
+            iplDob.setError("Enter Primary Number");
         } else {
-//            loginPresenter.checkPickmeId(strPicme, strDob, "dT7h3twBpWU:APA91bHQqQOCBueyUGhvY2uIsMNfIfM7ynMlVzm89tTTWDeKhXzMWCS9WZL1gu8nFz_nkwU5Po9i8ytXHmjoxAeu36BTbIFHwWhWfjbWtO-EjG6n7zW4M_PFCCOID8eE0fQX4RPPHfBQ");
             if (checkNetwork.isNetworkAvailable()) {
                 loginPresenter.forgetPassword(strPicme, strMob);
             }else {
@@ -135,7 +125,7 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
 
     @Override
     public void hideProgress() {
-pDialog.hide();
+        pDialog.hide();
     }
 
     @Override

@@ -37,7 +37,7 @@ public class UploadMulitipleImagesPresenter implements ImageUploadInteractor {
     }
 
     @Override
-    public void uploadVisitReportsPhoto(final String picmeId, final String visitId, final ArrayList<Bitmap> bitmap) {
+    public void uploadVisitReportsPhoto(final String picmeId, final String visitId, final String mid, final ArrayList<Bitmap> bitmap) {
 
         imageUploadViews.showProgress();
         VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST,
@@ -68,6 +68,7 @@ public class UploadMulitipleImagesPresenter implements ImageUploadInteractor {
                 Map<String, String> params = new HashMap<>();
                 params.put("picmeId", picmeId);
                 params.put("visitId", visitId);
+                params.put("mid", mid);
                 return params;
             }
 

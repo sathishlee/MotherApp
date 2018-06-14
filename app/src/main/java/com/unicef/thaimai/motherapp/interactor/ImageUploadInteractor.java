@@ -11,6 +11,6 @@ import java.util.ArrayList;
 public interface ImageUploadInteractor {
     void uploadUserProfilePhoto(String picmeId, Bitmap bitmap);
 
-    void uploadVisitReportsPhoto(String picmeId, String visitId, ArrayList<Bitmap> bitmap);
+    void uploadVisitReportsPhoto(String picmeId, String visitId, String mid, ArrayList<Bitmap> bitmap);
 
 }

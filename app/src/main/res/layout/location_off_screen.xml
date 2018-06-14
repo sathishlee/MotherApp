@@ -23,7 +23,7 @@
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:contentDescription="No Internet"
+                android:contentDescription="@string/no_location"
                 appCompact:src="@drawable/no_location" />
 
             <TextView
@@ -33,7 +33,7 @@
                 android:gravity="center"
                 android:textColor="@color/colorPrimary"
                 android:textSize="18sp"
-                android:text="GPS Unavailable."/>
+                android:text="@string/gps_unavailable"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -42,15 +42,15 @@
                 android:gravity="center"
                 android:textColor="@color/text_secondary"
                 android:textSize="@dimen/text_label"
-                android:text="Please Check Your GPS Connectivity."/>
+                android:text="@string/please_check_your_gps_connectivity"/>
 
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="50dp"
-                android:background="@drawable/button_backgroumd"
-                android:text="Turn on location"
+                android:background="@color/colorPrimary"
+                android:text="@string/turn_on_location"
                 android:textColor="#ffffff"
                 android:id="@+id/btn_turn_on" />
 
