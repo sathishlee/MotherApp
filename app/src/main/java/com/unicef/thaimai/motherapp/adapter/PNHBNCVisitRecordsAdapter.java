@@ -55,9 +55,9 @@ public class PNHBNCVisitRecordsAdapter extends PagerAdapter {
         txt_hbnc_visit_num.setText(mhealthRecordResponseModel.getPnVisitNo());
         txt_place.setText(mhealthRecordResponseModel.getPnPlace());
         txt_weight.setText(mhealthRecordResponseModel.getPnAnyComplaints());
-        txt_temp.setText(mhealthRecordResponseModel.getPnTemp());
+        txt_temp.setText(mhealthRecordResponseModel.getCTemp());
         txt_mother_bp.setText(mhealthRecordResponseModel.getPnBPDiastolic()+"/"+mhealthRecordResponseModel.getPnBPSystolic());
-        txt_mother_pluse_rate.setText(mhealthRecordResponseModel.getPnTemp());
+        txt_mother_pluse_rate.setText(mhealthRecordResponseModel.getPnPulseRate());
         txt_mother_epistomy_tear_suture.setText(mhealthRecordResponseModel.getPnEpistomyTear());
         txt_mother_pv_discharge.setText(mhealthRecordResponseModel.getPnPVDischarge());
         txt_mother_breast_feeding.setText(mhealthRecordResponseModel.getPnBreastFeeding());

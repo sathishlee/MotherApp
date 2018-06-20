@@ -170,10 +170,12 @@ public class PNhbncVisit extends Fragment implements GetVisitHelthRecordsViews, 
                     mPnHbncVisitRecordsModel.setPnPlace(jsonObject.getString("pnPlace"));
                     mPnHbncVisitRecordsModel.setPnAnyComplaints(jsonObject.getString("pnAnyComplaints"));
                     mPnHbncVisitRecordsModel.setPnBPSystolic(jsonObject.getString("pnBPSystolic"));
+                    mPnHbncVisitRecordsModel.setPnBPDiastolic(jsonObject.getString("pnBPDiastolic"));
                     mPnHbncVisitRecordsModel.setPnPulseRate(jsonObject.getString("pnPulseRate"));
                     mPnHbncVisitRecordsModel.setPnTemp(jsonObject.getString("pnTemp"));
                     mPnHbncVisitRecordsModel.setPnEpistomyTear(jsonObject.getString("pnEpistomyTear"));
                     mPnHbncVisitRecordsModel.setPnPVDischarge(jsonObject.getString("pnPVDischarge"));
+                    mPnHbncVisitRecordsModel.setPnBreastFeeding(jsonObject.getString("pnBreastFeeding"));
                     mPnHbncVisitRecordsModel.setPnBreastFeedingReason(jsonObject.getString("pnBreastFeedingReason"));
                     mPnHbncVisitRecordsModel.setPnBreastExamination(jsonObject.getString("pnBreastExamination"));
                     mPnHbncVisitRecordsModel.setPnOutCome(jsonObject.getString("pnOutCome"));

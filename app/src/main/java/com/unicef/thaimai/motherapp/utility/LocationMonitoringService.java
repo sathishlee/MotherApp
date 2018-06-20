@@ -155,8 +155,8 @@ public class LocationMonitoringService extends Service implements
 
 
         if (location != null) {
-            Log.d(TAG, "== location != null");
-            Log.d(TAG, "== location != null");
+//            Log.d(TAG, "== location != null");
+//            Log.d(TAG, "== location != null");
             Log.d(TAG, "Latitude"+String.valueOf(location.getLatitude()));
             Log.d(TAG, "Longitude"+String.valueOf(location.getLongitude()));
 
@@ -176,8 +176,8 @@ public class LocationMonitoringService extends Service implements
         Log.d("Latitude",lat);
         Log.d("Longitude",lng);
 
-        AppConstants.EXTRA_LATITUDE=lat;
-        AppConstants.EXTRA_LONGITUDE=lng;
+//        AppConstants.EXTRA_LATITUDE=lat;
+//        AppConstants.EXTRA_LONGITUDE=lng;
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
     }
 

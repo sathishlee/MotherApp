@@ -28,8 +28,8 @@ public class AppConstants {
 
     public static final int LOCATION_INTERVAL = 10000;            //1800000
     public static final int FASTEST_LOCATION_INTERVAL = 1000;
-    public static String EXTRA_LATITUDE = "";
-    public static String EXTRA_LONGITUDE = "";
+    public static String EXTRA_LATITUDE = "latitude";
+    public static String EXTRA_LONGITUDE = "longitude";
 
 
 
@@ -65,6 +65,10 @@ public class AppConstants {
 
 
     public static final String NOTIFICATION_COUNT= "0";
+
+    public static final String CURENT_ADDRESS= "curaddress";
+    public static final String CURENT_LAT= "curlatitude";
+    public static final String CURENT_LON= "curlontitude";
 
     //Store First Time While Login
     public static final String PICME_ID_CHECK = "picmeId";

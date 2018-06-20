@@ -153,7 +153,8 @@ public class AddReferral extends AppCompatActivity implements View.OnClickListen
         referalPresenter = new ReferalPresenter(AddReferral.this, this);
 //        if (AppConstants.CREATE_NEW_REFRAL) {
         if (checkNetwork.isNetworkAvailable()) {
-            referalPresenter.getReffralNearestHospital(AppConstants.EXTRA_LATITUDE, AppConstants.EXTRA_LONGITUDE);
+//            referalPresenter.getReffralNearestHospital(AppConstants.EXTRA_LATITUDE, AppConstants.EXTRA_LONGITUDE);
+            referalPresenter.getReffralNearestHospital(preferenceData.gettCurentlatitude(), preferenceData.gettCurentlongitude());
         }else{
             Toast.makeText(getApplicationContext(), "Check Internet Connection... Try Again After Sometimes", Toast.LENGTH_LONG).show();
             finish();

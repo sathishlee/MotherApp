@@ -374,7 +374,13 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
             txt_age.setText(preferenceData.getMotherAge());
             txt_an_risk.setText(homeRealmModel.getMRiskStatus());
             txt_weight.setText(homeRealmModel.getMWeight());
-            txt_husb_name.setText(homeRealmModel.getMHusbandName());
+            String txtHusbandName = homeRealmModel.getMHusbandName();
+            if(txtHusbandName.equalsIgnoreCase("null")){
+                txt_husb_name.setText("");
+            }else{
+                txt_husb_name.setText(homeRealmModel.getMHusbandName());
+            }
+
             txt_gst_week.setText(preferenceData.getGstWeek());
             txt_next_visit.setText(homeRealmModel.getANnextVisit());
             str_mobile_number_hsbn = homeRealmModel.getMHusbandMobile();
@@ -383,21 +389,36 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
             }else {
                 img_call_husb.setVisibility(View.VISIBLE);
             }
-            txt_vhn_name.setText(homeRealmModel.getVhnName());
+            String vhnName = homeRealmModel.getVhnName();
+            if(vhnName.equalsIgnoreCase("null")){
+                txt_vhn_name.setText("");
+            }else{
+                txt_vhn_name.setText(homeRealmModel.getVhnName());
+            }
             str_mobile_number_vhn = homeRealmModel.getVhnMobile();
             if(str_mobile_number_vhn.equalsIgnoreCase("null")){
                 img_call_vhn.setVisibility(View.GONE);
             }else{
                 img_call_vhn.setVisibility(View.VISIBLE);
             }
-            txt_aww_name.setText(homeRealmModel.getAwwName());
+            String awwName = homeRealmModel.getAwwName();
+            if(awwName.equalsIgnoreCase("null")){
+                txt_aww_name.setText("");
+            }else{
+                txt_aww_name.setText(homeRealmModel.getAwwName());
+            }
             str_mobile_number_aww = homeRealmModel.getAwwMobile();
             if(str_mobile_number_aww.equalsIgnoreCase("null")){
                 img_call_aww.setVisibility(View.GONE);
             }else{
                 img_call_aww.setVisibility(View.VISIBLE);
             }
-            txt_phc_name.setText(homeRealmModel.getPhcName());
+            String phcName = homeRealmModel.getPhcName();
+            if(phcName.equalsIgnoreCase("null")){
+                txt_phc_name.setText("");
+            }else{
+                txt_phc_name.setText(homeRealmModel.getPhcName());
+            }
             str_mobile_number_phc = homeRealmModel.getPhcMobile();
             if(str_mobile_number_phc.equalsIgnoreCase("null")){
                 img_call_phc.setVisibility(View.GONE);
@@ -528,11 +549,17 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
             HomeRealmModel homeRealmModel = homeRealmModels.get(i);
             txt_lmp_date.setText(homeRealmModel.getMLMP());
             txt_edd_date.setText(homeRealmModel.getMEDD());
-            txt_age.setText(homeRealmModel.getMAge()+"");
+            txt_age.setText(preferenceData.getMotherAge());
             txt_an_risk.setText(homeRealmModel.getMRiskStatus());
             txt_weight.setText(homeRealmModel.getMWeight());
-            txt_husb_name.setText(homeRealmModel.getMHusbandName());
-            txt_gst_week.setText(homeRealmModel.getMGesWeek()+"");
+            String txtHusbandName = homeRealmModel.getMHusbandName();
+            if(txtHusbandName.equalsIgnoreCase("null")){
+                txt_husb_name.setText("");
+            }else{
+                txt_husb_name.setText(homeRealmModel.getMHusbandName());
+            }
+
+            txt_gst_week.setText(preferenceData.getGstWeek());
             txt_next_visit.setText(homeRealmModel.getANnextVisit());
             str_mobile_number_hsbn = homeRealmModel.getMHusbandMobile();
             if(str_mobile_number_hsbn.equalsIgnoreCase("null")){
@@ -540,21 +567,36 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
             }else {
                 img_call_husb.setVisibility(View.VISIBLE);
             }
-            txt_vhn_name.setText(homeRealmModel.getVhnName());
+            String vhnName = homeRealmModel.getVhnName();
+            if(vhnName.equalsIgnoreCase("null")){
+                txt_vhn_name.setText("");
+            }else{
+                txt_vhn_name.setText(homeRealmModel.getVhnName());
+            }
             str_mobile_number_vhn = homeRealmModel.getVhnMobile();
             if(str_mobile_number_vhn.equalsIgnoreCase("null")){
                 img_call_vhn.setVisibility(View.GONE);
             }else{
                 img_call_vhn.setVisibility(View.VISIBLE);
             }
-            txt_aww_name.setText(homeRealmModel.getAwwName());
+            String awwName = homeRealmModel.getAwwName();
+            if(awwName.equalsIgnoreCase("null")){
+                txt_aww_name.setText("");
+            }else{
+                txt_aww_name.setText(homeRealmModel.getAwwName());
+            }
             str_mobile_number_aww = homeRealmModel.getAwwMobile();
             if(str_mobile_number_aww.equalsIgnoreCase("null")){
                 img_call_aww.setVisibility(View.GONE);
             }else{
                 img_call_aww.setVisibility(View.VISIBLE);
             }
-            txt_phc_name.setText(homeRealmModel.getPhcName());
+            String phcName = homeRealmModel.getPhcName();
+            if(phcName.equalsIgnoreCase("null")){
+                txt_phc_name.setText("");
+            }else{
+                txt_phc_name.setText(homeRealmModel.getPhcName());
+            }
             str_mobile_number_phc = homeRealmModel.getPhcMobile();
             if(str_mobile_number_phc.equalsIgnoreCase("null")){
                 img_call_phc.setVisibility(View.GONE);

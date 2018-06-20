@@ -1,12 +1,12 @@
 package com.unicef.thaimai.motherapp.realmDbModelClass;
 
-import io.realm.RealmModel;
+import io.realm.RealmObject;
 
 /**
  * Created by Suthishan on 20/1/2018.
  */
 
-public class PrimaryRegisterRealmModel implements RealmModel {
+public class PrimaryRegisterRealmModel extends RealmObject {
 
     private String message;
     private String status;

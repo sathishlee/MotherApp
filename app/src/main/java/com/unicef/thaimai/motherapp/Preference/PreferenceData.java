@@ -141,4 +141,26 @@ public class PreferenceData {
     public String getNotificationCount() {
         return  sharedPreferences.getString(AppConstants.NOTIFICATION_COUNT, "");
     }
+
+    public void setCurentAdress(String strAddress) {
+        sharedPreferences.edit().putString(AppConstants.CURENT_ADDRESS, strAddress).commit();
+            }
+
+    public void setCurentlatitude(String latitude) {
+        sharedPreferences.edit().putString(AppConstants.CURENT_LAT, latitude).commit();
+    }
+
+    public void setCurentlongitude(String longitude) {
+        sharedPreferences.edit().putString(AppConstants.CURENT_LON, longitude).commit();
+    }
+
+    public String gettCurentAdress() {
+        return  sharedPreferences.getString(AppConstants.CURENT_ADDRESS, "");
+    }
+    public String gettCurentlatitude() {
+        return  sharedPreferences.getString(AppConstants.CURENT_LAT, "");
+    }
+    public String gettCurentlongitude() {
+        return  sharedPreferences.getString(AppConstants.CURENT_LON, "");
+    }
 }

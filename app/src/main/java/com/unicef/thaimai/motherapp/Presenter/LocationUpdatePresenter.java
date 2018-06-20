@@ -9,6 +9,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.unicef.thaimai.motherapp.activity.LocationUpdateActivity;
 import com.unicef.thaimai.motherapp.activity.MainActivity;
 import com.unicef.thaimai.motherapp.constant.Apiconstants;
 import com.unicef.thaimai.motherapp.interactor.LocationUpdateIntractor;
@@ -34,6 +35,7 @@ public class LocationUpdatePresenter implements LocationUpdateIntractor {
 
     @Override
     public void uploadLocationToServer(final String picmeId, final String vhnId, final String mid, final String latitude, final String longitude, final String strAddress) {
+        Log.d(LocationUpdateActivity.class.getSimpleName(),"uploadLocationToServer ");
 
         view.showProgress();
         String url = Apiconstants.BASE_URL + Apiconstants.LOCATION_UPDATE;

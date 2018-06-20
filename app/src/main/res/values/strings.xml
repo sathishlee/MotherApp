@@ -28,7 +28,7 @@
     <string name="week_details">Week Details</string>
 
     <string name="title_home">Home</string>
-    <string name="vhn">Nearest Hospitals</string>
+    <string name="vhn">Hospital</string>
     <string name="health_record">Health Records</string>
 
     //EMERGENCY CONTACT
@@ -560,7 +560,7 @@
     <string name="enter_primary_number">Enter Picme Id</string>
     <string name="enter_mobile_number">Enter Mobile Number</string>
     <string name="back_to_login">Back to Login</string>
-    <string name="picme_visit">Picme Visit</string>
+    <string name="picme_visit">PICME Visit</string>
     <string name="no_records_found">No Records Found</string>
     <string name="primary_records">PRIMARY RECORDS</string>
     <string name="after_delivery">After Delivery</string>
@@ -573,7 +573,7 @@
     <string name="alternative_number">Alternative Number</string>
     <string name="immunization_visits">Immunization Visits</string>
     <string name="any_c_o">Any C/O</string>
-    <string name="pluse_rate">Pluse Rate</string>
+    <string name="pluse_rate">Pulse Rate</string>
     <string name="epistomy_tear_suture">Epistomy / Tear suture</string>
     <string name="breast_feeding">Breast Feeding</string>
     <string name="reasons">Reasons</string>
@@ -649,9 +649,9 @@
     <string name="hb">HB</string>
     <string name="fbs">FBS</string>
     <string name="ppbs">PPBS</string>
-    <string name="gtt">GTT</string>
+    <string name="gtt">GCT</string>
     <string name="sugar">Sugar</string>
-    <string name="ucg_report">UCG Report</string>
+    <string name="ucg_report">USG Report</string>
     <string name="fetus">Fetus</string>
     <string name="gestation_sac">Gestation Sac</string>
     <string name="liquor">Liquor</string>

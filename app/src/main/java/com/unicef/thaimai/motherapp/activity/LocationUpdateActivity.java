@@ -138,13 +138,23 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
                                     String latitude = intent.getStringExtra(AppConstants.EXTRA_LATITUDE);
                                     String longitude = intent.getStringExtra(AppConstants.EXTRA_LONGITUDE);
                                     String mylocaton = latitude + "\t" + longitude;
+                                    Log.d(LocationUpdateActivity.class.getSimpleName(),"my location "+mylocaton);
                                     if (latitude != null && longitude != null) {
 //                            serverUpload.sendlocationtServer(mylocaton,latitude,longitude,LocationUpdateActivity.this);
                                         strAddress = getCompleteAddressString(latitude, longitude);
+                                        preferenceData.setCurentAdress(strAddress);
+                                        Log.d(LocationUpdateActivity.class.getSimpleName(),"my latitude "+latitude);
+                                        Log.d(LocationUpdateActivity.class.getSimpleName(),"my longitude "+longitude);
+
+                                        preferenceData.setCurentlatitude(latitude);
+                                        preferenceData.setCurentlongitude(longitude);
 //if (preferenceData.getPicmeId().equalsIgnoreCase("") && preferenceData.getVhnId().equalsIgnoreCase("")&& preferenceData.getMId().equalsIgnoreCase(""))
+                                        Log.d(LocationUpdateActivity.class.getSimpleName(),"strAddress "+strAddress);
 
                                         AppConstants.NEAR_LATITUDE = latitude;
                                         AppConstants.NEAR_LONGITUDE = longitude;
+                                        Log.d(LocationUpdateActivity.class.getSimpleName(),"call location update api ");
+
                                         locationUpdatePresenter.uploadLocationToServer(preferenceData.getPicmeId(), preferenceData.getVhnId(), preferenceData.getMId(), latitude, longitude, strAddress);
 
                                     }
@@ -366,11 +376,14 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
                 Manifest.permission.WRITE_EXTERNAL_STORAGE);
         int permissionState8 = ActivityCompat.checkSelfPermission(this,
                 Manifest.permission.CALL_PHONE);
+        int permissionState9 = ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.READ_PHONE_STATE);
 
         return permissionState1 == PackageManager.PERMISSION_GRANTED && permissionState2 == PackageManager.PERMISSION_GRANTED &&
                 permissionState3 == PackageManager.PERMISSION_GRANTED && permissionState4 == PackageManager.PERMISSION_GRANTED
                 && permissionState5 == PackageManager.PERMISSION_GRANTED && permissionState6 == PackageManager.PERMISSION_GRANTED
-                && permissionState7 == PackageManager.PERMISSION_GRANTED && permissionState8 == PackageManager.PERMISSION_GRANTED;
+                && permissionState7 == PackageManager.PERMISSION_GRANTED && permissionState8 == PackageManager.PERMISSION_GRANTED
+                && permissionState9 == PackageManager.PERMISSION_GRANTED;
 
     }
 
@@ -403,12 +416,15 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
         boolean shouldProvideRationale8 =
                 ActivityCompat.shouldShowRequestPermissionRationale(this,
                         Manifest.permission.CALL_PHONE);
+        boolean shouldProvideRationale9 =
+                ActivityCompat.shouldShowRequestPermissionRationale(this,
+                        Manifest.permission.READ_PHONE_STATE);
 
 
         // Provide an additional rationale to the img_user. This would happen if the img_user denied the
         // request previously, but didn't check the "Don't ask again" checkbox.
         if (shouldProvideRationale || shouldProvideRationale2 || shouldProvideRationale3 || shouldProvideRationale4
-                || shouldProvideRationale5 || shouldProvideRationale6 || shouldProvideRationale7 || shouldProvideRationale8) {
+                || shouldProvideRationale5 || shouldProvideRationale6 || shouldProvideRationale7 || shouldProvideRationale8 || shouldProvideRationale9) {
             Log.i(TAG, "Displaying permission rationale to provide additional context.");
             showSnackbar(R.string.permission_rationale,
                     android.R.string.ok, new View.OnClickListener() {
@@ -424,7 +440,8 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
                                                     Manifest.permission.READ_EXTERNAL_STORAGE,
                                                     Manifest.permission.WRITE_EXTERNAL_STORAGE,
                                                     Manifest.permission.CALL_PHONE,
-                                                    Manifest.permission.SEND_SMS
+                                                    Manifest.permission.SEND_SMS,
+                                                    Manifest.permission.READ_PHONE_STATE
 
                                             },
                                     REQUEST_PERMISSIONS_REQUEST_CODE);
@@ -442,7 +459,8 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
                                     Manifest.permission.SEND_SMS,
                                     Manifest.permission.READ_EXTERNAL_STORAGE,
                                     Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                                    Manifest.permission.CALL_PHONE
+                                    Manifest.permission.CALL_PHONE,
+                                    Manifest.permission.READ_PHONE_STATE
                             },
                     REQUEST_PERMISSIONS_REQUEST_CODE);
         }
@@ -540,12 +558,15 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
 
     @Override
     public void locationUpdateSuccess(String loginResponseModel) {
+//        Toast.makeText(getApplicationContext(),loginResponseModel.toString(),Toast.LENGTH_SHORT).show();
 Log.d(TAG,"success--->"+loginResponseModel);
     }
 
     @Override
     public void locationUpdateFailiure(String string) {
         Log.d(TAG,"Error--->"+string);
+//        Toast.makeText(getApplicationContext(),string.toString(),Toast.LENGTH_SHORT).show();
+
 
     }
 

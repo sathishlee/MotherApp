@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
@@ -15,10 +16,16 @@ import android.widget.TextView;
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.PrimaryRegisterPresenter;
 import com.unicef.thaimai.motherapp.R;
+import com.unicef.thaimai.motherapp.app.RealmController;
+import com.unicef.thaimai.motherapp.realmDbModelClass.PrimaryRegisterRealmModel;
+import com.unicef.thaimai.motherapp.utility.CheckNetwork;
 import com.unicef.thaimai.motherapp.view.PrimaryRegisterViews;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import io.realm.Realm;
+import io.realm.RealmResults;
 
 /**
  * Created by Suthishan on 20/1/2018.
@@ -41,9 +48,16 @@ public class PrimaryRegisterView extends AppCompatActivity implements PrimaryReg
     TextView txt_no_records_found;
     FrameLayout primary_register;
 
+    boolean isoffline = false;
+    Realm realm;
+    CheckNetwork checkNetwork;
+    PrimaryRegisterRealmModel primaryRegisterRealmModel;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        realm = RealmController.with(this).getRealm();
         setContentView(R.layout.primary_register_view);
         showActionBar();
         initUI();
@@ -74,12 +88,17 @@ public class PrimaryRegisterView extends AppCompatActivity implements PrimaryReg
     }
 
     private void initUI() {
+        checkNetwork =new CheckNetwork(this);
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
         pDialog.setMessage("Please Wait ...");
         preferenceData = new PreferenceData(this);
         primaryRegisterPresenter = new PrimaryRegisterPresenter(PrimaryRegisterView.this, this);
-        primaryRegisterPresenter.getAllMotherPrimaryRegistration(preferenceData.getPicmeId());
+        if (checkNetwork.isNetworkAvailable()) {
+            primaryRegisterPresenter.getAllMotherPrimaryRegistration(preferenceData.getPicmeId());
+        }else{
+            isoffline=true;
+        }
         txt_no_records_found = (TextView) findViewById(R.id.txt_no_records_found);
         primary_register = (FrameLayout) findViewById(R.id.primary_register);
         fab_edi_details = (FloatingActionButton) findViewById(R.id.fab_edi_details);
@@ -121,7 +140,69 @@ public class PrimaryRegisterView extends AppCompatActivity implements PrimaryReg
         txt_hus_vdrl = (TextView) findViewById(R.id.txt_hus_vdrl);
         txt_hus_Hepatitis = (TextView) findViewById(R.id.txt_hus_Hepatitis);
 
+        if (isoffline) {
+            primaryRecordsOfline();
+        }else{
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Record Not Found");
+            builder.create();
+        }
+
     }
+
+    private void primaryRecordsOfline() {
+
+        RealmResults<PrimaryRegisterRealmModel> primaryRegisterRealmModels;
+        realm.beginTransaction();
+        primaryRegisterRealmModels = realm.where(PrimaryRegisterRealmModel.class).findAll();
+        Log.e(String.valueOf(PrimaryRegisterView.class),primaryRegisterRealmModels.size()+"");
+        Log.e(PrimaryRegisterView.class.getSimpleName(),"primaryRegisterRealmModels  -->"+primaryRegisterRealmModels);
+        for(int i=0;i<primaryRegisterRealmModels.size();i++) {
+            PrimaryRegisterRealmModel model =primaryRegisterRealmModels.get(i);
+            txt_name.setText(model.getMName());
+            txt_mother_age.setText(model.getMAge());
+            txt_lmp_date.setText(model.getMLMP());
+            txt_edd_date.setText(model.getMEDD());
+            txt_pry_mobile_no.setText(model.getMMotherMobile());
+            txt_alter_mobile_no.setText(model.getMHusbandMobile());
+            txt_mother_occupation.setText(model.getMMotherOccupation());
+            txt_hus_occupation.setText(model.getMHusbandOccupation());
+            txt_age_at_marriage.setText(model.getMAgeatMarriage());
+            txt_consanguineous_marraige.setText(model.getMConsanguineousMarraige());
+            txt_history_of_illness.setText(model.getMHistoryIllness());
+            txt_history_of_illness_family.setText(model.getMHistoryIllnessFamily());
+            txt_any_surgery_done.setText(model.getMAnySurgeryBefore());
+            txt_tobacco.setText(model.getMUseTobacco());
+            txt_alcohol.setText(model.getMUseAlcohol());
+            txt_on_any_medication.setText(model.getMAnyMeditation());
+            txt_allergic_to_any_drug.setText(model.getMAllergicToanyDrug());
+            txt_history_of_previous_pregnancy.setText(model.getMHistroyPreviousPreganancy());
+            txt_lscs_done.setText(model.getMLscsDone());
+            txt_any_complication.setText(model.getMAnyComplecationDuringPreganancy());
+            txt_g.setText(model.getMPresentPreganancyG());
+            txt_p.setText(model.getMPresentPreganancyP());
+            txt_a.setText(model.getMPresentPreganancyA());
+            txt_l.setText(model.getMPresentPreganancyL());
+            txt_registration_week.setText(model.getMRegistrationWeek());
+            txt_an_tt_1st.setText(model.getMANTT1());
+            txt_an_tt_2nd.setText(model.getMANTT2());
+            txt_ifa_start_date.setText(model.getMIFAStateDate());
+            txt_height.setText(model.getMHeight());
+            txt_blood_group.setText(model.getMBloodGroup());
+            txt_hiv.setText(model.getMHIV());
+            txt_vdrl.setText(model.getMVDRL());
+            txt_Hepatitis.setText(model.getMHepatitis());
+            txt_hus_blood_group.setText(model.getHBloodGroup());
+            txt_hus_hiv.setText(model.getHHIV());
+            txt_hus_vdrl.setText(model.getHVDRL());
+            txt_hus_Hepatitis.setText(model.getHHepatitis());
+        }
+        realm.commitTransaction();
+        pDialog.dismiss();
+    }
+
+
+
 
 
     @Override
@@ -234,6 +315,67 @@ public class PrimaryRegisterView extends AppCompatActivity implements PrimaryReg
                     txt_hus_vdrl.setText(jObj.getString("hHIV"));
                 if (jObj.getString("hHepatitis")!="")
                     txt_hus_Hepatitis.setText(jObj.getString("hHepatitis"));
+
+                RealmResults<PrimaryRegisterRealmModel> primaryRegisterRealmModels = realm.where(PrimaryRegisterRealmModel.class).findAll();
+                if (primaryRegisterRealmModels.size()!=0) {
+                    realm.executeTransaction(new Realm.Transaction() {
+                        @Override
+                        public void execute(Realm realm) {
+                            realm.delete(PrimaryRegisterRealmModel.class);
+                        }
+                    });
+                }
+                realm.beginTransaction();
+                primaryRegisterRealmModel = realm.createObject(PrimaryRegisterRealmModel.class);
+
+                primaryRegisterRealmModel.setId(jObj.getString("id"));
+                primaryRegisterRealmModel.setMName(jObj.getString("mName"));
+                primaryRegisterRealmModel.setMAge(jObj.getString("mAge"));
+                primaryRegisterRealmModel.setMLMP(jObj.getString("mLMP"));
+                primaryRegisterRealmModel.setMEDD(jObj.getString("mEDD"));
+                primaryRegisterRealmModel.setMMotherMobile(jObj.getString("mMotherMobile"));
+                primaryRegisterRealmModel.setMHusbandMobile(jObj.getString("mHusbandName"));
+                primaryRegisterRealmModel.setMasterId(jObj.getString("masterId"));
+                primaryRegisterRealmModel.setPicmeId(jObj.getString("picmeId"));
+                primaryRegisterRealmModel.setVhnId(jObj.getString("vhnId"));
+                primaryRegisterRealmModel.setTrasVhnId(jObj.getString("trasVhnId"));
+                primaryRegisterRealmModel.setAwwId(jObj.getString("awwId"));
+                primaryRegisterRealmModel.setPhcId(jObj.getString("phcId"));
+                primaryRegisterRealmModel.setMRiskStatus(jObj.getString("mRiskStatus"));
+                primaryRegisterRealmModel.setMMotherOccupation(jObj.getString("mMotherOccupation"));
+                primaryRegisterRealmModel.setMHusbandOccupation(jObj.getString("mHusbandOccupation"));
+                primaryRegisterRealmModel.setMAgeatMarriage(jObj.getString("mAgeatMarriage"));
+                primaryRegisterRealmModel.setMConsanguineousMarraige(jObj.getString("mConsanguineousMarraige"));
+                primaryRegisterRealmModel.setMHistoryIllness(jObj.getString("mHistoryIllness"));
+                primaryRegisterRealmModel.setMHistoryIllnessFamily(jObj.getString("mHistoryIllnessFamily"));
+                primaryRegisterRealmModel.setMAnySurgeryBefore(jObj.getString("mAnySurgeryBefore"));
+                primaryRegisterRealmModel.setMUseTobacco(jObj.getString("mUseTobacco"));
+                primaryRegisterRealmModel.setMUseAlcohol(jObj.getString("mUseAlcohol"));
+                primaryRegisterRealmModel.setMAnyMeditation(jObj.getString("mAnyMeditation"));
+                primaryRegisterRealmModel.setMAllergicToanyDrug(jObj.getString("mAllergicToanyDrug"));
+                primaryRegisterRealmModel.setMHistroyPreviousPreganancy(jObj.getString("mHistroyPreviousPreganancy"));
+                primaryRegisterRealmModel.setMLscsDone(jObj.getString("mLscsDone"));
+                primaryRegisterRealmModel.setMAnyComplecationDuringPreganancy(jObj.getString("mAnyComplecationDuringPreganancy"));
+                primaryRegisterRealmModel.setMPresentPreganancyG(jObj.getString("mPresentPreganancyG"));
+                primaryRegisterRealmModel.setMPresentPreganancyP(jObj.getString("mPresentPreganancyP"));
+                primaryRegisterRealmModel.setMPresentPreganancyA(jObj.getString("mPresentPreganancyA"));
+                primaryRegisterRealmModel.setMPresentPreganancyL(jObj.getString("mPresentPreganancyL"));
+                primaryRegisterRealmModel.setMRegistrationWeek(jObj.getString("mRegistrationWeek"));
+                primaryRegisterRealmModel.setMANTT1(jObj.getString("mANTT1"));
+                primaryRegisterRealmModel.setMANTT2(jObj.getString("mANTT2"));
+                primaryRegisterRealmModel.setMIFAStateDate(jObj.getString("mIFAStateDate"));
+                primaryRegisterRealmModel.setMHeight(jObj.getString("mHeight"));
+                primaryRegisterRealmModel.setMBloodGroup(jObj.getString("mBloodGroup"));
+                primaryRegisterRealmModel.setMHIV(jObj.getString("mHIV"));
+                primaryRegisterRealmModel.setMVDRL(jObj.getString("mVDRL"));
+                primaryRegisterRealmModel.setMHepatitis(jObj.getString("mHepatitis"));
+                primaryRegisterRealmModel.setHBloodGroup(jObj.getString("hBloodGroup"));
+                primaryRegisterRealmModel.setHVDRL(jObj.getString("hVDRL"));
+                primaryRegisterRealmModel.setHHIV(jObj.getString("hHIV"));
+                primaryRegisterRealmModel.setHHepatitis(jObj.getString("hHepatitis"));
+
+                realm.commitTransaction();
+
             }else{
                 Log.d("message---->",message);
                 primary_register.setVisibility(View.GONE);

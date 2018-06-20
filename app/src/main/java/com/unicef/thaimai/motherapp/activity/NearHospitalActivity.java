@@ -67,8 +67,13 @@ public class NearHospitalActivity extends AppCompatActivity implements LocationU
         preferenceData = new PreferenceData(this);
 
         locationUpdatePresenter = new LocationUpdatePresenter(NearHospitalActivity.this, this);
-        locationUpdatePresenter.getNearByHospitalFromServer(AppConstants.EXTRA_LATITUDE, AppConstants.EXTRA_LONGITUDE);
 //        locationUpdatePresenter.getNearByHospitalFromServer(AppConstants.EXTRA_LATITUDE, AppConstants.EXTRA_LONGITUDE);
+
+        Log.e(Login.class.getSimpleName(),"Cureent logtitude - "   +preferenceData.gettCurentlatitude());
+        Log.e(Login.class.getSimpleName(),"Cureent lontitude - "   +preferenceData.gettCurentlongitude());
+        locationUpdatePresenter.getNearByHospitalFromServer(preferenceData.gettCurentlatitude(), preferenceData.gettCurentlongitude());
+
+        //        locationUpdatePresenter.getNearByHospitalFromServer(AppConstants.EXTRA_LATITUDE, AppConstants.EXTRA_LONGITUDE);
 
         /*LocalBroadcastManager.getInstance(this).registerReceiver(new BroadcastReceiver() {
 
