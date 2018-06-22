@@ -31,10 +31,13 @@ import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.LocationUpdatePresenter;
 import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.adapter.NearByHospitalAdapter;
+import com.unicef.thaimai.motherapp.broadCastReceivers.GpsLocationReceiver;
 import com.unicef.thaimai.motherapp.constant.AppConstants;
 import com.unicef.thaimai.motherapp.model.responsemodel.NearHospitalResponseModel;
 import com.unicef.thaimai.motherapp.utility.LocationMonitoringService;
 import com.unicef.thaimai.motherapp.view.LocationUpdateViews;
+
+import net.alexandroid.gps.GpsStatusDetector;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -43,7 +46,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NearHospitalActivity extends AppCompatActivity implements LocationUpdateViews, MakeCallInterface{
+public class NearHospitalActivity extends AppCompatActivity implements LocationUpdateViews, MakeCallInterface,
+        GpsStatusDetector.GpsStatusDetectorCallBack{
 
     private static final int MAKE_CALL_PERMISSION_REQUEST_CODE = 1;
 
@@ -56,6 +60,11 @@ public class NearHospitalActivity extends AppCompatActivity implements LocationU
     boolean isDataUpdate=true;
     PreferenceData preferenceData;
     TextView txt_no_records_found;
+
+    GpsLocationReceiver gpsReceiver;
+    GpsStatusDetector mGpsStatusDetector;
+    boolean mISGpsStatusDetector;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,13 +74,22 @@ public class NearHospitalActivity extends AppCompatActivity implements LocationU
         pDialog.setCancelable(false);
         pDialog.setMessage("Please Wait ...");
         preferenceData = new PreferenceData(this);
+        gpsReceiver = new GpsLocationReceiver();
+
+        mGpsStatusDetector = new GpsStatusDetector(this);
+        mGpsStatusDetector.checkGpsStatus();
+
 
         locationUpdatePresenter = new LocationUpdatePresenter(NearHospitalActivity.this, this);
 //        locationUpdatePresenter.getNearByHospitalFromServer(AppConstants.EXTRA_LATITUDE, AppConstants.EXTRA_LONGITUDE);
 
         Log.e(Login.class.getSimpleName(),"Cureent logtitude - "   +preferenceData.gettCurentlatitude());
         Log.e(Login.class.getSimpleName(),"Cureent lontitude - "   +preferenceData.gettCurentlongitude());
-        locationUpdatePresenter.getNearByHospitalFromServer(preferenceData.gettCurentlatitude(), preferenceData.gettCurentlongitude());
+        if (mISGpsStatusDetector) {
+            locationUpdatePresenter.getNearByHospitalFromServer(AppConstants.NEAR_LATITUDE,AppConstants.NEAR_LONGITUDE);
+        }else{
+            Toast.makeText(getApplicationContext(), "Please Turn On Location", Toast.LENGTH_LONG).show();
+        }
 
         //        locationUpdatePresenter.getNearByHospitalFromServer(AppConstants.EXTRA_LATITUDE, AppConstants.EXTRA_LONGITUDE);
 
@@ -256,5 +274,21 @@ public class NearHospitalActivity extends AppCompatActivity implements LocationU
                 }
                 return;
         }
+    }
+
+    @Override
+    public void onGpsSettingStatus(boolean enabled) {
+        Log.d("TAG", "onGpsSettingStatus: " + enabled);
+        mISGpsStatusDetector = enabled;
+        if(!enabled){
+            mGpsStatusDetector.checkGpsStatus();
+        }
+    }
+
+    @Override
+    public void onGpsAlertCanceledByUser() {
+        Log.d("TAG", "onGpsAlertCanceledByUser");
+        Toast.makeText(this, "Please Turn on Location...", Toast.LENGTH_SHORT).show();
+        finish();
     }
 }

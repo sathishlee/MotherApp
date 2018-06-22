@@ -22,6 +22,7 @@ import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.PNHBNCVisitPresenter;
 import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.model.requestmodel.PNHBNCVisitEntryRequestModel;
+import com.unicef.thaimai.motherapp.utility.CheckNetwork;
 import com.unicef.thaimai.motherapp.view.PNHBNCVisitViews;
 
 import org.json.JSONException;
@@ -58,6 +59,8 @@ public class PNHBNCVisitEntry extends AppCompatActivity implements View.OnClickL
 
     Calendar mCurrentDate;
     int day, month, year, hour, minute, sec;
+    CheckNetwork checkNetwork;
+
 
 
     @Override
@@ -82,12 +85,16 @@ public class PNHBNCVisitEntry extends AppCompatActivity implements View.OnClickL
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
         progressDialog.setMessage("Please Wait...");
+        checkNetwork = new CheckNetwork(this);
         preferenceData = new PreferenceData(this);
         pnhbncVisitPresenter = new PNHBNCVisitPresenter(PNHBNCVisitEntry.this, this);
-        pnhbncVisitPresenter.getPNHBNCVisitCount(preferenceData.getPicmeId(), preferenceData.getMId());
-
-
-
+        if (checkNetwork.isNetworkAvailable()) {
+            pnhbncVisitPresenter.getPNHBNCVisitCount(preferenceData.getPicmeId(), preferenceData.getMId());
+        }else{
+            Toast.makeText(getApplicationContext(), "Check Internet Connection..." + checkNetwork.isNetworkAvailable(), Toast.LENGTH_LONG).show();
+//            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            finish();
+        }
         mCurrentDate = Calendar.getInstance();
         day = mCurrentDate.get(Calendar.DAY_OF_MONTH);
         month = mCurrentDate.get(Calendar.MONTH);
@@ -199,7 +206,13 @@ public class PNHBNCVisitEntry extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.btn_pnhbnc_submit:
-                dataSendtoServer();
+                if (checkNetwork.isNetworkAvailable()) {
+                    dataSendtoServer();
+                }else{
+                    Toast.makeText(getApplicationContext(), "Check Internet Connection...Try Agian After Sometimes", Toast.LENGTH_LONG).show();
+//            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    finish();
+                }
                 break;
         }
     }

@@ -109,7 +109,7 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_update);
-//        checkAPiVersion();
+        checkAPiVersion();
 
         checkNetwork = new CheckNetwork(this);
         Create = (TextView) findViewById(R.id.Create);
@@ -130,6 +130,7 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
                 }
             }
             if(checkNetwork.isNetworkAvailable()) {
+
                 if (preferenceData.getLogin()) {
                     LocalBroadcastManager.getInstance(this).registerReceiver(
                             new BroadcastReceiver() {
@@ -189,7 +190,7 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
     }
 
     private void checkAPiVersion() {
-        if(deviceApi<=Build.VERSION_CODES.KITKAT){
+        if(deviceApi<=Build.VERSION_CODES.JELLY_BEAN){
             startActivity(new Intent(this, LowerVersionActivity.class));
             finish();
         }else{
@@ -233,21 +234,12 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
 
         if (activeNetworkInfo == null || !activeNetworkInfo.isConnected()) {
-            if(preferenceData.getLogin()){
-                startStep3();
-                return false;
-            }
-            else{
-                promptInternetConnect();
-                return true;
-            }
+            checkInternetConnection();
+            return false;
         }
-
-        else if (dialog != null) {
+        if (dialog != null) {
             dialog.dismiss();
         }
-
-        //Yes there is active internet connection. Next check Location is granted by user or not.
 
         if (checkPermissions()) { //Yes permissions are granted by the user. Go to the next step.
             startStep3();
@@ -255,6 +247,12 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
             requestPermissions();
         }
         return true;
+    }
+
+    private void checkInternetConnection() {
+        Toast.makeText(getApplicationContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(getApplicationContext(), NoInternetConnection.class));
+        finish();
     }
 
     /**

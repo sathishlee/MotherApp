@@ -110,8 +110,9 @@ ArrayList ysList,occList;
             if (checkNetwork.isNetworkAvailable()) {
                 primaryRegisterPresenter.getAllMotherPrimaryRegistration(strPicmeId);
             }else{
-                Toast.makeText(getApplicationContext(), "Check Internet Connection..." + checkNetwork.isNetworkAvailable(), Toast.LENGTH_LONG).show();
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                Toast.makeText(getApplicationContext(), "Check Internet Connection...Try Agian After Sometimes", Toast.LENGTH_LONG).show();
+//                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                finish();
             }
 
             txtMotherName = (TextView) findViewById(R.id.txt_name);
@@ -229,7 +230,12 @@ ArrayList ysList,occList;
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.btn_submit:
-                    sendtoServer();
+                    if (checkNetwork.isNetworkAvailable()) {
+                        sendtoServer();
+                    }else{
+                        Toast.makeText(getApplicationContext(), "Check Internet Connection...Try Agian After Sometimes", Toast.LENGTH_LONG).show();
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    }
                     break;
             }
         }

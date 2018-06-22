@@ -109,8 +109,9 @@ public class ImmunizationEditActivity extends AppCompatActivity implements View.
         if (checkNetwork.isNetworkAvailable()) {
             immunizationEntryPresenter.immunizationID(preferenceData.getPicmeId(), preferenceData.getMId());
         }else{
-            Toast.makeText(getApplicationContext(), "Check Internet Connection..." + checkNetwork.isNetworkAvailable(), Toast.LENGTH_LONG).show();
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            Toast.makeText(getApplicationContext(), "Check Internet Connection...Try Agian After Sometimes", Toast.LENGTH_LONG).show();
+//            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            finish();
         }
 
         /*if (AppConstants.IMMUNIZATION_EDIT) {

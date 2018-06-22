@@ -51,7 +51,6 @@ public class PrimaryRegisterView extends AppCompatActivity implements PrimaryReg
     boolean isoffline = false;
     Realm realm;
     CheckNetwork checkNetwork;
-    PrimaryRegisterRealmModel primaryRegisterRealmModel;
 
 
     @Override
@@ -152,8 +151,8 @@ public class PrimaryRegisterView extends AppCompatActivity implements PrimaryReg
 
     private void primaryRecordsOfline() {
 
-        RealmResults<PrimaryRegisterRealmModel> primaryRegisterRealmModels;
         realm.beginTransaction();
+        RealmResults<PrimaryRegisterRealmModel> primaryRegisterRealmModels;
         primaryRegisterRealmModels = realm.where(PrimaryRegisterRealmModel.class).findAll();
         Log.e(String.valueOf(PrimaryRegisterView.class),primaryRegisterRealmModels.size()+"");
         Log.e(PrimaryRegisterView.class.getSimpleName(),"primaryRegisterRealmModels  -->"+primaryRegisterRealmModels);
@@ -326,6 +325,8 @@ public class PrimaryRegisterView extends AppCompatActivity implements PrimaryReg
                     });
                 }
                 realm.beginTransaction();
+                PrimaryRegisterRealmModel primaryRegisterRealmModel = null;
+
                 primaryRegisterRealmModel = realm.createObject(PrimaryRegisterRealmModel.class);
 
                 primaryRegisterRealmModel.setId(jObj.getString("id"));

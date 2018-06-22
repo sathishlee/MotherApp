@@ -286,8 +286,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
                 e.printStackTrace();
             }
             if (checkNetwork.isNetworkAvailable()) {
-//                loginPresenter.checkPickmeId(strPicme, strDob, preferenceData.getDeviceId(), mobileCheck, AppConstants.EXTRA_LATITUDE, AppConstants.EXTRA_LONGITUDE, appversion, androidId);
-                loginPresenter.checkPickmeId(strPicme, strDob, preferenceData.getDeviceId(), mobileCheck, preferenceData.gettCurentlatitude(), preferenceData.gettCurentlongitude(), appversion, androidId);
+                loginPresenter.checkPickmeId(strPicme, strDob, preferenceData.getDeviceId(), mobileCheck, AppConstants.EXTRA_LATITUDE, AppConstants.EXTRA_LONGITUDE, appversion, androidId);
+//                loginPresenter.checkPickmeId(strPicme, strDob, preferenceData.getDeviceId(), mobileCheck, preferenceData.gettCurentlatitude(), preferenceData.gettCurentlongitude(), appversion, androidId);
             }else {
                 startActivity(new Intent(getApplicationContext(), NoInternetConnection.class));
             }
@@ -377,11 +377,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
         }catch (JSONException e) {
             e.printStackTrace();
         }
-        Log.e(Login.class.getSimpleName(),"CureentAddres - "   +preferenceData.gettCurentAdress());
-        Log.e(Login.class.getSimpleName(),"Cureent logtitude - "   +preferenceData.gettCurentlatitude());
-        Log.e(Login.class.getSimpleName(),"Cureent lontitude - "   +preferenceData.gettCurentlongitude());
-        locationUpdatePresenter.uploadLocationToServer(preferenceData.getPicmeId(), preferenceData.getVhnId(), preferenceData.getMId(),  preferenceData.gettCurentlatitude(), preferenceData.gettCurentlongitude(), preferenceData.gettCurentAdress());
-
     }
 
     private void openUrl() {

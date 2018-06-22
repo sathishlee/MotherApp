@@ -61,7 +61,7 @@ import io.realm.RealmResults;
 import static android.content.Context.MODE_PRIVATE;
 
 
-public class home extends Fragment implements LoginViews, View.OnClickListener, MakeCallInterface, PrimaryRegisterViews {
+public class home extends Fragment implements LoginViews, View.OnClickListener, MakeCallInterface {
 
     TextView txt_username, picme_id, txt_age, txt_an_risk,txt_pn_risk,txt_gst_week,txt_weight,
             txt_next_visit,txt_lmp_date,txt_edd_date,txt_husb_name,
@@ -85,9 +85,6 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
     ProgressDialog pDialog;
 
     GetUserInfoPresenter getUserInfoPresenter;
-
-    PrimaryRegisterPresenter primaryRegisterPresenter;
-    PrimaryRegisterRealmModel primaryRegisterRealmModel;
 
     Activity mActivity;
     private static final int MAKE_CALL_PERMISSION_REQUEST_CODE = 1;
@@ -133,13 +130,6 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
 //        showSnack(isConnected);
     }
 
-    private void primarydetails() {
-        RealmResults<HomeRealmModel> homeRealmModels = realm.where(HomeRealmModel.class).findAll();
-        Log.e("Realm size ---->", homeRealmModels.size() + "");
-        for (int i=0; i<=homeRealmModels.size();i++) {
-            primaryRegisterPresenter.getAllMotherPrimaryRegistration(preferenceData.getPicmeId());
-        }
-    }
 
     private void showSnack(boolean isConnected) {
         if (isConnected){
@@ -164,7 +154,6 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
         pDialog.setCancelable(true);
         pDialog.setMessage("Please Wait ...");
         getUserInfoPresenter =new GetUserInfoPresenter(getActivity().getApplicationContext(),this);
-        primaryRegisterPresenter = new PrimaryRegisterPresenter(this, getActivity());
         context = getActivity();
         Log.e("PICME_ID",preferenceData.getPicmeId());
         PackageInfo packageInfo = null;
@@ -256,92 +245,6 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
         pDialog.dismiss();
     }
 
-    @Override
-    public void getAllMotherPrimaryRegisterSuccess(String response) {
-        primaryDetailsStoreinRealm(response);
-    }
-
-    private void primaryDetailsStoreinRealm(String response) {
-        Log.e(PrimaryRegister.class.getSimpleName(), "Response success" + response);
-        try {
-            JSONObject jObj = new JSONObject(response);
-            String status = jObj.getString("status");
-            String message = jObj.getString("message");
-            if(status.equalsIgnoreCase("1")) {
-                RealmResults<PrimaryRegisterRealmModel> primaryRegisterRealmModels = realm.where(PrimaryRegisterRealmModel.class).findAll();
-                Log.e("Realm size ---->", primaryRegisterRealmModels.size() + "");
-                realm.executeTransaction(new Realm.Transaction() {
-                    @Override
-                    public void execute(Realm realm) {
-                        realm.delete(PrimaryRegisterRealmModel.class);
-                    }
-                });
-                Log.d("message---->",message);
-
-                realm.beginTransaction();
-                primaryRegisterRealmModel = realm.createObject(PrimaryRegisterRealmModel.class);
-                primaryRegisterRealmModel.setMName(jObj.getString("mName"));
-                primaryRegisterRealmModel.setMAge(jObj.getString("mAge"));
-                primaryRegisterRealmModel.setMLMP(jObj.getString("mLMP"));
-                primaryRegisterRealmModel.setMEDD(jObj.getString("mEDD"));
-                primaryRegisterRealmModel.setMMotherMobile(jObj.getString("mMotherMobile"));
-                primaryRegisterRealmModel.setMHusbandMobile(jObj.getString("mHusbandMobile"));
-                primaryRegisterRealmModel.setMMotherOccupation(jObj.getString("mMotherOccupation"));
-                primaryRegisterRealmModel.setMHusbandOccupation(jObj.getString("mHusbandOccupation"));
-                primaryRegisterRealmModel.setMAgeatMarriage(jObj.getString("mAgeatMarriage"));
-                primaryRegisterRealmModel.setMConsanguineousMarraige(jObj.getString("mConsanguineousMarraige"));
-                primaryRegisterRealmModel.setMHistoryIllness(jObj.getString("mHistoryIllness"));
-                primaryRegisterRealmModel.setMHistoryIllnessFamily(jObj.getString("mHistoryIllnessFamily"));
-                primaryRegisterRealmModel.setMAnySurgeryBefore(jObj.getString("mAnySurgeryBefore"));
-                primaryRegisterRealmModel.setMUseTobacco(jObj.getString("mUseTobacco"));
-                primaryRegisterRealmModel.setMUseAlcohol(jObj.getString("mUseAlcohol"));
-                primaryRegisterRealmModel.setMAnyMeditation(jObj.getString("mAnyMeditation"));
-                primaryRegisterRealmModel.setMAllergicToanyDrug(jObj.getString("mAllergicToanyDrug"));
-                primaryRegisterRealmModel.setMHistroyPreviousPreganancy(jObj.getString("mHistroyPreviousPreganancy"));
-                primaryRegisterRealmModel.setMLscsDone(jObj.getString("mLscsDone"));
-                primaryRegisterRealmModel.setMAnyComplecationDuringPreganancy(jObj.getString("mAnyComplecationDuringPreganancy"));
-                primaryRegisterRealmModel.setMPresentPreganancyG(jObj.getString("mPresentPreganancyG"));
-                primaryRegisterRealmModel.setMPresentPreganancyP(jObj.getString("mPresentPreganancyP"));
-                primaryRegisterRealmModel.setMPresentPreganancyA(jObj.getString("mPresentPreganancyA"));
-                primaryRegisterRealmModel.setMPresentPreganancyL(jObj.getString("mPresentPreganancyL"));
-                primaryRegisterRealmModel.setMRegistrationWeek(jObj.getString("mRegistrationWeek"));
-                primaryRegisterRealmModel.setMANTT1(jObj.getString("mANTT1"));
-                primaryRegisterRealmModel.setMANTT2(jObj.getString("mANTT2"));
-                primaryRegisterRealmModel.setMIFAStateDate(jObj.getString("mIFAStateDate"));
-                primaryRegisterRealmModel.setMHeight(jObj.getString("mHeight"));
-                primaryRegisterRealmModel.setMBloodGroup(jObj.getString("mBloodGroup"));
-                primaryRegisterRealmModel.setMHIV(jObj.getString("mHIV"));
-                primaryRegisterRealmModel.setMVDRL(jObj.getString("mVDRL"));
-                primaryRegisterRealmModel.setMHepatitis(jObj.getString("mHepatitis"));
-                primaryRegisterRealmModel.setHBloodGroup(jObj.getString("hBloodGroup"));
-                primaryRegisterRealmModel.setHVDRL(jObj.getString("hVDRL"));
-                primaryRegisterRealmModel.setHHIV(jObj.getString("hHIV"));
-                primaryRegisterRealmModel.setHHepatitis(jObj.getString("hHepatitis"));
-                realm.commitTransaction();
-            }else{
-                Log.d("message---->",message);
-            }
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    @Override
-    public void getAllMotherPrimaryRegisterFailiur(String response) {
-
-    }
-
-    @Override
-    public void postDataSuccess(String response) {
-
-    }
-
-    @Override
-    public void postDataFailiure(String response) {
-
-    }
 
     @Override
     public void loginSuccess(String response) {

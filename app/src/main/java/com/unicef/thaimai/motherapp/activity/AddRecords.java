@@ -103,8 +103,9 @@
             if (checkNetwork.isNetworkAvailable()) {
                 addVisitRecordsPresenter.getVisitCount(preferenceData.getPicmeId(), preferenceData.getMId());
             }else{
-                Toast.makeText(getApplicationContext(), "Check Internet Connection..." + checkNetwork.isNetworkAvailable(), Toast.LENGTH_LONG).show();
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                Toast.makeText(getApplicationContext(), "Check Internet Connection...Try Agian After Sometimes", Toast.LENGTH_LONG).show();
+//                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                finish();
             }
             edt_date =(EditText) findViewById(R.id.edt_date);
             sp_type_of_visit = (Spinner) findViewById(R.id.sp_type_of_visit);
@@ -173,7 +174,12 @@
                     }
                     break;
                 case R.id.upload_reports:
-                    startActivity(new Intent(getApplicationContext(),ImageSelectedActivity.class));
+                    if (checkNetwork.isNetworkAvailable()) {
+                        startActivity(new Intent(getApplicationContext(), ImageSelectedActivity.class));
+                    }else{
+                        Toast.makeText(getApplicationContext(), "Your are offline, Please Try Again After Sometimes." + checkNetwork.isNetworkAvailable(), Toast.LENGTH_LONG).show();
+                    }
+
                     break;
                 case R.id.edt_date:
                     pickDate(edt_date);

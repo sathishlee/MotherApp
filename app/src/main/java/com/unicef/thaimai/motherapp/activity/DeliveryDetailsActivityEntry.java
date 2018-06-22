@@ -96,8 +96,9 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
         if (checkNetwork.isNetworkAvailable()) {
             deliveryEntryPresenter.deliveryNumber(preferenceData.getPicmeId(), preferenceData.getMId());
         }else{
-            Toast.makeText(getApplicationContext(), "Check Internet Connection..." + checkNetwork.isNetworkAvailable(), Toast.LENGTH_LONG).show();
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            Toast.makeText(getApplicationContext(), "Check Internet Connection...Try Agian After Sometimes", Toast.LENGTH_LONG).show();
+//            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            finish();
         }
 
         mCurrentDate = Calendar.getInstance();
