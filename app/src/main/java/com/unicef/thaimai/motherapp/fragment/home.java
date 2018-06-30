@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -85,6 +87,7 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
     ProgressDialog pDialog;
 
     GetUserInfoPresenter getUserInfoPresenter;
+    LinearLayout low_risk, high_risk;
 
     Activity mActivity;
     private static final int MAKE_CALL_PERMISSION_REQUEST_CODE = 1;
@@ -112,7 +115,7 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
          initUI(view);
          checkConnection();
          onClickListner();
-        getActivity().setTitle("Dashboard");
+         getActivity().setTitle("Dashboard");
         profile = (CardView) view.findViewById(R.id.user_profile_photo);
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -203,6 +206,10 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
         txt_pn_next_visit = (TextView) view.findViewById(R.id.txt_pn_next_visit);
         cardview_image = (ImageView) view.findViewById(R.id.cardview_image);
         card_pn_block = (CardView) view.findViewById(R.id.card_pn_block);
+
+        low_risk = (LinearLayout) view.findViewById(R.id.low_risk);
+        high_risk = (LinearLayout) view.findViewById(R.id.high_risk);
+
         card_pn_block.setVisibility(View.GONE);
         picme_id.setText(strpicmeId);
         txt_username .setText(strname);
@@ -394,6 +401,16 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
                 homeRealmModel.setMEDD(jObj.getString("mEDD"));
                 homeRealmModel.setMAge(Integer.parseInt(jObj.getString("mAge")));
                 homeRealmModel.setMRiskStatus(jObj.getString("mRiskStatus"));
+                if(jObj.getString("mRiskStatus").equalsIgnoreCase("HIGH")){
+                    low_risk.setVisibility(View.GONE);
+                    high_risk.setVisibility(View.VISIBLE);
+                    txt_an_risk.setText(homeRealmModel.getMRiskStatus());
+                    txt_an_risk.setTextColor(Color.parseColor("#fff44336"));
+                }else{
+                    low_risk.setVisibility(View.VISIBLE);
+                    high_risk.setVisibility(View.GONE);
+                    txt_an_risk.setText(homeRealmModel.getMRiskStatus());
+                }
                 homeRealmModel.setMWeight(jObj.getString("mWeight"));
                 homeRealmModel.setMHusbandName(jObj.getString("mHusbandName"));
                 homeRealmModel.setMGesWeek(jObj.getString("mGesWeek"));

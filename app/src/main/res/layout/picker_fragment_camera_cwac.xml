@@ -35,7 +35,7 @@
         android:layout_width="@dimen/picker_fab_size"
         android:layout_height="@dimen/picker_fab_size"
         android:layout_alignParentBottom="true"
-
+        android:contentDescription="@string/no_image"
         android:layout_centerHorizontal="true"
         android:layout_margin="10dp"
         android:background="@drawable/btn_bg"

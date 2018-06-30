@@ -157,6 +157,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="4dp"
                             android:layout_gravity="center"
+                            android:contentDescription="@string/date"
                             app:srcCompat="@drawable/calendar"/>
 
                         <LinearLayout
@@ -199,6 +200,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="4dp"
                             android:layout_gravity="center"
+                            android:contentDescription="@string/visit_type"
                             app:srcCompat="@drawable/visit_type"/>
 
                         <LinearLayout
@@ -379,6 +381,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="4dp"
+                            android:contentDescription="@string/blood_group"
                             android:layout_gravity="center"
                             app:srcCompat="@drawable/ic_blood_pressure_16dp"/>
 
@@ -422,6 +425,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="4dp"
+                            android:contentDescription="@string/pluse_rate"
                             android:layout_gravity="center"
                             app:srcCompat="@drawable/pluse_rate"/>
 
@@ -669,6 +673,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="4dp"
                             android:layout_gravity="center"
+                            android:contentDescription="@string/health_record"
                             app:srcCompat="@drawable/ic_heartbeat_16dp"/>
 
                         <LinearLayout
@@ -712,6 +717,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="4dp"
                             android:layout_gravity="center"
+                            android:contentDescription="@string/blood_presure"
                             app:srcCompat="@drawable/ic_blood_transfusion"/>
 
                         <LinearLayout

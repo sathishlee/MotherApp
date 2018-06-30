@@ -195,6 +195,11 @@ public class health_records extends Fragment implements GetVisitHelthRecordsView
 
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         anMotherVisitRealmModel.setVDate(jsonObject.getString("vDate"));
+                        if(jsonObject.getString("vDate").equalsIgnoreCase("null")){
+
+                        }else{
+
+                        }
                         anMotherVisitRealmModel.setVFacility(jsonObject.getString("vFacility"));
 //                mhealthRecordResponseModel.setMLongitude(jsonObject.getString("mLongitude"));
 //                mhealthRecordResponseModel.setMLatitude(jsonObject.getString("mLatitude"));

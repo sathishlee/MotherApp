@@ -25,7 +25,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/real1" />
+            android:contentDescription="@string/visit_details"
+            app:srcCompat="@drawable/real1" />
 
         <ImageView
             android:id="@+id/img_video_play"
@@ -33,7 +34,8 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/video_play_selector" />
+            android:contentDescription="@string/visit_details"
+            app:srcCompat="@drawable/video_play_selector" />
 
         <!--<TextView-->
             <!--android:id="@+id/txt_video_time"-->

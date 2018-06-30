@@ -50,31 +50,127 @@ public class PNHBNCVisitRecordsAdapter extends PagerAdapter {
     }
 
     private void setValuetoUI(PnHbncVisitRecordsModel.Visit_Records mhealthRecordResponseModel) {
-        txt_due_date.setText(mhealthRecordResponseModel.getPnDueDate());
-        txt_provided_date.setText(mhealthRecordResponseModel.getPnCareProvidedDate());
-        txt_hbnc_visit_num.setText(mhealthRecordResponseModel.getPnVisitNo());
-        txt_place.setText(mhealthRecordResponseModel.getPnPlace());
-        txt_weight.setText(mhealthRecordResponseModel.getPnAnyComplaints());
-        txt_temp.setText(mhealthRecordResponseModel.getCTemp());
-        txt_mother_bp.setText(mhealthRecordResponseModel.getPnBPDiastolic()+"/"+mhealthRecordResponseModel.getPnBPSystolic());
-        txt_mother_pluse_rate.setText(mhealthRecordResponseModel.getPnPulseRate());
-        txt_mother_epistomy_tear_suture.setText(mhealthRecordResponseModel.getPnEpistomyTear());
-        txt_mother_pv_discharge.setText(mhealthRecordResponseModel.getPnPVDischarge());
-        txt_mother_breast_feeding.setText(mhealthRecordResponseModel.getPnBreastFeeding());
-        txt_mother_reasons.setText(mhealthRecordResponseModel.getPnBreastFeedingReason());
-        txt_mother_breast_examination.setText(mhealthRecordResponseModel.getPnBreastExamination());
-        txt_mother_out_come.setText(mhealthRecordResponseModel.getPnOutCome());
 
-        txt_weight.setText(mhealthRecordResponseModel.getCWeight());
-        txt_umbilical_tump.setText(mhealthRecordResponseModel.getCUmbilicalStump());
-        txt_cry.setText(mhealthRecordResponseModel.getCCry());
-        txt_eye.setText(mhealthRecordResponseModel.getCEyes());
-        txt_skin.setText(mhealthRecordResponseModel.getCSkin());
-        txt_breat_feeding.setText(mhealthRecordResponseModel.getCBreastFeeding());
-        txt_reasons.setText(mhealthRecordResponseModel.getCBreastFeedingReason());
-        txt_out_come.setText(mhealthRecordResponseModel.getCOutCome());
-        txt_mother_any_complient.setText(mhealthRecordResponseModel.getPnAnyComplaints());
-        txt_mother_temp.setText(mhealthRecordResponseModel.getPnTemp());
+        if(mhealthRecordResponseModel.getPnDueDate().equalsIgnoreCase("null")){
+            txt_due_date.setVisibility(View.GONE);
+        }else{
+            txt_due_date.setText(mhealthRecordResponseModel.getPnDueDate());
+        }
+        if(mhealthRecordResponseModel.getPnCareProvidedDate().equalsIgnoreCase("null")){
+            txt_provided_date.setVisibility(View.GONE);
+        }else{
+            txt_provided_date.setText(mhealthRecordResponseModel.getPnCareProvidedDate());
+        }
+        if(mhealthRecordResponseModel.getPnVisitNo().equalsIgnoreCase("null")){
+            txt_hbnc_visit_num.setVisibility(View.GONE);
+        }else{
+            txt_hbnc_visit_num.setText(mhealthRecordResponseModel.getPnVisitNo());
+        }
+        if(mhealthRecordResponseModel.getPnPlace().equalsIgnoreCase("null")){
+            txt_place.setVisibility(View.GONE);
+        }else{
+            txt_place.setText(mhealthRecordResponseModel.getPnPlace());
+        }
+        if(mhealthRecordResponseModel.getPnAnyComplaints().equalsIgnoreCase("null")){
+            txt_weight.setVisibility(View.GONE);
+        }else{
+            txt_weight.setText(mhealthRecordResponseModel.getPnAnyComplaints());
+        }
+        if(mhealthRecordResponseModel.getCTemp().equalsIgnoreCase("null")){
+            txt_temp.setVisibility(View.GONE);
+        }else{
+            txt_temp.setText(mhealthRecordResponseModel.getCTemp());
+        }
+        if(mhealthRecordResponseModel.getPnBPDiastolic().equalsIgnoreCase("null")&&mhealthRecordResponseModel.getPnBPSystolic().equalsIgnoreCase("null")){
+            txt_mother_bp.setVisibility(View.GONE);
+        }else{
+            txt_mother_bp.setText(mhealthRecordResponseModel.getPnBPDiastolic()+"/"+mhealthRecordResponseModel.getPnBPSystolic());
+        }
+        if(mhealthRecordResponseModel.getPnPulseRate().equalsIgnoreCase("null")){
+            txt_mother_pluse_rate.setVisibility(View.GONE);
+        }else{
+            txt_mother_pluse_rate.setText(mhealthRecordResponseModel.getPnPulseRate());
+        }
+        if(mhealthRecordResponseModel.getPnEpistomyTear().equalsIgnoreCase("null")){
+            txt_mother_epistomy_tear_suture.setVisibility(View.GONE);
+        }else{
+            txt_mother_epistomy_tear_suture.setText(mhealthRecordResponseModel.getPnEpistomyTear());
+        }
+        if(mhealthRecordResponseModel.getPnPVDischarge().equalsIgnoreCase("null")){
+            txt_mother_pv_discharge.setVisibility(View.GONE);
+        }else{
+            txt_mother_pv_discharge.setText(mhealthRecordResponseModel.getPnPVDischarge());
+        }
+        if(mhealthRecordResponseModel.getPnBreastFeeding().equalsIgnoreCase("null")){
+            txt_mother_breast_feeding.setVisibility(View.GONE);
+        }else {
+            txt_mother_breast_feeding.setText(mhealthRecordResponseModel.getPnBreastFeeding());
+        }
+        if(mhealthRecordResponseModel.getPnBreastFeedingReason().equalsIgnoreCase("null")){
+            txt_mother_reasons.setVisibility(View.GONE);
+        }else {
+            txt_mother_reasons.setText(mhealthRecordResponseModel.getPnBreastFeedingReason());
+        }
+        if(mhealthRecordResponseModel.getPnBreastExamination().equalsIgnoreCase("null")){
+            txt_mother_breast_examination.setVisibility(View.GONE);
+        }else {
+            txt_mother_breast_examination.setText(mhealthRecordResponseModel.getPnBreastExamination());
+        }
+        if(mhealthRecordResponseModel.getPnOutCome().equalsIgnoreCase("null")){
+            txt_mother_out_come.setVisibility(View.GONE);
+        }else {
+            txt_mother_out_come.setText(mhealthRecordResponseModel.getPnOutCome());
+        }
+        if(mhealthRecordResponseModel.getCWeight().equalsIgnoreCase("null")){
+            txt_weight.setVisibility(View.GONE);
+        }else {
+            txt_weight.setText(mhealthRecordResponseModel.getCWeight());
+        }
+        if(mhealthRecordResponseModel.getCUmbilicalStump().equalsIgnoreCase("null")){
+            txt_umbilical_tump.setVisibility(View.GONE);
+        }else {
+            txt_umbilical_tump.setText(mhealthRecordResponseModel.getCUmbilicalStump());
+        }
+        if(mhealthRecordResponseModel.getCCry().equalsIgnoreCase("null")){
+            txt_cry.setVisibility(View.GONE);
+        }else {
+            txt_cry.setText(mhealthRecordResponseModel.getCCry());
+        }
+        if(mhealthRecordResponseModel.getCEyes().equalsIgnoreCase("null")){
+            txt_eye.setVisibility(View.GONE);
+        }else {
+            txt_eye.setText(mhealthRecordResponseModel.getCEyes());
+        }
+        if(mhealthRecordResponseModel.getCSkin().equalsIgnoreCase("null")){
+            txt_skin.setVisibility(View.GONE);
+        }else {
+            txt_skin.setText(mhealthRecordResponseModel.getCSkin());
+        }
+        if(mhealthRecordResponseModel.getCBreastFeeding().equalsIgnoreCase("null")){
+            txt_breat_feeding.setVisibility(View.GONE);
+        }else {
+            txt_breat_feeding.setText(mhealthRecordResponseModel.getCBreastFeeding());
+        }
+        if(mhealthRecordResponseModel.getCBreastFeedingReason().equalsIgnoreCase("null")){
+            txt_reasons.setVisibility(View.GONE);
+        }else {
+            txt_reasons.setText(mhealthRecordResponseModel.getCBreastFeedingReason());
+        }
+        if(mhealthRecordResponseModel.getCOutCome().equalsIgnoreCase("null")){
+            txt_out_come.setVisibility(View.GONE);
+        }else {
+            txt_out_come.setText(mhealthRecordResponseModel.getCOutCome());
+        }
+        if(mhealthRecordResponseModel.getPnAnyComplaints().equalsIgnoreCase("null")){
+            txt_mother_any_complient.setVisibility(View.GONE);
+        }else {
+            txt_mother_any_complient.setText(mhealthRecordResponseModel.getPnAnyComplaints());
+        }
+        if(mhealthRecordResponseModel.getPnTemp().equalsIgnoreCase("null")){
+            txt_mother_temp.setVisibility(View.GONE);
+        }else {
+            txt_mother_temp.setText(mhealthRecordResponseModel.getPnTemp());
+        }
     }
 
     private void initUI(View healthRecordLayout) {

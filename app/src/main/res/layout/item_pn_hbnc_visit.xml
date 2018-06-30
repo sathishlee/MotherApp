@@ -142,6 +142,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="4dp"
+                            android:contentDescription="@string/date"
                             android:layout_gravity="center"
                             app:srcCompat="@drawable/calendar"/>
 
@@ -183,6 +184,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="4dp"
+                            android:contentDescription="@string/date"
                             android:layout_gravity="center"
                             app:srcCompat="@drawable/calendar"/>
 
@@ -473,7 +475,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Breat Feeding"
+                            android:text="@string/breast_feeding"
                             android:textAlignment="textStart"
                             android:textColor="@color/secondary"
                             android:textStyle="bold" />
@@ -499,7 +501,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
-                            android:text="Reasons"
+                            android:text="@string/reasons"
                             android:layout_gravity="start"
                             android:textColor="@color/secondary"
                             android:textStyle="bold" />
@@ -667,6 +669,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="4dp"
+                            android:contentDescription="@string/date"
                             android:layout_gravity="center"
                             app:srcCompat="@drawable/calendar"/>
 
@@ -710,6 +713,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="4dp"
+                            android:contentDescription="@string/date"
                             android:layout_gravity="center"
                             app:srcCompat="@drawable/calendar"/>
 
@@ -1087,13 +1091,15 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/textView4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="start"
                             android:layout_marginStart="5dp"
                             android:text="@string/out_come"
-                            android:layout_gravity="start"
                             android:textColor="@color/secondary"
                             android:textStyle="bold" />
+
                         <TextView
                             android:id="@+id/txt_mother_out_come"
                             android:layout_width="match_parent"

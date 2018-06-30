@@ -16,6 +16,7 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_gravity="center"
+            android:contentDescription="@string/date"
             android:layout_marginLeft="-200.0dip"
             android:layout_marginRight="-200.0dip"
             android:background="@drawable/drw_vertical_dashed"

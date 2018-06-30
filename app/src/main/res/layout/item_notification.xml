@@ -28,6 +28,7 @@
                     android:layout_height="70dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_margin="10dp"
+                    android:contentDescription="@string/username"
                     app:srcCompat="@drawable/girl" />
 
                 <LinearLayout
@@ -42,6 +43,7 @@
                         android:id="@+id/iv_camera"
                         android:layout_width="25dp"
                         android:layout_height="25dp"
+                        android:contentDescription="@string/turn_on_location"
                         android:layout_gravity="top|end"
                         android:background="@drawable/noti_location" />
 

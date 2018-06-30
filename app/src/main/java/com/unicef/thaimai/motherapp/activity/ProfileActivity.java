@@ -44,6 +44,9 @@ import com.unicef.thaimai.motherapp.Presenter.ImageUploadPresenter;
 import com.unicef.thaimai.motherapp.Presenter.ProfilePresenter;
 import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.constant.Apiconstants;
+import com.unicef.thaimai.motherapp.realmDbModelClass.PrimaryRegisterRealmModel;
+import com.unicef.thaimai.motherapp.realmDbModelClass.ProfileRealmModel;
+import com.unicef.thaimai.motherapp.utility.CheckNetwork;
 import com.unicef.thaimai.motherapp.view.ImageUploadViews;
 import com.unicef.thaimai.motherapp.view.ProfileView;
 
@@ -55,6 +58,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+
+import io.realm.Realm;
+import io.realm.RealmResults;
 
 import static android.Manifest.permission.CAMERA;
 import static android.Manifest.permission.GET_ACCOUNTS;
@@ -90,6 +96,10 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView, V
 
     public static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 123;
     String userChoosenTask, str_mPhoto;
+
+    boolean isoffline = false;
+    Realm realm;
+    CheckNetwork checkNetwork;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -149,7 +159,7 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView, V
     }
 
     private void initUI() {
-
+        checkNetwork =new CheckNetwork(this);
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
         pDialog.setMessage("Please Wait ...");
@@ -158,8 +168,11 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView, V
 
         profilePresenter = new ProfilePresenter(ProfileActivity.this, this);
         imageUploadPresenter = new ImageUploadPresenter(ProfileActivity.this, this);
-
-        profilePresenter.getMotherProfile(preferenceData.getMId(), preferenceData.getPicmeId());
+        if (checkNetwork.isNetworkAvailable()) {
+            profilePresenter.getMotherProfile(preferenceData.getMId(), preferenceData.getPicmeId());
+        }else {
+            isoffline=true;
+        }
         user_profile_photo = (ImageView) findViewById(R.id.user_profile_photo);
         user_name = (TextView) findViewById(R.id.user_name);
         edt_picme_id = (TextView) findViewById(R.id.edt_picme_id);
@@ -170,9 +183,81 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView, V
         tvNumber1 = (TextView) findViewById(R.id.tvNumber1);
         number_1 = (TextView) findViewById(R.id.number_1);
 
+        if (isoffline) {
+            profileOffline();
+        }else{
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Record Not Found");
+            builder.create();
+        }
+
 
     }
 
+    private void profileOffline() {
+        realm.beginTransaction();
+        RealmResults<ProfileRealmModel> profileRealmModels;
+        profileRealmModels = realm.where(ProfileRealmModel.class).findAll();
+        Log.e(String.valueOf(ProfileActivity.class), profileRealmModels.size() + "");
+        Log.e(ProfileActivity.class.getSimpleName(), "profileRealmModels  -->" + profileRealmModels);
+
+        for (int i = 0; i < profileRealmModels.size(); i++) {
+            ProfileRealmModel model = profileRealmModels.get(i);
+
+            if(model.getMName().equalsIgnoreCase("null")){
+                user_name.setVisibility(View.GONE);
+            }else {
+                user_name.setText(model.getMName());
+            }
+            if(model.getMPicmeId().equalsIgnoreCase("null")){
+                edt_picme_id.setVisibility(View.GONE);
+            }else {
+                edt_picme_id.setText(model.getMPicmeId());
+            }
+            if(model.getmAddress().equalsIgnoreCase("null")){
+                address.setVisibility(View.GONE);
+            }else {
+                address.setText(model.getmAddress());
+            }
+            if(model.getMVillage().equalsIgnoreCase("null")){
+                village_name.setVisibility(View.GONE);
+            }else {
+                village_name.setText(model.getMVillage());
+            }
+            if(model.getMDistrict().equalsIgnoreCase("null")){
+                district_name.setVisibility(View.GONE);
+            }else {
+                district_name.setText(model.getMDistrict());
+            }
+            if(model.getMMotherMobile().equalsIgnoreCase("null")){
+                tvNumber1.setVisibility(View.GONE);
+            }else {
+                tvNumber1.setText(model.getMMotherMobile());
+            }
+            if(model.getMHusbandMobile().equalsIgnoreCase("null")){
+                number_1.setVisibility(View.GONE);
+            }else {
+                number_1.setText(model.getMHusbandMobile());
+            }
+            if(model.getmPhoto().equalsIgnoreCase("null")){
+                user_profile_photo.setVisibility(View.GONE);
+            }else{
+                str_mPhoto = model.getmPhoto();
+                Picasso.with(context)
+                        .load(Apiconstants.PHOTO_URL+str_mPhoto)
+                        .placeholder(R.drawable.ln_logo)
+                        .fit()
+                        .centerCrop()
+                        .memoryPolicy(MemoryPolicy.NO_CACHE)
+                        .networkPolicy(NetworkPolicy.NO_CACHE)
+                        .error(R.drawable.photo_upload)
+                        .into(user_profile_photo);
+            }
+
+
+
+        }
+    }
     @Override
     public void onBackPressed() {
         intent = new Intent(ProfileActivity.this, MainActivity.class);

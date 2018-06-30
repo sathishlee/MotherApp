@@ -21,6 +21,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.text.Html;
 import android.text.TextUtils;
@@ -52,6 +53,7 @@ import com.unicef.thaimai.motherapp.Presenter.NotificationPresenter;
 import com.unicef.thaimai.motherapp.Presenter.SosAlertPresenter;
 import com.unicef.thaimai.motherapp.R;
 //import com.unicef.thaimai.motherapp.bradcastReceiver.ConnectivityReceiver;
+import com.unicef.thaimai.motherapp.adapter.ViewPagerAdapter;
 import com.unicef.thaimai.motherapp.app.MyApplication;
 import com.unicef.thaimai.motherapp.broadCastReceivers.ConnectivityReceiver;
 import com.unicef.thaimai.motherapp.constant.Apiconstants;
@@ -102,6 +104,7 @@ public class MainActivity extends AppCompatActivity
     TextView txt_username,edt_picme_id;
     Context context;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,9 +112,6 @@ public class MainActivity extends AppCompatActivity
         checkNetwork = new CheckNetwork(this);
         firebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
-
-//        Bundle bundle = new Bundle();
-//        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME,"");
         noConnection = (RelativeLayout) findViewById(R.id.view_btm_no_inernet);
 
         if (checkNetwork.isNetworkAvailable()) {
@@ -119,7 +119,6 @@ public class MainActivity extends AppCompatActivity
         } else {
             Toast.makeText(getApplicationContext(), "No Internet connection..!" + checkNetwork.isNetworkAvailable(), Toast.LENGTH_SHORT).show();
 //            startActivity(new Intent(getApplicationContext(),NoInternetConnection.class));
-
         }
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(true);
@@ -163,7 +162,11 @@ public class MainActivity extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
+        setupNavigation();
+        setupNavigationView();
+    }
 
+    private void setupNavigation() {
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
         navigationView.setNavigationItemSelectedListener(this);
@@ -172,14 +175,6 @@ public class MainActivity extends AppCompatActivity
         edt_picme_id = (TextView) headerView.findViewById(R.id.edt_picme_id);
         txt_username.setText(preferenceData.getMotherName());
         edt_picme_id.setText(preferenceData.getPicmeId());
-        /*int version_code = 2;
-        String appversion = String.valueOf(version_code);*/
-        /*if (checkNetwork.isNetworkAvailable()) {
-            getUserInfoPresenter.getUserInfo(preferenceData.getPicmeId(), appversion);
-        } else {
-            Toast.makeText(getApplicationContext(),"No Internet Connection",Toast.LENGTH_SHORT).show();
-        }*/
-
         str_mPhoto = preferenceData.getMotherPhoto();
 
         if(TextUtils.isEmpty(str_mPhoto)){
@@ -198,7 +193,6 @@ public class MainActivity extends AppCompatActivity
                     .error(R.drawable.girl_1)
                     .into(cardview_image);
         }
-        setupNavigationView();
     }
 
 
@@ -213,14 +207,13 @@ public class MainActivity extends AppCompatActivity
         TextView text = (TextView) dialog.findViewById(R.id.txt_msg_welcome0);
         TextView text1 = (TextView) dialog.findViewById(R.id.txt_msg_welcome1);
         TextView text2 = (TextView) dialog.findViewById(R.id.txt_msg_welcome2);
-        TextView text3 = (TextView) dialog.findViewById(R.id.txt_msg_welcome3);
+//        TextView text3 = (TextView) dialog.findViewById(R.id.txt_msg_welcome3);
         TextView text4 = (TextView) dialog.findViewById(R.id.txt_msg_welcome4);
         text.setText("Good Morning Mrs. " + preferenceData.getMotherName() + ".");
-        text1.setText(circle+ "  Hope you are doing well..");
+        text1.setText(circle+getString(R.string.hope_you_are_doing_well));
         text2.setText(circle+ "  This is your " + setSufix(preferenceData.getGstWeek()) + " Week of pregnancy." + ".");
-        text3.setText(circle+ "  This is the Period of child monthly development.");
-        text4.setText(circle+ "  If you are not feeling well please");
-
+//        text3.setText(circle+getString(R.string.this_is_the_period_of_child_monthly_development));
+        text4.setText(circle+getString(R.string.if_you_are_not_feeling_well_please));
 
         TextView dialogClickHere = (TextView) dialog.findViewById(R.id.btn_click_here);
 
@@ -247,7 +240,7 @@ public class MainActivity extends AppCompatActivity
         String returnstring = gstWeek;
         if (gstWeek.substring(1).equalsIgnoreCase("1")) {
             returnstring = gstWeek + " st";
- if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             returnstring= String.valueOf(Html.fromHtml(gstWeek+"<sup><small>nd</small></sup>", Html.FROM_HTML_MODE_LEGACY));
         }
         } else if (gstWeek.substring(1).equalsIgnoreCase("2")) {
@@ -272,7 +265,7 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    private void showAlertDialog(String msg, final String action, int i) {
+    /*private void showAlertDialog(String msg, final String action, int i) {
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 
 
@@ -329,19 +322,19 @@ public class MainActivity extends AppCompatActivity
 //                dialog.dismiss();
             }
         });
-        /*builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+        *//*builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 //                Toast.makeText(getApplicationContext(),"Alert has set to VHN,  They will contact soon..",Toast.LENGTH_LONG).show();
 //                AppConstants.isMainActivityOpen=false;
                 dialog.dismiss();
             }
-        });*/
+        });*//*
 
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }
-
+*/
 
     @Override
     protected void attachBaseContext(Context context) {
@@ -431,9 +424,9 @@ public class MainActivity extends AppCompatActivity
                 return true;
 
             case R.id.action_help:
-                preferenceData.setLogin(false);
+                Intent i = new Intent(MainActivity.this, Help.class);
                 finish();
-                Toast.makeText(getApplicationContext(), "Logged Out", Toast.LENGTH_LONG).show();
+                startActivity(i);
                 return true;
             default:
                 super.onOptionsItemSelected(item);
@@ -545,6 +538,21 @@ public class MainActivity extends AppCompatActivity
         pDialog.hide();
     }
 
+    @Override
+    public void showPickmeResult(String response) {
+
+    }
+
+    @Override
+    public void showFlashResult(String response) {
+
+    }
+
+    @Override
+    public void showErrorMessage(String response) {
+
+    }
+
 
     @Override
     public void onDestroy(){
@@ -601,7 +609,7 @@ public class MainActivity extends AppCompatActivity
         Log.d(MainActivity.class.getSimpleName(), "Notification count response Error" + response);
     }
 
-    @Override
+    /*@Override
     public void showPickmeResult(String response) {
         Log.d(MainActivity.class.getSimpleName(), "Response Success--->" + response);
 //        showAlertDialog("If you are not feeling well please Click here.", response, 0);
@@ -625,7 +633,7 @@ public class MainActivity extends AppCompatActivity
         } catch (JSONException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
     @Override
     protected void onResume() {
@@ -636,16 +644,16 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    @Override
+   /* @Override
     public void showFlashResult(String response) {
         showAlertDialog(response, "close", 5);
     }
-
-    @Override
+*/
+    /*@Override
     public void showErrorMessage(String response) {
         Log.d(AddRecords.class.getSimpleName(), "Response Error--->" + response);
         showAlertDialog(response, "close", 5);
-    }
+    }*/
 
 
     @Override

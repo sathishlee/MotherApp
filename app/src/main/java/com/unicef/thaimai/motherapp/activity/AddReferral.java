@@ -199,7 +199,11 @@ public class AddReferral extends AppCompatActivity implements View.OnClickListen
         sp_reason_for_referral_start = (Spinner) findViewById(R.id.sp_reason_for_referral_start);
         edtDiagnosis = (EditText) findViewById(R.id.edt_diagnosis);
         edtUPDateOfReferral = (EditText) findViewById(R.id.edt_date_of_referral_end);
+        String date1 = dateF.format(Calendar.getInstance().getTime());
+        edtUPDateOfReferral.setText(date1);
         edtUPTimeOfReferral = (EditText) findViewById(R.id.edt_time_of_referral_end);
+        String time1 = timeF.format(Calendar.getInstance().getTime());
+        edtUPTimeOfReferral.setText(time1);
         spUPReceivedBy = (Spinner) findViewById(R.id.sp_received_by_end);
         spUPReferringFacility = (Spinner) findViewById(R.id.sp_receiving_facility_end);
         rgInLabour = (RadioGroup) findViewById(R.id.rg_labour);
@@ -290,7 +294,7 @@ public class AddReferral extends AppCompatActivity implements View.OnClickListen
                 mYear=c.get(Calendar.YEAR);
                 mMonth=c.get(Calendar.MONTH);
                 mDay=c.get(Calendar.DAY_OF_MONTH);
-                SimpleDateFormat ssdf = new SimpleDateFormat("dd/MM/yyyy");
+                SimpleDateFormat ssdf = new SimpleDateFormat("dd-MM-yyyy");
                 setDateOfReferral.setText(ssdf.format(c.getTime()));
             }
         }, year, month, day);

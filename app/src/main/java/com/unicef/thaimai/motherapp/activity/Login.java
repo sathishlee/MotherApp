@@ -229,12 +229,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
         startActivity(new Intent(getApplicationContext(), ForgotPasswordActivity.class));
     }
 
-    public String getDeviceUniqueID(Activity activity){
-        String device_unique_id = Settings.Secure.getString(activity.getContentResolver(),
-                Settings.Secure.ANDROID_ID);
-        return device_unique_id;
-    }
-
     private void getValue() {
         strPicme = edtPicme.getText().toString();
         strDob = edtDob.getText().toString();

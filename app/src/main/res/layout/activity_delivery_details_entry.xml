@@ -461,6 +461,23 @@
                 android:entries="@array/array_ultrosonogram"
                 style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
 
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <EditText
+                    android:id="@+id/edt_any_complaints_other"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:textSize="@dimen/text_secondary"
+                    android:textColor="@color/secondary"
+                    android:hint="@string/specify"
+                    android:visibility="gone"/>
+
+            </android.support.design.widget.TextInputLayout>
+
         </LinearLayout>
 
         <!--<LinearLayout-->

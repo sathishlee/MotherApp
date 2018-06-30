@@ -90,7 +90,8 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="4dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/calendar"
+                        android:contentDescription="@string/date"
+                        app:srcCompat="@drawable/calendar"
                         tools:ignore="VectorDrawableCompat" />
 
                     <LinearLayout
@@ -132,7 +133,8 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="4dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/clock"
+                        android:contentDescription="@string/time"
+                        app:srcCompat="@drawable/clock"
                         tools:ignore="VectorDrawableCompat" />
 
                     <LinearLayout
@@ -437,8 +439,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="4dp"
+                        android:contentDescription="@string/height"
                         android:layout_gravity="center"
-                        android:src="@drawable/height"
+                        app:srcCompat="@drawable/height"
                         tools:ignore="VectorDrawableCompat" />
 
                     <LinearLayout
@@ -482,7 +485,8 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="4dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/weight"
+                        app:srcCompat="@drawable/weight"
+                        android:contentDescription="@string/weight"
                         tools:ignore="VectorDrawableCompat" />
 
                     <LinearLayout
@@ -611,34 +615,6 @@
                         android:textColor="@color/text_primary"/>
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_margin="1dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:text="@string/admitted_in_sncu"
-                        android:textSize="@dimen/text_primary"
-                        android:layout_gravity="start"
-                        android:textColor="@color/secondary"
-                        android:textStyle="bold" />
-                    <TextView
-                        android:id="@+id/txt_admitted_in_sncu"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:text="No"
-                        android:textSize="@dimen/text_secondary"
-                        android:layout_gravity="start"
-                        android:textColor="@color/text_primary"/>
-
-                </LinearLayout>
-
             </LinearLayout>
 
         </LinearLayout>
@@ -703,7 +679,69 @@
                     android:layerType="software" />
 
             </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:weightSum="2"
+            android:layout_margin="2dp"
+            android:orientation="horizontal">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="1dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="@string/admitted_in_sncu"
+                    android:textSize="@dimen/text_primary"
+                    android:layout_gravity="start"
+                    android:textColor="@color/secondary"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/txt_admitted_in_sncu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="No"
+                    android:textSize="@dimen/text_secondary"
+                    android:layout_gravity="start"
+                    android:textColor="@color/text_primary"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="1dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/date"
+                    android:textSize="@dimen/text_primary"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/secondary"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/new_born_sncu_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="29-08-2018"
+                    android:textSize="@dimen/text_secondary"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/text_primary"/>
+            </LinearLayout>
+
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -711,32 +749,6 @@
                 android:weightSum="2"
                 android:layout_margin="2dp"
                 android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_margin="1dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/date"
-                        android:textSize="@dimen/text_primary"
-                        android:textAlignment="textStart"
-                        android:textColor="@color/secondary"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/new_born_sncu_date"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="29-08-2018"
-                        android:textSize="@dimen/text_secondary"
-                        android:textAlignment="textStart"
-                        android:textColor="@color/text_primary"/>
-                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -852,6 +864,7 @@
                         android:layout_margin="4dp"
                         android:layout_gravity="center"
                         android:src="@drawable/calendar"
+                        android:contentDescription="@string/date"
                         tools:ignore="VectorDrawableCompat" />
 
                     <LinearLayout
@@ -893,6 +906,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="4dp"
                         android:layout_gravity="center"
+                        android:contentDescription="@string/date"
                         android:src="@drawable/calendar"
                         tools:ignore="VectorDrawableCompat" />
 
@@ -947,6 +961,7 @@
                         android:layout_margin="4dp"
                         android:layout_gravity="center"
                         android:src="@drawable/calendar"
+                        android:contentDescription="@string/date"
                         tools:ignore="VectorDrawableCompat" />
 
                     <LinearLayout

@@ -30,7 +30,7 @@
         <item
             android:id="@+id/nearbyhospital"
             android:icon="@drawable/hospital"
-            android:title="@string/vhn" />
+            android:title="@string/near_by_hospital" />
 
         <!--<item-->
             <!--android:id="@+id/infant_tracking_menu"-->

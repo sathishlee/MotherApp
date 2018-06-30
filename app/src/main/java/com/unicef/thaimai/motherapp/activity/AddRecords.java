@@ -45,7 +45,7 @@
         Spinner sp_type_of_visit, sp_facility, sp_any_complaints, sp_fundal_height;
 
         EditText edt_date,edt_facility_other, edt_any_complaints_other, edt_bp_sys, edt_bp_dis, edt_pluse_rate, edt_weight, edt_fhs, edt_temp, edt_hemo,
-                edt_rbs, edt_fbs, edt_ppbs, edt_gtt, edt_tsh, edt_urine_sugar, edt_albumin, edt_fetus, edt_gestation_sac, edt_liquor, edt_placenta;
+                edt_rbs, edt_fbs, edt_ppbs, edt_fundal_height, edt_gtt, edt_tsh, edt_urine_sugar, edt_albumin, edt_fetus, edt_gestation_sac, edt_liquor, edt_placenta;
         RadioGroup rg_pep;
         RadioButton rb_yes, rb_no;
         Button btn_submit, upload_reports;
@@ -111,7 +111,8 @@
             sp_type_of_visit = (Spinner) findViewById(R.id.sp_type_of_visit);
             sp_facility = (Spinner) findViewById(R.id.sp_facility);
             sp_any_complaints = (Spinner) findViewById(R.id.sp_any_complaints);
-            sp_fundal_height = (Spinner) findViewById(R.id.sp_fundal_height);
+            edt_fundal_height = (EditText) findViewById(R.id.edt_fundal_height);
+
             edt_facility_other = (EditText) findViewById(R.id.edt_facility_other);
             edt_facility_other.setVisibility(View.GONE);
             edt_any_complaints_other = (EditText) findViewById(R.id.edt_any_complaints_other);
@@ -151,7 +152,7 @@
 
         private void showActionBar() {
             ActionBar actionBar = getSupportActionBar();
-            actionBar.setTitle("Add Records");
+            actionBar.setTitle("AN Visit Entry");
             actionBar.setHomeButtonEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
@@ -322,6 +323,7 @@
             strgestation_sac = edt_gestation_sac.getText().toString();
             strliquor = edt_liquor.getText().toString();
             strplacenta = edt_placenta.getText().toString();
+            strFundal_Height = edt_fundal_height.getText().toString();
         }
 
         @Override
@@ -352,9 +354,9 @@
 
                     }
                     break;
-                case R.id.sp_fundal_height:
+                /*case R.id.sp_fundal_height:
                     strFundal_Height = parent.getSelectedItem().toString();
-                    break;
+                    break;*/
             }
         }
 

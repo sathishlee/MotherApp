@@ -1,147 +1,636 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
-
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="I need help with:"
+            android:layout_margin="7dp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_lable"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="15dp">
+            android:orientation="horizontal"
+            android:weightSum="25"
+            android:padding="5dp">
 
-            <Button
-                android:id="@+id/expandableButton1"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:background="#f7e4eb"
-                android:drawableEnd="@android:drawable/arrow_down_float"
-                android:onClick="expandableButton1"
-                android:paddingLeft="10dp"
-                android:layout_marginBottom="10dp"
-                android:text="What Is Android"
-                android:textColor="#000" />
-
-            <com.github.aakira.expandablelayout.ExpandableRelativeLayout
-                android:id="@+id/expandableLayout1"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#ba68c8"
-                android:padding="16dp"
-                app:ael_duration="400"
-                app:ael_expanded="false"
-                app:ael_interpolator="accelerate"
-                app:ael_orientation="vertical">
+                android:layout_height="wrap_content"
+                android:layout_weight="11"
+                android:padding="10dp"
+                android:layout_gravity="start">
 
-                <TextView
+                <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000"
-                    android:text="Android is an open source and Linux-based Operating System for mobile devices such as smartphones and tablet computers. Android was developed by the Open Handset Alliance, led by Google, and other companies. The first beta version of the Android Software Development Kit (SDK) was released by Google in 2007 where as the first commercial version, Android 1.0, was released in September 2008." />
-            </com.github.aakira.expandablelayout.ExpandableRelativeLayout>
+                    android:contentDescription="@string/username_profile"
+                    app:srcCompat="@drawable/help_user" />
 
-            <Button
-                android:id="@+id/expandableButton2"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:background="#f7e4eb"
-                android:drawableEnd="@android:drawable/arrow_down_float"
-                android:onClick="expandableButton2"
-                android:paddingEnd="10dp"
+            </LinearLayout>
 
-                android:layout_marginBottom="10dp"
-                android:text="What Is Android"
-                android:textColor="#000" />
-
-            <com.github.aakira.expandablelayout.ExpandableRelativeLayout
-                android:id="@+id/expandableLayout2"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#ba68c8"
-                android:padding="16dp"
-                app:ael_duration="400"
-                app:ael_expanded="false"
-                app:ael_interpolator="accelerate"
-                app:ael_orientation="vertical">
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:padding="5dp"
+                android:layout_gravity="start"
+                android:orientation="vertical">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#000"
-                    android:text="Android is an open source and Linux-based Operating System for mobile devices such as smartphones and tablet computers. Android was developed by the Open Handset Alliance, led by Google, and other companies. The first beta version of the Android Software Development Kit (SDK) was released by Google in 2007 where as the first commercial version, Android 1.0, was released in September 2008." />
-            </com.github.aakira.expandablelayout.ExpandableRelativeLayout>
-
-            <Button
-                android:id="@+id/expandableButton3"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:background="#f7e4eb"
-                android:drawableEnd="@android:drawable/arrow_down_float"
-                android:onClick="expandableButton3"
-                android:paddingEnd="10dp"
-
-                android:layout_marginBottom="10dp"
-                android:text="What Is Android"
-                android:textColor="#000" />
-
-            <com.github.aakira.expandablelayout.ExpandableRelativeLayout
-                android:id="@+id/expandableLayout3"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#ba68c8"
-                android:padding="16dp"
-                app:ael_duration="400"
-                app:ael_expanded="false"
-                app:ael_interpolator="accelerate"
-                app:ael_orientation="vertical">
+                    android:text="Account related issues"
+                    android:textColor="@color/black_87"
+                    android:textSize="@dimen/help_text_label" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#000"
-                    android:text="Android is an open source and Linux-based Operating System for mobile devices such as smartphones and tablet computers. Android was developed by the Open Handset Alliance, led by Google, and other companies. The first beta version of the Android Software Development Kit (SDK) was released by Google in 2007 where as the first commercial version, Android 1.0, was released in September 2008." />
-            </com.github.aakira.expandablelayout.ExpandableRelativeLayout>
+                    android:text="Login/Sign Up related issues"
+                    android:textColor="@color/custom_txt_darkgray"
+                    android:textSize="@dimen/text_secondary"/>
 
-            <Button
-                android:id="@+id/expandableButton4"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:background="#f7e4eb"
-                android:drawableEnd="@android:drawable/arrow_down_float"
-                android:onClick="expandableButton4"
-                android:paddingEnd="10dp"
-                android:text="What Is Android"
-                android:textColor="#000" />
+            </LinearLayout>
 
-            <com.github.aakira.expandablelayout.ExpandableRelativeLayout
-                android:id="@+id/expandableLayout4"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#ba68c8"
-                android:padding="16dp"
-                app:ael_duration="400"
-                app:ael_expanded="false"
-                app:ael_interpolator="accelerate"
-                app:ael_orientation="vertical">
+                android:layout_height="wrap_content"
+                android:layout_weight="11"
+                android:padding="10dp"
+                android:layout_gravity="start|center"
+                android:orientation="vertical">
 
-                <TextView
+                <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000"
-                    android:text="Android is an open source and Linux-based Operating System for mobile devices such as smartphones and tablet computers. Android was developed by the Open Handset Alliance, led by Google, and other companies. The first beta version of the Android Software Development Kit (SDK) was released by Google in 2007 where as the first commercial version, Android 1.0, was released in September 2008." />
-            </com.github.aakira.expandablelayout.ExpandableRelativeLayout>
+                    android:contentDescription="@string/arrow"
+                    app:srcCompat="@drawable/help_menu_arrow" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
-    </ScrollView>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:paddingStart="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-</LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:paddingTop="4.0dip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <View
+                android:layout_gravity="center"
+                android:background="@drawable/header_line"
+                android:layout_width="match_parent"
+                android:layout_height="1.0dp"
+                android:layout_weight="1.0"
+                android:layerType="software" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="25"
+            android:padding="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="11"
+                android:padding="10dp"
+                android:layout_gravity="start">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/primary_records"
+                    app:srcCompat="@drawable/help_menu_primary" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:padding="5dp"
+                android:layout_gravity="start"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Primary Register "
+                    android:textColor="@color/black_87"
+                    android:textSize="@dimen/help_text_label" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Unable to Update details"
+                    android:textColor="@color/custom_txt_darkgray"
+                    android:textSize="@dimen/text_secondary"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="11"
+                android:padding="10dp"
+                android:layout_gravity="start|center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/arrow"
+                    app:srcCompat="@drawable/help_menu_arrow" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:paddingStart="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:paddingTop="4.0dip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <View
+                    android:layout_gravity="center"
+                    android:background="@drawable/header_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="1.0dp"
+                    android:layout_weight="1.0"
+                    android:layerType="software" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="25"
+            android:padding="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="11"
+                android:padding="10dp"
+                android:layout_gravity="start">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/visit_entry"
+                    app:srcCompat="@drawable/help_entry" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:padding="5dp"
+                android:layout_gravity="start"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Visit Entry"
+                    android:textColor="@color/black_87"
+                    android:textSize="@dimen/help_text_label" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Issue while Entering data"
+                    android:textColor="@color/custom_txt_darkgray"
+                    android:textSize="@dimen/text_secondary"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="11"
+                android:padding="10dp"
+                android:layout_gravity="start|center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/arrow"
+                    app:srcCompat="@drawable/help_menu_arrow" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:paddingStart="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:paddingTop="4.0dip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <View
+                    android:layout_gravity="center"
+                    android:background="@drawable/header_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="1.0dp"
+                    android:layout_weight="1.0"
+                    android:layerType="software" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="25"
+            android:padding="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="11"
+                android:padding="10dp"
+                android:layout_gravity="start">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/delivery_entry"
+                    app:srcCompat="@drawable/help_delivery" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:padding="5dp"
+                android:layout_gravity="start"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Delivery Entry"
+                    android:textColor="@color/black_87"
+                    android:textSize="@dimen/help_text_label" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Issue while Entering data"
+                    android:textColor="@color/custom_txt_darkgray"
+                    android:textSize="@dimen/text_secondary"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="11"
+                android:padding="10dp"
+                android:layout_gravity="start|center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/arrow"
+                    app:srcCompat="@drawable/help_menu_arrow" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:paddingStart="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:paddingTop="4.0dip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <View
+                    android:layout_gravity="center"
+                    android:background="@drawable/header_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="1.0dp"
+                    android:layout_weight="1.0"
+                    android:layerType="software" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="25"
+            android:padding="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="11"
+                android:padding="10dp"
+                android:layout_gravity="start">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/pn_hbnc_visit"
+                    app:srcCompat="@drawable/help_pn_hbnc" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:padding="5dp"
+                android:layout_gravity="start"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="PN/HBNC Visit Entry"
+                    android:textColor="@color/black_87"
+                    android:textSize="@dimen/help_text_label" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Issue while Entering data"
+                    android:textColor="@color/custom_txt_darkgray"
+                    android:textSize="@dimen/text_secondary"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="11"
+                android:padding="10dp"
+                android:layout_gravity="start|center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/arrow"
+                    app:srcCompat="@drawable/help_menu_arrow" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:paddingStart="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:paddingTop="4.0dip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <View
+                    android:layout_gravity="center"
+                    android:background="@drawable/header_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="1.0dp"
+                    android:layout_weight="1.0"
+                    android:layerType="software" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="25"
+            android:padding="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="11"
+                android:padding="10dp"
+                android:layout_gravity="start">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/immunization_entry"
+                    app:srcCompat="@drawable/help_immunization" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:padding="5dp"
+                android:layout_gravity="start"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Immunization Entry "
+                    android:textColor="@color/black_87"
+                    android:textSize="@dimen/help_text_label" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Issue while Entering Data"
+                    android:textColor="@color/custom_txt_darkgray"
+                    android:textSize="@dimen/text_secondary"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="11"
+                android:padding="10dp"
+                android:layout_gravity="start|center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/arrow"
+                    app:srcCompat="@drawable/help_menu_arrow" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:paddingStart="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:paddingTop="4.0dip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <View
+                    android:layout_gravity="center"
+                    android:background="@drawable/header_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="1.0dp"
+                    android:layout_weight="1.0"
+                    android:layerType="software" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="25"
+            android:padding="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="11"
+                android:padding="10dp"
+                android:layout_gravity="start">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/health_tips"
+                    app:srcCompat="@drawable/help_health" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:padding="5dp"
+                android:layout_gravity="start"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Health Tips "
+                    android:textColor="@color/black_87"
+                    android:textSize="@dimen/help_text_label" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Text, Image and Video tips"
+                    android:textColor="@color/custom_txt_darkgray"
+                    android:textSize="@dimen/text_secondary"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="11"
+                android:padding="10dp"
+                android:layout_gravity="start|center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/arrow"
+                    app:srcCompat="@drawable/help_menu_arrow" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:paddingStart="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:paddingTop="4.0dip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <View
+                    android:layout_gravity="center"
+                    android:background="@drawable/header_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="1.0dp"
+                    android:layout_weight="1.0"
+                    android:layerType="software" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+
+
+
+
+    </LinearLayout>
+
+
+</ScrollView>

@@ -124,6 +124,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="4dp"
+                    android:contentDescription="@string/date"
                     android:layout_gravity="center"
                     android:src="@drawable/calendar"
                     tools:ignore="VectorDrawableCompat" />
@@ -169,6 +170,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="4dp"
                     android:layout_gravity="center"
+                    android:contentDescription="@string/date"
                     android:src="@drawable/calendar"
                     tools:ignore="VectorDrawableCompat" />
 
@@ -967,17 +969,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/background_image"
                 android:layout_margin="4dp"
                 android:orientation="horizontal">
 
-                <ImageView
+               <!-- <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="4dp"
                     android:layout_gravity="center"
+                    android:contentDescription="@string/immunization"
                     android:src="@drawable/injection"
-                    tools:ignore="VectorDrawableCompat" />
+                    tools:ignore="VectorDrawableCompat" />-->
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -1009,17 +1011,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/background_image"
                 android:layout_margin="4dp"
                 android:orientation="horizontal">
+                <!--android:background="@drawable/background_image"-->
 
-                <ImageView
+
+                <!--<ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="4dp"
                     android:layout_gravity="center"
                     android:src="@drawable/injection"
-                    tools:ignore="VectorDrawableCompat" />
+                    android:contentDescription="@string/immunization"
+                    tools:ignore="VectorDrawableCompat" />-->
 
                 <LinearLayout
                     android:layout_width="wrap_content"

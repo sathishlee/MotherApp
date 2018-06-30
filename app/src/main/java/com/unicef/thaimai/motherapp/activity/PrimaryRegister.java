@@ -1,7 +1,9 @@
     package com.unicef.thaimai.motherapp.activity;
 
     import android.annotation.SuppressLint;
+    import android.app.DatePickerDialog;
     import android.app.ProgressDialog;
+    import android.content.Context;
     import android.support.v7.app.ActionBar;
     import android.content.Intent;
     import android.support.v7.app.AppCompatActivity;
@@ -9,8 +11,10 @@
     import android.util.Log;
     import android.view.MenuItem;
     import android.view.View;
+    import android.view.inputmethod.InputMethodManager;
     import android.widget.AdapterView;
     import android.widget.Button;
+    import android.widget.DatePicker;
     import android.widget.EditText;
     import android.widget.Spinner;
     import android.widget.TextView;
@@ -27,10 +31,13 @@
     import org.json.JSONException;
     import org.json.JSONObject;
 
+    import java.text.SimpleDateFormat;
     import java.util.ArrayList;
     import java.util.Arrays;
+    import java.util.Calendar;
     import java.util.HashMap;
     import java.util.List;
+    import java.util.Locale;
 
 
     public class PrimaryRegister extends AppCompatActivity implements View.OnClickListener, PrimaryRegisterViews, AdapterView.OnItemSelectedListener {
@@ -57,6 +64,8 @@
 ArrayList ysList,occList;
         Button butSubmit;
         ProgressDialog pDialog;
+        private SimpleDateFormat dateFormatter;
+
 
         PrimaryRegisterPresenter primaryRegisterPresenter;
         PrimaryDataRequestModel primaryDataRequestModel;
@@ -167,6 +176,9 @@ ArrayList ysList,occList;
 
         private void onClickListner() {
             butSubmit.setOnClickListener(this);
+            edtRegWeek.setOnClickListener(this);
+            edtANTT1st.setOnClickListener(this);
+            edtANTT2nd.setOnClickListener(this);
         }
 
 
@@ -229,6 +241,16 @@ ArrayList ysList,occList;
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
+                case R.id.edt_reg_week:
+                    pickDate(edtRegWeek);
+                    break;
+                case R.id.edt_antt1:
+                    pickDate(edtANTT1st);
+                    break;
+                case R.id.edt_antt2:
+                    pickDate(edtANTT2nd);
+                    break;
+
                 case R.id.btn_submit:
                     if (checkNetwork.isNetworkAvailable()) {
                         sendtoServer();
@@ -238,6 +260,27 @@ ArrayList ysList,occList;
                     }
                     break;
             }
+        }
+
+        private void pickDate(final EditText edt_date) {
+
+            Calendar newCalendar = Calendar.getInstance();
+
+            DatePickerDialog datePickerDialog = new DatePickerDialog(PrimaryRegister.this, R.style.DatePickerDialogTheme, new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                    Calendar newDate = Calendar.getInstance();
+                    newDate.set(year, monthOfYear, dayOfMonth);
+//                edtDob.setText(dayOfMonth + "-" + monthOfYear + "-" + year);
+                    dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
+
+                    edt_date.setText(dateFormatter.format(newDate.getTime()));
+                }
+            }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
+            InputMethodManager imm =
+                    (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(edt_date.getWindowToken(), 0);
+            datePickerDialog.show();
         }
 
         private void sendtoServer() {
