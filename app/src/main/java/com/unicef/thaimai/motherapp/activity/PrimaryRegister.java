@@ -20,6 +20,10 @@
     import android.widget.TextView;
     import android.widget.Toast;
 
+    import com.suthishan.multiselectspineer.KeyPairBoolData;
+    import com.suthishan.multiselectspineer.MultiSelectSpinner;
+    import com.suthishan.multiselectspineer.MultiSpinner;
+    import com.suthishan.multiselectspineer.SpinnerListener;
     import com.unicef.thaimai.motherapp.Preference.PreferenceData;
     import com.unicef.thaimai.motherapp.Presenter.PrimaryRegisterPresenter;
     import com.unicef.thaimai.motherapp.R;
@@ -35,12 +39,12 @@
     import java.util.ArrayList;
     import java.util.Arrays;
     import java.util.Calendar;
-    import java.util.HashMap;
     import java.util.List;
     import java.util.Locale;
 
 
-    public class PrimaryRegister extends AppCompatActivity implements View.OnClickListener, PrimaryRegisterViews, AdapterView.OnItemSelectedListener {
+    public class PrimaryRegister extends AppCompatActivity implements View.OnClickListener, PrimaryRegisterViews,
+            AdapterView.OnItemSelectedListener, MultiSelectSpinner.OnMultipleItemsSelectedListener {
 
         TextView txtMotherName, txtMotherAge;
         EditText edtLmpDate, edtEddDate, edtAgeAtMarriage, edtRegWeek, edtANTT1st, edtANTT2nd, edtFIAStartDate, edtHeight,
@@ -61,16 +65,20 @@
                 strLmpDate, strEddDate, strAgeAtMarriage, strRegWeek, strANTT1st, strANTT2nd, strFIAStartDate, strHeight,
                 strOthers, strMedicationSpecify, strAllergictoDrugsSpecify, strPrimaryMobileNumber, strAlternativeMobileNumber,
                 strHistory_illness_other,strHhistory_illness_fmly_other,strAny_surgery_before_other,strAnyComDuring_prgncy_other;
-ArrayList ysList,occList;
+        ArrayList ysList,occList;
         Button butSubmit;
         ProgressDialog pDialog;
         private SimpleDateFormat dateFormatter;
+        private static final String TAG = "MainActivity";
+
+
 
 
         PrimaryRegisterPresenter primaryRegisterPresenter;
         PrimaryDataRequestModel primaryDataRequestModel;
         PreferenceData preferenceData;
         CheckNetwork checkNetwork;
+        MultiSelectSpinner spinner1;
 
 
         String[] Occ = {"--Select--","Home Maker", "Private Sector", "Govt Sector"};
@@ -146,7 +154,8 @@ ArrayList ysList,occList;
             spDoseAllergictoDrugs = (Spinner) findViewById(R.id.sp_dose_allergicto_drugs);
             spPrePregnancy = (Spinner) findViewById(R.id.sp_pre_pregnancy);
             spLSCSDone = (Spinner) findViewById(R.id.sp_lscs_done);
-            spComDuringPrgncy = (Spinner) findViewById(R.id.sp_comDuring_prgncy);
+//            spComDuringPrgncy = (Spinner) findViewById(R.id.sp_comDuring_prgncy);
+            spinner1 = (MultiSelectSpinner)findViewById(R.id.mySpinner1);
             spPrePrgncyG = (Spinner) findViewById(R.id.sp_pre_prgncy_g);
             spPrePrgncyP = (Spinner) findViewById(R.id.sp_pre_prgncy_p);
             spPrePrgncyA = (Spinner) findViewById(R.id.sp_pre_prgncy_a);
@@ -170,7 +179,14 @@ ArrayList ysList,occList;
             edt_history_illness = (EditText) findViewById(R.id.edt_other_history_illness);
             edt_history_illness_fmly = (EditText) findViewById(R.id.edt_history_illness_fmly);
             edt_any_surgery_before = (EditText) findViewById(R.id.edt_any_surgery_before);
-            edt_comDuring_prgncy = (EditText) findViewById(R.id.edt_comDuring_prgncy);
+//            edt_comDuring_prgncy = (EditText) findViewById(R.id.edt_comDuring_prgncy);
+
+            spinner1.setItems(acdp);
+            spinner1.hasNoneOption(true);
+            spinner1.setSelection(new int[]{0});
+            spinner1.setListener(this);
+
+
 
         }
 
@@ -195,7 +211,7 @@ ArrayList ysList,occList;
             spDoseAllergictoDrugs.setOnItemSelectedListener(this);
             spPrePregnancy.setOnItemSelectedListener(this);
             spLSCSDone.setOnItemSelectedListener(this);
-            spComDuringPrgncy.setOnItemSelectedListener(this);
+//            spComDuringPrgncy.setOnItemSelectedListener(this);
             spPrePrgncyG.setOnItemSelectedListener(this);
             spPrePrgncyP.setOnItemSelectedListener(this);
             spPrePrgncyA.setOnItemSelectedListener(this);
@@ -227,7 +243,7 @@ ArrayList ysList,occList;
             strHistory_illness_other =edt_history_illness.getText().toString();
             strHhistory_illness_fmly_other =edt_history_illness_fmly.getText().toString();
             strAny_surgery_before_other =edt_any_surgery_before.getText().toString();
-            strAnyComDuring_prgncy_other =edt_comDuring_prgncy.getText().toString();
+//            strAnyComDuring_prgncy_other =edt_comDuring_prgncy.getText().toString();
         }
 
 
@@ -235,6 +251,7 @@ ArrayList ysList,occList;
         public boolean onOptionsItemSelected(MenuItem item) {
             finish();
             return super.onOptionsItemSelected(item);
+
         }
 
 
@@ -368,10 +385,10 @@ ArrayList ysList,occList;
             }else if (strLSCSDone.equalsIgnoreCase("--Select--")){
                 showAlert("LSC Done is Empty");
 
-            }else if (strComDuringPrgncy.equalsIgnoreCase("--Select--")){
+            }/*else if (strComDuringPrgncy.equalsIgnoreCase("--Select--")){
                 showAlert("During Pregnancy is Empty");
 
-            }else if (strPrePrgncyG.equalsIgnoreCase("--Select--")){
+            }*/else if (strPrePrgncyG.equalsIgnoreCase("--Select--")){
                 showAlert("G is Empty");
 
             }else if (strPrePrgncyP.equalsIgnoreCase("--Select--")){
@@ -585,15 +602,8 @@ ArrayList ysList,occList;
                 case R.id.sp_lscs_done:
                     strLSCSDone = parent.getSelectedItem().toString();
                     break;
-                case R.id.sp_comDuring_prgncy:
+                case R.id.mySpinner1:
                     strComDuringPrgncy = parent.getSelectedItem().toString();
-                    if (strComDuringPrgncy.equalsIgnoreCase("Others")) {
-                        edt_comDuring_prgncy.setVisibility(View.VISIBLE);
-                    }
-                    else {
-                        edt_comDuring_prgncy.setVisibility(View.GONE);
-
-                    }
                     break;
                 case R.id.sp_pre_prgncy_g:
                     strPrePrgncyG = parent.getSelectedItem().toString();
@@ -677,7 +687,7 @@ ArrayList ysList,occList;
                     spDoseAllergictoDrugs.setSelection(getListPosition(yn,jObj.getString("mAllergicToanyDrug"))); //Yes,No
                     spPrePregnancy.setSelection(getListPosition(yn,jObj.getString("mHistroyPreviousPreganancy")));          //Yes,No
                     spLSCSDone.setSelection(getListPosition(yn,jObj.getString("mLscsDone")));             //Yes,No
-                    spComDuringPrgncy.setSelection(getListPosition(acdp,jObj.getString("mAnyComplecationDuringPreganancy")));  //Hypertention, Diabetes, Congenital Heart Disease, Tb, Others
+//                    spComDuringPrgncy.setSelection(getListPosition(acdp,jObj.getString("mAnyComplecationDuringPreganancy")));  //Hypertention, Diabetes, Congenital Heart Disease, Tb, Others
                     spPrePrgncyG.setSelection(getListPosition(num,jObj.getString("mPresentPreganancyG")));  //1234567890
                     spPrePrgncyP.setSelection(getListPosition(num,jObj.getString("mPresentPreganancyP")));  //1234567890
                     spPrePrgncyA.setSelection(getListPosition(num,jObj.getString("mPresentPreganancyA")));  //1234567890
@@ -712,6 +722,16 @@ ArrayList ysList,occList;
 
             }
             return x;
+        }
+
+        @Override
+        public void selectedIndices(List<Integer> indices) {
+
+        }
+
+        @Override
+        public void selectedStrings(List<String> strings) {
+            Toast.makeText(this.getApplicationContext(),"Values -- >" + strings,Toast.LENGTH_LONG).show();
         }
     }
 

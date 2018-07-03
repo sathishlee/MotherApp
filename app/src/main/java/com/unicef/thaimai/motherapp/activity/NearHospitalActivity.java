@@ -86,6 +86,7 @@ public class NearHospitalActivity extends AppCompatActivity implements LocationU
         Log.e(Login.class.getSimpleName(),"Cureent logtitude - "   +preferenceData.gettCurentlatitude());
         Log.e(Login.class.getSimpleName(),"Cureent lontitude - "   +preferenceData.gettCurentlongitude());
         if (mISGpsStatusDetector) {
+            pDialog.show();
             locationUpdatePresenter.getNearByHospitalFromServer(AppConstants.NEAR_LATITUDE,AppConstants.NEAR_LONGITUDE);
         }else{
             Toast.makeText(getApplicationContext(), "Please Turn On Location", Toast.LENGTH_LONG).show();

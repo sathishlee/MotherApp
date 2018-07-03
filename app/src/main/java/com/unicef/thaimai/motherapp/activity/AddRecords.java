@@ -81,7 +81,7 @@
             sp_type_of_visit.setOnItemSelectedListener(this);
             sp_facility.setOnItemSelectedListener(this);
             sp_any_complaints.setOnItemSelectedListener(this);
-            sp_fundal_height.setOnItemSelectedListener(this);
+//            sp_fundal_height.setOnItemSelectedListener(this);
             rg_pep.setOnCheckedChangeListener(this);
 
         }

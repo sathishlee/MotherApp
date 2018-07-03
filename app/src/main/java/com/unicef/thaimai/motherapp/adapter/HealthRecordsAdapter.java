@@ -59,7 +59,28 @@ public class HealthRecordsAdapter extends PagerAdapter {
 
     private void setValuetoUI(HealthRecordResponseModel.Visit_Records mhealthRecordResponseModel) {
 
-        if(mhealthRecordResponseModel.getVDate().equalsIgnoreCase("null")){
+
+        txtVisitedDate.setText(mhealthRecordResponseModel.getVDate());
+        txtVisitedType.setText(mhealthRecordResponseModel.getVtypeOfVisit());
+        txtFacility.setText(mhealthRecordResponseModel.getVFacility());
+        txtAnyComplient.setText(mhealthRecordResponseModel.getVAnyComplaints());
+        txtBPValue.setText(mhealthRecordResponseModel.getVClinicalBPDiastolic()+ "mm"+"/"+mhealthRecordResponseModel.getVClinicalBPDiastolic()+ "Hg");
+        txtPluseRate.setText(mhealthRecordResponseModel.getVEnterPulseRate()+ "Per min");
+        txtWeight.setText(mhealthRecordResponseModel.getVEnterWeight()+"kg");
+        txtFunbalHeight.setText(mhealthRecordResponseModel.getVFundalHeight()+ "cm");
+        txtFhs.setText(mhealthRecordResponseModel.getVFHS()+ "Per min");
+        txtPep.setText(mhealthRecordResponseModel.getVPedalEdemaPresent());
+        txtHp.setText(mhealthRecordResponseModel.getVHemoglobin() + "%");
+        txtFbs.setText(mhealthRecordResponseModel.getVFBS()+ "mg");
+        txtPpbs.setText(mhealthRecordResponseModel.getVPPBS()+ "mg");
+        txtGtt.setText(mhealthRecordResponseModel.getVGTT());
+        txtFetus.setText(mhealthRecordResponseModel.getUsgFetus());
+        txtSugar.setText(mhealthRecordResponseModel.getVUrinSugar());
+        txtGestationSac.setText(mhealthRecordResponseModel.getUsgGestationSac());
+        txtLiquor.setText(mhealthRecordResponseModel.getUsgLiquor());
+        txtPlacenta.setText(mhealthRecordResponseModel.getUsgPlacenta());
+
+        /*if(mhealthRecordResponseModel.getVDate().equalsIgnoreCase("null")){
             txtVisitedDate.setVisibility(View.GONE);
         }else{
             txtVisitedDate.setText(mhealthRecordResponseModel.getVDate());
@@ -153,7 +174,7 @@ public class HealthRecordsAdapter extends PagerAdapter {
             txtPlacenta.setVisibility(View.GONE);
         }else{
             txtPlacenta.setText(mhealthRecordResponseModel.getUsgPlacenta());
-        }
+        }*/
 
         if (mhealthRecordResponseModel.getVtypeOfVisit().equalsIgnoreCase("Scheduled")) {
             mTypeOfHealthRecords.ispickme(true);

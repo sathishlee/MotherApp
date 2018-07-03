@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.unicef.thaimai.motherapp.activity.PrimaryRegister">
 
     <LinearLayout
@@ -799,7 +800,7 @@
                 android:textStyle="bold"
                 android:layout_weight="1"/>
 
-            <Spinner
+            <!--<Spinner
                 android:id="@+id/sp_comDuring_prgncy"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -807,23 +808,11 @@
                 android:textSize="@dimen/text_secondary"
                 android:layout_weight="1"
                 android:drawSelectorOnTop="true"
-                android:entries="@array/pregnancy"
                 style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:id="@+id/edt_comDuring_prgncy"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/specify"
-                    android:textColor="@color/secondary"
-                    android:textSize="@dimen/text_secondary"
-                    android:layout_weight="1"/>
-
-            </android.support.design.widget.TextInputLayout>
+--> <com.suthishan.multiselectspineer.MultiSelectSpinner
+        android:id="@+id/mySpinner1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
         </LinearLayout>
 

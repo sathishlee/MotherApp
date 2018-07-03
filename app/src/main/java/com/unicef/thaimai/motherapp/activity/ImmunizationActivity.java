@@ -175,12 +175,12 @@ public class ImmunizationActivity extends AppCompatActivity implements  Immuniza
 //                        mAdapter.notifyDataSetChanged();
                     }
                     realm.commitTransaction();       //create or open
-                }else {
-                    recyclerView.setVisibility(View.GONE);
-                    txt_no_records_found.setVisibility(View.VISIBLE);
                 }
             }else{
                 Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+                txt_no_records_found.setVisibility(View.VISIBLE);
+                recyclerView.setVisibility(View.GONE);
+
             }
         }catch (JSONException e) {
             e.printStackTrace();
