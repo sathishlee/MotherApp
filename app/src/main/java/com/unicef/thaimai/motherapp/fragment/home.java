@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -61,7 +63,7 @@ import io.realm.RealmResults;
 import static android.content.Context.MODE_PRIVATE;
 
 
-public class home extends Fragment implements LoginViews, View.OnClickListener, MakeCallInterface, PrimaryRegisterViews {
+public class home extends Fragment implements LoginViews, View.OnClickListener, MakeCallInterface {
 
     TextView txt_username, picme_id, txt_age, txt_an_risk,txt_pn_risk,txt_gst_week,txt_weight,
             txt_next_visit,txt_lmp_date,txt_edd_date,txt_husb_name,
@@ -85,9 +87,7 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
     ProgressDialog pDialog;
 
     GetUserInfoPresenter getUserInfoPresenter;
-
-    PrimaryRegisterPresenter primaryRegisterPresenter;
-    PrimaryRegisterRealmModel primaryRegisterRealmModel;
+    LinearLayout low_risk, high_risk;
 
     Activity mActivity;
     private static final int MAKE_CALL_PERMISSION_REQUEST_CODE = 1;
@@ -115,7 +115,7 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
          initUI(view);
          checkConnection();
          onClickListner();
-        getActivity().setTitle("Dashboard");
+         getActivity().setTitle("Dashboard");
         profile = (CardView) view.findViewById(R.id.user_profile_photo);
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,13 +133,6 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
 //        showSnack(isConnected);
     }
 
-    private void primarydetails() {
-        RealmResults<HomeRealmModel> homeRealmModels = realm.where(HomeRealmModel.class).findAll();
-        Log.e("Realm size ---->", homeRealmModels.size() + "");
-        for (int i=0; i<=homeRealmModels.size();i++) {
-            primaryRegisterPresenter.getAllMotherPrimaryRegistration(preferenceData.getPicmeId());
-        }
-    }
 
     private void showSnack(boolean isConnected) {
         if (isConnected){
@@ -164,7 +157,6 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
         pDialog.setCancelable(true);
         pDialog.setMessage("Please Wait ...");
         getUserInfoPresenter =new GetUserInfoPresenter(getActivity().getApplicationContext(),this);
-        primaryRegisterPresenter = new PrimaryRegisterPresenter(this, getActivity());
         context = getActivity();
         Log.e("PICME_ID",preferenceData.getPicmeId());
         PackageInfo packageInfo = null;
@@ -214,6 +206,10 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
         txt_pn_next_visit = (TextView) view.findViewById(R.id.txt_pn_next_visit);
         cardview_image = (ImageView) view.findViewById(R.id.cardview_image);
         card_pn_block = (CardView) view.findViewById(R.id.card_pn_block);
+
+        low_risk = (LinearLayout) view.findViewById(R.id.low_risk);
+        high_risk = (LinearLayout) view.findViewById(R.id.high_risk);
+
         card_pn_block.setVisibility(View.GONE);
         picme_id.setText(strpicmeId);
         txt_username .setText(strname);
@@ -256,92 +252,6 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
         pDialog.dismiss();
     }
 
-    @Override
-    public void getAllMotherPrimaryRegisterSuccess(String response) {
-        primaryDetailsStoreinRealm(response);
-    }
-
-    private void primaryDetailsStoreinRealm(String response) {
-        Log.e(PrimaryRegister.class.getSimpleName(), "Response success" + response);
-        try {
-            JSONObject jObj = new JSONObject(response);
-            String status = jObj.getString("status");
-            String message = jObj.getString("message");
-            if(status.equalsIgnoreCase("1")) {
-                RealmResults<PrimaryRegisterRealmModel> primaryRegisterRealmModels = realm.where(PrimaryRegisterRealmModel.class).findAll();
-                Log.e("Realm size ---->", primaryRegisterRealmModels.size() + "");
-                realm.executeTransaction(new Realm.Transaction() {
-                    @Override
-                    public void execute(Realm realm) {
-                        realm.delete(PrimaryRegisterRealmModel.class);
-                    }
-                });
-                Log.d("message---->",message);
-
-                realm.beginTransaction();
-                primaryRegisterRealmModel = realm.createObject(PrimaryRegisterRealmModel.class);
-                primaryRegisterRealmModel.setMName(jObj.getString("mName"));
-                primaryRegisterRealmModel.setMAge(jObj.getString("mAge"));
-                primaryRegisterRealmModel.setMLMP(jObj.getString("mLMP"));
-                primaryRegisterRealmModel.setMEDD(jObj.getString("mEDD"));
-                primaryRegisterRealmModel.setMMotherMobile(jObj.getString("mMotherMobile"));
-                primaryRegisterRealmModel.setMHusbandMobile(jObj.getString("mHusbandMobile"));
-                primaryRegisterRealmModel.setMMotherOccupation(jObj.getString("mMotherOccupation"));
-                primaryRegisterRealmModel.setMHusbandOccupation(jObj.getString("mHusbandOccupation"));
-                primaryRegisterRealmModel.setMAgeatMarriage(jObj.getString("mAgeatMarriage"));
-                primaryRegisterRealmModel.setMConsanguineousMarraige(jObj.getString("mConsanguineousMarraige"));
-                primaryRegisterRealmModel.setMHistoryIllness(jObj.getString("mHistoryIllness"));
-                primaryRegisterRealmModel.setMHistoryIllnessFamily(jObj.getString("mHistoryIllnessFamily"));
-                primaryRegisterRealmModel.setMAnySurgeryBefore(jObj.getString("mAnySurgeryBefore"));
-                primaryRegisterRealmModel.setMUseTobacco(jObj.getString("mUseTobacco"));
-                primaryRegisterRealmModel.setMUseAlcohol(jObj.getString("mUseAlcohol"));
-                primaryRegisterRealmModel.setMAnyMeditation(jObj.getString("mAnyMeditation"));
-                primaryRegisterRealmModel.setMAllergicToanyDrug(jObj.getString("mAllergicToanyDrug"));
-                primaryRegisterRealmModel.setMHistroyPreviousPreganancy(jObj.getString("mHistroyPreviousPreganancy"));
-                primaryRegisterRealmModel.setMLscsDone(jObj.getString("mLscsDone"));
-                primaryRegisterRealmModel.setMAnyComplecationDuringPreganancy(jObj.getString("mAnyComplecationDuringPreganancy"));
-                primaryRegisterRealmModel.setMPresentPreganancyG(jObj.getString("mPresentPreganancyG"));
-                primaryRegisterRealmModel.setMPresentPreganancyP(jObj.getString("mPresentPreganancyP"));
-                primaryRegisterRealmModel.setMPresentPreganancyA(jObj.getString("mPresentPreganancyA"));
-                primaryRegisterRealmModel.setMPresentPreganancyL(jObj.getString("mPresentPreganancyL"));
-                primaryRegisterRealmModel.setMRegistrationWeek(jObj.getString("mRegistrationWeek"));
-                primaryRegisterRealmModel.setMANTT1(jObj.getString("mANTT1"));
-                primaryRegisterRealmModel.setMANTT2(jObj.getString("mANTT2"));
-                primaryRegisterRealmModel.setMIFAStateDate(jObj.getString("mIFAStateDate"));
-                primaryRegisterRealmModel.setMHeight(jObj.getString("mHeight"));
-                primaryRegisterRealmModel.setMBloodGroup(jObj.getString("mBloodGroup"));
-                primaryRegisterRealmModel.setMHIV(jObj.getString("mHIV"));
-                primaryRegisterRealmModel.setMVDRL(jObj.getString("mVDRL"));
-                primaryRegisterRealmModel.setMHepatitis(jObj.getString("mHepatitis"));
-                primaryRegisterRealmModel.setHBloodGroup(jObj.getString("hBloodGroup"));
-                primaryRegisterRealmModel.setHVDRL(jObj.getString("hVDRL"));
-                primaryRegisterRealmModel.setHHIV(jObj.getString("hHIV"));
-                primaryRegisterRealmModel.setHHepatitis(jObj.getString("hHepatitis"));
-                realm.commitTransaction();
-            }else{
-                Log.d("message---->",message);
-            }
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    @Override
-    public void getAllMotherPrimaryRegisterFailiur(String response) {
-
-    }
-
-    @Override
-    public void postDataSuccess(String response) {
-
-    }
-
-    @Override
-    public void postDataFailiure(String response) {
-
-    }
 
     @Override
     public void loginSuccess(String response) {
@@ -374,7 +284,13 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
             txt_age.setText(preferenceData.getMotherAge());
             txt_an_risk.setText(homeRealmModel.getMRiskStatus());
             txt_weight.setText(homeRealmModel.getMWeight());
-            txt_husb_name.setText(homeRealmModel.getMHusbandName());
+            String txtHusbandName = homeRealmModel.getMHusbandName();
+            if(txtHusbandName.equalsIgnoreCase("null")){
+                txt_husb_name.setText("");
+            }else{
+                txt_husb_name.setText(homeRealmModel.getMHusbandName());
+            }
+
             txt_gst_week.setText(preferenceData.getGstWeek());
             txt_next_visit.setText(homeRealmModel.getANnextVisit());
             str_mobile_number_hsbn = homeRealmModel.getMHusbandMobile();
@@ -383,21 +299,36 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
             }else {
                 img_call_husb.setVisibility(View.VISIBLE);
             }
-            txt_vhn_name.setText(homeRealmModel.getVhnName());
+            String vhnName = homeRealmModel.getVhnName();
+            if(vhnName.equalsIgnoreCase("null")){
+                txt_vhn_name.setText("");
+            }else{
+                txt_vhn_name.setText(homeRealmModel.getVhnName());
+            }
             str_mobile_number_vhn = homeRealmModel.getVhnMobile();
             if(str_mobile_number_vhn.equalsIgnoreCase("null")){
                 img_call_vhn.setVisibility(View.GONE);
             }else{
                 img_call_vhn.setVisibility(View.VISIBLE);
             }
-            txt_aww_name.setText(homeRealmModel.getAwwName());
+            String awwName = homeRealmModel.getAwwName();
+            if(awwName.equalsIgnoreCase("null")){
+                txt_aww_name.setText("");
+            }else{
+                txt_aww_name.setText(homeRealmModel.getAwwName());
+            }
             str_mobile_number_aww = homeRealmModel.getAwwMobile();
             if(str_mobile_number_aww.equalsIgnoreCase("null")){
                 img_call_aww.setVisibility(View.GONE);
             }else{
                 img_call_aww.setVisibility(View.VISIBLE);
             }
-            txt_phc_name.setText(homeRealmModel.getPhcName());
+            String phcName = homeRealmModel.getPhcName();
+            if(phcName.equalsIgnoreCase("null")){
+                txt_phc_name.setText("");
+            }else{
+                txt_phc_name.setText(homeRealmModel.getPhcName());
+            }
             str_mobile_number_phc = homeRealmModel.getPhcMobile();
             if(str_mobile_number_phc.equalsIgnoreCase("null")){
                 img_call_phc.setVisibility(View.GONE);
@@ -470,6 +401,16 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
                 homeRealmModel.setMEDD(jObj.getString("mEDD"));
                 homeRealmModel.setMAge(Integer.parseInt(jObj.getString("mAge")));
                 homeRealmModel.setMRiskStatus(jObj.getString("mRiskStatus"));
+                if(jObj.getString("mRiskStatus").equalsIgnoreCase("HIGH")){
+                    low_risk.setVisibility(View.GONE);
+                    high_risk.setVisibility(View.VISIBLE);
+                    txt_an_risk.setText(homeRealmModel.getMRiskStatus());
+                    txt_an_risk.setTextColor(Color.parseColor("#fff44336"));
+                }else{
+                    low_risk.setVisibility(View.VISIBLE);
+                    high_risk.setVisibility(View.GONE);
+                    txt_an_risk.setText(homeRealmModel.getMRiskStatus());
+                }
                 homeRealmModel.setMWeight(jObj.getString("mWeight"));
                 homeRealmModel.setMHusbandName(jObj.getString("mHusbandName"));
                 homeRealmModel.setMGesWeek(jObj.getString("mGesWeek"));
@@ -528,11 +469,17 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
             HomeRealmModel homeRealmModel = homeRealmModels.get(i);
             txt_lmp_date.setText(homeRealmModel.getMLMP());
             txt_edd_date.setText(homeRealmModel.getMEDD());
-            txt_age.setText(homeRealmModel.getMAge()+"");
+            txt_age.setText(preferenceData.getMotherAge());
             txt_an_risk.setText(homeRealmModel.getMRiskStatus());
             txt_weight.setText(homeRealmModel.getMWeight());
-            txt_husb_name.setText(homeRealmModel.getMHusbandName());
-            txt_gst_week.setText(homeRealmModel.getMGesWeek()+"");
+            String txtHusbandName = homeRealmModel.getMHusbandName();
+            if(txtHusbandName.equalsIgnoreCase("null")){
+                txt_husb_name.setText("");
+            }else{
+                txt_husb_name.setText(homeRealmModel.getMHusbandName());
+            }
+
+            txt_gst_week.setText(preferenceData.getGstWeek());
             txt_next_visit.setText(homeRealmModel.getANnextVisit());
             str_mobile_number_hsbn = homeRealmModel.getMHusbandMobile();
             if(str_mobile_number_hsbn.equalsIgnoreCase("null")){
@@ -540,21 +487,36 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
             }else {
                 img_call_husb.setVisibility(View.VISIBLE);
             }
-            txt_vhn_name.setText(homeRealmModel.getVhnName());
+            String vhnName = homeRealmModel.getVhnName();
+            if(vhnName.equalsIgnoreCase("null")){
+                txt_vhn_name.setText("");
+            }else{
+                txt_vhn_name.setText(homeRealmModel.getVhnName());
+            }
             str_mobile_number_vhn = homeRealmModel.getVhnMobile();
             if(str_mobile_number_vhn.equalsIgnoreCase("null")){
                 img_call_vhn.setVisibility(View.GONE);
             }else{
                 img_call_vhn.setVisibility(View.VISIBLE);
             }
-            txt_aww_name.setText(homeRealmModel.getAwwName());
+            String awwName = homeRealmModel.getAwwName();
+            if(awwName.equalsIgnoreCase("null")){
+                txt_aww_name.setText("");
+            }else{
+                txt_aww_name.setText(homeRealmModel.getAwwName());
+            }
             str_mobile_number_aww = homeRealmModel.getAwwMobile();
             if(str_mobile_number_aww.equalsIgnoreCase("null")){
                 img_call_aww.setVisibility(View.GONE);
             }else{
                 img_call_aww.setVisibility(View.VISIBLE);
             }
-            txt_phc_name.setText(homeRealmModel.getPhcName());
+            String phcName = homeRealmModel.getPhcName();
+            if(phcName.equalsIgnoreCase("null")){
+                txt_phc_name.setText("");
+            }else{
+                txt_phc_name.setText(homeRealmModel.getPhcName());
+            }
             str_mobile_number_phc = homeRealmModel.getPhcMobile();
             if(str_mobile_number_phc.equalsIgnoreCase("null")){
                 img_call_phc.setVisibility(View.GONE);

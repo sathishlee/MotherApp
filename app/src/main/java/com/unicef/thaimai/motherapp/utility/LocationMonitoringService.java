@@ -178,12 +178,15 @@ public class LocationMonitoringService extends Service implements
 
         AppConstants.EXTRA_LATITUDE=lat;
         AppConstants.EXTRA_LONGITUDE=lng;
+        AppConstants.NEAR_LATITUDE = lat;
+        AppConstants.NEAR_LONGITUDE = lng;
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+
+
     }
 
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
         Log.d(TAG, "Failed to connect to Google API");
-
     }
 }

@@ -46,32 +46,62 @@ public class NearByHospitalAdapter extends RecyclerView.Adapter<NearByHospitalAd
     public void onBindViewHolder(final ViewHolder holder, int position) {
 
         final NearHospitalResponseModel.Nearby nearByHospitalModel = list_nearByHospitalModel.get(position);
-        holder.txt_phc_call.setText(nearByHospitalModel.getPhcMobile());
-        holder.txt_f_nin_num.setText(nearByHospitalModel.getF_nin_num());
-        holder.txt_phc_name.setText(nearByHospitalModel.getF_facility_name());
-        holder.txt_fac_name.setText(nearByHospitalModel.getVillage());
-        holder.txt_hosp_distance.setText(nearByHospitalModel.getDistance());
+        if(nearByHospitalModel.getPhcMobile().equalsIgnoreCase("null")){
+            holder.txt_phc_call.setVisibility(View.GONE);
+        }else{
+            holder.txt_phc_call.setText(nearByHospitalModel.getPhcMobile());
+        }
+        if(nearByHospitalModel.getF_nin_num().equalsIgnoreCase("null")){
+            holder.txt_f_nin_num.setVisibility(View.GONE);
+        }else{
+            holder.txt_f_nin_num.setText(nearByHospitalModel.getF_nin_num());
+        }
+        if(nearByHospitalModel.getF_facility_name().equalsIgnoreCase("null")){
+            holder.txt_phc_name.setVisibility(View.GONE);
+        }else{
+            holder.txt_phc_name.setText(nearByHospitalModel.getF_facility_name());
+        }
+        if(nearByHospitalModel.getVillage().equalsIgnoreCase("null")){
+            holder.txt_fac_name.setVisibility(View.GONE);
+        }else{
+            holder.txt_fac_name.setText(nearByHospitalModel.getVillage());
+        }
+        if(nearByHospitalModel.getDistance().equalsIgnoreCase("null")){
+            holder.txt_hosp_distance.setVisibility(View.GONE);
+        }else{
+            holder.txt_hosp_distance.setText(nearByHospitalModel.getDistance());
+        }
 
-        holder.txt_phc_call.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        if(nearByHospitalModel.getPhcMobile().equalsIgnoreCase("null")){
+            holder.txt_phc_call.setVisibility(View.GONE);
+        }else{
+            holder.txt_phc_call.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 //                Toast.makeText(applicationContext.getApplicationContext(),"make call to"+nearByHospitalModel.getPhcMobile()+"", Toast.LENGTH_LONG).show();
-                makeCallInterface.makeCall(nearByHospitalModel.getPhcMobile());
+                    makeCallInterface.makeCall(nearByHospitalModel.getPhcMobile());
 
-            }
-        });
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                Toast.makeText(applicationContext.getApplicationContext(),"to view dir to google map", Toast.LENGTH_LONG).show();
-                Uri gmmIntentUri = Uri.parse("google.navigation:q="+nearByHospitalModel.getF_latitute()+","+nearByHospitalModel.getF_longititute());
-                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-                mapIntent.setPackage("com.google.android.apps.maps");
-                if (mapIntent.resolveActivity(applicationContext.getPackageManager()) != null) {
-                    applicationContext. startActivity(mapIntent);
                 }
-            }
-        });
+            });
+        }
+
+        if(nearByHospitalModel.getF_latitute().equalsIgnoreCase("null")&&nearByHospitalModel.getF_longititute().equalsIgnoreCase("null")){
+            holder.itemView.setVisibility(View.GONE);
+        }else{
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+//                Toast.makeText(applicationContext.getApplicationContext(),"to view dir to google map", Toast.LENGTH_LONG).show();
+                    Uri gmmIntentUri = Uri.parse("google.navigation:q="+nearByHospitalModel.getF_latitute()+","+nearByHospitalModel.getF_longititute());
+                    Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                    mapIntent.setPackage("com.google.android.apps.maps");
+                    if (mapIntent.resolveActivity(applicationContext.getPackageManager()) != null) {
+                        applicationContext. startActivity(mapIntent);
+                    }
+                }
+            });
+        }
+
     }
 
     @Override

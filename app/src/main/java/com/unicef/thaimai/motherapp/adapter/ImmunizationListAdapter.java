@@ -42,13 +42,41 @@ public class ImmunizationListAdapter extends RecyclerView.Adapter<ImmunizationLi
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         final ImmunizationResponseModel.Result result = resultList.get(position);
-        holder.txt_imu_dose_number.setText(result.getImmDoseNumber());
-        holder.txt_due_date.setText(result.getImmDueDate());
-        holder.txt_provided_date.setText(result.getImmCarePovidedDate());
-        holder.txt_opv.setText(result.getImmOpvStatus());
-        holder.txt_pentavalent.setText(result.getImmPentanvalentStatus());
-        holder.txt_rota.setText(result.getImmRotaStatus());
-        holder.txt_ipv.setText(result.getImmIpvStatus());
+        if(result.getImmDoseNumber().equalsIgnoreCase("null")){
+            holder.txt_imu_dose_number.setVisibility(View.GONE);
+        }else{
+            holder.txt_imu_dose_number.setText(result.getImmDoseNumber());
+        }
+        if(result.getImmDueDate().equalsIgnoreCase("null")){
+            holder.txt_due_date.setVisibility(View.GONE);
+        }else{
+            holder.txt_due_date.setText(result.getImmDueDate());
+        }
+        if(result.getImmCarePovidedDate().equalsIgnoreCase("null")){
+            holder.txt_provided_date.setVisibility(View.GONE);
+        }else{
+            holder.txt_provided_date.setText(result.getImmCarePovidedDate());
+        }
+        if(result.getImmOpvStatus().equalsIgnoreCase("null")){
+            holder.txt_opv.setVisibility(View.GONE);
+        }else {
+            holder.txt_opv.setText(result.getImmOpvStatus());
+        }
+        if(result.getImmPentanvalentStatus().equalsIgnoreCase("null")){
+            holder.txt_pentavalent.setVisibility(View.GONE);
+        }else{
+            holder.txt_pentavalent.setText(result.getImmPentanvalentStatus());
+        }
+        if(result.getImmRotaStatus().equalsIgnoreCase("null")){
+            holder.txt_rota.setVisibility(View.GONE);
+        }else{
+            holder.txt_rota.setText(result.getImmRotaStatus());
+        }
+        if(result.getImmIpvStatus().equalsIgnoreCase("null")){
+            holder.txt_ipv.setVisibility(View.GONE);
+        }else{
+            holder.txt_ipv.setText(result.getImmIpvStatus());
+        }
 //        holder.ll_edit_immunization.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {

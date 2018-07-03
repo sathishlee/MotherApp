@@ -59,25 +59,122 @@ public class HealthRecordsAdapter extends PagerAdapter {
 
     private void setValuetoUI(HealthRecordResponseModel.Visit_Records mhealthRecordResponseModel) {
 
+
         txtVisitedDate.setText(mhealthRecordResponseModel.getVDate());
         txtVisitedType.setText(mhealthRecordResponseModel.getVtypeOfVisit());
         txtFacility.setText(mhealthRecordResponseModel.getVFacility());
         txtAnyComplient.setText(mhealthRecordResponseModel.getVAnyComplaints());
-        txtBPValue.setText(mhealthRecordResponseModel.getVClinicalBPDiastolic()+"/"+mhealthRecordResponseModel.getVClinicalBPDiastolic());
-        txtPluseRate.setText(mhealthRecordResponseModel.getVEnterPulseRate());
-        txtWeight.setText(mhealthRecordResponseModel.getVEnterWeight());
-        txtFunbalHeight.setText(mhealthRecordResponseModel.getVFundalHeight());
-        txtFhs.setText(mhealthRecordResponseModel.getVFHS());
+        txtBPValue.setText(mhealthRecordResponseModel.getVClinicalBPDiastolic()+ "mm"+"/"+mhealthRecordResponseModel.getVClinicalBPDiastolic()+ "Hg");
+        txtPluseRate.setText(mhealthRecordResponseModel.getVEnterPulseRate()+ "Per min");
+        txtWeight.setText(mhealthRecordResponseModel.getVEnterWeight()+"kg");
+        txtFunbalHeight.setText(mhealthRecordResponseModel.getVFundalHeight()+ "cm");
+        txtFhs.setText(mhealthRecordResponseModel.getVFHS()+ "Per min");
         txtPep.setText(mhealthRecordResponseModel.getVPedalEdemaPresent());
-        txtHp.setText(mhealthRecordResponseModel.getVHemoglobin());
-        txtFbs.setText(mhealthRecordResponseModel.getVFBS());
-        txtPpbs.setText(mhealthRecordResponseModel.getVPPBS());
+        txtHp.setText(mhealthRecordResponseModel.getVHemoglobin() + "%");
+        txtFbs.setText(mhealthRecordResponseModel.getVFBS()+ "mg");
+        txtPpbs.setText(mhealthRecordResponseModel.getVPPBS()+ "mg");
         txtGtt.setText(mhealthRecordResponseModel.getVGTT());
         txtFetus.setText(mhealthRecordResponseModel.getUsgFetus());
         txtSugar.setText(mhealthRecordResponseModel.getVUrinSugar());
         txtGestationSac.setText(mhealthRecordResponseModel.getUsgGestationSac());
         txtLiquor.setText(mhealthRecordResponseModel.getUsgLiquor());
         txtPlacenta.setText(mhealthRecordResponseModel.getUsgPlacenta());
+
+        /*if(mhealthRecordResponseModel.getVDate().equalsIgnoreCase("null")){
+            txtVisitedDate.setVisibility(View.GONE);
+        }else{
+            txtVisitedDate.setText(mhealthRecordResponseModel.getVDate());
+        }
+        if(mhealthRecordResponseModel.getVtypeOfVisit().equalsIgnoreCase("null")){
+            txtVisitedType.setVisibility(View.GONE);
+        }else{
+            txtVisitedType.setText(mhealthRecordResponseModel.getVtypeOfVisit());
+        }
+        if(mhealthRecordResponseModel.getVFacility().equalsIgnoreCase("null")){
+            txtFacility.setVisibility(View.GONE);
+        }else{
+            txtFacility.setText(mhealthRecordResponseModel.getVFacility());
+        }
+        if(mhealthRecordResponseModel.getVAnyComplaints().equalsIgnoreCase("null")){
+            txtAnyComplient.setVisibility(View.GONE);
+        }else {
+            txtAnyComplient.setText(mhealthRecordResponseModel.getVAnyComplaints());
+        }
+        if(mhealthRecordResponseModel.getVClinicalBPSystolic().equalsIgnoreCase("null")){
+            txtBPValue.setVisibility(View.GONE);
+        }else{
+            txtBPValue.setText(mhealthRecordResponseModel.getVClinicalBPSystolic()+ "mm"+"/"+mhealthRecordResponseModel.getVClinicalBPDiastolic() + "Hg");
+        }
+        if(mhealthRecordResponseModel.getVEnterPulseRate().equalsIgnoreCase("null")){
+            txtPluseRate.setVisibility(View.GONE);
+        }else{
+            txtPluseRate.setText(mhealthRecordResponseModel.getVEnterPulseRate()+ "Per min");
+        }
+        if(mhealthRecordResponseModel.getVEnterWeight().equalsIgnoreCase("null")){
+            txtWeight.setVisibility(View.GONE);
+        }else{
+            txtWeight.setText(mhealthRecordResponseModel.getVEnterWeight()+ "kg");
+        }
+        if(mhealthRecordResponseModel.getVFundalHeight().equalsIgnoreCase("null")){
+            txtFunbalHeight.setVisibility(View.GONE);
+        }else{
+            txtFunbalHeight.setText(mhealthRecordResponseModel.getVFundalHeight()+ "cm");
+        }
+        if(mhealthRecordResponseModel.getVFHS().equalsIgnoreCase("null")){
+            txtFhs.setVisibility(View.GONE);
+        }else{
+            txtFhs.setText(mhealthRecordResponseModel.getVFHS()+ "Per min");
+        }
+        if(mhealthRecordResponseModel.getVPedalEdemaPresent().equalsIgnoreCase("null")){
+            txtPep.setVisibility(View.GONE);
+        }else{
+            txtPep.setText(mhealthRecordResponseModel.getVPedalEdemaPresent());
+        }
+        if(mhealthRecordResponseModel.getVHemoglobin().equalsIgnoreCase("null")){
+            txtHp.setVisibility(View.GONE);
+        }else{
+            txtHp.setText(mhealthRecordResponseModel.getVHemoglobin() + "%");
+        }
+        if(mhealthRecordResponseModel.getVFBS().equalsIgnoreCase("null")){
+            txtFbs.setVisibility(View.GONE);
+        }else{
+            txtFbs.setText(mhealthRecordResponseModel.getVFBS()+ "mg");
+        }
+        if(mhealthRecordResponseModel.getVPPBS().equalsIgnoreCase("null")){
+            txtPpbs.setVisibility(View.GONE);
+        }else{
+            txtPpbs.setText(mhealthRecordResponseModel.getVPPBS()+ "mg");
+        }
+        if(mhealthRecordResponseModel.getVGTT().equalsIgnoreCase("null")){
+            txtGtt.setVisibility(View.GONE);
+        }else{
+            txtGtt.setText(mhealthRecordResponseModel.getVGTT());
+        }
+        if(mhealthRecordResponseModel.getUsgFetus().equalsIgnoreCase("null")){
+            txtFetus.setVisibility(View.GONE);
+        }else{
+            txtFetus.setText(mhealthRecordResponseModel.getUsgFetus());
+        }
+        if(mhealthRecordResponseModel.getVUrinSugar().equalsIgnoreCase("null")){
+            txtSugar.setVisibility(View.GONE);
+        }else{
+            txtSugar.setText(mhealthRecordResponseModel.getVUrinSugar());
+        }
+        if(mhealthRecordResponseModel.getUsgGestationSac().equalsIgnoreCase("null")){
+            txtGestationSac.setVisibility(View.GONE);
+        }else{
+            txtGestationSac.setText(mhealthRecordResponseModel.getUsgGestationSac());
+        }
+        if(mhealthRecordResponseModel.getUsgLiquor().equalsIgnoreCase("null")){
+            txtLiquor.setVisibility(View.GONE);
+        }else{
+            txtLiquor.setText(mhealthRecordResponseModel.getUsgLiquor());
+        }
+        if(mhealthRecordResponseModel.getUsgPlacenta().equalsIgnoreCase("null")){
+            txtPlacenta.setVisibility(View.GONE);
+        }else{
+            txtPlacenta.setText(mhealthRecordResponseModel.getUsgPlacenta());
+        }*/
 
         if (mhealthRecordResponseModel.getVtypeOfVisit().equalsIgnoreCase("Scheduled")) {
             mTypeOfHealthRecords.ispickme(true);

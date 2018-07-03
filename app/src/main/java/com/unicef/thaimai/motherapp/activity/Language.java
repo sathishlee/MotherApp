@@ -18,7 +18,6 @@ import com.unicef.thaimai.motherapp.R;
 import java.util.Locale;
 
 
-
 /**
  * Created by Suthishan on 20/1/2018.
  */

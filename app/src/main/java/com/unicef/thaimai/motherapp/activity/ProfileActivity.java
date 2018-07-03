@@ -1,7 +1,6 @@
 package com.unicef.thaimai.motherapp.activity;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -45,6 +44,9 @@ import com.unicef.thaimai.motherapp.Presenter.ImageUploadPresenter;
 import com.unicef.thaimai.motherapp.Presenter.ProfilePresenter;
 import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.constant.Apiconstants;
+import com.unicef.thaimai.motherapp.realmDbModelClass.PrimaryRegisterRealmModel;
+import com.unicef.thaimai.motherapp.realmDbModelClass.ProfileRealmModel;
+import com.unicef.thaimai.motherapp.utility.CheckNetwork;
 import com.unicef.thaimai.motherapp.view.ImageUploadViews;
 import com.unicef.thaimai.motherapp.view.ProfileView;
 
@@ -57,6 +59,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import io.realm.Realm;
+import io.realm.RealmResults;
+
 import static android.Manifest.permission.CAMERA;
 import static android.Manifest.permission.GET_ACCOUNTS;
 import static android.Manifest.permission.INTERNET;
@@ -65,9 +70,6 @@ import static android.Manifest.permission.RECORD_AUDIO;
 import static android.Manifest.permission.SEND_SMS;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static android.Manifest.permission.WRITE_SETTINGS;
-import static android.widget.TextView.AUTO_SIZE_TEXT_TYPE_NONE;
-import static com.unicef.thaimai.motherapp.R.drawable.ic_upload;
-import static com.unicef.thaimai.motherapp.R.id.upload_reports;
 
 
 public class ProfileActivity extends AppCompatActivity implements ProfileView, View.OnClickListener, ImageUploadViews {
@@ -95,26 +97,23 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView, V
     public static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 123;
     String userChoosenTask, str_mPhoto;
 
+    boolean isoffline = false;
+    Realm realm;
+    CheckNetwork checkNetwork;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initActivityTransitions();
         setContentView(R.layout.layout_profile);
         showActionBar();
-        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("ResourceType")
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        /*fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                startActivity(new Intent(getApplicationContext(),ProfileUpdateActivity.class));
-                address.setEnabled(true);
-                tvNumber1.setEnabled(true);
-                number_1.setEnabled(true);
-
-                fab.setImageResource(R.drawable.ic_upload);
-
+                startActivity(new Intent(getApplicationContext(),ProfileUpdateActivity.class));
             }
-        });
+        });*/
         if(CheckingPermissionIsEnabledOrNot())
         {
             Toast.makeText(ProfileActivity.this, "All Permissions Granted Successfully", Toast.LENGTH_LONG).show();
@@ -159,9 +158,8 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView, V
         user_profile_photo.setOnClickListener(this);
     }
 
-    @SuppressLint("InlinedApi")
     private void initUI() {
-
+        checkNetwork =new CheckNetwork(this);
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
         pDialog.setMessage("Please Wait ...");
@@ -170,24 +168,96 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView, V
 
         profilePresenter = new ProfilePresenter(ProfileActivity.this, this);
         imageUploadPresenter = new ImageUploadPresenter(ProfileActivity.this, this);
-
-        profilePresenter.getMotherProfile(preferenceData.getMId(), preferenceData.getPicmeId());
-
+        if (checkNetwork.isNetworkAvailable()) {
+            profilePresenter.getMotherProfile(preferenceData.getMId(), preferenceData.getPicmeId());
+        }else {
+            isoffline=true;
+        }
         user_profile_photo = (ImageView) findViewById(R.id.user_profile_photo);
         user_name = (TextView) findViewById(R.id.user_name);
         edt_picme_id = (TextView) findViewById(R.id.edt_picme_id);
         address = (TextView) findViewById(R.id.address);
-        address.setEnabled(false);
         village_name = (TextView) findViewById(R.id.village_name);
         tvNumber5 = (TextView) findViewById(R.id.tvNumber5);
         district_name = (TextView) findViewById(R.id.district_name);
         tvNumber1 = (TextView) findViewById(R.id.tvNumber1);
-        tvNumber1.setEnabled(false);
         number_1 = (TextView) findViewById(R.id.number_1);
-        number_1.setEnabled(false);
+
+        if (isoffline) {
+            profileOffline();
+        }else{
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Record Not Found");
+            builder.create();
+        }
+
 
     }
 
+    private void profileOffline() {
+        realm.beginTransaction();
+        RealmResults<ProfileRealmModel> profileRealmModels;
+        profileRealmModels = realm.where(ProfileRealmModel.class).findAll();
+        Log.e(String.valueOf(ProfileActivity.class), profileRealmModels.size() + "");
+        Log.e(ProfileActivity.class.getSimpleName(), "profileRealmModels  -->" + profileRealmModels);
+
+        for (int i = 0; i < profileRealmModels.size(); i++) {
+            ProfileRealmModel model = profileRealmModels.get(i);
+
+            if(model.getMName().equalsIgnoreCase("null")){
+                user_name.setVisibility(View.GONE);
+            }else {
+                user_name.setText(model.getMName());
+            }
+            if(model.getMPicmeId().equalsIgnoreCase("null")){
+                edt_picme_id.setVisibility(View.GONE);
+            }else {
+                edt_picme_id.setText(model.getMPicmeId());
+            }
+            if(model.getmAddress().equalsIgnoreCase("null")){
+                address.setVisibility(View.GONE);
+            }else {
+                address.setText(model.getmAddress());
+            }
+            if(model.getMVillage().equalsIgnoreCase("null")){
+                village_name.setVisibility(View.GONE);
+            }else {
+                village_name.setText(model.getMVillage());
+            }
+            if(model.getMDistrict().equalsIgnoreCase("null")){
+                district_name.setVisibility(View.GONE);
+            }else {
+                district_name.setText(model.getMDistrict());
+            }
+            if(model.getMMotherMobile().equalsIgnoreCase("null")){
+                tvNumber1.setVisibility(View.GONE);
+            }else {
+                tvNumber1.setText(model.getMMotherMobile());
+            }
+            if(model.getMHusbandMobile().equalsIgnoreCase("null")){
+                number_1.setVisibility(View.GONE);
+            }else {
+                number_1.setText(model.getMHusbandMobile());
+            }
+            if(model.getmPhoto().equalsIgnoreCase("null")){
+                user_profile_photo.setVisibility(View.GONE);
+            }else{
+                str_mPhoto = model.getmPhoto();
+                Picasso.with(context)
+                        .load(Apiconstants.PHOTO_URL+str_mPhoto)
+                        .placeholder(R.drawable.ln_logo)
+                        .fit()
+                        .centerCrop()
+                        .memoryPolicy(MemoryPolicy.NO_CACHE)
+                        .networkPolicy(NetworkPolicy.NO_CACHE)
+                        .error(R.drawable.photo_upload)
+                        .into(user_profile_photo);
+            }
+
+
+
+        }
+    }
     @Override
     public void onBackPressed() {
         intent = new Intent(ProfileActivity.this, MainActivity.class);
@@ -288,8 +358,8 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView, V
             String status = jsonObject.getString("status");
             String msg = jsonObject.getString("message");
             if (status.equalsIgnoreCase("1")) {
-
                 JSONObject editprofile = jsonObject.getJSONObject("EditProfile");
+
                 user_name.setText(editprofile.getString("mName"));
                 edt_picme_id.setText(editprofile.getString("mPicmeId"));
                 address.setText(editprofile.getString("mAddress"));
@@ -297,7 +367,9 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView, V
                 district_name.setText(editprofile.getString("mDistrict"));
                 tvNumber1.setText(editprofile.getString("mMotherMobile"));
                 number_1.setText(editprofile.getString("mHusbandMobile"));
+
                 str_mPhoto = editprofile.getString("mPhoto");
+
                 if(editprofile.getString("mPhoto").equalsIgnoreCase("null")){
                     preferenceData.setMotherPhoto("");
                 }else{

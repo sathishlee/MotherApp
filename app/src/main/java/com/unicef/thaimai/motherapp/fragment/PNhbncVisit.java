@@ -1,5 +1,6 @@
 package com.unicef.thaimai.motherapp.fragment;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -25,9 +26,13 @@ import com.unicef.thaimai.motherapp.adapter.HealthRecordsAdapter;
 import com.unicef.thaimai.motherapp.adapter.PNHBNCVisitRecordsAdapter;
 import com.unicef.thaimai.motherapp.adapter.ViewPageAdapterPN;
 import com.unicef.thaimai.motherapp.adapter.ViewPagerAdapter;
+import com.unicef.thaimai.motherapp.app.RealmController;
 import com.unicef.thaimai.motherapp.constant.Apiconstants;
 import com.unicef.thaimai.motherapp.model.responsemodel.HealthRecordResponseModel;
 import com.unicef.thaimai.motherapp.model.responsemodel.PnHbncVisitRecordsModel;
+import com.unicef.thaimai.motherapp.realmDbModelClass.ANMotherVisitRealmModel;
+import com.unicef.thaimai.motherapp.realmDbModelClass.PNMotherRealmModel;
+import com.unicef.thaimai.motherapp.utility.CheckNetwork;
 import com.unicef.thaimai.motherapp.view.GetVisitHelthRecordsViews;
 
 import org.json.JSONArray;
@@ -35,6 +40,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+
+import io.realm.Realm;
+import io.realm.RealmResults;
 
 
 public class PNhbncVisit extends Fragment implements GetVisitHelthRecordsViews, View.OnClickListener {
@@ -57,22 +65,28 @@ public class PNhbncVisit extends Fragment implements GetVisitHelthRecordsViews, 
 
     PNHBNCVisitRecordsAdapter pnhbncVisitRecordsAdapter;
 
-    public static PNhbncVisit newInstance()
-    {
+    Realm realm;
+    CheckNetwork checkNetwork;
+    boolean isoffline = false;
+
+    public static PNhbncVisit newInstance() {
         PNhbncVisit fragment = new PNhbncVisit();
         return fragment;
     }
+
     @Override
-    public void onCreate(Bundle savedInstanceState){
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        View view =  inflater.inflate(R.layout.layout_pn_hbnc_visit, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.layout_pn_hbnc_visit, container, false);
+        realm = RealmController.with(getActivity()).getRealm();
         initUI(view);
         onClickListner();
 
-        return  view;
+        return view;
     }
 
     private void initUI(View view) {
@@ -80,11 +94,15 @@ public class PNhbncVisit extends Fragment implements GetVisitHelthRecordsViews, 
         pDialog = new ProgressDialog(getActivity());
         pDialog.setCancelable(false);
         pDialog.setMessage("Please Wait ...");
+        checkNetwork = new CheckNetwork(getActivity());
         preferenceData = new PreferenceData(getActivity());
 
         gVHRecordsPresenteer = new GetVisitHealthRecordsPresenter(getActivity(), this);
-        gVHRecordsPresenteer.getPN_HBNC_VisitRecord(Apiconstants.POST_PN_HBNC_VIST_RECORD,preferenceData.getPicmeId(), preferenceData.getMId());
-
+        if (checkNetwork.isNetworkAvailable()) {
+            gVHRecordsPresenteer.getPN_HBNC_VisitRecord(Apiconstants.POST_PN_HBNC_VIST_RECORD, preferenceData.getPicmeId(), preferenceData.getMId());
+        } else {
+            isoffline = true;
+        }
         mPnHbncVisitRecordsList = new ArrayList<>();
 
         viewPager = view.findViewById(R.id.pn_viewpager);
@@ -98,8 +116,16 @@ public class PNhbncVisit extends Fragment implements GetVisitHelthRecordsViews, 
         btn_delivery_reports = (Button) view.findViewById(R.id.btn_delivery_reports);
         btn_visit_reports = (Button) view.findViewById(R.id.btn_visit_reports);
 
+        if (isoffline) {
+            motherOfflineRecords();
+        } else {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setMessage("Record Not Found");
+            builder.create();
+        }
 
     }
+
 
     private void onClickListner() {
 
@@ -109,10 +135,9 @@ public class PNhbncVisit extends Fragment implements GetVisitHelthRecordsViews, 
 
     private void setupViewPager(ViewPager viewPager) {
 
-        pnhbncVisitRecordsAdapter =new PNHBNCVisitRecordsAdapter(getActivity(),mPnHbncVisitRecordsList);
+        pnhbncVisitRecordsAdapter = new PNHBNCVisitRecordsAdapter(getActivity(), mPnHbncVisitRecordsList);
         viewPager.setOffscreenPageLimit(mPnHbncVisitRecordsList.size());
         viewPager.setAdapter(pnhbncVisitRecordsAdapter);
-
 
 
 //        adapter = new ViewPageAdapterPN(getActivity().getSupportFragmentManager());
@@ -152,40 +177,56 @@ public class PNhbncVisit extends Fragment implements GetVisitHelthRecordsViews, 
             JSONObject mJsnobject = new JSONObject(response);
             String status = mJsnobject.getString("status");
             String message = mJsnobject.getString("message");
-            Toast.makeText(getActivity(),message, Toast.LENGTH_SHORT).show();
-            if (status.equalsIgnoreCase("1")){
-                txt_no_records.setVisibility(View.GONE);
+            Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+            if (status.equalsIgnoreCase("1")) {
                 JSONArray jsonArray = mJsnobject.getJSONArray("Visit_Records");
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    mPnHbncVisitRecordsModel = new PnHbncVisitRecordsModel.Visit_Records();
+                RealmResults<PNMotherRealmModel> pnMotherRealmModels = realm.where(PNMotherRealmModel.class).findAll();
+                Log.e("Realm size ---->", pnMotherRealmModels.size() + "");
+                realm.executeTransaction(new Realm.Transaction() {
+                    @Override
+                    public void execute(Realm realm) {
+                        realm.delete(PNMotherRealmModel.class);
+                    }
+                });
+                if (jsonArray.length() != 0) {
+                    txt_no_records.setVisibility(View.GONE);
+                    realm.beginTransaction();
+                    PNMotherRealmModel pnMotherRealmModel = null;
 
-                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        pnMotherRealmModel = realm.createObject(PNMotherRealmModel.class);
 
-                    mPnHbncVisitRecordsModel.setPnId(jsonObject.getString("pnId"));
-                    mPnHbncVisitRecordsModel.setMid(jsonObject.getString("mid"));
-                    mPnHbncVisitRecordsModel.setPicmeId(jsonObject.getString("picmeId"));
-                    mPnHbncVisitRecordsModel.setPnVisitNo(jsonObject.getString("pnVisitNo"));
-                    mPnHbncVisitRecordsModel.setPnDueDate(jsonObject.getString("pnDueDate"));
-                    mPnHbncVisitRecordsModel.setPnCareProvidedDate(jsonObject.getString("pnCareProvidedDate"));
-                    mPnHbncVisitRecordsModel.setPnPlace(jsonObject.getString("pnPlace"));
-                    mPnHbncVisitRecordsModel.setPnAnyComplaints(jsonObject.getString("pnAnyComplaints"));
-                    mPnHbncVisitRecordsModel.setPnBPSystolic(jsonObject.getString("pnBPSystolic"));
-                    mPnHbncVisitRecordsModel.setPnPulseRate(jsonObject.getString("pnPulseRate"));
-                    mPnHbncVisitRecordsModel.setPnTemp(jsonObject.getString("pnTemp"));
-                    mPnHbncVisitRecordsModel.setPnEpistomyTear(jsonObject.getString("pnEpistomyTear"));
-                    mPnHbncVisitRecordsModel.setPnPVDischarge(jsonObject.getString("pnPVDischarge"));
-                    mPnHbncVisitRecordsModel.setPnBreastFeedingReason(jsonObject.getString("pnBreastFeedingReason"));
-                    mPnHbncVisitRecordsModel.setPnBreastExamination(jsonObject.getString("pnBreastExamination"));
-                    mPnHbncVisitRecordsModel.setPnOutCome(jsonObject.getString("pnOutCome"));
-                    mPnHbncVisitRecordsModel.setCWeight(jsonObject.getString("cWeight"));
-                    mPnHbncVisitRecordsModel.setCTemp(jsonObject.getString("cTemp"));
-                    mPnHbncVisitRecordsModel.setCUmbilicalStump(jsonObject.getString("cUmbilicalStump"));
-                    mPnHbncVisitRecordsModel.setCCry(jsonObject.getString("cCry"));
-                    mPnHbncVisitRecordsModel.setCEyes(jsonObject.getString("cEyes"));
-                    mPnHbncVisitRecordsModel.setCSkin(jsonObject.getString("cSkin"));
-                    mPnHbncVisitRecordsModel.setCBreastFeeding(jsonObject.getString("cBreastFeeding"));
-                    mPnHbncVisitRecordsModel.setCBreastFeedingReason(jsonObject.getString("cBreastFeedingReason"));
-                    mPnHbncVisitRecordsModel.setCOutCome(jsonObject.getString("cOutCome"));
+                        mPnHbncVisitRecordsModel = new PnHbncVisitRecordsModel.Visit_Records();
+
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                        pnMotherRealmModel.setPnId(jsonObject.getString("pnId"));
+                        pnMotherRealmModel.setMid(jsonObject.getString("mid"));
+                        pnMotherRealmModel.setPicmeId(jsonObject.getString("picmeId"));
+                        pnMotherRealmModel.setPnVisitNo(jsonObject.getString("pnVisitNo"));
+                        pnMotherRealmModel.setPnDueDate(jsonObject.getString("pnDueDate"));
+                        pnMotherRealmModel.setPnCareProvidedDate(jsonObject.getString("pnCareProvidedDate"));
+                        pnMotherRealmModel.setPnPlace(jsonObject.getString("pnPlace"));
+                        pnMotherRealmModel.setPnAnyComplaints(jsonObject.getString("pnAnyComplaints"));
+                        pnMotherRealmModel.setPnBPSystolic(jsonObject.getString("pnBPSystolic"));
+                        pnMotherRealmModel.setPnBPDiastolic(jsonObject.getString("pnBPDiastolic"));
+                        pnMotherRealmModel.setPnPulseRate(jsonObject.getString("pnPulseRate"));
+                        pnMotherRealmModel.setPnTemp(jsonObject.getString("pnTemp"));
+                        pnMotherRealmModel.setPnEpistomyTear(jsonObject.getString("pnEpistomyTear"));
+                        pnMotherRealmModel.setPnPVDischarge(jsonObject.getString("pnPVDischarge"));
+                        pnMotherRealmModel.setPnBreastFeeding(jsonObject.getString("pnBreastFeeding"));
+                        pnMotherRealmModel.setPnBreastFeedingReason(jsonObject.getString("pnBreastFeedingReason"));
+                        pnMotherRealmModel.setPnBreastExamination(jsonObject.getString("pnBreastExamination"));
+                        pnMotherRealmModel.setPnOutCome(jsonObject.getString("pnOutCome"));
+                        pnMotherRealmModel.setCWeight(jsonObject.getString("cWeight"));
+                        pnMotherRealmModel.setCTemp(jsonObject.getString("cTemp"));
+                        pnMotherRealmModel.setCUmbilicalStump(jsonObject.getString("cUmbilicalStump"));
+                        pnMotherRealmModel.setCCry(jsonObject.getString("cCry"));
+                        pnMotherRealmModel.setCEyes(jsonObject.getString("cEyes"));
+                        pnMotherRealmModel.setCSkin(jsonObject.getString("cSkin"));
+                        pnMotherRealmModel.setCBreastFeeding(jsonObject.getString("cBreastFeeding"));
+                        pnMotherRealmModel.setCBreastFeedingReason(jsonObject.getString("cBreastFeedingReason"));
+                        pnMotherRealmModel.setCOutCome(jsonObject.getString("cOutCome"));
 
                 /*mPnHbncVisitRecordsModel.setVDate(jsonObject.getString("vDate"));
                 mPnHbncVisitRecordsModel.setVFacility(jsonObject.getString("vFacility"));
@@ -231,19 +272,66 @@ public class PNhbncVisit extends Fragment implements GetVisitHelthRecordsViews, 
                 mhealthRecordResponseModel.setVid(jsonObject.getString("vid"));
                 mhealthRecordList.add(mPnHbncVisitRecordsModel);*/
 
-                    mPnHbncVisitRecordsList.add(mPnHbncVisitRecordsModel);
-                    pnhbncVisitRecordsAdapter.notifyDataSetChanged();
+                        /*mPnHbncVisitRecordsList.add(mPnHbncVisitRecordsModel);
+                        pnhbncVisitRecordsAdapter.notifyDataSetChanged();*/
+                    }
+                    realm.commitTransaction();
+                } else {
+                    txt_no_records.setVisibility(View.VISIBLE);
+                    Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
                 }
-            }else{
-                txt_no_records.setVisibility(View.VISIBLE);
-                Toast.makeText(getActivity(),message, Toast.LENGTH_SHORT).show();
             }
-
 
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        motherOfflineRecords();
+    }
+
+    private void motherOfflineRecords() {
+
+        realm.beginTransaction();
+        RealmResults<PNMotherRealmModel> pnMotherRealmModels = realm.where(PNMotherRealmModel.class).findAll();
+        Log.e("realm Size ->", pnMotherRealmModels.size() + "");
+
+        for (int i = 0; i < pnMotherRealmModels.size(); i++) {
+            mPnHbncVisitRecordsModel = new PnHbncVisitRecordsModel.Visit_Records();
+
+            PNMotherRealmModel pnMotherRealmModel = pnMotherRealmModels.get(i);
+
+            mPnHbncVisitRecordsModel.setPnId(pnMotherRealmModel.getPnId());
+            mPnHbncVisitRecordsModel.setMid(pnMotherRealmModel.getMid());
+            mPnHbncVisitRecordsModel.setPicmeId(pnMotherRealmModel.getPicmeId());
+            mPnHbncVisitRecordsModel.setPnVisitNo(pnMotherRealmModel.getPnVisitNo());
+            mPnHbncVisitRecordsModel.setPnDueDate(pnMotherRealmModel.getPnDueDate());
+            mPnHbncVisitRecordsModel.setPnCareProvidedDate(pnMotherRealmModel.getPnCareProvidedDate());
+            mPnHbncVisitRecordsModel.setPnPlace(pnMotherRealmModel.getPnPlace());
+            mPnHbncVisitRecordsModel.setPnAnyComplaints(pnMotherRealmModel.getPnAnyComplaints());
+            mPnHbncVisitRecordsModel.setPnBPSystolic(pnMotherRealmModel.getPnBPSystolic());
+            mPnHbncVisitRecordsModel.setPnBPDiastolic(pnMotherRealmModel.getPnBPDiastolic());
+            mPnHbncVisitRecordsModel.setPnPulseRate(pnMotherRealmModel.getPnPulseRate());
+            mPnHbncVisitRecordsModel.setPnTemp(pnMotherRealmModel.getPnTemp());
+            mPnHbncVisitRecordsModel.setPnEpistomyTear(pnMotherRealmModel.getPnEpistomyTear());
+            mPnHbncVisitRecordsModel.setPnPVDischarge(pnMotherRealmModel.getPnPVDischarge());
+            mPnHbncVisitRecordsModel.setPnBreastFeeding(pnMotherRealmModel.getPnBreastFeeding());
+            mPnHbncVisitRecordsModel.setPnBreastFeedingReason(pnMotherRealmModel.getPnBreastFeedingReason());
+            mPnHbncVisitRecordsModel.setPnBreastExamination(pnMotherRealmModel.getPnBreastExamination());
+            mPnHbncVisitRecordsModel.setPnOutCome(pnMotherRealmModel.getPnOutCome());
+            mPnHbncVisitRecordsModel.setCWeight(pnMotherRealmModel.getCWeight());
+            mPnHbncVisitRecordsModel.setCTemp(pnMotherRealmModel.getCTemp());
+            mPnHbncVisitRecordsModel.setCUmbilicalStump(pnMotherRealmModel.getCUmbilicalStump());
+            mPnHbncVisitRecordsModel.setCCry(pnMotherRealmModel.getCCry());
+            mPnHbncVisitRecordsModel.setCEyes(pnMotherRealmModel.getCEyes());
+            mPnHbncVisitRecordsModel.setCSkin(pnMotherRealmModel.getCSkin());
+            mPnHbncVisitRecordsModel.setCBreastFeeding(pnMotherRealmModel.getCBreastFeeding());
+            mPnHbncVisitRecordsModel.setCBreastFeedingReason(pnMotherRealmModel.getCBreastFeedingReason());
+            mPnHbncVisitRecordsModel.setCOutCome(pnMotherRealmModel.getCOutCome());
+            mPnHbncVisitRecordsList.add(mPnHbncVisitRecordsModel);
+            pnhbncVisitRecordsAdapter.notifyDataSetChanged();
+        }
+        realm.commitTransaction();
+
     }
 
     @Override
@@ -254,7 +342,7 @@ public class PNhbncVisit extends Fragment implements GetVisitHelthRecordsViews, 
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btn_delivery_reports:
                 startActivity(new Intent(getActivity().getApplicationContext(), DeliveryDetailsView.class));
                 break;

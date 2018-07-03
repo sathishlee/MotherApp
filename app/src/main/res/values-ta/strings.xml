@@ -19,7 +19,7 @@
     <string name="tamil">தமிழ்</string>
     <string name="title_home">Home</string>
     <string name="username">பயனர்பெயர்</string>
-    <string name="vhn">அருகில் உள்ள மருத்துவமனை</string>
+    <string name="vhn">Near by Hospital</string>
     <string name="view_reports">அறிக்கைகள் காண்க</string>
     <string name="week_details">வாரம் விவரங்கள்</string>
     <string name="yes">ஆம்</string>
@@ -58,7 +58,7 @@
     <string name="add_visit_details">வருகை விவரங்களை சேர்க்கவும்</string>
     <string name="admitted">அனுமதிக்கப்பட்டார்</string>
     <string name="admitted_in_sncu">SNCU இல் இணைக்கப்பட்டது</string>
-    <string name="after_delivery">டெலிவரிக்குப் பிறகு</string>
+    <string name="after_delivery">PN கவனிப்பு</string>
     <string name="age">வயது</string>
     <string name="age_at_marriage">திருமணத்தில் வயது</string>
     <string name="albumin">அல்புமின்</string>
@@ -71,7 +71,7 @@
     <string name="any_surgery_done_before">எந்த அறுவை சிகிச்சை முன்னர் செய்யப்பட்டது</string>
     <string name="back_to_login">மீண்டும் உள்நுழையவும்</string>
     <string name="bcg_given_date">BCG கொடுக்கப்பட்ட தேதி</string>
-    <string name="before_delivery">டெலிவரிக்கு முன்</string>
+    <string name="before_delivery">AN கவனிப்பு</string>
     <string name="birth_details">பிறந்த விவரங்கள்</string>
     <string name="birth_type">பிறப்பு வகை</string>
     <string name="birth_weight">பிறப்பு எடை</string>
@@ -103,7 +103,7 @@
     <string name="enter_fetus">ஃபெடஸை உள்ளிடவும்</string>
     <string name="enter_fhs">FHS ஐ உள்ளிடவும்</string>
     <string name="enter_gestation_sac">கஸ்தாஸ் சாக் உள்ளிடவும்</string>
-    <string name="enter_gtt">GTT ஐ உள்ளிடவும்</string>
+    <string name="enter_gtt">GCT ஐ உள்ளிடவும்</string>
     <string name="enter_height">உயரம் உள்ளிடவும்</string>
     <string name="enter_hemoglobin">ஹீமோகுளோபின் உள்ளிடவும்</string>
     <string name="enter_infant_height">குழந்தை உயரம் உள்ளிடவும்</string>
@@ -167,7 +167,7 @@
     <string name="opv">OPV</string>
     <string name="opv_given_date">OPV கொடுக்கப்பட்ட தேதி</string>
     <string name="others">மற்றவர்களை *</string>
-    <string name="pedal_edema_present">பெடல் எடமா தற்போது</string>
+    <string name="pedal_edema_present">பெடல் எடமா</string>
     <string name="pluse_rate">துடிப்பு விகிதம்</string>
     <string name="pn_mother_visit_entry">பிஎன் தாய் வருகை நுழைவு</string>
     <string name="post_natal">நேதன் போஸ்ட்</string>
@@ -226,4 +226,6 @@
     <string name="registration_week">பதிவு வாரம்</string>
     <string name="visit_details">விவரங்களைப் பார்வையிடவும்</string>
     <string name="visit_type">வகை பார்க்கவும்</string>
+    <string name="hope_you_are_doing_well">நீங்கள் நன்றாக இருக்கிறீர்கள் என்று நம்புகிறேன்..</string>
+    <string name="this_is_the_period_of_child_monthly_development">இது குழந்தை மாதாந்திர வளர்ச்சி காலமாகும்.</string>
 </resources>

@@ -3,6 +3,7 @@ package com.unicef.thaimai.motherapp.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.MenuItem;
@@ -32,6 +33,7 @@ public class FullImageViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_full_image_view);
         preferenceData = new PreferenceData(this);
         url = getIntent().getStringExtra("image");
+        showActionBar();
 
         myImage = findViewById(R.id.myImage);
         Glide.with(this)
@@ -47,5 +49,12 @@ public class FullImageViewActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         finish();
         return super.onOptionsItemSelected(item);
+    }
+
+    public void showActionBar(){
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("");
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
     }
 }

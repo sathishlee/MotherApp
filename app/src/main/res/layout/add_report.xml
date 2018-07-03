@@ -372,7 +372,7 @@
                 android:id="@+id/edt_weight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
+                android:inputType="number"
                 android:textSize="@dimen/text_primary"
                 android:textColor="@color/secondary"
                 android:hint="@string/enter_weight"/>
@@ -385,29 +385,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="5dp"
-            android:weightSum="2">
+            android:padding="5dp">
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/fundal_height"
-                android:textColor="@color/secondary"
-                android:textSize="@dimen/text_primary"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <Spinner
-                android:id="@+id/sp_fundal_height"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_secondary"
-                android:layout_weight="1"
-                android:drawSelectorOnTop="true"
-                android:entries="@array/weeks"
-                style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
+                <EditText
+                    android:id="@+id/edt_fundal_height"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:textSize="@dimen/text_primary"
+                    android:textColor="@color/secondary"
+                    android:hint="@string/fundal_height"/>
 
+            </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -915,7 +908,7 @@
             android:id="@+id/upload_reports"
             android:padding="10dp"/>
 
-        <HorizontalScrollView
+        <!--<HorizontalScrollView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone"
@@ -1038,7 +1031,7 @@
 
             </LinearLayout>
 
-        </HorizontalScrollView>
+        </HorizontalScrollView>-->
 
     </LinearLayout>
 

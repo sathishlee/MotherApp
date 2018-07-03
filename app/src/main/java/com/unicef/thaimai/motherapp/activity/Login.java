@@ -1,6 +1,7 @@
 package com.unicef.thaimai.motherapp.activity;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.DownloadManager;
@@ -14,17 +15,20 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
+import android.location.Location;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
+import android.telephony.TelephonyManager;
 import android.text.format.Formatter;
 import android.util.Log;
 import android.view.MenuItem;
@@ -60,9 +64,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.UUID;
 
 
-public class Login extends AppCompatActivity implements View.OnClickListener, LoginViews, GpsStatusDetector.GpsStatusDetectorCallBack{
+public class Login extends AppCompatActivity implements View.OnClickListener, LoginViews, GpsStatusDetector.GpsStatusDetectorCallBack, LocationUpdateViews {
     Button btn_login, btn_otp_submit;
     EditText edtPicme, edtDob, edt_otp;
     TextInputLayout iplPicmeId, iplDob, input_layout_otp;
@@ -87,6 +92,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
     boolean mISGpsStatusDetector;
     private int mYear,mMonth,mDay;
     private SimpleDateFormat dateFormatter;
+    Activity activity;
+    LocationUpdatePresenter locationUpdatePresenter;
+
 
 
     @Override
@@ -125,6 +133,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
         sec = mCurrentDate.get(Calendar.SECOND);
         loginPresenter = new LoginPresenter(Login.this, this);
         preferenceData = new PreferenceData(this);
+        locationUpdatePresenter = new LocationUpdatePresenter(Login.this, this);
+
         btn_login = (Button) findViewById(R.id.btn_submit);
         edtPicme = (EditText) findViewById(R.id.edt_picme_id);
         edtDob = (EditText) findViewById(R.id.edt_dob);
@@ -252,6 +262,16 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
             int version_code = 3;
             String appversion = String.valueOf(version_code);
 
+            TelephonyManager mTelephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+            String unique_deviceid = mTelephonyManager.getDeviceId();
+            Log.d("Device Unique ID-- >", unique_deviceid);
+            String androidId = Settings.Secure.getString(getContentResolver(),
+                    Settings.Secure.ANDROID_ID);
+            Log.d("android_id",androidId);
+
+            String uuid = UUID.randomUUID().toString();
+            Log.d("uuid",uuid);
+
             try {
                 packageInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
                 version_name = packageInfo.versionName;
@@ -260,7 +280,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
                 e.printStackTrace();
             }
             if (checkNetwork.isNetworkAvailable()) {
-                loginPresenter.checkPickmeId(strPicme, strDob, preferenceData.getDeviceId(), mobileCheck, AppConstants.EXTRA_LATITUDE, AppConstants.EXTRA_LONGITUDE, appversion);
+                loginPresenter.checkPickmeId(strPicme, strDob, preferenceData.getDeviceId(), mobileCheck, AppConstants.EXTRA_LATITUDE, AppConstants.EXTRA_LONGITUDE, appversion, androidId);
+//                loginPresenter.checkPickmeId(strPicme, strDob, preferenceData.getDeviceId(), mobileCheck, preferenceData.gettCurentlatitude(), preferenceData.gettCurentlongitude(), appversion, androidId);
             }else {
                 startActivity(new Intent(getApplicationContext(), NoInternetConnection.class));
             }
@@ -275,6 +296,27 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
     @Override
     public void hideProgress() {
         pDialog.hide();
+    }
+
+    @Override
+    public void locationUpdateSuccess(String loginResponseModel) {
+        Log.e(Login.class.getSimpleName(),"Location update S"+loginResponseModel);
+    }
+
+    @Override
+    public void locationUpdateFailiure(String string) {
+        Log.e(Login.class.getSimpleName(),"Location update F "+string);
+
+    }
+
+    @Override
+    public void getNearbyHospitalSuccess(String loginResponseModel) {
+
+    }
+
+    @Override
+    public void getNearbyHospitalFailiure(String string) {
+
     }
 
     @Override

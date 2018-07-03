@@ -1,6 +1,7 @@
 package com.unicef.thaimai.motherapp.fragment;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -23,8 +24,10 @@ import com.unicef.thaimai.motherapp.Presenter.ReferalPresenter;
 import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.activity.AddReferral;
 import com.unicef.thaimai.motherapp.adapter.ReferalListAdapter;
+import com.unicef.thaimai.motherapp.app.RealmController;
 import com.unicef.thaimai.motherapp.constant.AppConstants;
 import com.unicef.thaimai.motherapp.model.responsemodel.ReferalListResponseModel;
+import com.unicef.thaimai.motherapp.utility.CheckNetwork;
 import com.unicef.thaimai.motherapp.view.ReferalViews;
 
 import org.json.JSONArray;
@@ -32,6 +35,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+
+import io.realm.Realm;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -51,6 +56,10 @@ public class ReferralListFragment extends Fragment implements ReferalViews, Refr
     ReferalListAdapter hAdapter;
     TextView txt_no_records_found;
 
+    Realm realm;
+    CheckNetwork checkNetwork;
+    boolean isoffline = false;
+
 
     String ref_status;
     public static ReferralListFragment newInstance() {
@@ -67,6 +76,7 @@ public class ReferralListFragment extends Fragment implements ReferalViews, Refr
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = null;
         view = inflater.inflate(R.layout.layout_referral, container, false);
+        realm = RealmController.with(getActivity()).getRealm();
         initUI(view);
         onClickListner();
 
@@ -80,6 +90,7 @@ public class ReferralListFragment extends Fragment implements ReferalViews, Refr
     private void initUI(View view) {
 
         getActivity().setTitle("Referral Details");
+        checkNetwork = new CheckNetwork(getActivity());
         preferenceData = new PreferenceData(getActivity());
         editor = getActivity().getSharedPreferences(AppConstants.PREF_NAME, MODE_PRIVATE).edit();
         pDialog = new ProgressDialog(getActivity());
@@ -87,8 +98,11 @@ public class ReferralListFragment extends Fragment implements ReferalViews, Refr
         pDialog.setMessage("Please Wait ...");
         referalPresenter = new ReferalPresenter(this, (Activity) getActivity());
         mReferalList = new ArrayList<>();
-
-        referalPresenter.getReffralNeList(preferenceData.getMId(), preferenceData.getPhcId(), preferenceData.getVhnId(), preferenceData.getPicmeId());
+        if (checkNetwork.isNetworkAvailable()) {
+            referalPresenter.getReffralNeList(preferenceData.getMId(), preferenceData.getPhcId(), preferenceData.getVhnId(), preferenceData.getPicmeId());
+        }else{
+            isoffline = true;
+        }
         fabAddNewReferal = (FloatingActionButton) view.findViewById(R.id.fab_add_new_referal);
         txt_no_records_found = (TextView) view.findViewById(R.id.txt_no_records);
         txt_no_records_found.setVisibility(View.GONE);
@@ -133,8 +147,16 @@ public class ReferralListFragment extends Fragment implements ReferalViews, Refr
                 }
             }
         });
-
+        if (isoffline) {
+            referralListOffline();
+        } else {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setMessage("Record Not Found");
+            builder.create();
+        }
     }
+
+
 
     @Override
     public void showProgress() {
@@ -226,6 +248,9 @@ public class ReferralListFragment extends Fragment implements ReferalViews, Refr
         }
     }
 
+    private void referralListOffline() {
+
+    }
     @Override
     public void errorReferalList(String response) {
         Toast.makeText(getActivity(),response,Toast.LENGTH_SHORT).show();
