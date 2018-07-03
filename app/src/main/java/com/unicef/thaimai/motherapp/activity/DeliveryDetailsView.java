@@ -150,87 +150,87 @@ public class DeliveryDetailsView extends AppCompatActivity implements DeliveryEn
                 preferenceData.storeDid(jsonObject.getString("did"));
                 Log.d("response---->", response);
                 if(jsonObject.getString("ddatetime").equalsIgnoreCase("null")){
-                    txt_delivery_date.setVisibility(View.GONE);
+                    txt_delivery_date.setText("-");
                 }else{
                     txt_delivery_date.setText(jsonObject.getString("ddatetime"));
                 }
                 if(jsonObject.getString("dtime").equalsIgnoreCase("null")){
-                    txt_delivery_time.setVisibility(View.GONE);
+                    txt_delivery_time.setText("-");
                 }else{
                     txt_delivery_time.setText(jsonObject.getString("dtime"));
                 }
                 if(jsonObject.getString("dplace").equalsIgnoreCase("null")){
-                    txt_delivery_place.setVisibility(View.GONE);
+                    txt_delivery_place.setText("-");
                 }else{
                     txt_delivery_place.setText(jsonObject.getString("dplace"));
                 }
                 if(jsonObject.getString("ddeleveryDetails").equalsIgnoreCase("null")){
-                    txt_delivery_type.setVisibility(View.GONE);
+                    txt_delivery_type.setText("-");
                 }else{
                     txt_delivery_type.setText(jsonObject.getString("ddeleveryDetails"));
                 }
                 if(jsonObject.getString("ddeleveryOutcomeMother").equalsIgnoreCase("null")){
-                    txt_delivery_mother_outcome.setVisibility(View.GONE);
+                    txt_delivery_mother_outcome.setText("-");
                 }else{
                     txt_delivery_mother_outcome.setText(jsonObject.getString("ddeleveryOutcomeMother"));
                 }
                 if(jsonObject.getString("dnewBorn").equalsIgnoreCase("null")){
-                    txt_delivery_new_born.setVisibility(View.GONE);
+                    txt_delivery_new_born.setText("-");
                 }else{
                     txt_delivery_new_born.setText(jsonObject.getString("dnewBorn"));
                 }
                 if(jsonObject.getString("dInfantId").equalsIgnoreCase("null")){
-                    txt_infant_id.setVisibility(View.GONE);
+                    txt_infant_id.setText("-");
                 }else{
                     txt_infant_id.setText(jsonObject.getString("dInfantId"));
                 }
                 if(jsonObject.getString("dBirthDetails").equalsIgnoreCase("null")){
-                    txt_infant_birth_type.setVisibility(View.GONE);
+                    txt_infant_birth_type.setText("-");
                 }else{
                     txt_infant_birth_type.setText(jsonObject.getString("dBirthDetails"));
                 }
                 if(jsonObject.getString("dBirthWeight").equalsIgnoreCase("null")){
-                    txt_infant_weight.setVisibility(View.GONE);
+                    txt_infant_weight.setText("-");
                 }else{
                     txt_infant_weight.setText(jsonObject.getString("dBirthWeight")+ "gm");
                 }
                 if(jsonObject.getString("dBirthHeight").equalsIgnoreCase("null")){
-                    txt_infant_height.setVisibility(View.GONE);
+                    txt_infant_height.setText("-");
                 }else{
                     txt_infant_height.setText(jsonObject.getString("dBirthHeight")+ "cm");
                 }
                 if(jsonObject.getString("dBreastFeedingGiven").equalsIgnoreCase("null")){
-                    txt_breast_feeding_given.setVisibility(View.GONE);
+                    txt_breast_feeding_given.setText("-");
                 }else {
                     txt_breast_feeding_given.setText(jsonObject.getString("dBreastFeedingGiven"));
                 }
                 if(jsonObject.getString("dAdmittedSNCU").equalsIgnoreCase("null")){
-                    txt_admitted_in_sncu.setVisibility(View.GONE);
+                    txt_admitted_in_sncu.setText("-");
                 }else {
                     txt_admitted_in_sncu.setText(jsonObject.getString("dAdmittedSNCU"));
                 }
                 if(jsonObject.getString("dSNCUDate").equalsIgnoreCase("null")){
-                    new_born_sncu_date.setVisibility(View.GONE);
+                    new_born_sncu_date.setText("-");
                 }else{
                     new_born_sncu_date.setText(jsonObject.getString("dSNCUDate"));
                 }
                 if(jsonObject.getString("dSNCUOutcome").equalsIgnoreCase("null")){
-                    txt_new_born_outcome.setVisibility(View.GONE);
+                    txt_new_born_outcome.setText("-");
                 }else{
                     txt_new_born_outcome.setText(jsonObject.getString("dSNCUOutcome"));
                 }
                 if(jsonObject.getString("dBCGDate").equalsIgnoreCase("null")){
-                    txt_bcg_given_date.setVisibility(View.GONE);
+                    txt_bcg_given_date.setText("-");
                 }else {
                     txt_bcg_given_date.setText(jsonObject.getString("dBCGDate"));
                 }
                 if(jsonObject.getString("dOPVDate").equalsIgnoreCase("null")){
-                    txt_opv_given_date.setVisibility(View.GONE);
+                    txt_opv_given_date.setText("-");
                 }else{
                     txt_opv_given_date.setText(jsonObject.getString("dOPVDate"));
                 }
                 if(jsonObject.getString("dHEPBDate").equalsIgnoreCase("null")){
-                    txt_hepb_given_date.setVisibility(View.GONE);
+                    txt_hepb_given_date.setText("-");
                 }else{
                     txt_hepb_given_date.setText(jsonObject.getString("dHEPBDate"));
                 }

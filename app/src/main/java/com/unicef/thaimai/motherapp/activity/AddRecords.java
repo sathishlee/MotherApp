@@ -244,7 +244,7 @@
             }else if (strppbs.equalsIgnoreCase("")){
                 showAlert("PPBS is Empty");
             }else if (strgtt.equalsIgnoreCase("")){
-                showAlert("GTT is Empty");
+                showAlert("GCT is Empty");
             }else if (strurine_sugar.equalsIgnoreCase("")){
                 showAlert("Urine sugar is Empty");
             }else if (stralbumin.equalsIgnoreCase("")){

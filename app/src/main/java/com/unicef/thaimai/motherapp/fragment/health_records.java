@@ -354,7 +354,7 @@ public class health_records extends Fragment implements GetVisitHelthRecordsView
         if (isPickme){
 //            llClickPickMeVisit.setVisibility(View.VISIBLE);
 //            llClickOtherVisit.setVisibility(View.GONE);
-            txt_visit_type.setText("Picme Visit");
+            txt_visit_type.setText("PICME Visit");
         }else {
 //            llClickPickMeVisit.setVisibility(View.GONE);
 //            llClickOtherVisit.setVisibility(View.VISIBLE);

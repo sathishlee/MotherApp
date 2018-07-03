@@ -20,10 +20,7 @@
     import android.widget.TextView;
     import android.widget.Toast;
 
-    import com.suthishan.multiselectspineer.KeyPairBoolData;
     import com.suthishan.multiselectspineer.MultiSelectSpinner;
-    import com.suthishan.multiselectspineer.MultiSpinner;
-    import com.suthishan.multiselectspineer.SpinnerListener;
     import com.unicef.thaimai.motherapp.Preference.PreferenceData;
     import com.unicef.thaimai.motherapp.Presenter.PrimaryRegisterPresenter;
     import com.unicef.thaimai.motherapp.R;
