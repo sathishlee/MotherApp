@@ -56,7 +56,8 @@ public class DeliveryDetailsView extends AppCompatActivity implements DeliveryEn
         fab_edt_details.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),DeliveryDetailsActivityEntry.class));
+//                startActivity(new Intent(getApplicationContext(),DeliveryDetailsActivityEntry.class));
+                startActivity(new Intent(getApplicationContext(),DeliveryEditActivity.class));
             }
         });
     }
@@ -238,8 +239,9 @@ public class DeliveryDetailsView extends AppCompatActivity implements DeliveryEn
             else{
                 delivery_content.setVisibility(View.GONE);
                 txt_no_records_found.setVisibility(View.VISIBLE);
-                Toast.makeText(DeliveryDetailsView.this,message, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(DeliveryDetailsView.this,message, Toast.LENGTH_SHORT).show();
 
+                startActivity(new Intent(getApplicationContext(),DeliveryEditActivity.class));
                 Log.d("message---->",message);
             }
         }

@@ -5,6 +5,8 @@
     android:versionCode="1"
     android:versionName="1.0">
 
+
+
     //Camera View
     <uses-feature android:name="android.hardware.camera2" />
     <uses-feature android:name="android.hardware.camera.autofocus"

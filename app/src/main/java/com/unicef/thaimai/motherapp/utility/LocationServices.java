@@ -1,8 +1,11 @@
-package com.unicef.thaimai.motherapp.utility;
+/*
+package com.unicef.thaimai.motherapp.Utility;
 
-/**
- * Created by Suthishan on 20/1/2018.
  */
+/*Created by Suthishan on 20/1/2018.
+ *//*
+
+
 
 import android.Manifest;
 import android.app.ProgressDialog;
@@ -81,14 +84,7 @@ public class LocationServices extends Service implements
         return null;
     }
 
-    @Override
-    public void onConnected(@Nullable Bundle bundle) {
-
-    }
-
-    /*
-         * LOCATION CALLBACKS
-         */
+     */
 /* LOCATION CALLBACKS*//*
 
 
@@ -114,10 +110,12 @@ public class LocationServices extends Service implements
         Log.d(TAG, "Connected to Google API");
     }
 
-    /*
-     * Called by Location Services if the connection to the
-     * location client drops because of an error.
-     */
+      */
+/*Called by Location Services if the connection to the
+      location client drops because of an error.*//*
+
+
+
     @Override
     public void onConnectionSuspended(int i) {
         Log.d(TAG, "Connection suspended");
@@ -138,6 +136,7 @@ public class LocationServices extends Service implements
 
     }
 
+
     private void sendMessageToUI(String lat, String lng) {
 
         Log.d(TAG, "Sending info...");
@@ -146,6 +145,8 @@ public class LocationServices extends Service implements
         intent.putExtra(EXTRA_LATITUDE, lat);
         intent.putExtra(EXTRA_LONGITUDE, lng);
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+
+
     }
 
     @Override
@@ -154,3 +155,4 @@ public class LocationServices extends Service implements
 
     }
 }
+*/
