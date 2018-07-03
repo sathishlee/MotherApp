@@ -7,7 +7,7 @@ public class Apiconstants {
 
     //    public static final String BASE_URL = "http://218.248.44.77/thaimaiapp/api/";
     public static final String BASE_URL = "http://192.168.100.222/thaimaiapp/api/";
-//    public static final String BASE_URL = "http://demo.satvatinfosol.com/thaimai/api/";
+    //    public static final String BASE_URL = "http://demo.satvatinfosol.com/thaimai/api/";
 
     //    public static final String PHOTO_URL = "http://218.248.44.77/thaimaiapp/assets/mother_photos/";
     public static final String PHOTO_URL = "http://192.168.100.222/thaimaiapp/assets/mother_photos/";

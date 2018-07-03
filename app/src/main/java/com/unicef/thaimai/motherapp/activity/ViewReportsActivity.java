@@ -2,7 +2,6 @@ package com.unicef.thaimai.motherapp.activity;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
@@ -13,13 +12,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.squareup.picasso.MemoryPolicy;
-import com.squareup.picasso.NetworkPolicy;
-import com.squareup.picasso.Picasso;
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.GetVisitReportsPresenter;
 import com.unicef.thaimai.motherapp.R;
@@ -79,13 +72,6 @@ public class ViewReportsActivity extends AppCompatActivity implements GetAllRepo
         getVisitReportsPresenter.getallVisitReports(preferenceData.getPicmeId(),preferenceData.getMId());
         txt_no_records_found = (TextView) findViewById(R.id.txt_no_records);
         itemImage = (ImageView) findViewById(R.id.itemImage);
-/*        itemImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });*/
-
 
         txt_no_records_found.setVisibility(View.GONE);
 //        displayRecords();
@@ -94,8 +80,6 @@ public class ViewReportsActivity extends AppCompatActivity implements GetAllRepo
         visitRecordsAdapter = new VisitRecordsAdapter(visitRecordsFullResponseModels,this);
         rec_mother_reports.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         rec_mother_reports.setAdapter(visitRecordsAdapter);
-
-
     }
 
     /*private void displayRecords() {

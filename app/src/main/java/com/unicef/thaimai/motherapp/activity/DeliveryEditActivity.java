@@ -138,9 +138,6 @@ public class DeliveryEditActivity extends AppCompatActivity implements View.OnCl
         til_bcg_date = (TextInputLayout) findViewById(R.id.til_bcg_date);
         til_opv_date = (TextInputLayout) findViewById(R.id.til_opv_date);
         til_hepb_date = (TextInputLayout) findViewById(R.id.til_hepb_date);
-
-
-
     }
     private void onClickListner() {
         btn_delivery_submit.setOnClickListener(this);
@@ -493,6 +490,26 @@ public class DeliveryEditActivity extends AppCompatActivity implements View.OnCl
                 strBCGDate = jsonObject_res.getString("dBCGDate");
                 strOPVDate = jsonObject_res.getString("dOPVDate");
                 strHEPDate = jsonObject_res.getString("dHEPBDate");
+
+                edt_delivery_date.setText(strDeliveryDate);
+                edt_time_of_delivery.setText(strDeliveryTime);
+                edt_infant_id.setText(jsonObject_res.getString("dInfantId"));
+                edt_infant_weight.setText(strInfantWeight);
+                edt_infant_height.setText(strInfantHeight);
+                edt_new_born_birth_date.setText(jsonObject_res.getString("dSNCUDate"));
+                edt_bcg_given_date.setText(strBCGDate);
+                        edt_hepb_given_date.setText(strHEPDate);
+                        edt_opv_given_date.setText(strOPVDate);
+
+                    sp_place.setSelection(getSelectedPosition(jsonObject_res.getString("dplace"),getResources().getStringArray(R.array.array_facillity_type)));
+
+                sp_delivery_details.setSelection(getSelectedPosition(jsonObject_res.getString("ddeleveryDetails"),getResources().getStringArray(R.array.array_delivery_details)));
+                        sp_mother.setSelection(getSelectedPosition(jsonObject_res.getString("ddeleveryOutcomeMother"),getResources().getStringArray(R.array.array_mother)));
+                sp_newborn.setSelection(getSelectedPosition(jsonObject_res.getString("dnewBorn"),getResources().getStringArray(R.array.array_new_born)));
+                        sp_birth_details.setSelection(getSelectedPosition(jsonObject_res.getString("dBirthDetails"),getResources().getStringArray(R.array.array_birth_details)));
+                sp_breast_feeding_given.setSelection(getSelectedPosition(jsonObject_res.getString("dBreastFeedingGiven"),getResources().getStringArray(R.array.array_breast_feeding)));
+                        sp_admitted_in_sncu.setSelection(getSelectedPosition(jsonObject_res.getString("dAdmittedSNCU"),getResources().getStringArray(R.array.array_ultrosonogram)));
+                sp_outcome.setSelection(getSelectedPosition(jsonObject_res.getString("dSNCUOutcome"),getResources().getStringArray(R.array.array_out_come)));
             } else {
                 Log.d("message---->", message);
 
@@ -503,5 +520,15 @@ public class DeliveryEditActivity extends AppCompatActivity implements View.OnCl
         }
 
 
+    }
+
+    private int getSelectedPosition(String getString, String[] stringArray) {
+        int positionback = 0;
+        for (int i=0;i<stringArray.length;i++){
+            if (getString.equalsIgnoreCase(stringArray[i])){
+                positionback=i;
+            }
+        }
+        return positionback;
     }
 }

@@ -1,6 +1,7 @@
 package com.unicef.thaimai.motherapp.activity;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -64,6 +65,9 @@ import static android.Manifest.permission.RECORD_AUDIO;
 import static android.Manifest.permission.SEND_SMS;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static android.Manifest.permission.WRITE_SETTINGS;
+import static android.widget.TextView.AUTO_SIZE_TEXT_TYPE_NONE;
+import static com.unicef.thaimai.motherapp.R.drawable.ic_upload;
+import static com.unicef.thaimai.motherapp.R.id.upload_reports;
 
 
 public class ProfileActivity extends AppCompatActivity implements ProfileView, View.OnClickListener, ImageUploadViews {
@@ -97,13 +101,20 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView, V
         initActivityTransitions();
         setContentView(R.layout.layout_profile);
         showActionBar();
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        /*fab.setOnClickListener(new View.OnClickListener() {
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceType")
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),ProfileUpdateActivity.class));
+//                startActivity(new Intent(getApplicationContext(),ProfileUpdateActivity.class));
+                address.setEnabled(true);
+                tvNumber1.setEnabled(true);
+                number_1.setEnabled(true);
+
+                fab.setImageResource(R.drawable.ic_upload);
+
             }
-        });*/
+        });
         if(CheckingPermissionIsEnabledOrNot())
         {
             Toast.makeText(ProfileActivity.this, "All Permissions Granted Successfully", Toast.LENGTH_LONG).show();
@@ -148,6 +159,7 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView, V
         user_profile_photo.setOnClickListener(this);
     }
 
+    @SuppressLint("InlinedApi")
     private void initUI() {
 
         pDialog = new ProgressDialog(this);
@@ -160,16 +172,19 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView, V
         imageUploadPresenter = new ImageUploadPresenter(ProfileActivity.this, this);
 
         profilePresenter.getMotherProfile(preferenceData.getMId(), preferenceData.getPicmeId());
+
         user_profile_photo = (ImageView) findViewById(R.id.user_profile_photo);
         user_name = (TextView) findViewById(R.id.user_name);
         edt_picme_id = (TextView) findViewById(R.id.edt_picme_id);
         address = (TextView) findViewById(R.id.address);
+        address.setEnabled(false);
         village_name = (TextView) findViewById(R.id.village_name);
         tvNumber5 = (TextView) findViewById(R.id.tvNumber5);
         district_name = (TextView) findViewById(R.id.district_name);
         tvNumber1 = (TextView) findViewById(R.id.tvNumber1);
+        tvNumber1.setEnabled(false);
         number_1 = (TextView) findViewById(R.id.number_1);
-
+        number_1.setEnabled(false);
 
     }
 
@@ -273,8 +288,8 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView, V
             String status = jsonObject.getString("status");
             String msg = jsonObject.getString("message");
             if (status.equalsIgnoreCase("1")) {
-                JSONObject editprofile = jsonObject.getJSONObject("EditProfile");
 
+                JSONObject editprofile = jsonObject.getJSONObject("EditProfile");
                 user_name.setText(editprofile.getString("mName"));
                 edt_picme_id.setText(editprofile.getString("mPicmeId"));
                 address.setText(editprofile.getString("mAddress"));
@@ -282,9 +297,7 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView, V
                 district_name.setText(editprofile.getString("mDistrict"));
                 tvNumber1.setText(editprofile.getString("mMotherMobile"));
                 number_1.setText(editprofile.getString("mHusbandMobile"));
-
                 str_mPhoto = editprofile.getString("mPhoto");
-
                 if(editprofile.getString("mPhoto").equalsIgnoreCase("null")){
                     preferenceData.setMotherPhoto("");
                 }else{

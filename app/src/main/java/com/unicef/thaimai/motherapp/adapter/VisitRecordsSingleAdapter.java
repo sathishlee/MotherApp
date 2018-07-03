@@ -20,6 +20,7 @@ import com.squareup.picasso.Picasso;
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.activity.FullImageViewActivity;
+import com.unicef.thaimai.motherapp.activity.ImageFullViewActivity;
 import com.unicef.thaimai.motherapp.constant.Apiconstants;
 import com.unicef.thaimai.motherapp.constant.AppConstants;
 import com.unicef.thaimai.motherapp.model.responsemodel.VisitRecordsSingleResponseModel;
@@ -46,6 +47,12 @@ public class VisitRecordsSingleAdapter extends RecyclerView.Adapter<VisitRecords
     public VisitRecordsSingleAdapter(ArrayList<VisitRecordsSingleResponseModel> visitRecordsSingleResponseModels, Context context){
         this.context = context;
         this.visitRecordsSingleResponseModels = visitRecordsSingleResponseModels;
+//        AppConstants.mylist.addAll(visitRecordsSingleResponseModels);
+
+       /* for (int i=0; i<visitRecordsSingleResponseModels.size();i++){
+            AppConstants.mylist.add(visitRecordsSingleResponseModels.get(i));
+
+        }*/
     }
 
     @Override
@@ -92,9 +99,20 @@ public class VisitRecordsSingleAdapter extends RecyclerView.Adapter<VisitRecords
                 Intent intent= new Intent(context,FullImageViewActivity.class);
                 intent.putExtra("image",visitRecordsSingleResponseModel.getImage());
                 context.startActivity(intent);*/
-                Log.d("Image Url--->",Apiconstants.VISIT_REPORTS_URL+preferenceData.getPicmeId()+"/"+visitRecordsSingleResponseModel.getImage());
+
+             /*   Log.d("Image Url--->",Apiconstants.VISIT_REPORTS_URL+preferenceData.getPicmeId()+"/"+visitRecordsSingleResponseModel.getImage());
                 Intent intent= new Intent(context,FullImageViewActivity.class);
                 intent.putExtra("image",Apiconstants.VISIT_REPORTS_URL+preferenceData.getPicmeId()+"/"+visitRecordsSingleResponseModel.getImage());
+                context.startActivity(intent);*/
+
+
+                Intent intent= new Intent(context,ImageFullViewActivity.class);
+//                intent.putExtra("mylist", visitRecordsSingleResponseModels);
+                String[] imgList=new String[visitRecordsSingleResponseModels.size()];
+                for (int i=0;i<visitRecordsSingleResponseModels.size();i++){
+                    imgList[i]=visitRecordsSingleResponseModels.get(i).getImage();
+                }
+                intent.putExtra("mylist",imgList);
                 context.startActivity(intent);
             }
         });

@@ -1,5 +1,9 @@
 package com.unicef.thaimai.motherapp.constant;
 
+import com.unicef.thaimai.motherapp.model.responsemodel.VisitRecordsSingleResponseModel;
+
+import java.util.ArrayList;
+
 /**
  * Created by Suthishan on 20/1/2018.
  */
@@ -72,5 +76,5 @@ public class AppConstants {
     public static final String MOTHER_PHOTO = "mPhoto";
 
 
-
+    public static ArrayList<VisitRecordsSingleResponseModel> mylist=null;
 }

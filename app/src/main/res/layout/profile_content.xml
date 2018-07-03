@@ -31,13 +31,13 @@
 
             <TextView
                 android:id="@+id/user_name"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_toEndOf="@id/user_icon"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="Mrs. Tamil Selvi"
+                android:text=" "
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#212121" />
 
@@ -74,13 +74,13 @@
 
             <TextView
                 android:id="@+id/edt_picme_id"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_toEndOf="@id/picme_icon"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="123456789101"
+                android:text=""
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#212121" />
 
@@ -115,15 +115,16 @@
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
                 app:srcCompat="@drawable/house" />
 
-            <TextView
+            <EditText
                 android:id="@+id/address"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_toEndOf="@id/address_icon"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="No.105, Bharathi Nagar,"
+                android:text=" "
+                android:hint="Enter your address"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#212121" />
 
@@ -288,13 +289,13 @@
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
                 app:srcCompat="@drawable/ic_phone_black" />
 
-            <TextView
+            <EditText
                 android:id="@+id/tvNumber1"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_toEndOf="@id/ivContactItem1"
-                android:text="(+91) 95456-17890"
+                android:text=" "
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#212121" />
 
@@ -331,11 +332,11 @@
 
             <TextView
                 android:id="@+id/number_1"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_toEndOf="@id/emergency_no_1"
-                android:text="(+91) 95456-17890"
+                android:text=" "
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#212121" />
 

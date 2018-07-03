@@ -81,6 +81,10 @@
             android:id="@+id/health_tips"
             android:icon="@drawable/first_aid"
             android:title="@string/health_tips" />
+        <item
+            android:id="@+id/get_code"
+
+            android:title="Get Code" />
 
 
     </group>
