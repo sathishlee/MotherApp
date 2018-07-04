@@ -230,6 +230,7 @@ public class MainActivity extends AppCompatActivity
         dialogCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AppConstants.isMainActivityOpen = false;
                 dialog.dismiss();
             }
         });
@@ -538,20 +539,6 @@ public class MainActivity extends AppCompatActivity
         pDialog.hide();
     }
 
-    @Override
-    public void showPickmeResult(String response) {
-
-    }
-
-    @Override
-    public void showFlashResult(String response) {
-
-    }
-
-    @Override
-    public void showErrorMessage(String response) {
-
-    }
 
 
     @Override
@@ -599,9 +586,6 @@ public class MainActivity extends AppCompatActivity
             e.printStackTrace();
         }
 
-
-
-
     }
 
     @Override
@@ -609,7 +593,7 @@ public class MainActivity extends AppCompatActivity
         Log.d(MainActivity.class.getSimpleName(), "Notification count response Error" + response);
     }
 
-    /*@Override
+    @Override
     public void showPickmeResult(String response) {
         Log.d(MainActivity.class.getSimpleName(), "Response Success--->" + response);
 //        showAlertDialog("If you are not feeling well please Click here.", response, 0);
@@ -621,19 +605,34 @@ public class MainActivity extends AppCompatActivity
 //            showAlertDialog(msg);
 
             if (status.equalsIgnoreCase("1")) {
-                showAlertDialog(msg, "close", 5);
+//                showAlertDialog();
 
                 Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
 //                showAlertDialog(msg);
 //                startActivity(new Intent(getApplicationContext(),MainActivity.class));
             } else {
-                showAlertDialog(msg, "close", 5);
+                showSosAlertDialog();
             }
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
-    }*/
+    }
+
+    private void showSosAlertDialog() {
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(MainActivity.this);
+        builder.setTitle(R.string.app_name);
+        builder.setIcon(R.mipmap.ic_launcher);
+        builder.setMessage("SOS Alert Already sent")
+                .setCancelable(false)
+                .setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        android.app.AlertDialog alert = builder.create();
+        alert.show();
+    }
 
     @Override
     protected void onResume() {
@@ -644,16 +643,15 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-   /* @Override
+    @Override
     public void showFlashResult(String response) {
-        showAlertDialog(response, "close", 5);
+//        showAlertDialog();
     }
-*/
-    /*@Override
+    @Override
     public void showErrorMessage(String response) {
         Log.d(AddRecords.class.getSimpleName(), "Response Error--->" + response);
-        showAlertDialog(response, "close", 5);
-    }*/
+        showAlertDialog();
+    }
 
 
     @Override

@@ -382,10 +382,10 @@
             }else if (strLSCSDone.equalsIgnoreCase("--Select--")){
                 showAlert("LSC Done is Empty");
 
-            }/*else if (strComDuringPrgncy.equalsIgnoreCase("--Select--")){
+            }else if (spinner1.equals("--Select--")){
                 showAlert("During Pregnancy is Empty");
 
-            }*/else if (strPrePrgncyG.equalsIgnoreCase("--Select--")){
+            }else if (strPrePrgncyG.equalsIgnoreCase("--Select--")){
                 showAlert("G is Empty");
 
             }else if (strPrePrgncyP.equalsIgnoreCase("--Select--")){
@@ -685,6 +685,7 @@
                     spPrePregnancy.setSelection(getListPosition(yn,jObj.getString("mHistroyPreviousPreganancy")));          //Yes,No
                     spLSCSDone.setSelection(getListPosition(yn,jObj.getString("mLscsDone")));             //Yes,No
 //                    spComDuringPrgncy.setSelection(getListPosition(acdp,jObj.getString("mAnyComplecationDuringPreganancy")));  //Hypertention, Diabetes, Congenital Heart Disease, Tb, Others
+                    spinner1.setSelection(getListPosition(acdp,jObj.getString("mAnyComplecationDuringPreganancy")));
                     spPrePrgncyG.setSelection(getListPosition(num,jObj.getString("mPresentPreganancyG")));  //1234567890
                     spPrePrgncyP.setSelection(getListPosition(num,jObj.getString("mPresentPreganancyP")));  //1234567890
                     spPrePrgncyA.setSelection(getListPosition(num,jObj.getString("mPresentPreganancyA")));  //1234567890
@@ -729,6 +730,7 @@
         @Override
         public void selectedStrings(List<String> strings) {
             Toast.makeText(this.getApplicationContext(),"Values -- >" + strings,Toast.LENGTH_LONG).show();
+            strComDuringPrgncy = spinner1.getSelectedItemsAsString();
         }
     }
 

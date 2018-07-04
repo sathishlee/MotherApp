@@ -241,7 +241,7 @@ public class DeliveryDetailsView extends AppCompatActivity implements DeliveryEn
                 txt_no_records_found.setVisibility(View.VISIBLE);
 //                Toast.makeText(DeliveryDetailsView.this,message, Toast.LENGTH_SHORT).show();
 
-                startActivity(new Intent(getApplicationContext(),DeliveryEditActivity.class));
+//                startActivity(new Intent(getApplicationContext(),DeliveryEditActivity.class));
                 Log.d("message---->",message);
             }
         }

@@ -390,187 +390,187 @@ public class PrimaryRegisterView extends AppCompatActivity implements PrimaryReg
                 txt_no_records_found.setVisibility(View.GONE);
                 Log.d("message---->",message);
                 if(jObj.getString("mName").equalsIgnoreCase("null")){
-                        txt_name.setVisibility(View.GONE);
+                    txt_name.setText("-");
                     }else {
                         txt_name.setText(jObj.getString("mName"));
                     }
                 if (jObj.getString("mAge").equalsIgnoreCase("null")){
-                    txt_mother_age.setVisibility(View.GONE);
+                    txt_mother_age.setText("-");
                 }else {
                     txt_mother_age.setText(jObj.getString("mAge"));
                 }
                 if (jObj.getString("mLMP").equalsIgnoreCase("null")){
-                    txt_lmp_date.setVisibility(View.GONE);
+                    txt_lmp_date.setText("-");
                 }else {
                     txt_lmp_date.setText(jObj.getString("mLMP"));
                 }
                 if (jObj.getString("mEDD").equalsIgnoreCase("null")){
-                    txt_edd_date.setVisibility(View.GONE);
+                    txt_edd_date.setText("-");
                 }else {
                     txt_edd_date.setText(jObj.getString("mEDD"));
                 }
                 if (jObj.getString("mMotherMobile").equalsIgnoreCase("null")){
-                    txt_pry_mobile_no.setVisibility(View.GONE);
+                    txt_pry_mobile_no.setText("-");
                 }else {
                     txt_pry_mobile_no.setText(jObj.getString("mMotherMobile"));
                 }
                 if (jObj.getString("mHusbandMobile").equalsIgnoreCase("null")){
-                    txt_alter_mobile_no.setVisibility(View.GONE);
+                    txt_alter_mobile_no.setText("-");
                 }else {
                     txt_alter_mobile_no.setText(jObj.getString("mHusbandMobile"));
                 }
                 if (jObj.getString("mMotherOccupation").equalsIgnoreCase("null")){
-                    txt_mother_occupation.setVisibility(View.GONE);
+                    txt_mother_occupation.setText("-");
                 }else {
                     txt_mother_occupation.setText(jObj.getString("mMotherOccupation"));
                 }
                 if (jObj.getString("mHusbandOccupation").equalsIgnoreCase("null")){
-                    txt_hus_occupation.setVisibility(View.GONE);
+                    txt_hus_occupation.setText("-");
                 }else {
                     txt_hus_occupation.setText(jObj.getString("mHusbandOccupation"));
                 }
                 if (jObj.getString("mAgeatMarriage").equalsIgnoreCase("null")){
-                    txt_age_at_marriage.setVisibility(View.GONE);
+                    txt_age_at_marriage.setText("-");
                 }else {
                     txt_age_at_marriage.setText(jObj.getString("mAgeatMarriage"));
                 }
                 if (jObj.getString("mConsanguineousMarraige").equalsIgnoreCase("null")){
-                    txt_consanguineous_marraige.setVisibility(View.GONE);
+                    txt_consanguineous_marraige.setText("-");
                 }else {
                     txt_consanguineous_marraige.setText(jObj.getString("mConsanguineousMarraige"));
                 }
                 if (jObj.getString("mHistoryIllness").equalsIgnoreCase("null")){
-                    txt_history_of_illness.setVisibility(View.GONE);
+                    txt_history_of_illness.setText("-");
                 }else {
                     txt_history_of_illness.setText(jObj.getString("mHistoryIllness"));
                 }
                 if (jObj.getString("mHistoryIllnessFamily").equalsIgnoreCase("null")){
-                    txt_history_of_illness_family.setVisibility(View.GONE);
+                    txt_history_of_illness_family.setText("-");
                 }else {
                     txt_history_of_illness_family.setText(jObj.getString("mHistoryIllnessFamily"));
                 }
                 if (jObj.getString("mAnySurgeryBefore").equalsIgnoreCase("null")){
-                    txt_any_surgery_done.setVisibility(View.GONE);
+                    txt_any_surgery_done.setText("-");
                 }else {
                     txt_any_surgery_done.setText(jObj.getString("mAnySurgeryBefore"));
                 }
                 if (jObj.getString("mUseTobacco").equalsIgnoreCase("null")){
-                    txt_tobacco.setVisibility(View.GONE);
+                    txt_tobacco.setText("-");
                 }else {
                     txt_tobacco.setText(jObj.getString("mUseTobacco"));
                 }
                 if (jObj.getString("mUseAlcohol").equalsIgnoreCase("null")){
-                    txt_alcohol.setVisibility(View.GONE);
+                    txt_alcohol.setText("-");
                 }else {
                     txt_alcohol.setText(jObj.getString("mUseAlcohol"));
                 }
                 if (jObj.getString("mAnyMeditation").equalsIgnoreCase("null")){
-                    txt_on_any_medication.setVisibility(View.GONE);
+                    txt_on_any_medication.setText("-");
                 }else {
                     txt_on_any_medication.setText(jObj.getString("mAnyMeditation"));
                 }
                 if (jObj.getString("mAllergicToanyDrug").equalsIgnoreCase("null")){
-                    txt_allergic_to_any_drug.setVisibility(View.GONE);
+                    txt_allergic_to_any_drug.setText("-");
                 }else {
                     txt_allergic_to_any_drug.setText(jObj.getString("mAllergicToanyDrug"));
                 }
                 if (jObj.getString("mHistroyPreviousPreganancy").equalsIgnoreCase("null")){
-                    txt_history_of_previous_pregnancy.setVisibility(View.GONE);
+                    txt_history_of_previous_pregnancy.setText("-");
                 }else {
                     txt_history_of_previous_pregnancy.setText(jObj.getString("mHistroyPreviousPreganancy"));
                 }
                 if (jObj.getString("mLscsDone").equalsIgnoreCase("null")){
-                    txt_lscs_done.setVisibility(View.GONE);
+                    txt_lscs_done.setText("-");
                 }else {
                     txt_lscs_done.setText(jObj.getString("mLscsDone"));
                 }
                 if (jObj.getString("mAnyComplecationDuringPreganancy").equalsIgnoreCase("null")){
-                    txt_any_complication.setVisibility(View.GONE);
+                    txt_any_complication.setText("-");
                 }else {
                     txt_any_complication.setText(jObj.getString("mAnyComplecationDuringPreganancy"));
                 }
                 if (jObj.getString("mPresentPreganancyG").equalsIgnoreCase("null")){
-                    txt_g.setVisibility(View.GONE);
+                    txt_g.setText("-");
                 }else {
                     txt_g.setText(jObj.getString("mPresentPreganancyG"));
                 }
                 if (jObj.getString("mPresentPreganancyP").equalsIgnoreCase("null")){
-                    txt_p.setVisibility(View.GONE);
+                    txt_p.setText("-");
                 }else {
                     txt_p.setText(jObj.getString("mPresentPreganancyP"));
                 }
                 if (jObj.getString("mPresentPreganancyA").equalsIgnoreCase("null")){
-                    txt_a.setVisibility(View.GONE);
+                    txt_a.setText("-");
                 }else {
                     txt_a.setText(jObj.getString("mPresentPreganancyA"));
                 }
                 if (jObj.getString("mPresentPreganancyL").equalsIgnoreCase("null")){
-                    txt_l.setVisibility(View.GONE);
+                    txt_l.setText("-");
                 }else {
                     txt_l.setText(jObj.getString("mPresentPreganancyL"));
                 }
                 if (jObj.getString("mRegistrationWeek").equalsIgnoreCase("null")){
-                    txt_registration_week.setVisibility(View.GONE);
+                    txt_registration_week.setText("-");
                 }else {
                     txt_registration_week.setText(jObj.getString("mRegistrationWeek"));
                 }
                 if (jObj.getString("mANTT1").equalsIgnoreCase("null")){
-                    txt_an_tt_1st.setVisibility(View.GONE);
+                    txt_an_tt_1st.setText("-");
                 }else{
                     txt_an_tt_1st.setText(jObj.getString("mANTT1"));
                 }
                 if (jObj.getString("mANTT2").equalsIgnoreCase("null")){
-                    txt_an_tt_2nd.setVisibility(View.GONE);
+                    txt_an_tt_2nd.setText("-");
                 }else {
                     txt_an_tt_2nd.setText(jObj.getString("mANTT2"));
                 }
                 if (jObj.getString("mIFAStateDate").equalsIgnoreCase("null")){
-                    txt_ifa_start_date.setVisibility(View.GONE);
+                    txt_ifa_start_date.setText("-");
                 }else {
                     txt_ifa_start_date.setText(jObj.getString("mIFAStateDate"));
                 }
                 if (jObj.getString("mHeight").equalsIgnoreCase("null")){
-                    txt_height.setVisibility(View.GONE);
+                    txt_height.setText("-");
                 }else{
                     txt_height.setText(jObj.getString("mHeight"));
                 }
                 if (jObj.getString("mBloodGroup").equalsIgnoreCase("null")){
-                    txt_blood_group.setVisibility(View.GONE);
+                    txt_blood_group.setText("-");
                 }else {
                     txt_blood_group.setText(jObj.getString("mBloodGroup"));
                 }
                 if (jObj.getString("mHIV").equalsIgnoreCase("null")){
-                    txt_hiv.setVisibility(View.GONE);
+                    txt_hiv.setText("-");
                 }else {
                     txt_hiv.setText(jObj.getString("mHIV"));
                 }
                 if (jObj.getString("mVDRL").equalsIgnoreCase("null")){
-                    txt_vdrl.setVisibility(View.GONE);
+                    txt_vdrl.setText("-");
                 }else {
                     txt_vdrl.setText(jObj.getString("mVDRL"));
                 }
                 if (jObj.getString("mHepatitis").equalsIgnoreCase("null")){
-                    txt_Hepatitis.setVisibility(View.GONE);
+                    txt_Hepatitis.setText("-");
                 }else {
                     txt_Hepatitis.setText(jObj.getString("mHepatitis"));
                 }
                 if (jObj.getString("hBloodGroup").equalsIgnoreCase("null")){
-                    txt_hus_blood_group.setVisibility(View.GONE);
+                    txt_hus_blood_group.setText("-");
                 }else {
                     txt_hus_blood_group.setText(jObj.getString("hBloodGroup"));
                 }
                 if (jObj.getString("hVDRL").equalsIgnoreCase("null")){
-                    txt_hus_hiv.setVisibility(View.GONE);
+                    txt_hus_hiv.setText("-");
                 }else {
                     txt_hus_hiv.setText(jObj.getString("hVDRL"));
                 }
                 if (jObj.getString("hHIV").equalsIgnoreCase("null")){
-                    txt_hus_vdrl.setVisibility(View.GONE);
+                    txt_hus_vdrl.setText("-");
                 }else {
                     txt_hus_vdrl.setText(jObj.getString("hHIV"));
                 }
                 if (jObj.getString("hHepatitis").equalsIgnoreCase("null")){
-                    txt_hus_Hepatitis.setVisibility(View.GONE);
+                    txt_hus_Hepatitis.setText("-");
                 }else {
                     txt_hus_Hepatitis.setText(jObj.getString("hHepatitis"));
                 }
