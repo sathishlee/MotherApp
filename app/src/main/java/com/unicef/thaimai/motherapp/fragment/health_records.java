@@ -257,6 +257,9 @@ public class health_records extends Fragment implements GetVisitHelthRecordsView
         realm.beginTransaction();
         RealmResults<ANMotherVisitRealmModel> anMotherVisitRealmModels = realm.where(ANMotherVisitRealmModel.class).findAll();
         Log.e("realm Size ->", anMotherVisitRealmModels.size() + "");
+        if(anMotherVisitRealmModels.size()!=0){
+            ll_click_visit_view.setVisibility(View.VISIBLE);
+            txt_no_records.setVisibility(View.GONE);
 
         for (int i = 0; i < anMotherVisitRealmModels.size(); i++) {
             mhealthRecordResponseModel = new HealthRecordResponseModel.Visit_Records();
@@ -308,6 +311,10 @@ public class health_records extends Fragment implements GetVisitHelthRecordsView
 
             mhealthRecordList.add(mhealthRecordResponseModel);
             hAdapter.notifyDataSetChanged();
+        }
+        }else{
+            ll_click_visit_view.setVisibility(View.GONE);
+            txt_no_records.setVisibility(View.VISIBLE);
         }
         realm.commitTransaction();
     }

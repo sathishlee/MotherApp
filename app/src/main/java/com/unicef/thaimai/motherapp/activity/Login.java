@@ -354,6 +354,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
                     ll_vhn_not_found.setVisibility(View.GONE);
                     txt_vhn_nameotp.setText(jsonObject.getString("vhnName"));
                     str_call_vhn = jsonObject.getString("vhnMobile");
+                    AppConstants.PICME_ID_NUM = jsonObject.getString("picmeId");
                     preferenceData.storePicmeInfo(jsonObject.getString("picmeId"),jsonObject.getString("DOB"));
                 }else{
                     ll_vhn_not_found.setVisibility(View.VISIBLE);

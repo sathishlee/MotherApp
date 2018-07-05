@@ -20,7 +20,9 @@ public class AppConstants {
     public static String REFERAL_DATE = "";
     public static String REFERAL_ID = "";
     public static boolean CREATE_NEW_REFRAL = false;
+
     public  static  boolean isMainActivityOpen=true;
+
     public static int POP_UP_COUNT;
     public   static final String isMainActivityOpen_Count="minActivity_open_count";
 
@@ -55,6 +57,9 @@ public class AppConstants {
     public static final String MOTHER_STATUS = "status";
     public static final String DELIVERY_ID = "did";
 
+    public static String PICME_ID_NUM = "0";
+
+
 
     public static final String DEVICE_ID = "deviceId";
     public static final String GST_WEEK = "week";
@@ -78,6 +83,9 @@ public class AppConstants {
     public static final String PICME_ID_CHECK = "picmeId";
     public static final String MOTHER_DOB = "DOB";
     public static final String MOTHER_PHOTO = "mPhoto";
+
+    public static Boolean LANGUAGE_CHANGE_ENGLISH = false;
+
 
     public static ArrayList<VisitRecordsSingleResponseModel> mylist=null;
 

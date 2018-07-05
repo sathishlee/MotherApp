@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.unicef.thaimai.motherapp.R;
+import com.unicef.thaimai.motherapp.constant.AppConstants;
 
 import java.util.Locale;
 
@@ -70,6 +71,7 @@ public class Language extends AppCompatActivity {
                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                            public void onClick(DialogInterface dialog, int id) {
                                setLanguage("en");
+                               AppConstants.LANGUAGE_CHANGE_ENGLISH = false;
                            }
                        })
                        .setNegativeButton("No", new DialogInterface.OnClickListener() {

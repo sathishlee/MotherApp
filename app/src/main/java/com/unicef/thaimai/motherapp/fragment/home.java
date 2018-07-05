@@ -87,7 +87,7 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
     ProgressDialog pDialog;
 
     GetUserInfoPresenter getUserInfoPresenter;
-    LinearLayout low_risk, high_risk;
+    LinearLayout low_risk, high_risk, pn_low_risk,pn_high_risk;
 
     Activity mActivity;
     private static final int MAKE_CALL_PERMISSION_REQUEST_CODE = 1;
@@ -210,6 +210,9 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
         low_risk = (LinearLayout) view.findViewById(R.id.low_risk);
         high_risk = (LinearLayout) view.findViewById(R.id.high_risk);
 
+        pn_low_risk = (LinearLayout) view.findViewById(R.id.pn_low_risk);
+        pn_high_risk = (LinearLayout) view.findViewById(R.id.pn_high_risk);
+
         card_pn_block.setVisibility(View.GONE);
         picme_id.setText(strpicmeId);
         txt_username .setText(strname);
@@ -279,20 +282,58 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
         RealmResults<HomeRealmModel> homeRealmModels = realm.where(HomeRealmModel.class).findAll();
         for(int i=0; i < homeRealmModels.size();i++){
             HomeRealmModel homeRealmModel = homeRealmModels.get(i);
-            txt_lmp_date.setText(homeRealmModel.getMLMP());
-            txt_edd_date.setText(homeRealmModel.getMEDD());
-            txt_age.setText(preferenceData.getMotherAge());
-            txt_an_risk.setText(homeRealmModel.getMRiskStatus());
-            txt_weight.setText(homeRealmModel.getMWeight());
+            if(homeRealmModel.getMLMP().equalsIgnoreCase("null")){
+                txt_lmp_date.setText("-");
+            }else {
+                txt_lmp_date.setText(homeRealmModel.getMLMP());
+            }
+            if(homeRealmModel.getMEDD().equalsIgnoreCase("null")){
+                txt_edd_date.setText("-");
+            }else {
+                txt_edd_date.setText(homeRealmModel.getMEDD());
+            }
+            if(preferenceData.getMotherAge().equalsIgnoreCase("null")){
+                txt_age.setText("-");
+            }else {
+                txt_age.setText(preferenceData.getMotherAge());
+            }
+            if(homeRealmModel.getMRiskStatus().equalsIgnoreCase("null")){
+                txt_an_risk.setText("-");
+            }else {
+                if(homeRealmModel.getMRiskStatus().equalsIgnoreCase("HIGH")){
+                    low_risk.setVisibility(View.GONE);
+                    high_risk.setVisibility(View.VISIBLE);
+                    txt_an_risk.setText(homeRealmModel.getMRiskStatus());
+                    txt_an_risk.setTextColor(Color.parseColor("#fff44336"));
+                }else{
+                    low_risk.setVisibility(View.VISIBLE);
+                    high_risk.setVisibility(View.GONE);
+                    txt_an_risk.setText(homeRealmModel.getMRiskStatus());
+
+                }
+            }
+
+            if(homeRealmModel.getMWeight().equalsIgnoreCase("null")){
+                txt_weight.setText("-");
+            }else {
+                txt_weight.setText(homeRealmModel.getMWeight());
+            }
             String txtHusbandName = homeRealmModel.getMHusbandName();
             if(txtHusbandName.equalsIgnoreCase("null")){
-                txt_husb_name.setText("");
+                txt_husb_name.setText("-");
             }else{
                 txt_husb_name.setText(homeRealmModel.getMHusbandName());
             }
-
-            txt_gst_week.setText(preferenceData.getGstWeek());
-            txt_next_visit.setText(homeRealmModel.getANnextVisit());
+            if(preferenceData.getGstWeek().equalsIgnoreCase("null")){
+                txt_gst_week.setText("-");
+            }else {
+                txt_gst_week.setText(preferenceData.getGstWeek());
+            }
+            if(homeRealmModel.getANnextVisit().equalsIgnoreCase("null")){
+                txt_next_visit.setText("-");
+            }else {
+                txt_next_visit.setText(homeRealmModel.getANnextVisit());
+            }
             str_mobile_number_hsbn = homeRealmModel.getMHusbandMobile();
             if(str_mobile_number_hsbn.equalsIgnoreCase("null")){
                 img_call_husb.setVisibility(View.GONE);
@@ -301,7 +342,7 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
             }
             String vhnName = homeRealmModel.getVhnName();
             if(vhnName.equalsIgnoreCase("null")){
-                txt_vhn_name.setText("");
+                txt_vhn_name.setText("-");
             }else{
                 txt_vhn_name.setText(homeRealmModel.getVhnName());
             }
@@ -313,7 +354,7 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
             }
             String awwName = homeRealmModel.getAwwName();
             if(awwName.equalsIgnoreCase("null")){
-                txt_aww_name.setText("");
+                txt_aww_name.setText("-");
             }else{
                 txt_aww_name.setText(homeRealmModel.getAwwName());
             }
@@ -325,7 +366,7 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
             }
             String phcName = homeRealmModel.getPhcName();
             if(phcName.equalsIgnoreCase("null")){
-                txt_phc_name.setText("");
+                txt_phc_name.setText("-");
             }else{
                 txt_phc_name.setText(homeRealmModel.getPhcName());
             }
@@ -357,12 +398,47 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
             strDeliveryDate = homeRealmModel.getDeleveryStatus();
             if(strDeliveryDate.equalsIgnoreCase("1")){
                 card_pn_block.setVisibility(View.VISIBLE);
-                txt_pn_risk.setText(homeRealmModel.getMRiskStatus());
-                txt_delivery_date.setText(homeRealmModel.getDeleveryDate());
-                txt_birth_weight.setText(homeRealmModel.getdBirthWeight());
-                txt_type_delivery.setText(homeRealmModel.getDeleveryType());
-                txt_maturity.setText(homeRealmModel.getMeaturityWeeks());
-                txt_pn_next_visit.setText(homeRealmModel.getPnVisit());
+
+                if(homeRealmModel.getMRiskStatus().equalsIgnoreCase("null")){
+                    txt_pn_risk.setText("-");
+                }else{
+                    if(homeRealmModel.getMRiskStatus().equalsIgnoreCase("HIGH")){
+                        pn_low_risk.setVisibility(View.GONE);
+                        pn_high_risk.setVisibility(View.VISIBLE);
+                        txt_pn_risk.setText(homeRealmModel.getMRiskStatus());
+                        txt_pn_risk.setTextColor(Color.parseColor("#fff44336"));
+                    }else{
+                        pn_low_risk.setVisibility(View.VISIBLE);
+                        pn_high_risk.setVisibility(View.GONE);
+                        txt_pn_risk.setText(homeRealmModel.getMRiskStatus());
+                    }
+                }
+
+                if(homeRealmModel.getDeleveryDate().equalsIgnoreCase("null")){
+                    txt_delivery_date.setText("-");
+                }else {
+                    txt_delivery_date.setText(homeRealmModel.getDeleveryDate());
+                }
+                if(homeRealmModel.getdBirthWeight().equalsIgnoreCase("null")){
+                    txt_birth_weight.setText("-");
+                }else {
+                    txt_birth_weight.setText(homeRealmModel.getdBirthWeight());
+                }
+                if(homeRealmModel.getDeleveryType().equalsIgnoreCase("null")){
+                    txt_type_delivery.setText("-");
+                }else {
+                    txt_type_delivery.setText(homeRealmModel.getDeleveryType());
+                }
+                if(homeRealmModel.getMeaturityWeeks().equalsIgnoreCase("null")){
+                    txt_maturity.setText("-");
+                }else {
+                    txt_maturity.setText(homeRealmModel.getMeaturityWeeks());
+                }
+                if(homeRealmModel.getPnVisit().equalsIgnoreCase("null")){
+                    txt_pn_next_visit.setText("-");
+                }else {
+                    txt_pn_next_visit.setText(homeRealmModel.getPnVisit());
+                }
 
             }
             else{
@@ -438,6 +514,17 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
                     card_pn_block.setVisibility(View.VISIBLE);
                     JSONObject jsonObject = jObj.getJSONObject("PNnextVisit");
                     homeRealmModel.setMRiskStatus(jObj.getString("mRiskStatus"));
+
+                    if(jObj.getString("mRiskStatus").equalsIgnoreCase("HIGH")){
+                        pn_low_risk.setVisibility(View.GONE);
+                        pn_high_risk.setVisibility(View.VISIBLE);
+                        txt_pn_risk.setText(homeRealmModel.getMRiskStatus());
+                        txt_pn_risk.setTextColor(Color.parseColor("#fff44336"));
+                    }else{
+                        pn_low_risk.setVisibility(View.VISIBLE);
+                        pn_high_risk.setVisibility(View.GONE);
+                        txt_pn_risk.setText(homeRealmModel.getMRiskStatus());
+                    }
                     homeRealmModel.setDeleveryDate(jsonObject.getString("deleveryDate"));
                     homeRealmModel.setdBirthWeight(jsonObject.getString("childWeight"));
                     homeRealmModel.setDeleveryType(jsonObject.getString("deleveryType"));
@@ -467,20 +554,59 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
         RealmResults<HomeRealmModel> homeRealmModels = realm.where(HomeRealmModel.class).findAll();
         for(int i=0; i < homeRealmModels.size();i++){
             HomeRealmModel homeRealmModel = homeRealmModels.get(i);
-            txt_lmp_date.setText(homeRealmModel.getMLMP());
-            txt_edd_date.setText(homeRealmModel.getMEDD());
-            txt_age.setText(preferenceData.getMotherAge());
-            txt_an_risk.setText(homeRealmModel.getMRiskStatus());
-            txt_weight.setText(homeRealmModel.getMWeight());
+
+            if(homeRealmModel.getMLMP().equalsIgnoreCase("null")){
+                txt_lmp_date.setText("-");
+            }else {
+                txt_lmp_date.setText(homeRealmModel.getMLMP());
+            }
+            if(homeRealmModel.getMEDD().equalsIgnoreCase("null")){
+                txt_edd_date.setText("-");
+            }else {
+                txt_edd_date.setText(homeRealmModel.getMEDD());
+            }
+            if(preferenceData.getMotherAge().equalsIgnoreCase("null")){
+                txt_age.setText("-");
+            }else {
+                txt_age.setText(preferenceData.getMotherAge());
+            }
+            if(homeRealmModel.getMRiskStatus().equalsIgnoreCase("null")){
+                txt_an_risk.setText("-");
+            }else {
+                if(homeRealmModel.getMRiskStatus().equalsIgnoreCase("HIGH")){
+                    low_risk.setVisibility(View.GONE);
+                    high_risk.setVisibility(View.VISIBLE);
+                    txt_an_risk.setText(homeRealmModel.getMRiskStatus());
+                    txt_an_risk.setTextColor(Color.parseColor("#fff44336"));
+                }else{
+                    low_risk.setVisibility(View.VISIBLE);
+                    high_risk.setVisibility(View.GONE);
+                    txt_an_risk.setText(homeRealmModel.getMRiskStatus());
+                }
+            }
+
+
+            if(homeRealmModel.getMWeight().equalsIgnoreCase("null")){
+                txt_weight.setText("-");
+            }else {
+                txt_weight.setText(homeRealmModel.getMWeight());
+            }
             String txtHusbandName = homeRealmModel.getMHusbandName();
             if(txtHusbandName.equalsIgnoreCase("null")){
-                txt_husb_name.setText("");
+                txt_husb_name.setText("-");
             }else{
                 txt_husb_name.setText(homeRealmModel.getMHusbandName());
             }
-
-            txt_gst_week.setText(preferenceData.getGstWeek());
-            txt_next_visit.setText(homeRealmModel.getANnextVisit());
+            if(preferenceData.getGstWeek().equalsIgnoreCase("null")){
+                txt_gst_week.setText("-");
+            }else {
+                txt_gst_week.setText(preferenceData.getGstWeek());
+            }
+            if(homeRealmModel.getANnextVisit().equalsIgnoreCase("null")){
+                txt_next_visit.setText("-");
+            }else {
+                txt_next_visit.setText(homeRealmModel.getANnextVisit());
+            }
             str_mobile_number_hsbn = homeRealmModel.getMHusbandMobile();
             if(str_mobile_number_hsbn.equalsIgnoreCase("null")){
                 img_call_husb.setVisibility(View.GONE);
@@ -489,7 +615,7 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
             }
             String vhnName = homeRealmModel.getVhnName();
             if(vhnName.equalsIgnoreCase("null")){
-                txt_vhn_name.setText("");
+                txt_vhn_name.setText("-");
             }else{
                 txt_vhn_name.setText(homeRealmModel.getVhnName());
             }
@@ -501,7 +627,7 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
             }
             String awwName = homeRealmModel.getAwwName();
             if(awwName.equalsIgnoreCase("null")){
-                txt_aww_name.setText("");
+                txt_aww_name.setText("-");
             }else{
                 txt_aww_name.setText(homeRealmModel.getAwwName());
             }
@@ -513,7 +639,7 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
             }
             String phcName = homeRealmModel.getPhcName();
             if(phcName.equalsIgnoreCase("null")){
-                txt_phc_name.setText("");
+                txt_phc_name.setText("-");
             }else{
                 txt_phc_name.setText(homeRealmModel.getPhcName());
             }
@@ -524,7 +650,6 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
                 img_call_phc.setVisibility(View.VISIBLE);
             }
             str_mPhoto = homeRealmModel.getMPhoto();
-//            str_mPhoto = preferenceData.getMotherPhoto();
 
             if(TextUtils.isEmpty(str_mPhoto)){
                 cardview_image.setImageResource(R.drawable.girl_1);
@@ -546,12 +671,43 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
             strDeliveryDate = homeRealmModel.getDeleveryStatus();
             if(strDeliveryDate.equalsIgnoreCase("1")){
                 card_pn_block.setVisibility(View.VISIBLE);
-                txt_pn_risk.setText(homeRealmModel.getMRiskStatus());
-                txt_delivery_date.setText(homeRealmModel.getDeleveryDate());
-                txt_birth_weight.setText(homeRealmModel.getdBirthWeight());
-                txt_type_delivery.setText(homeRealmModel.getDeleveryType());
-                txt_maturity.setText(homeRealmModel.getMeaturityWeeks());
-                txt_pn_next_visit.setText(homeRealmModel.getPnVisit());
+
+                if(homeRealmModel.getMRiskStatus().equalsIgnoreCase("HIGH")){
+                    pn_low_risk.setVisibility(View.GONE);
+                    pn_high_risk.setVisibility(View.VISIBLE);
+                    txt_pn_risk.setText(homeRealmModel.getMRiskStatus());
+                    txt_pn_risk.setTextColor(Color.parseColor("#fff44336"));
+                }else{
+                        pn_low_risk.setVisibility(View.VISIBLE);
+                        pn_high_risk.setVisibility(View.GONE);
+                        txt_pn_risk.setText(homeRealmModel.getMRiskStatus());
+                }
+                if(homeRealmModel.getDeleveryDate().equalsIgnoreCase("null")){
+                    txt_delivery_date.setText("-");
+                }else {
+                    txt_delivery_date.setText(homeRealmModel.getDeleveryDate());
+                }
+                if(homeRealmModel.getdBirthWeight().equalsIgnoreCase("null")){
+                    txt_birth_weight.setText("-");
+                }else {
+                    txt_birth_weight.setText(homeRealmModel.getdBirthWeight());
+                }
+                if(homeRealmModel.getDeleveryType().equalsIgnoreCase("null")){
+                    txt_type_delivery.setText("-");
+                }else {
+                    txt_type_delivery.setText(homeRealmModel.getDeleveryType());
+                }
+                if(homeRealmModel.getMeaturityWeeks().equalsIgnoreCase("null")){
+                    txt_maturity.setText("-");
+                }else {
+                    txt_maturity.setText(homeRealmModel.getMeaturityWeeks());
+                }
+                if(homeRealmModel.getPnVisit().equalsIgnoreCase("null")){
+                    txt_pn_next_visit.setText("-");
+                }else {
+                    txt_pn_next_visit.setText(homeRealmModel.getPnVisit());
+                }
+
 
             }
             else{

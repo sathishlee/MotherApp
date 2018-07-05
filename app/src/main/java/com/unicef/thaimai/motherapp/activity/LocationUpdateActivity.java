@@ -164,7 +164,7 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
                     );
                 }
             }else{
-
+                Toast.makeText(getApplicationContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
             }
 
 

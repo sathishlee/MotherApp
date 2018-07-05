@@ -210,10 +210,10 @@ public class MainActivity extends AppCompatActivity
 //        TextView text3 = (TextView) dialog.findViewById(R.id.txt_msg_welcome3);
         TextView text4 = (TextView) dialog.findViewById(R.id.txt_msg_welcome4);
         text.setText("Good Morning Mrs. " + preferenceData.getMotherName() + ".");
-        text1.setText(circle+getString(R.string.hope_you_are_doing_well));
+        text1.setText(circle+ getString(R.string.hope_you_are_doing_well));
         text2.setText(circle+ "  This is your " + setSufix(preferenceData.getGstWeek()) + " Week of pregnancy." + ".");
 //        text3.setText(circle+getString(R.string.this_is_the_period_of_child_monthly_development));
-        text4.setText(circle+getString(R.string.if_you_are_not_feeling_well_please));
+        text4.setText(circle+ getString(R.string.if_you_are_not_feeling_well_please));
 
         TextView dialogClickHere = (TextView) dialog.findViewById(R.id.btn_click_here);
 

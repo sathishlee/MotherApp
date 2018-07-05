@@ -2,9 +2,12 @@ package com.unicef.thaimai.motherapp.app;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.support.multidex.MultiDex;
+import android.util.Log;
 
 import com.unicef.thaimai.motherapp.broadCastReceivers.ConnectivityReceiver;
+import com.unicef.thaimai.motherapp.utility.LocaleHelper;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -46,6 +49,7 @@ public class MyApplication extends Application {
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
+//        super.attachBaseContext(LocaleHelper.onAttach(base, "en"));
         MultiDex.install(this);
     }
 
