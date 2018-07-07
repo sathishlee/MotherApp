@@ -459,7 +459,7 @@ public class MainActivity extends AppCompatActivity
             Intent i = new Intent(getApplicationContext(), ImmunizationActivity.class);
             startActivity(i);
         } else if (id == R.id.health_tips) {
-            Intent i = new Intent(getApplicationContext(), HealthTipsActivity.class);
+            Intent i = new Intent(getApplicationContext(), HealthTips.class);
             startActivity(i);
         } else if (id == R.id.pn_hbnc_visit_entry) {
             Intent v = new Intent(getApplicationContext(), PNHBNCVisitEntry.class);

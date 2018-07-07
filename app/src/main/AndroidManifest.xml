@@ -206,6 +206,9 @@
         <activity android:name=".activity.LowerVersionActivity"
             android:theme="@style/AppTheme1"/>
 
+        <activity android:name=".activity.HealthTips"
+            android:theme="@style/AppTheme1"/>
+
         <service android:name=".utility.MyFirebaseInstanceIDService">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />

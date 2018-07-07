@@ -45,7 +45,7 @@
                         android:layout_height="25dp"
                         android:contentDescription="@string/turn_on_location"
                         android:layout_gravity="top|end"
-                        android:background="@drawable/noti_location" />
+                        android:background="@drawable/visit_icon" />
 
                 </LinearLayout>
 
@@ -61,14 +61,16 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/txt_message"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="2dp"
-                android:text="Tamil Selvi Mother is Migrated from here Location to your location"
+                android:text="Dear Mother your visit is Scheduled on (20-05-2018)."
                 android:textColor="@color/text_primary"
                 android:textSize="@dimen/text_label" />
 
             <TextView
+                android:id="@+id/txt_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="2dp"

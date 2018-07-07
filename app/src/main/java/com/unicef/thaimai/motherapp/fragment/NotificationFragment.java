@@ -1,12 +1,8 @@
 package com.unicef.thaimai.motherapp.fragment;
 
 import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -15,13 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
-import com.unicef.thaimai.motherapp.Presenter.GetUserInfoPresenter;
 import com.unicef.thaimai.motherapp.Presenter.NotificationPresenter;
 import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.activity.MainActivity;
-import com.unicef.thaimai.motherapp.adapter.MyAdapter;
+import com.unicef.thaimai.motherapp.adapter.NotificationAdapter;
 import com.unicef.thaimai.motherapp.model.NotificationListResponseModel;
-import com.unicef.thaimai.motherapp.model.NotificationModel;
 import com.unicef.thaimai.motherapp.view.NotificationViews;
 
 import org.json.JSONArray;
@@ -29,12 +23,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class NotificationFragment extends Fragment implements NotificationViews {
 
-    MyAdapter mAdapter;
+    NotificationAdapter mAdapter;
     ArrayList<NotificationListResponseModel.NotificationList> moviesList;
     NotificationListResponseModel.NotificationList movie;
     LinearLayoutManager mLayoutManager;
@@ -72,7 +65,7 @@ public class NotificationFragment extends Fragment implements NotificationViews 
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
         moviesList = new ArrayList<>();
-        mAdapter = new MyAdapter(moviesList);
+        mAdapter = new NotificationAdapter(moviesList);
         mRecyclerView.setAdapter(mAdapter);
         return view;
 
