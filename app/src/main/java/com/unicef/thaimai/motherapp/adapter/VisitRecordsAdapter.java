@@ -2,6 +2,7 @@ package com.unicef.thaimai.motherapp.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -11,6 +12,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.unicef.thaimai.motherapp.R;
+import com.unicef.thaimai.motherapp.activity.FullImageViewActivity;
+import com.unicef.thaimai.motherapp.activity.ImageFullViewActivity;
+import com.unicef.thaimai.motherapp.constant.Apiconstants;
 import com.unicef.thaimai.motherapp.model.responsemodel.VisitRecordsFullResponseModel;
 import com.unicef.thaimai.motherapp.model.responsemodel.VisitRecordsSingleResponseModel;
 
@@ -53,7 +57,7 @@ public class VisitRecordsAdapter extends RecyclerView.Adapter<VisitRecordsAdapte
 
         final String titleName = visitRecordsFullResponseModel.getTitle();
 
-        ArrayList<VisitRecordsSingleResponseModel> singleResponseModels = visitRecordsFullResponseModel.getVisitRecordsSingleResponseModels();
+        final ArrayList<VisitRecordsSingleResponseModel> singleResponseModels = visitRecordsFullResponseModel.getVisitRecordsSingleResponseModels();
 
 //        ArrayList arrayList = visitRecordsFullResponseModel.getVisitRecordsSingleResponseModels();
 
@@ -70,6 +74,19 @@ public class VisitRecordsAdapter extends RecyclerView.Adapter<VisitRecordsAdapte
         visitHeader.recyclerView.setAdapter(adapter);
 
         visitHeader.recyclerView.setNestedScrollingEnabled(false);
+
+        visitHeader.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /*Intent intent= new Intent(context,ImageFullViewActivity.class);
+               *//*for (int i=0;i<singleResponseModels.size();i++){
+//                   Apiconstants.VISIT_REPORTS_URL+preferenceData.getPicmeId()+"/"+visitRecordsSingleResponseModel.getImage()
+                   intent.putExtra("image"+i,singleResponseModels.get(i)+"");
+               }*//*
+//                intent.putExtra("mylist", singleResponseModels);
+                context.startActivity(intent);*/
+            }
+        });
     }
     @Override
     public int getItemCount() {

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.unicef.thaimai.motherapp.activity.GetVerificationCodeActivity"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/card_view"
+        android:visibility="visible"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:paddingLeft="4.0dip"
+        android:paddingRight="4.0dip"
+        android:layout_margin="2dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+       >
+        <View
+            android:layout_gravity="center"
+            android:background="@drawable/drw_hori_dashed"
+            android:layout_width="0.0dip"
+            android:layout_height="5.0dp"
+            android:layout_weight="1.0"
+            android:layerType="software" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_rounded_rectangle_bright_blue">
+
+            <TextView
+                android:textSize="@dimen/text_secondary"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:gravity="center"
+                android:paddingStart="16.0dip"
+                android:paddingEnd="1.0dip"
+                android:paddingTop="4.0dip"
+                android:paddingBottom="4.0dip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8.0dip"
+                android:layout_marginRight="8.0dip"
+                android:text="schedule your visit " />
+
+            <!--<TextView
+                android:id="@+id/txt_next_visit"
+                android:textSize="@dimen/text_secondary"
+                android:textColor="@android:color/white"
+                android:gravity="center"
+                android:paddingTop="4.0dip"
+                android:paddingRight="16.0dip"
+                android:paddingBottom="4.0dip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8.0dip"
+                android:layout_marginRight="8.0dip"
+                android:text="14/3/2018"
+                android:textStyle="bold" />-->
+
+        </LinearLayout>
+
+
+        <View
+            android:layout_gravity="center"
+            android:background="@drawable/drw_hori_dashed"
+            android:layout_width="0.0dip"
+            android:layout_height="5.0dp"
+            android:layout_weight="1.0"
+            android:layerType="software" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="5dp"
+        android:weightSum="2">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/type_of_visit"
+            android:textColor="@color/secondary"
+            android:textSize="@dimen/text_primary"
+            android:textStyle="bold"
+            android:layout_weight="1"/>
+
+        <Spinner
+            android:id="@+id/sp_type_of_visit"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_secondary"
+            android:layout_weight="1"
+            android:drawSelectorOnTop="true"
+            android:entries="@array/type_of_visit"
+            style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
+
+    </LinearLayout><LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="5dp"
+        android:weightSum="2">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="No of Visit"
+            android:textColor="@color/secondary"
+            android:textSize="@dimen/text_primary"
+            android:textStyle="bold"
+            android:layout_weight="1"/>
+
+        <Spinner
+            android:id="@+id/sp_no_of_visit"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_secondary"
+            android:layout_weight="1"
+            android:drawSelectorOnTop="true"
+            android:entries="@array/type_of_visit"
+            style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/select_date"
+            android:layout_gravity="center"
+            android:layout_marginLeft="25dp"/>
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="25dp"
+            android:src="@android:drawable/ic_menu_my_calendar"/>
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:background="@drawable/button_backgroumd"
+        android:text="Get visit verification code"
+        android:textColor="#ffffff"
+        android:id="@+id/btn_submit"
+        android:padding="10dp"/>
+
+
+</LinearLayout>

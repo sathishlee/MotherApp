@@ -210,9 +210,6 @@ public class DeliveryEntryPresenter implements DeliveryEntryInteractor {
                 params.put("dpicmeId",strPicmeid);
                 params.put("mid",strMid);
 //                params.put("did",strDid);
-
-                Log.d("params--->",params.toString());
-
                 return params;
             }
             //            public String getBodyContentType(){

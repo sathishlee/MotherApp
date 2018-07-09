@@ -471,7 +471,13 @@ public class MainActivity extends AppCompatActivity
         }
 
         else if (id == R.id.delivery_details_entry) {
-            Intent i = new Intent(getApplicationContext(), DeliveryDetailsActivityEntry.class);
+//            Intent i = new Intent(getApplicationContext(), DeliveryDetailsActivityEntry.class);
+            Intent i = new Intent(getApplicationContext(), DeliveryDetailsView.class);
+            startActivity(i);
+        }
+
+        else if (id == R.id.get_code) {
+            Intent i = new Intent(getApplicationContext(), GetVerificationCodeActivity.class);
             startActivity(i);
         }
 

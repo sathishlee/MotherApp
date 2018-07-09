@@ -138,9 +138,6 @@ public class DeliveryEditActivity extends AppCompatActivity implements View.OnCl
         til_bcg_date = (TextInputLayout) findViewById(R.id.til_bcg_date);
         til_opv_date = (TextInputLayout) findViewById(R.id.til_opv_date);
         til_hepb_date = (TextInputLayout) findViewById(R.id.til_hepb_date);
-
-
-
     }
     private void onClickListner() {
         btn_delivery_submit.setOnClickListener(this);

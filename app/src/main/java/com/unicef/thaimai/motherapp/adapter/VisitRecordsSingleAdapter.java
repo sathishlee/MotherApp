@@ -47,6 +47,12 @@ public class VisitRecordsSingleAdapter extends RecyclerView.Adapter<VisitRecords
     public VisitRecordsSingleAdapter(ArrayList<VisitRecordsSingleResponseModel> visitRecordsSingleResponseModels, Context context){
         this.context = context;
         this.visitRecordsSingleResponseModels = visitRecordsSingleResponseModels;
+//        AppConstants.mylist.addAll(visitRecordsSingleResponseModels);
+
+       /* for (int i=0; i<visitRecordsSingleResponseModels.size();i++){
+            AppConstants.mylist.add(visitRecordsSingleResponseModels.get(i));
+
+        }*/
     }
 
     @Override

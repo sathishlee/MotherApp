@@ -285,6 +285,7 @@
                 android:layout_weight="1"/>
 
             <Spinner
+                android:visibility="gone"
                 android:id="@+id/sp_infant_eyes"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -294,7 +295,10 @@
                 android:drawSelectorOnTop="true"
                 android:entries="@array/array_eye"
                 style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
-
+            <com.suthishan.multiselectspineer.MultiSelectSpinner
+                android:id="@+id/mySpinner1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
         </LinearLayout>
 
 
@@ -482,7 +486,13 @@
                 android:layout_weight="1"
                 android:drawSelectorOnTop="true"
                 android:entries="@array/complaints"
-                style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+                android:visibility="gone"/>
+            <com.suthishan.multiselectspineer.MultiSelectSpinner
+                android:id="@+id/mySpinner2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+            />
 
         </LinearLayout>
 

@@ -13,6 +13,7 @@ import android.util.Log;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.unicef.thaimai.motherapp.R;
+import com.unicef.thaimai.motherapp.activity.FcmMessageDetails;
 import com.unicef.thaimai.motherapp.activity.MainActivity;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
@@ -23,19 +24,22 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
 
+        String click_action = remoteMessage.getNotification().getClickAction();
+            Log.d(MyFirebaseMessagingService.class.getSimpleName(), "Message data payload: " + remoteMessage.getData());
 
-        sendNotification(remoteMessage.getNotification().getBody());
 
+        sendNotification(remoteMessage.getNotification().getBody(),click_action);
 
 
     }
 
-        private void sendNotification(String message){
-            Log.e(MyFirebaseMessagingService.class.getSimpleName(), "firebase notification"+message);
-            Intent i = new Intent(this, MainActivity.class);
-            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        private void sendNotification(String message, String click_action){
+            Intent intent = new Intent(this, FcmMessageDetails.class);
+//            Intent intent = new Intent(click_action);
+            intent.putExtra("message",message);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
-            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, i, PendingIntent.FLAG_ONE_SHOT);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
 
             Uri u = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 

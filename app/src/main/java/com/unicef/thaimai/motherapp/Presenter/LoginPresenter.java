@@ -52,7 +52,7 @@ public class LoginPresenter implements LoginInteractor {
         StringRequest strReq = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-            view.hideProgress();
+                view.hideProgress();
                 Log.d("success",response);
                 view.loginSuccess(response.toString());
             }

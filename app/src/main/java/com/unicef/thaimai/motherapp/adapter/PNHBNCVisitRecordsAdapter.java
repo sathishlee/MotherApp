@@ -79,12 +79,13 @@ public class PNHBNCVisitRecordsAdapter extends PagerAdapter {
         if(mhealthRecordResponseModel.getCTemp().equalsIgnoreCase("null")){
             txt_temp.setText("-");
         }else{
+
             txt_temp.setText(mhealthRecordResponseModel.getCTemp());
         }
         if(mhealthRecordResponseModel.getPnBPDiastolic().equalsIgnoreCase("null")&&mhealthRecordResponseModel.getPnBPSystolic().equalsIgnoreCase("null")){
             txt_mother_bp.setText("-");
         }else{
-            txt_mother_bp.setText(mhealthRecordResponseModel.getPnBPDiastolic()+"/"+mhealthRecordResponseModel.getPnBPSystolic());
+            txt_mother_bp.setText(mhealthRecordResponseModel.getPnBPDiastolic()+ " mm Hg"+"/"+mhealthRecordResponseModel.getPnBPSystolic()+ " mm Hg");
         }
         if(mhealthRecordResponseModel.getPnPulseRate().equalsIgnoreCase("null")){
             txt_mother_pluse_rate.setText("-");

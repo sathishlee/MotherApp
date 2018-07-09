@@ -4,8 +4,6 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-import com.unicef.thaimai.motherapp.activity.MainActivity;
-
 /**
  * Created by sathish on 3/15/2018.
  */

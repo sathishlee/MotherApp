@@ -37,30 +37,31 @@ public class NotificationListResponseModel {
     }
 
     public static class NotificationList {
-        private String dateTime;
-        private String mid;
-        private String subject;
-        private String message;
-        private String noteStatus;
+
+        /*{
+    "status": 1,
+    "message": "Notification Received",
+    "alertList": [
+        {
+            "message": "OTP CODE :8563   date:12-06-2018 16:34:18 picmeId:133000426375 for mother login",
+            "noteId": "53",
+            "clickHeremId": null,
+            "subject": "Mother OTP Alert",
+            "noteStartDateTime": "2018-06-12 16:34:19"
+        }
+    ]
+}*/
         private String noteStartDateTime;
+        private String subject;
         private String noteId;
-        private String mPicmeId;
-        private String mName;
+        private String message;
 
-        public String getDateTime() {
-            return dateTime;
+        public String getNoteStartDateTime() {
+            return noteStartDateTime;
         }
 
-        public void setDateTime(String dateTime) {
-            this.dateTime = dateTime;
-        }
-
-        public String getMid() {
-            return mid;
-        }
-
-        public void setMid(String mid) {
-            this.mid = mid;
+        public void setNoteStartDateTime(String noteStartDateTime) {
+            this.noteStartDateTime = noteStartDateTime;
         }
 
         public String getSubject() {
@@ -71,30 +72,6 @@ public class NotificationListResponseModel {
             this.subject = subject;
         }
 
-        public String getMessage() {
-            return message;
-        }
-
-        public void setMessage(String message) {
-            this.message = message;
-        }
-
-        public String getNoteStatus() {
-            return noteStatus;
-        }
-
-        public void setNoteStatus(String noteStatus) {
-            this.noteStatus = noteStatus;
-        }
-
-        public String getNoteStartDateTime() {
-            return noteStartDateTime;
-        }
-
-        public void setNoteStartDateTime(String noteStartDateTime) {
-            this.noteStartDateTime = noteStartDateTime;
-        }
-
         public String getNoteId() {
             return noteId;
         }
@@ -103,20 +80,12 @@ public class NotificationListResponseModel {
             this.noteId = noteId;
         }
 
-        public String getMPicmeId() {
-            return mPicmeId;
+        public String getMessage() {
+            return message;
         }
 
-        public void setMPicmeId(String mPicmeId) {
-            this.mPicmeId = mPicmeId;
-        }
-
-        public String getMName() {
-            return mName;
-        }
-
-        public void setMName(String mName) {
-            this.mName = mName;
+        public void setMessage(String message) {
+            this.message = message;
         }
     }
 }

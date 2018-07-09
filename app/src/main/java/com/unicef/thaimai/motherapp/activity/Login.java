@@ -412,8 +412,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
                         jObj.getString("motherStatus"), jObj.getString("phcId"), jObj.getString("vhnId"),
                         jObj.getString("awwId"), jObj.getString("mGesWeek"), jObj.getString("vhnMobile"));
                 preferenceData.setLogin(true);
-               preferenceData.setMainScreenOpen(0);
-               AppConstants.POP_UP_COUNT=0;
+                preferenceData.setMainScreenOpen(0);
+                AppConstants.POP_UP_COUNT=0;
                 if (message.equalsIgnoreCase("Successfully Logined")) {
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     finish();

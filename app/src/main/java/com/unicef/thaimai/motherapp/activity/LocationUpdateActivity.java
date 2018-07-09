@@ -201,6 +201,7 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
     @Override
     public void onResume() {
         super.onResume();
+//        registerReceiver(gpsReceiver, intentFilter);
         startStep1();
     }
 

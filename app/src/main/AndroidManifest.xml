@@ -9,10 +9,11 @@
 
     //Camera View
     <uses-feature android:name="android.hardware.camera2" />
-    <uses-feature android:name="android.hardware.camera.autofocus"
-                  android:required="false" />
-    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
 
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.SEND_SMS" />
@@ -24,12 +25,15 @@
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
-    <uses-permission android:name="android.permission.GET_TASKS"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.CLEAR_APP_CACHE" />
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission
+        android:name="android.permis sion.CLEAR_APP_CACHE"
+        tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-
     <uses-permission
         android:name="android.permission.WRITE_SECURE_SETTINGS"
         tools:ignore="ProtectedPermissions" />
@@ -41,16 +45,15 @@
         android:name="com.google.android.geo.API_KEY"
         android:value="@string/google_maps_key" />
 
-    <!--<provider-->
-        <!--android:name="android.support.v4.content.FileProvider"-->
-        <!--android:authorities="<your provider authority>"-->
-    <!--android:exported="false"-->
-    <!--android:grantUriPermissions="true">-->
-    <!--<meta-data-->
-        <!--android:name="android.support.FILE_PROVIDER_PATHS"-->
-        <!--android:resource="@xml/file_provider_paths"/>-->
-<!--</provider>-->
-
+    <!-- <provider -->
+    <!-- android:name="android.support.v4.content.FileProvider" -->
+    <!-- android:authorities="<your provider authority>" -->
+    <!-- android:exported="false" -->
+    <!-- android:grantUriPermissions="true"> -->
+    <!-- <meta-data -->
+    <!-- android:name="android.support.FILE_PROVIDER_PATHS" -->
+    <!-- android:resource="@xml/file_provider_paths"/> -->
+    <!-- </provider> -->
     <application
         android:name=".app.MyApplication"
         android:allowBackup="true"
@@ -71,9 +74,7 @@
         <activity
             android:name=".activity.Login"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme">
-
-        </activity>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".activity.LocationUpdateActivity"
             android:theme="@style/AppTheme1">
@@ -164,47 +165,38 @@
 
         <activity
             android:name=".activity.NearHospitalActivity"
-            android:theme="@style/AppTheme">
-
-        </activity>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".activity.FullImageViewActivity"
-       >
-            <!--android:theme="@style/AppTheme.NoActionBar"-->
-        </activity>
-
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.DeliveryDetailsView"
-            android:theme="@style/AppTheme">
-
-        </activity>
-
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".activity.DeliveryEditActivity"
-            android:theme="@style/AppTheme">
-
-        </activity>
-
-        <activity android:name=".activity.ForgotPasswordActivity"
-            android:theme="@style/AppTheme"/>
-        <activity android:name=".activity.NoInternetConnection"
-            android:theme="@style/AppTheme1"/>
-
-        <activity android:name=".activity.TurnOnGpsLocation"
-            android:theme="@style/AppTheme1"/>
-
-        <activity android:name=".ImageSelectedActivity"
-            android:theme="@style/AppTheme1"/>
-
-        <activity android:name=".activity.ViewReportsActivity"
-            android:theme="@style/AppTheme"/>
-
-        <activity android:name=".activity.VideoViewActivity"
-            android:theme="@style/AppTheme"
-            android:screenOrientation="landscape"/>
-
-        <activity android:name=".activity.LowerVersionActivity"
-            android:theme="@style/AppTheme1"/>
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.ForgotPasswordActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.NoInternetConnection"
+            android:theme="@style/AppTheme1" />
+        <activity
+            android:name=".activity.TurnOnGpsLocation"
+            android:theme="@style/AppTheme1" />
+        <activity
+            android:name=".ImageSelectedActivity"
+            android:theme="@style/AppTheme1" />
+        <activity
+            android:name=".activity.ViewReportsActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.VideoViewActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.LowerVersionActivity"
+            android:theme="@style/AppTheme1" />
 
         <activity android:name=".activity.HealthTips"
             android:theme="@style/AppTheme1"/>
@@ -258,7 +250,11 @@
               <intent-filter>
                   <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
               </intent-filter>
-          </receiver>-->
+          </receiver>
+        -->
+        <activity android:name=".activity.GetVerificationCodeActivity" />
+        <activity android:name=".activity.ImageFullViewActivity"/>
+
     </application>
 
 </manifest>

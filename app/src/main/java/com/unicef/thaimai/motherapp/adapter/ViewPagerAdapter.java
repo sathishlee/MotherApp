@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.util.Log;
 
-import com.unicef.thaimai.motherapp.fragment.OneFragment;
+//import com.unicef.thaimai.motherapp.fragment.OneFragment;
 import com.unicef.thaimai.motherapp.fragment.health_records;
 import com.unicef.thaimai.motherapp.model.responsemodel.HealthRecordResponseModel;
 

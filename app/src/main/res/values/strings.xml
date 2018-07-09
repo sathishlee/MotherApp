@@ -56,7 +56,6 @@
     <string name="default_directory">Pictures</string>
 
 
-
     //FONTs Declare
 
     //Array
@@ -84,9 +83,9 @@
     <!--Infant tracking details-->
     <string name="hbnc">HBNC</string>
     <string name="due_date">Due Date</string>
-    <string name="place">Place</string>
-    <string name="weight">Weight</string>
-    <string name="temp">Temp</string>
+    <string name="place">Place (Per Min)</string>
+    <string name="weight">Weight (Kg)</string>
+    <string name="temp">Temp ("\u00B0"C)</string>
     <string name="umbilical_stump">Umbilical Stump</string>
     <string name="cry">Cry</string>
     <string name="eyes">Eyes</string>
@@ -120,11 +119,12 @@
         <item>--Select--</item>
         <item>Healthy</item>
         <item>Unhealthy</item>
+        <item>NA</item>
     </string-array>
     <string-array name="array_cry">
         <item>--Select--</item>
         <item>Normal</item>
-        <item>feeble</item>
+        <item>Feeble</item>
         <item>Irritable</item>
     </string-array>
 
@@ -149,6 +149,7 @@
         <item>--Select--</item>
         <item>Yes</item>
         <item>No</item>
+        <item>NA</item>
     </string-array>
 
     <string-array name="array_breast_feeding_no_reasons">
@@ -156,6 +157,7 @@
         <item>Mother dead</item>
         <item>Mother not able to get Milk</item>
         <item>Breast problem</item>
+        <item>NA</item>
     </string-array>
 
     <string-array name="array_out_come">
@@ -381,7 +383,7 @@
         <item>Vomiting</item>
         <item>Pain Abdomen</item>
         <item>Bleeding PV</item>
-        <item>Leaking PV</item>
+        <item>Foul smelling</item>
         <item>Breathlessness</item>
         <item>Pedal edema</item>
         <item>Burning Mictutrion</item>
@@ -401,6 +403,7 @@
         <item>O-ve</item>
         <item>AB+ve</item>
         <item>AB-ve</item>
+        <item>Others</item>
 
     </string-array>
 
@@ -445,9 +448,31 @@
         <item>Week 29</item>
         <item>Week 30</item>
 
-
     </string-array>
 
+    <string-array name="arr_liquor">
+        <item>--Select--</item>
+        <item>Normal</item>
+        <item>Increased</item>
+        <item>Decreased</item>
+    </string-array>
+    <string-array name="arr_fetus">
+        <item>--Select--</item>
+        <item>Alive</item>
+        <item>IUD</item>
+        <item>MOLE</item>
+    </string-array>
+    <string-array name="arr_gestation">
+        <item>--Select--</item>
+        <item>Single</item>
+        <item>Twins</item>
+        <item>Multiple</item>
+    </string-array>
+    <string-array name="arr_placenta">
+        <item>--Select--</item>
+        <item>Normal</item>
+        <item>Lowlying</item>
+    </string-array>
 
     <string name="google_maps_key"> </string>
 
@@ -503,13 +528,13 @@
     <string name="no_recordes_found">NO RECORDES FOUND</string>
     <string name="infant_visits">Infant Visits</string>
     <string name="visit_number">Visit Number</string>
-    <string name="enter_weight">Enter weight (kg)</string>
+    <string name="enter_weight">Enter weight (Kg)</string>
     <string name="enter_temp">Enter Temp in "\u00B0"C</string>
     <string name="pn_mother_visit_entry">PN Mother Visit Entry</string>
     <string name="blood_presure">Blood presure</string>
-    <string name="systolic">Systolic (mm)</string>
-    <string name="diastolic">Diastolic (Hg)</string>
-    <string name="enter_pulse_rate">Enter Pulse Rate</string>
+    <string name="systolic">Systolic (mm Hg)</string>
+    <string name="diastolic">Diastolic (mm Hg)</string>
+    <string name="enter_pulse_rate">Enter Pulse Rate (Per Min)</string>
     <string name="mother_reports">Mother Reports</string>
     <string name="add_referral">Add Referral</string>
     <string name="date_of_referral">Date of Referral</string>
@@ -532,17 +557,17 @@
     <string name="specify">Specify</string>
     <string name="any_complaints">Any Complaints</string>
     <string name="clinical_report_details">Clinical Report Details</string>
-    <string name="enter_pluse_rate">Enter Pluse Rate</string>
-    <string name="fundal_height">Fundal height (cms)</string>
-    <string name="enter_fhs">Enter FHS (permin)</string>
+    <string name="enter_pluse_rate">Enter Pluse Rate (Per Min)</string>
+    <string name="fundal_height">Fundal height (Wks)</string>
+    <string name="enter_fhs">Enter FHS (Per Min)</string>
     <string name="pedal_edema_present">Pedal Edema</string>
     <string name="lab_report_details">Lab Report Details</string>
-    <string name="enter_hemoglobin">Enter hemoglobin (%)</string>
-    <string name="enter_rbs">Enter RBS</string>
-    <string name="enter_fbs">Enter FBS (mg)</string>
-    <string name="enter_ppbs">Enter PPBS (mg)</string>
-    <string name="enter_gtt">Enter GCT</string>
-    <string name="enter_tsh">Enter TSH</string>
+    <string name="enter_hemoglobin">Enter hemoglobin (g%)</string>
+    <string name="enter_rbs">Enter RBS (mg/dl)</string>
+    <string name="enter_fbs">Enter FBS (mg/dl)</string>
+    <string name="enter_ppbs">Enter PPBS (mg/dl)</string>
+    <string name="enter_gtt">Enter GCT(mg/dl)</string>
+    <string name="enter_tsh">Enter TSH (MU/L)</string>
     <string name="urine_sugar">Urine Sugar</string>
     <string name="albumin">Albumin</string>
     <string name="usg_report_details">USG Report Details</string>
@@ -609,7 +634,7 @@
     <string name="an_tt_1st">AN TT 1st:</string>
     <string name="an_tt_2nd">An TT 2nd :</string>
     <string name="ifa_start_date">IFA start date :</string>
-    <string name="enter_height">Enter height</string>
+    <string name="enter_height">Enter height (cm)</string>
     <string name="blood_group">Blood group :</string>
     <string name="hiv">HIV</string>
     <string name="vdrl">VDRL</string>
@@ -670,8 +695,8 @@
     <string name="hope_you_are_doing_well"> Hope you are doing well..</string>
     <string name="this_is_your_12th_week_of_pregnancy">This is your 12th Week of pregnancy.</string>
     <string name="this_is_the_period_of_child_monthly_development">This is the Period of child monthly development.</string>
-    <string name="if_you_are_not_feeling_well_please"> If you are not feeling well please</string>
-    <string name="click_here">Click Here.</string>
+    <string name="if_you_are_not_feeling_well_please">If you are not feeling well.</string>
+    <string name="click_here">please click Here.</string>
     <string name="ok">Ok</string>
     <string name="sign_in">Sign In</string>
     <string name="login">Login</string>
