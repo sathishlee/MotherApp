@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.NotificationPresenter;
@@ -16,6 +17,7 @@ import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.activity.MainActivity;
 import com.unicef.thaimai.motherapp.adapter.NotificationAdapter;
 import com.unicef.thaimai.motherapp.model.NotificationListResponseModel;
+import com.unicef.thaimai.motherapp.utility.CheckNetwork;
 import com.unicef.thaimai.motherapp.view.NotificationViews;
 
 import org.json.JSONArray;
@@ -35,6 +37,7 @@ public class NotificationFragment extends Fragment implements NotificationViews 
 
     PreferenceData preferenceData;
     ProgressDialog pDialog;
+    CheckNetwork checkNetwork;
 
     NotificationPresenter notificationPresenter;
 
@@ -55,13 +58,19 @@ public class NotificationFragment extends Fragment implements NotificationViews 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_notification, container, false);
         pDialog = new ProgressDialog(getActivity());
+        checkNetwork = new CheckNetwork(getActivity());
         pDialog.setCancelable(false);
         pDialog.setMessage("Please Wait ...");
         mRecyclerView = view.findViewById(R.id.recycler_view);
         mRecyclerView.setHasFixedSize(true);
         preferenceData = new PreferenceData(getActivity());
         notificationPresenter = new NotificationPresenter(getActivity(), this);
-        notificationPresenter.getNotificationList(preferenceData.getMId(), preferenceData.getPicmeId());
+
+        if(checkNetwork.isNetworkAvailable()){
+            notificationPresenter.getNotificationList(preferenceData.getMId(), preferenceData.getPicmeId());
+        }else {
+            Toast.makeText(getActivity(),"No Internet Connection",Toast.LENGTH_SHORT).show();
+        }
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
         moviesList = new ArrayList<>();
@@ -95,8 +104,8 @@ public class NotificationFragment extends Fragment implements NotificationViews 
                 JSONArray jsonArray = jsonObject.getJSONArray("notificationList");
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-                    movie.setMPicmeId(jsonObject1.getString("mName"));
-                    movie.setMessage(jsonObject1.getString("subject"));
+//                    movie.setMPicmeId(jsonObject1.getString("mName"));
+                    movie.setMessage(jsonObject1.getString("notificationmsg"));
                     movie.setDateTime(jsonObject1.getString("dateTime"));
                     moviesList.add(movie);
 

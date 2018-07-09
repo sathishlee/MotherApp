@@ -48,7 +48,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
+
     private CharSequence timeago(String noteStartDateTime) {
         SimpleDateFormat sdf = null;
         CharSequence ago = null;

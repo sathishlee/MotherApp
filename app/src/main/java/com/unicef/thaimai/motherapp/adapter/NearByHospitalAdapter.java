@@ -47,33 +47,33 @@ public class NearByHospitalAdapter extends RecyclerView.Adapter<NearByHospitalAd
 
         final NearHospitalResponseModel.Nearby nearByHospitalModel = list_nearByHospitalModel.get(position);
         if(nearByHospitalModel.getPhcMobile().equalsIgnoreCase("null")){
-            holder.txt_phc_call.setVisibility(View.GONE);
+            holder.txt_phc_call.setText("-");
         }else{
             holder.txt_phc_call.setText(nearByHospitalModel.getPhcMobile());
         }
         if(nearByHospitalModel.getF_nin_num().equalsIgnoreCase("null")){
-            holder.txt_f_nin_num.setVisibility(View.GONE);
+            holder.txt_f_nin_num.setText("-");
         }else{
             holder.txt_f_nin_num.setText(nearByHospitalModel.getF_nin_num());
         }
         if(nearByHospitalModel.getF_facility_name().equalsIgnoreCase("null")){
-            holder.txt_phc_name.setVisibility(View.GONE);
+            holder.txt_phc_name.setText("-");
         }else{
             holder.txt_phc_name.setText(nearByHospitalModel.getF_facility_name());
         }
         if(nearByHospitalModel.getVillage().equalsIgnoreCase("null")){
-            holder.txt_fac_name.setVisibility(View.GONE);
+            holder.txt_fac_name.setText("-");
         }else{
             holder.txt_fac_name.setText(nearByHospitalModel.getVillage());
         }
         if(nearByHospitalModel.getDistance().equalsIgnoreCase("null")){
-            holder.txt_hosp_distance.setVisibility(View.GONE);
+            holder.txt_hosp_distance.setText("-");
         }else{
             holder.txt_hosp_distance.setText(nearByHospitalModel.getDistance());
         }
 
         if(nearByHospitalModel.getPhcMobile().equalsIgnoreCase("null")){
-            holder.txt_phc_call.setVisibility(View.GONE);
+            holder.txt_phc_call.setText("-");
         }else{
             holder.txt_phc_call.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -31,6 +31,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -100,6 +101,7 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView, V
     boolean isoffline = false;
     Realm realm;
     CheckNetwork checkNetwork;
+    RelativeLayout re_enter_number,;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,12 +110,12 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView, V
         setContentView(R.layout.layout_profile);
         showActionBar();
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        /*fab.setOnClickListener(new View.OnClickListener() {
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),ProfileUpdateActivity.class));
+                setValuesEdtNumber();
             }
-        });*/
+        });
         if(CheckingPermissionIsEnabledOrNot())
         {
             Toast.makeText(ProfileActivity.this, "All Permissions Granted Successfully", Toast.LENGTH_LONG).show();
@@ -137,6 +139,10 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView, V
         }*/
         initUI();
         onClickListner();
+
+    }
+
+    private void setValuesEdtNumber() {
 
     }
 
