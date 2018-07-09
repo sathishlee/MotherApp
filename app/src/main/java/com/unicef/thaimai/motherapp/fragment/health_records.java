@@ -175,15 +175,21 @@ public class health_records extends Fragment implements GetVisitHelthRecordsView
             if(status.equalsIgnoreCase("1")){
                 JSONArray jsonArray = mJsnobject.getJSONArray("Visit_Records");
 
-                RealmResults<ANMotherVisitRealmModel> anMotherVisitRealmModels = realm.where(ANMotherVisitRealmModel.class).findAll();
-                Log.e("Realm size ---->", anMotherVisitRealmModels.size() + "");
-                realm.executeTransaction(new Realm.Transaction() {
-                    @Override
-                    public void execute(Realm realm) {
-                        realm.delete(ANMotherVisitRealmModel.class);
-                    }
-                });
+
+
                 if (jsonArray.length() != 0) {
+
+                    RealmResults<ANMotherVisitRealmModel> anMotherVisitRealmModels = realm.where(ANMotherVisitRealmModel.class).findAll();
+                    Log.e("Realm size ---->", anMotherVisitRealmModels.size() + "");
+                    if (anMotherVisitRealmModels.size()!=0){
+                        realm.executeTransaction(new Realm.Transaction() {
+                            @Override
+                            public void execute(Realm realm) {
+                                realm.delete(ANMotherVisitRealmModel.class);
+                            }
+                        });
+                    }
+
                     ll_click_visit_view.setVisibility(View.VISIBLE);
                     txt_no_records.setVisibility(View.GONE);
                     realm.beginTransaction();

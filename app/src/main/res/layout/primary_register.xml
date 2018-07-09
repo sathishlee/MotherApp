@@ -634,7 +634,7 @@
                 android:textColor="@color/secondary"
                 android:textSize="@dimen/text_primary"
                 android:textStyle="bold"
-                android:layout_weight="1"/>
+                android:layout_weight="3"/>
             <Spinner
                 android:id="@+id/sp_dose_on_any_medication"
                 android:layout_width="fill_parent"
@@ -645,10 +645,19 @@
                 android:drawSelectorOnTop="true"
                 android:entries="@array/yes_no"
                 style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
-
+            <!--<EditText
+                android:id="@+id/edt_any_medication"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/specify"
+                android:textColor="@color/secondary"
+                android:textSize="@dimen/text_secondary"
+                android:layout_weight="1"/>-->
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_medication_specify"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -679,7 +688,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="5dp"
-            android:weightSum="2">
+            android:weightSum="3">
 
             <TextView
                 android:layout_width="fill_parent"
@@ -699,15 +708,24 @@
                 android:drawSelectorOnTop="true"
                 android:entries="@array/yes_no"
                 style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
-
+          <!--  <EditText
+                android:id="@+id/edt_dose_allergicto_drugs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/specify"
+                android:textColor="@color/secondary"
+                android:textSize="@dimen/text_secondary"
+                android:layout_weight="1"/>-->
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_allergicto_drugs_specify"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="10dp"
-            android:visibility="gone"
+
             android:weightSum="2">
 
             <android.support.design.widget.TextInputLayout
@@ -732,17 +750,18 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="5dp"
-            android:weightSum="2">
+            android:weightSum="1">
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/history_of_previous_pregnancy"
-                android:textColor="@color/secondary"
-                android:textSize="@dimen/text_primary"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
+                android:textAlignment="textStart"
+                android:textSize="@dimen/text_label"
+                android:textColor="@color/header"
+                android:textStyle="bold"/>
             <Spinner
+                android:visibility="gone"
                 android:id="@+id/sp_pre_pregnancy"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -1120,12 +1139,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/enter_height"
-                    android:inputType="number"
+                    android:inputType="text"
                     android:textColor="@color/secondary"
+
                     android:textSize="@dimen/text_secondary"/>
 
             </android.support.design.widget.TextInputLayout>
-
         </LinearLayout>
 
 
@@ -1152,7 +1171,21 @@
                 android:drawSelectorOnTop="true"
                 android:entries="@array/blood_group_list"
                 style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
+                <EditText
+                    android:id="@+id/edt_blood_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/specify"
+                    android:textColor="@color/secondary"
+                    android:textSize="@dimen/text_secondary"
+                    android:layout_weight="1"
+                    />
+
+            </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -1314,7 +1347,20 @@
                         android:drawSelectorOnTop="true"
                         android:entries="@array/blood_group_list"
                         style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
+                        <EditText
+                            android:id="@+id/edt_other_husb_blood_group"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/specify"
+                            android:textColor="@color/secondary"
+                            android:textSize="@dimen/text_secondary"
+                            android:layout_weight="1"/>
+
+                    </android.support.design.widget.TextInputLayout>
                 </LinearLayout>
 
                 <LinearLayout

@@ -805,12 +805,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:padding="5dp">
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:visibility="gone">
 
             <EditText
                 android:id="@+id/edt_fetus"
@@ -820,19 +821,37 @@
                 android:hint="@string/enter_fetus"
                 android:textSize="@dimen/text_primary"/>
 
+
             </android.support.design.widget.TextInputLayout>
+            <TextView
+                android:id="@+id/txt_fetus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                 android:hint="@string/enter_fetus"
+                android:textSize="@dimen/text_primary"/>
+            <Spinner
+                android:id="@+id/sp_fetus"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:layout_weight="1"
+                android:drawSelectorOnTop="true"
+                android:entries="@array/arr_fetus"
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:padding="5dp">
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:visibility="gone">
 
             <EditText
                android:id="@+id/edt_gestation_sac"
@@ -840,21 +859,42 @@
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 android:textSize="@dimen/text_primary"
-                android:hint="@string/enter_gestation_sac"/>
+                android:hint="@string/enter_gestation_sac"
+                android:visibility="gone"/>
 
             </android.support.design.widget.TextInputLayout>
+
+            <TextView
+                android:id="@+id/txt_gestation_sac"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:textSize="@dimen/text_primary"
+                android:hint="@string/enter_gestation_sac"/>
+
+            <Spinner
+                android:id="@+id/sp_gestation_sac"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:layout_weight="1"
+                android:drawSelectorOnTop="true"
+                android:entries="@array/arr_gestation"
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:padding="5dp">
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:visibility="gone">
 
             <EditText
                 android:id="@+id/edt_liquor"
@@ -864,14 +904,34 @@
                 android:textSize="@dimen/text_primary"
                 android:hint="@string/enter_liquor"/>
 
+
             </android.support.design.widget.TextInputLayout>
+            <TextView
+                android:id="@+id/txt_liquor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:textSize="@dimen/text_primary"
+                android:hint="@string/enter_liquor"/>
+
+            <Spinner
+                android:id="@+id/sp_liquor"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:layout_weight="1"
+                android:drawSelectorOnTop="true"
+                android:entries="@array/arr_liquor"
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
+
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:padding="5dp">
 
             <android.support.design.widget.TextInputLayout
@@ -884,9 +944,27 @@
                     android:layout_height="wrap_content"
                     android:inputType="text"
                     android:textSize="@dimen/text_primary"
-                    android:hint="@string/enter_placenta"/>
+                    android:hint="@string/enter_placenta"
+                    android:visibility="gone"/>
 
             </android.support.design.widget.TextInputLayout>
+            <TextView
+                android:id="@+id/txt_placenta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_primary"
+                android:hint="@string/enter_placenta"/>
+
+            <Spinner
+                android:id="@+id/sp_placenta"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:layout_weight="1"
+                android:drawSelectorOnTop="true"
+                android:entries="@array/arr_placenta"
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
 
         </LinearLayout>
 

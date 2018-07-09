@@ -52,122 +52,123 @@ public class PNHBNCVisitRecordsAdapter extends PagerAdapter {
     private void setValuetoUI(PnHbncVisitRecordsModel.Visit_Records mhealthRecordResponseModel) {
 
         if(mhealthRecordResponseModel.getPnDueDate().equalsIgnoreCase("null")){
-            txt_due_date.setVisibility(View.GONE);
+            txt_due_date.setText("-");
         }else{
             txt_due_date.setText(mhealthRecordResponseModel.getPnDueDate());
         }
         if(mhealthRecordResponseModel.getPnCareProvidedDate().equalsIgnoreCase("null")){
-            txt_provided_date.setVisibility(View.GONE);
+            txt_provided_date.setText("-");
         }else{
             txt_provided_date.setText(mhealthRecordResponseModel.getPnCareProvidedDate());
         }
         if(mhealthRecordResponseModel.getPnVisitNo().equalsIgnoreCase("null")){
-            txt_hbnc_visit_num.setVisibility(View.GONE);
+            txt_hbnc_visit_num.setText("-");
         }else{
             txt_hbnc_visit_num.setText(mhealthRecordResponseModel.getPnVisitNo());
         }
         if(mhealthRecordResponseModel.getPnPlace().equalsIgnoreCase("null")){
-            txt_place.setVisibility(View.GONE);
+            txt_place.setText("-");
         }else{
             txt_place.setText(mhealthRecordResponseModel.getPnPlace());
         }
         if(mhealthRecordResponseModel.getPnAnyComplaints().equalsIgnoreCase("null")){
-            txt_weight.setVisibility(View.GONE);
+            txt_weight.setText("-");
         }else{
             txt_weight.setText(mhealthRecordResponseModel.getPnAnyComplaints());
         }
         if(mhealthRecordResponseModel.getCTemp().equalsIgnoreCase("null")){
-            txt_temp.setVisibility(View.GONE);
+            txt_temp.setText("-");
         }else{
+
             txt_temp.setText(mhealthRecordResponseModel.getCTemp());
         }
         if(mhealthRecordResponseModel.getPnBPDiastolic().equalsIgnoreCase("null")&&mhealthRecordResponseModel.getPnBPSystolic().equalsIgnoreCase("null")){
-            txt_mother_bp.setVisibility(View.GONE);
+            txt_mother_bp.setText("-");
         }else{
-            txt_mother_bp.setText(mhealthRecordResponseModel.getPnBPDiastolic()+"/"+mhealthRecordResponseModel.getPnBPSystolic());
+            txt_mother_bp.setText(mhealthRecordResponseModel.getPnBPDiastolic()+ " mm Hg"+"/"+mhealthRecordResponseModel.getPnBPSystolic()+ " mm Hg");
         }
         if(mhealthRecordResponseModel.getPnPulseRate().equalsIgnoreCase("null")){
-            txt_mother_pluse_rate.setVisibility(View.GONE);
+            txt_mother_pluse_rate.setText("-");
         }else{
             txt_mother_pluse_rate.setText(mhealthRecordResponseModel.getPnPulseRate());
         }
         if(mhealthRecordResponseModel.getPnEpistomyTear().equalsIgnoreCase("null")){
-            txt_mother_epistomy_tear_suture.setVisibility(View.GONE);
+            txt_mother_epistomy_tear_suture.setText("-");
         }else{
             txt_mother_epistomy_tear_suture.setText(mhealthRecordResponseModel.getPnEpistomyTear());
         }
         if(mhealthRecordResponseModel.getPnPVDischarge().equalsIgnoreCase("null")){
-            txt_mother_pv_discharge.setVisibility(View.GONE);
+            txt_mother_pv_discharge.setText("-");
         }else{
             txt_mother_pv_discharge.setText(mhealthRecordResponseModel.getPnPVDischarge());
         }
         if(mhealthRecordResponseModel.getPnBreastFeeding().equalsIgnoreCase("null")){
-            txt_mother_breast_feeding.setVisibility(View.GONE);
+            txt_mother_breast_feeding.setText("-");
         }else {
             txt_mother_breast_feeding.setText(mhealthRecordResponseModel.getPnBreastFeeding());
         }
         if(mhealthRecordResponseModel.getPnBreastFeedingReason().equalsIgnoreCase("null")){
-            txt_mother_reasons.setVisibility(View.GONE);
+            txt_mother_reasons.setText("-");
         }else {
             txt_mother_reasons.setText(mhealthRecordResponseModel.getPnBreastFeedingReason());
         }
         if(mhealthRecordResponseModel.getPnBreastExamination().equalsIgnoreCase("null")){
-            txt_mother_breast_examination.setVisibility(View.GONE);
+            txt_mother_breast_examination.setText("-");
         }else {
             txt_mother_breast_examination.setText(mhealthRecordResponseModel.getPnBreastExamination());
         }
         if(mhealthRecordResponseModel.getPnOutCome().equalsIgnoreCase("null")){
-            txt_mother_out_come.setVisibility(View.GONE);
+            txt_mother_out_come.setText("-");
         }else {
             txt_mother_out_come.setText(mhealthRecordResponseModel.getPnOutCome());
         }
         if(mhealthRecordResponseModel.getCWeight().equalsIgnoreCase("null")){
-            txt_weight.setVisibility(View.GONE);
+            txt_weight.setText("-");
         }else {
             txt_weight.setText(mhealthRecordResponseModel.getCWeight());
         }
         if(mhealthRecordResponseModel.getCUmbilicalStump().equalsIgnoreCase("null")){
-            txt_umbilical_tump.setVisibility(View.GONE);
+            txt_umbilical_tump.setText("-");
         }else {
             txt_umbilical_tump.setText(mhealthRecordResponseModel.getCUmbilicalStump());
         }
         if(mhealthRecordResponseModel.getCCry().equalsIgnoreCase("null")){
-            txt_cry.setVisibility(View.GONE);
+            txt_cry.setText("-");
         }else {
             txt_cry.setText(mhealthRecordResponseModel.getCCry());
         }
         if(mhealthRecordResponseModel.getCEyes().equalsIgnoreCase("null")){
-            txt_eye.setVisibility(View.GONE);
+            txt_eye.setText("-");
         }else {
             txt_eye.setText(mhealthRecordResponseModel.getCEyes());
         }
         if(mhealthRecordResponseModel.getCSkin().equalsIgnoreCase("null")){
-            txt_skin.setVisibility(View.GONE);
+            txt_skin.setText("-");
         }else {
             txt_skin.setText(mhealthRecordResponseModel.getCSkin());
         }
         if(mhealthRecordResponseModel.getCBreastFeeding().equalsIgnoreCase("null")){
-            txt_breat_feeding.setVisibility(View.GONE);
+            txt_breat_feeding.setText("-");
         }else {
             txt_breat_feeding.setText(mhealthRecordResponseModel.getCBreastFeeding());
         }
         if(mhealthRecordResponseModel.getCBreastFeedingReason().equalsIgnoreCase("null")){
-            txt_reasons.setVisibility(View.GONE);
+            txt_reasons.setText("-");
         }else {
             txt_reasons.setText(mhealthRecordResponseModel.getCBreastFeedingReason());
         }
         if(mhealthRecordResponseModel.getCOutCome().equalsIgnoreCase("null")){
-            txt_out_come.setVisibility(View.GONE);
+            txt_out_come.setText("-");
         }else {
             txt_out_come.setText(mhealthRecordResponseModel.getCOutCome());
         }
         if(mhealthRecordResponseModel.getPnAnyComplaints().equalsIgnoreCase("null")){
-            txt_mother_any_complient.setVisibility(View.GONE);
+            txt_mother_any_complient.setText("-");
         }else {
             txt_mother_any_complient.setText(mhealthRecordResponseModel.getPnAnyComplaints());
         }
         if(mhealthRecordResponseModel.getPnTemp().equalsIgnoreCase("null")){
-            txt_mother_temp.setVisibility(View.GONE);
+            txt_mother_temp.setText("-");
         }else {
             txt_mother_temp.setText(mhealthRecordResponseModel.getPnTemp());
         }

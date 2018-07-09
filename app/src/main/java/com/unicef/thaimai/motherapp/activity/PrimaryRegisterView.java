@@ -388,7 +388,7 @@ public class PrimaryRegisterView extends AppCompatActivity implements PrimaryReg
             if (status==1){
                 primary_register.setVisibility(View.VISIBLE);
                 txt_no_records_found.setVisibility(View.GONE);
-                Log.d("message---->",message);
+               /* Log.d("message---->",message);
                 if(jObj.getString("mName").equalsIgnoreCase("null")){
                         txt_name.setVisibility(View.GONE);
                     }else {
@@ -573,7 +573,7 @@ public class PrimaryRegisterView extends AppCompatActivity implements PrimaryReg
                     txt_hus_Hepatitis.setVisibility(View.GONE);
                 }else {
                     txt_hus_Hepatitis.setText(jObj.getString("hHepatitis"));
-                }
+                }*/
 
                 RealmResults<PrimaryRegisterRealmModel> primaryRegisterRealmModels = realm.where(PrimaryRegisterRealmModel.class).findAll();
                 if (primaryRegisterRealmModels.size()!=0) {
@@ -652,6 +652,7 @@ public class PrimaryRegisterView extends AppCompatActivity implements PrimaryReg
         } catch (JSONException e) {
             e.printStackTrace();
         }
+         primaryRecordsOfline();
     }
 
     @Override

@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.suthishan.multiselectspineer.MultiSelectSpinner;
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.PNHBNCVisitPresenter;
 import com.unicef.thaimai.motherapp.R;
@@ -28,9 +29,12 @@ import com.unicef.thaimai.motherapp.view.PNHBNCVisitViews;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
-public class PNHBNCVisitEntry extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener, PNHBNCVisitViews {
+public class PNHBNCVisitEntry extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener, PNHBNCVisitViews, MultiSelectSpinner.OnMultipleItemsSelectedListener {
 
     Spinner sp_facility,sp_infant_umbilical_stump,sp_infant_cry,sp_infant_eyes, sp_infant_skin,
             sp_infant_breast_feeding, sp_infant_reason,sp_infant_outcome,sp_mother_any_complaints,
@@ -61,7 +65,8 @@ public class PNHBNCVisitEntry extends AppCompatActivity implements View.OnClickL
     int day, month, year, hour, minute, sec;
     CheckNetwork checkNetwork;
 
-
+    MultiSelectSpinner spinner1;
+    MultiSelectSpinner spinner2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,6 +135,8 @@ public class PNHBNCVisitEntry extends AppCompatActivity implements View.OnClickL
         });
 
         edt_care_provided_date = (EditText) findViewById(R.id.edt_care_provided_date);
+        edt_care_provided_date.setText(getCurrentDate());
+
         edt_care_provided_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -160,6 +167,9 @@ public class PNHBNCVisitEntry extends AppCompatActivity implements View.OnClickL
         sp_infant_umbilical_stump = (Spinner) findViewById(R.id.sp_infant_umbilical_stump);
         sp_infant_cry = (Spinner) findViewById(R.id.sp_infant_cry);
         sp_infant_eyes = (Spinner) findViewById(R.id.sp_infant_eyes);
+        spinner1 = (MultiSelectSpinner) findViewById(R.id.mySpinner1);
+        spinner2 = (MultiSelectSpinner) findViewById(R.id.mySpinner2);
+
         sp_infant_skin = (Spinner) findViewById(R.id.sp_infant_skin);
         sp_infant_breast_feeding = (Spinner) findViewById(R.id.sp_infant_breast_feeding);
         sp_infant_reason = (Spinner) findViewById(R.id.sp_infant_reason);
@@ -171,6 +181,109 @@ public class PNHBNCVisitEntry extends AppCompatActivity implements View.OnClickL
         sp_mother_reasons = (Spinner) findViewById(R.id.sp_mother_reasons);
         sp_breast_examination = (Spinner) findViewById(R.id.sp_breast_examination);
         sp_mother_outcome = (Spinner) findViewById(R.id.sp_mother_outcome);
+
+
+        String[] acdp = {"--Select--", "Normal", "swollen", "Pus present", "Redness", "Yellowish"};
+        spinner1.setItems(acdp);
+        spinner1.hasNoneOption(true);
+        spinner1.setSelection(new int[]{0});
+        spinner1.setListener(this);
+
+        String[] acdp1 = {"--Select--", "Fever","Giddiness or Headache","Vomiting","Pain Abdomen",
+        "Bleeding PV","Foul smelling PV","Breathlessness","Pedal edema","Burning Mictutrion",
+        "Fits", "No Complaints","Others (Specify)"
+                 };
+
+        spinner2.setItems(acdp1);
+        spinner2.hasNoneOption(true);
+        spinner2.setSelection(new int[]{0});
+        spinner2.setListener(new MultiSelectSpinner.OnMultipleItemsSelectedListener() {
+            @Override
+            public void selectedIndices(List<Integer> indices) {
+
+            }
+
+            @Override
+            public void selectedStrings(List<String> strings) {
+                strInfantMotherComplaints=spinner2.getSelectedItemsAsString();
+            }
+        });
+
+
+    }
+
+    private String getCareDueDate(String strDate,int visitNo) {
+        String[] arrDay= new String[]{"0", "3", "7", "14", "21", "28", "42"};
+        int iday = 0;
+        if (visitNo==1){
+            iday=0;
+        }  else if (visitNo==2){
+            iday=3;
+        }else if (visitNo==3){
+            iday=7;
+        }else if (visitNo==4){
+            iday=14;
+        }else if (visitNo==5){
+            iday=21;
+        }else if (visitNo==6){
+            iday=28;
+        }else if (visitNo==7){
+            iday=42;
+        }
+        String dtStart = strDate;
+      /*  SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date date = format.parse(dtStart);
+            final LocalDate dateMinus7Days = date.a(7);
+            ;
+            System.out.println(date );
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+*/
+
+        String fromDate = strDate;
+        //split year, month and days from the date using StringBuffer.
+        StringBuffer sBuffer = new StringBuffer(fromDate);
+        String year = sBuffer.substring(0,4);
+        String mon = sBuffer.substring(5,7);
+        String dd = sBuffer.substring(8,10);
+
+        String modifiedFromDate = year +'-'+mon+'-'+dd;
+        int MILLIS_IN_DAY = (1000 * 60 * 60 * 24)*iday;
+
+        SimpleDateFormat dateFormat =
+                new java.text.SimpleDateFormat("yyyy-MM-dd");
+       Date dateSelectedFrom = null;
+ Date dateNextDate = null;
+      Date datePreviousDate = null;
+
+        // convert date present in the String to java.util.Date.
+        try
+        {
+            dateSelectedFrom = dateFormat.parse(modifiedFromDate);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        //get the next date in String.
+        String nextDate =
+                dateFormat.format(dateSelectedFrom.getTime() + MILLIS_IN_DAY);
+
+        return nextDate;
+    }
+
+    private String getCurrentDate() {
+        Calendar c = Calendar.getInstance();
+        System.out.println("Current time => "+c.getTime());
+
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        String formattedDate = df.format(c.getTime());
+        // formattedDate have current date/time
+        Toast.makeText(this, formattedDate, Toast.LENGTH_SHORT).show();
+        return formattedDate;
     }
 
     public void onClickListner(){
@@ -301,6 +414,9 @@ public class PNHBNCVisitEntry extends AppCompatActivity implements View.OnClickL
         }
         else if(strMotherOutcome.equalsIgnoreCase("--Select")){
             showAlert("Mother Outcome is Empty");
+        }
+else if(strVisitNo.equalsIgnoreCase("--Select")){
+            showAlert("Visit No is Empty");
         }
 
         else {
@@ -497,6 +613,8 @@ public class PNHBNCVisitEntry extends AppCompatActivity implements View.OnClickL
     @Override
     public void checkpnhbncVisitIdSuccess(String response) {
 //        strVisitId = strVisitNo;
+Log.e(PNHBNCVisitEntry.class.getSimpleName(),response);
+
 
         try{
             JSONObject jsonObject = new JSONObject(response);
@@ -504,10 +622,14 @@ public class PNHBNCVisitEntry extends AppCompatActivity implements View.OnClickL
             String msg = jsonObject.getString("message");
 
             if (status.equalsIgnoreCase("1")){
+//                edt_due_date.setText(getCareDueDate("2018-12-01",Integer.parseInt(strVisitId)));
                 Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
+
+                edt_due_date.setText(getCareDueDate(jsonObject.getString("deliverydate"),Integer.parseInt(strVisitId)));
+
             }else{
                 Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+//                startActivity(new Intent(getApplicationContext(),MainActivity.class));
 
             }
         }
@@ -519,6 +641,16 @@ public class PNHBNCVisitEntry extends AppCompatActivity implements View.OnClickL
     @Override
     public void checkpnhbncVisitIdFailiure(String response) {
         Toast.makeText(getApplicationContext(),response,Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void selectedIndices(List<Integer> indices) {
+
+    }
+
+    @Override
+    public void selectedStrings(List<String> strings) {
+        strInfantEyes = spinner1.getSelectedItemsAsString();
     }
 }
 

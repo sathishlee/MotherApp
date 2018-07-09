@@ -42,7 +42,7 @@
 
     public class AddRecords extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener, AddRecordViews, RadioGroup.OnCheckedChangeListener {
 
-        Spinner sp_type_of_visit, sp_facility, sp_any_complaints, sp_fundal_height;
+        Spinner sp_type_of_visit, sp_facility, sp_any_complaints, sp_fundal_height,sp_liquor,sp_placenta,sp_gestation_sac,sp_fetus;
 
         EditText edt_date,edt_facility_other, edt_any_complaints_other, edt_bp_sys, edt_bp_dis, edt_pluse_rate, edt_weight, edt_fhs, edt_temp, edt_hemo,
                 edt_rbs, edt_fbs, edt_ppbs, edt_fundal_height, edt_gtt, edt_tsh, edt_urine_sugar, edt_albumin, edt_fetus, edt_gestation_sac, edt_liquor, edt_placenta;
@@ -83,6 +83,10 @@
             sp_any_complaints.setOnItemSelectedListener(this);
 //            sp_fundal_height.setOnItemSelectedListener(this);
             rg_pep.setOnCheckedChangeListener(this);
+            sp_liquor.setOnItemSelectedListener(this);;
+            sp_placenta.setOnItemSelectedListener(this);;
+            sp_gestation_sac.setOnItemSelectedListener(this);
+            sp_fetus.setOnItemSelectedListener(this);
 
         }
 
@@ -111,6 +115,13 @@
             sp_type_of_visit = (Spinner) findViewById(R.id.sp_type_of_visit);
             sp_facility = (Spinner) findViewById(R.id.sp_facility);
             sp_any_complaints = (Spinner) findViewById(R.id.sp_any_complaints);
+
+            sp_liquor = (Spinner) findViewById(R.id.sp_liquor);
+            sp_placenta = (Spinner) findViewById(R.id.sp_placenta);
+            sp_gestation_sac = (Spinner) findViewById(R.id.sp_gestation_sac);
+            sp_fetus = (Spinner) findViewById(R.id.sp_fetus);
+
+
             edt_fundal_height = (EditText) findViewById(R.id.edt_fundal_height);
 
             edt_facility_other = (EditText) findViewById(R.id.edt_facility_other);
@@ -249,13 +260,13 @@
                 showAlert("Urine sugar is Empty");
             }else if (stralbumin.equalsIgnoreCase("")){
                 showAlert("Albumin is Empty");
-            }else if (strfetus.equalsIgnoreCase("")){
+            }else if (strfetus.equalsIgnoreCase("--Select--")){
                 showAlert("Fetus is Empty");
-            }else if (strliquor.equalsIgnoreCase("")){
+            }else if (strliquor.equalsIgnoreCase("--Select--")){
                 showAlert("Liquor is Empty");
-            }else if (strgestation_sac.equalsIgnoreCase("")){
+            }else if (strgestation_sac.equalsIgnoreCase("--Select--")){
                 showAlert("GestationSac is Empty");
-            }else if (strplacenta.equalsIgnoreCase("")){
+            }else if (strplacenta.equalsIgnoreCase("--Select--")){
                 showAlert("Placenta is Empty");
             }else if (strtsh.equalsIgnoreCase("")){
                 showAlert("TSH is Empty");
@@ -319,10 +330,10 @@
             strtsh = edt_tsh.getText().toString();
             strurine_sugar = edt_urine_sugar.getText().toString();
             stralbumin = edt_albumin.getText().toString();
-            strfetus = edt_fetus.getText().toString();
-            strgestation_sac = edt_gestation_sac.getText().toString();
-            strliquor = edt_liquor.getText().toString();
-            strplacenta = edt_placenta.getText().toString();
+//            strfetus = edt_fetus.getText().toString();
+//            strgestation_sac = edt_gestation_sac.getText().toString();
+//            strliquor = edt_liquor.getText().toString();
+//            strplacenta = edt_placenta.getText().toString();
             strFundal_Height = edt_fundal_height.getText().toString();
         }
 
@@ -331,8 +342,21 @@
             switch (parent.getId()) {
                 case R.id.sp_type_of_visit:
                     strTypeOfVisit = parent.getSelectedItem().toString();
-
                     break;
+
+                    case R.id.sp_liquor:
+                    strliquor = parent.getSelectedItem().toString();
+                    break;
+                    case R.id.sp_placenta:
+                    strplacenta = parent.getSelectedItem().toString();
+                    break;
+                    case R.id.sp_gestation_sac:
+                    strgestation_sac = parent.getSelectedItem().toString();
+                    break;
+                    case R.id.sp_fetus:
+                    strfetus = parent.getSelectedItem().toString();
+                    break;
+
                 case R.id.sp_facility:
                     strFacility = parent.getSelectedItem().toString();
                     if (strFacility.equalsIgnoreCase("Others")) {

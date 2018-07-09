@@ -161,7 +161,7 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
         Log.e("PICME_ID",preferenceData.getPicmeId());
         PackageInfo packageInfo = null;
         String version_name = "Latest";
-        int version_code = 3;
+        int version_code = 4;
         String appversion = String.valueOf(version_code);
 
         try {

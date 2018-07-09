@@ -96,7 +96,7 @@ public class PNHBNCVisitPresenter implements PNHBNCVisitInteractor {
     public void checkPNHBNCVisitId(final String strPicmeId, final String strMid, final String strpnVisitId) {
 
         String url = Apiconstants.BASE_URL + Apiconstants.PN_HBNC_VISIT_EXIST;
-        Log.d("Log in check Url--->", url);
+        Log.e("Log in check Url--->", url);
         pnhbncVisitViews.showProgress();
 
         StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
