@@ -83,7 +83,7 @@
     <!--Infant tracking details-->
     <string name="hbnc">HBNC</string>
     <string name="due_date">Due Date</string>
-    <string name="place">Place (Per Min)</string>
+    <string name="place">Place</string>
     <string name="weight">Weight (Kg)</string>
     <string name="temp">Temp ("\u00B0"C)</string>
     <string name="umbilical_stump">Umbilical Stump</string>
@@ -704,5 +704,6 @@
     <string name="date_of_birth_dd_mm_yyyy">Date of Birth (DD-MM-YYYY)*</string>
     <string name="arrow">arrow</string>
     <string name="high">High</string>
+    <string name="no_notification_for_you">No Notification For you...</string>
 
 </resources>

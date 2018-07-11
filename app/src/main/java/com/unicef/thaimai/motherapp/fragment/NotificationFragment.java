@@ -3,12 +3,14 @@ package com.unicef.thaimai.motherapp.fragment;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
@@ -40,6 +42,8 @@ public class NotificationFragment extends Fragment implements NotificationViews 
     CheckNetwork checkNetwork;
 
     NotificationPresenter notificationPresenter;
+    SwipeRefreshLayout swipeRefresh;
+    LinearLayout no_notification;
 
     public static NotificationFragment newInstance() {
         NotificationFragment fragment = new NotificationFragment();
@@ -71,6 +75,8 @@ public class NotificationFragment extends Fragment implements NotificationViews 
         }else {
             Toast.makeText(getActivity(),"No Internet Connection",Toast.LENGTH_SHORT).show();
         }
+        swipeRefresh = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefresh);
+        no_notification = (LinearLayout) view.findViewById(R.id.no_notification);
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
         moviesList = new ArrayList<>();
@@ -98,21 +104,27 @@ public class NotificationFragment extends Fragment implements NotificationViews 
         try {
             JSONObject jsonObject = new JSONObject(response);
             String status = jsonObject.getString("status");
-            String msg = jsonObject.getString("message");
+            String msg = jsonObject.getString("successmessage");
             movie = new NotificationListResponseModel.NotificationList();
             if (status.equalsIgnoreCase("1")) {
+                no_notification.setVisibility(View.GONE);
+                swipeRefresh.setVisibility(View.VISIBLE);
                 JSONArray jsonArray = jsonObject.getJSONArray("notificationList");
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject1 = jsonArray.getJSONObject(i);
 //                    movie.setMPicmeId(jsonObject1.getString("mName"));
                     movie.setMessage(jsonObject1.getString("notificationmsg"));
-                    movie.setDateTime(jsonObject1.getString("dateTime"));
+                    movie.setNoteStartDateTime(jsonObject1.getString("dateTime"));
                     moviesList.add(movie);
 
                 }
                 mAdapter.notifyDataSetChanged();
             } else {
+                no_notification.setVisibility(View.VISIBLE);
+                swipeRefresh.setVisibility(View.GONE);
+                Toast.makeText(getActivity(),msg,Toast.LENGTH_LONG).show();
                 Log.d(MainActivity.class.getSimpleName(), "Notification messsage-->" + msg);
+
             }
         } catch (JSONException e) {
             e.printStackTrace();

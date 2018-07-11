@@ -259,7 +259,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
 
             PackageInfo packageInfo = null;
             String version_name = "Latest";
-            int version_code = 4;
+            int version_code = 5;
             String appversion = String.valueOf(version_code);
 
             TelephonyManager mTelephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);

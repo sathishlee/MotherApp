@@ -179,6 +179,16 @@ public class ProfileUpdateActivity extends AppCompatActivity implements ProfileV
     }
 
     @Override
+    public void successupdateProfile(String response) {
+
+    }
+
+    @Override
+    public void errorUpdateProfile(String response) {
+
+    }
+
+    @Override
     public void onClick(View v) {
         switch (v.getId()) {
 

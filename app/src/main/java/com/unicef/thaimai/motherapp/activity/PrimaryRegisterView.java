@@ -594,7 +594,7 @@ public class PrimaryRegisterView extends AppCompatActivity implements PrimaryReg
                 primaryRegisterRealmModel.setMLMP(jObj.getString("mLMP"));
                 primaryRegisterRealmModel.setMEDD(jObj.getString("mEDD"));
                 primaryRegisterRealmModel.setMMotherMobile(jObj.getString("mMotherMobile"));
-                primaryRegisterRealmModel.setMHusbandMobile(jObj.getString("mHusbandName"));
+                primaryRegisterRealmModel.setMHusbandMobile(jObj.getString("mHusbandMobile"));
                 primaryRegisterRealmModel.setMasterId(jObj.getString("masterId"));
                 primaryRegisterRealmModel.setPicmeId(jObj.getString("picmeId"));
                 primaryRegisterRealmModel.setVhnId(jObj.getString("vhnId"));

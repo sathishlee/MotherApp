@@ -13,4 +13,7 @@ public interface ProfileView {
 
     void errorViewProfile(String response);
 
+    void successupdateProfile(String response);
+    void errorUpdateProfile(String response);
+
 }

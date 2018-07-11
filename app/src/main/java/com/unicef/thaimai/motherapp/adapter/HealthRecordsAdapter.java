@@ -32,7 +32,9 @@ public class HealthRecordsAdapter extends PagerAdapter {
     TypeOfHealthRecords mTypeOfHealthRecords;
     LinearLayout llClickPickMeVisit, llClickOtherVisit, ll_click_visit_view;
     TextView txtVisitedDate, txtVisitedType, txtFacility, txtAnyComplient, txtBPValue,
-            txtPluseRate, txtWeight, txt_no_records, txtFunbalHeight, txtFhs, txtPep, txtHp, txtFbs, txtPpbs, txtGtt, txtSugar, txtUrinAlubin, txtFetus, txtGestationSac, txtLiquor, txtPlacenta;
+            txtPluseRate, txtWeight, txt_no_records, txtFunbalHeight, txtFhs, txtPep, txtHp, txtFbs,
+            txtPpbs, txtGtt, txtSugar, txtUrinAlubin, txtFetus, txtGestationSac, txtLiquor,
+            txtPlacenta, txt_tsh;
 
 
     public HealthRecordsAdapter(FragmentActivity activity, ArrayList<HealthRecordResponseModel.Visit_Records> mhealthRecordList, TypeOfHealthRecords mTypeOfHealthRecords) {
@@ -81,12 +83,14 @@ public class HealthRecordsAdapter extends PagerAdapter {
         } else {
             txtAnyComplient.setText(mhealthRecordResponseModel.getVAnyComplaints());
         }
+
         if (mhealthRecordResponseModel.getVClinicalBPSystolic().equalsIgnoreCase("null") &&
                 mhealthRecordResponseModel.getVClinicalBPDiastolic().equalsIgnoreCase("null")) {
             txtBPValue.setText("-");
         } else if (mhealthRecordResponseModel.getVClinicalBPSystolic().equalsIgnoreCase("null")) {
             txtBPValue.setText("-" + " / " + mhealthRecordResponseModel.getVClinicalBPDiastolic() + " mm Hg");
-        } else if (mhealthRecordResponseModel.getVClinicalBPDiastolic().equalsIgnoreCase("null")) {
+        }
+        else if (mhealthRecordResponseModel.getVClinicalBPDiastolic().equalsIgnoreCase("null")) {
             txtBPValue.setText(mhealthRecordResponseModel.getVClinicalBPSystolic() + " mm Hg" + "-");
         } else {
             txtBPValue.setText(mhealthRecordResponseModel.getVClinicalBPSystolic() + " mm Hg" + " / " + mhealthRecordResponseModel.getVClinicalBPDiastolic() + " mm Hg");
@@ -124,16 +128,16 @@ public class HealthRecordsAdapter extends PagerAdapter {
         }if (mhealthRecordResponseModel.getVFBS().equalsIgnoreCase("null")) {
             txtFbs.setText("-");
         } else {
-            txtFbs.setText(mhealthRecordResponseModel.getVFBS() + " Mg");
+            txtFbs.setText(mhealthRecordResponseModel.getVFBS() + " mg/dl");
 
         }if (mhealthRecordResponseModel.getVPPBS().equalsIgnoreCase("null")) {
             txtPpbs.setText("-");
         } else {
-            txtPpbs.setText(mhealthRecordResponseModel.getVPPBS() + " Mg");
+            txtPpbs.setText(mhealthRecordResponseModel.getVPPBS() + " mg/dl");
         }if (mhealthRecordResponseModel.getVGTT().equalsIgnoreCase("null")) {
             txtGtt.setText("-");
         } else {
-            txtGtt.setText(mhealthRecordResponseModel.getVGTT());
+            txtGtt.setText(mhealthRecordResponseModel.getVGTT() + "mg/dl");
         }if (mhealthRecordResponseModel.getUsgFetus().equalsIgnoreCase("null")) {
             txtFetus.setText("-");
         } else {
@@ -160,6 +164,10 @@ public class HealthRecordsAdapter extends PagerAdapter {
             txtPlacenta.setText("-");
         } else {
             txtPlacenta.setText(mhealthRecordResponseModel.getUsgPlacenta());
+        }if (mhealthRecordResponseModel.getVTSH().equalsIgnoreCase("null")) {
+            txt_tsh.setText("-");
+        } else {
+            txt_tsh.setText(mhealthRecordResponseModel.getVTSH() + " MU/L");
         }
 
 
@@ -302,6 +310,7 @@ public class HealthRecordsAdapter extends PagerAdapter {
         txtGestationSac = healthRecordLayout.findViewById(R.id.txt_gestation_sac);
         txtLiquor = healthRecordLayout.findViewById(R.id.txt_liquor);
         txtPlacenta = healthRecordLayout.findViewById(R.id.txt_placenta);
+        txt_tsh = healthRecordLayout.findViewById(R.id.txt_tsh);
     }
 
     @Override

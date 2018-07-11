@@ -43,8 +43,8 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         NotificationListResponseModel.NotificationList movie = moviesList.get(position);
-        holder.txt_message.setText(movie.getMPicmeId());
-        holder.txt_time.setText(timeago(movie.getMessage()));
+        holder.txt_message.setText(movie.getMessage());
+        holder.txt_time.setText(timeago(movie.getNoteStartDateTime()));
 
     }
 

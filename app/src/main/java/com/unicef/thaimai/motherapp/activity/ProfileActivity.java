@@ -18,6 +18,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewCompat;
@@ -26,11 +27,15 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
+import android.text.Layout;
 import android.transition.Slide;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -101,7 +106,12 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView, V
     boolean isoffline = false;
     Realm realm;
     CheckNetwork checkNetwork;
-    RelativeLayout re_enter_number,;
+
+    RelativeLayout re_enter_number, re_number, emer_enter_number, alter_number;
+    TextInputLayout input_layout_phone;
+    EditText edt_phone,edt_phone_hus;
+    LinearLayout support_layout, support_layout1, btn_open;
+    Button btn_submit, btn_cancel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,7 +153,22 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView, V
     }
 
     private void setValuesEdtNumber() {
+        if (checkNetwork.isNetworkAvailable()) {
+            user_name.setVisibility(View.VISIBLE);
+            edt_picme_id.setVisibility(View.VISIBLE);
+            address.setVisibility(View.VISIBLE);
+            village_name.setVisibility(View.VISIBLE);
+            re_number.setVisibility(View.GONE);
+            support_layout.setVisibility(View.GONE);
+            re_enter_number.setVisibility(View.VISIBLE);
+            alter_number.setVisibility(View.GONE);
+            support_layout1.setVisibility(View.GONE);
+            emer_enter_number.setVisibility(View.VISIBLE);
+            btn_open.setVisibility(View.VISIBLE);
 
+        }else {
+            Toast.makeText(getApplicationContext(),"Please Turn On Internet to edit.. \n No Internert connection",Toast.LENGTH_LONG).show();
+        }
     }
 
     private void showActionBar(){
@@ -162,6 +187,42 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView, V
 
     private void onClickListner() {
         user_profile_photo.setOnClickListener(this);
+        btn_submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(edt_phone.getText().toString().equalsIgnoreCase("")){
+                    edt_phone.setError("Enter Phone Number");
+                } else if (edt_phone.getText().toString().length()!=10){
+                    edt_phone.setError("Enter Valid Number");
+                } else if(edt_phone_hus.getText().toString().equalsIgnoreCase("")){
+                    edt_phone_hus.setError("Enter Husband Number");
+                } else if(edt_phone_hus.getText().toString().length()!=10){
+                    edt_phone_hus.setError("Enter Valid Number");
+                } else{
+                    profilePresenter.sendMotherProfile(preferenceData.getMId(),preferenceData.getPicmeId(),
+                            edt_phone.getText().toString(),edt_phone_hus.getText().toString());
+                }
+            }
+        });
+
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                user_name.setVisibility(View.VISIBLE);
+                edt_picme_id.setVisibility(View.VISIBLE);
+                address.setVisibility(View.VISIBLE);
+                village_name.setVisibility(View.VISIBLE);
+                re_number.setVisibility(View.VISIBLE);
+                support_layout.setVisibility(View.VISIBLE);
+                re_enter_number.setVisibility(View.GONE);
+                alter_number.setVisibility(View.VISIBLE);
+                support_layout1.setVisibility(View.VISIBLE);
+                emer_enter_number.setVisibility(View.GONE);
+                btn_open.setVisibility(View.GONE);
+            }
+        });
+
+
     }
 
     private void initUI() {
@@ -179,6 +240,20 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView, V
         }else {
             isoffline=true;
         }
+        re_number = (RelativeLayout)findViewById(R.id.re_number);
+        re_enter_number = (RelativeLayout)findViewById(R.id.re_enter_number);
+        emer_enter_number = (RelativeLayout)findViewById(R.id.emer_enter_number);
+        alter_number = (RelativeLayout)findViewById(R.id.alter_number);
+        input_layout_phone = (TextInputLayout) findViewById(R.id.input_layout_phone);
+        edt_phone = (EditText) findViewById(R.id.edt_phone);
+        edt_phone_hus = (EditText) findViewById(R.id.edt_phone_hus);
+        support_layout = (LinearLayout) findViewById(R.id.support_layout);
+        support_layout1 = (LinearLayout) findViewById(R.id.support_layout1);
+        btn_open = (LinearLayout) findViewById(R.id.btn_open);
+
+        btn_submit = (Button) findViewById(R.id.btn_submit);
+        btn_cancel = (Button) findViewById(R.id.btn_cancel);
+
         user_profile_photo = (ImageView) findViewById(R.id.user_profile_photo);
         user_name = (TextView) findViewById(R.id.user_name);
         edt_picme_id = (TextView) findViewById(R.id.edt_picme_id);
@@ -211,7 +286,7 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView, V
             ProfileRealmModel model = profileRealmModels.get(i);
 
             if(model.getMName().equalsIgnoreCase("null")){
-                user_name.setVisibility(View.GONE);
+                user_name.setText("-");
             }else {
                 user_name.setText(model.getMName());
             }
@@ -403,6 +478,40 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView, V
     @Override
     public void errorViewProfile(String response) {
         Log.d("ProfileActivity error", response);
+    }
+
+    @Override
+    public void successupdateProfile(String response) {
+
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            String status = jsonObject.getString("status");
+            String msg = jsonObject.getString("message");
+            if (status.equalsIgnoreCase("1")) {
+                Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
+                user_name.setVisibility(View.VISIBLE);
+                edt_picme_id.setVisibility(View.VISIBLE);
+                address.setVisibility(View.VISIBLE);
+                village_name.setVisibility(View.VISIBLE);
+                re_number.setVisibility(View.VISIBLE);
+                support_layout.setVisibility(View.VISIBLE);
+                re_enter_number.setVisibility(View.GONE);
+                alter_number.setVisibility(View.VISIBLE);
+                support_layout1.setVisibility(View.VISIBLE);
+                emer_enter_number.setVisibility(View.GONE);
+                btn_open.setVisibility(View.GONE);
+            }else{
+                Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void errorUpdateProfile(String response) {
+
     }
 
     @Override

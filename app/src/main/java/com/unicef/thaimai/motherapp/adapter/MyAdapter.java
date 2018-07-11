@@ -23,7 +23,7 @@ import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>  {
     private ArrayList<NotificationListResponseModel.NotificationList> moviesList;
-    NotificationListResponseModel.NotificationList movie;;
+    NotificationListResponseModel.NotificationList movie;
     public MyAdapter(ArrayList<NotificationListResponseModel.NotificationList> moviesList) {
         this.moviesList = moviesList;
     }
@@ -41,11 +41,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>  {
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         NotificationListResponseModel.NotificationList movie = moviesList.get(position);
-        holder.subject.setText(movie.getSubject());
+//        holder.subject.setText(movie.getSubject());
         holder.message.setText(movie.getMessage());
 
 
-        holder.timeago.setText(movie.getNoteStartDateTime());
+//        holder.timeago.setText(movie.getNoteStartDateTime());
 
     }
 
@@ -60,9 +60,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>  {
 
         public ViewHolder(View view) {
             super(view);
-            subject = (TextView) view.findViewById(R.id.txt_subject);
+//            subject = (TextView) view.findViewById(R.id.txt_subject);
             message = (TextView) view.findViewById(R.id.txt_message);
-            timeago = (TextView) view.findViewById(R.id.txt_datetime);
+//            timeago = (TextView) view.findViewById(R.id.txt_datetime);
         }
     }
 }

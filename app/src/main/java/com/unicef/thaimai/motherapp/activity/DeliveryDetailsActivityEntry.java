@@ -125,8 +125,8 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
         sp_newborn = (Spinner) findViewById(R.id.sp_newborn);
         sp_birth_details = (Spinner) findViewById(R.id.sp_birth_details);
         sp_breast_feeding_given = (Spinner) findViewById(R.id.sp_breast_feeding_given);
-        sp_admitted_in_sncu = (Spinner) findViewById(R.id.sp_admitted_in_sncu);
-        sp_outcome = (Spinner) findViewById(R.id.sp_outcome);
+//        sp_admitted_in_sncu = (Spinner) findViewById(R.id.sp_admitted_in_sncu);
+//        sp_outcome = (Spinner) findViewById(R.id.sp_outcome);
         til_delivery_date = (TextInputLayout) findViewById(R.id.til_delivery_date);
         til_delivery_time = (TextInputLayout) findViewById(R.id.til_delivery_time);
         til_infant_id = (TextInputLayout) findViewById(R.id.til_infant_id);
@@ -190,9 +190,9 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
         sp_mother.setOnItemSelectedListener(this);
         sp_newborn.setOnItemSelectedListener(this);
         sp_birth_details.setOnItemSelectedListener(this);
-        sp_admitted_in_sncu.setOnItemSelectedListener(this);
+//        sp_admitted_in_sncu.setOnItemSelectedListener(this);
         sp_breast_feeding_given.setOnItemSelectedListener(this);
-        sp_outcome.setOnItemSelectedListener(this);
+//        sp_outcome.setOnItemSelectedListener(this);
     }
 
     @Override
@@ -293,11 +293,11 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
             showAlert("Birth Details is Empty");
         } else if (strBreastFeeding.equalsIgnoreCase("--Select--")) {
             showAlert("Breast Feeding is Empty");
-        } else if (strAdmittedSNCU.equalsIgnoreCase("--Select--")) {
+        } /*else if (strAdmittedSNCU.equalsIgnoreCase("--Select--")) {
             showAlert("Admitted in SNCU is Empty");
         } else if (strSNCUOutcome.equalsIgnoreCase("--Select--")) {
             showAlert("SNCU Outcome is Empty");
-        } else {
+        } */else {
             deliveryEntryRequestModel = new DeliveryEntryRequestModel();
 //            deliveryEntryRequestModel.setDpicmeId(preferenceData.getPicmeId());                         //preferenceData.getPicmeId()
             deliveryEntryRequestModel.setMid(preferenceData.getMId());
@@ -320,9 +320,9 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
             deliveryEntryRequestModel.setDBirthWeight(strInfantWeight);
             deliveryEntryRequestModel.setDBirthHeight(strInfantHeight);
             deliveryEntryRequestModel.setDBreastFeedingGiven(strBreastFeeding);
-            deliveryEntryRequestModel.setDAdmittedSNCU(strAdmittedSNCU);
-            deliveryEntryRequestModel.setDSNCUDate(strSNCUNewBornDate);
-            deliveryEntryRequestModel.setDSNCUOutcome(strSNCUOutcome);
+//            deliveryEntryRequestModel.setDAdmittedSNCU(strAdmittedSNCU);
+//            deliveryEntryRequestModel.setDSNCUDate(strSNCUNewBornDate);
+//            deliveryEntryRequestModel.setDSNCUOutcome(strSNCUOutcome);
             deliveryEntryRequestModel.setDBCGDate(strBCGDate);
             deliveryEntryRequestModel.setDOPVDate(strOPVDate);
             deliveryEntryRequestModel.setDHEPBDate(strHEPDate);
@@ -366,12 +366,12 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
             case R.id.sp_breast_feeding_given:
                 strBreastFeeding = parent.getSelectedItem().toString();
                 break;
-            case R.id.sp_admitted_in_sncu:
+           /* case R.id.sp_admitted_in_sncu:
                 strAdmittedSNCU = parent.getSelectedItem().toString();
                 break;
             case R.id.sp_outcome:
                 strSNCUOutcome = parent.getSelectedItem().toString();
-                break;
+                break;*/
         }
 
     }

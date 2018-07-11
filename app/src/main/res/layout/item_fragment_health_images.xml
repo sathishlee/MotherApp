@@ -25,10 +25,10 @@
                 android:layout_gravity="start">
                 <ImageView
                     android:id="@+id/profilePic"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_width="80dp"
+                    android:layout_height="100dp"
                     android:contentDescription="@string/no_image"
-                    app:srcCompat="@drawable/image_message"
+                    app:srcCompat="@drawable/cl"
                     android:layout_margin="10dp"
                     android:layout_gravity="center_horizontal" />
             </FrameLayout>
@@ -48,7 +48,7 @@
                 android:layout_margin="3dp"
                 android:textColor="@color/text_primary"
                 android:textSize="@dimen/text_label"
-                android:text="Message of Image"/>
+                android:text="Eat Healthy Food"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -62,7 +62,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="2dp"
                         android:textSize="@dimen/text_label"
-                        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit,"/>
+                        android:text="Eating healthy is of utmost importance throughout your pregnancy"/>
 
                 </LinearLayout>
 

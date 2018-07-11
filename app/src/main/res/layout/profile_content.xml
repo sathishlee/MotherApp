@@ -115,7 +115,7 @@
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
                 app:srcCompat="@drawable/house" />
 
-            <EditText
+            <TextView
                 android:id="@+id/address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -291,7 +291,7 @@
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
                 app:srcCompat="@drawable/ic_phone_black" />
 
-            <EditText
+            <TextView
                 android:id="@+id/tvNumber1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -314,9 +314,15 @@
                 android:textColor="#727272" />
 
         </RelativeLayout>
+        <LinearLayout
+            android:id="@+id/support_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
         <include layout="@layout/item_divider"
-            android:id="@+id/item_image"
-            android:visibility="gone"/>
+                android:id="@+id/item_image" />
+            </LinearLayout>
 
         <RelativeLayout
             android:id="@+id/re_enter_number"
@@ -324,7 +330,8 @@
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackground"
             android:clickable="true"
-            android:padding="@dimen/activity_horizontal_margin">
+            android:padding="@dimen/activity_horizontal_margin"
+            android:visibility="gone">
 
             <ImageView
                 android:id="@+id/address_icon1"
@@ -348,7 +355,8 @@
                     android:layout_toEndOf="@id/user_icon"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="Enter Mobile Number"
+                    android:text=""
+                    android:hint="Enter Mobile Number"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="#212121" />
 
@@ -359,6 +367,7 @@
 
 
         <RelativeLayout
+            android:id="@+id/alter_number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackground"
@@ -396,8 +405,93 @@
 
 
         </RelativeLayout>
-
+    <LinearLayout
+        android:id="@+id/support_layout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
         <include layout="@layout/item_divider" />
+    </LinearLayout>
+        <RelativeLayout
+            android:id="@+id/emer_enter_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:padding="@dimen/activity_horizontal_margin"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/phone_icon1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:contentDescription="@string/address"
+                app:srcCompat="@drawable/ic_phone_black" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_phone1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp">
+
+                <EditText
+                    android:id="@+id/edt_phone_hus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/user_icon"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text=""
+                    android:hint="Enter Alter Mobile Number"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="#212121" />
+
+            </android.support.design.widget.TextInputLayout>
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_open"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2"
+            android:visibility="gone"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="10dp">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/button_backgroumd"
+                    android:text="@string/submit"
+                    android:textColor="#ffffff"
+                    android:id="@+id/btn_submit"
+                    android:padding="10dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="10dp">
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/button_backgroumd"
+                    android:text="Cancel"
+                    android:textColor="#ffffff"
+                    android:id="@+id/btn_cancel"
+                    android:padding="10dp"/>
+            </LinearLayout>
+        </LinearLayout>
 
     </LinearLayout>
 

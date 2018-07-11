@@ -7,4 +7,5 @@ package com.unicef.thaimai.motherapp.interactor;
 public interface ProfileInteractor {
 
    void getMotherProfile(String mid,String picmeId);
+   void sendMotherProfile(String mid, String picmeId, String number, String hus_number);
 }

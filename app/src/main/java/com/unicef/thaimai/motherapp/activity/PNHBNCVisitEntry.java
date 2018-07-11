@@ -255,7 +255,7 @@ public class PNHBNCVisitEntry extends AppCompatActivity implements View.OnClickL
         SimpleDateFormat dateFormat =
                 new java.text.SimpleDateFormat("yyyy-MM-dd");
        Date dateSelectedFrom = null;
- Date dateNextDate = null;
+        Date dateNextDate = null;
       Date datePreviousDate = null;
 
         // convert date present in the String to java.util.Date.
@@ -613,9 +613,7 @@ else if(strVisitNo.equalsIgnoreCase("--Select")){
     @Override
     public void checkpnhbncVisitIdSuccess(String response) {
 //        strVisitId = strVisitNo;
-Log.e(PNHBNCVisitEntry.class.getSimpleName(),response);
-
-
+        Log.e(PNHBNCVisitEntry.class.getSimpleName(),response);
         try{
             JSONObject jsonObject = new JSONObject(response);
             String status =jsonObject.getString("status");
@@ -624,12 +622,10 @@ Log.e(PNHBNCVisitEntry.class.getSimpleName(),response);
             if (status.equalsIgnoreCase("1")){
 //                edt_due_date.setText(getCareDueDate("2018-12-01",Integer.parseInt(strVisitId)));
                 Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
-
                 edt_due_date.setText(getCareDueDate(jsonObject.getString("deliverydate"),Integer.parseInt(strVisitId)));
-
             }else{
                 Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
-//                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
 
             }
         }
