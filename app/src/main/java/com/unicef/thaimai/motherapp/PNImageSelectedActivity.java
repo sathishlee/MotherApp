@@ -81,7 +81,7 @@ public class PNImageSelectedActivity extends AppCompatActivity implements Camera
         TextView tv_selected_title;
         ViewPager mViewPager;
         TabLayout tabLayout;
-        PagerAdapter_Picker adapter;
+        PNPageAdpaterSelection adapter;
         PNAdapter_selectedPhoto pnAdapter_selectedPhoto;
         ProgressDialog progressDialog;
         PreferenceData preferenceData;
@@ -284,7 +284,7 @@ public class PNImageSelectedActivity extends AppCompatActivity implements Camera
         }
 
         private void setupTabs() {
-            adapter = new PagerAdapter_Picker(this, getSupportFragmentManager());
+            adapter = new PNPageAdpaterSelection(this, getSupportFragmentManager());
             mViewPager.setAdapter(adapter);
             tabLayout.setupWithViewPager(mViewPager);
 
