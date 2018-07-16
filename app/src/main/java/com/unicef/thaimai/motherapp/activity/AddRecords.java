@@ -24,6 +24,7 @@
     import com.unicef.thaimai.motherapp.Preference.PreferenceData;
     import com.unicef.thaimai.motherapp.Presenter.AddVisitRecordsPresenter;
     import com.unicef.thaimai.motherapp.R;
+    import com.unicef.thaimai.motherapp.helper.LocaleHelper;
     import com.unicef.thaimai.motherapp.model.requestmodel.AddRecordRequestModel;
     import com.unicef.thaimai.motherapp.utility.CheckNetwork;
     import com.unicef.thaimai.motherapp.view.AddRecordViews;
@@ -120,10 +121,7 @@
             sp_placenta = (Spinner) findViewById(R.id.sp_placenta);
             sp_gestation_sac = (Spinner) findViewById(R.id.sp_gestation_sac);
             sp_fetus = (Spinner) findViewById(R.id.sp_fetus);
-
-
             edt_fundal_height = (EditText) findViewById(R.id.edt_fundal_height);
-
             edt_facility_other = (EditText) findViewById(R.id.edt_facility_other);
             edt_facility_other.setVisibility(View.GONE);
             edt_any_complaints_other = (EditText) findViewById(R.id.edt_any_complaints_other);
@@ -473,5 +471,10 @@
             if (null != rb && checkedId > -1) {
             }
             strPep =rb.getText().toString();
+        }
+
+        @Override
+        protected void attachBaseContext(Context newBase) {
+            super.attachBaseContext(LocaleHelper.onAttach(newBase));
         }
     }

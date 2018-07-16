@@ -63,6 +63,7 @@ import com.unicef.thaimai.motherapp.fragment.PNhbncVisit;
 import com.unicef.thaimai.motherapp.fragment.ReferralListFragment;
 import com.unicef.thaimai.motherapp.fragment.health_records;
 import com.unicef.thaimai.motherapp.fragment.home;
+import com.unicef.thaimai.motherapp.helper.LocaleHelper;
 import com.unicef.thaimai.motherapp.realmDbModelClass.HomeRealmModel;
 import com.unicef.thaimai.motherapp.utility.CheckNetwork;
 import com.unicef.thaimai.motherapp.utility.LocationMonitoringService;
@@ -336,12 +337,6 @@ public class MainActivity extends AppCompatActivity
         alertDialog.show();
     }
 */
-
-    @Override
-    protected void attachBaseContext(Context context) {
-        super.attachBaseContext(context);
-
-    }
 
 
     @Override
@@ -664,4 +659,12 @@ public class MainActivity extends AppCompatActivity
     public void onNetworkConnectionChanged(boolean isConnected) {
 
     }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(LocaleHelper.onAttach(newBase));
+    }
+
+
+
 }

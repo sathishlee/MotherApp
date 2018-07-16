@@ -109,6 +109,78 @@ public class UploadMulitipleImagesPresenter implements ImageUploadInteractor {
     }
 
     @Override
+    public void pnVisitUploadPhoto(final String picmeId, final String visitId, final String mid, final ArrayList<Bitmap> bitmap) {
+
+        imageUploadViews.showProgress();
+        VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST,
+                Apiconstants.BASE_URL + Apiconstants.PN_PHOTO_UPLOAD,
+                new Response.Listener<NetworkResponse>() {
+
+
+                    @Override
+                    public void onResponse(NetworkResponse response) {
+                        imageUploadViews.hideProgress();
+                        imageUploadViews.successUploadPhoto(response.toString());
+//                        try {
+//                            JSONObject obj = new JSONObject(new String(response.data));
+//                            Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                imageUploadViews.hideProgress();
+                imageUploadViews.errorUploadPhoto(error.toString());
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("picmeId", picmeId);
+                params.put("visitId", visitId);
+                params.put("mid", mid);
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                String credentials = "admin" + ":" + "1234";
+                String base64EncodedCredentials = Base64.encodeToString(credentials.getBytes(), Base64.DEFAULT);
+                HashMap<String, String> header = new HashMap<>();
+                //                header.put("Content-Type", "application/x-www-from-urlencoded; charset=utf-8");
+                header.put("Authorization", "Basic " + base64EncodedCredentials);
+                Log.d("Credentials ", "Basic " + base64EncodedCredentials.toString());
+
+                return header;
+            }
+
+            @Override
+            protected Map<String, DataPart> getByteData() {
+                Map<String, DataPart> params = new HashMap<>();
+                long imagename = System.currentTimeMillis();
+                for (int i=0;i<bitmap.size();i++) {
+                    params.put("ReportPhoto["+i+"]", new DataPart(imagename + ".jpg", getFileDataFromDrawable(bitmap.get(i))));
+                    Log.d("ReportPhoto ", i+"--->"+String.valueOf(bitmap.get(i)));
+                }
+                return params;
+            }
+
+
+            private byte[] getFileDataFromDrawable(Bitmap bitmap) {
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 60, byteArrayOutputStream);
+                return byteArrayOutputStream.toByteArray();
+            }
+        };
+
+        //adding the request to volley
+//        Volley.newRequestQueue(this).add(volleyMultipartRequest);
+        VolleySingleton.getInstance(activity).addToRequestQueue(volleyMultipartRequest);
+    }
+
+    @Override
     public void uploadUserProfilePhoto(String picmeId, Bitmap bitmap) {
 
     }

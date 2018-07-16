@@ -35,7 +35,6 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.widget.ImageButton;
 
-
 import com.commonsware.cwac.camera.CameraUtils;
 import com.commonsware.cwac.camera.CameraView;
 import com.commonsware.cwac.camera.PictureTransaction;
@@ -55,8 +54,7 @@ import java.util.List;
  * Created by Suthishan on 20/1/2018.
  */
 
-public class CwacCameraFragment extends Fragment implements View.OnClickListener{
-
+public class CameraFragmentPN extends Fragment implements View.OnClickListener {
     static final int FOCUS_AREA_WEIGHT = 1000;
     private static final Interpolator ACCELERATE_INTERPOLATOR = new AccelerateInterpolator();
     private static final Interpolator DECELERATE_INTERPOLATOR = new DecelerateInterpolator();
@@ -83,7 +81,7 @@ public class CwacCameraFragment extends Fragment implements View.OnClickListener
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ImageSelectedActivity.mMyCameraHost = new MyCameraHost(getActivity());
+        PNImageSelectedActivity.mMyCameraHost = new MyCameraHost(getActivity());
 
         mProgressDialog = new ProgressDialog(getActivity());
         mProgressDialog.setMessage(getString(R.string.progress_title));
@@ -106,7 +104,7 @@ public class CwacCameraFragment extends Fragment implements View.OnClickListener
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.picker_fragment_camera_cwac, null, false);
+        view = inflater.inflate(R.layout.picker_fragment_camera, null, false);
         initView();
 
         ViewGroup.LayoutParams params=cameraView.getLayoutParams();
@@ -119,8 +117,10 @@ public class CwacCameraFragment extends Fragment implements View.OnClickListener
             @Override
             public boolean onPreDraw() {
                 cameraView.getViewTreeObserver().removeOnPreDrawListener(this);
+
                 camera_width = cameraView.getWidth();
                 camera_height = cameraView.getHeight();
+
                 return true;
             }
         });
@@ -151,8 +151,6 @@ public class CwacCameraFragment extends Fragment implements View.OnClickListener
 
         SensorManager sensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
         sensorManager.registerListener(new SensorEventListener() {
-
-
             @Override
             public void onSensorChanged(SensorEvent event) {
                 float x = event.values[0];
@@ -166,7 +164,6 @@ public class CwacCameraFragment extends Fragment implements View.OnClickListener
                     device_orientation = 180;
                 else if (x>5 && y<5 && y>-5)
                     device_orientation = 270;
-
             }
 
             @Override
@@ -329,7 +326,7 @@ public class CwacCameraFragment extends Fragment implements View.OnClickListener
 
     public void showTakenPicture(Uri uri) {
 
-        ImageSelectedActivity mImagePickerActivity = ((ImageSelectedActivity) getActivity());
+        PNImageSelectedActivity mImagePickerActivity = ((PNImageSelectedActivity) getActivity());
 //        convertImgURI(uri);
 
         mImagePickerActivity.addImage(uri);
@@ -546,7 +543,7 @@ public class CwacCameraFragment extends Fragment implements View.OnClickListener
                             @Override
                             public void run() {
                                 showTakenPicture(Uri.parse(photo.toString()));
-                            Log.d("onScanCompleted uri", String.valueOf(Uri.parse(photo.toString())));
+                                Log.d("onScanCompleted uri", String.valueOf(Uri.parse(photo.toString())));
                             }
                         });
 

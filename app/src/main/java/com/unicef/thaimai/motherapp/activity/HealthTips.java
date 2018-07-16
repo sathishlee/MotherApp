@@ -43,8 +43,6 @@ public class HealthTips extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_health_tips);
         initUi();
-
-
     }
 
     private void initUi() {

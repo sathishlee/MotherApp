@@ -12,4 +12,7 @@ public interface HealthTipsViews {
     void getHealthTipsVideoSuccess(String response);
     void getHealthTipsVideoFailure(String response);
 
+    void healthTipsMessageSuccess(String response);
+    void healthTipsMessageFailure(String response);
+
 }

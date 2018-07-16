@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.unicef.thaimai.motherapp.activity.MainActivity;
 import com.unicef.thaimai.motherapp.constant.AppConstants;
 
 /**
@@ -12,6 +13,7 @@ import com.unicef.thaimai.motherapp.constant.AppConstants;
  */
 
 public class PreferenceData {
+
     SharedPreferences sharedPreferences;
     public PreferenceData(Context context) {
         sharedPreferences = context.getSharedPreferences(AppConstants.PREF_NAME, Context.MODE_PRIVATE);
@@ -23,6 +25,19 @@ public class PreferenceData {
 
     public void setLogin(boolean isLogin) {
         sharedPreferences.edit().putBoolean(AppConstants.IS_LOGIN, isLogin).commit();
+    }
+
+    public void setSharePrefrenceLocale(String locale) {
+        SharedPreferences prefs = sharedPreferences;
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("locale", locale);
+        editor.apply();
+    }
+
+    public String getSharePrefrenceLocale() {
+
+        SharedPreferences prefs = sharedPreferences;
+        return prefs.getString("locale", "en");
     }
 
 

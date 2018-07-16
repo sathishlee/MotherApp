@@ -101,6 +101,9 @@ dependencies {
 
     compile 'net.alexandroid.utils:gps:1.6'
     compile project(':multiselectspineer')
+
+    //html Data
+    compile 'org.jsoup:jsoup:1.11.3'
 }
 
 

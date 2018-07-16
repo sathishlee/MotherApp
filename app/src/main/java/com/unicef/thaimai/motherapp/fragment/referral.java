@@ -17,7 +17,7 @@ import com.unicef.thaimai.motherapp.activity.ReferralActivity;
 public class referral extends Fragment {
 
 //    CardView referral_display;
-FloatingActionButton fabAddNewReferal;
+    FloatingActionButton fabAddNewReferal;
     public static referral newInstance()
     {
         referral fragment = new referral();

@@ -31,6 +31,7 @@ import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.ReferalPresenter;
 import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.constant.AppConstants;
+import com.unicef.thaimai.motherapp.helper.LocaleHelper;
 import com.unicef.thaimai.motherapp.model.responsemodel.NearestReferalHospitalModel;
 import com.unicef.thaimai.motherapp.utility.CheckNetwork;
 import com.unicef.thaimai.motherapp.view.ReferalViews;
@@ -603,6 +604,11 @@ public class AddReferral extends AppCompatActivity implements View.OnClickListen
     @Override
     public void errorReferalClosed(String response) {
 
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(LocaleHelper.onAttach(newBase));
     }
 
 

@@ -13,4 +13,6 @@ public interface ImageUploadInteractor {
 
     void uploadVisitReportsPhoto(String picmeId, String visitId, String mid, ArrayList<Bitmap> bitmap);
 
+    void pnVisitUploadPhoto(String picmeId, String visitId, String mid, ArrayList<Bitmap> bitmap);
+
 }

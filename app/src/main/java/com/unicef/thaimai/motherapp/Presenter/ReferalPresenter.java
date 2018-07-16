@@ -38,12 +38,13 @@ public class ReferalPresenter implements ReferalInteractor {
 
         final String url = Apiconstants.BASE_URL + Apiconstants.POST_REFERAL_NEAREST_HOSPITAL;
 
-        Log.d("Log in check Url--->", url);
-        Log.d("latitude", latitude);
-        Log.d("longitude", longitude);
+        Log.e("Log in check Url--->", url);
+        Log.e("latitude", latitude);
+        Log.e("longitude", longitude);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                Log.e("NearestHospital", response);
                 view.hideProgress();
                 view.successReferalNearestHospital(response);
 

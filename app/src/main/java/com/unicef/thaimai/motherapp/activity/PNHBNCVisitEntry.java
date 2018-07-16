@@ -19,6 +19,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.suthishan.multiselectspineer.MultiSelectSpinner;
+import com.unicef.thaimai.motherapp.PNImageSelectedActivity;
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.PNHBNCVisitPresenter;
 import com.unicef.thaimai.motherapp.R;
@@ -45,7 +46,7 @@ public class PNHBNCVisitEntry extends AppCompatActivity implements View.OnClickL
 
     EditText edt_due_date, edt_care_provided_date, edt_infant_weight, edt_infant_temp, edt_mother_systolic, edt_mother_diastolic, edt_mother_pluse_rate, edt_mother_temp;
 
-    Button btn_pnhbnc_submit;
+    Button btn_pnhbnc_submit, upload_report;
 
     String  strDueDate, strCareDate, strInfantWeight, strInfantTemp, strMotherSystolic, strMotherDiastolic,
             strMotherPluseRate, strMotherTemp, strFacility, strInfantUmbilicalStump, strInfantCry, strInfantEyes,
@@ -161,6 +162,7 @@ public class PNHBNCVisitEntry extends AppCompatActivity implements View.OnClickL
         edt_mother_temp = (EditText) findViewById(R.id.edt_mother_temp);
 
         btn_pnhbnc_submit = (Button) findViewById(R.id.btn_pnhbnc_submit);
+        upload_report = (Button) findViewById(R.id.upload_reports);
 
         sp_visit_no = (Spinner) findViewById(R.id.sp_visit_no);
         sp_facility = (Spinner) findViewById(R.id.sp_facility);
@@ -288,6 +290,7 @@ public class PNHBNCVisitEntry extends AppCompatActivity implements View.OnClickL
 
     public void onClickListner(){
         btn_pnhbnc_submit.setOnClickListener(this);
+        upload_report.setOnClickListener(this);
     }
 
     public void OnItemSelectedListener(){
@@ -323,11 +326,23 @@ public class PNHBNCVisitEntry extends AppCompatActivity implements View.OnClickL
                     dataSendtoServer();
                 }else{
                     Toast.makeText(getApplicationContext(), "Check Internet Connection...Try Agian After Sometimes", Toast.LENGTH_LONG).show();
-//            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    finish();
+                }
+                break;
+
+            case R.id.upload_reports:
+                if(checkNetwork.isNetworkAvailable()){
+                    checkVisitSelect();
+                }else{
+                    Toast.makeText(getApplicationContext(), "Check Internet Connection...Try Agian After Sometimes", Toast.LENGTH_LONG).show();
                     finish();
                 }
                 break;
         }
+    }
+
+    private void checkVisitSelect() {
+        startActivity(new Intent(getApplicationContext(), PNImageSelectedActivity.class));
     }
 
     public void dataSendtoServer(){
@@ -415,7 +430,7 @@ public class PNHBNCVisitEntry extends AppCompatActivity implements View.OnClickL
         else if(strMotherOutcome.equalsIgnoreCase("--Select")){
             showAlert("Mother Outcome is Empty");
         }
-else if(strVisitNo.equalsIgnoreCase("--Select")){
+        else if(strVisitNo.equalsIgnoreCase("--Select")){
             showAlert("Visit No is Empty");
         }
 
@@ -467,7 +482,6 @@ else if(strVisitNo.equalsIgnoreCase("--Select")){
 
     private void showAlert(String msg) {
         Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
-
     }
 
     @Override
@@ -572,7 +586,7 @@ else if(strVisitNo.equalsIgnoreCase("--Select")){
             if (status.equalsIgnoreCase("1")){
                 Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(getApplicationContext(),MainActivity.class));
-
+                finish();
                 Log.e(PNHBNCVisitEntry.class.getSimpleName(),"Response Success--->"+response);
             }
         } catch (JSONException e) {
@@ -606,8 +620,7 @@ else if(strVisitNo.equalsIgnoreCase("--Select")){
 
     @Override
     public void getpnhbncVisitNumberFailiure(String response) {
-        Log.d(PNHBNCVisitEntry.class.getSimpleName(),"Response Failiure-->" + response);
-
+        Log.d(PNHBNCVisitEntry.class.getSimpleName(),"Response Failure-->" + response);
     }
 
     @Override
@@ -623,6 +636,7 @@ else if(strVisitNo.equalsIgnoreCase("--Select")){
 //                edt_due_date.setText(getCareDueDate("2018-12-01",Integer.parseInt(strVisitId)));
                 Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
                 edt_due_date.setText(getCareDueDate(jsonObject.getString("deliverydate"),Integer.parseInt(strVisitId)));
+
             }else{
                 Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(getApplicationContext(),MainActivity.class));

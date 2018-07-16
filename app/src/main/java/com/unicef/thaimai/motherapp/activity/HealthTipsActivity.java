@@ -144,4 +144,14 @@ public class HealthTipsActivity extends AppCompatActivity implements HealthTipsV
     public void getHealthTipsVideoFailure(String response) {
     Log.e(HealthTipsActivity.class.getSimpleName(), "Error Message"+ response);
     }
+
+    @Override
+    public void healthTipsMessageSuccess(String response) {
+
+    }
+
+    @Override
+    public void healthTipsMessageFailure(String response) {
+
+    }
 }

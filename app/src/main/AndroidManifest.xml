@@ -260,6 +260,8 @@
 
         <!--<activity android:name=".activity.GetVerificationCodeActivity"/>-->
         <activity android:name=".activity.ImageFullViewActivity"/>
+        <activity android:name=".PNImageSelectedActivity"
+            android:theme="@style/AppTheme1"/>
 
     </application>
 

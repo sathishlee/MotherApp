@@ -14,25 +14,23 @@ import com.unicef.thaimai.motherapp.adapter.BaseRecyclerViewAdapter;
  * Created by Suthishan on 20/1/2018.
  */
 
-public class Adapter_SelectedPhoto extends BaseRecyclerViewAdapter<Uri, Adapter_SelectedPhoto.SelectedPhotoHolder> {
-
+public class PNAdapter_selectedPhoto extends BaseRecyclerViewAdapter<Uri, Adapter_SelectedPhoto.SelectedPhotoHolder> {
     int closeImageRes;
 
-    ImageSelectedActivity imagePickerActivity;
+    PNImageSelectedActivity pnImageSelectedActivity;
 
-    public Adapter_SelectedPhoto(ImageSelectedActivity imagePickerActivity, int closeImageRes) {
-        super(imagePickerActivity);
-        this.imagePickerActivity = imagePickerActivity;
+    public PNAdapter_selectedPhoto(PNImageSelectedActivity pnImageSelectedActivity, int closeImageRes) {
+        super(pnImageSelectedActivity);
+        this.pnImageSelectedActivity = pnImageSelectedActivity;
         this.closeImageRes = closeImageRes;
 
     }
 
-
     @Override
-    public void onBindView(SelectedPhotoHolder holder, int position) {
+    public void onBindView(Adapter_SelectedPhoto.SelectedPhotoHolder holder, int position) {
 
         Uri uri = getItem(position);
-        Glide.with(imagePickerActivity)
+        Glide.with(pnImageSelectedActivity)
                 .load(uri.toString())
                 //   .override(selected_bottom_size, selected_bottom_size)
                 .dontAnimate()
@@ -54,6 +52,7 @@ public class Adapter_SelectedPhoto extends BaseRecyclerViewAdapter<Uri, Adapter_
     class SelectedPhotoHolder extends RecyclerView.ViewHolder {
         ImageView selected_photo;
         ImageView iv_close;
+
         public SelectedPhotoHolder(View itemView) {
             super(itemView);
             selected_photo = (ImageView) itemView.findViewById(R.id.selected_photo);
@@ -62,7 +61,7 @@ public class Adapter_SelectedPhoto extends BaseRecyclerViewAdapter<Uri, Adapter_
                 @Override
                 public void onClick(View view) {
                     Uri uri = (Uri) view.getTag();
-                    imagePickerActivity.removeImage(uri);
+                    pnImageSelectedActivity.removeImage(uri);
                 }
             });
 

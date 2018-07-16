@@ -46,11 +46,19 @@ public class MyApplication extends Application {
         ConnectivityReceiver.connectivityReceiverListener = listener;
     }
 
+
+
     @Override
     protected void attachBaseContext(Context base) {
-        super.attachBaseContext(base);
-//        super.attachBaseContext(LocaleHelper.onAttach(base, "en"));
+//        super.attachBaseContext(base);
+        super.attachBaseContext(LocaleHelper.setLocale(base,"en"));
         MultiDex.install(this);
     }
+
+   /* @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        LocaleHelper.setLocale(this);
+    }*/
 
 }

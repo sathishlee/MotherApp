@@ -7,4 +7,6 @@ package com.unicef.thaimai.motherapp.interactor;
 public interface HealthTipsInteractor {
 
     void getHealthTipsVideo(String picmeId);
+
+    void healthTipsMessage(String mid);
 }

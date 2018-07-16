@@ -489,6 +489,9 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView, V
             String msg = jsonObject.getString("message");
             if (status.equalsIgnoreCase("1")) {
                 Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
+                Intent intent = getIntent();
+                finish();
+                startActivity(intent);
                 user_name.setVisibility(View.VISIBLE);
                 edt_picme_id.setVisibility(View.VISIBLE);
                 address.setVisibility(View.VISIBLE);

@@ -1,5 +1,6 @@
 package com.unicef.thaimai.motherapp.Presenter;
 
+import android.app.Activity;
 import android.util.Base64;
 import android.util.Log;
 
@@ -28,11 +29,11 @@ import java.util.Map;
 
 public class PNHBNCVisitPresenter implements PNHBNCVisitInteractor {
 
-    PNHBNCVisitEntry pnhbncVisitEntry;
+    Activity activity;
     PNHBNCVisitViews pnhbncVisitViews;
 
-    public PNHBNCVisitPresenter(PNHBNCVisitEntry pnhbncVisitEntry,PNHBNCVisitViews pnhbncVisitViews){
-        this.pnhbncVisitEntry = pnhbncVisitEntry;
+    public PNHBNCVisitPresenter(Activity activity,PNHBNCVisitViews pnhbncVisitViews){
+        this.activity = activity;
         this.pnhbncVisitViews = pnhbncVisitViews;
 
     }
@@ -89,7 +90,7 @@ public class PNHBNCVisitPresenter implements PNHBNCVisitInteractor {
                 return Method.POST;
             }
         };
-        VolleySingleton.getInstance(pnhbncVisitEntry).addToRequestQueue(request);
+        VolleySingleton.getInstance(activity).addToRequestQueue(request);
     }
 
     @Override
@@ -145,7 +146,7 @@ public class PNHBNCVisitPresenter implements PNHBNCVisitInteractor {
                 return Method.POST;
             }
         };
-        VolleySingleton.getInstance(pnhbncVisitEntry).addToRequestQueue(request);
+        VolleySingleton.getInstance(activity).addToRequestQueue(request);
     }
 
     @Override
@@ -225,7 +226,7 @@ public class PNHBNCVisitPresenter implements PNHBNCVisitInteractor {
             return Method.POST;
         }
         };
-        VolleySingleton.getInstance(pnhbncVisitEntry).addToRequestQueue(jsonObjectRequest);
+        VolleySingleton.getInstance(activity).addToRequestQueue(jsonObjectRequest);
 
     }
 }

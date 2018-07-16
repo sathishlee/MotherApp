@@ -105,5 +105,10 @@ public class ImageUploadPresenter implements ImageUploadInteractor {
     public void uploadVisitReportsPhoto(String picmeId, String visitId, String mid,  ArrayList<Bitmap> bitmap) {
 
     }
+
+    @Override
+    public void pnVisitUploadPhoto(String picmeId, String visitId, String mid, ArrayList<Bitmap> bitmap) {
+
+    }
 }
 
