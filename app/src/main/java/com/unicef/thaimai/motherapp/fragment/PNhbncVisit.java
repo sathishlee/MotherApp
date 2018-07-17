@@ -22,6 +22,7 @@ import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.GetVisitHealthRecordsPresenter;
 import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.activity.DeliveryDetailsView;
+import com.unicef.thaimai.motherapp.activity.PNViewReportsActivity;
 import com.unicef.thaimai.motherapp.adapter.HealthRecordsAdapter;
 import com.unicef.thaimai.motherapp.adapter.PNHBNCVisitRecordsAdapter;
 import com.unicef.thaimai.motherapp.adapter.ViewPageAdapterPN;
@@ -139,14 +140,6 @@ public class PNhbncVisit extends Fragment implements GetVisitHelthRecordsViews, 
         viewPager.setOffscreenPageLimit(mPnHbncVisitRecordsList.size());
         viewPager.setAdapter(pnhbncVisitRecordsAdapter);
 
-
-//        adapter = new ViewPageAdapterPN(getActivity().getSupportFragmentManager());
-//        adapter.addFragment(new PNoneFragment(), "Present Status\nVISIT 5");
-//        adapter.addFragment(new PNtwoFragment(), "VISIT 4");
-//        adapter.addFragment(new PNoneFragment(), "VISIT 3");
-//        adapter.addFragment(new PNtwoFragment(), "VISIT 2");
-//        adapter.addFragment(new PNoneFragment(), "VISIT 1");
-//        viewPager.setAdapter(adapter);
     }
 
     @Override
@@ -347,6 +340,7 @@ public class PNhbncVisit extends Fragment implements GetVisitHelthRecordsViews, 
                 startActivity(new Intent(getActivity().getApplicationContext(), DeliveryDetailsView.class));
                 break;
             case R.id.btn_visit_reports:
+                startActivity(new Intent(getActivity().getApplicationContext(), PNViewReportsActivity.class));
                 break;
         }
     }

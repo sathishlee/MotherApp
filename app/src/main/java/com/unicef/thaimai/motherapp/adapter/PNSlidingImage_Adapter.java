@@ -1,11 +1,8 @@
 package com.unicef.thaimai.motherapp.adapter;
 
-import android.support.v4.view.PagerAdapter;
-
 import android.content.Context;
 import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,9 +14,7 @@ import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.R;
-import com.unicef.thaimai.motherapp.activity.ImageFullViewActivity;
 import com.unicef.thaimai.motherapp.constant.Apiconstants;
-import com.unicef.thaimai.motherapp.model.responsemodel.VisitRecordsSingleResponseModel;
 
 import java.util.ArrayList;
 
@@ -27,19 +22,19 @@ import java.util.ArrayList;
  * Created by Suthishan on 20/1/2018.
  */
 
-public class SlidingImage_Adapter extends PagerAdapter {
+public class PNSlidingImage_Adapter extends PagerAdapter {
     private ArrayList<String> IMAGES;
     private LayoutInflater inflater;
     private Context context;
     PreferenceData preferenceData;
 
 
-    public SlidingImage_Adapter(Context context,ArrayList<String> IMAGES) {
+    public PNSlidingImage_Adapter(Context context, ArrayList<String> IMAGES) {
         this.context = context;
         preferenceData =new PreferenceData(context);
         this.IMAGES=IMAGES;
         inflater = LayoutInflater.from(context);
-        Log.e(SlidingImage_Adapter.class.getSimpleName(),IMAGES.size()+"");
+        Log.e(PNSlidingImage_Adapter.class.getSimpleName(),IMAGES.size()+"");
 
     }
 
@@ -66,7 +61,7 @@ public class SlidingImage_Adapter extends PagerAdapter {
 
 
         Picasso.with(this.context)
-                .load(Apiconstants.VISIT_REPORTS_URL+preferenceData.getPicmeId()+"/"+IMAGES.get(position))
+                .load(Apiconstants.PN_VISIT_REPORTS_URL+preferenceData.getPicmeId()+"/"+IMAGES.get(position))
                 .placeholder(R.drawable.no_image)
                 .fit()
                 .centerCrop()

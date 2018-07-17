@@ -1,6 +1,6 @@
 package com.unicef.thaimai.motherapp.constant;
 
-import com.unicef.thaimai.motherapp.model.responsemodel.VisitRecordsSingleResponseModel;
+import com.unicef.thaimai.motherapp.model.responsemodel.ANVisitRecordsSingleResponseModel;
 
 import java.util.ArrayList;
 
@@ -87,6 +87,6 @@ public class AppConstants {
     public static Boolean LANGUAGE_CHANGE_ENGLISH = false;
 
 
-    public static ArrayList<VisitRecordsSingleResponseModel> mylist=null;
+    public static ArrayList<ANVisitRecordsSingleResponseModel> mylist=null;
 
 }

@@ -22,6 +22,8 @@ import com.unicef.thaimai.motherapp.adapter.MessageAdapter;
 import com.unicef.thaimai.motherapp.app.RealmController;
 import com.unicef.thaimai.motherapp.model.responsemodel.MessageFragmentModel;
 import com.unicef.thaimai.motherapp.model.responsemodel.ReferalListResponseModel;
+import com.unicef.thaimai.motherapp.realmDbModelClass.ANMotherVisitRealmModel;
+import com.unicef.thaimai.motherapp.realmDbModelClass.MessageRealmModel;
 import com.unicef.thaimai.motherapp.utility.CheckNetwork;
 import com.unicef.thaimai.motherapp.view.HealthTipsViews;
 
@@ -36,6 +38,7 @@ import org.jsoup.select.Elements;
 import java.util.ArrayList;
 
 import io.realm.Realm;
+import io.realm.RealmResults;
 
 /**
  * Created by Suthishan on 20/1/2018.
@@ -113,9 +116,7 @@ public class MessageFragment extends Fragment implements HealthTipsViews{
 
     }
 
-    private void messageOffline() {
 
-    }
 
     @Override
     public void showProgress() {
@@ -156,52 +157,70 @@ public class MessageFragment extends Fragment implements HealthTipsViews{
             String message = mJsnobject.getString("message");
             Toast.makeText(getActivity(),message, Toast.LENGTH_SHORT).show();
             if (status.equalsIgnoreCase("1")) {
-                txt_no_records_found.setVisibility(View.GONE);
-                message_recycler_view.setVisibility(View.VISIBLE);
+
                 JSONArray jsonArray = mJsnobject.getJSONArray("healthtips");
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    healthtips = new MessageFragmentModel.Healthtips();
-
-                    JSONObject jsonObject = jsonArray.getJSONObject(i);
-                    healthtips.setSubject(jsonObject.getString("subject"));
-//                    String message = healthtips.setMessage(jsonObject.getString("message"));
-
-                    /*final String HTML = "<table cellspacing=\"0\" style=\"height: 24px;\">\r\n<tr class=\"tr-hover\">\r\n<th rowspan=\"15\" scope=\"row\">Network</th>\r\n<td class=\"ttl\"><a href=\"network-bands.php3\">Technology</a></td>\r\n<td class=\"nfo\"><a href=\"#\" class=\"link-network-detail collapse\">GSM</a></td>\r\n</tr>\r\n<tr class=\"tr-toggle\">\r\n<td class=\"ttl\"><a href=\"network-bands.php3\">2G bands</a></td>\r\n<td class=\"nfo\">GSM 900 / 1800 - SIM 1 & SIM 2</td>\r\n</tr>   \r\n<tr class=\"tr-toggle\">\r\n<td class=\"ttl\"><a href=\"glossary.php3?term=gprs\">GPRS</a></td>\r\n<td class=\"nfo\">Class 12</td>\r\n</tr>   \r\n<tr class=\"tr-toggle\">\r\n<td class=\"ttl\"><a href=\"glossary.php3?term=edge\">EDGE</a></td>\r\n<td class=\"nfo\">Yes</td>\r\n</tr>\r\n</table>";
-                    Document document = Jsoup.parse(message);
-                    Element div = document.select("div").first();
-
-
-                    Element table = document.select("table").first();
-                    String arrayName = table.select("th").first().text();
-                    JSONObject jsonObj = new JSONObject();
-                    JSONArray jsonArr = new JSONArray();
-                    Elements ttls = table.getElementsByClass("ttl");
-                    Elements nfos = table.getElementsByClass("nfo");
-                    JSONObject jo = new JSONObject();
-                    for (int i = 0, l = ttls.size(); i < l; i++) {
-                        String key = ttls.get(i).text();
-                        String value = nfos.get(i).text();
-                        jo.put(key, value);
+                if (jsonArray.length() != 0) {
+                    RealmResults<MessageRealmModel> messageRealmModels = realm.where(MessageRealmModel.class).findAll();
+                    Log.e("Realm size ---->", messageRealmModels.size() + "");
+                    if (messageRealmModels.size()!=0){
+                        realm.executeTransaction(new Realm.Transaction() {
+                            @Override
+                            public void execute(Realm realm) {
+                                realm.delete(MessageRealmModel.class);
+                            }
+                        });
                     }
-                    jsonArr.put(jo);
-                    jsonObj.put(arrayName, jsonArr);
-                    System.out.println(jsonObj.toString());*/
+                    txt_no_records_found.setVisibility(View.GONE);
+                    message_recycler_view.setVisibility(View.VISIBLE);
+                    realm.beginTransaction();
+                    MessageRealmModel messageRealmModel = null;
 
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        messageRealmModel = realm.createObject(MessageRealmModel.class);
+                        healthtips = new MessageFragmentModel.Healthtips();
 
-                    healthtips.setMessage(jsonObject.getString("message"));
-                    healthtipses.add(healthtips);
-                    messageAdapter.notifyDataSetChanged();
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        messageRealmModel.setSubject(jsonObject.getString("subject"));
+                        messageRealmModel.setMessage(jsonObject.getString("message"));
+                    }
+                    realm.commitTransaction();       //create or open
+                }else{
+                Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
+                    txt_no_records_found.setVisibility(View.VISIBLE);
+                    message_recycler_view.setVisibility(View.GONE);
+
                 }
-            }else{
-//                Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
-                txt_no_records_found.setVisibility(View.VISIBLE);
-                message_recycler_view.setVisibility(View.GONE);
-
             }
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        messageOffline();
+    }
+
+    private void messageOffline() {
+        realm.beginTransaction();
+        RealmResults<MessageRealmModel> messageRealmModels = realm.where(MessageRealmModel.class).findAll();
+        Log.e("realm Size ->", messageRealmModels.size() + "");
+        if(messageRealmModels.size()!=0) {
+            txt_no_records_found.setVisibility(View.GONE);
+            message_recycler_view.setVisibility(View.VISIBLE);
+            for (int i = 0; i < messageRealmModels.size(); i++) {
+                healthtips = new MessageFragmentModel.Healthtips();
+                MessageRealmModel messageRealmModel = messageRealmModels.get(i);
+                healthtips.setSubject(messageRealmModel.getSubject());
+                healthtips.setMessage(messageRealmModel.getMessage());
+                healthtipses.add(healthtips);
+                messageAdapter.notifyDataSetChanged();
+            }
+        }
+        else{
+//                Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
+            txt_no_records_found.setVisibility(View.VISIBLE);
+            message_recycler_view.setVisibility(View.GONE);
+
+        }
+        realm.commitTransaction();
     }
 
     @Override

@@ -1,23 +1,19 @@
 package com.unicef.thaimai.motherapp.model.responsemodel;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Suthishan on 20/1/2018.
  */
 
-public class VisitRecordsFullResponseModel {
-
-
-
+public class PNVisitRecordsFullResponseModel {
 
     private String status;
     private String message;
     private String title;
-    private ArrayList<VisitRecordsSingleResponseModel> visitRecordsSingleResponseModels;
+    private ArrayList<PNVisitRecordsSingleResponseModel> visitRecordsSingleResponseModels;
 
-    public VisitRecordsFullResponseModel(){
+    public PNVisitRecordsFullResponseModel(){
 
     }
     public String getStatus() {
@@ -37,19 +33,19 @@ public class VisitRecordsFullResponseModel {
 
 
 
-    public ArrayList<VisitRecordsSingleResponseModel> getVisitRecordsSingleResponseModels(){
+    public ArrayList<PNVisitRecordsSingleResponseModel> getVisitRecordsSingleResponseModels(){
         return visitRecordsSingleResponseModels;
     }
-    public void setVisitRecordsSingleResponseModels(ArrayList<VisitRecordsSingleResponseModel> visitRecordsSingleResponseModels){
+    public void setVisitRecordsSingleResponseModels(ArrayList<PNVisitRecordsSingleResponseModel> visitRecordsSingleResponseModels){
         this.visitRecordsSingleResponseModels = visitRecordsSingleResponseModels;
     }
 
 
-        public String getTitle(){
-            return title;
-        }
-        public void setTitle (String title){
-            this.title = title;
-        }
+    public String getTitle(){
+        return title;
+    }
+    public void setTitle (String title){
+        this.title = title;
+    }
 
 }

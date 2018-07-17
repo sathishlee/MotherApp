@@ -12,5 +12,7 @@ public interface PNHBNCVisitInteractor {
 
     void getPNHBNCVisitCount(String strPicmeId, String strMid);
     void checkPNHBNCVisitId(String strPicmeId, String strMid, String strpnVisitId);
+
+    void checkImagePNHBNCVisitId(String strPicmeId, String strMid, String strpnVisitId);
     void insertPNHBNCVistRecords(PNHBNCVisitEntryRequestModel pnhbncVisitEntryRequestModel);
 }

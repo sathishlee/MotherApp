@@ -10,21 +10,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.R;
-import com.unicef.thaimai.motherapp.activity.FullImageViewActivity;
-import com.unicef.thaimai.motherapp.activity.ImageFullViewActivity;
+import com.unicef.thaimai.motherapp.activity.ANImageFullViewActivity;
 import com.unicef.thaimai.motherapp.constant.Apiconstants;
-import com.unicef.thaimai.motherapp.constant.AppConstants;
-import com.unicef.thaimai.motherapp.model.responsemodel.VisitRecordsSingleResponseModel;
-import com.unicef.thaimai.motherapp.utility.RoundedTransformation;
+import com.unicef.thaimai.motherapp.model.responsemodel.ANVisitRecordsSingleResponseModel;
 
 import java.util.ArrayList;
 
@@ -32,9 +26,9 @@ import java.util.ArrayList;
  * Created by Suthishan on 20/1/2018.
  */
 
-public class VisitRecordsSingleAdapter extends RecyclerView.Adapter<VisitRecordsSingleAdapter.SingleImageHolder> {
+public class ANVisitRecordsSingleAdapter extends RecyclerView.Adapter<ANVisitRecordsSingleAdapter.SingleImageHolder> {
 
-    private ArrayList<VisitRecordsSingleResponseModel> visitRecordsSingleResponseModels;
+    private ArrayList<ANVisitRecordsSingleResponseModel> visitRecordsSingleResponseModels;
     private Context context;
     String visitImage;
     Activity applicationContext;
@@ -44,7 +38,7 @@ public class VisitRecordsSingleAdapter extends RecyclerView.Adapter<VisitRecords
 
 
 
-    public VisitRecordsSingleAdapter(ArrayList<VisitRecordsSingleResponseModel> visitRecordsSingleResponseModels, Context context){
+    public ANVisitRecordsSingleAdapter(ArrayList<ANVisitRecordsSingleResponseModel> visitRecordsSingleResponseModels, Context context){
         this.context = context;
         this.visitRecordsSingleResponseModels = visitRecordsSingleResponseModels;
 //        AppConstants.mylist.addAll(visitRecordsSingleResponseModels);
@@ -65,7 +59,7 @@ public class VisitRecordsSingleAdapter extends RecyclerView.Adapter<VisitRecords
     @Override
     public void onBindViewHolder(final SingleImageHolder imageHolder, int position){
         preferenceData = new PreferenceData(context);
-       final VisitRecordsSingleResponseModel visitRecordsSingleResponseModel = visitRecordsSingleResponseModels.get(position);
+       final ANVisitRecordsSingleResponseModel visitRecordsSingleResponseModel = visitRecordsSingleResponseModels.get(position);
 
         visitImage = visitRecordsSingleResponseModel.getImage();
         Log.w("Visit Reports", Apiconstants.VISIT_REPORTS_URL+preferenceData.getPicmeId()+visitImage);
@@ -103,7 +97,7 @@ public class VisitRecordsSingleAdapter extends RecyclerView.Adapter<VisitRecords
                 Intent intent= new Intent(context,FullImageViewActivity.class);
                 intent.putExtra("image",Apiconstants.VISIT_REPORTS_URL+preferenceData.getPicmeId()+"/"+visitRecordsSingleResponseModel.getImage());
                 context.startActivity(intent);*/
-                Intent intent= new Intent(context,ImageFullViewActivity.class);
+                Intent intent= new Intent(context,ANImageFullViewActivity.class);
 //                intent.putExtra("mylist", visitRecordsSingleResponseModels);
                 String[] imgList=new String[visitRecordsSingleResponseModels.size()];
                 for (int i=0;i<visitRecordsSingleResponseModels.size();i++){

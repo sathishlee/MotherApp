@@ -362,8 +362,8 @@ public class MainActivity extends AppCompatActivity
                     });
             android.app.AlertDialog alert = builder.create();
             alert.show();
-            super.onBackPressed();
         }
+        super.onBackPressed();
     }
 
     @Override
@@ -420,9 +420,13 @@ public class MainActivity extends AppCompatActivity
                 return true;
 
             case R.id.action_help:
-                Intent i = new Intent(MainActivity.this, Help.class);
+                /*Intent i = new Intent(MainActivity.this, Help.class);
                 finish();
                 startActivity(i);
+                return true;*/
+                preferenceData.setLogin(false);
+                finish();
+                Toast.makeText(getApplicationContext(), "Logged Out", Toast.LENGTH_LONG).show();
                 return true;
             default:
                 super.onOptionsItemSelected(item);

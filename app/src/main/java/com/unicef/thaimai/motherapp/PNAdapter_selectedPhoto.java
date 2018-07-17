@@ -14,7 +14,7 @@ import com.unicef.thaimai.motherapp.adapter.BaseRecyclerViewAdapter;
  * Created by Suthishan on 20/1/2018.
  */
 
-public class PNAdapter_selectedPhoto extends BaseRecyclerViewAdapter<Uri, Adapter_SelectedPhoto.SelectedPhotoHolder> {
+public class PNAdapter_selectedPhoto extends BaseRecyclerViewAdapter<Uri, PNAdapter_selectedPhoto.SelectedPhotoHolder> {
     int closeImageRes;
 
     PNImageSelectedActivity pnImageSelectedActivity;
@@ -27,7 +27,7 @@ public class PNAdapter_selectedPhoto extends BaseRecyclerViewAdapter<Uri, Adapte
     }
 
     @Override
-    public void onBindView(Adapter_SelectedPhoto.SelectedPhotoHolder holder, int position) {
+    public void onBindView(PNAdapter_selectedPhoto.SelectedPhotoHolder holder, int position) {
 
         Uri uri = getItem(position);
         Glide.with(pnImageSelectedActivity)

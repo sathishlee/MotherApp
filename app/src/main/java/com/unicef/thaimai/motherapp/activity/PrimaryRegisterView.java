@@ -141,7 +141,7 @@ public class PrimaryRegisterView extends AppCompatActivity implements PrimaryReg
         txt_hus_Hepatitis = (TextView) findViewById(R.id.txt_hus_Hepatitis);
 
         if (isoffline) {
-            primaryRecordsOfline();
+            primaryRecordsOffline();
         }else{
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage("Record Not Found");
@@ -150,204 +150,210 @@ public class PrimaryRegisterView extends AppCompatActivity implements PrimaryReg
 
     }
 
-    private void primaryRecordsOfline() {
-
+    private void primaryRecordsOffline() {
+        RealmResults<PrimaryRegisterRealmModel> primaryRegisterRealmModels;
         realm.beginTransaction();
-        RealmResults<PrimaryRegisterRealmModel> primaryRegisterRealmModels = realm.where(PrimaryRegisterRealmModel.class).equalTo("picmeId", preferenceData.getPicmeId()).findAll();
+        primaryRegisterRealmModels = realm.where(PrimaryRegisterRealmModel.class).equalTo("picmeId", preferenceData.getPicmeId()).findAll();
         Log.e(String.valueOf(PrimaryRegisterView.class),primaryRegisterRealmModels.size()+"");
         Log.e(PrimaryRegisterView.class.getSimpleName(),"primaryRegisterRealmModels  -->"+primaryRegisterRealmModels);
+        if(primaryRegisterRealmModels.size()!=0){
+            primary_register.setVisibility(View.VISIBLE);
+            txt_no_records_found.setVisibility(View.GONE);
+            for(int i=0;i<primaryRegisterRealmModels.size();i++) {
+                PrimaryRegisterRealmModel model =primaryRegisterRealmModels.get(i);
 
-        for(int i=0;i<primaryRegisterRealmModels.size();i++) {
-            PrimaryRegisterRealmModel model =primaryRegisterRealmModels.get(i);
-
-            if(model.getMName().equalsIgnoreCase("null")){
-                txt_name.setText("-");
-            }else {
-                txt_name.setText(model.getMName());
+                if(model.getMName().equalsIgnoreCase("null")){
+                    txt_name.setText("-");
+                }else {
+                    txt_name.setText(model.getMName());
+                }
+                if(model.getMAge().equalsIgnoreCase("null")){
+                    txt_mother_age.setText("-");
+                }else {
+                    txt_mother_age.setText(model.getMAge());
+                }
+                if(model.getMLMP().equalsIgnoreCase("null")){
+                    txt_lmp_date.setText("-");
+                }else {
+                    txt_lmp_date.setText(model.getMLMP());
+                }
+                if(model.getMEDD().equalsIgnoreCase("null")){
+                    txt_edd_date.setText("-");
+                }else {
+                    txt_edd_date.setText(model.getMEDD());
+                }
+                if(model.getMMotherMobile().equalsIgnoreCase("null")){
+                    txt_pry_mobile_no.setText("-");
+                }else {
+                    txt_pry_mobile_no.setText(model.getMMotherMobile());
+                }
+                if (model.getMHusbandMobile().equalsIgnoreCase("null")){
+                    txt_alter_mobile_no.setText("-");
+                }else {
+                    txt_alter_mobile_no.setText(model.getMHusbandMobile());
+                }
+                if(model.getMMotherOccupation().equalsIgnoreCase("null")){
+                    txt_mother_occupation.setText("-");
+                }else {
+                    txt_mother_occupation.setText(model.getMMotherOccupation());
+                }
+                if (model.getMHusbandOccupation().equalsIgnoreCase("null")){
+                    txt_hus_occupation.setText("-");
+                }else {
+                    txt_hus_occupation.setText(model.getMHusbandOccupation());
+                }
+                if(model.getMAgeatMarriage().equalsIgnoreCase("null")){
+                    txt_age_at_marriage.setText("-");
+                }else {
+                    txt_age_at_marriage.setText(model.getMAgeatMarriage());
+                }
+                if(model.getMConsanguineousMarraige().equalsIgnoreCase("null")){
+                    txt_consanguineous_marraige.setText("-");
+                }else {
+                    txt_consanguineous_marraige.setText(model.getMConsanguineousMarraige());
+                }
+                if(model.getMHistoryIllness().equalsIgnoreCase("null")){
+                    txt_history_of_illness.setText("-");
+                }else {
+                    txt_history_of_illness.setText(model.getMHistoryIllness());
+                }
+                if(model.getMHistoryIllnessFamily().equalsIgnoreCase("null")){
+                    txt_history_of_illness_family.setText("-");
+                }else {
+                    txt_history_of_illness_family.setText(model.getMHistoryIllnessFamily());
+                }
+                if(model.getMAnySurgeryBefore().equalsIgnoreCase("null")){
+                    txt_any_surgery_done.setText("-");
+                }else {
+                    txt_any_surgery_done.setText(model.getMAnySurgeryBefore());
+                }
+                if(model.getMUseTobacco().equalsIgnoreCase("null")){
+                    txt_tobacco.setText("-");
+                }else {
+                    txt_tobacco.setText(model.getMUseTobacco());
+                }
+                if(model.getMUseAlcohol().equalsIgnoreCase("null")){
+                    txt_alcohol.setText("-");
+                }else {
+                    txt_alcohol.setText(model.getMUseAlcohol());
+                }
+                if(model.getMAnyMeditation().equalsIgnoreCase("null")){
+                    txt_on_any_medication.setText("-");
+                }else {
+                    txt_on_any_medication.setText(model.getMAnyMeditation());
+                }
+                if(model.getMAllergicToanyDrug().equalsIgnoreCase("null")){
+                    txt_allergic_to_any_drug.setText("-");
+                }else {
+                    txt_allergic_to_any_drug.setText(model.getMAllergicToanyDrug());
+                }
+                if(model.getMHistroyPreviousPreganancy().equalsIgnoreCase("null")){
+                    txt_history_of_previous_pregnancy.setText("-");
+                }else {
+                    txt_history_of_previous_pregnancy.setText(model.getMHistroyPreviousPreganancy());
+                }
+                if(model.getMLscsDone().equalsIgnoreCase("null")){
+                    txt_lscs_done.setText("-");
+                }else {
+                    txt_lscs_done.setText(model.getMLscsDone());
+                }
+                if(model.getMAnyComplecationDuringPreganancy().equalsIgnoreCase("null")){
+                    txt_any_complication.setText("-");
+                }else {
+                    txt_any_complication.setText(model.getMAnyComplecationDuringPreganancy());
+                }
+                if(model.getMPresentPreganancyG().equalsIgnoreCase("null")){
+                    txt_g.setText("-");
+                }else {
+                    txt_g.setText(model.getMPresentPreganancyG());
+                }
+                if(model.getMPresentPreganancyP().equalsIgnoreCase("null")){
+                    txt_p.setText("-");
+                }else{
+                    txt_p.setText(model.getMPresentPreganancyP());
+                }
+                if(model.getMPresentPreganancyA().equalsIgnoreCase("null")){
+                    txt_a.setText("-");
+                }else {
+                    txt_a.setText(model.getMPresentPreganancyA());
+                }
+                if(model.getMPresentPreganancyL().equalsIgnoreCase("null")){
+                    txt_l.setText("-");
+                }else {
+                    txt_l.setText(model.getMPresentPreganancyL());
+                }
+                if(model.getMRegistrationWeek().equalsIgnoreCase("null")){
+                    txt_registration_week.setText("-");
+                }else {
+                    txt_registration_week.setText(model.getMRegistrationWeek());
+                }
+                if(model.getMANTT1().equalsIgnoreCase("null")){
+                    txt_an_tt_1st.setText("-");
+                }else {
+                    txt_an_tt_1st.setText(model.getMANTT1());
+                }
+                if(model.getMANTT2().equalsIgnoreCase("null")){
+                    txt_an_tt_2nd.setText("-");
+                }else {
+                    txt_an_tt_2nd.setText(model.getMANTT2());
+                }
+                if(model.getMIFAStateDate().equalsIgnoreCase("null")){
+                    txt_ifa_start_date.setText("-");
+                }else {
+                    txt_ifa_start_date.setText(model.getMIFAStateDate());
+                }
+                if(model.getMHeight().equalsIgnoreCase("null")){
+                    txt_height.setText("-");
+                }else {
+                    txt_height.setText(model.getMHeight() + "cms");
+                }
+                if(model.getMBloodGroup().equalsIgnoreCase("null")){
+                    txt_blood_group.setText("-");
+                }else {
+                    txt_blood_group.setText(model.getMBloodGroup());
+                }
+                if(model.getMHIV().equalsIgnoreCase("null")){
+                    txt_hiv.setText("-");
+                }else {
+                    txt_hiv.setText(model.getMHIV());
+                }
+                if(model.getMVDRL().equalsIgnoreCase("null")){
+                    txt_vdrl.setText("-");
+                }else {
+                    txt_vdrl.setText(model.getMVDRL());
+                }
+                if(model.getMHepatitis().equalsIgnoreCase("null")){
+                    txt_Hepatitis.setText("-");
+                }else {
+                    txt_Hepatitis.setText(model.getMHepatitis());
+                }
+                if(model.getHBloodGroup().equalsIgnoreCase("null")){
+                    txt_hus_blood_group.setText("-");
+                }else {
+                    txt_hus_blood_group.setText(model.getHBloodGroup());
+                }
+                if(model.getHHIV().equalsIgnoreCase("null")){
+                    txt_hus_hiv.setText("-");
+                }else {
+                    txt_hus_hiv.setText(model.getHHIV());
+                }
+                if(model.getHVDRL().equalsIgnoreCase("null")){
+                    txt_hus_vdrl.setText("-");
+                }else {
+                    txt_hus_vdrl.setText(model.getHVDRL());
+                }
+                if(model.getHHepatitis().equalsIgnoreCase("null")){
+                    txt_hus_Hepatitis.setText("-");
+                }else {
+                    txt_hus_Hepatitis.setText(model.getHHepatitis());
+                }
             }
-            if(model.getMAge().equalsIgnoreCase("null")){
-                txt_mother_age.setText("-");
-            }else {
-                txt_mother_age.setText(model.getMAge());
-            }
-            if(model.getMLMP().equalsIgnoreCase("null")){
-                txt_lmp_date.setText("-");
-            }else {
-                txt_lmp_date.setText(model.getMLMP());
-            }
-            if(model.getMEDD().equalsIgnoreCase("null")){
-                txt_edd_date.setText("-");
-            }else {
-                txt_edd_date.setText(model.getMEDD());
-            }
-            if(model.getMMotherMobile().equalsIgnoreCase("null")){
-                txt_pry_mobile_no.setText("-");
-            }else {
-                txt_pry_mobile_no.setText(model.getMMotherMobile());
-            }
-            if (model.getMHusbandMobile().equalsIgnoreCase("null")){
-                txt_alter_mobile_no.setText("-");
-            }else {
-                txt_alter_mobile_no.setText(model.getMHusbandMobile());
-            }
-            if(model.getMMotherOccupation().equalsIgnoreCase("null")){
-                txt_mother_occupation.setText("-");
-            }else {
-                txt_mother_occupation.setText(model.getMMotherOccupation());
-            }
-            if (model.getMHusbandOccupation().equalsIgnoreCase("null")){
-                txt_hus_occupation.setText("-");
-            }else {
-                txt_hus_occupation.setText(model.getMHusbandOccupation());
-            }
-            if(model.getMAgeatMarriage().equalsIgnoreCase("null")){
-                txt_age_at_marriage.setText("-");
-            }else {
-                txt_age_at_marriage.setText(model.getMAgeatMarriage());
-            }
-            if(model.getMConsanguineousMarraige().equalsIgnoreCase("null")){
-                txt_consanguineous_marraige.setText("-");
-            }else {
-                txt_consanguineous_marraige.setText(model.getMConsanguineousMarraige());
-            }
-            if(model.getMHistoryIllness().equalsIgnoreCase("null")){
-                txt_history_of_illness.setText("-");
-            }else {
-                txt_history_of_illness.setText(model.getMHistoryIllness());
-            }
-            if(model.getMHistoryIllnessFamily().equalsIgnoreCase("null")){
-                txt_history_of_illness_family.setText("-");
-            }else {
-                txt_history_of_illness_family.setText(model.getMHistoryIllnessFamily());
-            }
-            if(model.getMAnySurgeryBefore().equalsIgnoreCase("null")){
-                txt_any_surgery_done.setText("-");
-            }else {
-                txt_any_surgery_done.setText(model.getMAnySurgeryBefore());
-            }
-            if(model.getMUseTobacco().equalsIgnoreCase("null")){
-                txt_tobacco.setText("-");
-            }else {
-                txt_tobacco.setText(model.getMUseTobacco());
-            }
-            if(model.getMUseAlcohol().equalsIgnoreCase("null")){
-                txt_alcohol.setText("-");
-            }else {
-                txt_alcohol.setText(model.getMUseAlcohol());
-            }
-            if(model.getMAnyMeditation().equalsIgnoreCase("null")){
-                txt_on_any_medication.setText("-");
-            }else {
-                txt_on_any_medication.setText(model.getMAnyMeditation());
-            }
-            if(model.getMAllergicToanyDrug().equalsIgnoreCase("null")){
-                txt_allergic_to_any_drug.setText("-");
-            }else {
-                txt_allergic_to_any_drug.setText(model.getMAllergicToanyDrug());
-            }
-            if(model.getMHistroyPreviousPreganancy().equalsIgnoreCase("null")){
-                txt_history_of_previous_pregnancy.setText("-");
-            }else {
-                txt_history_of_previous_pregnancy.setText(model.getMHistroyPreviousPreganancy());
-            }
-            if(model.getMLscsDone().equalsIgnoreCase("null")){
-                txt_lscs_done.setText("-");
-            }else {
-                txt_lscs_done.setText(model.getMLscsDone());
-            }
-            if(model.getMAnyComplecationDuringPreganancy().equalsIgnoreCase("null")){
-                txt_any_complication.setText("-");
-            }else {
-                txt_any_complication.setText(model.getMAnyComplecationDuringPreganancy());
-            }
-            if(model.getMPresentPreganancyG().equalsIgnoreCase("null")){
-                txt_g.setText("-");
-            }else {
-                txt_g.setText(model.getMPresentPreganancyG());
-            }
-            if(model.getMPresentPreganancyP().equalsIgnoreCase("null")){
-                txt_p.setText("-");
-            }else{
-                txt_p.setText(model.getMPresentPreganancyP());
-            }
-            if(model.getMPresentPreganancyA().equalsIgnoreCase("null")){
-                txt_a.setText("-");
-            }else {
-                txt_a.setText(model.getMPresentPreganancyA());
-            }
-            if(model.getMPresentPreganancyL().equalsIgnoreCase("null")){
-                txt_l.setText("-");
-            }else {
-                txt_l.setText(model.getMPresentPreganancyL());
-            }
-            if(model.getMRegistrationWeek().equalsIgnoreCase("null")){
-                txt_registration_week.setText("-");
-            }else {
-                txt_registration_week.setText(model.getMRegistrationWeek());
-            }
-            if(model.getMANTT1().equalsIgnoreCase("null")){
-                txt_an_tt_1st.setText("-");
-            }else {
-                txt_an_tt_1st.setText(model.getMANTT1());
-            }
-            if(model.getMANTT2().equalsIgnoreCase("null")){
-                txt_an_tt_2nd.setText("-");
-            }else {
-                txt_an_tt_2nd.setText(model.getMANTT2());
-            }
-            if(model.getMIFAStateDate().equalsIgnoreCase("null")){
-                txt_ifa_start_date.setText("-");
-            }else {
-                txt_ifa_start_date.setText(model.getMIFAStateDate());
-            }
-            if(model.getMHeight().equalsIgnoreCase("null")){
-                txt_height.setText("-");
-            }else {
-                txt_height.setText(model.getMHeight() + "cms");
-            }
-            if(model.getMBloodGroup().equalsIgnoreCase("null")){
-                txt_blood_group.setText("-");
-            }else {
-                txt_blood_group.setText(model.getMBloodGroup());
-            }
-            if(model.getMHIV().equalsIgnoreCase("null")){
-                txt_hiv.setText("-");
-            }else {
-                txt_hiv.setText(model.getMHIV());
-            }
-            if(model.getMVDRL().equalsIgnoreCase("null")){
-                txt_vdrl.setText("-");
-            }else {
-                txt_vdrl.setText(model.getMVDRL());
-            }
-            if(model.getMHepatitis().equalsIgnoreCase("null")){
-                txt_Hepatitis.setText("-");
-            }else {
-                txt_Hepatitis.setText(model.getMHepatitis());
-            }
-            if(model.getHBloodGroup().equalsIgnoreCase("null")){
-                txt_hus_blood_group.setText("-");
-            }else {
-                txt_hus_blood_group.setText(model.getHBloodGroup());
-            }
-            if(model.getHHIV().equalsIgnoreCase("null")){
-                txt_hus_hiv.setText("-");
-            }else {
-                txt_hus_hiv.setText(model.getHHIV());
-            }
-            if(model.getHVDRL().equalsIgnoreCase("null")){
-                txt_hus_vdrl.setText("-");
-            }else {
-                txt_hus_vdrl.setText(model.getHVDRL());
-            }
-            if(model.getHHepatitis().equalsIgnoreCase("null")){
-                txt_hus_Hepatitis.setText("-");
-            }else {
-                txt_hus_Hepatitis.setText(model.getHHepatitis());
-            }
+            realm.commitTransaction();
+            pDialog.dismiss();
+        }else{
+            primary_register.setVisibility(View.GONE);
+            txt_no_records_found.setVisibility(View.VISIBLE);
         }
-        realm.commitTransaction();
-        pDialog.dismiss();
     }
 
 
@@ -381,9 +387,9 @@ public class PrimaryRegisterView extends AppCompatActivity implements PrimaryReg
 
     private void setValuetoUI(String response) {
 
-//        JSONObject jObj = null;
+        JSONObject jObj = null;
         try {
-            JSONObject jObj = new JSONObject(response);
+            jObj = new JSONObject(response);
             int status = jObj.getInt("status");
             String message = jObj.getString("message");
             if (status==1){
@@ -651,7 +657,7 @@ public class PrimaryRegisterView extends AppCompatActivity implements PrimaryReg
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        primaryRecordsOfline();
+        primaryRecordsOffline();
     }
 
     @Override

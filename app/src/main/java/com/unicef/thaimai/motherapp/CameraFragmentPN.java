@@ -331,7 +331,7 @@ public class CameraFragmentPN extends Fragment implements View.OnClickListener {
 
         mImagePickerActivity.addImage(uri);
 
-        GalleryFragment mGalleryFragment = mImagePickerActivity.getGalleryFragment();
+        GalleryFragmentPN mGalleryFragment = mImagePickerActivity.getGalleryFragment();
 
         if (mGalleryFragment != null) {
             mGalleryFragment.refreshGallery(mImagePickerActivity);

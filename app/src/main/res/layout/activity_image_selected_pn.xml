@@ -13,10 +13,12 @@
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
     <LinearLayout
+        android:id="@+id/visit_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="10dp"
+        android:layout_below="@+id/toolbar"
         android:weightSum="2">
 
         <TextView
@@ -45,9 +47,8 @@
         android:id="@+id/view_root"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar"
+        android:layout_below="@+id/visit_number"
         android:background="#fff">
-
 
         <android.support.design.widget.TabLayout
             android:id="@+id/tab_layout"

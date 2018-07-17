@@ -89,10 +89,6 @@
             android:name=".activity.Help"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-        <activity
-            android:name=".activity.MapsActivity"
-            android:label="@string/title_activity_maps"
-            android:theme="@style/CustomActivityAnimation" />
         <!-- <activity -->
         <!-- android:name=".activity.NearbyHospital" -->
         <!-- android:theme="@style/AppTheme" /> -->
@@ -139,10 +135,6 @@
         <activity
             android:name=".activity.PNMotherVisitActivity"
             android:theme="@style/AppTheme" />
-        <activity
-            android:name=".activity.ReferralActivity"
-            android:theme="@style/AppTheme"
-            tools:ignore="WrongManifestParent" />
         <activity
             android:name=".activity.PNMotherVisitListActivity"
             android:theme="@style/AppTheme" />
@@ -194,7 +186,10 @@
         <activity android:name=".ImageSelectedActivity"
             android:theme="@style/AppTheme1"/>
 
-        <activity android:name=".activity.ViewReportsActivity"
+        <activity android:name=".activity.ANViewReportsActivity"
+            android:theme="@style/AppTheme"/>
+
+        <activity android:name=".activity.PNViewReportsActivity"
             android:theme="@style/AppTheme"/>
 
         <activity android:name=".activity.VideoViewActivity"
@@ -259,7 +254,10 @@
           </receiver>-->
 
         <!--<activity android:name=".activity.GetVerificationCodeActivity"/>-->
-        <activity android:name=".activity.ImageFullViewActivity"/>
+        <activity android:name=".activity.ANImageFullViewActivity"
+            android:theme="@style/AppTheme"/>
+        <activity android:name=".activity.PNImageFullViewActivity"
+            android:theme="@style/AppTheme"/>
         <activity android:name=".PNImageSelectedActivity"
             android:theme="@style/AppTheme1"/>
 

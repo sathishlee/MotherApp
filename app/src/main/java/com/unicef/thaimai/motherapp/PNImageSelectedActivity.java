@@ -315,12 +315,12 @@ public class PNImageSelectedActivity extends AppCompatActivity implements Camera
         }
 
 
-        public GalleryFragment getGalleryFragment() {
+        public GalleryFragmentPN getGalleryFragment() {
 
             if (adapter == null || adapter.getCount() < 2)
                 return null;
 
-            return (GalleryFragment) adapter.getItem(1);
+            return (GalleryFragmentPN) adapter.getItem(1);
 
         }
 
@@ -393,8 +393,11 @@ public class PNImageSelectedActivity extends AppCompatActivity implements Camera
                 return;
             }
             Log.e("mBitmap","SelectedImages size"+mBitmapSelectedImages.size()+"");
-
-            uploadMulitipleImagesPresenter.pnVisitUploadPhoto(preferenceData.getPicmeId(),strTotalVisitCount,preferenceData.getMId(),mBitmapSelectedImages);
+            if(strVisitNo.equalsIgnoreCase("--Select--")){
+                Toast.makeText(this, "Please Select Visit Id", Toast.LENGTH_SHORT).show();
+            }else{
+                uploadMulitipleImagesPresenter.pnVisitUploadPhoto(preferenceData.getPicmeId(),strTotalVisitCount,preferenceData.getMId(),mBitmapSelectedImages);
+            }
 
 //        Intent intent = new Intent();
 //        intent.putParcelableArrayListExtra(EXTRA_IMAGE_URIS, mSelectedImages);
@@ -471,6 +474,7 @@ public class PNImageSelectedActivity extends AppCompatActivity implements Camera
             String msg = jsonObject.getString("message");
 
             if (status.equalsIgnoreCase("1")){
+                strTotalVisitCount= jsonObject.getString("visitNo");
                 Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
             }else{
                 Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
@@ -497,10 +501,10 @@ public class PNImageSelectedActivity extends AppCompatActivity implements Camera
                 if (strVisitNo.equalsIgnoreCase("--Select--")) {
                     position = -1;
                     strVisitId = String.valueOf(position);
-                    pnhbncVisitPresenter.checkPNHBNCVisitId(preferenceData.getPicmeId(), preferenceData.getMId(), strVisitId);
+                    pnhbncVisitPresenter.checkImagePNHBNCVisitId(preferenceData.getPicmeId(), preferenceData.getMId(), strVisitId);
                 } else {
                     strVisitId = String.valueOf(position);
-                    pnhbncVisitPresenter.checkPNHBNCVisitId(preferenceData.getPicmeId(), preferenceData.getMId(), strVisitId);
+                    pnhbncVisitPresenter.checkImagePNHBNCVisitId(preferenceData.getPicmeId(), preferenceData.getMId(), strVisitId);
 
                 }
                 /*strVisitId= String.valueOf(position);

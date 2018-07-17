@@ -130,7 +130,6 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
                 }
             }
             if(checkNetwork.isNetworkAvailable()) {
-
                 if (preferenceData.getLogin()) {
                     LocalBroadcastManager.getInstance(this).registerReceiver(
                             new BroadcastReceiver() {
@@ -230,23 +229,40 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
      * Step 2: Check & Prompt Internet connection
      */
     private Boolean startStep2(DialogInterface dialog) {
-        ConnectivityManager connectivityManager
-                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        Log.e(LocationUpdateActivity.class.getSimpleName(),"startStep2");
+        if (preferenceData.getLogin()) {
+            Log.d("LOG LOGIN", preferenceData.getPicmeId() + "," + preferenceData.getVhnId() + "," + preferenceData.getMId());
+//                    AppConstants.POP_UP_COUNT= Integer.parseInt(preferenceData.getMainScreenOpen());
+            preferenceData.setMainScreenOpen(0);
+            Intent i = new Intent(LocationUpdateActivity.this, MainActivity.class);
+            startActivity(i);
+        } else {
+            ConnectivityManager connectivityManager
+                    = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
 
-        if (activeNetworkInfo == null || !activeNetworkInfo.isConnected()) {
-            checkInternetConnection();
-            return false;
-        }
-        if (dialog != null) {
-            dialog.dismiss();
-        }
+            if (activeNetworkInfo == null || !activeNetworkInfo.isConnected()) {
+                if(preferenceData.getLogin()){
+                    startStep3();
+                    return false;
 
-        if (checkPermissions()) { //Yes permissions are granted by the user. Go to the next step.
-            startStep3();
-        } else {  //No user has not granted the permissions yet. Request now.
-            requestPermissions();
+                }else{
+                    checkInternetConnection();
+                    return true;
+                }
+            }
+            if (dialog != null) {
+                dialog.dismiss();
+            }
+
+            if (checkPermissions()) { //Yes permissions are granted by the user. Go to the next step.
+                startStep3();
+            } else {  //No user has not granted the permissions yet. Request now.
+                requestPermissions();
+            }
+            return true;
         }
+        Log.e(LocationUpdateActivity.class.getSimpleName(),"startStep"+ true);
         return true;
     }
 

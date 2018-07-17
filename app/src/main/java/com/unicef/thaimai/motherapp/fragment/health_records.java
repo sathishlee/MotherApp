@@ -22,15 +22,13 @@ import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.GetVisitHealthRecordsPresenter;
 import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.activity.PrimaryRegisterView;
-import com.unicef.thaimai.motherapp.activity.ViewReportsActivity;
+import com.unicef.thaimai.motherapp.activity.ANViewReportsActivity;
 import com.unicef.thaimai.motherapp.adapter.HealthRecordsAdapter;
-import com.unicef.thaimai.motherapp.adapter.ViewPagerAdapter;
 import com.unicef.thaimai.motherapp.app.RealmController;
 import com.unicef.thaimai.motherapp.constant.Apiconstants;
 import com.unicef.thaimai.motherapp.constant.AppConstants;
 import com.unicef.thaimai.motherapp.model.responsemodel.HealthRecordResponseModel;
 import com.unicef.thaimai.motherapp.realmDbModelClass.ANMotherVisitRealmModel;
-import com.unicef.thaimai.motherapp.realmDbModelClass.ImmunizationRealmModel;
 import com.unicef.thaimai.motherapp.utility.CheckNetwork;
 import com.unicef.thaimai.motherapp.view.GetVisitHelthRecordsViews;
 
@@ -357,7 +355,7 @@ public class health_records extends Fragment implements GetVisitHelthRecordsView
                 startActivity(new Intent(getActivity().getApplicationContext(), PrimaryRegisterView.class));
                 break;
             case R.id.btn_view_report:
-                startActivity(new Intent(getActivity().getApplicationContext(), ViewReportsActivity.class));
+                startActivity(new Intent(getActivity().getApplicationContext(), ANViewReportsActivity.class));
                 break;
         }
     }
