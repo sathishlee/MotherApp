@@ -116,8 +116,6 @@ public class MessageFragment extends Fragment implements HealthTipsViews{
 
     }
 
-
-
     @Override
     public void showProgress() {
         pDialog.show();
@@ -226,6 +224,16 @@ public class MessageFragment extends Fragment implements HealthTipsViews{
     @Override
     public void healthTipsMessageFailure(String response) {
         Log.d(MessageFragment.class.getSimpleName(), "Error Message-->" + response);
+
+    }
+
+    @Override
+    public void healthTipsImageSuccess(String response) {
+
+    }
+
+    @Override
+    public void healthtipsImageFailure(String response) {
 
     }
 }

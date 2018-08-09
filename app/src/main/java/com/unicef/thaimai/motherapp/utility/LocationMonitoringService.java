@@ -111,38 +111,6 @@ public class LocationMonitoringService extends Service implements
         }
     }
 
-    /*
-         * LOCATION CALLBACKS
-         */
-/* LOCATION CALLBACKS*//*
-
-
-
-    @Override
-    public void onConnected(Bundle dataBundle) {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-
-            Log.d(TAG, "== Error On onConnected() Permission not granted");
-            //Permission not granted by user so cancel the further execution.
-
-            return;
-        }
-        com.google.android.gms.location.LocationMonitoringService.FusedLocationApi.requestLocationUpdates(mLocationClient, mLocationRequest, this);
-
-        Log.d(TAG, "Connected to Google API");
-    }
-
-    /*
-     * Called by Location Services if the connection to the
-     * location client drops because of an error.
-     */
     @Override
     public void onConnectionSuspended(int i) {
         Log.d(TAG, "Connection suspended");
@@ -152,7 +120,6 @@ public class LocationMonitoringService extends Service implements
     @Override
     public void onLocationChanged(Location location) {
         Log.d(TAG, "Location changed");
-
 
         if (location != null) {
             Log.d(TAG, "== location != null");
@@ -168,8 +135,6 @@ public class LocationMonitoringService extends Service implements
 
     private void sendMessageToUI(String lat, String lng) {
 
-//        Log.d(TAG, "Sending info...");
-
         Intent intent = new Intent(ACTION_LOCATION_BROADCAST);
         intent.putExtra(EXTRA_LATITUDE, lat);
         intent.putExtra(EXTRA_LONGITUDE, lng);
@@ -181,7 +146,6 @@ public class LocationMonitoringService extends Service implements
         AppConstants.NEAR_LATITUDE = lat;
         AppConstants.NEAR_LONGITUDE = lng;
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
-
 
     }
 

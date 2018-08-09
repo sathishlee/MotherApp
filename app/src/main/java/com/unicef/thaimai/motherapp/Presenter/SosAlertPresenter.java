@@ -95,6 +95,8 @@ public class SosAlertPresenter implements SosAlertInteractor {
             }
         };
         VolleySingleton.getInstance(activity).addToRequestQueue(stringRequest);
+        VolleySingleton.getInstance(activity).getRequestQueue().getCache().remove(url);
+
 
     }
 
@@ -152,7 +154,8 @@ public class SosAlertPresenter implements SosAlertInteractor {
                 return Method.POST;
             }
         };
-        VolleySingleton.getInstance(activity).addToRequestQueue(stringRequest);
+        VolleySingleton.getInstance(activity).addToRequestQueue(stringRequest);            VolleySingleton.getInstance(activity).getRequestQueue().getCache().remove(url);
+
 
     }
 }

@@ -90,6 +90,8 @@ public class GetVisitHealthRecordsPresenter implements GetVisitHealthRecordsInte
             }
         };
         VolleySingleton.getInstance(mContext).addToRequestQueue(strReq);
+        VolleySingleton.getInstance(mContext).getRequestQueue().getCache().remove(url);
+
     }
 
     @Override
@@ -151,6 +153,8 @@ public class GetVisitHealthRecordsPresenter implements GetVisitHealthRecordsInte
             }
         };
         VolleySingleton.getInstance(mContext).addToRequestQueue(strReq);
+        VolleySingleton.getInstance(mContext).getRequestQueue().getCache().remove(url);
+
 
     }
 

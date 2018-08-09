@@ -9,4 +9,6 @@ public interface HealthTipsInteractor {
     void getHealthTipsVideo(String picmeId);
 
     void healthTipsMessage(String mid);
+
+    void healthTipsImageWeekly(String mid);
 }

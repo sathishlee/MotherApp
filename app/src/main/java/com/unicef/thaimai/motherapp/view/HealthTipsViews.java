@@ -15,4 +15,7 @@ public interface HealthTipsViews {
     void healthTipsMessageSuccess(String response);
     void healthTipsMessageFailure(String response);
 
+    void healthTipsImageSuccess(String response);
+    void healthtipsImageFailure(String response);
+
 }

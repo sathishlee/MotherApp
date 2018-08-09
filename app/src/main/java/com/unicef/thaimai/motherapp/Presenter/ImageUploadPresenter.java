@@ -99,6 +99,7 @@ public class ImageUploadPresenter implements ImageUploadInteractor {
         //adding the request to volley
 //        Volley.newRequestQueue(this).add(volleyMultipartRequest);
         VolleySingleton.getInstance(activity).addToRequestQueue(volleyMultipartRequest);
+
     }
 
     @Override

@@ -37,7 +37,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-//public class health_records extends Fragment implements TabLayout.OnTabSelectedListener {
+//public class HealthRecordsFragment extends Fragment implements TabLayout.OnTabSelectedListener {
 
 import io.realm.Realm;
 import io.realm.RealmResults;
@@ -45,7 +45,7 @@ import io.realm.RealmResults;
 import static android.content.Context.MODE_PRIVATE;
 
 
-public class health_records extends Fragment implements GetVisitHelthRecordsViews, View.OnClickListener, TypeOfHealthRecords {
+public class HealthRecordsFragment extends Fragment implements GetVisitHelthRecordsViews, View.OnClickListener, TypeOfHealthRecords {
     Button btn_primary_report, btn_view_report;
     static LinearLayout llClickPickMeVisit, llClickOtherVisit, ll_click_visit_view;
     private TabLayout tabLayout;
@@ -66,8 +66,8 @@ public class health_records extends Fragment implements GetVisitHelthRecordsView
     boolean isoffline = false;
 
 
-    public static health_records newInstance() {
-        health_records fragment = new health_records();
+    public static HealthRecordsFragment newInstance() {
+        HealthRecordsFragment fragment = new HealthRecordsFragment();
         return fragment;
     }
 //change
@@ -163,7 +163,7 @@ public class health_records extends Fragment implements GetVisitHelthRecordsView
 
     @Override
     public void getVisitHealthRecordsSuccess(String healthRecordResponseModel) {
-        Log.d(health_records.class.getSimpleName(), "--->healthRecordResponseModel" + healthRecordResponseModel);
+        Log.d(HealthRecordsFragment.class.getSimpleName(), "--->healthRecordResponseModel" + healthRecordResponseModel);
 
         try {
             JSONObject mJsnobject = new JSONObject(healthRecordResponseModel);
@@ -325,7 +325,7 @@ public class health_records extends Fragment implements GetVisitHelthRecordsView
 
     @Override
     public void getVisitHealthRecordsFailiur(String errorMsg) {
-        Log.d(health_records.class.getSimpleName(), "--->errorMsg" + errorMsg);
+        Log.d(HealthRecordsFragment.class.getSimpleName(), "--->errorMsg" + errorMsg);
 
     }
 

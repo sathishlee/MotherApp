@@ -1,6 +1,7 @@
 package com.unicef.thaimai.motherapp.adapter;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -30,13 +31,13 @@ import java.util.List;
 public class HealthTipsAdapter extends RecyclerView.Adapter<HealthTipsAdapter.ViewHolder> {
 
     List<VideoModel.VideoList> videoLists;
-    Activity applicationContext;
+    Context applicationContext;
     private DisplayImageOptions options;
 
     AdapterVideoActionListener listener;
     private ImageLoadingListener animateFirstListener = new AnimateFirstDisplayListener();
 
-    public HealthTipsAdapter(List<VideoModel.VideoList> videoLists, Activity applicationContext){
+    public HealthTipsAdapter(List<VideoModel.VideoList> videoLists, Context applicationContext){
         this.applicationContext = applicationContext;
         this.videoLists = videoLists;
 

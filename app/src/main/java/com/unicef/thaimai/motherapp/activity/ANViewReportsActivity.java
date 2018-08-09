@@ -20,6 +20,7 @@ import com.unicef.thaimai.motherapp.adapter.ANVisitRecordsAdapter;
 import com.unicef.thaimai.motherapp.constant.Apiconstants;
 import com.unicef.thaimai.motherapp.model.responsemodel.ANVisitRecordsFullResponseModel;
 import com.unicef.thaimai.motherapp.model.responsemodel.ANVisitRecordsSingleResponseModel;
+import com.unicef.thaimai.motherapp.utility.CheckNetwork;
 import com.unicef.thaimai.motherapp.view.GetAllReportsViews;
 
 import org.json.JSONArray;
@@ -46,6 +47,7 @@ public class ANViewReportsActivity extends AppCompatActivity implements GetAllRe
     Context context;
     ImageView itemImage;
     boolean isImageFitToScreen;
+    CheckNetwork checkNetwork;
 
     ArrayList<ANVisitRecordsSingleResponseModel> singleResponseModelsList;
     @Override
@@ -59,6 +61,7 @@ public class ANViewReportsActivity extends AppCompatActivity implements GetAllRe
 
 
     private void initUI() {
+        checkNetwork = new CheckNetwork(this);
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
@@ -69,7 +72,11 @@ public class ANViewReportsActivity extends AppCompatActivity implements GetAllRe
         visitRecordsFullResponseModels = new ArrayList<>();
 
         getVisitReportsPresenter = new GetVisitReportsPresenter(ANViewReportsActivity.this, this);
-        getVisitReportsPresenter.getallVisitReports(preferenceData.getPicmeId(),preferenceData.getMId());
+        if(checkNetwork.isNetworkAvailable()){
+            getVisitReportsPresenter.getallVisitReports(preferenceData.getPicmeId(),preferenceData.getMId());
+        }else{
+
+        }
         txt_no_records_found = (TextView) findViewById(R.id.txt_no_records);
         itemImage = (ImageView) findViewById(R.id.itemImage);
 

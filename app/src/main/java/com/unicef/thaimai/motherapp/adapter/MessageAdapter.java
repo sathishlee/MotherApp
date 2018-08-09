@@ -13,6 +13,7 @@ import com.unicef.thaimai.motherapp.fragment.MessageFragment;
 import com.unicef.thaimai.motherapp.model.responsemodel.MessageFragmentModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Suthishan on 20/1/2018.
@@ -20,12 +21,12 @@ import java.util.ArrayList;
 
 public class MessageAdapter extends  RecyclerView.Adapter<MessageAdapter.ViewHolder> {
 
-    ArrayList<MessageFragmentModel.Healthtips> healthtipses;
+    List<MessageFragmentModel.Healthtips> healthtipses;
     MessageFragmentModel.Healthtips healthtips;
     Context context;
 
 
-    public MessageAdapter(Context context, ArrayList<MessageFragmentModel.Healthtips> healthtipses){
+    public MessageAdapter(Context context, List<MessageFragmentModel.Healthtips> healthtipses){
         this.healthtipses = healthtipses;
         this.context = context;
     }

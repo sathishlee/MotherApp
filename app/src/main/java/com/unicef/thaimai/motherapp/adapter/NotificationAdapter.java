@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.model.NotificationListResponseModel;
+import com.unicef.thaimai.motherapp.model.responsemodel.NotificationResponseModel;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -24,9 +25,9 @@ import java.util.ArrayList;
  */
 
 public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.ViewHolder>  {
-    private ArrayList<NotificationListResponseModel.NotificationList> moviesList;
-    NotificationListResponseModel.NotificationList movie;;
-    public NotificationAdapter(ArrayList<NotificationListResponseModel.NotificationList> moviesList) {
+    private ArrayList<NotificationResponseModel.Result> moviesList;
+    NotificationResponseModel.Result movie;;
+    public NotificationAdapter(ArrayList<NotificationResponseModel.Result> moviesList) {
         this.moviesList = moviesList;
     }
 
@@ -42,7 +43,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        NotificationListResponseModel.NotificationList movie = moviesList.get(position);
+        NotificationResponseModel.Result movie = moviesList.get(position);
         holder.txt_message.setText(movie.getMessage());
         holder.txt_time.setText(timeago(movie.getNoteStartDateTime()));
 

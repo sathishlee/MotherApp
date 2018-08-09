@@ -12,6 +12,8 @@
     <string name="tamil">Tamil</string>
     <string name="english">English</string>
 
+    <string name="font_fontFamily_medium">sans-serif</string>
+
     //Error Message
     <string name="err_msg_name">Enter Your full name</string>
     <string name="err_msg_picme">Enter Your Valid Picme ID</string>

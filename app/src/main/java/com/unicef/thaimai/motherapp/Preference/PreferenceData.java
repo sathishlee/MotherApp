@@ -17,6 +17,7 @@ public class PreferenceData {
     SharedPreferences sharedPreferences;
     public PreferenceData(Context context) {
         sharedPreferences = context.getSharedPreferences(AppConstants.PREF_NAME, Context.MODE_PRIVATE);
+//        sharedPreferences.edit().clear().commit();
     }
     public SharedPreferences getPreference() {
         return sharedPreferences;
@@ -28,16 +29,12 @@ public class PreferenceData {
     }
 
     public void setSharePrefrenceLocale(String locale) {
-        SharedPreferences prefs = sharedPreferences;
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putString("locale", locale);
-        editor.apply();
+        sharedPreferences.edit().putString(AppConstants.LANGUAGE,locale).commit();
     }
 
     public String getSharePrefrenceLocale() {
+        return sharedPreferences.getString(AppConstants.LANGUAGE,"");
 
-        SharedPreferences prefs = sharedPreferences;
-        return prefs.getString("locale", "en");
     }
 
 

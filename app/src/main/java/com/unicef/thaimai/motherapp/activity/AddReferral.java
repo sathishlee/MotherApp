@@ -36,6 +36,8 @@ import com.unicef.thaimai.motherapp.model.responsemodel.NearestReferalHospitalMo
 import com.unicef.thaimai.motherapp.utility.CheckNetwork;
 import com.unicef.thaimai.motherapp.view.ReferalViews;
 
+import net.alexandroid.gps.GpsStatusDetector;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -48,7 +50,8 @@ import java.util.Date;
 import java.util.Locale;
 
 
-public class AddReferral extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener, ReferalViews {
+public class AddReferral extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener,
+        ReferalViews, GpsStatusDetector.GpsStatusDetectorCallBack {
     LinearLayout llAddNewReferal, llUpdateRefral;
     EditText edtDateOfReferral, edtTimeOfReferral, edtUPDateOfReferral, edtUPTimeOfReferral, edtDiagnosis;
     Spinner spUPReceivedBy, spUPReferringFacility, sp_referred_by, sp_referring_facility_start, sp_facility_referred_to_start, sp_reason_for_referral_start;
@@ -75,6 +78,9 @@ public class AddReferral extends AppCompatActivity implements View.OnClickListen
     CheckNetwork checkNetwork;
 
     private int mYear,mMonth,mDay;
+
+    private GpsStatusDetector mGpsStatusDetector;
+    boolean mISGpsStatusDetector;
 
 
     @Override
@@ -150,15 +156,19 @@ public class AddReferral extends AppCompatActivity implements View.OnClickListen
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
         pDialog.setMessage("Please Wait ...");
+        mGpsStatusDetector = new GpsStatusDetector(this);
+        mGpsStatusDetector.checkGpsStatus();
         preferenceData = new PreferenceData(this);
         checkNetwork = new CheckNetwork(this);
+
 
 
         referalPresenter = new ReferalPresenter(AddReferral.this, this);
 //        if (AppConstants.CREATE_NEW_REFRAL) {
         if (checkNetwork.isNetworkAvailable()) {
+
 //            referalPresenter.getReffralNearestHospital(AppConstants.EXTRA_LATITUDE, AppConstants.EXTRA_LONGITUDE);
-            referalPresenter.getReffralNearestHospital(preferenceData.gettCurentlatitude(), preferenceData.gettCurentlongitude());
+            referalPresenter.getReffralNearestHospital(AppConstants.EXTRA_LATITUDE, AppConstants.EXTRA_LONGITUDE);
         }else{
             Toast.makeText(getApplicationContext(), "Check Internet Connection... Try Again After Sometimes", Toast.LENGTH_LONG).show();
             finish();
@@ -612,4 +622,24 @@ public class AddReferral extends AppCompatActivity implements View.OnClickListen
     }
 
 
+    @Override
+    public void onGpsSettingStatus(boolean enabled) {
+        Log.d("TAG", "onGpsSettingStatus: " + enabled);
+        mISGpsStatusDetector = enabled;
+        if(!enabled){
+            mGpsStatusDetector.checkGpsStatus();
+        }
+    }
+
+    @Override
+    public void onGpsAlertCanceledByUser() {
+        Log.d("TAG", "onGpsAlertCanceledByUser");
+        startActivity(new Intent(getApplicationContext(),TurnOnGpsLocation.class));
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        mGpsStatusDetector.checkOnActivityResult(requestCode, resultCode);
+    }
 }

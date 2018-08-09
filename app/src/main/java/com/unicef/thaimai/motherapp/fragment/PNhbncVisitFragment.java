@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,12 +25,9 @@ import com.unicef.thaimai.motherapp.activity.PNViewReportsActivity;
 import com.unicef.thaimai.motherapp.adapter.HealthRecordsAdapter;
 import com.unicef.thaimai.motherapp.adapter.PNHBNCVisitRecordsAdapter;
 import com.unicef.thaimai.motherapp.adapter.ViewPageAdapterPN;
-import com.unicef.thaimai.motherapp.adapter.ViewPagerAdapter;
 import com.unicef.thaimai.motherapp.app.RealmController;
 import com.unicef.thaimai.motherapp.constant.Apiconstants;
-import com.unicef.thaimai.motherapp.model.responsemodel.HealthRecordResponseModel;
 import com.unicef.thaimai.motherapp.model.responsemodel.PnHbncVisitRecordsModel;
-import com.unicef.thaimai.motherapp.realmDbModelClass.ANMotherVisitRealmModel;
 import com.unicef.thaimai.motherapp.realmDbModelClass.PNMotherRealmModel;
 import com.unicef.thaimai.motherapp.utility.CheckNetwork;
 import com.unicef.thaimai.motherapp.view.GetVisitHelthRecordsViews;
@@ -46,7 +42,7 @@ import io.realm.Realm;
 import io.realm.RealmResults;
 
 
-public class PNhbncVisit extends Fragment implements GetVisitHelthRecordsViews, View.OnClickListener {
+public class PNhbncVisitFragment extends Fragment implements GetVisitHelthRecordsViews, View.OnClickListener {
     private TabLayout tabLayout;
     private ViewPager viewPager;
     ViewPageAdapterPN adapter;
@@ -70,8 +66,8 @@ public class PNhbncVisit extends Fragment implements GetVisitHelthRecordsViews, 
     CheckNetwork checkNetwork;
     boolean isoffline = false;
 
-    public static PNhbncVisit newInstance() {
-        PNhbncVisit fragment = new PNhbncVisit();
+    public static PNhbncVisitFragment newInstance() {
+        PNhbncVisitFragment fragment = new PNhbncVisitFragment();
         return fragment;
     }
 
@@ -154,13 +150,13 @@ public class PNhbncVisit extends Fragment implements GetVisitHelthRecordsViews, 
 
     @Override
     public void getVisitHealthRecordsSuccess(String healthRecordResponseModel) {
-        Log.d(health_records.class.getSimpleName(), "--->healthRecordResponseModel" + healthRecordResponseModel);
+        Log.d(HealthRecordsFragment.class.getSimpleName(), "--->healthRecordResponseModel" + healthRecordResponseModel);
 
     }
 
     @Override
     public void getVisitHealthRecordsFailiur(String errorMsg) {
-        Log.d(health_records.class.getSimpleName(), "--->errorMsg" + errorMsg);
+        Log.d(HealthRecordsFragment.class.getSimpleName(), "--->errorMsg" + errorMsg);
 
     }
 
@@ -329,7 +325,7 @@ public class PNhbncVisit extends Fragment implements GetVisitHelthRecordsViews, 
 
     @Override
     public void getPNHBNCVisitRecordsFailiur(String errorMsg) {
-        Log.d(health_records.class.getSimpleName(), "--->errorMsg" + errorMsg);
+        Log.d(HealthRecordsFragment.class.getSimpleName(), "--->errorMsg" + errorMsg);
 
     }
 

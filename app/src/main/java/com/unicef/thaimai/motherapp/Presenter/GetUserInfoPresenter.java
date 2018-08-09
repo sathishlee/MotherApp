@@ -125,5 +125,6 @@ public class GetUserInfoPresenter implements UserInfoInteractor{
         // Adding request to request queue
         VolleySingleton.getInstance(activity).addToRequestQueue(strReq);
 
+
     }
 }

@@ -86,6 +86,8 @@ public class NotificationPresenter implements NotificationInteractor {
             }
         };
         VolleySingleton.getInstance(context).addToRequestQueue(request);
+        VolleySingleton.getInstance(context).getRequestQueue().getCache().remove(url);
+
     }
 
     @Override
@@ -144,6 +146,8 @@ public class NotificationPresenter implements NotificationInteractor {
             }
         };
         VolleySingleton.getInstance(context).addToRequestQueue(request);
+        VolleySingleton.getInstance(context).getRequestQueue().getCache().remove(url);
+
     }
 
     @Override

@@ -114,7 +114,7 @@ public class TurnOnGpsLocation extends AppCompatActivity implements GpsStatusDet
     @Override
     public void onGpsAlertCanceledByUser() {
         Log.d("TAG", "onGpsAlertCanceledByUser");
-        startActivity(new Intent(getApplicationContext(),TurnOnGpsLocation.class));
+        finish();
     }
 
     @Override

@@ -17,7 +17,6 @@ import android.widget.TextView;
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.GetVisitReportsPresenter;
 import com.unicef.thaimai.motherapp.R;
-import com.unicef.thaimai.motherapp.adapter.ANVisitRecordsAdapter;
 import com.unicef.thaimai.motherapp.adapter.PNVisitRecordsAdapter;
 import com.unicef.thaimai.motherapp.constant.Apiconstants;
 import com.unicef.thaimai.motherapp.model.responsemodel.ANVisitRecordsFullResponseModel;

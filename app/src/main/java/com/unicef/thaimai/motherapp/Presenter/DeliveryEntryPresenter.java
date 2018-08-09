@@ -107,6 +107,8 @@ public class DeliveryEntryPresenter implements DeliveryEntryInteractor {
             }
         };
         VolleySingleton.getInstance(context).addToRequestQueue(req);
+        VolleySingleton.getInstance(context).getRequestQueue().getCache().remove(url);
+
 
     }
 
@@ -165,6 +167,8 @@ public class DeliveryEntryPresenter implements DeliveryEntryInteractor {
 
         // Adding request to request queue
         VolleySingleton.getInstance(context).addToRequestQueue(strReq);
+        VolleySingleton.getInstance(context).getRequestQueue().getCache().remove(url);
+
 
 
 
@@ -223,6 +227,7 @@ public class DeliveryEntryPresenter implements DeliveryEntryInteractor {
 
         // Adding request to request queue
         VolleySingleton.getInstance(context).addToRequestQueue(strReq);
+        VolleySingleton.getInstance(context).getRequestQueue().getCache().remove(url);
 
 
 

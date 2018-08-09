@@ -89,6 +89,8 @@ public class AddVisitRecordsPresenter implements AddRecordsInteractor {
             }
         };
         VolleySingleton.getInstance(activity).addToRequestQueue(stringRequest);
+        VolleySingleton.getInstance(activity).getRequestQueue().getCache().remove(url);
+
 
     }
 
@@ -169,6 +171,8 @@ public class AddVisitRecordsPresenter implements AddRecordsInteractor {
             }
         };
         VolleySingleton.getInstance(activity).addToRequestQueue(req);
+        VolleySingleton.getInstance(activity).getRequestQueue().getCache().remove(url);
+
 
     }
 }

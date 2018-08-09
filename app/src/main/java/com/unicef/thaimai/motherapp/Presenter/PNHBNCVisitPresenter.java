@@ -91,6 +91,8 @@ public class PNHBNCVisitPresenter implements PNHBNCVisitInteractor {
             }
         };
         VolleySingleton.getInstance(activity).addToRequestQueue(request);
+        VolleySingleton.getInstance(activity).getRequestQueue().getCache().remove(url);
+
     }
 
     @Override
@@ -147,6 +149,8 @@ public class PNHBNCVisitPresenter implements PNHBNCVisitInteractor {
             }
         };
         VolleySingleton.getInstance(activity).addToRequestQueue(request);
+        VolleySingleton.getInstance(activity).getRequestQueue().getCache().remove(url);
+
     }
 
     @Override
@@ -227,6 +231,8 @@ public class PNHBNCVisitPresenter implements PNHBNCVisitInteractor {
         }
         };
         VolleySingleton.getInstance(activity).addToRequestQueue(jsonObjectRequest);
+        VolleySingleton.getInstance(activity).getRequestQueue().getCache().remove(url);
+
 
     }
 
@@ -285,5 +291,7 @@ public class PNHBNCVisitPresenter implements PNHBNCVisitInteractor {
             }
         };
         VolleySingleton.getInstance(activity).addToRequestQueue(request);
+        VolleySingleton.getInstance(activity).getRequestQueue().getCache().remove(url);
+
     }
 }

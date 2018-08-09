@@ -65,20 +65,20 @@
             android:orientation="vertical">
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/antt1_mother_recycler_view"
+                android:id="@+id/image_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:scrollbars="vertical" />
-            <include
-                layout="@layout/item_fragment_health_images"/>
-            <!--<TextView
+           <!-- <include
+                layout="@layout/item_fragment_health_images"/>-->
+            <TextView
                 android:id="@+id/txt_no_records_found"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="NO RECORDES FOUND" />-->
+                android:text="NO RECORDES FOUND" />
 
         </LinearLayout>
 

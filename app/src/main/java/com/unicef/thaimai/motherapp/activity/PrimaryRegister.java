@@ -290,6 +290,7 @@ public class PrimaryRegister extends AppCompatActivity implements View.OnClickLi
 
             case R.id.btn_submit:
                 if (checkNetwork.isNetworkAvailable()) {
+
                     sendtoServer();
                 } else {
                     Toast.makeText(getApplicationContext(), "Check Internet Connection...Try Agian After Sometimes", Toast.LENGTH_LONG).show();
@@ -474,6 +475,11 @@ public class PrimaryRegister extends AppCompatActivity implements View.OnClickLi
             primaryDataRequestModel.setMConsanguineousMarraige(strConsangulneousMarriage);
             primaryDataRequestModel.setMHistoryIllness(strHistoryIllness);
             primaryDataRequestModel.setMHistoryIllnessFamily(strHistoryIllnessFmly);
+            if(strAnySurgeryBefore.equalsIgnoreCase("Yes")){
+                primaryDataRequestModel.setMAnySurgeryBefore(strAnySurgeryBefore+ " - " +edt_any_surgery_before.getText().toString());
+            }else{
+                primaryDataRequestModel.setMAnySurgeryBefore(strAnySurgeryBefore);
+            }
             primaryDataRequestModel.setMAnySurgeryBefore(strAnySurgeryBefore);
             primaryDataRequestModel.setMUseTobacco(strDoseTobacco);
             primaryDataRequestModel.setMUseAlcohol(strDoseAlcohol);
@@ -482,13 +488,10 @@ public class PrimaryRegister extends AppCompatActivity implements View.OnClickLi
             } else {
                 primaryDataRequestModel.setMAnyMeditation(strDoseOnAnyMedication);
             }
-
-
             if (strDoseAllergictoDrugs.equalsIgnoreCase("Yes")) {
                 primaryDataRequestModel.setMAllergicToanyDrug(strDoseAllergictoDrugs + " - " + strAllergictoDrugsSpecify);
             } else {
                 primaryDataRequestModel.setMAllergicToanyDrug(strDoseAllergictoDrugs);
-                ;
             }
             primaryDataRequestModel.setMHistroyPreviousPreganancy(strPrePregnancy);
             primaryDataRequestModel.setMLscsDone(strLSCSDone);
@@ -638,7 +641,6 @@ public class PrimaryRegister extends AppCompatActivity implements View.OnClickLi
                 strDoseAllergictoDrugs = parent.getSelectedItem().toString();
                 if (strDoseAllergictoDrugs.equalsIgnoreCase("Yes")) {
                     ll_allergicto_drugs_specify.setVisibility(View.VISIBLE);
-
                 } else {
                     ll_allergicto_drugs_specify.setVisibility(View.GONE);
 
@@ -792,7 +794,17 @@ public class PrimaryRegister extends AppCompatActivity implements View.OnClickLi
                 spConsangulneousMarriage.setSelection(getListPosition(yn, jObj.getString("mConsanguineousMarraige")));   // Yes,No
                 spHistoryIllness.setSelection(getListPosition(hdcdt, jObj.getString("mHistoryIllness")));    //Hypertention, Diabetes, Congenital Heart Disease, Tb, Others
                 spHistoryIllnessFmly.setSelection(getListPosition(hoaif, jObj.getString("mHistoryIllnessFamily"))); //Hypertention, Diabetes, Congenital Heart Disease, Tb, Others
-                spAnySurgeryBefore.setSelection(getListPosition(yn, jObj.getString("mAnySurgeryBefore")));  //Yes,No
+                if(yn.equals("Yes")){
+                    spAnySurgeryBefore.setSelection(getListPosition(yn, jObj.getString("mAnySurgeryBefore")));  //Yes,No
+                    edt_any_surgery_before.setVisibility(View.VISIBLE);
+                    String testString = jObj.getString("mAnySurgeryBefore");
+                    String[] parts = testString.split("-");
+                    String lastWord = parts[parts.length - 1];
+                    edt_any_surgery_before.setText(lastWord);
+                }else{
+                    spAnySurgeryBefore.setSelection(getListPosition(yn, jObj.getString("mAnySurgeryBefore")));  //Yes,No
+                }
+//                spAnySurgeryBefore.setSelection(getListPosition(yn, jObj.getString("mAnySurgeryBefore")));  //Yes,No
                 spDoseTobacco.setSelection(getListPosition(yn, jObj.getString("mUseTobacco")));       //Yes,No
                 spDoseAlcohol.setSelection(getListPosition(yn, jObj.getString("mUseAlcohol")));       //Yes,No
 
