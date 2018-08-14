@@ -1,6 +1,5 @@
 package com.unicef.thaimai.motherapp.adapter;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
@@ -14,7 +13,6 @@ import android.widget.TextView;
 
 import com.unicef.thaimai.motherapp.Interface.TypeOfHealthRecords;
 import com.unicef.thaimai.motherapp.R;
-import com.unicef.thaimai.motherapp.fragment.health_records;
 import com.unicef.thaimai.motherapp.model.responsemodel.HealthRecordResponseModel;
 
 import java.util.ArrayList;

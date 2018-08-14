@@ -202,7 +202,8 @@
             android:theme="@style/AppTheme1"/>
 
         <activity android:name=".activity.HealthTips"
-            android:theme="@style/AppTheme1"/>
+            android:theme="@style/AppTheme1"
+            android:screenOrientation="portrait"/>
 
         <service android:name=".utility.MyFirebaseInstanceIDService">
             <intent-filter>

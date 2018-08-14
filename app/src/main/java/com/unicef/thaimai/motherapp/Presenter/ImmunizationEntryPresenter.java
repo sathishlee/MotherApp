@@ -97,6 +97,8 @@ public class ImmunizationEntryPresenter implements ImmunizationEntryInteractor{
             }
         };
         VolleySingleton.getInstance(immunizationEditActivity).addToRequestQueue(jsonObjectRequest);
+        VolleySingleton.getInstance(immunizationEditActivity).getRequestQueue().getCache().remove(url);
+
     }
 
     @Override
@@ -156,6 +158,8 @@ public class ImmunizationEntryPresenter implements ImmunizationEntryInteractor{
 
         // Adding request to request queue
         VolleySingleton.getInstance(immunizationEditActivity).addToRequestQueue(request);
+        VolleySingleton.getInstance(immunizationEditActivity).getRequestQueue().getCache().remove(url);
+
 
     }
 
@@ -218,6 +222,8 @@ public class ImmunizationEntryPresenter implements ImmunizationEntryInteractor{
 
         // Adding request to request queue
         VolleySingleton.getInstance(immunizationEditActivity).addToRequestQueue(request);
+        VolleySingleton.getInstance(immunizationEditActivity).getRequestQueue().getCache().remove(url);
+
 
     }
 

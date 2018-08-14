@@ -88,6 +88,8 @@ public class GetVisitReportsPresenter implements GetVisitReportsInteractor {
             }
         };
         VolleySingleton.getInstance(activity).addToRequestQueue(request);
+        VolleySingleton.getInstance(activity).getRequestQueue().getCache().remove(url);
+
     }
 
 
@@ -146,5 +148,7 @@ public class GetVisitReportsPresenter implements GetVisitReportsInteractor {
             }
         };
         VolleySingleton.getInstance(activity).addToRequestQueue(request);
+        VolleySingleton.getInstance(activity).getRequestQueue().getCache().remove(url);
+
     }
 }

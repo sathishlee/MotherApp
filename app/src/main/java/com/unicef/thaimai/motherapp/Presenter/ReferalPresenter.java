@@ -94,6 +94,8 @@ public class ReferalPresenter implements ReferalInteractor {
             }
         };
         VolleySingleton.getInstance(activity).addToRequestQueue(stringRequest);
+        VolleySingleton.getInstance(activity).getRequestQueue().getCache().remove(url);
+
     }
 
     @Override
@@ -164,6 +166,8 @@ public class ReferalPresenter implements ReferalInteractor {
             }
         };
         VolleySingleton.getInstance(activity).addToRequestQueue(stringRequest);
+        VolleySingleton.getInstance(activity).getRequestQueue().getCache().remove(url);
+
     }
 
     @Override
@@ -229,6 +233,8 @@ public class ReferalPresenter implements ReferalInteractor {
             }
         };
         VolleySingleton.getInstance(activity).addToRequestQueue(stringRequest);
+        VolleySingleton.getInstance(activity).getRequestQueue().getCache().remove(url);
+
     }
 
     @Override
@@ -312,6 +318,8 @@ public class ReferalPresenter implements ReferalInteractor {
             }
         };
         VolleySingleton.getInstance(activity).addToRequestQueue(stringRequest);
+        VolleySingleton.getInstance(activity).getRequestQueue().getCache().remove(url);
+
     }
 
     @Override
@@ -388,6 +396,8 @@ public class ReferalPresenter implements ReferalInteractor {
             }
         };
         VolleySingleton.getInstance(activity).addToRequestQueue(stringRequest);
+        VolleySingleton.getInstance(activity).getRequestQueue().getCache().remove(url);
+
     }
 
 

@@ -18,7 +18,6 @@ public class MainViewPagerAdapter extends FragmentPagerAdapter {
     public MainViewPagerAdapter(FragmentManager manager) {
         super(manager);
     }
-
     @Override
     public Fragment getItem(int position) {
         return mFragmentList.get(position);
@@ -32,6 +31,7 @@ public class MainViewPagerAdapter extends FragmentPagerAdapter {
     public void addFragment(Fragment fragment) {
         mFragmentList.add(fragment);
     }
+
 
 
 }

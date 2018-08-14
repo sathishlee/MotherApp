@@ -50,6 +50,7 @@ import com.unicef.thaimai.motherapp.Presenter.LocationUpdatePresenter;
 import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.broadCastReceivers.GpsLocationReceiver;
 import com.unicef.thaimai.motherapp.constant.AppConstants;
+import com.unicef.thaimai.motherapp.helper.LocaleHelper;
 import com.unicef.thaimai.motherapp.helper.ServerUpload;
 import com.unicef.thaimai.motherapp.utility.CheckNetwork;
 import com.unicef.thaimai.motherapp.utility.LocationMonitoringService;
@@ -118,6 +119,11 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
             locationUpdatePresenter = new LocationUpdatePresenter(LocationUpdateActivity.this, this);
 
             preferenceData = new PreferenceData(this);
+        if(preferenceData.getSharePrefrenceLocale().equalsIgnoreCase("ta")){
+            LocaleHelper.setLocale(LocationUpdateActivity.this,"ta");
+        }else{
+            LocaleHelper.setLocale(LocationUpdateActivity.this,"en");
+        }
             gpsReceiver = new GpsLocationReceiver();
 //            intentFilter = new IntentFilter("android.location.PROVIDERS_CHANGED");
             mGpsStatusDetector = new GpsStatusDetector(this);
@@ -131,6 +137,7 @@ public class LocationUpdateActivity extends AppCompatActivity implements Locatio
             }
             if(checkNetwork.isNetworkAvailable()) {
                 if (preferenceData.getLogin()) {
+                    startService(new Intent(this, LocationMonitoringService.class));
                     LocalBroadcastManager.getInstance(this).registerReceiver(
                             new BroadcastReceiver() {
                                 @Override

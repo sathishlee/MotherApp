@@ -154,4 +154,14 @@ public class HealthTipsActivity extends AppCompatActivity implements HealthTipsV
     public void healthTipsMessageFailure(String response) {
 
     }
+
+    @Override
+    public void healthTipsImageSuccess(String response) {
+
+    }
+
+    @Override
+    public void healthtipsImageFailure(String response) {
+
+    }
 }

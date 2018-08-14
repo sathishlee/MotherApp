@@ -2,30 +2,22 @@ package com.unicef.thaimai.motherapp.activity;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.res.Configuration;
-import android.content.res.Resources;
-import android.location.Address;
-import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 
 import android.support.v4.app.Fragment;
-import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AlertDialog;
 import android.text.Html;
 import android.text.TextUtils;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -48,27 +40,22 @@ import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.GetUserInfoPresenter;
-import com.unicef.thaimai.motherapp.Presenter.LocationUpdatePresenter;
 import com.unicef.thaimai.motherapp.Presenter.NotificationPresenter;
 import com.unicef.thaimai.motherapp.Presenter.SosAlertPresenter;
 import com.unicef.thaimai.motherapp.R;
 //import com.unicef.thaimai.motherapp.bradcastReceiver.ConnectivityReceiver;
-import com.unicef.thaimai.motherapp.adapter.ViewPagerAdapter;
-import com.unicef.thaimai.motherapp.app.MyApplication;
+import com.unicef.thaimai.motherapp.adapter.MainViewPagerAdapter;
 import com.unicef.thaimai.motherapp.broadCastReceivers.ConnectivityReceiver;
 import com.unicef.thaimai.motherapp.constant.Apiconstants;
 import com.unicef.thaimai.motherapp.constant.AppConstants;
+import com.unicef.thaimai.motherapp.fragment.HealthRecordsFragment;
+import com.unicef.thaimai.motherapp.fragment.HomeFragment;
 import com.unicef.thaimai.motherapp.fragment.NotificationFragment;
-import com.unicef.thaimai.motherapp.fragment.PNhbncVisit;
+import com.unicef.thaimai.motherapp.fragment.PNhbncVisitFragment;
 import com.unicef.thaimai.motherapp.fragment.ReferralListFragment;
-import com.unicef.thaimai.motherapp.fragment.health_records;
-import com.unicef.thaimai.motherapp.fragment.home;
 import com.unicef.thaimai.motherapp.helper.LocaleHelper;
-import com.unicef.thaimai.motherapp.realmDbModelClass.HomeRealmModel;
 import com.unicef.thaimai.motherapp.utility.CheckNetwork;
-import com.unicef.thaimai.motherapp.utility.LocationMonitoringService;
 import com.unicef.thaimai.motherapp.utility.RoundedTransformation;
-import com.unicef.thaimai.motherapp.view.LocationUpdateViews;
 import com.unicef.thaimai.motherapp.view.NotificationViews;
 import com.unicef.thaimai.motherapp.view.SosAlertViews;
 
@@ -76,14 +63,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, ConnectivityReceiver.ConnectivityReceiverListener,
-        SosAlertViews, NotificationViews{
-    Intent intent;
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,
+        ConnectivityReceiver.ConnectivityReceiverListener, SosAlertViews, NotificationViews{
 
+    Intent intent;
     Locale mylocale;
     TextView tam, eng;
     SosAlertPresenter sosAlertPresenter;
@@ -104,6 +89,16 @@ public class MainActivity extends AppCompatActivity
     ImageView cardview_image;
     TextView txt_username,edt_picme_id;
     Context context;
+    ViewPager viewPager;
+    MenuItem prevMenuItem;
+    BottomNavigationView bottomNavigationView;
+    private ViewPager viewPager1;
+    HomeFragment homeFragment;
+    HealthRecordsFragment healthRecordsFragment;
+    PNhbncVisitFragment pNhbncVisitFragment;
+    ReferralListFragment referralListFragment;
+    boolean doubleBackToExitPressedOnce = false;
+
 
 
     @Override
@@ -210,9 +205,9 @@ public class MainActivity extends AppCompatActivity
         TextView text2 = (TextView) dialog.findViewById(R.id.txt_msg_welcome2);
 //        TextView text3 = (TextView) dialog.findViewById(R.id.txt_msg_welcome3);
         TextView text4 = (TextView) dialog.findViewById(R.id.txt_msg_welcome4);
-        text.setText("Good Morning Mrs. " + preferenceData.getMotherName() + ".");
+        text.setText(getString(R.string.good_morning) + preferenceData.getMotherName() + ".");
         text1.setText(circle+ getString(R.string.hope_you_are_doing_well));
-        text2.setText(circle+ "  This is your " + setSufix(preferenceData.getGstWeek()) + " Week of pregnancy." + ".");
+        text2.setText(circle+getString(R.string.this_your)+"  "+ setSufix(preferenceData.getGstWeek())+" Wks" + "  "+getString(R.string.week_pregnancy) + ".");
 //        text3.setText(circle+getString(R.string.this_is_the_period_of_child_monthly_development));
         text4.setText(circle+ getString(R.string.if_you_are_not_feeling_well_please));
 
@@ -265,16 +260,11 @@ public class MainActivity extends AppCompatActivity
         }
         return returnstring;
     }
-
-
     /*private void showAlertDialog(String msg, final String action, int i) {
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-
-
 //        builder.setTitle("Hi Tamil Selvi,");
 //        builder.setMessage("Have you take tablets regulerlly: ");
         builder.setTitle("Hi " + preferenceData.getMotherName() + ",");
-
         builder.setMessage(msg);
         if (action.equalsIgnoreCase("Click here")) {
             builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -284,7 +274,6 @@ public class MainActivity extends AppCompatActivity
                 }
             });
         }
-
         //Yes Button
         builder.setPositiveButton(action, new DialogInterface.OnClickListener() {
             @Override
@@ -297,7 +286,6 @@ public class MainActivity extends AppCompatActivity
                     AppConstants.isMainActivityOpen = false;
                     dialog.dismiss();
                 } else if (action.equalsIgnoreCase("Next")) {
-
 //                    showAlertDialog("If you are not feeling well please Click here.", "Thank You, Mrs."+preferenceData.getMotherName(), 0);
                     if (preferenceData.getMainScreenOpen().equalsIgnoreCase("1")) {
                         preferenceData.setMainScreenOpen(2);
@@ -313,13 +301,10 @@ public class MainActivity extends AppCompatActivity
                         showAlertDialog("If you are not feeling well please Click here.", "Click here", 0);
                     }
 //                    Toast.makeText(getApplicationContext(),"Thank you Mrs."+preferenceData.getMotherName(),Toast.LENGTH_LONG).show();
-
                 } else if (action.equalsIgnoreCase("close")) {
                     preferenceData.setMainScreenOpen(0);
                     dialog.dismiss();
                 }
-
-
                 AppConstants.isMainActivityOpen = false;
 //                dialog.dismiss();
             }
@@ -332,38 +317,52 @@ public class MainActivity extends AppCompatActivity
                 dialog.dismiss();
             }
         });*//*
-
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }
 */
-
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else {
-            android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(MainActivity.this);
-            builder.setTitle(R.string.app_name);
-            builder.setIcon(R.mipmap.ic_launcher);
-            builder.setMessage("Are you Sure do you want to exit?")
-                    .setCancelable(false)
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            finish();
-                        }
-                    })
-                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            dialog.cancel();
-                        }
-                    });
-            android.app.AlertDialog alert = builder.create();
-            alert.show();
+        } else if(doubleBackToExitPressedOnce){
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);//***Change Here***
+            startActivity(intent);
+            finish();
+            System.exit(0);
+            return;
         }
-        super.onBackPressed();
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce=false;
+            }
+        }, 2000);
+        /*android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(MainActivity.this);
+        builder.setTitle(R.string.app_name);
+        builder.setIcon(R.mipmap.ic_launcher);
+        builder.setMessage("Are you Sure do you want to exit?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        finish();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        android.app.AlertDialog alert = builder.create();
+        alert.show();
+        super.onBackPressed();*/
     }
 
     @Override
@@ -388,7 +387,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void setupNotiCount() {
-
         if(notification_count != null){
             if(mCartItemCount == 0){
                 if (notification_count.getVisibility() != View.GONE){
@@ -420,14 +418,14 @@ public class MainActivity extends AppCompatActivity
                 return true;
 
             case R.id.action_help:
-                /*Intent i = new Intent(MainActivity.this, Help.class);
+                Intent i = new Intent(MainActivity.this, Help.class);
                 finish();
                 startActivity(i);
-                return true;*/
-                preferenceData.setLogin(false);
-                finish();
-                Toast.makeText(getApplicationContext(), "Logged Out", Toast.LENGTH_LONG).show();
                 return true;
+                /*preferenceData.setLogin(false);
+                finish();
+                Toast.makeText(getApplicationContext(), "Logged Out", Toast.LENGTH_LONG).show();*/
+//                return true;
             default:
                 super.onOptionsItemSelected(item);
         }
@@ -443,7 +441,6 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
         if (id == R.id.primary_register) {
             Intent i = new Intent(getApplicationContext(), PrimaryRegisterView.class);
             startActivity(i);
@@ -474,19 +471,13 @@ public class MainActivity extends AppCompatActivity
 //            Intent i = new Intent(getApplicationContext(), DeliveryDetailsView.class);
             startActivity(i);
         }
-
-        /*else if (id == R.id.get_code) {
-            Intent i = new Intent(getApplicationContext(), GetVerificationCodeActivity.class);
-            startActivity(i);
-        }*/
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
     private void setupNavigationView() {
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
 
         if (bottomNavigationView != null) {
             Menu menu = bottomNavigationView.getMenu();
@@ -508,43 +499,33 @@ public class MainActivity extends AppCompatActivity
         item.setChecked(true);
         Fragment selectedFragment = null;
         switch (item.getItemId()) {
-
             case R.id.navigation_home:
-                selectedFragment = home.newInstance();
+                selectedFragment = HomeFragment.newInstance();
                 break;
-
             case R.id.navigation_notifications:
-                selectedFragment = health_records.newInstance();
+                selectedFragment = HealthRecordsFragment.newInstance();
                 break;
-
             case R.id.pn_hbnc_visit:
-                selectedFragment = PNhbncVisit.newInstance();
+                selectedFragment = PNhbncVisitFragment.newInstance();
                 break;
-
             case R.id.referral:
                 selectedFragment = ReferralListFragment.newInstance();
                 break;
-
         }
-
         android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.content, selectedFragment);
         transaction.commit();
-
     }
 
     @Override
     public void showProgress() {
         pDialog.show();
-
     }
 
     @Override
     public void hideProgress() {
         pDialog.hide();
     }
-
-
 
     @Override
     public void onDestroy(){
@@ -563,12 +544,10 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void NotificationResponseError(String response) {
         Log.d(MainActivity.class.getSimpleName(), "Notification count response Error" + response);
-
     }
 
     @Override
     public void NotificationCountSuccess(String response) {
-
         Log.d(MainActivity.class.getSimpleName(), "Notification count response success" + response);
         try {
             JSONObject jsonObject = new JSONObject(response);
@@ -590,7 +569,6 @@ public class MainActivity extends AppCompatActivity
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
     }
 
     @Override

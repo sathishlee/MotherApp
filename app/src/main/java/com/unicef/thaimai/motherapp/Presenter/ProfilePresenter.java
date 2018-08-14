@@ -91,6 +91,8 @@ public class ProfilePresenter implements ProfileInteractor {
             }
         };
         VolleySingleton.getInstance(activity).addToRequestQueue(stringRequest);
+        VolleySingleton.getInstance(activity).getRequestQueue().getCache().remove(url);
+
     }
 
     @Override
@@ -155,5 +157,7 @@ public class ProfilePresenter implements ProfileInteractor {
             }
         };
         VolleySingleton.getInstance(activity).addToRequestQueue(stringRequest);
+        VolleySingleton.getInstance(activity).getRequestQueue().getCache().remove(url);
+
     }
 }

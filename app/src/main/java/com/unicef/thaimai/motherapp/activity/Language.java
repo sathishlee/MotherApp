@@ -85,7 +85,10 @@ public class Language extends AppCompatActivity {
                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                            public void onClick(DialogInterface dialog, int id) {
                                setLanguage("en");
-                               AppConstants.LANGUAGE_CHANGE_ENGLISH = false;
+                               preferenceData.setSharePrefrenceLocale("en");
+                               LocaleHelper.setLocale(Language.this,"en");
+
+//                               AppConstants.LANGUAGE_CHANGE_ENGLISH = false;
                            }
                        })
                        .setNegativeButton("No", new DialogInterface.OnClickListener() {

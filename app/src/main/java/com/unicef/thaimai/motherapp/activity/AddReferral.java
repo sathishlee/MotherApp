@@ -7,6 +7,7 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -31,10 +32,13 @@ import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.ReferalPresenter;
 import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.constant.AppConstants;
+import com.unicef.thaimai.motherapp.fragment.ReferralListFragment;
 import com.unicef.thaimai.motherapp.helper.LocaleHelper;
 import com.unicef.thaimai.motherapp.model.responsemodel.NearestReferalHospitalModel;
 import com.unicef.thaimai.motherapp.utility.CheckNetwork;
 import com.unicef.thaimai.motherapp.view.ReferalViews;
+
+import net.alexandroid.gps.GpsStatusDetector;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -48,7 +52,8 @@ import java.util.Date;
 import java.util.Locale;
 
 
-public class AddReferral extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener, ReferalViews {
+public class AddReferral extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener,
+        ReferalViews, GpsStatusDetector.GpsStatusDetectorCallBack {
     LinearLayout llAddNewReferal, llUpdateRefral;
     EditText edtDateOfReferral, edtTimeOfReferral, edtUPDateOfReferral, edtUPTimeOfReferral, edtDiagnosis;
     Spinner spUPReceivedBy, spUPReferringFacility, sp_referred_by, sp_referring_facility_start, sp_facility_referred_to_start, sp_reason_for_referral_start;
@@ -75,6 +80,11 @@ public class AddReferral extends AppCompatActivity implements View.OnClickListen
     CheckNetwork checkNetwork;
 
     private int mYear,mMonth,mDay;
+
+    private GpsStatusDetector mGpsStatusDetector;
+    boolean mISGpsStatusDetector;
+
+    Fragment selectedFragment = null;
 
 
     @Override
@@ -150,15 +160,19 @@ public class AddReferral extends AppCompatActivity implements View.OnClickListen
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
         pDialog.setMessage("Please Wait ...");
+        mGpsStatusDetector = new GpsStatusDetector(this);
+        mGpsStatusDetector.checkGpsStatus();
         preferenceData = new PreferenceData(this);
         checkNetwork = new CheckNetwork(this);
+
 
 
         referalPresenter = new ReferalPresenter(AddReferral.this, this);
 //        if (AppConstants.CREATE_NEW_REFRAL) {
         if (checkNetwork.isNetworkAvailable()) {
+
 //            referalPresenter.getReffralNearestHospital(AppConstants.EXTRA_LATITUDE, AppConstants.EXTRA_LONGITUDE);
-            referalPresenter.getReffralNearestHospital(preferenceData.gettCurentlatitude(), preferenceData.gettCurentlongitude());
+            referalPresenter.getReffralNearestHospital(AppConstants.EXTRA_LATITUDE, AppConstants.EXTRA_LONGITUDE);
         }else{
             Toast.makeText(getApplicationContext(), "Check Internet Connection... Try Again After Sometimes", Toast.LENGTH_LONG).show();
             finish();
@@ -474,12 +488,9 @@ public class AddReferral extends AppCompatActivity implements View.OnClickListen
         pDialog.dismiss();
     }
 
-
-
     @Override
     public void successReferalAdd(String response) {
         Log.d("AddReferal success", response);
-
 
         try {
             JSONObject jsonObject = new JSONObject(response);
@@ -499,48 +510,26 @@ public class AddReferral extends AppCompatActivity implements View.OnClickListen
     }
 
     private void showAlert(String msg, String gomain) {
-
-
         final AlertDialog.Builder builder = new AlertDialog.Builder(AddReferral.this);
-
-
-//        builder.setTitle("Hi Tamil Selvi,");
-//        builder.setMessage("Have you take tablets regulerlly: ");
         builder.setTitle("Hi " +preferenceData.getMotherName()+ ",");
         builder.setMessage(msg);
-
-
         //Yes Button
         builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-//                Toast.makeText(getApplicationContext(),"Take care",Toast.LENGTH_LONG).show();
-//                Toast.makeText(getApplicationContext(),"Alert has set to VHN,  They will contact soon..",Toast.LENGTH_LONG).show();
-//                AppConstants.isMainActivityOpen=false;
-//                dialog.dismiss();
-                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                /*Fragment fragment = new ReferralListFragment();
+                getSupportFragmentManager().beginTransaction().replace(R.id.content,fragment).commit();*/
                 finish();
             }
         });
-        /*builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-//                Toast.makeText(getApplicationContext(),"Alert has set to VHN,  They will contact soon..",Toast.LENGTH_LONG).show();
-//                AppConstants.isMainActivityOpen=false;
-                dialog.dismiss();
-            }
-        });*/
-
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
-
     }
-
 
     @Override
     public void errorReferalAdd(String response) {
         Log.d("AddReferal error", response);
-
     }
 
     @Override
@@ -552,7 +541,6 @@ public class AddReferral extends AppCompatActivity implements View.OnClickListen
             if (status.equalsIgnoreCase("1")) {
                 JSONArray jsonArray = jsonObject.getJSONArray("nearestHospitals");
                 Log.e("nearestHospitals arr", jsonArray.length() + "");
-
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject1 = jsonArray.getJSONObject(i);
                     nearestReferalHospitalModel = new NearestReferalHospitalModel.NearestHospitals();
@@ -560,17 +548,12 @@ public class AddReferral extends AppCompatActivity implements View.OnClickListen
                     nearestReferalHospitalModel.setPhcCode(jsonObject1.getString("phcCode"));
                     nearestReferalHospitalModel.setPhcId(jsonObject1.getString("distance"));
                     arr_nearstReferalHospitalList_hospital_name.add(jsonObject1.getString("phcCode")+"  ("+jsonObject1.getString(""+"f_facility_name")+")");
-
                     arr_nearstReferalHospitalList.add(jsonObject1.getString("phcId")+"-"+jsonObject1.getString("distance"));
                     arr_nearstReferalHospitalList_name_distance.add(jsonObject1.getString("phcCode")+"   "+jsonObject1.getString("distance").substring(0,2)+" km"+"  ("+jsonObject1.getString("" +
                             "f_facility_name")+")");
                     arr_nearstReferalHospitalList_hospital_id.add(jsonObject1.getString("phcId"));/*+"-"+jsonObject1.getString("distance")*/
                     nearestReferalHospitalList.add(nearestReferalHospitalModel);
                 }
-
-//                sp_referring_facility_start.setAdapter((SpinnerAdapter) nearestReferalHospitalList);
-//                sp_facility_referred_to_start.setAdapter((SpinnerAdapter) nearestReferalHospitalList);
-
             }
 
         } catch (JSONException e) {
@@ -580,10 +563,7 @@ public class AddReferral extends AppCompatActivity implements View.OnClickListen
 
     @Override
     public void errorReferalNearestHospital(String response) {
-
         Log.d("AddReferal", " error NearestHospital" + response);
-
-
     }
 
     @Override
@@ -612,4 +592,24 @@ public class AddReferral extends AppCompatActivity implements View.OnClickListen
     }
 
 
+    @Override
+    public void onGpsSettingStatus(boolean enabled) {
+        Log.d("TAG", "onGpsSettingStatus: " + enabled);
+        mISGpsStatusDetector = enabled;
+        if(!enabled){
+            mGpsStatusDetector.checkGpsStatus();
+        }
+    }
+
+    @Override
+    public void onGpsAlertCanceledByUser() {
+        Log.d("TAG", "onGpsAlertCanceledByUser");
+        startActivity(new Intent(getApplicationContext(),TurnOnGpsLocation.class));
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        mGpsStatusDetector.checkOnActivityResult(requestCode, resultCode);
+    }
 }

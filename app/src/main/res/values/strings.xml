@@ -12,6 +12,8 @@
     <string name="tamil">Tamil</string>
     <string name="english">English</string>
 
+    <string name="font_fontFamily_medium">sans-serif</string>
+
     //Error Message
     <string name="err_msg_name">Enter Your full name</string>
     <string name="err_msg_picme">Enter Your Valid Picme ID</string>
@@ -705,5 +707,8 @@
     <string name="arrow">arrow</string>
     <string name="high">High</string>
     <string name="no_notification_for_you">No Notification For you...</string>
+    <string name="this_your">This is your</string>
+    <string name="week_pregnancy">Week of pregnancy.</string>
+    <string name="good_morning">Good Morning Mrs.</string>
 
 </resources>

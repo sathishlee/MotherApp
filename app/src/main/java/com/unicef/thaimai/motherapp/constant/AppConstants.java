@@ -33,7 +33,7 @@ public class AppConstants {
     public static final String USER_EMERGENCY_CONTACTS = "emergency_contacts";
 
     public static final int LOCATION_INTERVAL = 1000;            //1800000
-    public static final int FASTEST_LOCATION_INTERVAL = 1000;
+    public static final int FASTEST_LOCATION_INTERVAL = 500;
     public static String EXTRA_LATITUDE = "";
     public static String EXTRA_LONGITUDE = "";
 
@@ -84,9 +84,16 @@ public class AppConstants {
     public static final String MOTHER_DOB = "DOB";
     public static final String MOTHER_PHOTO = "mPhoto";
 
+    public static final String LANGUAGE = "ta";
+
     public static Boolean LANGUAGE_CHANGE_ENGLISH = false;
 
 
     public static ArrayList<ANVisitRecordsSingleResponseModel> mylist=null;
+
+    /*public static final int FRAGMENT_A = 0;
+    public static final int FRAGMENT_B = 1;
+    public static final int FRAGMENT_C = 2;
+    public static final int FRAGMENT_D = 3;*/
 
 }

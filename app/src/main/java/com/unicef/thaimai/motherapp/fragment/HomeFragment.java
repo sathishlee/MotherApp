@@ -10,9 +10,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -35,25 +33,18 @@ import com.squareup.picasso.Picasso;
 import com.unicef.thaimai.motherapp.Interface.MakeCallInterface;
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.GetUserInfoPresenter;
-import com.unicef.thaimai.motherapp.Presenter.PrimaryRegisterPresenter;
 import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.activity.Login;
-import com.unicef.thaimai.motherapp.activity.NearHospitalActivity;
 //import com.unicef.thaimai.motherapp.bradcastReceiver.ConnectivityReceiver;
-import com.unicef.thaimai.motherapp.activity.PrimaryRegister;
-import com.unicef.thaimai.motherapp.activity.PrimaryRegisterView;
 import com.unicef.thaimai.motherapp.activity.ProfileActivity;
 import com.unicef.thaimai.motherapp.app.RealmController;
 import com.unicef.thaimai.motherapp.constant.Apiconstants;
 import com.unicef.thaimai.motherapp.constant.AppConstants;
 import com.unicef.thaimai.motherapp.realmDbModelClass.HomeRealmModel;
-import com.unicef.thaimai.motherapp.realmDbModelClass.PrimaryRegisterRealmModel;
 import com.unicef.thaimai.motherapp.utility.CheckNetwork;
 import com.unicef.thaimai.motherapp.utility.RoundedTransformation;
 import com.unicef.thaimai.motherapp.view.LoginViews;
-import com.unicef.thaimai.motherapp.view.PrimaryRegisterViews;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -63,7 +54,7 @@ import io.realm.RealmResults;
 import static android.content.Context.MODE_PRIVATE;
 
 
-public class home extends Fragment implements LoginViews, View.OnClickListener, MakeCallInterface {
+public class HomeFragment extends Fragment implements LoginViews, View.OnClickListener, MakeCallInterface {
 
     TextView txt_username, picme_id, txt_age, txt_an_risk,txt_pn_risk,txt_gst_week,txt_weight,
             txt_next_visit,txt_lmp_date,txt_edd_date,txt_husb_name,
@@ -96,9 +87,9 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
     boolean isoffline = false;
     CheckNetwork checkNetwork;
 
-    public static home newInstance()
+    public static HomeFragment newInstance()
     {
-        home fragment = new home();
+        HomeFragment fragment = new HomeFragment();
         return fragment;
     }
 
@@ -221,7 +212,7 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
         if (checkNetwork.isNetworkAvailable()) {
             getUserInfoPresenter.getUserInfo(strpicmeId, appversion);
         } else {
-//            Log.w(home.class.getSimpleName(), "Is" + checkNetwork.isNetworkAvailable());
+//            Log.w(HomeFragment.class.getSimpleName(), "Is" + checkNetwork.isNetworkAvailable());
 //            startActivity(new Intent(getActivity(), NoInternetConnectionActivity.class));
             isoffline = true;
         }
@@ -277,7 +268,7 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
     }
 
     private void showOffline() {
-        Log.e(home.class.getSimpleName(),"your app is now OFF LINE");
+        Log.e(HomeFragment.class.getSimpleName(),"your app is now OFF LINE");
         realm.beginTransaction();
         RealmResults<HomeRealmModel> homeRealmModels = realm.where(HomeRealmModel.class).findAll();
         for(int i=0; i < homeRealmModels.size();i++){
@@ -327,7 +318,7 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
             if(preferenceData.getGstWeek().equalsIgnoreCase("null")){
                 txt_gst_week.setText("-");
             }else {
-                txt_gst_week.setText(preferenceData.getGstWeek());
+                txt_gst_week.setText(preferenceData.getGstWeek()+ "Wks");
             }
             if(homeRealmModel.getANnextVisit().equalsIgnoreCase("null")){
                 txt_next_visit.setText("-");
@@ -451,7 +442,7 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
 
     @Override
     public void showPickmeResult(String response) {
-        Log.e(home.class.getSimpleName(), "Response success" + response);
+        Log.e(HomeFragment.class.getSimpleName(), "Response success" + response);
         try {
             JSONObject jObj = new JSONObject(response);
             String status = jObj.getString("status");
@@ -548,7 +539,7 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
     }
 
     private void setValueToUI() {
-        Log.e(home.class.getSimpleName(),"your app is now ON LINE");
+        Log.e(HomeFragment.class.getSimpleName(),"your app is now ON LINE");
 
         realm.beginTransaction();
         RealmResults<HomeRealmModel> homeRealmModels = realm.where(HomeRealmModel.class).findAll();
@@ -600,7 +591,7 @@ public class home extends Fragment implements LoginViews, View.OnClickListener, 
             if(preferenceData.getGstWeek().equalsIgnoreCase("null")){
                 txt_gst_week.setText("-");
             }else {
-                txt_gst_week.setText(preferenceData.getGstWeek());
+                txt_gst_week.setText(preferenceData.getGstWeek() +"Wks");
             }
             if(homeRealmModel.getANnextVisit().equalsIgnoreCase("null")){
                 txt_next_visit.setText("-");

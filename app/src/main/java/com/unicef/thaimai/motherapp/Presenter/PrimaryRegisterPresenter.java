@@ -1,57 +1,49 @@
-    package com.unicef.thaimai.motherapp.Presenter;
+package com.unicef.thaimai.motherapp.Presenter;
+import android.app.Activity;
+import android.util.Base64;
+import android.util.Log;
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.unicef.thaimai.motherapp.constant.Apiconstants;
+import com.unicef.thaimai.motherapp.interactor.PrimaryRegisterInteractor;
+import com.unicef.thaimai.motherapp.model.requestmodel.PrimaryDataRequestModel;
+import com.unicef.thaimai.motherapp.view.PrimaryRegisterViews;
+import com.unicef.thaimai.motherapp.volleyservice.VolleySingleton;
+import org.json.JSONObject;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
-    import android.app.Activity;
-    import android.app.DownloadManager;
-    import android.util.Base64;
-    import android.util.Log;
-
-    import com.android.volley.AuthFailureError;
-    import com.android.volley.Request;
-    import com.android.volley.Response;
-    import com.android.volley.VolleyError;
-    import com.android.volley.toolbox.JsonObjectRequest;
-    import com.android.volley.toolbox.StringRequest;
-    import com.unicef.thaimai.motherapp.activity.PrimaryRegister;
-    import com.unicef.thaimai.motherapp.constant.Apiconstants;
-    import com.unicef.thaimai.motherapp.interactor.PrimaryRegisterInteractor;
-    import com.unicef.thaimai.motherapp.model.requestmodel.PrimaryDataRequestModel;
-    import com.unicef.thaimai.motherapp.view.PrimaryRegisterViews;
-    import com.unicef.thaimai.motherapp.volleyservice.VolleySingleton;
-
-    import org.json.JSONObject;
-
-    import java.net.URL;
-    import java.util.HashMap;
-    import java.util.Map;
-
-
-    /**
-     * Created by sathish on 3/7/2018.
-     */
-
-    public class PrimaryRegisterPresenter implements PrimaryRegisterInteractor {
+/**
+* Created by sathish on 3/7/2018.
+*/
+public class PrimaryRegisterPresenter implements PrimaryRegisterInteractor {
         private PrimaryRegisterViews primaryRegisterViews;
         private Activity activity;
 
-        public PrimaryRegisterPresenter(PrimaryRegisterViews primaryRegisterViews, Activity activity) {
-            this.primaryRegisterViews = primaryRegisterViews;
-            this.activity = activity;
-        }
+    public PrimaryRegisterPresenter(PrimaryRegisterViews primaryRegisterViews, Activity activity) {
+        this.primaryRegisterViews = primaryRegisterViews;
+        this.activity = activity;
+    }
 
+    @Override
+    public void getAllMotherPrimaryRegistration(final String strPicmeId) {
+        String url = Apiconstants.BASE_URL + Apiconstants.POST_PRIMARY_INFO;
+        Log.d("Log in check Url--->", url);
+        Log.d("picmeId--->", strPicmeId);
+        primaryRegisterViews.showProgress();
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
         @Override
-        public void getAllMotherPrimaryRegistration(final String strPicmeId) {
-            String url = Apiconstants.BASE_URL + Apiconstants.POST_PRIMARY_INFO;
-            Log.d("Log in check Url--->", url);
-            Log.d("picmeId--->", strPicmeId);
-            primaryRegisterViews.showProgress();
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    Log.d(PrimaryRegisterPresenter.class.getSimpleName(), "Success response" + response);
-                    primaryRegisterViews.hideProgress();
-                    primaryRegisterViews.getAllMotherPrimaryRegisterSuccess(response);
-                }
-            }, new Response.ErrorListener() {
+            public void onResponse(String response) {
+            Log.d(PrimaryRegisterPresenter.class.getSimpleName(), "Success response" + response);
+            primaryRegisterViews.hideProgress();
+            primaryRegisterViews.getAllMotherPrimaryRegisterSuccess(response);
+            }
+        }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     Log.d(PrimaryRegisterPresenter.class.getSimpleName(), "Success response" + error.toString());
@@ -94,8 +86,10 @@
                 }
             };
             VolleySingleton.getInstance(activity).addToRequestQueue(stringRequest);
+        VolleySingleton.getInstance(activity).getRequestQueue().getCache().remove(url);
 
-        }
+
+    }
 
         @Override
         public void postprimaryData(final String strPicmeId, final PrimaryDataRequestModel primaryDataRequestModel) {
@@ -189,6 +183,8 @@
                 }
             };
             VolleySingleton.getInstance(activity).addToRequestQueue(req);
+            VolleySingleton.getInstance(activity).getRequestQueue().getCache().remove(url);
+
 
         }
     }

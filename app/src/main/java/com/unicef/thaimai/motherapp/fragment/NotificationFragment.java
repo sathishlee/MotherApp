@@ -18,7 +18,7 @@ import com.unicef.thaimai.motherapp.Presenter.NotificationPresenter;
 import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.activity.MainActivity;
 import com.unicef.thaimai.motherapp.adapter.NotificationAdapter;
-import com.unicef.thaimai.motherapp.model.NotificationListResponseModel;
+import com.unicef.thaimai.motherapp.model.responsemodel.NotificationResponseModel;
 import com.unicef.thaimai.motherapp.utility.CheckNetwork;
 import com.unicef.thaimai.motherapp.view.NotificationViews;
 
@@ -32,8 +32,8 @@ import java.util.ArrayList;
 public class NotificationFragment extends Fragment implements NotificationViews {
 
     NotificationAdapter mAdapter;
-    ArrayList<NotificationListResponseModel.NotificationList> moviesList;
-    NotificationListResponseModel.NotificationList movie;
+    ArrayList<NotificationResponseModel.Result> moviesList;
+    NotificationResponseModel.Result movie;
     LinearLayoutManager mLayoutManager;
     RecyclerView mRecyclerView;
 
@@ -104,17 +104,20 @@ public class NotificationFragment extends Fragment implements NotificationViews 
         try {
             JSONObject jsonObject = new JSONObject(response);
             String status = jsonObject.getString("status");
-            String msg = jsonObject.getString("successmessage");
-            movie = new NotificationListResponseModel.NotificationList();
+            String msg = jsonObject.getString("message");
+            movie = new NotificationResponseModel.Result();
             if (status.equalsIgnoreCase("1")) {
                 no_notification.setVisibility(View.GONE);
                 swipeRefresh.setVisibility(View.VISIBLE);
-                JSONArray jsonArray = jsonObject.getJSONArray("notificationList");
+                JSONArray jsonArray = jsonObject.getJSONArray("result");
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject1 = jsonArray.getJSONObject(i);
 //                    movie.setMPicmeId(jsonObject1.getString("mName"));
-                    movie.setMessage(jsonObject1.getString("notificationmsg"));
-                    movie.setNoteStartDateTime(jsonObject1.getString("dateTime"));
+//                    movie.set(jsonObject1.getString("subject"));
+                    movie.setMessage(jsonObject1.getString("message"));
+                    movie.setMPhoto(jsonObject1.getString("mPhoto"));
+                    movie.setMid(jsonObject1.getString("mid"));
+                    movie.setNoteStartDateTime(jsonObject1.getString("noteStartDateTime"));
                     moviesList.add(movie);
 
                 }

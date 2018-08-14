@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by sathish on 3/14/2018.
+ * Created by suthishan on 6/20/2018.
  */
 
 public class LocationUpdatePresenter implements LocationUpdateIntractor {
@@ -105,6 +105,8 @@ public class LocationUpdatePresenter implements LocationUpdateIntractor {
         };
         // Adding request to request queue
         VolleySingleton.getInstance(activity).addToRequestQueue(strReq);
+        VolleySingleton.getInstance(activity).getRequestQueue().getCache().remove(url);
+
 
 
     }
@@ -165,6 +167,8 @@ public class LocationUpdatePresenter implements LocationUpdateIntractor {
         };
         // Adding request to request queue
         VolleySingleton.getInstance(activity).addToRequestQueue(strReq);
+        VolleySingleton.getInstance(activity).getRequestQueue().getCache().remove(url);
+
 
     }
 }

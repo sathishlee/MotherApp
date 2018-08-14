@@ -30,6 +30,7 @@
     <dimen name="picker_fab_size">60dp</dimen>
     <dimen name="picker_fab_press_translation_z">9dp</dimen>
     <dimen name="picker_camera_height">250dp</dimen>
+    <dimen name="tab_label">14sp</dimen>
 
 
 </resources>
