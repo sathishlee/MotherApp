@@ -91,4 +91,9 @@ public class AppConstants {
 
     public static ArrayList<ANVisitRecordsSingleResponseModel> mylist=null;
 
+    /*public static final int FRAGMENT_A = 0;
+    public static final int FRAGMENT_B = 1;
+    public static final int FRAGMENT_C = 2;
+    public static final int FRAGMENT_D = 3;*/
+
 }

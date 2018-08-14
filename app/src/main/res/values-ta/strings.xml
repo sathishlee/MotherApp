@@ -228,4 +228,9 @@
     <string name="visit_type">வகை பார்க்கவும்</string>
     <string name="hope_you_are_doing_well">நீங்கள் நன்றாக இருக்கிறீர்கள் என்று நம்புகிறேன்..</string>
     <string name="this_is_the_period_of_child_monthly_development">இது குழந்தை மாதாந்திர வளர்ச்சி காலமாகும்.</string>
+    <string name="if_you_are_not_feeling_well_please">நீங்கள் நன்றாக இல்லை என்றால்.</string>
+    <string name="this_your">இது உன்னுடைய</string>
+    <string name="week_pregnancy">கர்ப்பத்தின் வாரம்.</string>
+    <string name="sncu_name">SNCU பெயர்</string>
+    <string name="good_morning">காலை வணக்கம் திருமதி.</string>
 </resources>

@@ -347,7 +347,7 @@ public class ImmunizationEditActivity extends AppCompatActivity implements View.
             String msg = jsonObject.getString("message");
             if (status.equalsIgnoreCase("1")) {
                 Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                startActivity(new Intent(getApplicationContext(), ImmunizationActivity.class));
             }else{
                 Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
             }

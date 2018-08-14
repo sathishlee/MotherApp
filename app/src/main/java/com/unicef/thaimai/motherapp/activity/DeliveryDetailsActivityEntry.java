@@ -413,7 +413,7 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
             String msg = jsonObject.getString("message");
             if (status.equalsIgnoreCase("1")) {
                 Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                startActivity(new Intent(getApplicationContext(), DeliveryDetailsView.class));
             }
 
         } catch (JSONException e) {

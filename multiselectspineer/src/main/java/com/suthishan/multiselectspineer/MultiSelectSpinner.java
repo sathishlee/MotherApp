@@ -18,7 +18,7 @@ import java.util.List;
 
 public class MultiSelectSpinner extends Spinner implements DialogInterface.OnMultiChoiceClickListener {
 
-    public interface OnMultipleItemsSelectedListener{
+    public interface    OnMultipleItemsSelectedListener{
         void selectedIndices(List<Integer> indices);
         void selectedStrings(List<String> strings);
     }

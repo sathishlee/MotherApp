@@ -7,6 +7,7 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -31,6 +32,7 @@ import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.ReferalPresenter;
 import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.constant.AppConstants;
+import com.unicef.thaimai.motherapp.fragment.ReferralListFragment;
 import com.unicef.thaimai.motherapp.helper.LocaleHelper;
 import com.unicef.thaimai.motherapp.model.responsemodel.NearestReferalHospitalModel;
 import com.unicef.thaimai.motherapp.utility.CheckNetwork;
@@ -81,6 +83,8 @@ public class AddReferral extends AppCompatActivity implements View.OnClickListen
 
     private GpsStatusDetector mGpsStatusDetector;
     boolean mISGpsStatusDetector;
+
+    Fragment selectedFragment = null;
 
 
     @Override
@@ -484,12 +488,9 @@ public class AddReferral extends AppCompatActivity implements View.OnClickListen
         pDialog.dismiss();
     }
 
-
-
     @Override
     public void successReferalAdd(String response) {
         Log.d("AddReferal success", response);
-
 
         try {
             JSONObject jsonObject = new JSONObject(response);
@@ -509,48 +510,26 @@ public class AddReferral extends AppCompatActivity implements View.OnClickListen
     }
 
     private void showAlert(String msg, String gomain) {
-
-
         final AlertDialog.Builder builder = new AlertDialog.Builder(AddReferral.this);
-
-
-//        builder.setTitle("Hi Tamil Selvi,");
-//        builder.setMessage("Have you take tablets regulerlly: ");
         builder.setTitle("Hi " +preferenceData.getMotherName()+ ",");
         builder.setMessage(msg);
-
-
         //Yes Button
         builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-//                Toast.makeText(getApplicationContext(),"Take care",Toast.LENGTH_LONG).show();
-//                Toast.makeText(getApplicationContext(),"Alert has set to VHN,  They will contact soon..",Toast.LENGTH_LONG).show();
-//                AppConstants.isMainActivityOpen=false;
-//                dialog.dismiss();
-                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                /*Fragment fragment = new ReferralListFragment();
+                getSupportFragmentManager().beginTransaction().replace(R.id.content,fragment).commit();*/
                 finish();
             }
         });
-        /*builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-//                Toast.makeText(getApplicationContext(),"Alert has set to VHN,  They will contact soon..",Toast.LENGTH_LONG).show();
-//                AppConstants.isMainActivityOpen=false;
-                dialog.dismiss();
-            }
-        });*/
-
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
-
     }
-
 
     @Override
     public void errorReferalAdd(String response) {
         Log.d("AddReferal error", response);
-
     }
 
     @Override
@@ -562,7 +541,6 @@ public class AddReferral extends AppCompatActivity implements View.OnClickListen
             if (status.equalsIgnoreCase("1")) {
                 JSONArray jsonArray = jsonObject.getJSONArray("nearestHospitals");
                 Log.e("nearestHospitals arr", jsonArray.length() + "");
-
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject1 = jsonArray.getJSONObject(i);
                     nearestReferalHospitalModel = new NearestReferalHospitalModel.NearestHospitals();
@@ -570,17 +548,12 @@ public class AddReferral extends AppCompatActivity implements View.OnClickListen
                     nearestReferalHospitalModel.setPhcCode(jsonObject1.getString("phcCode"));
                     nearestReferalHospitalModel.setPhcId(jsonObject1.getString("distance"));
                     arr_nearstReferalHospitalList_hospital_name.add(jsonObject1.getString("phcCode")+"  ("+jsonObject1.getString(""+"f_facility_name")+")");
-
                     arr_nearstReferalHospitalList.add(jsonObject1.getString("phcId")+"-"+jsonObject1.getString("distance"));
                     arr_nearstReferalHospitalList_name_distance.add(jsonObject1.getString("phcCode")+"   "+jsonObject1.getString("distance").substring(0,2)+" km"+"  ("+jsonObject1.getString("" +
                             "f_facility_name")+")");
                     arr_nearstReferalHospitalList_hospital_id.add(jsonObject1.getString("phcId"));/*+"-"+jsonObject1.getString("distance")*/
                     nearestReferalHospitalList.add(nearestReferalHospitalModel);
                 }
-
-//                sp_referring_facility_start.setAdapter((SpinnerAdapter) nearestReferalHospitalList);
-//                sp_facility_referred_to_start.setAdapter((SpinnerAdapter) nearestReferalHospitalList);
-
             }
 
         } catch (JSONException e) {
@@ -590,10 +563,7 @@ public class AddReferral extends AppCompatActivity implements View.OnClickListen
 
     @Override
     public void errorReferalNearestHospital(String response) {
-
         Log.d("AddReferal", " error NearestHospital" + response);
-
-
     }
 
     @Override

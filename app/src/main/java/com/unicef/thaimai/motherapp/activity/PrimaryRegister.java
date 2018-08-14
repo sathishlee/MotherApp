@@ -39,6 +39,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.StringTokenizer;
 
 
 public class PrimaryRegister extends AppCompatActivity implements View.OnClickListener, PrimaryRegisterViews,
@@ -476,11 +477,11 @@ public class PrimaryRegister extends AppCompatActivity implements View.OnClickLi
             primaryDataRequestModel.setMHistoryIllness(strHistoryIllness);
             primaryDataRequestModel.setMHistoryIllnessFamily(strHistoryIllnessFmly);
             if(strAnySurgeryBefore.equalsIgnoreCase("Yes")){
-                primaryDataRequestModel.setMAnySurgeryBefore(strAnySurgeryBefore+ " - " +edt_any_surgery_before.getText().toString());
+                primaryDataRequestModel.setMAnySurgeryBefore(strAnySurgeryBefore+ " - " +strAny_surgery_before_other);
             }else{
                 primaryDataRequestModel.setMAnySurgeryBefore(strAnySurgeryBefore);
             }
-            primaryDataRequestModel.setMAnySurgeryBefore(strAnySurgeryBefore);
+//            primaryDataRequestModel.setMAnySurgeryBefore(strAnySurgeryBefore);
             primaryDataRequestModel.setMUseTobacco(strDoseTobacco);
             primaryDataRequestModel.setMUseAlcohol(strDoseAlcohol);
             if (strDoseOnAnyMedication.equalsIgnoreCase("Yes")) {
@@ -794,26 +795,44 @@ public class PrimaryRegister extends AppCompatActivity implements View.OnClickLi
                 spConsangulneousMarriage.setSelection(getListPosition(yn, jObj.getString("mConsanguineousMarraige")));   // Yes,No
                 spHistoryIllness.setSelection(getListPosition(hdcdt, jObj.getString("mHistoryIllness")));    //Hypertention, Diabetes, Congenital Heart Disease, Tb, Others
                 spHistoryIllnessFmly.setSelection(getListPosition(hoaif, jObj.getString("mHistoryIllnessFamily"))); //Hypertention, Diabetes, Congenital Heart Disease, Tb, Others
-                if(yn.equals("Yes")){
-                    spAnySurgeryBefore.setSelection(getListPosition(yn, jObj.getString("mAnySurgeryBefore")));  //Yes,No
-                    edt_any_surgery_before.setVisibility(View.VISIBLE);
-                    String testString = jObj.getString("mAnySurgeryBefore");
-                    String[] parts = testString.split("-");
-                    String lastWord = parts[parts.length - 1];
-                    edt_any_surgery_before.setText(lastWord);
+                String surgeryBefore = jObj.getString("mAnySurgeryBefore");
+                Log.e("surgeryBefore--->",surgeryBefore);
+                if(surgeryBefore.equalsIgnoreCase("No")){
+                    spAnySurgeryBefore.setSelection(getListPosition(yn,jObj.getString("mAnySurgeryBefore")));
                 }else{
-                    spAnySurgeryBefore.setSelection(getListPosition(yn, jObj.getString("mAnySurgeryBefore")));  //Yes,No
+                    StringTokenizer tokens = new StringTokenizer(surgeryBefore, " -");
+                    String first = tokens.nextToken();
+                    String second = tokens.nextToken();
+                    spAnySurgeryBefore.setSelection(getListPosition(yn,first));
+                    edt_any_surgery_before.setText(second);
                 }
-//                spAnySurgeryBefore.setSelection(getListPosition(yn, jObj.getString("mAnySurgeryBefore")));  //Yes,No
                 spDoseTobacco.setSelection(getListPosition(yn, jObj.getString("mUseTobacco")));       //Yes,No
                 spDoseAlcohol.setSelection(getListPosition(yn, jObj.getString("mUseAlcohol")));       //Yes,No
-
-                spDoseOnAnyMedication.setSelection(getListPosition(yn, jObj.getString("mAnyMeditation"))); //Yes,No
-                spDoseAllergictoDrugs.setSelection(getListPosition(yn, jObj.getString("mAllergicToanyDrug"))); //Yes,No
-//                    spPrePregnancy.setSelection(getListPosition(yn,jObj.getString("mHistroyPreviousPreganancy")));          //Yes,No
+                String onAnyMedication = jObj.getString("mAnyMeditation");
+                if(onAnyMedication.equalsIgnoreCase("No")){
+                    spDoseOnAnyMedication.setSelection(getListPosition(yn, jObj.getString("mAnyMeditation"))); //Yes,No
+                }else {
+                    StringTokenizer tokens = new StringTokenizer(onAnyMedication, " -");
+                    String first = tokens.nextToken();
+                    String second = tokens.nextToken();
+                    spDoseOnAnyMedication.setSelection(getListPosition(yn,first));
+                    edtMedicationSpecify.setText(second);
+                }
+                String allerGicDrug = jObj.getString("mAllergicToanyDrug");
+                if(allerGicDrug.equalsIgnoreCase("No")){
+                    spDoseAllergictoDrugs.setSelection(getListPosition(yn, jObj.getString("mAllergicToanyDrug"))); //Yes,No
+                }else {
+                    StringTokenizer tokens = new StringTokenizer(allerGicDrug, " -");
+                    String first = tokens.nextToken();
+                    String second = tokens.nextToken();
+                    spDoseAllergictoDrugs.setSelection(getListPosition(yn,first));
+                    edtAllergictoDrugsSpecify.setText(second);
+                }
                 spLSCSDone.setSelection(getListPosition(yn, jObj.getString("mLscsDone")));             //Yes,No
 //                    spComDuringPrgncy.setSelection(getListPosition(acdp,jObj.getString("mAnyComplecationDuringPreganancy")));  //Hypertention, Diabetes, Congenital Heart Disease, Tb, Others
-                spinner1.setSelection(getListPosition(acdp, jObj.getString("mAnyComplecationDuringPreganancy")));
+//                spinner1.setSelection(getListPosition(acdp, jObj.getString("mAnyComplecationDuringPreganancy")));
+                spinner1.setSelection(getListPosition(acdp,jObj.getString("mAnyComplecationDuringPreganancy")));
+
                 spPrePrgncyG.setSelection(getListPosition(numG, jObj.getString("mPresentPreganancyG")));  //1234567890
                 spPrePrgncyP.setSelection(getListPosition(numP, jObj.getString("mPresentPreganancyP")));  //1234567890
                 spPrePrgncyA.setSelection(getListPosition(numA, jObj.getString("mPresentPreganancyA")));  //1234567890
@@ -826,6 +845,8 @@ public class PrimaryRegister extends AppCompatActivity implements View.OnClickLi
                 spHusbHIV.setSelection(getListPosition(rnr, jObj.getString("hHIV")));         //Reactive, Non Reactive
                 spHusbVDRL.setSelection(getListPosition(rnr, jObj.getString("hVDRL")));       //Reactive, Non Reactive
                 spHusbHelpatitis.setSelection(getListPosition(rnr, jObj.getString("hHepatitis")));  //Reactive, Non Reactive
+//                String anycomplication = jObj.getString("mAnyComplecationDuringPreganancy");
+
 
             } else {
                 Log.d("message---->", message);

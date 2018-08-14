@@ -707,5 +707,8 @@
     <string name="arrow">arrow</string>
     <string name="high">High</string>
     <string name="no_notification_for_you">No Notification For you...</string>
+    <string name="this_your">This is your</string>
+    <string name="week_pregnancy">Week of pregnancy.</string>
+    <string name="good_morning">Good Morning Mrs.</string>
 
 </resources>
