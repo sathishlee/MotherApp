@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -267,7 +268,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
     }
 
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        finish();
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     public void showProgress() {
@@ -285,21 +290,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         try {
             JSONObject jsonObject = new JSONObject(response);
             String status = jsonObject.getString("status");
+            String message = jsonObject.getString("message");
             if (status.equalsIgnoreCase("1")) {
-                JSONArray jsonArray = jsonObject.getJSONArray("alldist");
-                Log.e("alldist arr", jsonArray.length() + "");
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-                    stateSpinnerModel = new StateSpinnerModel.Alldist();
-                    stateSpinnerModel.setDst_code(jsonObject1.getString("dst_code"));
-//                    strDist = stateSpinnerModel.setDst_code(jsonObject1.getString("dst_code"));
-//                    Log.e("dist Selected-->", strDist+ "");
-                    stateSpinnerModel.setDst_name(jsonObject1.getString("dst_name"));
-                    dist_id.add(jsonObject1.getString("dst_code"));
-                    stateSpinner.add(jsonObject1.getString("dst_name"));
-                    alldists.add(stateSpinnerModel);
-                }
-                sp_district.setAdapter(arrayAdapterState);
+                Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this,Login.class));
             }
 
         } catch (JSONException e) {
@@ -309,7 +303,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void getRegisterFailure(String response) {
-
+        Log.d("Register", "Failure" + response);
     }
 
     @Override
