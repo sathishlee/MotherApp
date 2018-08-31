@@ -33,7 +33,11 @@
             android:layout_marginTop="5dip"
             android:text="@string/register_below"
             android:textSize="16sp" />
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="5dp">
         <android.support.design.widget.TextInputLayout
             android:id="@+id/input_layout_name"
             android:layout_width="match_parent"
@@ -45,12 +49,14 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:hint="Enter Your Name*"
+            android:textSize="@dimen/text_secondary"
+            android:textColor="@color/secondary"
             android:maxLength="64"
             android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"/>
 
         </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <!--<android.support.design.widget.TextInputLayout
             android:id="@+id/input_layout_picme_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -65,7 +71,7 @@
             android:maxLength="12"
             android:inputType="number"/>
 
-        </android.support.design.widget.TextInputLayout>
+        </android.support.design.widget.TextInputLayout>-->
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/input_layout_dob"
@@ -78,10 +84,99 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:hint="@string/dob"
-            android:inputType="number"
-            android:digits="0123456789"/>
+            android:textSize="@dimen/text_secondary"
+            android:textColor="@color/secondary"/>
 
         </android.support.design.widget.TextInputLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="District"
+                android:textColor="@color/secondary"
+                android:textSize="@dimen/text_field"
+                android:textStyle="bold"/>
+
+            <Spinner
+                android:id="@+id/sp_district"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawSelectorOnTop="true"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:entries="@array/array_refrel_why"
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_block"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Block"
+                android:textColor="@color/secondary"
+                android:textSize="@dimen/text_field"
+                android:textStyle="bold"/>
+
+            <Spinner
+                android:id="@+id/sp_block"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawSelectorOnTop="true"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:entries="@array/array_refrel_why"
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_phc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="PHC"
+                android:textColor="@color/secondary"
+                android:textSize="@dimen/text_field"
+                android:textStyle="bold"/>
+
+            <Spinner
+                android:id="@+id/sp_phc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawSelectorOnTop="true"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_secondary"
+                android:entries="@array/array_refrel_why"
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined" />
+
+        </LinearLayout>
 
 
         <android.support.design.widget.TextInputLayout
@@ -97,8 +192,26 @@
             android:digits="0123456789"
             android:ems="10"
             android:inputType="number"
+            android:textSize="@dimen/text_secondary"
+            android:textColor="@color/secondary"
             android:hint="Enter Primary Mobile Number*"
             android:maxLength="10" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_husname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/hus_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:hint="Enter Husband Name"
+                android:textSize="@dimen/text_secondary"
+                android:textColor="@color/secondary"/>
 
         </android.support.design.widget.TextInputLayout>
 
@@ -114,13 +227,15 @@
             android:layout_marginTop="5dp"
             android:digits="0123456789"
             android:ems="10"
+            android:textSize="@dimen/text_secondary"
+            android:textColor="@color/secondary"
             android:inputType="number"
-            android:hint="Enter Alternative Mobile Number 1*"
+            android:hint="Enter Husband Mobile Number 1*"
             android:maxLength="10" />
 
         </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <!--<android.support.design.widget.TextInputLayout
             android:id="@+id/input_layout_alternative_number1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -156,8 +271,8 @@
 
         </android.support.design.widget.TextInputLayout>
 
-
-        <TextView
+-->
+        <!--<TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/choose_lang"
@@ -184,7 +299,7 @@
                     android:id="@+id/eng"
                     android:padding="10dp"/>
 
-            </LinearLayout>
+            </LinearLayout>-->
 
 
         <LinearLayout
@@ -201,11 +316,11 @@
                 android:layout_marginTop="2dp"
                 android:layout_marginBottom="2dp"
                 android:padding="10dp"
-                android:text="Next"/>
+                android:text="@string/submit"/>
 
         </LinearLayout>
 
     </LinearLayout>
-
+</LinearLayout>
 
 </ScrollView>

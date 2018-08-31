@@ -7,11 +7,11 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,7 +32,6 @@ import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.ReferalPresenter;
 import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.constant.AppConstants;
-import com.unicef.thaimai.motherapp.fragment.ReferralListFragment;
 import com.unicef.thaimai.motherapp.helper.LocaleHelper;
 import com.unicef.thaimai.motherapp.model.responsemodel.NearestReferalHospitalModel;
 import com.unicef.thaimai.motherapp.utility.CheckNetwork;
@@ -44,11 +43,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
 
 
@@ -170,7 +167,6 @@ public class AddReferral extends AppCompatActivity implements View.OnClickListen
         referalPresenter = new ReferalPresenter(AddReferral.this, this);
 //        if (AppConstants.CREATE_NEW_REFRAL) {
         if (checkNetwork.isNetworkAvailable()) {
-
 //            referalPresenter.getReffralNearestHospital(AppConstants.EXTRA_LATITUDE, AppConstants.EXTRA_LONGITUDE);
             referalPresenter.getReffralNearestHospital(AppConstants.EXTRA_LATITUDE, AppConstants.EXTRA_LONGITUDE);
         }else{

@@ -6,8 +6,6 @@
     android:versionName="1.0">
 
 
-
-
     //Camera View
     <uses-feature android:name="android.hardware.camera2" />
     <uses-feature android:name="android.hardware.camera.autofocus"
@@ -42,15 +40,7 @@
         android:name="com.google.android.geo.API_KEY"
         android:value="@string/google_maps_key" />
 
-    <!--<provider-->
-    <!--android:name="android.support.v4.content.FileProvider"-->
-    <!--android:authorities="<your provider authority>"-->
-    <!--android:exported="false"-->
-    <!--android:grantUriPermissions="true">-->
-    <!--<meta-data-->
-    <!--android:name="android.support.FILE_PROVIDER_PATHS"-->
-    <!--android:resource="@xml/file_provider_paths"/>-->
-    <!--</provider>-->
+
     <application
         android:name=".app.MyApplication"
         android:allowBackup="true"
@@ -82,7 +72,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.Register"
+            android:name=".activity.RegisterActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
@@ -158,8 +148,7 @@
 
         </activity>
         <activity
-            android:name=".activity.FullImageViewActivity"
-            >
+            android:name=".activity.FullImageViewActivity">
             <!--android:theme="@style/AppTheme.NoActionBar"-->
         </activity>
 
@@ -217,14 +206,14 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".activity.Splash"
+        <!--<activity android:name=".activity.Splash"
             android:theme="@style/AppTheme1">
-            <!--<intent-filter>
+            &lt;!&ndash;<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
-        </activity>
+            </intent-filter>&ndash;&gt;
+        </activity>-->
         <receiver android:name=".broadCastReceivers.GpsLocationReceiver">
             <intent-filter>
                 <action android:name="android.location.PROVIDERS_CHANGED" />
@@ -261,6 +250,7 @@
             android:theme="@style/AppTheme"/>
         <activity android:name=".PNImageSelectedActivity"
             android:theme="@style/AppTheme1"/>
+
 
     </application>
 

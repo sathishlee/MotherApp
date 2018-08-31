@@ -31,14 +31,12 @@ import android.widget.Toast;
 import com.commonsware.cwac.camera.CameraHost;
 import com.commonsware.cwac.camera.CameraHostProvider;
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
-import com.unicef.thaimai.motherapp.Presenter.AddVisitRecordsPresenter;
 import com.unicef.thaimai.motherapp.Presenter.PNHBNCVisitPresenter;
 import com.unicef.thaimai.motherapp.Presenter.UploadMulitipleImagesPresenter;
 import com.unicef.thaimai.motherapp.activity.MainActivity;
 import com.unicef.thaimai.motherapp.activity.PNHBNCVisitEntry;
 import com.unicef.thaimai.motherapp.adapter.SpacesItemDecoration;
 import com.unicef.thaimai.motherapp.utility.Util;
-import com.unicef.thaimai.motherapp.view.AddRecordViews;
 import com.unicef.thaimai.motherapp.view.ImageUploadViews;
 import com.unicef.thaimai.motherapp.view.PNHBNCVisitViews;
 
@@ -355,7 +353,6 @@ public class PNImageSelectedActivity extends AppCompatActivity implements Camera
                 mSelectedImageEmptyMessage.setVisibility(View.VISIBLE);
             }
             GalleryFragment.mGalleryAdapter.notifyDataSetChanged();
-
         }
 
         public boolean containsImage(Uri uri) {

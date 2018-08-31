@@ -112,7 +112,7 @@ public class PrimaryRegister extends AppCompatActivity implements View.OnClickLi
 
     private void showActionBar() {
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Primary Register");
+        actionBar.setTitle("Primary RegisterActivity");
 //            if (AppConstants.BACK_BUTTON_GONE) {
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
