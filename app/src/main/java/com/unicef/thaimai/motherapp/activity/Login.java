@@ -6,16 +6,11 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.DownloadManager;
 import android.app.ProgressDialog;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.location.Address;
-import android.location.Geocoder;
-import android.location.Location;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.net.wifi.WifiManager;
@@ -25,7 +20,6 @@ import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.telephony.TelephonyManager;
@@ -49,8 +43,6 @@ import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.constant.Apiconstants;
 import com.unicef.thaimai.motherapp.constant.AppConstants;
 import com.unicef.thaimai.motherapp.utility.CheckNetwork;
-import com.unicef.thaimai.motherapp.utility.DownloadTask;
-import com.unicef.thaimai.motherapp.utility.LocationMonitoringService;
 import com.unicef.thaimai.motherapp.view.LocationUpdateViews;
 import com.unicef.thaimai.motherapp.view.LoginViews;
 
@@ -61,14 +53,12 @@ import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
 
 
 public class Login extends AppCompatActivity implements View.OnClickListener, LoginViews, GpsStatusDetector.GpsStatusDetectorCallBack, LocationUpdateViews {
-    Button btn_login, btn_otp_submit;
+    Button btn_login, btn_otp_submit,btn_register;
     EditText edtPicme, edtDob, edt_otp;
     TextInputLayout iplPicmeId, iplDob, input_layout_otp;
     TextView txtForgetPicme, txt_vhn_nameotp;
@@ -136,6 +126,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
         locationUpdatePresenter = new LocationUpdatePresenter(Login.this, this);
 
         btn_login = (Button) findViewById(R.id.btn_submit);
+        btn_register = (Button) findViewById(R.id.btn_register);
         edtPicme = (EditText) findViewById(R.id.edt_picme_id);
         edtDob = (EditText) findViewById(R.id.edt_dob);
         txtForgetPicme = (TextView) findViewById(R.id.txt_forgot_picme);
@@ -155,6 +146,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
 
     private void onClickListner() {
         btn_login.setOnClickListener(this);
+        btn_register.setOnClickListener(this);
         txtForgetPicme.setOnClickListener(this);
         edtDob.setOnClickListener(this);
         btn_otp_submit.setOnClickListener(this);
@@ -166,6 +158,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
         switch (v.getId()) {
             case R.id.btn_submit:
                 getValue();
+                break;
+            case R.id.btn_register:
+                startActivity(new Intent(this, RegisterActivity.class));
                 break;
             case R.id.btn_otp_submit:
                 enterOtp();

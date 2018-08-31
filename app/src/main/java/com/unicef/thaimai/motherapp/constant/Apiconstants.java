@@ -4,9 +4,9 @@ package com.unicef.thaimai.motherapp.constant;
 
 public class Apiconstants {
 
-        public static final String BASE_URL = "http://218.248.44.77/thaimaiapp/api/";
+//        public static final String BASE_URL = "http://218.248.44.77/thaimaiapp/api/";
 //    public static final String BASE_URL = "http://192.168.100.222/thaimaiapp/api/";
-//    public static final String BASE_URL = "http://106.51.127.173/thaimaiapp/api/";
+    public static final String BASE_URL = "http://106.51.127.173/thaimaiapp/api/";
     //    public static final String BASE_URL = "http://demo.satvatinfosol.com/thaimai/api/";
 
         public static final String PHOTO_URL = "http://218.248.44.77/thaimaiapp/assets/mother_photos/";
@@ -129,5 +129,14 @@ public class Apiconstants {
     public static final String HEALTH_TIPS_IMAGE_WEEKLY = "mother/WeeklyImageHealthTips";
 
     public static final String DOWNLOAD_APK = "AdmLogin/downloadapp/mother.apk";
+
+    public static final String GET_DISTRICT_BLOCK_PHC_DATA = "Login/signupnearHospital";
+
+    public static final String REGISTER_URL = "Login/signupMother";
+
+
+
+
+
 
 }

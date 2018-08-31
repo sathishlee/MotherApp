@@ -26,13 +26,11 @@ import android.view.ViewTreeObserver;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import com.commonsware.cwac.camera.CameraHost;
 import com.commonsware.cwac.camera.CameraHostProvider;
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.AddVisitRecordsPresenter;
 import com.unicef.thaimai.motherapp.Presenter.UploadMulitipleImagesPresenter;
-import com.unicef.thaimai.motherapp.activity.AddRecords;
 import com.unicef.thaimai.motherapp.activity.MainActivity;
 import com.unicef.thaimai.motherapp.adapter.SpacesItemDecoration;
 import com.unicef.thaimai.motherapp.utility.Util;
@@ -46,7 +44,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static android.Manifest.permission.ACCESS_NETWORK_STATE;
 import static android.Manifest.permission.CAMERA;
 import static android.Manifest.permission.GET_ACCOUNTS;
 import static android.Manifest.permission.INTERNET;
@@ -366,7 +363,6 @@ public class ImageSelectedActivity extends AppCompatActivity implements CameraHo
 
     public void removeImage(Uri uri) {
         mSelectedImages.remove(uri);
-
         adapter_selectedPhoto.updateItems(mSelectedImages);
 
         if (mSelectedImages.size() == 0) {
@@ -425,7 +421,6 @@ public class ImageSelectedActivity extends AppCompatActivity implements CameraHo
 //        Uri imageUri = intent.getData();
         try {
             Log.e("ImageSelected URI",imageUri+"");
-
             Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(),imageUri);
             mBitmapSelectedImages.add(bitmap);
         } catch (IOException e) {
