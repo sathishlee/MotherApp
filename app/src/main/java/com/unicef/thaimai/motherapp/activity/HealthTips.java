@@ -1,30 +1,18 @@
 package com.unicef.thaimai.motherapp.activity;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TableLayout;
 
 import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.adapter.ViewPagerAdapter;
-import com.unicef.thaimai.motherapp.fragment.ImageFragment;
 import com.unicef.thaimai.motherapp.fragment.MessageFragment;
 import com.unicef.thaimai.motherapp.fragment.VideoFragment;
-
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Suthishan on 20/1/2018.
@@ -40,7 +28,7 @@ public class HealthTips extends AppCompatActivity{
 
     private int[] tabIcons = {
             R.drawable.message_icon,
-            R.drawable.image_icon,
+//            R.drawable.image_icon,
             R.drawable.video_icon
     };
 
@@ -80,8 +68,8 @@ public class HealthTips extends AppCompatActivity{
     private void setupViewPager(ViewPager viewPager) {
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(),this);
         viewPagerAdapter.addFragment(new MessageFragment(), "Message",tabIcons[0]);
-        viewPagerAdapter.addFragment(new ImageFragment(), "Image",tabIcons[1]);
-        viewPagerAdapter.addFragment(new VideoFragment(), "Video",tabIcons[2]);
+//        viewPagerAdapter.addFragment(new ImageFragment(), "Image",tabIcons[1]);
+        viewPagerAdapter.addFragment(new VideoFragment(), "Video",tabIcons[1]);
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
 
@@ -120,8 +108,8 @@ public class HealthTips extends AppCompatActivity{
 
     private void setupTabIcons() {
         tabLayout.getTabAt(0).setIcon(tabIcons[0]);
+//        tabLayout.getTabAt(1).setIcon(tabIcons[1]);
         tabLayout.getTabAt(1).setIcon(tabIcons[1]);
-        tabLayout.getTabAt(2).setIcon(tabIcons[2]);
     }
 
     private void showActionBar() {

@@ -43,6 +43,7 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Locale;
 
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener,
@@ -81,6 +82,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     ArrayAdapter<String> arrayAdapterPhc;
 
     private GpsStatusDetector mGpsStatusDetector;
+    private SimpleDateFormat dateFormatter;
+
     boolean mISGpsStatusDetector;
 
     @Override
@@ -133,6 +136,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         ll_block.setVisibility(View.GONE);
         ll_phc = (LinearLayout) findViewById(R.id.ll_phc);
         ll_phc.setVisibility(View.GONE);
+        mCurrentDate = Calendar.getInstance();
+        day = mCurrentDate.get(Calendar.DAY_OF_MONTH);
+        month = mCurrentDate.get(Calendar.MONTH);
+        year = mCurrentDate.get(Calendar.YEAR);
+
+        month = month + 1;
         alldists = new ArrayList<>();
         dists = new ArrayList<>();
         blocks = new ArrayList<>();
@@ -189,26 +198,23 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     }
 
-    private void pickDate(final EditText setDateOfReferral) {
+    private void getDob(final EditText edtDob) {
+
+        Calendar newCalendar = Calendar.getInstance();
         DatePickerDialog datePickerDialog = new DatePickerDialog(RegisterActivity.this, R.style.DatePickerDialogTheme, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-//                monthOfYear = monthOfYear + 1;
-                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-                String date = sdf.format(Calendar.getInstance().getTime());
-                Log.d("date-->",date);
-
-                Calendar c=Calendar.getInstance();
-                mYear=c.get(Calendar.YEAR);
-                mMonth=c.get(Calendar.MONTH);
-                mDay=c.get(Calendar.DAY_OF_MONTH);
-                SimpleDateFormat ssdf = new SimpleDateFormat("dd-MM-yyyy");
-                setDateOfReferral.setText(ssdf.format(c.getTime()));
+                Calendar newDate = Calendar.getInstance();
+                newDate.set(year, monthOfYear, dayOfMonth);
+//                edtDob.setText(dayOfMonth + "-" + monthOfYear + "-" + year);
+                dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
+                edtDob.setText(dateFormatter.format(newDate.getTime()));
             }
-        }, year, month, day);
+        }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
         InputMethodManager imm =
                 (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(setDateOfReferral.getWindowToken(), 0);
+        imm.hideSoftInputFromWindow(edtDob.getWindowToken(), 0);
+
         datePickerDialog.show();
     }
 
@@ -219,7 +225,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 sendValues();
                 break;
             case R.id.dob:
-                pickDate(user_dob);
+                getDob(user_dob);
                 break;
         }
     }
