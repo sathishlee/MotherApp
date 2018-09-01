@@ -45,7 +45,7 @@ import java.util.StringTokenizer;
 public class PrimaryRegister extends AppCompatActivity implements View.OnClickListener, PrimaryRegisterViews,
         AdapterView.OnItemSelectedListener, MultiSelectSpinner.OnMultipleItemsSelectedListener {
 
-    TextView txtMotherName, txtMotherAge;
+    TextView txtMotherName, txtMotherAge, txt_complaint_during_pragency;
 
     EditText edtLmpDate, edtEddDate, edtAgeAtMarriage, edtRegWeek, edtANTT1st, edtANTT2nd, edtFIAStartDate, edtHeight,
             edtOthers, edtMedicationSpecify, edtAllergictoDrugsSpecify, edt_primary_mobile_number, edt_alternative_mobile_number,
@@ -80,17 +80,19 @@ public class PrimaryRegister extends AppCompatActivity implements View.OnClickLi
 
 
     String[] Occ = {"--Select--", "Home Maker", "Private Sector", "Govt Sector"};
+    String[] Occ1 = {"--Select--", "Home Maker", "Private Sector", "Govt Sector"};
     String[] yn = {"--Select--", "Yes", "No"};
     String[] hdcdt = {"--Select--", "Hypertention", "Diabetes", "Congenital Heart Disease", "Tb", "Others"};
     String[] hoaif = {"--Select--", "Htn", "DM", "CHD", "TB", "Others"};
-    String[] num = {"--Select--", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
+    String[] num = {"--Select--", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
 
-    String[] numG = {"--Select--", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
-    String[] numP = {"--Select--", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
-    String[] numA = {"--Select--", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
-    String[] numL = {"--Select--", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
+    String[] numG = {"--Select--", "0","1", "2", "3", "4", "5", "6", "7", "8", "9"};
+    String[] numP = {"--Select--", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+    String[] numA = {"--Select--", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+    String[] numL = {"--Select--", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
     String[] bg = {"--Select--", "A+ve", "A-ve", "B+ve", "B-ve", "O+ve", "O-ve", "AB+ve", "AB-ve"};
-    String[] rnr = {"--Select--", "Reactive", "Non Reactive"};
+
+    String[] rnr = {"--Select--", "Reactive", "Non Reactive","Not tested"};
     //        String[] acdp = {"--Select--","Hypertention", "Diabetes", "Congenital Heart Disease", "Tb", "Others"};
     String[] acdp = {"--Select--", "PIH", "GDM", "PPH", "APH", "SEVEREANEMIA", "PREMATURE DELIVERY", "STILL BIRTH"};
 
@@ -162,6 +164,7 @@ public class PrimaryRegister extends AppCompatActivity implements View.OnClickLi
         spLSCSDone = (Spinner) findViewById(R.id.sp_lscs_done);
 //            spComDuringPrgncy = (Spinner) findViewById(R.id.sp_comDuring_prgncy);
         spinner1 = (MultiSelectSpinner) findViewById(R.id.mySpinner1);
+        txt_complaint_during_pragency = (TextView) findViewById(R.id.txt_complaint_during_pragency);
         spPrePrgncyG = (Spinner) findViewById(R.id.sp_pre_prgncy_g);
         spPrePrgncyP = (Spinner) findViewById(R.id.sp_pre_prgncy_p);
         spPrePrgncyA = (Spinner) findViewById(R.id.sp_pre_prgncy_a);
@@ -237,8 +240,6 @@ public class PrimaryRegister extends AppCompatActivity implements View.OnClickLi
         spHusbHIV.setOnItemSelectedListener(this);
         spHusbVDRL.setOnItemSelectedListener(this);
         spHusbHelpatitis.setOnItemSelectedListener(this);
-
-
     }
 
     private void getallEditTextvalues() {
@@ -250,7 +251,7 @@ public class PrimaryRegister extends AppCompatActivity implements View.OnClickLi
         strANTT2nd = edtANTT2nd.getText().toString();
         strFIAStartDate = edtFIAStartDate.getText().toString();
         strHeight = edtHeight.getText().toString();
-        Log.e(PrimaryRegister.class.getSimpleName(),"strHeight"+strHeight);
+        Log.e(PrimaryRegister.class.getSimpleName(), "strHeight" + strHeight);
         strOthers = edtOthers.getText().toString();
         strMedicationSpecify = edtMedicationSpecify.getText().toString();
         strAllergictoDrugsSpecify = edtAllergictoDrugsSpecify.getText().toString();
@@ -291,7 +292,6 @@ public class PrimaryRegister extends AppCompatActivity implements View.OnClickLi
 
             case R.id.btn_submit:
                 if (checkNetwork.isNetworkAvailable()) {
-
                     sendtoServer();
                 } else {
                     Toast.makeText(getApplicationContext(), "Check Internet Connection...Try Agian After Sometimes", Toast.LENGTH_LONG).show();
@@ -476,9 +476,9 @@ public class PrimaryRegister extends AppCompatActivity implements View.OnClickLi
             primaryDataRequestModel.setMConsanguineousMarraige(strConsangulneousMarriage);
             primaryDataRequestModel.setMHistoryIllness(strHistoryIllness);
             primaryDataRequestModel.setMHistoryIllnessFamily(strHistoryIllnessFmly);
-            if(strAnySurgeryBefore.equalsIgnoreCase("Yes")){
-                primaryDataRequestModel.setMAnySurgeryBefore(strAnySurgeryBefore+ " - " +strAny_surgery_before_other);
-            }else{
+            if (strAnySurgeryBefore.equalsIgnoreCase("Yes")) {
+                primaryDataRequestModel.setMAnySurgeryBefore(strAnySurgeryBefore + " - " + strAny_surgery_before_other);
+            } else {
                 primaryDataRequestModel.setMAnySurgeryBefore(strAnySurgeryBefore);
             }
 //            primaryDataRequestModel.setMAnySurgeryBefore(strAnySurgeryBefore);
@@ -734,109 +734,169 @@ public class PrimaryRegister extends AppCompatActivity implements View.OnClickLi
                 if (jObj.getString("mAge").equalsIgnoreCase("null")) {
                     txtMotherAge.setText("-");
 
-                }else {
+                } else {
                     txtMotherAge.setText(jObj.getString("mAge"));
                 }
                 if (jObj.getString("mLMP").equalsIgnoreCase("null")) {
                     edtLmpDate.setText("-");
 
-                }else {
+                } else {
                     edtLmpDate.setText(jObj.getString("mLMP"));
-                } if (jObj.getString("mEDD").equalsIgnoreCase("null")) {
+                }
+                if (jObj.getString("mEDD").equalsIgnoreCase("null")) {
                     edtEddDate.setText("-");
 
-                }else {
+                } else {
                     edtEddDate.setText(jObj.getString("mEDD"));
-                }if (jObj.getString("mMotherMobile").equalsIgnoreCase("null")) {
+                }
+                if (jObj.getString("mMotherMobile").equalsIgnoreCase("null")) {
                     edt_primary_mobile_number.setText("-");
 
-                }else {
+                } else {
                     edt_primary_mobile_number.setText(jObj.getString("mMotherMobile"));
 
-                }if (jObj.getString("mHusbandMobile").equalsIgnoreCase("null")) {
+                }
+                if (jObj.getString("mHusbandMobile").equalsIgnoreCase("null")) {
                     edt_alternative_mobile_number.setText("-");
 
-                }else {
+                } else {
                     edt_alternative_mobile_number.setText(jObj.getString("mHusbandMobile"));
-                }if (jObj.getString("mAgeatMarriage").equalsIgnoreCase("null")) {
+                }
+                if (jObj.getString("mAgeatMarriage").equalsIgnoreCase("null")) {
                     edtAgeAtMarriage.setText("-");
 
-                }else {
+                } else {
                     edtAgeAtMarriage.setText(jObj.getString("mAgeatMarriage"));
-                }if (jObj.getString("mRegistrationWeek").equalsIgnoreCase("null")) {
+                }
+                if (jObj.getString("mRegistrationWeek").equalsIgnoreCase("null")) {
                     edtRegWeek.setText("-");
 
-                }else {
+                } else {
                     edtRegWeek.setText(jObj.getString("mRegistrationWeek"));
-                }if (jObj.getString("mANTT1").equalsIgnoreCase("null")) {
+                }
+                if (jObj.getString("mANTT1").equalsIgnoreCase("null")) {
                     edtANTT1st.setText("NA");
 
-                }else {
+                } else {
                     edtANTT1st.setText(jObj.getString("mANTT1"));
 
-                }if (jObj.getString("mANTT2").equalsIgnoreCase("null")) {
+                }
+                if (jObj.getString("mANTT2").equalsIgnoreCase("null")) {
                     edtANTT2nd.setText("NA");
 
-                }else {
+                } else {
                     edtANTT2nd.setText(jObj.getString("mANTT2"));
-                }if (jObj.getString("mIFAStateDate").equalsIgnoreCase("null")) {
+                }
+                if (jObj.getString("mIFAStateDate").equalsIgnoreCase("null")) {
                     edtFIAStartDate.setText("NA");
 
-                }else {
+                } else {
                     edtFIAStartDate.setText(jObj.getString("mIFAStateDate"));
-                }if (jObj.getString("mHeight").equalsIgnoreCase("null")) {
+                }
+                if (jObj.getString("mHeight").equalsIgnoreCase("null")) {
                     edtHeight.setText("NA");
 
-                }else {
+                } else {
                     edtHeight.setText(jObj.getString("mHeight"));
                 }
-                spMotherOcc.setSelection(getListPosition(Occ, jObj.getString("mMotherOccupation")));
-                spHusbandOcc.setSelection(getListPosition(Occ, jObj.getString("mHusbandOccupation")));    //Private Sector, Govt Sector
+
+                if (jObj.getString("mHistoryIllnessOthers").equalsIgnoreCase("null")) {
+                    edt_history_illness.setText("-");
+
+                } else {
+                    edt_history_illness.setText(jObj.getString("mHistoryIllnessOthers"));
+                }
+                if (jObj.getString("mHistoryIllnessFamilyOthers").equalsIgnoreCase("null")) {
+                    edt_history_illness_fmly.setText("-");
+
+                } else {
+                    edt_history_illness_fmly.setText(jObj.getString("mHistoryIllnessFamilyOthers"));
+                }
+
+//                spMotherOcc.setSelection(getListPosition(Occ, jObj.getString("mMotherOccupation")));
+                Log.e("Occ size",Occ.toString());
+//                spMotherOcc.setSelection(getOccupation(Occ, jObj.getString("mMotherOccupation")));
+
+                List<String> listOcc = Arrays.asList(Occ);
+
+                if (listOcc.contains(jObj.getString("mMotherOccupation"))) {
+                    for (int i = 0; i < listOcc.size(); i++) {
+                        if (jObj.getString("mMotherOccupation").equalsIgnoreCase(Occ[i]))
+                            spMotherOcc.setSelection( i);
+                    }
+                }
+//     spHusbandOcc.setSelection(getOccupation(Occ, jObj.getString("mHusbandOccupation")));    //Private Sector, Govt Sector
+//                spHusbandOcc.setSelection(getListPosition(Occ, jObj.getString("mHusbandOccupation")));    //Private Sector, Govt Sector
+                List<String> listHOcc = Arrays.asList(Occ);
+
+                if (listOcc.contains(jObj.getString("mHusbandOccupation"))) {
+                    for (int i = 0; i < listHOcc.size(); i++) {
+                        if (jObj.getString("mHusbandOccupation").equalsIgnoreCase(Occ[i]))
+                            spHusbandOcc.setSelection( i);
+                    }
+                }
+
                 spConsangulneousMarriage.setSelection(getListPosition(yn, jObj.getString("mConsanguineousMarraige")));   // Yes,No
                 spHistoryIllness.setSelection(getListPosition(hdcdt, jObj.getString("mHistoryIllness")));    //Hypertention, Diabetes, Congenital Heart Disease, Tb, Others
                 spHistoryIllnessFmly.setSelection(getListPosition(hoaif, jObj.getString("mHistoryIllnessFamily"))); //Hypertention, Diabetes, Congenital Heart Disease, Tb, Others
                 String surgeryBefore = jObj.getString("mAnySurgeryBefore");
-                Log.e("surgeryBefore--->",surgeryBefore);
-                if(surgeryBefore.equalsIgnoreCase("No")){
-                    spAnySurgeryBefore.setSelection(getListPosition(yn,jObj.getString("mAnySurgeryBefore")));
-                }else{
-                    StringTokenizer tokens = new StringTokenizer(surgeryBefore, " -");
-                    String first = tokens.nextToken();
-                    String second = tokens.nextToken();
-                    spAnySurgeryBefore.setSelection(getListPosition(yn,first));
-                    edt_any_surgery_before.setText(second);
+                Log.e("surgeryBefore--->", surgeryBefore);
+                if (surgeryBefore.equalsIgnoreCase("null")) {
+                    spAnySurgeryBefore.setSelection(0);
+                } else {
+                    if (surgeryBefore.equalsIgnoreCase("No")) {
+                        spAnySurgeryBefore.setSelection(getListPosition(yn, jObj.getString("mAnySurgeryBefore")));
+                    } else {
+                        StringTokenizer tokens = new StringTokenizer(surgeryBefore, " -");
+                        String first = tokens.nextToken();
+                        String second = tokens.nextToken();
+                        spAnySurgeryBefore.setSelection(getListPosition(yn, first));
+                        edt_any_surgery_before.setText(second);
+                    }
                 }
                 spDoseTobacco.setSelection(getListPosition(yn, jObj.getString("mUseTobacco")));       //Yes,No
                 spDoseAlcohol.setSelection(getListPosition(yn, jObj.getString("mUseAlcohol")));       //Yes,No
                 String onAnyMedication = jObj.getString("mAnyMeditation");
-                if(onAnyMedication.equalsIgnoreCase("No")){
-                    spDoseOnAnyMedication.setSelection(getListPosition(yn, jObj.getString("mAnyMeditation"))); //Yes,No
-                }else {
-                    StringTokenizer tokens = new StringTokenizer(onAnyMedication, " -");
-                    String first = tokens.nextToken();
-                    String second = tokens.nextToken();
-                    spDoseOnAnyMedication.setSelection(getListPosition(yn,first));
-                    edtMedicationSpecify.setText(second);
+                if (onAnyMedication.equalsIgnoreCase("null")) {
+                    spDoseOnAnyMedication.setSelection(0);
+                } else {
+                    if (onAnyMedication.equalsIgnoreCase("No")) {
+                        spDoseOnAnyMedication.setSelection(getListPosition(yn, jObj.getString("mAnyMeditation"))); //Yes,No
+                    } else {
+                        StringTokenizer tokens = new StringTokenizer(onAnyMedication, " -");
+                        String first = tokens.nextToken();
+                        String second = tokens.nextToken();
+                        spDoseOnAnyMedication.setSelection(getListPosition(yn, first));
+                        edtMedicationSpecify.setText(second);
+                    }
                 }
                 String allerGicDrug = jObj.getString("mAllergicToanyDrug");
-                if(allerGicDrug.equalsIgnoreCase("No")){
-                    spDoseAllergictoDrugs.setSelection(getListPosition(yn, jObj.getString("mAllergicToanyDrug"))); //Yes,No
-                }else {
-                    StringTokenizer tokens = new StringTokenizer(allerGicDrug, " -");
-                    String first = tokens.nextToken();
-                    String second = tokens.nextToken();
-                    spDoseAllergictoDrugs.setSelection(getListPosition(yn,first));
-                    edtAllergictoDrugsSpecify.setText(second);
+                if (allerGicDrug.equalsIgnoreCase("null")) {
+
+                } else {
+                    if (allerGicDrug.equalsIgnoreCase("No")) {
+                        spDoseAllergictoDrugs.setSelection(getListPosition(yn, jObj.getString("mAllergicToanyDrug"))); //Yes,No
+                    } else {
+                        StringTokenizer tokens = new StringTokenizer(allerGicDrug, " -");
+                        String first = tokens.nextToken();
+                        String second = tokens.nextToken();
+                        spDoseAllergictoDrugs.setSelection(getListPosition(yn, first));
+                        edtAllergictoDrugsSpecify.setText(second);
+                    }
                 }
                 spLSCSDone.setSelection(getListPosition(yn, jObj.getString("mLscsDone")));             //Yes,No
 //                    spComDuringPrgncy.setSelection(getListPosition(acdp,jObj.getString("mAnyComplecationDuringPreganancy")));  //Hypertention, Diabetes, Congenital Heart Disease, Tb, Others
 //                spinner1.setSelection(getListPosition(acdp, jObj.getString("mAnyComplecationDuringPreganancy")));
-                spinner1.setSelection(getListPosition(acdp,jObj.getString("mAnyComplecationDuringPreganancy")));
+
+                spinner1.setSelection(getListPosition(acdp, jObj.getString("mAnyComplecationDuringPreganancy")));
+
+                txt_complaint_during_pragency.setText(jObj.getString("mAnyComplecationDuringPreganancy"));
 
                 spPrePrgncyG.setSelection(getListPosition(numG, jObj.getString("mPresentPreganancyG")));  //1234567890
                 spPrePrgncyP.setSelection(getListPosition(numP, jObj.getString("mPresentPreganancyP")));  //1234567890
                 spPrePrgncyA.setSelection(getListPosition(numA, jObj.getString("mPresentPreganancyA")));  //1234567890
                 spPrePrgncyL.setSelection(getListPosition(numL, jObj.getString("mPresentPreganancyL")));   //1234567890
+
                 spBloodGroup.setSelection(getListPosition(bg, jObj.getString("mBloodGroup")));   //A+ve, A-, B+, B-, O+, O-,
                 spHIV.setSelection(getListPosition(rnr, jObj.getString("mHIV")));      //Reactive, Non Reactive
                 spVDRL.setSelection(getListPosition(rnr, jObj.getString("mVDRL")));      //Reactive, Non Reactive
@@ -858,6 +918,33 @@ public class PrimaryRegister extends AppCompatActivity implements View.OnClickLi
     }
 
     private int getListPosition(String[] occ, String mMotherOccupation) {
+
+        int position = 0;
+        List<String> listOcc = Arrays.asList(occ);
+        if (listOcc.contains(mMotherOccupation)) {
+            for (int i = 0; i < listOcc.size(); i++) {
+                if (mMotherOccupation.equalsIgnoreCase(occ[i]))
+                    position = i;
+            }
+        } else {
+            String[] sx = mMotherOccupation.split("-");
+            if (listOcc.contains(sx[0])) {
+
+                for (int i = 0; i < listOcc.size(); i++) {
+                    if (mMotherOccupation.equalsIgnoreCase(occ[i]))
+                        position = i;
+                }
+
+            }
+        }
+
+        return position;
+    }
+
+    private int getOccupation(String[] occ, String mMotherOccupation) {
+        Log.e(PrimaryRegister.class.getSimpleName(), occ.toString());
+        Log.e(PrimaryRegister.class.getSimpleName(), "positon-->" + mMotherOccupation);
+
         int position = 0;
         List<String> listOcc = Arrays.asList(occ);
         if (listOcc.contains(mMotherOccupation)) {
@@ -887,7 +974,8 @@ public class PrimaryRegister extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void selectedStrings(List<String> strings) {
-        Toast.makeText(this.getApplicationContext(), "Values -- >" + strings, Toast.LENGTH_LONG).show();
+//        Toast.makeText(this.getApplicationContext(), "Values -- >" + strings, Toast.LENGTH_LONG).show();
+        txt_complaint_during_pragency.setVisibility(View.GONE);
         strComDuringPrgncy = spinner1.getSelectedItemsAsString();
     }
 }

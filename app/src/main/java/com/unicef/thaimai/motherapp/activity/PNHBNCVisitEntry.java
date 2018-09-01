@@ -2,6 +2,7 @@ package com.unicef.thaimai.motherapp.activity;
 
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
@@ -11,6 +12,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -34,6 +36,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class PNHBNCVisitEntry extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener, PNHBNCVisitViews, MultiSelectSpinner.OnMultipleItemsSelectedListener {
 
@@ -69,6 +72,9 @@ public class PNHBNCVisitEntry extends AppCompatActivity implements View.OnClickL
     MultiSelectSpinner spinner1;
     MultiSelectSpinner spinner2;
 
+    private SimpleDateFormat dateFormatter;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,6 +107,7 @@ public class PNHBNCVisitEntry extends AppCompatActivity implements View.OnClickL
 //            startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();
         }
+
         mCurrentDate = Calendar.getInstance();
         day = mCurrentDate.get(Calendar.DAY_OF_MONTH);
         month = mCurrentDate.get(Calendar.MONTH);
@@ -119,17 +126,20 @@ public class PNHBNCVisitEntry extends AppCompatActivity implements View.OnClickL
         til_mother_temp = (TextInputLayout) findViewById(R.id.til_mother_temp);
 
         edt_due_date = (EditText) findViewById(R.id.edt_due_date);
+        edt_due_date.setText(getCurrentDate());
+
         edt_due_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatePickerDialog datePickerDialog = new DatePickerDialog(PNHBNCVisitEntry.this, R.style.DatePickerDialogTheme, new DatePickerDialog.OnDateSetListener() {
+                pickDate(edt_due_date);
+                /*DatePickerDialog datePickerDialog = new DatePickerDialog(PNHBNCVisitEntry.this, R.style.DatePickerDialogTheme, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                         monthOfYear = monthOfYear + 1;
                         edt_due_date.setText(dayOfMonth + "-" + monthOfYear + "-" + year);
                     }
-                }, year, month, day);
-                datePickerDialog.show();
+                }, day, month, year);
+                datePickerDialog.show();*/
 
             }
 
@@ -141,14 +151,17 @@ public class PNHBNCVisitEntry extends AppCompatActivity implements View.OnClickL
         edt_care_provided_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatePickerDialog datePickerDialog = new DatePickerDialog(PNHBNCVisitEntry.this, R.style.DatePickerDialogTheme, new DatePickerDialog.OnDateSetListener() {
+
+                pickDate(edt_care_provided_date);
+
+                /*DatePickerDialog datePickerDialog = new DatePickerDialog(PNHBNCVisitEntry.this, R.style.DatePickerDialogTheme, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                         monthOfYear = monthOfYear + 1;
                         edt_care_provided_date.setText(dayOfMonth + "-" + monthOfYear + "-" + year);
                     }
-                }, year, month, day);
-                datePickerDialog.show();
+                }, day, month,year );
+                datePickerDialog.show();*/
 
             }
 
@@ -251,7 +264,7 @@ public class PNHBNCVisitEntry extends AppCompatActivity implements View.OnClickL
         String mon = sBuffer.substring(5,7);
         String dd = sBuffer.substring(8,10);
 
-        String modifiedFromDate = year +'-'+mon+'-'+dd;
+        String modifiedFromDate =  dd+'-'+mon+'-'+year;
         int MILLIS_IN_DAY = (1000 * 60 * 60 * 24)*iday;
 
         SimpleDateFormat dateFormat =
@@ -281,7 +294,7 @@ public class PNHBNCVisitEntry extends AppCompatActivity implements View.OnClickL
         Calendar c = Calendar.getInstance();
         System.out.println("Current time => "+c.getTime());
 
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
         String formattedDate = df.format(c.getTime());
         // formattedDate have current date/time
         Toast.makeText(this, formattedDate, Toast.LENGTH_SHORT).show();
@@ -490,9 +503,10 @@ public class PNHBNCVisitEntry extends AppCompatActivity implements View.OnClickL
             case R.id.sp_visit_no:
                 strVisitNo = parent.getSelectedItem().toString();
                 if(strVisitNo.equalsIgnoreCase("--Select--")){
-                    position = -1;
-                    strVisitId= String.valueOf(position);
-                    pnhbncVisitPresenter.checkPNHBNCVisitId(preferenceData.getPicmeId(),preferenceData.getMId(),strVisitId);
+//                    position = -1;
+//                    strVisitId= String.valueOf(position);
+//                    pnhbncVisitPresenter.checkPNHBNCVisitId(preferenceData.getPicmeId(),preferenceData.getMId(),strVisitId);
+                Toast.makeText(getApplicationContext(),"please select visit number",Toast.LENGTH_SHORT).show();
                 }
                 else{
                     strVisitId= String.valueOf(position);
@@ -609,6 +623,7 @@ public class PNHBNCVisitEntry extends AppCompatActivity implements View.OnClickL
             JSONObject jsonObject = new JSONObject(response);
             String status =jsonObject.getString("status");
             String msg = jsonObject.getString("message");
+
 //            strVisitId = jsonObject.getString("pnVisitNo");
 //            strPicmeId = jsonObject.getString(preferenceData.getPicmeId());
         }
@@ -628,6 +643,7 @@ public class PNHBNCVisitEntry extends AppCompatActivity implements View.OnClickL
 //        strVisitId = strVisitNo;
         Log.e(PNHBNCVisitEntry.class.getSimpleName(),response);
         try{
+
             JSONObject jsonObject = new JSONObject(response);
             String status =jsonObject.getString("status");
             String msg = jsonObject.getString("message");
@@ -661,6 +677,27 @@ public class PNHBNCVisitEntry extends AppCompatActivity implements View.OnClickL
     @Override
     public void selectedStrings(List<String> strings) {
         strInfantEyes = spinner1.getSelectedItemsAsString();
+    }
+
+    private void pickDate(final EditText edt_date) {
+
+        Calendar newCalendar = Calendar.getInstance();
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(PNHBNCVisitEntry.this, R.style.DatePickerDialogTheme, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                Calendar newDate = Calendar.getInstance();
+                newDate.set(year, monthOfYear, dayOfMonth);
+//                edtDob.setText(dayOfMonth + "-" + monthOfYear + "-" + year);
+                dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
+
+                edt_date.setText(dateFormatter.format(newDate.getTime()));
+            }
+        }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
+        InputMethodManager imm =
+                (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(edt_date.getWindowToken(), 0);
+        datePickerDialog.show();
     }
 }
 

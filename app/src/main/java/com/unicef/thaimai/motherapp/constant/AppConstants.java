@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 public class AppConstants {
 
+    public static int BOTTTOM_MENU_ITEM = 0;
     public static boolean REFERAL_STATUS = false;
     public static String REFERAL_REASON = "";
     public static String REFERAL_DIAGONOSIS = "";

@@ -1,5 +1,6 @@
     package com.unicef.thaimai.motherapp.activity;
 
+    import android.annotation.SuppressLint;
     import android.app.DatePickerDialog;
     import android.app.ProgressDialog;
     import android.content.Context;
@@ -367,11 +368,11 @@
                     break;
                 case R.id.sp_any_complaints:
                     strAnyComplaints = parent.getSelectedItem().toString();
-                    if (strAnyComplaints.equalsIgnoreCase("Others (Specify)")) {
+                    if (strAnyComplaints.equalsIgnoreCase("Others")) {
                         edt_any_complaints_other.setVisibility(View.VISIBLE);
                     }
                     else {
-                        strany_complaints_other="Not Selected Others";
+                        strany_complaints_other=" ";
                         edt_any_complaints_other.setVisibility(View.GONE);
 
                     }
@@ -465,6 +466,7 @@
         }
 
 
+        @SuppressLint("ResourceType")
         @Override
         public void onCheckedChanged(RadioGroup group, int checkedId) {
             RadioButton rb = (RadioButton) group.findViewById(checkedId);

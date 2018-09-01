@@ -206,7 +206,7 @@ public class ReferralListFragment extends Fragment implements ReferalViews, Refr
             JSONObject mJsnobject = new JSONObject(response);
             String status = mJsnobject.getString("status");
             String message = mJsnobject.getString("message");
-            Toast.makeText(getActivity(),message, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getActivity(),message, Toast.LENGTH_SHORT).show();
             if (status.equalsIgnoreCase("1")) {
                 txt_no_records_found.setVisibility(View.GONE);
                 rec_referral_list.setVisibility(View.VISIBLE);

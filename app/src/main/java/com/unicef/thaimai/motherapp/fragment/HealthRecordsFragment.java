@@ -200,6 +200,7 @@ public class HealthRecordsFragment extends Fragment implements GetVisitHelthReco
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         anMotherVisitRealmModel.setVDate(jsonObject.getString("vDate"));
                         anMotherVisitRealmModel.setVFacility(jsonObject.getString("vFacility"));
+                        anMotherVisitRealmModel.setVFacilityOthers(jsonObject.getString("vFacilityOthers"));
 //                mhealthRecordResponseModel.setMLongitude(jsonObject.getString("mLongitude"));
 //                mhealthRecordResponseModel.setMLatitude(jsonObject.getString("mLatitude"));
                         anMotherVisitRealmModel.setMotherStatus(jsonObject.getString("motherStatus"));
@@ -272,6 +273,7 @@ public class HealthRecordsFragment extends Fragment implements GetVisitHelthReco
 
             mhealthRecordResponseModel.setVDate(anMotherVisitRealmModel.getVDate());
             mhealthRecordResponseModel.setVFacility(anMotherVisitRealmModel.getVFacility());
+            mhealthRecordResponseModel.setVFacilityOthers(anMotherVisitRealmModel.getVFacilityOthers());
 //                mhealthRecordResponseModel.setMLongitude(jsonObject.getString("mLongitude"));
 //                mhealthRecordResponseModel.setMLatitude(jsonObject.getString("mLatitude"));
             mhealthRecordResponseModel.setMotherStatus(anMotherVisitRealmModel.getMotherStatus());

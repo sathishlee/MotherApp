@@ -591,7 +591,7 @@ public class HomeFragment extends Fragment implements LoginViews, View.OnClickLi
             if(preferenceData.getGstWeek().equalsIgnoreCase("null")){
                 txt_gst_week.setText("-");
             }else {
-                txt_gst_week.setText(preferenceData.getGstWeek() +"Wks");
+                txt_gst_week.setText(preferenceData.getGstWeek());
             }
             if(homeRealmModel.getANnextVisit().equalsIgnoreCase("null")){
                 txt_next_visit.setText("-");

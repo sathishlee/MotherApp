@@ -481,7 +481,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if (bottomNavigationView != null) {
             Menu menu = bottomNavigationView.getMenu();
-            selectFragment(menu.getItem(0));
+
+//            selectFragment(menu.getItem(0));
+            selectFragment(menu.getItem(AppConstants.BOTTTOM_MENU_ITEM));
+
             bottomNavigationView.setOnNavigationItemSelectedListener(
                     new BottomNavigationView.OnNavigationItemSelectedListener() {
                         @Override
@@ -511,6 +514,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.referral:
                 selectedFragment = ReferralListFragment.newInstance();
                 break;
+
         }
         android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.content, selectedFragment);
