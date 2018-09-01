@@ -215,12 +215,22 @@ public class PrimaryRegisterView extends AppCompatActivity implements PrimaryReg
                 if(model.getMHistoryIllness().equalsIgnoreCase("null")){
                     txt_history_of_illness.setText("-");
                 }else {
-                    txt_history_of_illness.setText(model.getMHistoryIllness());
+                    if(model.getMHistoryIllnessOthers().equalsIgnoreCase("null")){
+                        txt_history_of_illness.setText(model.getMHistoryIllness());
+                    }else {
+                        txt_history_of_illness.setText(model.getMHistoryIllness()+"-"+model.getMHistoryIllnessOthers());
+                    }
                 }
                 if(model.getMHistoryIllnessFamily().equalsIgnoreCase("null")){
                     txt_history_of_illness_family.setText("-");
                 }else {
-                    txt_history_of_illness_family.setText(model.getMHistoryIllnessFamily());
+                    if (model.getMHistoryIllnessFamilyOthers().equalsIgnoreCase("null")) {
+                        txt_history_of_illness_family.setText(model.getMHistoryIllnessFamily());
+                    }
+                    else{
+                        txt_history_of_illness_family.setText(model.getMHistoryIllnessFamily()+"-"+model.getMHistoryIllnessFamilyOthers());
+
+                    }
                 }
                 if(model.getMAnySurgeryBefore().equalsIgnoreCase("null")){
                     txt_any_surgery_done.setText("-");
@@ -614,6 +624,10 @@ public class PrimaryRegisterView extends AppCompatActivity implements PrimaryReg
                 primaryRegisterRealmModel.setMConsanguineousMarraige(jObj.getString("mConsanguineousMarraige"));
                 primaryRegisterRealmModel.setMHistoryIllness(jObj.getString("mHistoryIllness"));
                 primaryRegisterRealmModel.setMHistoryIllnessFamily(jObj.getString("mHistoryIllnessFamily"));
+
+                primaryRegisterRealmModel.setMHistoryIllnessOthers(jObj.getString("mHistoryIllnessOthers"));
+                primaryRegisterRealmModel.setMHistoryIllnessFamilyOthers(jObj.getString("mHistoryIllnessFamilyOthers"));
+
                 primaryRegisterRealmModel.setMAnySurgeryBefore(jObj.getString("mAnySurgeryBefore"));
                 primaryRegisterRealmModel.setMUseTobacco(jObj.getString("mUseTobacco"));
                 primaryRegisterRealmModel.setMUseAlcohol(jObj.getString("mUseAlcohol"));

@@ -513,6 +513,7 @@ public class AddReferral extends AppCompatActivity implements View.OnClickListen
         builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+AppConstants.BOTTTOM_MENU_ITEM=3;
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 /*Fragment fragment = new ReferralListFragment();
                 getSupportFragmentManager().beginTransaction().replace(R.id.content,fragment).commit();*/

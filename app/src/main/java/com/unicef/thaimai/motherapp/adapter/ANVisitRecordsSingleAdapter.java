@@ -57,7 +57,7 @@ public class ANVisitRecordsSingleAdapter extends RecyclerView.Adapter<ANVisitRec
     }
 
     @Override
-    public void onBindViewHolder(final SingleImageHolder imageHolder, int position){
+    public void onBindViewHolder(final SingleImageHolder imageHolder, final int position){
         preferenceData = new PreferenceData(context);
        final ANVisitRecordsSingleResponseModel visitRecordsSingleResponseModel = visitRecordsSingleResponseModels.get(position);
 
@@ -101,7 +101,12 @@ public class ANVisitRecordsSingleAdapter extends RecyclerView.Adapter<ANVisitRec
 //                intent.putExtra("mylist", visitRecordsSingleResponseModels);
                 String[] imgList=new String[visitRecordsSingleResponseModels.size()];
                 for (int i=0;i<visitRecordsSingleResponseModels.size();i++){
-                    imgList[i]=visitRecordsSingleResponseModels.get(i).getImage();
+                    if (i==0){
+                        imgList[i]=visitRecordsSingleResponseModels.get(position).getImage();
+
+                    }else {
+                        imgList[i] = visitRecordsSingleResponseModels.get(i).getImage();
+                    }
                 }
                 intent.putExtra("mylist",imgList);
                 context.startActivity(intent);

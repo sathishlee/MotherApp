@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ImageView;
 
 import com.squareup.picasso.MemoryPolicy;
@@ -64,7 +65,6 @@ public class PNSlidingImage_Adapter extends PagerAdapter {
                 .load(Apiconstants.PN_VISIT_REPORTS_URL+preferenceData.getPicmeId()+"/"+IMAGES.get(position))
                 .placeholder(R.drawable.no_image)
                 .fit()
-                .centerCrop()
                 .memoryPolicy(MemoryPolicy.NO_CACHE)
                 .networkPolicy(NetworkPolicy.NO_CACHE)
                 .error(R.drawable.no_image)

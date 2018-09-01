@@ -266,7 +266,16 @@ public class PNhbncVisitFragment extends Fragment implements GetVisitHelthRecord
                     }
                     realm.commitTransaction();
                 } else {
+
+                    realm.executeTransaction(new Realm.Transaction() {
+                        @Override
+                        public void execute(Realm realm) {
+                            realm.delete(PNMotherRealmModel.class);
+                        }
+                    });
                     txt_no_records.setVisibility(View.VISIBLE);
+                    viewPager.setVisibility(View.GONE);
+                    tabLayout.setVisibility(View.GONE);
                     Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
                 }
             }

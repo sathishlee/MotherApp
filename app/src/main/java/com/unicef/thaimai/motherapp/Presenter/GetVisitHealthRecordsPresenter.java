@@ -65,7 +65,7 @@ public class GetVisitHealthRecordsPresenter implements GetVisitHealthRecordsInte
                 params.put("picmeId",strPicmeId);
                 params.put("mid",mid);
 
-                Log.d("params--->",params.toString());
+                Log.e("params--->",params.toString());
 
                 return params;
             }

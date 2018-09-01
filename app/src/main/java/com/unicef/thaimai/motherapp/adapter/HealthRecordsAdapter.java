@@ -73,8 +73,11 @@ public class HealthRecordsAdapter extends PagerAdapter {
             txtFacility.setText("-");
 
         } else {
-            txtFacility.setText(mhealthRecordResponseModel.getVFacility());
-
+            if (mhealthRecordResponseModel.getVFacilityOthers().equalsIgnoreCase("null")){
+                txtFacility.setText(mhealthRecordResponseModel.getVFacility());
+            }else {
+                txtFacility.setText(mhealthRecordResponseModel.getVFacility() + "-" + mhealthRecordResponseModel.getVFacilityOthers());
+            }
         }
         if (mhealthRecordResponseModel.getVAnyComplaints().equalsIgnoreCase("null")) {
             txtAnyComplient.setText("-");

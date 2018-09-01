@@ -97,7 +97,7 @@ public class AddVisitRecordsPresenter implements AddRecordsInteractor {
     @Override
     public void insertVistRecords(final AddRecordRequestModel addRecordRequestModel) {
         String url = Apiconstants.BASE_URL + Apiconstants.POST_VIST_HEALTH_RECORD_INSERT;
-        Log.d("Log in check Url--->", url);
+        Log.e("Log in check Url--->", url);
         views.showProgress();
 
         Map<String, String> params = new HashMap<String, String>();
@@ -109,7 +109,12 @@ public class AddVisitRecordsPresenter implements AddRecordsInteractor {
         params.put("picmeId", addRecordRequestModel.getPicmeId());
         params.put("vtypeOfVisit", addRecordRequestModel.getVtypeOfVisit());
         params.put("vFacility", addRecordRequestModel.getVFacility());
-        params.put("vAnyComplaints", addRecordRequestModel.getVAnyComplaints());
+        if (addRecordRequestModel.getvAnyComplaintsOthers().equalsIgnoreCase("")){
+            params.put("vAnyComplaints", addRecordRequestModel.getVAnyComplaints());
+
+        }else{
+            params.put("vAnyComplaints", addRecordRequestModel.getVAnyComplaints()+"-"+addRecordRequestModel.getvAnyComplaintsOthers());
+        }
         params.put("vFacilityOthers", addRecordRequestModel.getVFacility());
         params.put("vAnyComplaintsOthers", addRecordRequestModel.getVAnyComplaints());
 
@@ -134,7 +139,7 @@ public class AddVisitRecordsPresenter implements AddRecordsInteractor {
         params.put("usgFetus", addRecordRequestModel.getUsgFetus());
         params.put("vTSH", addRecordRequestModel.getVTSH());
 
-        Log.d(AddVisitRecordsPresenter.class.getSimpleName(),new JSONObject(params).toString());
+        Log.e(AddVisitRecordsPresenter.class.getSimpleName(),new JSONObject(params).toString());
 
         JsonObjectRequest req = new JsonObjectRequest(url, new JSONObject(params), new Response.Listener<JSONObject>() {
             @Override

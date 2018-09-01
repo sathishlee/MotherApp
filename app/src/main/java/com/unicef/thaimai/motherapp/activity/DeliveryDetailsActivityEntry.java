@@ -172,12 +172,49 @@ public class DeliveryDetailsActivityEntry extends AppCompatActivity implements V
         TimePickerDialog mTimePicker = new TimePickerDialog(DeliveryDetailsActivityEntry.this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int hour, int minute) {
-                SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-                String time = sdf.format(Calendar.getInstance().getTime());
+                String time = null;
+//                String AM_PM ;
+
+                if(hour < 12) {
+                      time = hour+":"+minute+ " AM";
+                } else {
+                    if (hour==12){
+                        time = "12"+":"+minute+" PM";
+                    }else if (hour==13){
+                        time = "01"+":"+minute+" PM";
+                    }else if (hour==14){
+                        time = "02"+":"+minute+" PM";
+                    }else if (hour==15){
+                        time = "03"+":"+minute+" PM";
+                    }else if (hour==16){
+                        time = "04"+":"+minute+" PM";
+                    }else if (hour==17){
+                        time = "05"+":"+minute+" PM";
+                    }else if (hour==18){
+                        time = "06"+":"+minute+" PM";
+                    }else if (hour==19){
+                        time = "07"+":"+minute+" PM";
+                    }else if (hour==20){
+                        time = "08"+":"+minute+" PM";
+                    }else if (hour==21){
+                        time = "04"+":"+minute+" PM";
+                    }else if (hour==22){
+                        time = "05"+":"+minute+" PM";
+                    }else if (hour==23){
+                        time = "11"+":"+minute+" PM";
+                    }else if (hour==24){
+                        time = "12"+":"+minute+" PM";
+                    }
+                }
+
+//                SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+//                SimpleDateFormat sdf = new SimpleDateFormat("h:mm:a");
+//                String time = sdf.format(Calendar.getInstance().getTime()) ;
+//                String time = hour+":"+minute;
                 Log.d("time-->",time);
                 selectTime.setText(time);
             }
-        }, hour, minute, true);
+        }, hour, minute, false);
         InputMethodManager imm =
                 (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(selectTime.getWindowToken(), 0);

@@ -112,20 +112,14 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView, V
     EditText edt_phone,edt_phone_hus;
     LinearLayout support_layout, support_layout1, btn_open;
     Button btn_submit, btn_cancel;
-
+    FloatingActionButton fab;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initActivityTransitions();
         setContentView(R.layout.layout_profile);
         showActionBar();
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setValuesEdtNumber();
-            }
-        });
+
         if(CheckingPermissionIsEnabledOrNot())
         {
             Toast.makeText(ProfileActivity.this, "All Permissions Granted Successfully", Toast.LENGTH_LONG).show();
@@ -165,7 +159,6 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView, V
             support_layout1.setVisibility(View.GONE);
             emer_enter_number.setVisibility(View.VISIBLE);
             btn_open.setVisibility(View.VISIBLE);
-
         }else {
             Toast.makeText(getApplicationContext(),"Please Turn On Internet to edit.. \n No Internert connection",Toast.LENGTH_LONG).show();
         }
@@ -219,9 +212,21 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView, V
                 support_layout1.setVisibility(View.VISIBLE);
                 emer_enter_number.setVisibility(View.GONE);
                 btn_open.setVisibility(View.GONE);
+                fab.setVisibility(View.VISIBLE);
+
             }
         });
-
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pDialog.show();
+                for (int i=0;i<25;i++){
+                    pDialog.hide();
+                }
+                fab.setVisibility(View.GONE);
+                setValuesEdtNumber();
+            }
+        });
 
     }
 
@@ -240,6 +245,8 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView, V
         }else {
             isoffline=true;
         }
+         fab = (FloatingActionButton) findViewById(R.id.fab);
+
         re_number = (RelativeLayout)findViewById(R.id.re_number);
         re_enter_number = (RelativeLayout)findViewById(R.id.re_enter_number);
         emer_enter_number = (RelativeLayout)findViewById(R.id.emer_enter_number);
@@ -447,7 +454,9 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView, V
                 village_name.setText(editprofile.getString("mVillage"));
                 district_name.setText(editprofile.getString("mDistrict"));
                 tvNumber1.setText(editprofile.getString("mMotherMobile"));
+                edt_phone.setText(editprofile.getString("mMotherMobile"));
                 number_1.setText(editprofile.getString("mHusbandMobile"));
+                edt_phone_hus.setText(editprofile.getString("mHusbandMobile"));
 
                 str_mPhoto = editprofile.getString("mPhoto");
 

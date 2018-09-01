@@ -285,22 +285,33 @@
     <string-array name="illness">
 
         <item>--Select--</item>
+        <item>Hypertention</item>
+        <item>Diabetes</item>
+        <item>Congenital Heart Disease</item>
+        <item>Tb</item>
+        <item>Others</item>
+
+    </string-array>
+
+
+    <!--  <string-array name="illness">
+
+        <item>&#45;&#45;Select&#45;&#45;</item>
         <item>Hypertension</item>
         <item>Diabetes</item>
         <item>Congenital Heart Disease</item>
         <item>TB</item>
         <item>NA</item>
 
-    </string-array>
+    </string-array>-->
 
     <string-array name="illness_family">
-
         <item>--Select--</item>
         <item>Htn</item>
         <item>DM</item>
         <item>CHD</item>
         <item>TB</item>
-        <item>NA</item>
+        <item>Others</item>
 
     </string-array>
 
@@ -332,15 +343,15 @@
     <string-array name="mother_occupation_list">
         <item>--Select--</item>
         <item>Home Maker</item>
-        <item>Private</item>
-        <item>Govt</item>
+        <item>Private Sector</item>
+        <item>Govt Sector</item>
     </string-array>
 
     <string-array name="husbands_occupation_list">
         <item>--Select--</item>
         <item>Home Maker</item>
-        <item>Private</item>
-        <item>Govt</item>
+        <item>Private Sector</item>
+        <item>Govt Sector</item>
     </string-array>
 
     <string-array name="array_refrel_why">
@@ -391,7 +402,7 @@
         <item>Burning Mictutrion</item>
         <item>Fits</item>
         <item>No Complaints</item>
-        <item>Others (Specify)</item>
+        <item>Others</item>
 
     </string-array>
 
