@@ -4,10 +4,10 @@ import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.support.v7.app.ActionBar;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,7 +25,6 @@ import com.suthishan.multiselectspineer.MultiSelectSpinner;
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.PrimaryRegisterPresenter;
 import com.unicef.thaimai.motherapp.R;
-import com.unicef.thaimai.motherapp.constant.AppConstants;
 import com.unicef.thaimai.motherapp.model.requestmodel.PrimaryDataRequestModel;
 import com.unicef.thaimai.motherapp.utility.CheckNetwork;
 import com.unicef.thaimai.motherapp.view.PrimaryRegisterViews;
@@ -90,7 +89,7 @@ public class PrimaryRegister extends AppCompatActivity implements View.OnClickLi
     String[] numP = {"--Select--", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
     String[] numA = {"--Select--", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
     String[] numL = {"--Select--", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
-    String[] bg = {"--Select--", "A+ve", "A-ve", "B+ve", "B-ve", "O+ve", "O-ve", "AB+ve", "AB-ve"};
+    String[] bg = {"--Select--", "A+ve", "A-ve", "B+ve", "B-ve", "O+ve", "O-ve", "AB+ve", "AB-ve","Others"};
 
     String[] rnr = {"--Select--", "Reactive", "Non Reactive","Not tested"};
     //        String[] acdp = {"--Select--","Hypertention", "Diabetes", "Congenital Heart Disease", "Tb", "Others"};
@@ -210,7 +209,6 @@ public class PrimaryRegister extends AppCompatActivity implements View.OnClickLi
         edtANTT1st.setOnClickListener(this);
         edtANTT2nd.setOnClickListener(this);
         edtFIAStartDate.setOnClickListener(this);
-
     }
 
 
@@ -508,7 +506,7 @@ public class PrimaryRegister extends AppCompatActivity implements View.OnClickLi
 
             primaryDataRequestModel.setMHeight(strHeight);
 
-            if (strBloodGroup.equalsIgnoreCase("Yes")) {
+            if (strBloodGroup.equalsIgnoreCase("Others")) {
                 primaryDataRequestModel.setMBloodGroup(strBloodGroup + "-" + edt_husb_blood_group.getText().toString());
             } else {
                 primaryDataRequestModel.setMBloodGroup(strBloodGroup);
@@ -517,7 +515,7 @@ public class PrimaryRegister extends AppCompatActivity implements View.OnClickLi
             primaryDataRequestModel.setMHIV(strHIV);
             primaryDataRequestModel.setMVDRL(strVDRL);
             primaryDataRequestModel.setMHepatitis(strHelpatitis);
-            if (strHusbBloodGroup.equalsIgnoreCase("Yes")) {
+            if (strHusbBloodGroup.equalsIgnoreCase("Others")) {
                 primaryDataRequestModel.setHBloodGroup(strHusbBloodGroup + "-" + edt_other_husb_blood_group.getText().toString());
             } else {
                 primaryDataRequestModel.setHBloodGroup(strHusbBloodGroup);
@@ -897,11 +895,38 @@ public class PrimaryRegister extends AppCompatActivity implements View.OnClickLi
                 spPrePrgncyA.setSelection(getListPosition(numA, jObj.getString("mPresentPreganancyA")));  //1234567890
                 spPrePrgncyL.setSelection(getListPosition(numL, jObj.getString("mPresentPreganancyL")));   //1234567890
 
-                spBloodGroup.setSelection(getListPosition(bg, jObj.getString("mBloodGroup")));   //A+ve, A-, B+, B-, O+, O-,
+//                spBloodGroup.setSelection(getListPosition(bg, jObj.getString("mBloodGroup")));   //A+ve, A-, B+, B-, O+, O-,
+
+                String bloodGroup = jObj.getString("mBloodGroup");
+                if (bloodGroup.equalsIgnoreCase("null")) {
+                    spBloodGroup.setSelection(0);
+                } else if(bloodGroup.equalsIgnoreCase("Others")){
+                    StringTokenizer tokens = new StringTokenizer(bloodGroup, " -");
+                    String first = tokens.nextToken();
+                    String second = tokens.nextToken();
+                    spBloodGroup.setSelection(getListPosition(bg, first));
+                    edt_husb_blood_group.setText(second);
+                }else {
+                    spBloodGroup.setSelection(getListPosition(bg, jObj.getString("mBloodGroup"))); //Yes,No
+                }
+
                 spHIV.setSelection(getListPosition(rnr, jObj.getString("mHIV")));      //Reactive, Non Reactive
                 spVDRL.setSelection(getListPosition(rnr, jObj.getString("mVDRL")));      //Reactive, Non Reactive
                 spHelpatitis.setSelection(getListPosition(rnr, jObj.getString("mHepatitis")));   //Reactive, Non Reactive
-                spHusbBloodGroup.setSelection(getListPosition(bg, jObj.getString("hBloodGroup")));  //A+ve, A-, B+, B-, O+, O-,
+
+//                spHusbBloodGroup.setSelection(getListPosition(bg, jObj.getString("hBloodGroup")));  //A+ve, A-, B+, B-, O+, O-,
+                String hbloodGroup = jObj.getString("hBloodGroup");
+                if (hbloodGroup.equalsIgnoreCase("null")) {
+                    spHusbBloodGroup.setSelection(0);
+                } else if(hbloodGroup.equalsIgnoreCase("Others")){
+                    StringTokenizer tokens = new StringTokenizer(hbloodGroup, " -");
+                    String first = tokens.nextToken();
+                    String second = tokens.nextToken();
+                    spHusbBloodGroup.setSelection(getListPosition(bg, first));
+                    edt_other_husb_blood_group.setText(second);
+                }else {
+                    spHusbBloodGroup.setSelection(getListPosition(bg, jObj.getString("hBloodGroup"))); //Yes,No
+                }
                 spHusbHIV.setSelection(getListPosition(rnr, jObj.getString("hHIV")));         //Reactive, Non Reactive
                 spHusbVDRL.setSelection(getListPosition(rnr, jObj.getString("hVDRL")));       //Reactive, Non Reactive
                 spHusbHelpatitis.setSelection(getListPosition(rnr, jObj.getString("hHepatitis")));  //Reactive, Non Reactive

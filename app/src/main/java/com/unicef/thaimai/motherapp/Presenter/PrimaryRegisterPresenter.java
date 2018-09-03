@@ -2,6 +2,7 @@ package com.unicef.thaimai.motherapp.Presenter;
 import android.app.Activity;
 import android.util.Base64;
 import android.util.Log;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -13,8 +14,9 @@ import com.unicef.thaimai.motherapp.interactor.PrimaryRegisterInteractor;
 import com.unicef.thaimai.motherapp.model.requestmodel.PrimaryDataRequestModel;
 import com.unicef.thaimai.motherapp.view.PrimaryRegisterViews;
 import com.unicef.thaimai.motherapp.volleyservice.VolleySingleton;
+
 import org.json.JSONObject;
-import java.net.URL;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -139,7 +141,7 @@ public class PrimaryRegisterPresenter implements PrimaryRegisterInteractor {
             params.put("hBloodGroup", primaryDataRequestModel.getHBloodGroup());
             params.put("hHIV", primaryDataRequestModel.getHHIV());
             params.put("hVDRL", primaryDataRequestModel.getHVDRL());
-            params.put("hHepatitis", primaryDataRequestModel.getMHepatitis());
+            params.put("hHepatitis", primaryDataRequestModel.getHHepatitis());
             params.put("mHistoryIllnessOthers", primaryDataRequestModel.getMHistoryIllnessOthers());
             params.put("mHistoryIllnessFamilyOthers", primaryDataRequestModel.getMHistoryIllnessFamilyOthers());
             params.put("mAnySurgeryBeforeOthers", primaryDataRequestModel.getMAnySurgeryBeforeOthers());
