@@ -214,23 +214,17 @@ public class PrimaryRegisterView extends AppCompatActivity implements PrimaryReg
                 }
                 if(model.getMHistoryIllness().equalsIgnoreCase("null")){
                     txt_history_of_illness.setText("-");
-                }else {
-                    if(model.getMHistoryIllnessOthers().equalsIgnoreCase("null")){
+                }else if(model.getMHistoryIllness().equalsIgnoreCase("Others")) {
+                    txt_history_of_illness.setText(model.getMHistoryIllness() + "-" + model.getMHistoryIllnessOthers());
+                }else{
                         txt_history_of_illness.setText(model.getMHistoryIllness());
-                    }else {
-                        txt_history_of_illness.setText(model.getMHistoryIllness()+"-"+model.getMHistoryIllnessOthers());
-                    }
                 }
                 if(model.getMHistoryIllnessFamily().equalsIgnoreCase("null")){
                     txt_history_of_illness_family.setText("-");
+                }else if(model.getMHistoryIllnessFamilyOthers().equalsIgnoreCase("Others")) {
+                    txt_history_of_illness_family.setText(model.getMHistoryIllnessFamily() + "-" + model.getMHistoryIllnessFamilyOthers());
                 }else {
-                    if (model.getMHistoryIllnessFamilyOthers().equalsIgnoreCase("null")) {
-                        txt_history_of_illness_family.setText(model.getMHistoryIllnessFamily());
-                    }
-                    else{
-                        txt_history_of_illness_family.setText(model.getMHistoryIllnessFamily()+"-"+model.getMHistoryIllnessFamilyOthers());
-
-                    }
+                    txt_history_of_illness_family.setText(model.getMHistoryIllnessFamily());
                 }
                 if(model.getMAnySurgeryBefore().equalsIgnoreCase("null")){
                     txt_any_surgery_done.setText("-");
@@ -320,7 +314,7 @@ public class PrimaryRegisterView extends AppCompatActivity implements PrimaryReg
                 if(model.getMBloodGroup().equalsIgnoreCase("null")){
                     txt_blood_group.setText("-");
                 }else {
-                    txt_blood_group.setText(model.getMBloodGroup());
+                    txt_blood_group.setText(model.getMBloodGroup()+"-"+model.getmBloodGroupOthers());
                 }
                 if(model.getMHIV().equalsIgnoreCase("null")){
                     txt_hiv.setText("-");
@@ -340,7 +334,7 @@ public class PrimaryRegisterView extends AppCompatActivity implements PrimaryReg
                 if(model.getHBloodGroup().equalsIgnoreCase("null")){
                     txt_hus_blood_group.setText("-");
                 }else {
-                    txt_hus_blood_group.setText(model.getHBloodGroup());
+                    txt_hus_blood_group.setText(model.getHBloodGroup()+"-"+model.gethBloodGroupOthers());
                 }
                 if(model.getHHIV().equalsIgnoreCase("null")){
                     txt_hus_hiv.setText("-");
@@ -646,10 +640,12 @@ public class PrimaryRegisterView extends AppCompatActivity implements PrimaryReg
                 primaryRegisterRealmModel.setMIFAStateDate(jObj.getString("mIFAStateDate"));
                 primaryRegisterRealmModel.setMHeight(jObj.getString("mHeight"));
                 primaryRegisterRealmModel.setMBloodGroup(jObj.getString("mBloodGroup"));
+                primaryRegisterRealmModel.setmBloodGroupOthers(jObj.getString("mBloodGroupOthers"));
                 primaryRegisterRealmModel.setMHIV(jObj.getString("mHIV"));
                 primaryRegisterRealmModel.setMVDRL(jObj.getString("mVDRL"));
                 primaryRegisterRealmModel.setMHepatitis(jObj.getString("mHepatitis"));
                 primaryRegisterRealmModel.setHBloodGroup(jObj.getString("hBloodGroup"));
+                primaryRegisterRealmModel.sethBloodGroupOthers(jObj.getString("hBloodGroupOthers"));
                 primaryRegisterRealmModel.setHVDRL(jObj.getString("hVDRL"));
                 primaryRegisterRealmModel.setHHIV(jObj.getString("hHIV"));
                 primaryRegisterRealmModel.setHHepatitis(jObj.getString("hHepatitis"));

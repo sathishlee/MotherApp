@@ -117,6 +117,9 @@ public class PrimaryRegisterRealmModel extends RealmObject {
     private String mPassword;
     private String picmeId;
     private String masterId;
+    private String mBloodGroupOthers;
+    private String hBloodGroupOthers;
+
 
     public String getMessage() {
         return message;
@@ -988,5 +991,21 @@ public class PrimaryRegisterRealmModel extends RealmObject {
 
     public void setMasterId(String masterId) {
         this.masterId = masterId;
+    }
+
+    public String getmBloodGroupOthers() {
+        return mBloodGroupOthers;
+    }
+
+    public void setmBloodGroupOthers(String mBloodGroupOthers) {
+        this.mBloodGroupOthers = mBloodGroupOthers;
+    }
+
+    public String gethBloodGroupOthers() {
+        return hBloodGroupOthers;
+    }
+
+    public void sethBloodGroupOthers(String hBloodGroupOthers) {
+        this.hBloodGroupOthers = hBloodGroupOthers;
     }
 }

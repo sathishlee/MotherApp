@@ -126,7 +126,11 @@ public class PrimaryRegisterPresenter implements PrimaryRegisterInteractor {
             params.put("mLscsDone", primaryDataRequestModel.getMLscsDone());
             params.put("mAnyComplecationDuringPreganancy", primaryDataRequestModel.getMAnyComplecationDuringPreganancy());
             params.put("mPresentPreganancyG", primaryDataRequestModel.getMPresentPreganancyG());
+            Log.e("G params Value-->",primaryDataRequestModel.getMPresentPreganancyG());
+
             params.put("mPresentPreganancyP", primaryDataRequestModel.getMPresentPreganancyP());
+            Log.e("P params Value-->",primaryDataRequestModel.getMPresentPreganancyP());
+
             params.put("mPresentPreganancyA", primaryDataRequestModel.getMPresentPreganancyA());
             params.put("mPresentPreganancyL", primaryDataRequestModel.getMPresentPreganancyL());
             params.put("mRegistrationWeek", primaryDataRequestModel.getMRegistrationWeek());
@@ -134,11 +138,20 @@ public class PrimaryRegisterPresenter implements PrimaryRegisterInteractor {
             params.put("mANTT2", primaryDataRequestModel.getMANTT2());
             params.put("mIFAStateDate", primaryDataRequestModel.getMIFAStateDate());
             params.put("mHeight", primaryDataRequestModel.getMHeight());
+
             params.put("mBloodGroup", primaryDataRequestModel.getMBloodGroup());
+            Log.e("MBloodParams-->",primaryDataRequestModel.getMBloodGroup());
+            params.put("mBloodGroupOthers", primaryDataRequestModel.getmBloodGroupOthers());
+
             params.put("mHIV", primaryDataRequestModel.getMHIV());
             params.put("mVDRL", primaryDataRequestModel.getMVDRL());
             params.put("mHepatitis", primaryDataRequestModel.getMHepatitis());
+
             params.put("hBloodGroup", primaryDataRequestModel.getHBloodGroup());
+            Log.e("HUSBloodParams-->",primaryDataRequestModel.getHBloodGroup());
+
+            params.put("hBloodGroupOthers", primaryDataRequestModel.gethBloodGroupOthers());
+
             params.put("hHIV", primaryDataRequestModel.getHHIV());
             params.put("hVDRL", primaryDataRequestModel.getHVDRL());
             params.put("hHepatitis", primaryDataRequestModel.getHHepatitis());

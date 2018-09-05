@@ -180,6 +180,8 @@
 
         <activity android:name=".activity.ANViewReportsActivity"
             android:theme="@style/AppTheme"/>
+        <activity android:name=".activity.ChildTrackingActivity"
+            android:theme="@style/AppTheme"/>
 
         <activity android:name=".activity.PNViewReportsActivity"
             android:theme="@style/AppTheme"/>

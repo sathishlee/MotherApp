@@ -348,7 +348,7 @@ public class ImageSelectedActivity extends AppCompatActivity implements CameraHo
         }
         mSelectedImages.add(uri);
         convertImgURI(Uri.fromFile(new File(String.valueOf(uri))));
-        Log.e("ImageSelected URI",mBitmapSelectedImages.size()+"");
+        Log.e("Coverted URI",mBitmapSelectedImages.size()+"");
         //        Uri.fromFile(new File(your image path));
 
         adapter_selectedPhoto.updateItems(mSelectedImages);
@@ -362,18 +362,26 @@ public class ImageSelectedActivity extends AppCompatActivity implements CameraHo
     }
 
     public void removeImage(Uri uri) {
+        Log.e("Remove URI-->", String.valueOf(uri));
         mSelectedImages.remove(uri);
         adapter_selectedPhoto.updateItems(mSelectedImages);
+        mBitmapSelectedImages.remove(String.valueOf(uri));
+//        convertImgURI(Uri.fromFile(new File(String.valueOf(uri))));
+        Log.e("Remove Selected URI",mBitmapSelectedImages.size()+"");
 
         if (mSelectedImages.size() == 0) {
             mSelectedImageEmptyMessage.setVisibility(View.VISIBLE);
         }
         GalleryFragment.mGalleryAdapter.notifyDataSetChanged();
 
+//        Log.e("Remove Selected URI",mBitmapSelectedImages.size()+"");
+
     }
 
     public boolean containsImage(Uri uri) {
+        Log.e("URI-->", String.valueOf(uri));
         return mSelectedImages.contains(uri);
+
     }
 
     @Override
@@ -392,10 +400,13 @@ public class ImageSelectedActivity extends AppCompatActivity implements CameraHo
             finish();
             return true;
         } else if (id == R.id.action_done) {
-            updatePicture();
+            if(mSelectedImages.size() >= 1){
+                updatePicture();
+            }else{
+                Toast.makeText(this, "No Image to Upload", Toast.LENGTH_SHORT).show();
+            }
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 

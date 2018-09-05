@@ -117,12 +117,11 @@
 
             <TextView
                 android:id="@+id/address"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_toEndOf="@id/address_icon"
                 android:ellipsize="end"
-                android:maxLines="1"
                 android:text=" "
                 android:hint="Enter your address"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
@@ -356,6 +355,8 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:text=""
+                    android:maxLength="10"
+                    android:focusableInTouchMode="true"
                     android:hint="Enter Mobile Number"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="#212121" />
@@ -444,6 +445,7 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:text=""
+                    android:maxLength="10"
                     android:hint="Enter Alter Mobile Number"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="#212121" />
@@ -458,6 +460,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:weightSum="2"
+            android:focusable="true"
             android:visibility="gone"
             android:orientation="horizontal">
             <LinearLayout
@@ -474,6 +477,7 @@
                     android:text="@string/submit"
                     android:textColor="#ffffff"
                     android:id="@+id/btn_submit"
+                    android:focusableInTouchMode="true"
                     android:padding="10dp"/>
             </LinearLayout>
             <LinearLayout
@@ -488,6 +492,7 @@
                     android:background="@drawable/button_backgroumd"
                     android:text="Cancel"
                     android:textColor="#ffffff"
+                    android:focusableInTouchMode="true"
                     android:id="@+id/btn_cancel"
                     android:padding="10dp"/>
             </LinearLayout>

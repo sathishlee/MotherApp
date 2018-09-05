@@ -400,6 +400,8 @@ public class PNHBNCVisitEntry extends AppCompatActivity implements View.OnClickL
 
         if (strFacility.equalsIgnoreCase("--Select--")){
             showAlert("Facility is Empty");
+        }else if(strVisitNo.equalsIgnoreCase("--Select--")){
+            showAlert("Please Select Visit No");
         }
         else if (strInfantUmbilicalStump.equalsIgnoreCase("--Select")){
             showAlert("Infant Umbilical Stump is Empty");

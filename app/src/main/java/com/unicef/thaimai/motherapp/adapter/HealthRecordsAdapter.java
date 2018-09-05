@@ -75,8 +75,10 @@ public class HealthRecordsAdapter extends PagerAdapter {
         } else {
             if (mhealthRecordResponseModel.getVFacilityOthers().equalsIgnoreCase("null")){
                 txtFacility.setText(mhealthRecordResponseModel.getVFacility());
-            }else {
-                txtFacility.setText(mhealthRecordResponseModel.getVFacility() + "-" + mhealthRecordResponseModel.getVFacilityOthers());
+            }else if(mhealthRecordResponseModel.getVFacility().equalsIgnoreCase("Others")){
+                txtFacility.setText(mhealthRecordResponseModel.getVFacilityOthers());
+            }else{
+                txtFacility.setText(mhealthRecordResponseModel.getVFacility());
             }
         }
         if (mhealthRecordResponseModel.getVAnyComplaints().equalsIgnoreCase("null")) {

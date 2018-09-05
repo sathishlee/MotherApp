@@ -13,6 +13,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.GetVisitReportsPresenter;
 import com.unicef.thaimai.motherapp.R;
@@ -75,6 +77,7 @@ public class ANViewReportsActivity extends AppCompatActivity implements GetAllRe
         if(checkNetwork.isNetworkAvailable()){
             getVisitReportsPresenter.getallVisitReports(preferenceData.getPicmeId(),preferenceData.getMId());
         }else{
+            Toast.makeText(ANViewReportsActivity.this,"No Internet Connection...", Toast.LENGTH_SHORT).show();
 
         }
         txt_no_records_found = (TextView) findViewById(R.id.txt_no_records);
@@ -195,6 +198,8 @@ public class ANViewReportsActivity extends AppCompatActivity implements GetAllRe
     @Override
     public void getVisitReportsFailure(String errorMsg) {
         Log.e(ANViewReportsActivity.class.getSimpleName(),"Response error"+errorMsg);
+        Toast.makeText(ANViewReportsActivity.this,"Please Wait Server Busy...", Toast.LENGTH_SHORT).show();
+
 
     }
 

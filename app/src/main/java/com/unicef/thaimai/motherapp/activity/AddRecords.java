@@ -85,8 +85,8 @@
             sp_any_complaints.setOnItemSelectedListener(this);
 //            sp_fundal_height.setOnItemSelectedListener(this);
             rg_pep.setOnCheckedChangeListener(this);
-            sp_liquor.setOnItemSelectedListener(this);;
-            sp_placenta.setOnItemSelectedListener(this);;
+            sp_liquor.setOnItemSelectedListener(this);
+            sp_placenta.setOnItemSelectedListener(this);
             sp_gestation_sac.setOnItemSelectedListener(this);
             sp_fetus.setOnItemSelectedListener(this);
 
@@ -173,7 +173,6 @@
             return super.onOptionsItemSelected(item);
         }
 
-
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
@@ -190,7 +189,6 @@
                     }else{
                         Toast.makeText(getApplicationContext(), "Your are offline, Please Try Again After Sometimes." + checkNetwork.isNetworkAvailable(), Toast.LENGTH_LONG).show();
                     }
-
                     break;
                 case R.id.edt_date:
                     pickDate(edt_date);

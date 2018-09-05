@@ -17,7 +17,6 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -27,11 +26,11 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
-import android.text.Layout;
 import android.transition.Slide;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -40,17 +39,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
-import com.unicef.thaimai.motherapp.ImageSelectedActivity;
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.ImageUploadPresenter;
 import com.unicef.thaimai.motherapp.Presenter.ProfilePresenter;
 import com.unicef.thaimai.motherapp.R;
 import com.unicef.thaimai.motherapp.constant.Apiconstants;
-import com.unicef.thaimai.motherapp.realmDbModelClass.PrimaryRegisterRealmModel;
 import com.unicef.thaimai.motherapp.realmDbModelClass.ProfileRealmModel;
 import com.unicef.thaimai.motherapp.utility.CheckNetwork;
 import com.unicef.thaimai.motherapp.view.ImageUploadViews;
@@ -78,7 +74,7 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static android.Manifest.permission.WRITE_SETTINGS;
 
 
-public class ProfileActivity extends AppCompatActivity implements ProfileView, View.OnClickListener, ImageUploadViews {
+public class ProfileActivity extends AppCompatActivity implements ProfileView, View.OnClickListener, ImageUploadViews, View.OnFocusChangeListener {
 
     public static final String TITLE = "Profile";
     public static final String UPLOAD_IMAGE = "user_profile_photo";
@@ -154,11 +150,43 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView, V
             village_name.setVisibility(View.VISIBLE);
             re_number.setVisibility(View.GONE);
             support_layout.setVisibility(View.GONE);
+            re_enter_number.requestFocus();
+            re_enter_number.setFocusableInTouchMode(true);
+            InputMethodManager imm = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.showSoftInput(re_enter_number,InputMethodManager.SHOW_FORCED);
+//            re_enter_number.setOnFocusChangeListener(this);
             re_enter_number.setVisibility(View.VISIBLE);
             alter_number.setVisibility(View.GONE);
             support_layout1.setVisibility(View.GONE);
+            emer_enter_number.requestFocus();
+            emer_enter_number.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    inputMethodManager.showSoftInput(emer_enter_number, InputMethodManager.SHOW_FORCED);
+                }
+            },1000);
+            emer_enter_number.setFocusable(true);
+           /* emer_enter_number.setOnFocusChangeListener(this);*/
             emer_enter_number.setVisibility(View.VISIBLE);
+            btn_open.requestFocus();
+            btn_open.setFocusable(true);
+//            btn_open.setOnFocusChangeListener(this);
+
             btn_open.setVisibility(View.VISIBLE);
+            /*btn_submit.requestFocus();
+            btn_submit.setFocusable(true);
+            btn_submit.setFocusableInTouchMode(true);
+            btn_submit.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    inputMethodManager.showSoftInput(btn_open, InputMethodManager.SHOW_FORCED);
+                }
+            },1000);
+            btn_cancel.requestFocus();
+            btn_cancel.setFocusable(true);
+            btn_cancel.setFocusableInTouchMode(true);*/
         }else {
             Toast.makeText(getApplicationContext(),"Please Turn On Internet to edit.. \n No Internert connection",Toast.LENGTH_LONG).show();
         }
@@ -224,6 +252,7 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView, V
                     pDialog.hide();
                 }
                 fab.setVisibility(View.GONE);
+                btn_open.setFocusable(true);
                 setValuesEdtNumber();
             }
         });
@@ -321,6 +350,11 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView, V
                 tvNumber1.setVisibility(View.GONE);
             }else {
                 tvNumber1.setText(model.getMMotherMobile());
+            }
+            if(model.getBlockname().equalsIgnoreCase("null")){
+                tvNumber5.setText("-");
+            }else{
+                tvNumber5.setText(model.getBlockname());
             }
             if(model.getMHusbandMobile().equalsIgnoreCase("null")){
                 number_1.setVisibility(View.GONE);
@@ -457,6 +491,7 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView, V
                 edt_phone.setText(editprofile.getString("mMotherMobile"));
                 number_1.setText(editprofile.getString("mHusbandMobile"));
                 edt_phone_hus.setText(editprofile.getString("mHusbandMobile"));
+                tvNumber5.setText(editprofile.getString("blockname"));
 
                 str_mPhoto = editprofile.getString("mPhoto");
 
@@ -738,6 +773,14 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView, V
     }
 
     private void uploadBitmap(Bitmap bitmap) {
+
+    }
+
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {
+        edt_phone_hus.requestFocus();
+        edt_phone.requestFocus();
+        btn_open.requestFocus();
 
     }
 }

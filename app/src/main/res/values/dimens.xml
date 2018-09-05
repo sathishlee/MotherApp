@@ -8,7 +8,7 @@
 
     <dimen name="pad_normal">8.0dip</dimen>
 
-    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_horizontal_margin">10dp</dimen>
 
 
     <dimen name="activity_vertical_margin">16dp</dimen>
@@ -29,7 +29,7 @@
     <dimen name="picker_fab_elevation">8dp</dimen>
     <dimen name="picker_fab_size">60dp</dimen>
     <dimen name="picker_fab_press_translation_z">9dp</dimen>
-    <dimen name="picker_camera_height">250dp</dimen>
+    <dimen name="picker_camera_height">350dp</dimen>
     <dimen name="tab_label">14sp</dimen>
 
 

@@ -5,14 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.DeliveryEntryPresenter;
@@ -48,7 +46,7 @@ public class DeliveryDetailsView extends AppCompatActivity implements DeliveryEn
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delivery_details_view);
         initUI();
-        onClickListner();
+//        onClickListner();
         showActionBar();
 
     }
@@ -79,7 +77,7 @@ public class DeliveryDetailsView extends AppCompatActivity implements DeliveryEn
        deliveryEntryPresenter.deliveryDetails(preferenceData.getPicmeId(), preferenceData.getMId(), preferenceData.getDid());
        txt_no_records_found = (TextView) findViewById(R.id.txt_no_records_found);
        delivery_content = (FrameLayout) findViewById(R.id.delivery_content);
-       fab_edt_details = (FloatingActionButton) findViewById(R.id.fab_edt_details);
+//       fab_edt_details = (FloatingActionButton) findViewById(R.id.fab_edt_details);
        txt_delivery_date = (TextView) findViewById(R.id.txt_delivery_date);
        txt_delivery_time = (TextView) findViewById(R.id.txt_delivery_time);
        txt_delivery_place = (TextView) findViewById(R.id.txt_delivery_place);

@@ -12,22 +12,21 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
-
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
-import android.text.Html;
-import android.text.TextUtils;
-import android.util.Log;
-import android.view.View;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -43,8 +42,6 @@ import com.unicef.thaimai.motherapp.Presenter.GetUserInfoPresenter;
 import com.unicef.thaimai.motherapp.Presenter.NotificationPresenter;
 import com.unicef.thaimai.motherapp.Presenter.SosAlertPresenter;
 import com.unicef.thaimai.motherapp.R;
-//import com.unicef.thaimai.motherapp.bradcastReceiver.ConnectivityReceiver;
-import com.unicef.thaimai.motherapp.adapter.MainViewPagerAdapter;
 import com.unicef.thaimai.motherapp.broadCastReceivers.ConnectivityReceiver;
 import com.unicef.thaimai.motherapp.constant.Apiconstants;
 import com.unicef.thaimai.motherapp.constant.AppConstants;
@@ -64,6 +61,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Locale;
+
+//import com.unicef.thaimai.motherapp.bradcastReceiver.ConnectivityReceiver;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,
         ConnectivityReceiver.ConnectivityReceiverListener, SosAlertViews, NotificationViews{
@@ -460,7 +459,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.pn_hbnc_visit_entry) {
             Intent v = new Intent(getApplicationContext(), PNHBNCVisitEntry.class);
             startActivity(v);
-        } else if (id == R.id.immunization_entry) {
+        }/* else if (id == R.id.child_tracking) {
+            Intent v = new Intent(getApplicationContext(), ChildTrackingActivity.class);
+            startActivity(v);
+        }*/else if (id == R.id.immunization_entry) {
             AppConstants.IMMUNIZATION_EDIT = true;
             Intent v = new Intent(getApplicationContext(), ImmunizationEditActivity.class);
             startActivity(v);

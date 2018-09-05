@@ -168,6 +168,8 @@
                     android:id="@+id/edt_primary_mobile_number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:maxLength="10"
+                    android:inputType="number"
                     android:hint="@string/enter_primary_mobile_number"
                     android:textColor="@color/secondary"
                     android:textSize="@dimen/text_secondary"/>
@@ -190,6 +192,8 @@
                     android:id="@+id/edt_alternative_mobile_number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:maxLength="10"
+                    android:inputType="number"
                     android:hint="@string/enter_alternative_mobile_number"
                     android:textColor="@color/secondary"
                     android:textSize="@dimen/text_secondary"/>
@@ -272,6 +276,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/age_at_marriage"
+                    android:inputType="number"
                     android:textColor="@color/secondary"
                     android:textSize="@dimen/text_secondary"
                     android:layout_weight="1"/>
@@ -334,10 +339,6 @@
                 android:entries="@array/illness"
                 style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
                 <EditText
                     android:id="@+id/edt_other_history_illness"
                     android:layout_width="match_parent"
@@ -346,8 +347,6 @@
                     android:textColor="@color/secondary"
                     android:textSize="@dimen/text_secondary"
                     android:layout_weight="1"/>
-
-            </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
 
@@ -828,10 +827,11 @@
                 android:layout_weight="1"
                 android:drawSelectorOnTop="true"
                 style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
---> <com.suthishan.multiselectspineer.MultiSelectSpinner
-        android:id="@+id/mySpinner1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+-->
+            <com.suthishan.multiselectspineer.MultiSelectSpinner
+                android:id="@+id/mySpinner1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
             <TextView
                 android:id="@+id/txt_complaint_during_pragency"
                 android:layout_width="wrap_content"

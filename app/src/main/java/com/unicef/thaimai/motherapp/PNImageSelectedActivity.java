@@ -375,7 +375,11 @@ public class PNImageSelectedActivity extends AppCompatActivity implements Camera
                 finish();
                 return true;
             } else if (id == R.id.action_done) {
-                updatePicture();
+                if(mSelectedImages.size() >= 1){
+                    updatePicture();
+                }else{
+                    Toast.makeText(this, "No Image to Upload", Toast.LENGTH_SHORT).show();
+                }
                 return true;
             }
 

@@ -56,14 +56,16 @@ public class PrimaryRegister extends AppCompatActivity implements View.OnClickLi
             spPrePrgncyG, spPrePrgncyP, spPrePrgncyA, spPrePrgncyL, spBloodGroup, spHIV, spVDRL,
             spHelpatitis, spHusbBloodGroup, spHusbHIV, spHusbVDRL, spHusbHelpatitis;
 
-    public String strId, strMasterId, strPicmeId, strMotherName, strMotherAge, strMotherOcc, strHusbandOcc, strConsangulneousMarriage, strHistoryIllness, strHistoryIllnessFmly, strAnySurgeryBefore,
+    public String strId, strMasterId, strPicmeId, strMotherName, strMotherAge, strMotherOcc, strHusbandOcc, strConsangulneousMarriage,
+            strHistoryIllness, strHistoryIllnessFmly, strAnySurgeryBefore,
             strDoseTobacco, strDoseAlcohol, strDoseOnAnyMedication, strDoseAllergictoDrugs,
             strPrePregnancy, strLSCSDone, strComDuringPrgncy,
             strPrePrgncyG, strPrePrgncyP, strPrePrgncyA, strPrePrgncyL, strBloodGroup, strHIV, strVDRL,
             strHelpatitis, strHusbBloodGroup, strHusbHIV, strHusbVDRL, strHusbHelpatitis,
             strLmpDate, strEddDate, strAgeAtMarriage, strRegWeek, strANTT1st, strANTT2nd, strFIAStartDate, strHeight,
             strOthers, strMedicationSpecify, strAllergictoDrugsSpecify, strPrimaryMobileNumber, strAlternativeMobileNumber,
-            strHistory_illness_other, strHhistory_illness_fmly_other, strAny_surgery_before_other, strAnyComDuring_prgncy_other;
+            strHistory_illness_other, strHhistory_illness_fmly_other, strAny_surgery_before_other,
+            strAnyComDuring_prgncy_other, strMbloodOthers, strHusbloodOthers;
     ArrayList ysList, occList;
     Button butSubmit;
     ProgressDialog pDialog;
@@ -107,13 +109,12 @@ public class PrimaryRegister extends AppCompatActivity implements View.OnClickLi
         initUI();
         onClickListner();
         OnItemSelectedListener();
-
     }
 
 
     private void showActionBar() {
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Primary RegisterActivity");
+        actionBar.setTitle("Primary Register Activity");
 //            if (AppConstants.BACK_BUTTON_GONE) {
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -126,7 +127,6 @@ public class PrimaryRegister extends AppCompatActivity implements View.OnClickLi
         pDialog.setMessage("Please Wait ...");
         preferenceData = new PreferenceData(this);
         checkNetwork = new CheckNetwork(this);
-
         strPicmeId = preferenceData.getPicmeId();
         strMotherName = preferenceData.getMotherName();
         strMotherAge = preferenceData.getMotherAge();
@@ -138,7 +138,6 @@ public class PrimaryRegister extends AppCompatActivity implements View.OnClickLi
 //                startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();
         }
-
         txtMotherName = (TextView) findViewById(R.id.txt_name);
         txtMotherAge = (TextView) findViewById(R.id.txt_mother_age);
         edtLmpDate = (EditText) findViewById(R.id.edt_lmp_date);
@@ -196,6 +195,7 @@ public class PrimaryRegister extends AppCompatActivity implements View.OnClickLi
         ll_allergicto_drugs_specify = (LinearLayout) findViewById(R.id.ll_allergicto_drugs_specify);
 
         spinner1.setItems(acdp);
+
         spinner1.hasNoneOption(true);
         spinner1.setSelection(new int[]{0});
         spinner1.setListener(this);
@@ -204,6 +204,8 @@ public class PrimaryRegister extends AppCompatActivity implements View.OnClickLi
     }
 
     private void onClickListner() {
+        edtLmpDate.setOnClickListener(this);
+        edtEddDate.setOnClickListener(this);
         butSubmit.setOnClickListener(this);
         edtRegWeek.setOnClickListener(this);
         edtANTT1st.setOnClickListener(this);
@@ -258,14 +260,16 @@ public class PrimaryRegister extends AppCompatActivity implements View.OnClickLi
         strHistory_illness_other = edt_history_illness.getText().toString();
         strHhistory_illness_fmly_other = edt_history_illness_fmly.getText().toString();
         strAny_surgery_before_other = edt_any_surgery_before.getText().toString();
+        strMbloodOthers = edt_husb_blood_group.getText().toString();
+        strHusbloodOthers = edt_other_husb_blood_group.getText().toString();
 //            strAnyComDuring_prgncy_other =edt_comDuring_prgncy.getText().toString();
     }
 
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-//            finish();
-        startActivity(new Intent(getApplicationContext(), PrimaryRegisterView.class));
+            finish();
+//        startActivity(new Intent(getApplicationContext(), PrimaryRegisterView.class));
         return super.onOptionsItemSelected(item);
 
     }
@@ -274,6 +278,12 @@ public class PrimaryRegister extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.edt_lmp_date:
+                pickDate(edtLmpDate);
+                break;
+            case R.id.edt_edd_date:
+                pickDate(edtEddDate);
+                break;
             case R.id.edt_reg_week:
                 pickDate(edtRegWeek);
                 break;
@@ -401,7 +411,10 @@ public class PrimaryRegister extends AppCompatActivity implements View.OnClickLi
             }*/ else if (strLSCSDone.equalsIgnoreCase("--Select--")) {
             showAlert("LSC Done is Empty");
 
-        }/*else if (strComDuringPrgncy.equalsIgnoreCase("--Select--")){
+        }else if(spinner1.getSelectedItem().equals("--Select--")){
+            showAlert("Complication During Pregnancy is Empty");
+        }
+        /*else if (strComDuringPrgncy.equalsIgnoreCase("--Select--")){
                 showAlert("During Pregnancy is Empty");
 
             }*/ else if (strPrePrgncyG.equalsIgnoreCase("--Select--")) {
@@ -465,7 +478,6 @@ public class PrimaryRegister extends AppCompatActivity implements View.OnClickLi
             primaryDataRequestModel.setMAge(preferenceData.getMotherAge());
             primaryDataRequestModel.setMLMP(strLmpDate);
             primaryDataRequestModel.setMEDD(strEddDate);
-
             primaryDataRequestModel.setMMotherMobile(strPrimaryMobileNumber);
             primaryDataRequestModel.setMHusbandMobile(strAlternativeMobileNumber);
             primaryDataRequestModel.setMMotherOccupation(strMotherOcc);
@@ -495,10 +507,14 @@ public class PrimaryRegister extends AppCompatActivity implements View.OnClickLi
             primaryDataRequestModel.setMHistroyPreviousPreganancy(strPrePregnancy);
             primaryDataRequestModel.setMLscsDone(strLSCSDone);
             primaryDataRequestModel.setMAnyComplecationDuringPreganancy(strComDuringPrgncy);
+
             primaryDataRequestModel.setMPresentPreganancyG(strPrePrgncyG);
+            Log.e("G Value-->",strPrePrgncyG);
             primaryDataRequestModel.setMPresentPreganancyP(strPrePrgncyP);
+            Log.e("P Value-->",strPrePrgncyP);
             primaryDataRequestModel.setMPresentPreganancyA(strPrePrgncyA);
             primaryDataRequestModel.setMPresentPreganancyL(strPrePrgncyL);
+
             primaryDataRequestModel.setMRegistrationWeek(strRegWeek);
             primaryDataRequestModel.setMANTT1(strANTT1st);
             primaryDataRequestModel.setMANTT2(strANTT2nd);
@@ -506,20 +522,17 @@ public class PrimaryRegister extends AppCompatActivity implements View.OnClickLi
 
             primaryDataRequestModel.setMHeight(strHeight);
 
-            if (strBloodGroup.equalsIgnoreCase("Others")) {
-                primaryDataRequestModel.setMBloodGroup(strBloodGroup + "-" + edt_husb_blood_group.getText().toString());
-            } else {
-                primaryDataRequestModel.setMBloodGroup(strBloodGroup);
-            }
+
+            primaryDataRequestModel.setMBloodGroup(strBloodGroup);
+            Log.e("MBlood--",strBloodGroup);
 
             primaryDataRequestModel.setMHIV(strHIV);
             primaryDataRequestModel.setMVDRL(strVDRL);
             primaryDataRequestModel.setMHepatitis(strHelpatitis);
-            if (strHusbBloodGroup.equalsIgnoreCase("Others")) {
-                primaryDataRequestModel.setHBloodGroup(strHusbBloodGroup + "-" + edt_other_husb_blood_group.getText().toString());
-            } else {
-                primaryDataRequestModel.setHBloodGroup(strHusbBloodGroup);
-            }
+
+            primaryDataRequestModel.setHBloodGroup(strHusbBloodGroup);
+            Log.e("HusBlood--",strHusbBloodGroup);
+
 
             primaryDataRequestModel.setHHIV(strHusbHIV);
             primaryDataRequestModel.setHVDRL(strHusbVDRL);
@@ -529,6 +542,8 @@ public class PrimaryRegister extends AppCompatActivity implements View.OnClickLi
             primaryDataRequestModel.setMHistoryIllnessFamilyOthers(strHhistory_illness_fmly_other);
             primaryDataRequestModel.setMAnySurgeryBeforeOthers(strAny_surgery_before_other);
             primaryDataRequestModel.setMAnyComplecationDuringOthers(strAnyComDuring_prgncy_other);
+            primaryDataRequestModel.setMBloodGroupOthers(strMbloodOthers);
+            primaryDataRequestModel.setHBloodGroupOthers(strHusbloodOthers);
 
             primaryRegisterPresenter.postprimaryData(strPicmeId, primaryDataRequestModel);
         }
@@ -571,6 +586,7 @@ public class PrimaryRegister extends AppCompatActivity implements View.OnClickLi
     @Override
     public void postDataSuccess(String response) {
         Log.d(PrimaryRegister.class.getSimpleName(), "Success post method" + response);
+
         startActivity(new Intent(getApplicationContext(), PrimaryRegisterView.class));
         finish();
     }
@@ -684,7 +700,6 @@ public class PrimaryRegister extends AppCompatActivity implements View.OnClickLi
                 strHelpatitis = parent.getSelectedItem().toString();
                 break;
             case R.id.sp_husb_blood_group:
-
                 strHusbBloodGroup = parent.getSelectedItem().toString();
                 if (strHusbBloodGroup.equalsIgnoreCase("Others")) {
                     edt_other_husb_blood_group.setVisibility(View.VISIBLE);
@@ -810,6 +825,16 @@ public class PrimaryRegister extends AppCompatActivity implements View.OnClickLi
                 } else {
                     edt_history_illness_fmly.setText(jObj.getString("mHistoryIllnessFamilyOthers"));
                 }
+                if(jObj.getString("mBloodGroupOthers").equalsIgnoreCase("null")){
+                    edt_husb_blood_group.setText("-");
+                }else{
+                    edt_husb_blood_group.setText(jObj.getString("mBloodGroupOthers"));
+                }
+                if(jObj.getString("hBloodGroupOthers").equalsIgnoreCase("null")){
+                    edt_other_husb_blood_group.setText("-");
+                }else {
+                    edt_other_husb_blood_group.setText(jObj.getString("hBloodGroupOthers"));
+                }
 
 //                spMotherOcc.setSelection(getListPosition(Occ, jObj.getString("mMotherOccupation")));
                 Log.e("Occ size",Occ.toString());
@@ -887,7 +912,7 @@ public class PrimaryRegister extends AppCompatActivity implements View.OnClickLi
 //                spinner1.setSelection(getListPosition(acdp, jObj.getString("mAnyComplecationDuringPreganancy")));
 
                 spinner1.setSelection(getListPosition(acdp, jObj.getString("mAnyComplecationDuringPreganancy")));
-
+                spinner1.setItems(acdp);
                 txt_complaint_during_pragency.setText(jObj.getString("mAnyComplecationDuringPreganancy"));
 
                 spPrePrgncyG.setSelection(getListPosition(numG, jObj.getString("mPresentPreganancyG")));  //1234567890
@@ -895,27 +920,28 @@ public class PrimaryRegister extends AppCompatActivity implements View.OnClickLi
                 spPrePrgncyA.setSelection(getListPosition(numA, jObj.getString("mPresentPreganancyA")));  //1234567890
                 spPrePrgncyL.setSelection(getListPosition(numL, jObj.getString("mPresentPreganancyL")));   //1234567890
 
-//                spBloodGroup.setSelection(getListPosition(bg, jObj.getString("mBloodGroup")));   //A+ve, A-, B+, B-, O+, O-,
+                spBloodGroup.setSelection(getListPosition(bg, jObj.getString("mBloodGroup")));   //A+ve, A-, B+, B-, O+, O-,
 
-                String bloodGroup = jObj.getString("mBloodGroup");
-                if (bloodGroup.equalsIgnoreCase("null")) {
+                /*String bloodGroup = jObj.getString("mBloodGroup");
+                *//*if (bloodGroup.equalsIgnoreCase("null")) {
                     spBloodGroup.setSelection(0);
-                } else if(bloodGroup.equalsIgnoreCase("Others")){
+                } *//**//*else if(bloodGroup.equalsIgnoreCase("Others")){
+
                     StringTokenizer tokens = new StringTokenizer(bloodGroup, " -");
                     String first = tokens.nextToken();
                     String second = tokens.nextToken();
                     spBloodGroup.setSelection(getListPosition(bg, first));
                     edt_husb_blood_group.setText(second);
-                }else {
+                }*//**//*else {*//*
                     spBloodGroup.setSelection(getListPosition(bg, jObj.getString("mBloodGroup"))); //Yes,No
-                }
+                }*/
 
                 spHIV.setSelection(getListPosition(rnr, jObj.getString("mHIV")));      //Reactive, Non Reactive
                 spVDRL.setSelection(getListPosition(rnr, jObj.getString("mVDRL")));      //Reactive, Non Reactive
                 spHelpatitis.setSelection(getListPosition(rnr, jObj.getString("mHepatitis")));   //Reactive, Non Reactive
 
-//                spHusbBloodGroup.setSelection(getListPosition(bg, jObj.getString("hBloodGroup")));  //A+ve, A-, B+, B-, O+, O-,
-                String hbloodGroup = jObj.getString("hBloodGroup");
+                spHusbBloodGroup.setSelection(getListPosition(bg, jObj.getString("hBloodGroup")));  //A+ve, A-, B+, B-, O+, O-,
+                /*String hbloodGroup = jObj.getString("hBloodGroup");
                 if (hbloodGroup.equalsIgnoreCase("null")) {
                     spHusbBloodGroup.setSelection(0);
                 } else if(hbloodGroup.equalsIgnoreCase("Others")){
@@ -926,13 +952,11 @@ public class PrimaryRegister extends AppCompatActivity implements View.OnClickLi
                     edt_other_husb_blood_group.setText(second);
                 }else {
                     spHusbBloodGroup.setSelection(getListPosition(bg, jObj.getString("hBloodGroup"))); //Yes,No
-                }
+                }*/
                 spHusbHIV.setSelection(getListPosition(rnr, jObj.getString("hHIV")));         //Reactive, Non Reactive
                 spHusbVDRL.setSelection(getListPosition(rnr, jObj.getString("hVDRL")));       //Reactive, Non Reactive
                 spHusbHelpatitis.setSelection(getListPosition(rnr, jObj.getString("hHepatitis")));  //Reactive, Non Reactive
 //                String anycomplication = jObj.getString("mAnyComplecationDuringPreganancy");
-
-
             } else {
                 Log.d("message---->", message);
             }
@@ -996,6 +1020,8 @@ public class PrimaryRegister extends AppCompatActivity implements View.OnClickLi
     public void selectedIndices(List<Integer> indices) {
 
     }
+
+
 
     @Override
     public void selectedStrings(List<String> strings) {

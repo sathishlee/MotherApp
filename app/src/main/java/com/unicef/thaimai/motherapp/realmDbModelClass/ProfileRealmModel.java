@@ -21,6 +21,7 @@ public class ProfileRealmModel extends RealmObject {
     private String mName;
     private String mAddress;
     private String mPhoto;
+    private String blockname;
 
     public String getMDistrict() {
         return mDistrict;
@@ -124,5 +125,13 @@ public class ProfileRealmModel extends RealmObject {
 
     public void setmPhoto(String mPhoto) {
         this.mPhoto = mPhoto;
+    }
+
+    public String getBlockname() {
+        return blockname;
+    }
+
+    public void setBlockname(String blockname) {
+        this.blockname = blockname;
     }
 }

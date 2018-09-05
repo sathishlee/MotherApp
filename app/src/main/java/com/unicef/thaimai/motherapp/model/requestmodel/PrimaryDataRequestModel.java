@@ -69,6 +69,8 @@ public class PrimaryDataRequestModel {
     private String vhnId;
     private String picmeId;
     private String masterId;
+    private String mBloodGroupOthers;
+    private String hBloodGroupOthers;
 
     public String getMessage() {
         return message;
@@ -357,6 +359,18 @@ public class PrimaryDataRequestModel {
     public void setMHistoryIllnessOthers(String mHistoryIllnessOthers) {
         this.mHistoryIllnessOthers = mHistoryIllnessOthers;
     }
+     public void setMBloodGroupOthers(String mBloodGroupOthers){
+         this.mBloodGroupOthers = mBloodGroupOthers;
+     }
+     public String getmBloodGroupOthers(){
+         return mBloodGroupOthers;
+     }
+     public void setHBloodGroupOthers(String hBloodGroupOthers){
+         this.hBloodGroupOthers = hBloodGroupOthers;
+     }
+     public String gethBloodGroupOthers(){
+         return hBloodGroupOthers;
+     }
 
     public String getMHistoryIllness() {
         return mHistoryIllness;

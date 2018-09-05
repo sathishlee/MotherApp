@@ -241,8 +241,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
         if (strPicme.length() > 14) {
             iplPicmeId.setError("Enter Correct Picme ID");
         } else {
-
-
 //            loginPresenter.checkPickmeId(strPicme, strDob, "dT7h3twBpWU:APA91bHQqQOCBueyUGhvY2uIsMNfIfM7ynMlVzm89tTTWDeKhXzMWCS9WZL1gu8nFz_nkwU5Po9i8ytXHmjoxAeu36BTbIFHwWhWfjbWtO-EjG6n7zW4M_PFCCOID8eE0fQX4RPPHfBQ");
             WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
             ipAddress = Formatter.formatIpAddress(wifiManager.getConnectionInfo().getIpAddress());
@@ -509,7 +507,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         finish();
         return super.onOptionsItemSelected(item);
     }
