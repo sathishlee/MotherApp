@@ -30,7 +30,7 @@ public class Apiconstants {
     public static final String PN_VISIT_REPORTS_URL = "http://106.51.127.173/thaimaiapp/assets/pnmother_reports/";
 
 //    public static final String HEALTH_TIPS_IMAGES = "http://218.248.44.77/thaimaiapp/assets/healthtips/";
-    //        public static final String HEALTH_TIPS_IMAGES = "http://192.168.100.222/thaimaiapp/assets/healthtips/";
+//            public static final String HEALTH_TIPS_IMAGES = "http://192.168.100.222/thaimaiapp/assets/healthtips/";
 //    public static final String HEALTH_TIPS_IMAGES = "http://demo.satvatinfosol.com/thaimai/assets/healthtips/";
     public static final String HEALTH_TIPS_IMAGES = "http://106.51.127.173/thaimaiapp/assets/healthtips/";
 

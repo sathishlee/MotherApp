@@ -40,6 +40,7 @@ public class Adapter_SelectedPhoto extends BaseRecyclerViewAdapter<Uri, Adapter_
                 .error(R.drawable.no_image)
                 .into(holder.selected_photo);
         holder.iv_close.setTag(uri);
+        holder.iv_close.setVerticalScrollbarPosition(position);
 
     }
 
@@ -62,7 +63,8 @@ public class Adapter_SelectedPhoto extends BaseRecyclerViewAdapter<Uri, Adapter_
                 @Override
                 public void onClick(View view) {
                     Uri uri = (Uri) view.getTag();
-                    imagePickerActivity.removeImage(uri);
+                    int position = view.getVerticalScrollbarPosition();
+                    imagePickerActivity.removeImage(uri,position);
                 }
             });
 

@@ -67,7 +67,7 @@ if (result) {
                     mActivity.addImage(mUri);
                     Log.d("galary image path", String.valueOf(mUri));
                 } else {
-                    mActivity.removeImage(mUri);
+                    mActivity.removeImage(mUri,view.getVerticalScrollbarPosition());
                 }
                 mGalleryAdapter.notifyDataSetChanged();
             }

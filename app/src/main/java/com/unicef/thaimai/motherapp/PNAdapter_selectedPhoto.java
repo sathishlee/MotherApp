@@ -38,6 +38,7 @@ public class PNAdapter_selectedPhoto extends BaseRecyclerViewAdapter<Uri, PNAdap
                 .error(R.drawable.no_image)
                 .into(holder.selected_photo);
         holder.iv_close.setTag(uri);
+        holder.iv_close.setVerticalScrollbarPosition(position);
 
     }
 
@@ -61,7 +62,7 @@ public class PNAdapter_selectedPhoto extends BaseRecyclerViewAdapter<Uri, PNAdap
                 @Override
                 public void onClick(View view) {
                     Uri uri = (Uri) view.getTag();
-                    pnImageSelectedActivity.removeImage(uri);
+                    pnImageSelectedActivity.removeImage(uri,view.getVerticalScrollbarPosition());
                 }
             });
 

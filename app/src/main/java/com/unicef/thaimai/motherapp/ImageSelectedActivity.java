@@ -347,7 +347,7 @@ public class ImageSelectedActivity extends AppCompatActivity implements CameraHo
             return;
         }
         mSelectedImages.add(uri);
-        convertImgURI(Uri.fromFile(new File(String.valueOf(uri))));
+        convertImgURI(Uri.fromFile(new File(String.valueOf(uri))),"add");
         Log.e("ImageSelected URI",mBitmapSelectedImages.size()+"");
         //        Uri.fromFile(new File(your image path));
 
@@ -361,8 +361,12 @@ public class ImageSelectedActivity extends AppCompatActivity implements CameraHo
         rc_selected_photos.smoothScrollToPosition(adapter_selectedPhoto.getItemCount()-1);
     }
 
-    public void removeImage(Uri uri) {
+  public void removeImage(Uri uri,int position) {
         mSelectedImages.remove(uri);
+      convertImgURI(Uri.fromFile(new File(String.valueOf(uri))),"remove");
+        mBitmapSelectedImages.remove(position);
+      Log.e("ImageSelected URI ","remove Image"+mBitmapSelectedImages.size()+"");
+
         adapter_selectedPhoto.updateItems(mSelectedImages);
 
         if (mSelectedImages.size() == 0) {
@@ -417,12 +421,17 @@ public class ImageSelectedActivity extends AppCompatActivity implements CameraHo
 
     }
 
-    private void convertImgURI(Uri imageUri) {
+    private void convertImgURI(Uri imageUri,String type) {
 //        Uri imageUri = intent.getData();
         try {
             Log.e("ImageSelected URI",imageUri+"");
             Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(),imageUri);
-            mBitmapSelectedImages.add(bitmap);
+            if (type.equalsIgnoreCase("add")) {
+                mBitmapSelectedImages.add(bitmap);
+            }else{
+                mBitmapSelectedImages.remove(bitmap);
+//                mBitmapSelectedImages.remove(0);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
