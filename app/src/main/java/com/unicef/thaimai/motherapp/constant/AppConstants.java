@@ -1,5 +1,7 @@
 package com.unicef.thaimai.motherapp.constant;
 
+import android.os.Environment;
+
 import com.unicef.thaimai.motherapp.model.responsemodel.ANVisitRecordsSingleResponseModel;
 
 import java.util.ArrayList;
@@ -85,6 +87,8 @@ public class AppConstants {
     public static final String MOTHER_DOB = "DOB";
     public static final String MOTHER_PHOTO = "mPhoto";
 
+    public static String FULL_VIEW_IMAGE_CHILD_REPORT = " ";
+
     public static final String LANGUAGE = "ta";
 
     public static Boolean LANGUAGE_CHANGE_ENGLISH = false;
@@ -96,5 +100,25 @@ public class AppConstants {
     public static final int FRAGMENT_B = 1;
     public static final int FRAGMENT_C = 2;
     public static final int FRAGMENT_D = 3;*/
+
+
+
+    public static final String root = Environment.getExternalStorageDirectory().toString() + "/";
+    public static final String base_dir = "ThaimaiApp/Mother";
+
+
+
+    public static int CURRENT_MONTH =0 ;
+    public static ArrayList<String> ARR_MONTH ;
+    public static String LMP_DATE ="";
+
+
+    public static String OPENFRAGMENT ="";
+
+
+
+
+
+
 
 }

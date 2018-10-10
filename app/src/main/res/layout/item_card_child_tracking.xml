@@ -10,7 +10,7 @@
     android:layout_width="wrap_content"
     android:id="@+id/month_2_4"
     android:orientation="vertical"
-    android:visibility="gone">
+    android:visibility="visible">
 <android.support.v7.widget.CardView
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
@@ -40,9 +40,10 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/txt_q1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/does_the_child_move_both_arms_and_both_legs_freely_equally_when_awake_or_when_excited"
+                    android:text="Does the child move both arms and both legs freely equally when awake or when excited."
                     android:textSize="@dimen/text_label"
                     android:textAlignment="textStart"
                     android:textColor="#2F80ED"
@@ -57,12 +58,16 @@
             android:layout_height="wrap_content"
             android:baselineAligned="false"
             android:layout_margin="5dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_weight="2"
+            >
 
                 <RadioGroup
+                    android:id="@+id/rg_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
                     android:weightSum="2">
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -70,6 +75,7 @@
                         android:layout_weight="1">
 
                         <android.support.v7.widget.AppCompatRadioButton
+                            android:id="@+id/rb_y1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Yes"/>
@@ -82,6 +88,7 @@
                         android:layout_weight="1">
 
                         <android.support.v7.widget.AppCompatRadioButton
+                            android:id="@+id/rb_n1"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:text="No"/>
@@ -89,7 +96,28 @@
                     </LinearLayout>
 
                 </RadioGroup>
-
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:weightSum="2">
+                <ImageView
+                    android:id="@+id/img_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:srcCompat="@drawable/no_image"
+                    android:layout_weight="1"/>
+                <ImageView
+                    android:id="@+id/img_open_camera"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    app:srcCompat="@drawable/ic_camera"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:visibility="gone"
+                    />
+            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>
@@ -125,6 +153,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/txt_q2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Does the child raise his or her Head momentarily when lying face down?"
@@ -142,12 +171,15 @@
                 android:layout_height="wrap_content"
                 android:baselineAligned="false"
                 android:layout_margin="5dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="2">
 
                 <RadioGroup
+                    android:id="@+id/rg_2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
                     android:weightSum="2">
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -155,6 +187,7 @@
                         android:layout_weight="1">
 
                         <android.support.v7.widget.AppCompatRadioButton
+                           android:id="@+id/rb_y2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Yes"/>
@@ -167,6 +200,7 @@
                         android:layout_weight="1">
 
                         <android.support.v7.widget.AppCompatRadioButton
+                          android:id="@+id/rb_n2"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:text="No"/>
@@ -174,7 +208,28 @@
                     </LinearLayout>
 
                 </RadioGroup>
-
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:weightSum="2">
+                    <ImageView
+                        android:id="@+id/img_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:srcCompat="@drawable/no_image"
+                        android:layout_weight="1"/>
+                    <ImageView
+                        android:id="@+id/img_open_camera2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        app:srcCompat="@drawable/ic_camera"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:visibility="gone"
+                        />
+                </LinearLayout>
             </LinearLayout>
 
         </LinearLayout>
@@ -687,10 +742,29 @@
         </LinearLayout>
 
     </android.support.v7.widget.CardView>
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/ll_block1">
+
+        <Button
+            style="@style/Button"
+            android:id="@+id/btn_submit"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:padding="10dp"
+            android:text="@string/submit"/>
 
     </LinearLayout>
+    </LinearLayout>
 
-    <LinearLayout
+    <!--<LinearLayout
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:id="@+id/month_4_6"
@@ -704,7 +778,7 @@
             android:padding="16.0dip"
             app:cardBackgroundColor="@android:color/white"
             app:cardElevation="2.0dip">
-            <!--welcome-->
+            &lt;!&ndash;welcome&ndash;&gt;
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -789,7 +863,7 @@
             android:padding="16.0dip"
             app:cardBackgroundColor="@android:color/white"
             app:cardElevation="2.0dip">
-            <!--welcome-->
+            &lt;!&ndash;welcome&ndash;&gt;
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -873,7 +947,7 @@
             android:padding="16.0dip"
             app:cardBackgroundColor="@android:color/white"
             app:cardElevation="2.0dip">
-            <!--welcome-->
+            &lt;!&ndash;welcome&ndash;&gt;
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -957,7 +1031,7 @@
             android:padding="16.0dip"
             app:cardBackgroundColor="@android:color/white"
             app:cardElevation="2.0dip">
-            <!--welcome-->
+            &lt;!&ndash;welcome&ndash;&gt;
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -1042,7 +1116,7 @@
             android:padding="16.0dip"
             app:cardBackgroundColor="@android:color/white"
             app:cardElevation="2.0dip">
-            <!--welcome-->
+            &lt;!&ndash;welcome&ndash;&gt;
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -1127,7 +1201,7 @@
             android:padding="16.0dip"
             app:cardBackgroundColor="@android:color/white"
             app:cardElevation="2.0dip">
-            <!--welcome-->
+            &lt;!&ndash;welcome&ndash;&gt;
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -1212,7 +1286,7 @@
             android:padding="16.0dip"
             app:cardBackgroundColor="@android:color/white"
             app:cardElevation="2.0dip">
-            <!--welcome-->
+            &lt;!&ndash;welcome&ndash;&gt;
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -1296,7 +1370,7 @@
             android:padding="16.0dip"
             app:cardBackgroundColor="@android:color/white"
             app:cardElevation="2.0dip">
-            <!--welcome-->
+            &lt;!&ndash;welcome&ndash;&gt;
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -1373,6 +1447,6 @@
 
         </android.support.v7.widget.CardView>
 
-    </LinearLayout>
+    </LinearLayout>-->
 
     </ScrollView>

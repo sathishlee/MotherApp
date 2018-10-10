@@ -37,6 +37,7 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
+import com.unicef.thaimai.motherapp.ChildDevelopment.ChildTrackingActivity;
 import com.unicef.thaimai.motherapp.Preference.PreferenceData;
 import com.unicef.thaimai.motherapp.Presenter.GetUserInfoPresenter;
 import com.unicef.thaimai.motherapp.Presenter.NotificationPresenter;
@@ -59,7 +60,7 @@ import com.unicef.thaimai.motherapp.view.SosAlertViews;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
+
 import java.util.Locale;
 
 //import com.unicef.thaimai.motherapp.bradcastReceiver.ConnectivityReceiver;
@@ -78,9 +79,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     int mCartItemCount = 10;
 
     PreferenceData preferenceData;
-    GetUserInfoPresenter getUserInfoPresenter;
     ProgressDialog pDialog;
-    ArrayList<String> msgList;
     CheckNetwork checkNetwork;
     RelativeLayout noConnection;
     FirebaseAnalytics firebaseAnalytics;
@@ -88,14 +87,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ImageView cardview_image;
     TextView txt_username,edt_picme_id;
     Context context;
-    ViewPager viewPager;
-    MenuItem prevMenuItem;
     BottomNavigationView bottomNavigationView;
-    private ViewPager viewPager1;
-    HomeFragment homeFragment;
-    HealthRecordsFragment healthRecordsFragment;
-    PNhbncVisitFragment pNhbncVisitFragment;
-    ReferralListFragment referralListFragment;
     boolean doubleBackToExitPressedOnce = false;
 
 
@@ -158,7 +150,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.setDrawerListener(toggle);
         toggle.syncState();
         setupNavigation();
-        setupNavigationView();
+        if (  AppConstants.OPENFRAGMENT.equalsIgnoreCase("00")) {
+            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.content,
+                    NotificationFragment.newInstance()).commit();
+        }else {
+            setupNavigationView();
+        }
     }
 
     private void setupNavigation() {
@@ -259,67 +257,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         return returnstring;
     }
-    /*private void showAlertDialog(String msg, final String action, int i) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-//        builder.setTitle("Hi Tamil Selvi,");
-//        builder.setMessage("Have you take tablets regulerlly: ");
-        builder.setTitle("Hi " + preferenceData.getMotherName() + ",");
-        builder.setMessage(msg);
-        if (action.equalsIgnoreCase("Click here")) {
-            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
-                }
-            });
-        }
-        //Yes Button
-        builder.setPositiveButton(action, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-//                Toast.makeText(getApplicationContext(),"Take care",Toast.LENGTH_LONG).show();
-                if (action.equalsIgnoreCase("Click here")) {
-//                    Toast.makeText(getApplicationContext(),"Alert has set to VHN,  They will contact soon..",Toast.LENGTH_LONG).show();
-//                    showAlertDialog("If you are not feeling well please Click here.", "Alert has set to VHN,  They will contact soon..", 0);
-                    sosAlertPresenter.postSosAlert(preferenceData.getPicmeId(), preferenceData.getMId(), preferenceData.getVhnId(), preferenceData.getPhcId(), preferenceData.getAwwId(), preferenceData.getDeviceId());
-                    AppConstants.isMainActivityOpen = false;
-                    dialog.dismiss();
-                } else if (action.equalsIgnoreCase("Next")) {
-//                    showAlertDialog("If you are not feeling well please Click here.", "Thank You, Mrs."+preferenceData.getMotherName(), 0);
-                    if (preferenceData.getMainScreenOpen().equalsIgnoreCase("1")) {
-                        preferenceData.setMainScreenOpen(2);
-                        showAlertDialog("Hope you are doing well..", "Next", 2);
-                    } else if (preferenceData.getMainScreenOpen().equalsIgnoreCase("2")) {
-                        preferenceData.setMainScreenOpen(3);
-                        showAlertDialog("This is your 12th Week of pregnancy.", "Next", 3);
-                    } else if (preferenceData.getMainScreenOpen().equalsIgnoreCase("3")) {
-                        preferenceData.setMainScreenOpen(4);
-                        showAlertDialog("this is the Period of child monthly development.", "Next", 4);
-                    } else if (preferenceData.getMainScreenOpen().equalsIgnoreCase("4")) {
-                        preferenceData.setMainScreenOpen(0);
-                        showAlertDialog("If you are not feeling well please Click here.", "Click here", 0);
-                    }
-//                    Toast.makeText(getApplicationContext(),"Thank you Mrs."+preferenceData.getMotherName(),Toast.LENGTH_LONG).show();
-                } else if (action.equalsIgnoreCase("close")) {
-                    preferenceData.setMainScreenOpen(0);
-                    dialog.dismiss();
-                }
-                AppConstants.isMainActivityOpen = false;
-//                dialog.dismiss();
-            }
-        });
-        *//*builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-//                Toast.makeText(getApplicationContext(),"Alert has set to VHN,  They will contact soon..",Toast.LENGTH_LONG).show();
-//                AppConstants.isMainActivityOpen=false;
-                dialog.dismiss();
-            }
-        });*//*
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
-    }
-*/
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -344,24 +282,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 doubleBackToExitPressedOnce=false;
             }
         }, 2000);
-        /*android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(MainActivity.this);
-        builder.setTitle(R.string.app_name);
-        builder.setIcon(R.mipmap.ic_launcher);
-        builder.setMessage("Are you Sure do you want to exit?")
-                .setCancelable(false)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        finish();
-                    }
-                })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                });
-        android.app.AlertDialog alert = builder.create();
-        alert.show();
-        super.onBackPressed();*/
+
     }
 
     @Override
@@ -392,7 +313,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     notification_count.setVisibility(View.GONE);
                 }
             }else{
-//                notification_count.setText(String.valueOf(strTodayVisitCount));
                 if (notification_count.getVisibility() != View.VISIBLE){
                     notification_count.setVisibility(View.VISIBLE);
                 }
@@ -421,10 +341,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 finish();
                 startActivity(i);
                 return true;
-                /*preferenceData.setLogin(false);
-                finish();
-                Toast.makeText(getApplicationContext(), "Logged Out", Toast.LENGTH_LONG).show();*/
-//                return true;
+
             default:
                 super.onOptionsItemSelected(item);
         }
@@ -472,6 +389,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Intent i = new Intent(getApplicationContext(), DeliveryDetailsActivityEntry.class);
 //            Intent i = new Intent(getApplicationContext(), DeliveryDetailsView.class);
             startActivity(i);
+        }  else if (id == R.id.child_development) {
+            Intent i = new Intent(getApplicationContext(), ChildTrackingActivity.class);
+//            Intent i = new Intent(getApplicationContext(), ChildTrackingViewReportActivity.class);
+            startActivity(i);
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -485,7 +406,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Menu menu = bottomNavigationView.getMenu();
 
 //            selectFragment(menu.getItem(0));
-            selectFragment(menu.getItem(AppConstants.BOTTTOM_MENU_ITEM));
+
+    selectFragment(menu.getItem(AppConstants.BOTTTOM_MENU_ITEM));
+
+
 
             bottomNavigationView.setOnNavigationItemSelectedListener(
                     new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -537,9 +461,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onDestroy(){
         super.onDestroy();
         pDialog.hide();
-       /* if (pDialog!=null && pDialog.isShowing() ){
-            pDialog.cancel();
-        }*/
     }
 
     @Override
@@ -567,7 +488,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Log.d(MainActivity.class.getSimpleName(), "Notification Count-->" + strNotifyCount);
             } else {
                 if(msg.equalsIgnoreCase("No Notification")) {
-//                    notification_count.setVisibility(View.GONE);
                     Log.d(MainActivity.class.getSimpleName(), "Notification message-->" + msg);
                 }
             }
@@ -585,20 +505,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void showPickmeResult(String response) {
         Log.d(MainActivity.class.getSimpleName(), "Response Success--->" + response);
-//        showAlertDialog("If you are not feeling well please Click here.", response, 0);
 
         try {
             JSONObject jsonObject = new JSONObject(response);
             String status = jsonObject.getString("status");
             String msg = jsonObject.getString("message");
-//            showAlertDialog(msg);
-
             if (status.equalsIgnoreCase("1")) {
-//                showAlertDialog();
-
                 Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
-//                showAlertDialog(msg);
-//                startActivity(new Intent(getApplicationContext(),MainActivity.class));
             } else {
                 showSosAlertDialog();
             }
@@ -627,15 +540,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onResume() {
         super.onResume();
         pDialog.hide();
-//        MyApplication.getInstance().setConnectivityListener(this);
-
-
     }
 
     @Override
-    public void showFlashResult(String response) {
-//        showAlertDialog();
-    }
+    public void showFlashResult(String response) { }
     @Override
     public void showErrorMessage(String response) {
         Log.d(AddRecords.class.getSimpleName(), "Response Error--->" + response);
@@ -652,7 +560,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(LocaleHelper.onAttach(newBase));
     }
-
-
 
 }

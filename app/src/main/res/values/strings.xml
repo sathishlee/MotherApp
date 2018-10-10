@@ -80,6 +80,7 @@
     <string name="completed_visits">COMPLETED VISITS</string>
     <string name="referral">Referral</string>
     <string name="health_tips">Health Tips</string>
+    <string name="child_development">Child Development</string>
 
 
     <!--Infant tracking details-->
@@ -722,5 +723,8 @@
     <string name="week_pregnancy">Week of pregnancy.</string>
     <string name="good_morning">Good Morning Mrs.</string>
     <string name="does_the_child_move_both_arms_and_both_legs_freely_equally_when_awake_or_when_excited"><![CDATA[Does the child move both arms and both legs freely & equally when awake or when excited]]></string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

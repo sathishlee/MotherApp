@@ -3,12 +3,14 @@ package com.unicef.thaimai.motherapp.activity;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
@@ -43,7 +45,7 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Locale;
+import java.util.List;
 
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener,
@@ -91,9 +93,24 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register);
         startService(new Intent(this, LocationMonitoringService.class));
+        showActionBar();
+
         initUI();
         onClicklistiner();
         onItemSelectedlistiner();
+    }
+
+    private void showActionBar() {
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("New Mother Register");
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        finish();
+        return super.onOptionsItemSelected(item);
     }
 
     private void onItemSelectedlistiner() {
@@ -198,23 +215,26 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     }
 
-    private void getDob(final EditText edtDob) {
-
-        Calendar newCalendar = Calendar.getInstance();
+    private void pickDate(final EditText setDateOfReferral) {
         DatePickerDialog datePickerDialog = new DatePickerDialog(RegisterActivity.this, R.style.DatePickerDialogTheme, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                Calendar newDate = Calendar.getInstance();
-                newDate.set(year, monthOfYear, dayOfMonth);
-//                edtDob.setText(dayOfMonth + "-" + monthOfYear + "-" + year);
-                dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
-                edtDob.setText(dateFormatter.format(newDate.getTime()));
+//                monthOfYear = monthOfYear + 1;
+                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                String date = sdf.format(Calendar.getInstance().getTime());
+                Log.d("date-->",date);
+
+                Calendar c=Calendar.getInstance();
+                mYear=c.get(Calendar.YEAR);
+                mMonth=c.get(Calendar.MONTH);
+                mDay=c.get(Calendar.DAY_OF_MONTH);
+                SimpleDateFormat ssdf = new SimpleDateFormat("dd-MM-yyyy");
+                setDateOfReferral.setText(ssdf.format(c.getTime()));
             }
-        }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
+        }, year, month, day);
         InputMethodManager imm =
                 (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(edtDob.getWindowToken(), 0);
-
+        imm.hideSoftInputFromWindow(setDateOfReferral.getWindowToken(), 0);
         datePickerDialog.show();
     }
 
@@ -225,7 +245,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 sendValues();
                 break;
             case R.id.dob:
-                getDob(user_dob);
+                pickDate(user_dob);
                 break;
         }
     }
@@ -274,11 +294,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        finish();
-        return super.onOptionsItemSelected(item);
-    }
+
 
     @Override
     public void showProgress() {
@@ -297,9 +313,42 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             JSONObject jsonObject = new JSONObject(response);
             String status = jsonObject.getString("status");
             String message = jsonObject.getString("message");
+
             if (status.equalsIgnoreCase("1")) {
-                Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this,Login.class));
+                new android.support.v7.app.AlertDialog.Builder(this)
+                        .setIcon(R.drawable.logo)
+                        .setTitle("Response")
+                        .setMessage(message)
+                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                finish();
+                            }
+                        })
+                        .show();
+//                JSONArray jsonArray = jsonObject.getJSONArray("alldist");
+//                Log.e("alldist arr", jsonArray.length() + "");
+
+                /*for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                    stateSpinnerModel = new StateSpinnerModel.Alldist();
+                    stateSpinnerModel.setDst_code(jsonObject1.getString("dst_code"));
+//                    strDist = stateSpinnerModel.setDst_code(jsonObject1.getString("dst_code"));
+//                    Log.e("dist Selected-->", strDist+ "");
+                    stateSpinnerModel.setDst_name(jsonObject1.getString("dst_name"));
+                    dist_id.add(jsonObject1.getString("dst_code"));
+                    stateSpinner.add(jsonObject1.getString("dst_name"));
+                    alldists.add(stateSpinnerModel);
+                }
+                sp_district.setAdapter(arrayAdapterState);*/
+
+            }else{
+                new android.support.v7.app.AlertDialog.Builder(this)
+                        .setIcon(R.drawable.logo)
+                        .setTitle("Response")
+                        .setMessage(message)
+                        .setPositiveButton("Ok", null)
+                        .show();
             }
 
         } catch (JSONException e) {
@@ -309,7 +358,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void getRegisterFailure(String response) {
-        Log.d("Register", "Failure" + response);
+        new android.support.v7.app.AlertDialog.Builder(this)
+                .setIcon(R.drawable.logo)
+                .setTitle("Response")
+                .setMessage(response)
+                .setPositiveButton("Ok", null)
+                .show();
     }
 
     @Override
@@ -390,6 +444,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             JSONObject jsonObject = new JSONObject(response);
             String status = jsonObject.getString("status");
             if (status.equalsIgnoreCase("1")) {
+
+
                 JSONArray jsonArray = jsonObject.getJSONArray("block");
                 Log.e("PHC", jsonArray.length() + "");
                 for (int i = 0; i < jsonArray.length(); i++) {

@@ -63,14 +63,14 @@ public class UploadMulitipleImagesPresenter implements ImageUploadInteractor {
                 imageUploadViews.errorUploadPhoto(error.toString());
             }
         }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("picmeId", picmeId);
-                params.put("visitId", visitId);
-                params.put("mid", mid);
-                return params;
-            }
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    Map<String, String> params = new HashMap<>();
+                    params.put("picmeId", picmeId);
+                    params.put("visitId", visitId);
+                    params.put("mid", mid);
+                    return params;
+                }
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {

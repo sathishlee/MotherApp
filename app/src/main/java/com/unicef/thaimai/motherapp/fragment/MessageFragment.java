@@ -209,9 +209,12 @@ public class MessageFragment extends Fragment implements HealthTipsViews{
                 healthtips.setSubject(messageRealmModel.getSubject());
                 healthtips.setMessage(messageRealmModel.getMessage());
                 healthtipses.add(healthtips);
-                messageAdapter.notifyDataSetChanged();
             }
+            messageAdapter.notifyDataSetChanged();
+
         }
+
+
         else{
 //                Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
             txt_no_records_found.setVisibility(View.VISIBLE);

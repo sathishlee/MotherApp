@@ -4,35 +4,42 @@ package com.unicef.thaimai.motherapp.constant;
 
 public class Apiconstants {
 
-//        public static final String BASE_URL = "http://218.248.44.77/thaimaiapp/api/";
+        public static final String BASE_URL = "http://218.248.44.77/thaimaiapp/api/";
 //    public static final String BASE_URL = "http://192.168.100.222/thaimaiapp/api/";
-    public static final String BASE_URL = "http://106.51.127.173/thaimaiapp/api/";
+//    public static final String BASE_URL = "http://106.51.127.173/thaimaiapp/api/";
     //    public static final String BASE_URL = "http://demo.satvatinfosol.com/thaimai/api/";
 
-//        public static final String PHOTO_URL = "http://218.248.44.77/thaimaiapp/assets/mother_photos/";
+            public static final String PHOTO_URL = "http://218.248.44.77/thaimaiapp/assets/mother_photos/";
 //    public static final String PHOTO_URL = "http://192.168.100.222/thaimaiapp/assets/mother_photos/";
-    public static final String PHOTO_URL = "http://106.51.127.173/thaimaiapp/assets/mother_photos/";
+//    public static final String PHOTO_URL = "http://106.51.127.173/thaimaiapp/assets/mother_photos/";
 //    public static final String PHOTO_URL = "http://demo.satvatinfosol.com/thaimai/assets/mother_photos/";
 
-//        public static final String HEALTH_TIPS_VIDEO_URL = "http://218.248.44.77/thaimaiapp/assets/mother_videos/";
+        public static final String HEALTH_TIPS_VIDEO_URL = "http://218.248.44.77/thaimaiapp/assets/mother_videos/";
 //    public static final String HEALTH_TIPS_VIDEO_URL = "http://192.168.100.222/thaimaiapp/assets/mother_videos/";
-    public static final String HEALTH_TIPS_VIDEO_URL = "http://106.51.127.173/thaimaiapp/assets/mother_videos/";
+//    public static final String HEALTH_TIPS_VIDEO_URL = "http://106.51.127.173/thaimaiapp/assets/mother_videos/";
 //    public static final String HEALTH_TIPS_VIDEO_URL = "http://demo.satvatinfosol.com/thaimai/assets/mother_videos/";
 
-//        public static final String VISIT_REPORTS_URL = "http://218.248.44.77/thaimaiapp/assets/mother_reports/";
+        public static final String VISIT_REPORTS_URL = "http://218.248.44.77/thaimaiapp/assets/mother_reports/";
 //    public static final String VISIT_REPORTS_URL = "http://192.168.100.222/thaimaiapp/assets/mother_reports/";
-    public static final String VISIT_REPORTS_URL = "http://106.51.127.173/thaimaiapp/assets/mother_reports/";
+//    public static final String VISIT_REPORTS_URL = "http://106.51.127.173/thaimaiapp/assets/mother_reports/";
 //    public static final String VISIT_REPORTS_URL = "http://demo.satvatinfosol.com/thaimai/assets/mother_reports/";
 
-//            public static final String PN_VISIT_REPORTS_URL = "http://218.248.44.77/thaimaiapp/assets/pnmother_reports/";
+            public static final String PN_VISIT_REPORTS_URL = "http://218.248.44.77/thaimaiapp/assets/pnmother_reports/";
 //        public static final String PN_VISIT_REPORTS_URL = "http://192.168.100.222/thaimaiapp/assets/pnmother_reports/";
 //    public static final String PN_VISIT_REPORTS_URL = "http://demo.satvatinfosol.com/thaimai/assets/pnmother_reports/";
-    public static final String PN_VISIT_REPORTS_URL = "http://106.51.127.173/thaimaiapp/assets/pnmother_reports/";
+//    public static final String PN_VISIT_REPORTS_URL = "http://106.51.127.173/thaimaiapp/assets/pnmother_reports/";
 
-//    public static final String HEALTH_TIPS_IMAGES = "http://218.248.44.77/thaimaiapp/assets/healthtips/";
-    //        public static final String HEALTH_TIPS_IMAGES = "http://192.168.100.222/thaimaiapp/assets/healthtips/";
+    public static final String HEALTH_TIPS_IMAGES = "http://218.248.44.77/thaimaiapp/assets/healthtips/";
+//            public static final String HEALTH_TIPS_IMAGES = "http://192.168.100.222/thaimaiapp/assets/healthtips/";
 //    public static final String HEALTH_TIPS_IMAGES = "http://demo.satvatinfosol.com/thaimai/assets/healthtips/";
-    public static final String HEALTH_TIPS_IMAGES = "http://106.51.127.173/thaimaiapp/assets/healthtips/";
+//    public static final String HEALTH_TIPS_IMAGES = "http://106.51.127.173/thaimaiapp/assets/healthtips/";
+
+
+
+        public static final String CHILD_TRACKING_IMAGES = "http://218.248.44.77/thaimaiapp/assets/child_Tracking_photos/";
+//            public static final String CHILD_TRACKING_IMAGES = "http://192.168.100.222/thaimaiapp/assets/child_Tracking_photos/";
+//    public static final String CHILD_TRACKING_IMAGES = "http://demo.satvatinfosol.com/thaimai/assets/child_Tracking_photos/";
+//    public static final String CHILD_TRACKING_IMAGES = "http://106.51.127.173/thaimaiapp/assets/child_Tracking_photos/";
 
 
     public static final String APK_URL = "http://218.248.44.77/thaimaiapp/";
@@ -47,7 +54,8 @@ public class Apiconstants {
 
     public static final String POST_DASH_BOARD = "mother/mDashboard/";
 
-    public static final String POST_VIST_HEALTH_RECORD_NUMBER = "mother/mHealthRecordVisitNumber";
+//    public static final String POST_VIST_HEALTH_RECORD_NUMBER = "mother/mHealthRecordVisitNumber";
+    public static final String POST_VIST_HEALTH_RECORD_NUMBER = "mother/mCurrentMonth";
 
     public static final String POST_VIST_HEALTH_RECORD = "mother/mHealthRecord/";
 
@@ -133,6 +141,16 @@ public class Apiconstants {
     public static final String GET_DISTRICT_BLOCK_PHC_DATA = "Login/signupnearHospital";
 
     public static final String REGISTER_URL = "Login/signupMother";
+
+
+
+    //child Development module
+
+    public static final String CHILD_DEVELOPMENT_CURRRENT_MONTH = "mother/childDevelopment";
+    public static final String CHILD_DEVELOPMENT_ADD = "mother/childDevelopmentAdd";
+    public static final String CHILD_DEVELOPMENT_GET_All_REPORT = "vhn/Vhn/showAllDevelopmentChild";
+    public static final String CHILD_DEVELOPMENT_GET_All_QUESTION_MASTER = "vhn/Vhn/questionMaster";
+
 
 
 

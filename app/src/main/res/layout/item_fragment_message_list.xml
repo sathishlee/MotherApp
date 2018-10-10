@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -8,27 +8,34 @@
     android:layout_margin="10dp">
 
     <LinearLayout
+        android:id="@+id/ll_notify_block"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:weightSum="20"
-        android:layout_margin="5dp">
+        android:layout_margin="5dp"
+        android:background="@color/secondary"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_weight="15">
 
-            <TextView
-                android:id="@+id/message_tile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="3dp"
-                android:textColor="@color/ripple"
-                android:textStyle="bold"
-                android:textSize="@dimen/text_label"
-                android:text="Food Tips"/>
+
+    <TextView
+        android:id="@+id/message_tile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="@dimen/text_label"
+        android:text="Food Tips"
+        android:layout_gravity="left"
+        />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -43,7 +50,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="2dp"
-                        android:textColor="@color/secondary"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/text_secondary"
                         android:text="Take Food Regularly on time. Eat Healthy food. \n Eat more Fruits"/>
 
@@ -62,6 +69,16 @@
 
         </LinearLayout>
 
+        <ImageView
+            android:id="@+id/message_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            app:srcCompat="@drawable/quantum_ic_keyboard_arrow_down_white_36"
+            android:layout_gravity="center_vertical"
+            android:padding="5dp"
+            android:layout_weight="5"
+             />
     </LinearLayout>
 
     <View

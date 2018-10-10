@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/month_2_4"
+        android:orientation="vertical"
+        android:visibility="visible"
+        android:background="@android:color/white">
+      <!--  <android.support.v7.widget.CardView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="6dp"
+            android:orientation="vertical"
+            android:padding="16.0dip"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardElevation="2.0dip">-->
+            <!--welcome-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="7dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="false"
+                    android:weightSum="2"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txt_question"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Does the child move both arms and both legs freely equally when awake or when excited."
+
+                            android:textSize="18sp"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:baselineAligned="false"
+                    android:layout_margin="5dp"
+                    android:orientation="horizontal"
+                    android:layout_weight="2">
+
+                    <!--<RadioGroup
+                        android:id="@+id/rg_answer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:weightSum="2">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <android.support.v7.widget.AppCompatRadioButton
+                             android:id="@+id/rb_yes"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Yes"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <android.support.v7.widget.AppCompatRadioButton
+                                android:id="@+id/rb_no"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:text="No"/>
+
+                        </LinearLayout>
+
+                    </RadioGroup>-->
+
+                   <!-- <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:weightSum="3">
+                        <ImageView
+                            android:id="@+id/img_view_image"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:srcCompat="@drawable/no_image"
+                            android:layout_weight="1"/>
+                        <Button
+                            android:id="@+id/but_submit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="send"
+                            android:layout_gravity="center"
+                            android:layout_weight="2"
+                             android:background="@color/colorPrimary"
+
+                          />
+                    </LinearLayout>-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"
+                        >
+                    <ImageView
+                        android:id="@+id/img_view_image"
+                        android:layout_width="125px"
+                        android:layout_height="125px"
+                        app:srcCompat="@drawable/ic_take_photo"
+                        android:gravity="center"
+                        />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"
+
+                        >
+                    <Button
+                        android:id="@+id/but_submit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="send"
+                        android:layout_gravity="right|center"
+                        android:layout_margin="20dp"
+                        android:background="@color/colorPrimary"
+                         />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+       <!-- </android.support.v7.widget.CardView>-->
+
+    </LinearLayout>
+
+</LinearLayout>
+</LinearLayout>

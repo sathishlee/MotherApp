@@ -44,10 +44,10 @@
             android:icon="@drawable/first_aid"
             android:title="@string/health_tips" />
 
-       <!-- <item
-            android:id="@+id/child_tracking"
-            android:icon="@drawable/first_aid"
-            android:title="Child Tracking" />-->
+        <item
+            android:id="@+id/child_development"
+            android:icon="@drawable/mother_baby"
+            android:title="@string/child_development" />
 
 
     </group>

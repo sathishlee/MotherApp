@@ -74,7 +74,9 @@ public class PrimaryRegisterView extends AppCompatActivity implements PrimaryReg
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        finish();
+//        finish();
+//        return super.onOptionsItemSelected(item);
+        startActivity(new Intent(getApplicationContext(), MainActivity.class));
         return super.onOptionsItemSelected(item);
     }
 

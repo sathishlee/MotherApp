@@ -1,12 +1,14 @@
 package com.unicef.thaimai.motherapp.adapter;
 
+import android.support.v4.view.PagerAdapter;
+
 import android.content.Context;
 import android.os.Parcelable;
-import android.support.v4.view.PagerAdapter;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ImageView;
 
 import com.squareup.picasso.MemoryPolicy;
@@ -64,7 +66,7 @@ public class ANSlidingImage_Adapter extends PagerAdapter {
                 .load(Apiconstants.VISIT_REPORTS_URL+preferenceData.getPicmeId()+"/"+IMAGES.get(position))
                 .placeholder(R.drawable.no_image)
                 .centerCrop()
-                .fit()
+                .resize(imageView.getMeasuredWidth(),imageView.getMeasuredHeight())
                 .memoryPolicy(MemoryPolicy.NO_CACHE)
                 .networkPolicy(NetworkPolicy.NO_CACHE)
                 .error(R.drawable.no_image)

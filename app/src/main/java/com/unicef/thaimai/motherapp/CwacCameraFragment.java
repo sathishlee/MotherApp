@@ -469,7 +469,6 @@ public class CwacCameraFragment extends Fragment implements View.OnClickListener
         }
         private Bitmap getCorrectOrientImage(Bitmap bitmap, String path) {
 
-
             ExifInterface exif = null;
             try {
 

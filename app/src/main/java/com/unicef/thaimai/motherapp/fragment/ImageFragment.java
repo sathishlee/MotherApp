@@ -191,6 +191,7 @@ public class ImageFragment extends Fragment implements HealthTipsViews {
                         healthtips = new ImageFragmentModel.HealthtipsImage();
 
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
+
                         messageRealmModel.setSubject(jsonObject.getString("subject"));
                         messageRealmModel.setMessage(jsonObject.getString("message"));
                         messageRealmModel.setMessage(jsonObject.getString("health_pic"));
