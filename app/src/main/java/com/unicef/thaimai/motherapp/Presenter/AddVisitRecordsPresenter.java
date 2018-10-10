@@ -14,6 +14,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.unicef.thaimai.motherapp.activity.AddRecords;
 import com.unicef.thaimai.motherapp.constant.Apiconstants;
+import com.unicef.thaimai.motherapp.constant.AppConstants;
 import com.unicef.thaimai.motherapp.interactor.AddRecordsInteractor;
 import com.unicef.thaimai.motherapp.model.requestmodel.AddRecordRequestModel;
 import com.unicef.thaimai.motherapp.view.AddRecordViews;
@@ -40,7 +41,7 @@ public class AddVisitRecordsPresenter implements AddRecordsInteractor {
     @Override
     public void getVisitCount(final String strPickmeId, final String strMid) {
         String url = Apiconstants.BASE_URL + Apiconstants.POST_VIST_HEALTH_RECORD_NUMBER;
-        Log.d("Log in check Url--->", url);
+        Log.e("Log in check Url--->", url);
         views.showProgress();
         StringRequest stringRequest =new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -48,6 +49,8 @@ public class AddVisitRecordsPresenter implements AddRecordsInteractor {
                 views.hideProgress();
 
                 views.getVisitIDSuccess(String.valueOf(response));
+                Log.e("response--->", response);
+
             }
         }, new Response.ErrorListener() {
             @Override
@@ -64,7 +67,7 @@ public class AddVisitRecordsPresenter implements AddRecordsInteractor {
                 //                header.put("Content-Type", "application/x-www-from-urlencoded; charset=utf-8");
                 header.put("Authorization", "Basic " + base64EncodedCredentials);
 //                header.put("Content-Type", "application/json; charset=utf-8");
-                Log.d("Credentials ", "Basic " + base64EncodedCredentials.toString());
+                Log.e("Credentials ", "Basic " + base64EncodedCredentials.toString());
 
                 return header;
             }
@@ -72,10 +75,11 @@ public class AddVisitRecordsPresenter implements AddRecordsInteractor {
             protected Map<String, String> getParams() {
                 // Posting parameters to login url
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("picmeId",strPickmeId);
-                params.put("mid",strMid);
+//                params.put("picmeId",strPickmeId);
+//                params.put("mid",strMid);
+                params.put("mLMP", AppConstants.LMP_DATE);
 
-                Log.d("params--->",params.toString());
+                Log.e("params--->",params.toString());
 
                 return params;
             }

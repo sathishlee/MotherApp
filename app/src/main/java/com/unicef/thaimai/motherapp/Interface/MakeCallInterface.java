@@ -5,6 +5,6 @@ package com.unicef.thaimai.motherapp.Interface;
  */
 
 public interface MakeCallInterface {
-    public  void makeCall(String response);
+       void makeCall(String response);
 
 }

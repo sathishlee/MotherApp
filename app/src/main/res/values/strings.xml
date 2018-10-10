@@ -80,6 +80,7 @@
     <string name="completed_visits">COMPLETED VISITS</string>
     <string name="referral">Referral</string>
     <string name="health_tips">Health Tips</string>
+    <string name="child_development">Child Development</string>
 
 
     <!--Infant tracking details-->
@@ -721,5 +722,8 @@
     <string name="this_your">This is your</string>
     <string name="week_pregnancy">Week of pregnancy.</string>
     <string name="good_morning">Good Morning Mrs.</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

@@ -48,8 +48,10 @@ import static android.content.Context.MODE_PRIVATE;
 public class HealthRecordsFragment extends Fragment implements GetVisitHelthRecordsViews, View.OnClickListener, TypeOfHealthRecords {
     Button btn_primary_report, btn_view_report;
     static LinearLayout llClickPickMeVisit, llClickOtherVisit, ll_click_visit_view;
+
     private TabLayout tabLayout;
     private ViewPager viewPager;
+
     PreferenceData preferenceData;
     SharedPreferences.Editor editor;
     ProgressDialog pDialog;
@@ -58,13 +60,10 @@ public class HealthRecordsFragment extends Fragment implements GetVisitHelthReco
     ArrayList<HealthRecordResponseModel.Visit_Records> mhealthRecordList;
     HealthRecordsAdapter hAdapter;
     TextView txt_visit_type;
-
     TextView txt_no_records;
-
     Realm realm;
     CheckNetwork checkNetwork;
     boolean isoffline = false;
-
 
     public static HealthRecordsFragment newInstance() {
         HealthRecordsFragment fragment = new HealthRecordsFragment();

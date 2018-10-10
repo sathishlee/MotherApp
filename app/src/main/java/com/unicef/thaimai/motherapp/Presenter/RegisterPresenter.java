@@ -175,13 +175,14 @@ public class RegisterPresenter implements RegisterInteractor {
             public void onResponse(String response) {
                 Log.e("Block", response);
                 registerViews.hideProgress();
-                registerViews.getAllPHCDataSuccess(response);
+//                registerViews.getAllPHCDataSuccess(response);
+                registerViews.getRegisterSuccess(response);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 registerViews.hideProgress();
-                registerViews.getAllPHCDataFailure(error.toString());
+                registerViews.getRegisterFailure(error.toString());
             }
         }) {
             @Override

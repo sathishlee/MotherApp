@@ -50,6 +50,7 @@ public class HealthRecordsAdapter extends PagerAdapter {
         mhealthRecordResponseModel = mhealthRecordList.get(position);
         Log.e(HealthRecordsAdapter.class.getSimpleName(), mhealthRecordResponseModel.getVisitId());
         initUI(healthRecordLayout);
+
         setValuetoUI(mhealthRecordResponseModel);
         view.addView(healthRecordLayout);
 

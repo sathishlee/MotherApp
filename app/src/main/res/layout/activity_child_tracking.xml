@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/ll_block1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/ll_button_block">
+
+        <LinearLayout
+            android:id="@+id/ll_block12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="7dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:text="Child Development Tracking"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/text_label"
+                        android:textStyle="bold"
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:id="@+id/txt_view_all_report"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:text="View All"
+                        android:gravity="right"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/text_label"
+                        android:textStyle="bold"
+                        android:layout_weight="1"
+                         />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="4.0dip">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="5.0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1.0"
+                    android:background="@drawable/header_line"
+                    android:layerType="software" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ll_block13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="10">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="Age of the Month : "
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/text_label"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="6">
+
+                <TextView
+                    android:id="@+id/age_of_month"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="2-4"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_label"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rec_question_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+
+            />
+
+        <include layout="@layout/item_card_child_tracking"
+            android:visibility="gone"/>
+
+
+
+    </LinearLayout>
+    <LinearLayout
+android:id="@+id/ll_button_block"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+      android:layout_alignParentBottom="true"
+        android:visibility="gone">
+
+        <Button
+            style="@style/Button"
+            android:id="@+id/btn_submit_new"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:padding="10dp"
+            android:text="@string/submit"/>
+
+    </LinearLayout>
+</RelativeLayout>

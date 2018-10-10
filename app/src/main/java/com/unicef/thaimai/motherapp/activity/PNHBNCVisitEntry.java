@@ -401,49 +401,49 @@ public class PNHBNCVisitEntry extends AppCompatActivity implements View.OnClickL
         if (strFacility.equalsIgnoreCase("--Select--")){
             showAlert("Facility is Empty");
         }
-        else if (strInfantUmbilicalStump.equalsIgnoreCase("--Select")){
+        else if (strInfantUmbilicalStump.equalsIgnoreCase("--Select--")){
             showAlert("Infant Umbilical Stump is Empty");
         }
-        else if (strInfantCry.equalsIgnoreCase("--Select")){
+        else if (strInfantCry.equalsIgnoreCase("--Select--")){
             showAlert("Infant Cry is Empty");
         }
-        else if(strInfantEyes.equalsIgnoreCase("--Select")){
+        else if(strInfantEyes.equalsIgnoreCase("--Select--")){
             showAlert("Infant Eyes is Empty");
         }
-        else if(strInfantSkin.equalsIgnoreCase("--Select")){
+        else if(strInfantSkin.equalsIgnoreCase("--Select--")){
             showAlert("Infant Skin is Empty");
         }
-        else if(strInfantBreastFeeding.equalsIgnoreCase("--Select")){
+        else if(strInfantBreastFeeding.equalsIgnoreCase("--Select--")){
             showAlert("Infant Breast Feeding is Empty");
         }
-        else if(strInfantReason.equalsIgnoreCase("--Select")){
+        else if(strInfantReason.equalsIgnoreCase("--Select--")){
             showAlert("Infant Reason is Empty");
         }
-        else if (strInfantOutcome.equalsIgnoreCase("--Select")){
+        else if (strInfantOutcome.equalsIgnoreCase("--Select--")){
             showAlert("Infant Outcome is Empty");
         }
-        else if (strInfantMotherComplaints.equalsIgnoreCase("--Select")){
+        else if (strInfantMotherComplaints.equalsIgnoreCase("--Select--")){
             showAlert("Mother Complaints is Empty");
         }
-        else if(strMotherEpistomy.equalsIgnoreCase("--Select")){
+        else if(strMotherEpistomy.equalsIgnoreCase("--Select--")){
             showAlert("Mother Epistomy is Empty");
         }
-        else if(strPVDischarge.equalsIgnoreCase("--Select")){
+        else if(strPVDischarge.equalsIgnoreCase("--Select--")){
             showAlert("PV Discharge is Empty");
         }
-        else if(strMotherBreastFeeding.equalsIgnoreCase("--Select")){
+        else if(strMotherBreastFeeding.equalsIgnoreCase("--Select--")){
             showAlert("Mother Breast Feeding is Empty");
         }
-        else if(strMotherReason.equalsIgnoreCase("--Select")){
+        else if(strMotherReason.equalsIgnoreCase("--Select--")){
             showAlert("Mother Reason is Empty");
         }
-        else if (strBreastExamination.equalsIgnoreCase("--Select")){
+        else if (strBreastExamination.equalsIgnoreCase("--Select--")){
             showAlert("Breast Examination is Empty");
         }
-        else if(strMotherOutcome.equalsIgnoreCase("--Select")){
+        else if(strMotherOutcome.equalsIgnoreCase("--Select--")){
             showAlert("Mother Outcome is Empty");
         }
-        else if(strVisitNo.equalsIgnoreCase("--Select")){
+        else if(strVisitNo.equalsIgnoreCase("--Select--")){
             showAlert("Visit No is Empty");
         }
 

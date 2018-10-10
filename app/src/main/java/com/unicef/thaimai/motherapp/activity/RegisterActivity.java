@@ -3,14 +3,17 @@ package com.unicef.thaimai.motherapp.activity;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -42,6 +45,7 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener,
@@ -87,9 +91,24 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register);
         startService(new Intent(this, LocationMonitoringService.class));
+        showActionBar();
+
         initUI();
         onClicklistiner();
         onItemSelectedlistiner();
+    }
+
+    private void showActionBar() {
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("New Mother Register");
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        finish();
+        return super.onOptionsItemSelected(item);
     }
 
     private void onItemSelectedlistiner() {
@@ -285,10 +304,24 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         try {
             JSONObject jsonObject = new JSONObject(response);
             String status = jsonObject.getString("status");
+            String message = jsonObject.getString("message");
+
             if (status.equalsIgnoreCase("1")) {
-                JSONArray jsonArray = jsonObject.getJSONArray("alldist");
-                Log.e("alldist arr", jsonArray.length() + "");
-                for (int i = 0; i < jsonArray.length(); i++) {
+                new android.support.v7.app.AlertDialog.Builder(this)
+                        .setIcon(R.drawable.logo)
+                        .setTitle("Response")
+                        .setMessage(message)
+                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                finish();
+                            }
+                        })
+                        .show();
+//                JSONArray jsonArray = jsonObject.getJSONArray("alldist");
+//                Log.e("alldist arr", jsonArray.length() + "");
+
+                /*for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject1 = jsonArray.getJSONObject(i);
                     stateSpinnerModel = new StateSpinnerModel.Alldist();
                     stateSpinnerModel.setDst_code(jsonObject1.getString("dst_code"));
@@ -299,7 +332,15 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     stateSpinner.add(jsonObject1.getString("dst_name"));
                     alldists.add(stateSpinnerModel);
                 }
-                sp_district.setAdapter(arrayAdapterState);
+                sp_district.setAdapter(arrayAdapterState);*/
+
+            }else{
+                new android.support.v7.app.AlertDialog.Builder(this)
+                        .setIcon(R.drawable.logo)
+                        .setTitle("Response")
+                        .setMessage(message)
+                        .setPositiveButton("Ok", null)
+                        .show();
             }
 
         } catch (JSONException e) {
@@ -309,7 +350,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void getRegisterFailure(String response) {
-
+        new android.support.v7.app.AlertDialog.Builder(this)
+                .setIcon(R.drawable.logo)
+                .setTitle("Response")
+                .setMessage(response)
+                .setPositiveButton("Ok", null)
+                .show();
     }
 
     @Override
@@ -390,6 +436,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             JSONObject jsonObject = new JSONObject(response);
             String status = jsonObject.getString("status");
             if (status.equalsIgnoreCase("1")) {
+
+
                 JSONArray jsonArray = jsonObject.getJSONArray("block");
                 Log.e("PHC", jsonArray.length() + "");
                 for (int i = 0; i < jsonArray.length(); i++) {

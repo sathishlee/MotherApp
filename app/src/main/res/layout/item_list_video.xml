@@ -6,18 +6,25 @@
     android:orientation="vertical"
     android:padding="10.0dip"
     app:cardCornerRadius="4dp"
-    app:cardBackgroundColor="@android:color/white"
+    app:cardBackgroundColor="@color/custom_bg_grey"
+
     app:cardElevation="4.0dip">
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/white"
-    android:orientation="vertical">
+    android:orientation="horizontal"
+    android:weightSum="3"
+    android:padding="10dp"
+    android:background="@color/custom_bg_grey"
+    >
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="180dp">
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:padding="5dp">
 
         <ImageView
             android:id="@+id/img_video_thumbnail"
@@ -60,18 +67,20 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:padding="10dp"
+        android:layout_weight="2"
+        android:background="@color/white">
 
         <TextView
-            android:id="@+id/txt_video_title"
+            android:id="@+id/txt_video_month"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:text="Video Title"
-            android:textColor="@color/colorPrimary"
+            android:text=" Month"
+            android:textColor="@color/black"
             android:textSize="@dimen/text_label" />
 
         <View
@@ -79,14 +88,24 @@
             android:layout_height="1dp"
             android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp"
-            android:background="#f1f1f1" />
+            android:background="#f1f1f1"
+            android:visibility="gone"/>
+        <TextView
+            android:id="@+id/txt_video_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:singleLine="true"
+            android:text="Month 1"
+            android:textColor="@color/primary_dark" />
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -94,7 +113,9 @@
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
-                <TextView
+               <!-- <TextView
+                    android:id="@+id/txt_video_title"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Month" />
@@ -104,16 +125,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:text=":" />
+                    android:text=":" />-->
 
-                <TextView
-                    android:id="@+id/txt_video_month"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:singleLine="true"
-                    android:text="Month 1"
-                    android:textColor="@color/red" />
+
             </LinearLayout>
 
             <TextView
@@ -129,6 +143,25 @@
         </LinearLayout>
 
     </LinearLayout>
+    <LinearLayout
+
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight=".5"
+        android:layout_gravity="end"
+        android:gravity="end"
+        android:background="@color/white"
+        >
+<ImageView
+    android:id="@+id/img_download"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    app:srcCompat="@drawable/download"
+    android:layout_gravity="center">
+</ImageView>
+    </LinearLayout>
+
 
 </LinearLayout>
 

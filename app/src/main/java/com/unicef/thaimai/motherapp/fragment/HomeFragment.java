@@ -465,6 +465,7 @@ public class HomeFragment extends Fragment implements LoginViews, View.OnClickLi
                 HomeRealmModel homeRealmModel = realm.createObject(HomeRealmModel.class);
                 homeRealmModel.setPicmeId(jObj.getString("picmeId"));
                 homeRealmModel.setMLMP(jObj.getString("mLMP"));
+                AppConstants.LMP_DATE = jObj.getString("mLMP");
                 homeRealmModel.setMEDD(jObj.getString("mEDD"));
                 homeRealmModel.setMAge(Integer.parseInt(jObj.getString("mAge")));
                 homeRealmModel.setMRiskStatus(jObj.getString("mRiskStatus"));

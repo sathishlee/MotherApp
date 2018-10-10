@@ -40,9 +40,12 @@ public class HealthTips extends AppCompatActivity{
 
     private int[] tabIcons = {
             R.drawable.message_icon,
+           R.drawable.video_icon
+    };/*private int[] tabIcons = {
+            R.drawable.message_icon,
             R.drawable.image_icon,
             R.drawable.video_icon
-    };
+    };*/
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -80,8 +83,12 @@ public class HealthTips extends AppCompatActivity{
     private void setupViewPager(ViewPager viewPager) {
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(),this);
         viewPagerAdapter.addFragment(new MessageFragment(), "Message",tabIcons[0]);
+        viewPagerAdapter.addFragment(new VideoFragment(), "Video",tabIcons[1]);
+
+        /*  viewPagerAdapter.addFragment(new MessageFragment(), "Message",tabIcons[0]);
         viewPagerAdapter.addFragment(new ImageFragment(), "Image",tabIcons[1]);
-        viewPagerAdapter.addFragment(new VideoFragment(), "Video",tabIcons[2]);
+        viewPagerAdapter.addFragment(new VideoFragment(), "Video",tabIcons[2]);*/
+
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
 
@@ -121,7 +128,7 @@ public class HealthTips extends AppCompatActivity{
     private void setupTabIcons() {
         tabLayout.getTabAt(0).setIcon(tabIcons[0]);
         tabLayout.getTabAt(1).setIcon(tabIcons[1]);
-        tabLayout.getTabAt(2).setIcon(tabIcons[2]);
+//        tabLayout.getTabAt(2).setIcon(tabIcons[2]);
     }
 
     private void showActionBar() {
